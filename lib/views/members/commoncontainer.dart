@@ -130,19 +130,24 @@ class _CommonContainerState extends State<CommonContainer> {
                    ),
                    Padding(
                      padding: const EdgeInsets.only(left: 30),
-                     child: Container(
-                      height: 35,
-                      width:120,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(colors:[
-                          korange,
-                          kyellow
-                        ]),
-                        borderRadius: BorderRadius.circular(15)
-                              
-                      ),
-                      child: Center(child: Text('Register Now',
-                      style: TextStyle(fontSize: 15,color: kwhite),)),
+                     child: InkWell(
+                      onTap: (){
+                        Get.toNamed("/landing-screen");
+                      },
+                       child: Container(
+                        height: 35,
+                        width:120,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors:[
+                            korange,
+                            kyellow
+                          ]),
+                          borderRadius: BorderRadius.circular(15)
+                                
+                        ),
+                        child: Center(child: Text('Register Now',
+                        style: TextStyle(fontSize: 15,color: kwhite),)),
+                       ),
                      ),
                    )
                  ],

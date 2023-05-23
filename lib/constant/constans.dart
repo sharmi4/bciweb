@@ -21,3 +21,6 @@ Color kyellow = Color(0xFFff9021);
 
 final kpeople = Image.asset('assets/images/profile.svg');
 //final kimgadd = SvgPicture.asset('assets/images/add.svg');
+
+Color ktextblue=Color(0xff003366);
+// Color kOrange = Color(0xFFFF5003);

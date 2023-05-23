@@ -267,7 +267,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                       Row(
                         children: [
                           Text(
-                            'BOOKiii',
+                            'BOOK',
                             style: TextStyle(color: kOrange, fontSize: 45),
                           ),
                           Text(
@@ -301,13 +301,13 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                             decoration: BoxDecoration(
                                 color: kwhite,
                                 borderRadius: BorderRadius.circular(15)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
+                            child: const Padding(
+                              padding:  EdgeInsets.only(left: 10),
                               child: Row(
                                 children: [
                                   Text('BOOK NOW'),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 10),
+                                    padding: EdgeInsets.only(left: 10),
                                     child: Icon(Icons.arrow_forward),
                                   )
                                 ],
