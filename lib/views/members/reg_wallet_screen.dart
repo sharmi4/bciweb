@@ -38,7 +38,7 @@ class _RegisterWalletScreenState extends State<RegisterWalletScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 30,left: 40),
+                  padding: const EdgeInsets.only(top: 30,left: 50),
                   child: Row(
                     children: [
                       Text('Total Wallet',
@@ -50,17 +50,123 @@ class _RegisterWalletScreenState extends State<RegisterWalletScreen> {
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Container(
-                      height: 250,
-                      width: MediaQuery.of(context).size.width*0.6,
-                      decoration:BoxDecoration(
-                        color: kOrange
+                ksizedbox20,
+                Padding(
+                  padding: const EdgeInsets.only(left: 60),
+                  child: Row(
+                    
+                    children: [
+                      Container(
+                        height: 150,
+                        width: MediaQuery.of(context).size.width*0.75,
+                        decoration:BoxDecoration(
+                          color: kOrange,
+                          border: Border.all(
+                            color: kyellow,
+                            width: 1
+                          ),
+                          borderRadius: BorderRadius.circular(5)
+                        ),
+                        child: Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 25,left: 40),
+                              child: Row(
+                                children: [
+                                  Text('Total Wallet Amounts',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    color: kwhite.withOpacity(0.8)
+                                  ),),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10,left: 40),
+                              child: Row(
+                                children: [
+                                  Text('₹1990.00',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                    color: kwhite
+                                  ),),
+                                  
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10,left: 40),
+                              child: Row(
+                                children: [
+                                  Text('Last Transaction Amount ₹1.00',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    color: kwhite.withOpacity(0.8)
+                                  ),),
+                                  
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
-                    )
-                  ],
-                )
+                      Padding(
+                        padding: const EdgeInsets.only(left: 50),
+                        child: Container(
+                          height: 150,
+                          width: 120,
+                        
+                          decoration: BoxDecoration(
+                                   color: kyellow,
+                                  border: Border.all(
+                                    color: kOrange
+                                  ),
+                                  borderRadius: BorderRadius.circular(5)
+                          ),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 80,left: 20),
+                                child: Row(
+                                  children: [
+                                    Text('Deposit \nCash',textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      color: kwhite,
+
+                                    ),)
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                ksizedbox40,
+                Padding(
+                  padding: const EdgeInsets.only(left: 60,right: 90),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height*0.6,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: kwhite
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Text('Transaction History')
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+                
               ],
             ),
             ]
