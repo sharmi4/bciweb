@@ -1,11 +1,12 @@
+import 'package:bciweb/views/members/about/about_screens.dart';
 import 'package:bciweb/views/members/contacs/contact_screen.dart';
 import 'package:bciweb/views/members/home_screen.dart';
 import 'package:bciweb/views/members/homescreens/specialized_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constant/constans.dart';
-import '../../controller/home_controller.dart';
+import '../../../constant/constans.dart';
+import '../../../controller/home_controller.dart';
 
 class CommonContainer extends StatefulWidget {
    CommonContainer({super.key});
@@ -43,6 +44,7 @@ class _CommonContainerState extends State<CommonContainer> {
                      TextButton(onPressed: (){
                      _homeController.index(0);
                      _homeController.update();
+                     Get.offAll(BusinessHomeScreen());
                      }, 
                      child: Text('HOME',style: TextStyle(
                       color: _homeController.index==0?kOrange:kblue
@@ -50,8 +52,11 @@ class _CommonContainerState extends State<CommonContainer> {
                      Padding(
                        padding: const EdgeInsets.only(left: 30),
                        child: TextButton(onPressed: (){
+                        Get.offAll(AboutUsScreen());
+                        print("-------------------------");
                                    _homeController.index(1);
                                    _homeController.update();
+                                   
                                   }, 
                                   child: Text('ABOUT',style: TextStyle(
                       color: _homeController.index==1?kOrange:kblue

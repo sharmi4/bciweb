@@ -1,3 +1,5 @@
+import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+import 'package:bciweb/views/register_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
@@ -71,7 +73,7 @@ class Verification_Done extends StatelessWidget {
                 ksizedbox30,
                 InkWell(
                   onTap: () {
-                   
+                    Get.offAll(BusinessRegisterHomeScreen());
                   },
                   child: Container(
                     width: size.width*0.3,

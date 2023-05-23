@@ -1,8 +1,11 @@
+import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../constant/constans.dart';
+import '../../../../registerhomescreen/common_reg_appbar';
+import '../../../../registerhomescreen/common_reg_homescreen.dart';
 
 class Payment extends StatelessWidget {
   const Payment({super.key});
@@ -11,8 +14,12 @@ class Payment extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+       appBar: PreferredSize(child:RegisterCommonAppbar(), 
+     preferredSize:Size(double.infinity, 
+             40)),
       body: ListView(
         children: [
+          RegisterCommonContainer(),
           Container(
             child: Image.asset('assets/images/Group .png'),
           ),
@@ -158,6 +165,7 @@ class Payment extends StatelessWidget {
             ),
           ),
           ksizedbox40,
+          RegisterCommonBottom()
         ],
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constant/constans.dart';
+import '../../../constant/constans.dart';
 
 class CommonScreen extends StatelessWidget {
   const CommonScreen({super.key});

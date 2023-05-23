@@ -1,8 +1,11 @@
+import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../constant/constans.dart';
+import '../../../../registerhomescreen/common_reg_appbar';
 
 class Coupones extends StatelessWidget {
   const Coupones({super.key});
@@ -10,9 +13,13 @@ class Coupones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(child:RegisterCommonAppbar(), 
+     preferredSize:Size(double.infinity, 
+             40)),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            RegisterCommonContainer(),
             Container(
               child: Stack(
                 children: [
@@ -69,7 +76,9 @@ class Coupones extends StatelessWidget {
                 decoration: BoxDecoration(
                     color: kOrange, borderRadius: BorderRadius.circular(15)),
               ),
-            )
+            ),
+            ksizedbox30,
+            RegisterCommonBottom()
           ],
         ),
       ),

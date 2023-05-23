@@ -2,8 +2,9 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/widget/appbar.dart';
 import 'package:flutter/material.dart';
 
-import '../common.dart';
-import '../commoncontainer.dart';
+import '../common_widget/common.dart';
+import '../common_widget/commoncontainer.dart';
+import '../common_widget/common_buttom.dart';
 
 class SpecializedScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -510,7 +511,10 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
             ],
           ),
         ),
-
+      SizedBox(
+        height: 45,
+      ),
+        CommonBottom()
         ]
       ),
     );

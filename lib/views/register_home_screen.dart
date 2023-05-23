@@ -4,25 +4,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:bciweb/registerhomescreen/common_reg_appbar';
 
-import 'common_widget/common.dart';
-import 'common_widget/commoncontainer.dart';
-import 'common_widget/common_buttom.dart';
+import '../registerhomescreen/common_reg_bottom.dart';
+import '../registerhomescreen/common_reg_homescreen.dart';
 
-class BusinessHomeScreen extends StatefulWidget {
-  const BusinessHomeScreen({super.key});
+
+
+class BusinessRegisterHomeScreen extends StatefulWidget {
+  const BusinessRegisterHomeScreen({super.key});
 
   @override
-  State<BusinessHomeScreen> createState() => _BusinessHomeScreenState();
+  State<BusinessRegisterHomeScreen> createState() => _BusinessRegisterHomeScreenState();
 }
 
-class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
+class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen> {
   final _homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: RegisterCommonAppbar(), preferredSize: Size(double.infinity, 40)),
       //  appBar: PreferredSize(
       //   child: Stack(
       //   children: [
@@ -124,7 +126,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
       body: ListView(children: [
         Column(
           children: [
-            CommonContainer(),
+            RegisterCommonContainer(),
 
             // Padding(
             //   padding: const EdgeInsets.only(top: 0,left: 0),
@@ -1329,7 +1331,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
               ),
             ),
             ksizedbox40,
-            CommonBottom()
+            RegisterCommonBottom()
           ],
         ),
       ]),

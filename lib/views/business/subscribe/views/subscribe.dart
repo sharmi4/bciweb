@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -6,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 //import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../controller/subscribe_controllers.dart';
+import '../../../../registerhomescreen/common_reg_appbar';
+import '../../../../registerhomescreen/common_reg_homescreen.dart';
 
 class Subscribe extends StatefulWidget {
   const Subscribe({super.key});
@@ -20,11 +23,13 @@ class _SubscribeState extends State<Subscribe> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+      appBar: PreferredSize(
+          child: RegisterCommonAppbar(), preferredSize: Size(double.infinity, 40)),
       body: Obx(
         () => ListView(
           //  crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ksizedbox40,
+             RegisterCommonContainer(),
             Container(
               child: Stack(
                 children: [
@@ -496,9 +501,8 @@ class _SubscribeState extends State<Subscribe> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 40,
-            ),
+            ksizedbox40,
+           RegisterCommonBottom()
           ],
         ),
       ),
