@@ -1,4 +1,5 @@
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
+import 'package:bciweb/views/members/homescreens/reg_profile.dart';
 import 'package:bciweb/views/members/reg_wallet_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bciweb/views/members/about/about_screens.dart';
@@ -31,7 +32,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
               child: Row(
                 children: [
                   Container(
-                    height: 70,width: 170,color:Colors.deepOrange[50],
+                    height: 70,width: 180,color:Colors.deepOrange[50],
                     child: Image.asset('assets/images/logo.png') 
                   ),
                   // ClipPath(
@@ -42,7 +43,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
           
              Obx(()=>
                 Padding(
-                 padding: const EdgeInsets.only(left: 40),
+                 padding: const EdgeInsets.only(left: 20),
                  child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                    children: [
@@ -55,7 +56,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       color: reghomeController.reindex==0?kOrange:kblue
                      ),)),
                      Padding(
-                       padding: const EdgeInsets.only(left: 30),
+                       padding: const EdgeInsets.only(left: 20),
                        child: TextButton(onPressed: (){
                         Get.offAll(AboutUsScreen());
                         print("-------------------------");
@@ -68,7 +69,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                      ),
                       Padding(
-                   padding: const EdgeInsets.only(left: 30),
+                   padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
 
                     reghomeController.reindex(2);
@@ -97,7 +98,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
                   Padding(
-                   padding: const EdgeInsets.only(left: 30),
+                   padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
                    
                     reghomeController.reindex(4);
@@ -111,7 +112,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
                    Padding(
-                   padding: const EdgeInsets.only(left: 30),
+                   padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
 
                     reghomeController.reindex(5);
@@ -128,7 +129,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   
                   
                  Padding(
-                   padding: const EdgeInsets.only(left: 30),
+                   padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
                     reghomeController.reindex(6);
                     reghomeController.update();
@@ -143,7 +144,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                ),
              ),
              Padding(
-               padding: const EdgeInsets.only(left: 70),
+               padding: const EdgeInsets.only(left: 50),
                child: Row(
                      
                  children: [
@@ -164,7 +165,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                     child: Icon(Icons.search,color: kblue,),
                    ),
                    Padding(
-                     padding: const EdgeInsets.only(left: 30),
+                     padding: const EdgeInsets.only(left: 20),
                      child: Container(
                       height: 30,
                       width: 30,
@@ -184,7 +185,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),
                    ),
                    Padding(
-                     padding: const EdgeInsets.only(left: 30),
+                     padding: const EdgeInsets.only(left: 20),
                      child: InkWell(
                       onTap: (){
                         Get.to(Subscribe());
@@ -208,7 +209,17 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                  ],
                ),
              ),
-           
+             Padding(
+               padding: const EdgeInsets.only(left: 20),
+               child: Row(children:[ 
+                Text('Raja Ram'),
+                  Icon(Icons.expand_more),     
+                InkWell(
+                  onTap: () {
+                    Get.offAll(RegisterProfileScreen());
+                  },
+                  child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
+             )
                    
                 ],
               ),

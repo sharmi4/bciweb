@@ -126,8 +126,12 @@ class _RegisterWalletScreenState extends State<RegisterWalletScreen> {
                           ),
                           child: Column(
                             children: [
+                              Row(
+                                children: [
+                                  Image.asset('assets/icons/walleticon.png',color: kwhite,)                                ],
+                              ),
                               Padding(
-                                padding: const EdgeInsets.only(top: 80,left: 20),
+                                padding: const EdgeInsets.only(top: 0,left: 20),
                                 child: Row(
                                   children: [
                                     Text('Deposit \nCash',textAlign: TextAlign.center,

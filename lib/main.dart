@@ -1,8 +1,11 @@
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
+import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:bciweb/views/members/home_screen.dart';
+import 'package:bciweb/views/members/homescreens/reg_profile.dart';
 import 'package:bciweb/views/register_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +28,8 @@ void main() {
   Get.put(HomeController());
   Get.put(SubscribeController());
   Get.put(RegisterHomeController());
+  Get.put(RegisterProfileController());
+  Get.put(ProfileShowController());
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -37,7 +42,8 @@ class MyApp extends StatelessWidget {
       //  home: BusinessHomeScreen(),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => BusinessHomeScreen()),
+        // GetPage(name: '/', page: () => BusinessHomeScreen()),
+        GetPage(name: '/', page: () => RegisterProfileScreen()),
         GetPage(name: '/landing-screen', page: () => LandingScreen()),
         GetPage(name: '/otp-verification', page: () => MobileVerification()),
         GetPage(name: '/final-otp-verification', page: () => OtpVerification()),
