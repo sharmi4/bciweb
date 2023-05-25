@@ -2,6 +2,7 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/widget/appbar.dart';
 import 'package:flutter/material.dart';
 
+import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
 import '../common_widget/commoncontainer.dart';
 import '../common_widget/common_buttom.dart';
@@ -25,8 +26,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
              40)),
       body: ListView(
         //physics:ScrollPhysics(),
-        children:[ CommonContainer(),
-        Container(
+        children:[// CommonContainer(),
+      RegisterCommonContainer(),  Container(
           width: MediaQuery.of(context).size.width,
           height: 200,
           decoration: BoxDecoration(

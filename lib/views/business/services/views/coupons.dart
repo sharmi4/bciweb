@@ -13,9 +13,9 @@ class Coupones extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(child:RegisterCommonAppbar(), 
-     preferredSize:Size(double.infinity, 
-             40)),
+      appBar: PreferredSize(
+          child: RegisterCommonAppbar(),
+          preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -59,18 +59,28 @@ class Coupones extends StatelessWidget {
                   child: Image.asset('assets/images/Scroll Group 7.png')),
             ),
             ksizedbox40,
-            InkWell(onTap: (){Get.back();},
+            InkWell(
+              onTap: () {
+                Get.back();
+              },
               child: Container(
                 child: Center(
-                    child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [Icon(Icons.arrow_back,color: kwhite,),
-                        Text(
-                  'BACK',
-                  style: TextStyle(
-                          color: kwhite, fontSize: 19, fontWeight: FontWeight.w600),
-                ),
-                      ],
-                    )),
+                    child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Icon(
+                      Icons.arrow_back,
+                      color: kwhite,
+                    ),
+                    Text(
+                      'BACK',
+                      style: TextStyle(
+                          color: kwhite,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                )),
                 height: 45,
                 width: 150,
                 decoration: BoxDecoration(

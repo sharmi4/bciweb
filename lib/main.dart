@@ -1,9 +1,13 @@
+import 'dart:html';
+
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+import 'package:bciweb/views/business/bookins/history/views/history.dart';
+import 'package:bciweb/views/business/services/views/offerce.dart';
 import 'package:bciweb/views/members/home_screen.dart';
 import 'package:bciweb/views/members/homescreens/reg_profile.dart';
 import 'package:bciweb/views/register_home_screen.dart';
@@ -16,13 +20,14 @@ import 'package:bciweb/views/authentication/office_address.dart';
 import 'package:bciweb/views/authentication/otp_verification.dart';
 import 'package:bciweb/views/authentication/residential_Address.dart';
 import 'package:bciweb/views/authentication/signup.dart';
-import 'package:bciweb/views/business/home_screen.dart';
+//import 'package:bciweb/views/business/home_screen.dart';
 import 'package:bciweb/views/business/services/views/coupons.dart';
 import 'package:bciweb/views/business/services/views/services.dart';
 import 'package:bciweb/views/business/subscribe/views/add_wallet.dart';
 import 'package:bciweb/views/business/subscribe/views/payment.dart';
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 
+import 'controller/historycontroller.dart';
 
 void main() {
   Get.put(HomeController());
@@ -30,14 +35,16 @@ void main() {
   Get.put(RegisterHomeController());
   Get.put(RegisterProfileController());
   Get.put(ProfileShowController());
+  Get.put(BookingHistoryController());
   runApp(const MyApp());
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  GetMaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       //  home: BusinessHomeScreen(),
       initialRoute: '/',
@@ -52,13 +59,16 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/signin', page: () => signUp()),
         GetPage(name: '/residential-address', page: () => ResidentialAddress()),
         GetPage(name: '/subscribe', page: () => Subscribe()),
-        GetPage(name: '/payment', page: () => Payment()),
+        // GetPage(name: '/payment', page: () => Payment(
+        //  image: "assets/images/Group 38637.png",
+        //  )),
         GetPage(name: '/add-wallet', page: () => AddWallet()),
         GetPage(name: '/services', page: () => Services()),
         GetPage(name: '/coupones', page: () => Coupones()),
-        GetPage(name: '/reghome', page:()=>BusinessRegisterHomeScreen())
+        GetPage(name: '/reghome', page: () => BusinessRegisterHomeScreen()),
+        GetPage(name: '/offer-screen', page: () => OfferScreen()),
+        GetPage(name: '/history-screen', page: () => History()),
       ],
     );
   }
 }
-

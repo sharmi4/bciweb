@@ -28,7 +28,7 @@ class RegisterCommonAppbar extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Text('+91 98765 43210',
+                      child: Text('+91 8939 804 805 / +91 8939 806 807',
                       style: TextStyle(color: kwhite,fontSize: 13),),
                     ),
                     Padding(
@@ -37,7 +37,7 @@ class RegisterCommonAppbar extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
-                      child: Text('info@gmail.com',style: TextStyle(color: kwhite,fontSize: 13),),
+                      child: Text('customercare@bcipvtltd.com',style: TextStyle(color: kwhite,fontSize: 13),),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 45),

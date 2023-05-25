@@ -7,16 +7,22 @@ import '../../../../constant/constans.dart';
 import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 
-class Payment extends StatelessWidget {
-  const Payment({super.key});
+class Payment extends StatefulWidget {
+  String image;String htext;String text;
+   Payment({super.key,required this.image,required this.htext,required this.text});
 
+  @override
+  State<Payment> createState() => _PaymentState();
+}
+
+class _PaymentState extends State<Payment> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-       appBar: PreferredSize(child:RegisterCommonAppbar(), 
-     preferredSize:Size(double.infinity, 
-             40)),
+      appBar: PreferredSize(
+          child: RegisterCommonAppbar(),
+          preferredSize: Size(double.infinity, 40)),
       body: ListView(
         children: [
           RegisterCommonContainer(),
@@ -24,31 +30,32 @@ class Payment extends StatelessWidget {
             child: Image.asset('assets/images/Group .png'),
           ),
           ksizedbox20,
-          Text(
-            'OTC Payment',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Color(0xff003366),
-                fontSize: 35,
-                fontWeight: FontWeight.bold),
-          ),
+          // Text(
+          //  'OTC Payment' ,
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //       color: Color(0xff003366),
+          //       fontSize: 35,
+          //       fontWeight: FontWeight.bold),
+          // ),
           ksizedbox10,
-          const Text(
-            "All Select Membership Cards Choose Anything",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w500,
-                height: 1.4,
-                color: Color(0xff003366)),
-          ),
+          // const Text(
+          //   "All Select Membership Cards Choose Anything",
+          //   textAlign: TextAlign.center,
+          //   style: TextStyle(
+          //       fontSize: 17,
+          //       fontWeight: FontWeight.w500,
+          //       height: 1.4,
+          //       color: Color(0xff003366)),
+          // ),
           ksizedbox40,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
                   width: size.width * 0.4,
-                  child: Image.asset('assets/images/Group 38622.png')),
+                  child: Image(image: AssetImage(widget.image))
+                  ),
               ksizedbox10,
               Container(
                 width: size.width * 0.5,
@@ -56,13 +63,16 @@ class Payment extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'OTC PAYMENTS',
+                      widget.htext,
                       textAlign: TextAlign.start,
-                      style: TextStyle(color: kblue, fontSize: 28,fontWeight: FontWeight.w600),
+                      style: TextStyle(
+                          color: kblue,
+                          fontSize: 28,
+                          fontWeight: FontWeight.w600),
                     ),
                     ksizedbox20,
                     Text(
-                      "Lorem Ipsum is simply dummy text of the printing and \ntypesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+                    widget.text,
                       style: TextStyle(color: kblue, fontSize: 20),
                     ),
                   ],
@@ -78,7 +88,7 @@ class Payment extends StatelessWidget {
                 children: [
                   TextField(
                     // controller: _controller,
-            
+
                     decoration: InputDecoration(
                         hintText: 'Enter Coupon',
                         hintStyle: TextStyle(fontSize: 17, color: kgrey),
@@ -99,13 +109,14 @@ class Payment extends StatelessWidget {
                           width: 120,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: kblue, borderRadius: BorderRadius.circular(10)),
+                              color: kblue,
+                              borderRadius: BorderRadius.circular(10)),
                         )),
                   ),
                   ksizedbox10,
                   TextField(
                     // controller: _controller,
-            
+
                     decoration: InputDecoration(
                         hintText: 'Enter Coupon',
                         hintStyle: TextStyle(fontSize: 17, color: kgrey),
@@ -126,13 +137,14 @@ class Payment extends StatelessWidget {
                           width: 120,
                           height: 40,
                           decoration: BoxDecoration(
-                              color: kblue, borderRadius: BorderRadius.circular(10)),
+                              color: kblue,
+                              borderRadius: BorderRadius.circular(10)),
                         )),
                   ),
                   ksizedbox40,
                   InkWell(
                     onTap: () {
-                     Get.toNamed('/add-wallet');
+                      Get.toNamed('/add-wallet');
                     },
                     child: Container(
                       width: double.infinity,

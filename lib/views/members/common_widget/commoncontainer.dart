@@ -111,7 +111,8 @@ class _CommonContainerState extends State<CommonContainer> {
                       )
                      ]
                     ),
-                    child: Icon(Icons.search,color: kblue,),
+                    child: InkWell(onTap: (){Get.toNamed('/history-screen');},
+                      child: Icon(Icons.search,color: kblue,)),
                    ),
                    Padding(
                      padding: const EdgeInsets.only(left: 30),

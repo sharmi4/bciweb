@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
+import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
 import '../common_widget/commoncontainer.dart';
 
@@ -22,8 +23,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
      preferredSize:Size(double.infinity, 
              40)),
       body: ListView(
-        children: [
-          CommonContainer(),
+        children: [RegisterCommonContainer(),
+       //   CommonContainer(),
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width,

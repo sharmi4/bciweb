@@ -13,7 +13,8 @@ class MobileVerification extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        child: Row(crossAxisAlignment: CrossAxisAlignment.center,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Expanded(
@@ -21,17 +22,23 @@ class MobileVerification extends StatelessWidget {
                 height: 600,
                 width: 450,
                 child: Column(
-                  children: [ksizedbox30,
-                    Container(child: Image.asset('assets/images/3534.png')),ksizedbox30,
+                  children: [
+                    ksizedbox30,
+                    Container(child: Image.asset('assets/images/3534.png')),
+                    ksizedbox30,
                     Text(
                       'WELCOME',
                       style: TextStyle(
-                          fontSize: 27, color: kblue, fontWeight: FontWeight.w700),
+                          fontSize: 27,
+                          color: kblue,
+                          fontWeight: FontWeight.w700),
                     ),
                     Text(
                       'Enter Your Phone Number',
                       style: TextStyle(
-                          fontSize: 22, color: kblue, fontWeight: FontWeight.w700),
+                          fontSize: 22,
+                          color: kblue,
+                          fontWeight: FontWeight.w700),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -58,11 +65,13 @@ class MobileVerification extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Container(width: size.width*0.3,
+                      child: Container(
+                        width: size.width * 0.3,
                         height: 50,
                         child: TextFormField(
                           decoration: InputDecoration(
-                            prefixIcon: Image.asset('assets/images/Image 8.png'),
+                            prefixIcon:
+                                Image.asset('assets/images/Image 8.png'),
                             suffixIcon: Image.asset(
                                 'assets/images/flaightcorrectimage.png'),
                             hintText: 'Enter your username',
@@ -76,10 +85,12 @@ class MobileVerification extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
-                        onTap: () {Get.toNamed('/final-otp-verification');},
+                        onTap: () {
+                          Get.toNamed('/final-otp-verification');
+                        },
                         //   Get.to(const BusinessOtpvarification());},
                         child: Container(
-                          width: size.width*0.3,
+                          width: size.width * 0.3,
                           height: 50,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -122,8 +133,8 @@ class MobileVerification extends StatelessWidget {
                           style: TextStyle(fontSize: 18, color: kblue),
                         ),
                         InkWell(
-                          onTap: () { Get.toNamed('/signin');
-                  
+                          onTap: () {
+                            Get.toNamed('/signin');
                           },
                           child: Text(
                             'Sign up',
@@ -142,9 +153,13 @@ class MobileVerification extends StatelessWidget {
               ),
             ),
             Expanded(
-              child: Container(color: kblue,
-                    //    height: 600,width: 450,
-                child: Image.asset('assets/images/4563.png',height: size.height,),
+              child: Container(
+                color: kblue,
+                //    height: 600,width: 450,
+                child: Image.asset(
+                  'assets/images/4563.png',
+                  height: size.height,
+                ),
               ),
             )
           ],

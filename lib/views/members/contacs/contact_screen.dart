@@ -3,6 +3,7 @@ import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:bciweb/views/members/common_widget/commoncontainer.dart';
 import 'package:flutter/material.dart';
 
+import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common_buttom.dart';
 class ContactScreen extends StatefulWidget {
   const ContactScreen({super.key});
@@ -24,8 +25,8 @@ class _ContactScreenState extends State<ContactScreen> {
              40)),
              body: ListView(
                children:[ Column(
-                 children: [
-                   CommonContainer(),
+                 children: [RegisterCommonContainer(),
+                  // CommonContainer(),
                    Container(
                     height: 235,
                     width: MediaQuery.of(context).size.width,
@@ -67,6 +68,7 @@ class _ContactScreenState extends State<ContactScreen> {
                             left: 0,
                             right: 0,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Text('Our Location',
                                 style: TextStyle(
@@ -75,7 +77,8 @@ class _ContactScreenState extends State<ContactScreen> {
                                 ),
                                 textAlign: TextAlign.center,),
                                 ksizedbox10,
-                                Text('Chennai',
+                                Text('#781, Rayala Towers, 2nd Floor,\nAnna Salai, Mount Road, Chennai - 600002',
+                               textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: kwhite
@@ -101,14 +104,14 @@ class _ContactScreenState extends State<ContactScreen> {
                                 ),
                                 textAlign: TextAlign.center,),
                                 ksizedbox10,
-                                Text('+91 98765 43210',
+                                Text('+91 8939 804 805',
                                 style: TextStyle(
                                   fontSize: 13,
                                   color: kwhite
                                 ),),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 2),
-                                  child: Text('+01-123-456-432',
+                                  child: Text('+91 8939 806 807',
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: kwhite
@@ -135,7 +138,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                 ),
                                 textAlign: TextAlign.center,),
                                 ksizedbox10,
-                                Text('benzeclub@gmail.com',
+                                Text('customercare@bcipvtltd.com',
                                 style: TextStyle(
                                   fontSize: 14,
                                   color: kwhite

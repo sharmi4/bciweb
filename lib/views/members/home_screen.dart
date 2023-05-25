@@ -1,10 +1,12 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
+import '../../registerhomescreen/common_reg_homescreen.dart';
 import 'common_widget/common.dart';
 import 'common_widget/commoncontainer.dart';
 import 'common_widget/common_buttom.dart';
@@ -20,6 +22,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
   final _homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
+     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -123,8 +126,8 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
       //  40)),
       body: ListView(children: [
         Column(
-          children: [
-            CommonContainer(),
+          children: [RegisterCommonContainer(),
+           // CommonContainer(),
 
             // Padding(
             //   padding: const EdgeInsets.only(top: 0,left: 0),
@@ -254,100 +257,280 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
             //   ),
             // ),
 
-            Stack(
-              children: [
-                Image.asset(
-                  'assets/images/homeflaight.png',
-                  fit: BoxFit.cover,
-                ),
-                Positioned(
-                  left: 40,
-                  top: 200,
-                  child: Row(
-                    children: [
-                      Row(
+Container(
+              width: size.width,
+              height: 600,
+              child: Stack(
+                children: [
+                  Container(
+                    width: size.width,
+                    height: 600,
+                    child: CarouselSlider(
+                      items: [
+                        
+                        {
+                          "image":  'assets/images/homeflaight.png',
+                          "name": "TEMPLES OF\nKNOWLEDGE",
+                          "image_large": "assets/images/sliders/Slider.jpg",
+                          "ad": "1",
+                        },
+                         
+                        {
+                          "image": "assets/images/slider01.jpg",
+                          "name": "TEMPLES OF\nBAKTHI",
+                          "image_large": "assets/images/sliders/Slider2.jpg",
+                          "ad": "1",
+                        },
+                      
+                      
+                       
+                      ].map((i) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Stack(
+                              children: [
+                                Container(
+                                    width: size.width,
+                                    height: 600,
+                                    child:  Image.asset(
+                                            i["image"]!,
+                                            fit: BoxFit.fill,
+                                          )),
+                                Container(
+                                  width: size.width,
+                                  height: 600,
+                                  color: Colors.black38.withOpacity(0.3),
+                                ),
+                            
+                 ] );
+                          },
+                        );
+                      }).toList(),
+               //       carouselController: buttonCarouselController,
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        viewportFraction: 1,
+                        autoPlayInterval: const Duration(seconds: 6),
+                        aspectRatio: 2.0,
+                        initialPage: 2,
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 15, right: 15),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'BOOK',
-                            style: TextStyle(color: kOrange, fontSize: 45),
+                         
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'BOOK',
+                                      style: TextStyle(color: kOrange, fontSize: 45),
+                                    ),
+                                    Text(
+                                      ' YOUR FLIGHT',
+                                      style: TextStyle(fontSize: 45, color: kwhite),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),ksizedbox30,
+                Text(
+                  'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
+                  style: TextStyle(
+                      fontSize: 17, color: kwhite.withOpacity(0.7)),
+                ),ksizedbox30,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: InkWell(onTap: (){Get.toNamed('/services');},
+                        child: Container(
+                          height: 38,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: const Padding(
+                            padding:  EdgeInsets.only(left: 10),
+                            child: Row(
+                              children: [
+                                Text('BOOK NOW'),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: Icon(Icons.arrow_forward),
+                                )
+                              ],
+                            ),
                           ),
-                          Text(
-                            ' YOUR FLIGHT',
-                            style: TextStyle(fontSize: 45, color: kwhite),
-                          )
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 30),
+                      child: InkWell(onTap: (){Get.toNamed('/subscribe');},
+                        child: Container(
+                          height: 38,
+                          width: 130,
+                          decoration: BoxDecoration(
+                              color: kblue,
+                              borderRadius: BorderRadius.circular(15)),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'SUBSCRIBE',
+                                  style: TextStyle(color: kwhite),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 10),
+                                  child: Icon(
+                                    Icons.arrow_forward,
+                                    color: kwhite,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                )
                         ],
                       ),
-                    ],
-                  ),
-                ),
-                Positioned(
-                    top: 265,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Text(
-                        'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
-                        style: TextStyle(
-                            fontSize: 17, color: kwhite.withOpacity(0.7)),
-                      ),
-                    )),
-                Positioned(
-                    top: 375,
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Container(
-                            height: 38,
-                            width: 130,
-                            decoration: BoxDecoration(
-                                color: kwhite,
-                                borderRadius: BorderRadius.circular(15)),
-                            child: const Padding(
-                              padding:  EdgeInsets.only(left: 10),
-                              child: Row(
-                                children: [
-                                  Text('BOOK NOW'),
-                                  Padding(
-                                    padding: EdgeInsets.only(left: 10),
-                                    child: Icon(Icons.arrow_forward),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 30),
-                          child: Container(
-                            height: 38,
-                            width: 130,
-                            decoration: BoxDecoration(
-                                color: kblue,
-                                borderRadius: BorderRadius.circular(15)),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 10),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'SUBSCRIBE',
-                                    style: TextStyle(color: kwhite),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Icon(
-                                      Icons.arrow_forward,
-                                      color: kwhite,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ))
-              ],
+                    ),
+                  )
+                ],
+              ),
             ),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//STACKing
+
+
+
+
+
+
+
+            // Stack(
+            //   children: [
+            //     Image.asset(
+            //       'assets/images/homeflaight.png',
+            //       fit: BoxFit.cover,
+            //     ),
+            //     Positioned(
+            //       left: 40,
+            //       top: 200,
+            //       child: Row(
+            //         children: [
+            //           Row(
+            //             children: [
+            //               Text(
+            //                 'BOOK',
+            //                 style: TextStyle(color: kOrange, fontSize: 45),
+            //               ),
+            //               Text(
+            //                 ' YOUR FLIGHT',
+            //                 style: TextStyle(fontSize: 45, color: kwhite),
+            //               )
+            //             ],
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //     Positioned(
+            //         top: 265,
+            //         child: Padding(
+            //           padding: const EdgeInsets.only(left: 40),
+            //           child: Text(
+            //             'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
+            //             style: TextStyle(
+            //                 fontSize: 17, color: kwhite.withOpacity(0.7)),
+            //           ),
+            //         )),
+            //     Positioned(
+            //         top: 375,
+            //         child: Row(
+            //           children: [
+            //             Padding(
+            //               padding: const EdgeInsets.only(left: 30),
+            //               child: InkWell(onTap: (){Get.toNamed('/services');},
+            //                 child: Container(
+            //                   height: 38,
+            //                   width: 130,
+            //                   decoration: BoxDecoration(
+            //                       color: kwhite,
+            //                       borderRadius: BorderRadius.circular(15)),
+            //                   child: const Padding(
+            //                     padding:  EdgeInsets.only(left: 10),
+            //                     child: Row(
+            //                       children: [
+            //                         Text('BOOK NOW'),
+            //                         Padding(
+            //                           padding: EdgeInsets.only(left: 10),
+            //                           child: Icon(Icons.arrow_forward),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //             Padding(
+            //               padding: const EdgeInsets.only(left: 30),
+            //               child: InkWell(onTap: (){Get.toNamed('/subscribe');},
+            //                 child: Container(
+            //                   height: 38,
+            //                   width: 130,
+            //                   decoration: BoxDecoration(
+            //                       color: kblue,
+            //                       borderRadius: BorderRadius.circular(15)),
+            //                   child: Padding(
+            //                     padding: const EdgeInsets.only(left: 10),
+            //                     child: Row(
+            //                       children: [
+            //                         Text(
+            //                           'SUBSCRIBE',
+            //                           style: TextStyle(color: kwhite),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(left: 10),
+            //                           child: Icon(
+            //                             Icons.arrow_forward,
+            //                             color: kwhite,
+            //                           ),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ))
+            //   ],
+            // ),
             ksizedbox40,
             Stack(
               children: [
@@ -565,7 +748,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               Container(
-                                height: 140,
+                                height: 150,
                                 width: 250,
                                 decoration: BoxDecoration(
                                     color: kwhite,
@@ -1110,7 +1293,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                         child: Row(
                           children: [
                             Container(
-                              height: 200,
+                              height: 215,
                               width: 250,
                               decoration: BoxDecoration(
                                   color: kwhite,
@@ -1149,7 +1332,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                             Padding(
                               padding: const EdgeInsets.only(left: 50),
                               child: Container(
-                                height: 200,
+                                height: 215,
                                 width: 250,
                                 decoration: BoxDecoration(
                                     color: kwhite,
@@ -1189,7 +1372,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                             Padding(
                               padding: const EdgeInsets.only(left: 50),
                               child: Container(
-                                height: 200,
+                                height: 210,
                                 width: 250,
                                 decoration: BoxDecoration(
                                     color: kwhite,
@@ -1229,7 +1412,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                             Padding(
                               padding: const EdgeInsets.only(left: 50),
                               child: Container(
-                                height: 200,
+                                height: 220,
                                 width: 250,
                                 decoration: BoxDecoration(
                                     color: kwhite,

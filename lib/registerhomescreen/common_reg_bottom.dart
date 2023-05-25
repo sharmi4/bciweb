@@ -44,7 +44,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                               ],
                             ),
                              SizedBox(height: 20,),
-                            Text("Copyright @ benzeclub 2023",
+                            Text("customercare@bcipvtltd.com",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               color: Colors.white,
@@ -177,7 +177,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                                     fit: BoxFit.cover,
                                     image: AssetImage("assets/images/phoneimage.png")),
                                     SizedBox(width: 10,),
-                                   Text("+91 98765 43210",
+                                   Text("+91 8939 804 805  ",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                     color: Colors.white,
@@ -187,7 +187,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                                  ],
                                ),
                               SizedBox(height: 10,),
-                              Text("+01-123-456-432",
+                              Text("+91 8939 806 807",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 color: Colors.white,
@@ -195,7 +195,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                                 fontWeight: FontWeight.w400
                               ),),
                               SizedBox(height: 10,),
-                              Text("benzeclub@gmail.com",
+                              Text("customercare@bcipvtltd.com",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 color: Colors.white,

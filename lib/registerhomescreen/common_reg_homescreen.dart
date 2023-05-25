@@ -1,3 +1,6 @@
+import 'dart:html';
+
+import 'package:bciweb/views/business/bookins/history/views/history.dart';
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 import 'package:bciweb/views/members/homescreens/reg_profile.dart';
 import 'package:bciweb/views/members/reg_wallet_screen.dart';
@@ -11,6 +14,8 @@ import 'package:get/get.dart';
 import '../../../constant/constans.dart';
 import '../../../controller/home_controller.dart';
 import '../controller/reg_home_controller.dart';
+import '../views/authentication/landing_screen.dart';
+import '../views/business/Gallery/gallery.dart';
 import '../views/business/services/views/services.dart';
 
 class RegisterCommonContainer extends StatefulWidget {
@@ -26,6 +31,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
   // final _homeController=Get.find<HomeController>();
 
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return  Container(
       child: Padding(
               padding: const EdgeInsets.only(top: 0,left: 0),
@@ -71,7 +77,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       Padding(
                    padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
-
+                
                     reghomeController.reindex(2);
                     reghomeController.update();
                     
@@ -86,7 +92,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                  Padding(
                    padding: const EdgeInsets.only(left: 30),
                    child: TextButton(onPressed: (){
-
+                
                     reghomeController.reindex(3);
                     reghomeController.update();
                      Get.to(Services());
@@ -103,26 +109,26 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    
                     reghomeController.reindex(4);
                     reghomeController.update();
-                    
+                    Get.offAll(History());
                     
                     
                    }, 
-                   child: Text('BOOKONGS',style: TextStyle(
+                   child: Text('BOOKINGS',style: TextStyle(
                       color: reghomeController.reindex==4?kOrange:kblue
                      ),)),
                  ),
                    Padding(
                    padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
-
+                
                     reghomeController.reindex(5);
                     reghomeController.update();
-                    Get.offAll(RegisterWalletScreen());
+                    Get.offAll(Gallery());
                     
                       
                     
                    }, 
-                   child: Text('WALLETS',style: TextStyle(
+                   child: Text('GALLERY',style: TextStyle(
                       color: reghomeController.reindex==5?kOrange:kblue
                      ),)),
                  ),
@@ -133,7 +139,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    child: TextButton(onPressed: (){
                     reghomeController.reindex(6);
                     reghomeController.update();
-                    Get.to(ContactScreen());
+                    Get.offAll(ContactScreen());
                    }, 
                    child: Text('CONTACT',style: TextStyle(
                       color: reghomeController.reindex==6?kOrange:kblue
@@ -141,7 +147,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                  )
                    ],
                  ),
-               ),
+                             ),
              ),
              Padding(
                padding: const EdgeInsets.only(left: 50),
@@ -205,8 +211,29 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         style: TextStyle(fontSize: 15,color: kwhite),)),
                        ),
                      ),
-                   )
-                 ],
+                   ),
+                     Padding(
+                     padding: const EdgeInsets.only(left: 30),
+                     child: InkWell(
+                      onTap: (){
+                        Get.to(LandingScreen());
+                      },
+                       child: Container(
+                        height: 35,
+                        width:120,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors:[
+                            korange,
+                            kyellow
+                          ]),
+                          borderRadius: BorderRadius.circular(15)
+                                
+                        ),
+                        child: Center(child: Text('Registration',
+                        style: TextStyle(fontSize: 15,color: kwhite),)),
+                       ),
+                     ),
+                   ) ],
                ),
              ),
              Padding(

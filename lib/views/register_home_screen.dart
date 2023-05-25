@@ -125,8 +125,8 @@ class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen>
       //  40)),
       body: ListView(children: [
         Column(
-          children: [
-            RegisterCommonContainer(),
+          children: [RegisterCommonContainer(),
+         //   RegisterCommonContainer(),
 
             // Padding(
             //   padding: const EdgeInsets.only(top: 0,left: 0),
