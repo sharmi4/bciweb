@@ -28,11 +28,11 @@ class CommonScreen extends StatelessWidget {
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Text('+91 8939 804 805 / +91 8939 806 807',
+                      child: Text('+91 8939 804 805',
                       style: TextStyle(color: kwhite,fontSize: 13),),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 45),
+                      padding: const EdgeInsets.only(left: 25),
                       child: Icon(Icons.mail,color: kwhite,size: 15,),
                     ),
                     Padding(
@@ -40,7 +40,7 @@ class CommonScreen extends StatelessWidget {
                       child: Text('customercare@bcipvtltd.com',style: TextStyle(color: kwhite,fontSize: 13),),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 45),
+                      padding: const EdgeInsets.only(left: 25),
                       child: Icon(Icons.location_on,size: 15,color: kwhite,),
                     ),
                     Padding(

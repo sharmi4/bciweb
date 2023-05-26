@@ -6,6 +6,7 @@ import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/views/business/bookins/history/views/history.dart';
 import 'package:bciweb/views/business/services/views/offerce.dart';
 import 'package:bciweb/views/members/home_screen.dart';
@@ -28,7 +29,6 @@ import 'package:bciweb/views/business/subscribe/views/payment.dart';
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 
 import 'controller/historycontroller.dart';
-import 'responsive/responsive_homescreen/responsive_homescreen.dart';
 
 void main() {
   Get.put(HomeController());
@@ -50,8 +50,9 @@ class MyApp extends StatelessWidget {
       //  home: BusinessHomeScreen(),
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => HomeScreen()),
-        // GetPage(name: '/', page: () => RegisterProfileScreen()),
+        GetPage(name: '/', page: ()=>MobileHomeScreen()),
+         GetPage(name: '/', page: () => BusinessHomeScreen()),
+        GetPage(name: '/', page: () => RegisterProfileScreen()),
         GetPage(name: '/landing-screen', page: () => LandingScreen()),
         GetPage(name: '/otp-verification', page: () => MobileVerification()),
         GetPage(name: '/final-otp-verification', page: () => OtpVerification()),

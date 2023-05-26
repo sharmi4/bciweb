@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import '../../views/members/home_screen.dart';
 
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MobileHomeScreen extends StatefulWidget {
+  const MobileHomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MobileHomeScreen> createState() => _MobileHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MobileHomeScreenState extends State<MobileHomeScreen> {
   
   @override
   Widget build(BuildContext context) {
