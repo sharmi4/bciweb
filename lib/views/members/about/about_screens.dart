@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
+import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
 import '../common_widget/commoncontainer.dart';
@@ -511,7 +512,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               ],
              ),
            ),
-           CommonBottom()
+             RegisterCommonBottom()
         ],
       ),
     );

@@ -103,20 +103,20 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       color: reghomeController.reindex==3?korange:kblue
                      ),)),
                  ),
-                  Padding(
-                   padding: const EdgeInsets.only(left: 20),
-                   child: TextButton(onPressed: (){
+                //   Padding(
+                //    padding: const EdgeInsets.only(left: 20),
+                //    child: TextButton(onPressed: (){
                    
-                    reghomeController.reindex(4);
-                    reghomeController.update();
-                    Get.offAll(History());
+                //     reghomeController.reindex(4);
+                //     reghomeController.update();
+                //     Get.offAll(History());
                     
                     
-                   }, 
-                   child: Text('BOOKINGS',style: TextStyle(
-                      color: reghomeController.reindex==4?kOrange:kblue
-                     ),)),
-                 ),
+                //    }, 
+                //    child: Text('BOOKINGS',style: TextStyle(
+                //       color: reghomeController.reindex==4?kOrange:kblue
+                //      ),)),
+                //  ),
                    Padding(
                    padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){
@@ -154,22 +154,22 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                child: Row(
                      
                  children: [
-                   Container(
-                    height: 30,
-                    width: 30,
-                    decoration: BoxDecoration(
-                     color: kwhite,
-                     shape: BoxShape.circle,
-                     boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        offset: Offset(0.0, 0.75),
-                        blurRadius: 2,
-                        color: kgrey
-                      )
-                     ]
-                    ),
-                    child: Icon(Icons.search,color: kblue,),
-                   ),
+                  //  Container(
+                  //   height: 30,
+                  //   width: 30,
+                  //   decoration: BoxDecoration(
+                  //    color: kwhite,
+                  //    shape: BoxShape.circle,
+                  //    boxShadow: <BoxShadow>[
+                  //     BoxShadow(
+                  //       offset: Offset(0.0, 0.75),
+                  //       blurRadius: 2,
+                  //       color: kgrey
+                  //     )
+                  //    ]
+                  //   ),
+                  //   child: Icon(Icons.search,color: kblue,),
+                  //  ),
                    Padding(
                      padding: const EdgeInsets.only(left: 20),
                      child: Container(
@@ -190,28 +190,28 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       child: Icon(Icons.notifications,color: kblue,),
                      ),
                    ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 20),
-                     child: InkWell(
-                      onTap: (){
-                        Get.to(Subscribe());
-                      },
-                       child: Container(
-                        height: 35,
-                        width:120,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(colors:[
-                            korange,
-                            kyellow
-                          ]),
-                          borderRadius: BorderRadius.circular(15)
+                  //  Padding(
+                  //    padding: const EdgeInsets.only(left: 20),
+                  //    child: InkWell(
+                  //     onTap: (){
+                  //       Get.to(Subscribe());
+                  //     },
+                  //      child: Container(
+                  //       height: 35,
+                  //       width:120,
+                  //       decoration: BoxDecoration(
+                  //         gradient: LinearGradient(colors:[
+                  //           korange,
+                  //           kyellow
+                  //         ]),
+                  //         borderRadius: BorderRadius.circular(15)
                                 
-                        ),
-                        child: Center(child: Text('Subscription',
-                        style: TextStyle(fontSize: 15,color: kwhite),)),
-                       ),
-                     ),
-                   ),
+                  //       ),
+                  //       child: Center(child: Text('Subscription',
+                  //       style: TextStyle(fontSize: 15,color: kwhite),)),
+                  //      ),
+                  //    ),
+                  //  ),
                      Padding(
                      padding: const EdgeInsets.only(left: 30),
                      child: InkWell(
@@ -236,17 +236,17 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    ) ],
                ),
              ),
-             Padding(
-               padding: const EdgeInsets.only(left: 20),
-               child: Row(children:[ 
-                Text('Raja Ram'),
-                  Icon(Icons.expand_more),     
-                InkWell(
-                  onTap: () {
-                    Get.offAll(RegisterProfileScreen());
-                  },
-                  child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
-             )
+            //  Padding(
+            //    padding: const EdgeInsets.only(left: 20),
+            //    child: Row(children:[ 
+            //     Text('Raja Ram'),
+            //       Icon(Icons.expand_more),     
+            //     InkWell(
+            //       onTap: () {
+            //         Get.offAll(RegisterProfileScreen());
+            //       },
+            //       child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
+            //  )
                    
                 ],
               ),

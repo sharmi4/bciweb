@@ -1,9 +1,10 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../registerhomescreen/common_reg_appbar';
+//import '../../registerhomescreen/common_reg_appbar';
 import '../../registerhomescreen/common_reg_bottom.dart';
 
 class RegisterWalletScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _RegisterWalletScreenState extends State<RegisterWalletScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: PreferredSize(
-          child: RegisterCommonAppbar(), preferredSize: Size(double.infinity, 40)),
+          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
           body: ListView(
             children:[ Column(
               children: [

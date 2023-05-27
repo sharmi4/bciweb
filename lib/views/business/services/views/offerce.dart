@@ -4,9 +4,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../constant/constans.dart';
-import '../../../../registerhomescreen/common_reg_appbar';
+//import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
+import '../../../members/common_widget/common.dart';
 
 class OfferScreen extends StatelessWidget {
   const OfferScreen({super.key});
@@ -15,7 +16,7 @@ class OfferScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: RegisterCommonAppbar(),
+          child: CommonScreen(),
           preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(

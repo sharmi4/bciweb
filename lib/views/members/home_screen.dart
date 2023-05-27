@@ -1,5 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
@@ -126,7 +127,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
       //  40)),
       body: ListView(children: [
         Column(
-          children: [CommonContainer(),
+          children: [RegisterCommonContainer(),
            // CommonContainer(),
 
             // Padding(
@@ -1393,7 +1394,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
               ),
             ),
             ksizedbox40,
-            CommonBottom()
+              RegisterCommonBottom()
           ],
         ),
       ]),

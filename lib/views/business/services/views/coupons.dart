@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../constant/constans.dart';
-import '../../../../registerhomescreen/common_reg_appbar';
+import '../../../members/common_widget/common.dart';
+//import '../../../../registerhomescreen/common_reg_appbar';
 
 class Coupones extends StatelessWidget {
   const Coupones({super.key});
@@ -14,7 +15,7 @@ class Coupones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: RegisterCommonAppbar(),
+          child: CommonScreen(),
           preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(

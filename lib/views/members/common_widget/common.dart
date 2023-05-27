@@ -13,40 +13,79 @@ class CommonScreen extends StatelessWidget {
         child: Stack(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width*0.5,
+            width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: kblue
+            gradient: LinearGradient(colors: [
+              kblue,
+              kOrange
+            ]
+            )
             ),
             child: Column(
               children: [
                 ksizedbox10,
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 7),
+                          child: Image.asset('assets/images/phoneimage.png',height: 15,fit: BoxFit.fitHeight,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Text('+91 8939 804 805 / +91 8939 806 807',
+                          style: TextStyle(color: kwhite,fontSize: 13),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 45),
+                          child: Icon(Icons.mail,color: kwhite,size: 15,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text('customercare@bcipvtltd.com',style: TextStyle(color: kwhite,fontSize: 13),),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 45),
+                          child: Icon(Icons.location_on,size: 15,color: kwhite,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text('Chennai, Tamilnadu - 600026',style: TextStyle(fontSize: 13,color: kwhite),),
+                        )
+                      ],
+                    ),
+                    //next
+ Padding(
+   padding: const EdgeInsets.only(right: 5),
+   child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                    Text('Follow Us :',style: TextStyle(color: kwhite,fontSize: 15),),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
-                      child: Image.asset('assets/images/phoneimage.png',height: 15,fit: BoxFit.fitHeight,),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Image.asset('assets/images/facebook.png',height: 15,fit: BoxFit.fitHeight,),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Text('+91 8939 804 805',
-                      style: TextStyle(color: kwhite,fontSize: 13),),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Image.asset('assets/images/twitter.png',fit: BoxFit.fitHeight,height: 15,),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Icon(Icons.mail,color: kwhite,size: 15,),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Image.asset('assets/images/linkedin.png',height: 15,fit: BoxFit.fitHeight,),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text('customercare@bcipvtltd.com',style: TextStyle(color: kwhite,fontSize: 13),),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Image.asset('assets/images/instagram.png',height: 15,fit: BoxFit.fitHeight,),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 25),
-                      child: Icon(Icons.location_on,size: 15,color: kwhite,),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5),
-                      child: Text('Chennai, Tamilnadu - 600026',style: TextStyle(fontSize: 13,color: kwhite),),
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Image.asset('assets/images/whatsappimage.png',height: 15,fit: BoxFit.fitHeight,),
                     )
+                
+                  ]),
+ ),
                   ],
                 )
               ],
@@ -65,44 +104,7 @@ class CommonScreen extends StatelessWidget {
           //     )
           //   ),
           // ),
-          Positioned(
-            right: 6,
-            top: 0,
-            child: Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width*0.5,
-              color: kOrange,
-              child: Padding(
-                padding: const EdgeInsets.only(right: 20),
-                child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                  Text('Follow Us :',style: TextStyle(color: kwhite,fontSize: 15),),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Image.asset('assets/images/facebook.png',height: 15,fit: BoxFit.fitHeight,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Image.asset('assets/images/twitter.png',fit: BoxFit.fitHeight,height: 15,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Image.asset('assets/images/linkedin.png',height: 15,fit: BoxFit.fitHeight,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Image.asset('assets/images/instagram.png',height: 15,fit: BoxFit.fitHeight,),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Image.asset('assets/images/whatsappimage.png',height: 15,fit: BoxFit.fitHeight,),
-                  )
-              
-                ]),
-              ),
-            ),
-          )
+          
         ],
         
              ), preferredSize: Size(double.infinity, 

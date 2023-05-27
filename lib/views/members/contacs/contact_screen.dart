@@ -3,6 +3,7 @@ import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:bciweb/views/members/common_widget/commoncontainer.dart';
 import 'package:flutter/material.dart';
 
+import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common_buttom.dart';
 class ContactScreen extends StatefulWidget {
@@ -275,7 +276,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                   ),
                   ksizedbox40,
-                  CommonBottom()
+                    RegisterCommonBottom()
                  ],
                ),
              

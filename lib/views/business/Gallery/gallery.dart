@@ -4,9 +4,10 @@ import 'package:bciweb/views/business/Gallery/widgets/stagerdgridview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../registerhomescreen/common_reg_appbar';
+//import '../../../registerhomescreen/common_reg_appbar';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
+import '../../members/common_widget/common.dart';
 
 class Gallery extends StatefulWidget {
   const Gallery({super.key});
@@ -36,12 +37,12 @@ class _GalleryState extends State<Gallery> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: RegisterCommonAppbar(),
+          child: CommonScreen(),
           preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            RegisterCommonContainer(),
+           RegisterCommonContainer(),
             ksizedbox40,
 
             Padding(

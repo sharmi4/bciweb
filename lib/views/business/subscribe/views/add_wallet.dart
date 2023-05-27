@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../constant/constans.dart';
-import '../../../../registerhomescreen/common_reg_appbar';
+//import '../../../../registerhomescreen/common_reg_appbar';
+import '../../../members/common_widget/common.dart';
 
 class AddWallet extends StatelessWidget {
   const AddWallet({super.key});
@@ -15,7 +16,7 @@ class AddWallet extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-          child: RegisterCommonAppbar(),
+          child: CommonScreen(),
           preferredSize: Size(double.infinity, 40)),
       body: ListView(
         children: [

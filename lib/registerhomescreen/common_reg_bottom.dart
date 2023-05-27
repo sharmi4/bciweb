@@ -1,4 +1,6 @@
+import 'package:bciweb/registerhomescreen/privacy_policy.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
 class RegisterCommonBottom extends StatefulWidget {
@@ -14,7 +16,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
     return  Container(
             
             color: kblue,
-            child:const Padding(
+            child: Padding(
               padding:  EdgeInsets.only(top: 20),
               child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -56,13 +58,13 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 15,),
-                           Text("Sitemap",
+                           Text("MENU",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               color: Color(0xffEF5323),
                               fontSize: 20,
                               fontWeight: FontWeight.w600
-                            ),),
+                            ),),  
                             SizedBox(height: 15,),
                              Text("Home",
                             textAlign: TextAlign.start,
@@ -97,6 +99,66 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                             ),),
                             SizedBox(height: 10,),
                             Text("Contacts",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.w400
+                            ),),
+                    ],
+                  ), Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 15,),
+                           Text("Privacy&Policy",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                              color: Color(0xffEF5323),
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600
+                            ),), 
+                            SizedBox(height: 15,),
+                             InkWell(onTap: (){Get.to(PrivacyPolicy());},
+                               child: Text("Disclaimer",
+                                                         textAlign: TextAlign.start,
+                                                         style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400
+                                                         ),),
+                             ),
+                            SizedBox(height: 10,),
+                            InkWell(onTap: (){Get.to(Disclimer());},
+                              child: Text("Privacy",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400
+                              ),),
+                            ),
+                          
+                            SizedBox(height: 10,),
+                             InkWell(onTap: (){Get.to(Representation());},
+                              child: Text("Representation",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400
+                              ),),
+                            ),
+                            SizedBox(height: 10,),
+                            InkWell(onTap: (){Get.to(About());},
+                              child: Text("About",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17,
+                                fontWeight: FontWeight.w400
+                              ),),
+                            ),SizedBox(height: 15,),
+                             Text("",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               color: Colors.white,
@@ -169,23 +231,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                                 fontWeight: FontWeight.w600
                               ),),
                               SizedBox(height: 15,),
-                               Row(
-                                 children: [
-                                   Image(
-                                    height: 15,
-                                    width: 15,
-                                    fit: BoxFit.cover,
-                                    image: AssetImage("assets/images/phoneimage.png")),
-                                    SizedBox(width: 10,),
+                               SizedBox(width: 10,),
                                    Text("+91 8939 804 805  ",
                               textAlign: TextAlign.start,
                               style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w400
+                               color: Colors.white,
+                               fontSize: 17,
+                               fontWeight: FontWeight.w400
                               ),),
-                                 ],
-                               ),
                               SizedBox(height: 10,),
                               Text("+91 8939 806 807",
                               textAlign: TextAlign.start,

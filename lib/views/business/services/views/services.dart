@@ -7,8 +7,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../constant/constans.dart';
-import '../../../../registerhomescreen/common_reg_appbar';
+//import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
+import '../../../members/common_widget/common.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -25,7 +26,7 @@ class _ServicesState extends State<Services> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: RegisterCommonAppbar(),
+          child: CommonScreen(),
           preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(

@@ -7,9 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../controller/profile_show_controller.dart';
-import '../../../registerhomescreen/common_reg_appbar';
+//import '../../../registerhomescreen/common_reg_appbar';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
+import '../common_widget/common.dart';
 class  RegisterProfileScreen extends StatefulWidget {
   const  RegisterProfileScreen({super.key});
 
@@ -94,7 +95,7 @@ bool _value4=false;
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: PreferredSize(
-          child: RegisterCommonAppbar(), preferredSize: Size(double.infinity, 40)),
+          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: Obx(()=>
        ListView(
           children:[ RegisterCommonContainer(),

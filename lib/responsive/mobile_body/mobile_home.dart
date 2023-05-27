@@ -3,8 +3,11 @@ import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:get/get.dart';
 
-import 'mobile_wdgets/drawer.dart';
+import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
+import '../responsive_subscription/responsive_subscription.dart';
+import '../mobile_wdgets/drawer.dart';
 
 
 
@@ -60,7 +63,9 @@ Padding(
                       )
                      ]
                     ),
-                    child: InkWell(onTap: (){},
+                    child: InkWell(onTap: (){
+                     // Get.offAll(Subscribe1());
+                      },
                       child: Icon(Icons.search,color: kblue,size: 17,)),
                    ),
                    Padding(
@@ -88,8 +93,8 @@ Padding(
 ),
      
 
-  ]    ),
-     drawer: MobileDrawer(),
+   ]    ),
+    drawer: MobileDrawer(),
    body: ListView(
      children:[ Column(
       children: [
@@ -1004,7 +1009,7 @@ Padding(
              Stack(
               children: [
                 Container(
-                    height: 1100,
+                    height: 1000,
                     width: MediaQuery.of(context).size.width,
                     child: Image.asset(
                       'assets/images/homebackground5.png',
@@ -1079,7 +1084,7 @@ Padding(
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 50,top: 20),
+                              padding: const EdgeInsets.only(right: 1,top: 20),
                               child: Container(
                                 height: 215,
                                 width: 250,
@@ -1119,7 +1124,7 @@ Padding(
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 50,top: 20),
+                              padding: const EdgeInsets.only(left: 2,top: 20),
                               child: Container(
                                 height: 210,
                                 width: 250,
@@ -1159,7 +1164,7 @@ Padding(
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 50),
+                              padding: const EdgeInsets.only(left: 2,top:20 ),
                               child: Container(
                                 height: 220,
                                 width: 250,
@@ -1206,7 +1211,63 @@ Padding(
                 )
               ],
             ),
-      ],
+             Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: Container(
+                height: 220,
+                width: MediaQuery.of(context).size.width,
+                color: korange,
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 30, left: 7),
+                          child: Image.asset(
+                            'assets/images/waveimage.png',
+                            height: 100,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 0),
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 50),
+                                child: Text(
+                                  'Benze App Avaliable in Google Play',
+                                  style: TextStyle(fontSize: 17, color: kwhite),
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 6, right: 0),
+                                child: Text(
+                                  'Store and iPhone App Store',
+                                  style: TextStyle(fontSize: 17, color: kwhite),
+                                ),
+                              ),
+                               Padding(
+                          padding: const EdgeInsets.only(left: 0, top: 10),
+                          child: Image.asset(
+                            'assets/images/playgoogle.png',
+                            height: 90,
+                            fit: BoxFit.fitHeight,
+                          ),
+                        )
+                            ],
+                          ),
+                        ),
+                       
+                      ],
+                    )
+                  ],
+                ),
+              ),
+            ),
+            
+    MobileCommonBottom()  ],
      ),
      ]
    ),

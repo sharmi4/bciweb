@@ -1,10 +1,11 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
-import 'package:bciweb/registerhomescreen/common_reg_appbar';
+//import 'package:bciweb/registerhomescreen/common_reg_appbar';
 
 import '../registerhomescreen/common_reg_bottom.dart';
 import '../registerhomescreen/common_reg_homescreen.dart';
@@ -24,7 +25,7 @@ class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: RegisterCommonAppbar(), preferredSize: Size(double.infinity, 40)),
+          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       //  appBar: PreferredSize(
       //   child: Stack(
       //   children: [
