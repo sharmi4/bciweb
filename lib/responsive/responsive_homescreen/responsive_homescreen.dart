@@ -3,9 +3,7 @@ import 'package:bciweb/responsive/mobile_body/mobile_home.dart';
 import 'package:bciweb/responsive/mobile_body/mobile_homescreen.dart';
 import 'package:flutter/material.dart';
 
-import '../../views/members/home_screen.dart';
-import '../respo_services/respo_service.dart';
-import '../specialized/respo_specialized.dart';
+import '../../views/authentication/bookins/liquer/Liquer_booking.dart';
 
 
 class MobileHomeScreen extends StatefulWidget {
@@ -22,8 +20,8 @@ class _MobileHomeScreenState extends State<MobileHomeScreen> {
     final currentWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ResponsiveLayout(
-          mobilebody: RespoSpecialized(),
-          desktopbody: BusinessHomeScreen()),
+          mobilebody: MobileHome(),
+          desktopbody: BookingLiquer()),
     );
   }
 }

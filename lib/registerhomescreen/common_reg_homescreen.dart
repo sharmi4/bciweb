@@ -103,20 +103,20 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       color: reghomeController.reindex==3?korange:kblue
                      ),)),
                  ),
-                //   Padding(
-                //    padding: const EdgeInsets.only(left: 20),
-                //    child: TextButton(onPressed: (){
+                  Padding(
+                   padding: const EdgeInsets.only(left: 20),
+                   child: TextButton(onPressed: (){
                    
-                //     reghomeController.reindex(4);
-                //     reghomeController.update();
-                //     Get.offAll(History());
+                    reghomeController.reindex(4);
+                    reghomeController.update();
+                    Get.offAll(History());
                     
                     
-                //    }, 
-                //    child: Text('BOOKINGS',style: TextStyle(
-                //       color: reghomeController.reindex==4?kOrange:kblue
-                //      ),)),
-                //  ),
+                   }, 
+                   child: Text('BOOKINGS',style: TextStyle(
+                      color: reghomeController.reindex==4?kOrange:kblue
+                     ),)),
+                 ),
                    Padding(
                    padding: const EdgeInsets.only(left: 20),
                    child: TextButton(onPressed: (){

@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../controller/historycontroller.dart';
-import '../../../../../controller/reg_home_controller.dart';
+// import '../../../../../controller/reg_home_controller.dart';
 //import '../../../../../registerhomescreen/common_reg_appbar';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';

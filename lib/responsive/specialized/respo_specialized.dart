@@ -177,7 +177,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               ),
               InkWell(
                 onTap: () {
-                  Get.toNamed('/coupones');
+                  Get.toNamed('/respo-coupon');
                 },
                 child: Container(
                   height: 220,
@@ -197,7 +197,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         padding: const EdgeInsets.only(top: 20),
                         child: InkWell(
                             onTap: () {
-                              Get.toNamed('/coupones');
+                              Get.toNamed('/respo-offer');
                             },
                             child: Image.asset(
                               'assets/images/coupons.png',
@@ -233,7 +233,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                   color: kwhite,
                 ),
                 child: Column(
-                  children: [
+                  children: [ksizedbox10,
                     Container(
                       child: Image.asset(
                         'assets/images/booking.png',
@@ -256,7 +256,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               ),
               InkWell(
                 onTap: () {
-                  Get.toNamed('/offer-screen');
+                  Get.toNamed('/respo-offer');
                 },
                 child: Container(
                   height: 220,
@@ -298,7 +298,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               ),
               InkWell(
                 onTap: () {
-                  Get.to(RegisterWalletScreen());
+              //    Get.to(RegisterWalletScreen());
                 },
                 child: Container(
                   height: 220,

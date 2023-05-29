@@ -1,11 +1,11 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
-import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+// import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:bciweb/responsive/authentications/contact%20us/respo_contact.dart';
 import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
 import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
@@ -30,12 +30,12 @@ import 'package:bciweb/views/authentication/signup.dart';
 import 'package:bciweb/views/business/services/views/coupons.dart';
 import 'package:bciweb/views/business/services/views/services.dart';
 import 'package:bciweb/views/business/subscribe/views/add_wallet.dart';
-import 'package:bciweb/views/business/subscribe/views/payment.dart';
-import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
+// import 'package:bciweb/views/business/subscribe/views/payment.dart';
+// import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 
 import 'controller/historycontroller.dart';
 import 'controller/specialized_controller.dart';
-import 'responsive/responsive_homescreen/responsive_homescreen.dart';
+// import 'responsive/responsive_homescreen/responsive_homescreen.dart';/
 
 void main() {
   Get.put(HomeController());
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/office-addreass', page: () => OfficeAddress()),
         GetPage(name: '/signin', page: () => signUp()),
         GetPage(name: '/residential-address', page: () => ResidentialAddress()),
-       // GetPage(name: '/subscribe', page: () => Subscribe()),
+        // GetPage(name: '/subscribe', page: () => Subscribe()),
         // GetPage(name: '/payment', page: () => Payment(
         //  image: "assets/images/Group 38637.png",
         //  )),
@@ -81,8 +81,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/respo-offer', page: () => RespOffer()),
         GetPage(name: '/respo-contact', page: () => RespoContact()),
         GetPage(name: '/respo-specialised', page: () => RespoSpecialized()),
-         GetPage(name: '/respo-gallery', page: () => RespoGallery()),
-        //  GetPage(name: '/history-screen', page: () => History()),
+        GetPage(name: '/respo-gallery', page: () => RespoGallery()),
+        GetPage(name: '/history-screen', page: () => History()),
       ],
     );
   }

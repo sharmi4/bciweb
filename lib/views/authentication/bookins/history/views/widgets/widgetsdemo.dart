@@ -10,134 +10,68 @@ class index1 extends StatelessWidget {
     return Column(
       children: [
         Container(
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'TO',
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: kblue),
+          child: Column(children: [
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 19),
+                  child: Text(
+                    'From',
+                    style: TextStyle(fontSize: 20, color: kblue),
                   ),
-                  ksizedbox10,
-                  Text(
-                    'CHE',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 85, top: 20),
+                  child: Text(
+                    'To',
                     style: TextStyle(color: kblue, fontSize: 19),
                   ),
-                  ksizedbox10,
-                  Text(
-                    'John F. Kennedy Airport',
-                    style: TextStyle(fontSize: 15, color: kblue),
-                  ),
-                ],
-              ),
-            ),
-            Image.asset(
-              'assets/images/Group 39716.png',
-              height: 55,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'TO',
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: kblue),
-                  ),
-                  ksizedbox10,
-                  Text(
-                    'DEL',
-                    style: TextStyle(fontSize: 19, color: kblue),
-                  ),
-                  ksizedbox10,
-                  Text(
-                    'Abbotsford National Airport',
-                    style: TextStyle(color: kblue, fontSize: 15),
-                  ),
-                ],
-              ),
-            ),
-          ]),
-          height: 150,
-          width: 700,
-          decoration: BoxDecoration(
-              color: kwhite,
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                    offset: Offset(0.0, 0.75), blurRadius: 5, color: kgrey),
+                )
               ],
-              borderRadius: BorderRadius.circular(5)),
-        ),
-        ksizedbox30,
-        Container(
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'TO',
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: kblue),
-                  ),
-                  ksizedbox10,
-                  Text(
-                    'CHE',
-                    style: TextStyle(color: kblue, fontSize: 19),
-                  ),
-                  ksizedbox10,
-                  Text(
-                    'John F. Kennedy Airport',
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, top: 19),
+                  child: Text(
+                    'JFK',
                     style: TextStyle(fontSize: 15, color: kblue),
                   ),
-                ],
-              ),
-            ),
-            Image.asset(
-              'assets/images/Group 39716.png',
-              height: 55,
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  Text(
-                    'TO', 
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: kblue),
-                  ),
-                  ksizedbox10,
-                  Text(
-                    'DEL',
-                    style: TextStyle(fontSize: 19, color: kblue),
-                  ),
-                  ksizedbox10,
-                  Text(
-                    'Abbotsford National Airport',
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 39),
+                  child: Image.asset('assets/images/Group 291.png'),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 108, top: 20),
+                  child: Text(
+                    'BTJ',
                     style: TextStyle(color: kblue, fontSize: 15),
                   ),
-                ],
-              ),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 28, top: 19),
+                  child: Text(
+                    'John F. Kennedy \nAirport',
+                    style: TextStyle(fontSize: 15, color: kblue),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 22, top: 5),
+                  child: Text(
+                    'Abbotsford National \nAirport',
+                    style: TextStyle(color: kblue, fontSize: 15),
+                  ),
+                )
+              ],
             ),
           ]),
           height: 150,
-          width: 700,
+          width: 400,
           decoration: BoxDecoration(
               color: kwhite,
               boxShadow: <BoxShadow>[
@@ -383,7 +317,10 @@ class index2 extends StatelessWidget {
               color: kwhite,
               child: Row(
                 children: [
-                  Image.asset('assets/images/Rectangle 1877.png'),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Image.asset('assets/images/Rectangle 1877.png'),
+                  ),
                   kwidth10,
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

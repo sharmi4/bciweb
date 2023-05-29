@@ -2,7 +2,7 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+// import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 //import 'package:bciweb/registerhomescreen/common_reg_appbar';
