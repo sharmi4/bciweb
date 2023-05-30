@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
+import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -32,6 +33,11 @@ class _RegisterProfileScreenState extends State< RegisterProfileScreen> {
   var spousenameController=TextEditingController();
   var dateofbirthController=TextEditingController();
   var childrensController=TextEditingController();
+var referalCOntroller=TextEditingController();
+  var subNameController=TextEditingController();
+  var subMobileController=TextEditingController();
+  var subEmailController=TextEditingController();
+  var subDescriptionController=TextEditingController();
    File? image;
   // Future pickerimage() async {
   //   try {
@@ -91,6 +97,15 @@ bool _value=false;
 bool _value2=false;
 bool _value3=false;
 bool _value4=false;
+int offersindex=0;
+List partnerimage=[
+  'assets/images/partnerimage1.png',
+  'assets/images/partnerimage2.png',
+  'assets/images/partnerimage3.png',
+  'assets/images/partnerimage4.png',
+  'assets/images/partnerimage5.png',
+  'assets/images/partnerimage6.png'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -104,7 +119,7 @@ bool _value4=false;
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
           Container(
-            height:MediaQuery.of(context).size.height,
+            height:900,
             width: 195,
             color: kyellow,
             child: Column(
@@ -397,6 +412,7 @@ bool _value4=false;
                       onTap: (){
                          reghomeController.proindex(7);
                         reghomeController.update();
+                    
                       },
                        child: Container(
                        height: 40,
@@ -477,6 +493,7 @@ bool _value4=false;
                       onTap: (){
                          reghomeController.proindex(9);
                         reghomeController.update();
+                        Get.offAll(LandingScreen());
                       },
                        child: Container(
                           width: 195,
@@ -964,15 +981,1923 @@ bool _value4=false;
                                         
                             ],
                           ),
-                        )
+                        ),
+                       
                       ],
                      ),
                    ),
                  ),
- 
+                     if(reghomeController.proindex.value==1)
+                       Padding(
+                         padding: const EdgeInsets.only(top: 50),
+                         child: Container(
+                           width: MediaQuery.of(context).size.width-195,
+                           child: Column(
+                            children: [
+                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 100),
+                                    child: Text('Hello, Benze',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      color: kblue,
+                                      fontWeight: FontWeight.w500
+                                    ),),
+                                  ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(right: 100),
+                                   child: Image.asset('assets/images/profileimage.png',
+                                   height: 75,fit: BoxFit.fitHeight,),
+                                 ),
+                                ],
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 100),
+                                 child: Row(
+                                   children: [
+                                     Text('View Profile',
+                                     style:TextStyle(color: kblue) ,),
+                                   ],
+                                 ),
+                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 1,
+                                      width: 80,
+                                      color: kgrey,
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100,top: 30),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 50,
+                                      width: MediaQuery.of(context).size.width*0.68,
+                                      decoration: BoxDecoration(
+                                        color: kwhite,
+                                        border: Border.all(
+                                          color: kblue
+                                        ),
+                                        borderRadius: BorderRadius.circular(5),
+                                         boxShadow: <BoxShadow>[
+                                                      BoxShadow(
+                                                        offset: Offset(0.0, 0.75),
+                                                        blurRadius: 5,
+                                                        color: kgrey
+                                                      )
+                                                    ]
+                                      ),
+                                      child: Row(
+                                        children: [
+                                         Padding(
+                                           padding: const EdgeInsets.only(left: 30),
+                                           child: Text('Wallet Amount',
+                                           style: TextStyle(
+                                            fontSize: 17,
+                                            color: kblue
+                                           ),),
+                                         ),
+                                         Padding(
+                                           padding: const EdgeInsets.only(left: 580),
+                                           child: Text('₹ 1.00',textAlign: TextAlign.end,
+                                           style: TextStyle(
+                                            fontSize: 17,
+                                            color: kblue,
+                                           ),),
+                                         ),
+                                         Padding(
+                                           padding: const EdgeInsets.only(left: 13),
+                                           child: CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: kblue,
+                                            child: Icon(Icons.chevron_right,color: kwhite,),
+                                           ),
+                                         )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 100,top: 45),
+                                    child: Text('Your Coupons',
+                                    style: TextStyle(
+                                      fontSize:22,
+                                      color: kblue
+                                    ),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 110,top: 45),
+                                    child: Text('View',style: TextStyle(
+                                      fontSize: 22,
+                                      color: kyellow
+                                    ),),
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100,top:35),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 140,
+                                      width: MediaQuery.of(context).size.width*0.68,
+                                      decoration: BoxDecoration(
+                                        color: kwhite,
+                                        boxShadow: <BoxShadow>[
+                                          BoxShadow(
+                                            color: kgrey,
+                                            blurRadius: 5,
+                                            offset: Offset(0.0,0.75)
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.circular(5)
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 40,top: 25),
+                                                child: Container(
+                                                  height:70,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: kblue)
+                                                  ),
+                                                      child: Center(child: Text('0',
+                                                       style: TextStyle(
+                                                        fontSize: 22
+                                                      ),textAlign: TextAlign.center,)),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(top:25),
+                                                child: Container(
+                                                  height:70,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: kblue)
+                                                  ),
+                                                      child: Center(child: Text('0',
+                                                       style: TextStyle(
+                                                        fontSize: 22
+                                                      ),textAlign: TextAlign.center,)),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(right: 60,top:25),
+                                                child: Container(
+                                                  height:70,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: kblue)
+                                                  ),
+                                                  child: Center(child: Text('0',
+                                                   style: TextStyle(
+                                                        fontSize: 22
+                                                      ),textAlign: TextAlign.center,)),
+                                                ),
+                                              ),
+                                              
+                                            ],
+
+                                          ),
+                                         
+                                          Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left: 60,top:5),
+                                                    child: Text('Total',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue
+                                                    ),),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:5),
+                                                    child: Text('Used',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue
+                                                    ),),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 60,
+                                                    top:5),
+                                                    child: Text('Pending',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue
+                                                    ),),
+                                                  )
+                                                ],
+                                              )
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                                 Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 100,top: 45),
+                                    child: Text('Your Referrals',
+                                    style: TextStyle(
+                                      fontSize:22,
+                                      color: kblue
+                                    ),),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 110,top: 45),
+                                    child: Text('Invite',style: TextStyle(
+                                      fontSize: 22,
+                                      color: kyellow
+                                    ),),
+                                  )
+                                ],
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100,top:35),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      height: 140,
+                                      width: MediaQuery.of(context).size.width*0.68,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),
+                                        color: kwhite,
+                                         boxShadow: <BoxShadow>[
+                                                      BoxShadow(
+                                                        offset: Offset(0.0, 0.75),
+                                                        blurRadius: 5,
+                                                        color: kgrey
+                                                      )
+                                                    ]
+                                      ),
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 40,top: 25),
+                                                child: Container(
+                                                  height:70,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: kblue)
+                                                  ),
+                                                      child: Center(child: Text('0',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 22
+                                                      ),)),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(top:25),
+                                                child: Container(
+                                                  height:70,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: kblue),
+                                                   
+                                                  ),
+                                                      child: Center(child: Text('0',
+                                                      style: TextStyle(
+                                                        fontSize: 22
+                                                      ),textAlign: TextAlign.center,)),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(right: 60,top:25),
+                                                child: Container(
+                                                  height:70,
+                                                  width: 80,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    shape: BoxShape.circle,
+                                                    border: Border.all(color: kblue)
+                                                  ),
+                                                  child: Center(child: Text('0',
+                                                   style: TextStyle(
+                                                        fontSize: 22
+                                                      ),textAlign: TextAlign.center,)),
+                                                ),
+                                              ),
+                                              
+                                            ],
+
+                                          ),
+                                         
+                                          Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left: 60,top:5),
+                                                    child: Text('Total',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue
+                                                    ),),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:5),
+                                                    child: Text('Used',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue
+                                                    ),),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(right: 60,
+                                                    top:5),
+                                                    child: Text('Pending',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue
+                                                    ),),
+                                                  )
+                                                ],
+                                              )
+                                        ],
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              ),
+                         
+                            ],
+                           ),
+                         ),
+                       ),
+                           if(reghomeController.proindex.value==2)
+                             Padding(
+                               padding: const EdgeInsets.only(top:50),
+                               child: Container(
+                                   width: MediaQuery.of(context).size.width-195,
+                                child: Column(
+                                  children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 40),
+                                        child: Row(
+                                          children: [
+                                            Text('Member Offer',textAlign: TextAlign.start,
+                                            style:TextStyle(fontSize: 20,
+                                            fontWeight: FontWeight.w600,
+                                            color: kblue)),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 50,top:30),
+                                            child: Container(
+                                              height: 130,
+                                              width: MediaQuery.of(context).size.width*0.3,
+                                              decoration: BoxDecoration(
+                                                color: Color(0xff594A99),
+                                                borderRadius: BorderRadius.circular(10)
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left: 20),
+                                                    child: Text('Best Deals \nof Today',
+                                                    style: TextStyle(
+                                                      height: 1.7,
+                                                      fontSize: 19,
+                                                      color: kwhite
+                                                    ),),
+                                                  ),
+                                                   Padding(
+                                                     padding: const EdgeInsets.only(right:15),
+                                                     child: Image.asset('assets/images/offersimage.png',fit:BoxFit.fitHeight,
+                                                     height: 110,),
+                                                   )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right:120,top:30),
+                                            child: Container(
+                                              height: 130,
+                                              width: MediaQuery.of(context).size.width*0.3,
+                                              decoration: BoxDecoration(
+                                                color:kyellow,
+                                                borderRadius: BorderRadius.circular(10)
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                   Padding(
+                                                    padding: const EdgeInsets.only(left: 20),
+                                                    child: Text('Best Deals \nof Today',
+                                                    style: TextStyle(
+                                                      height: 1.7,
+                                                      fontSize: 19,
+                                                      color: kwhite
+                                                    ),),
+                                                  ),
+                                                   Padding(
+                                                     padding: const EdgeInsets.only(right:15),
+                                                     child: Image.asset('assets/images/offersimage.png',fit:BoxFit.fitHeight,
+                                                     height: 110,),
+                                                   )
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                         Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 50,top:30),
+                                            child: Container(
+                                              height: 130,
+                                              width: MediaQuery.of(context).size.width*0.3,
+                                              decoration: BoxDecoration(
+                                                color:Color(0xff0A7A0D),
+                                                borderRadius: BorderRadius.circular(10)
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                   Padding(
+                                                    padding: const EdgeInsets.only(left: 20),
+                                                    child: Text('Best Deals \nof Today',
+                                                    style: TextStyle(
+                                                      height: 1.7,
+                                                      fontSize: 19,
+                                                      color: kwhite
+                                                    ),),
+                                                  ),
+                                                   Padding(
+                                                     padding: const EdgeInsets.only(right:15),
+                                                     child: Image.asset('assets/images/offersimage.png',fit:BoxFit.fitHeight,
+                                                     height: 110,),
+                                                   )
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(right:120,top:30),
+                                            child: Container(
+                                              height: 130,
+                                              width: MediaQuery.of(context).size.width*0.3,
+                                              decoration: BoxDecoration(
+                                                color:kblue,
+                                                borderRadius: BorderRadius.circular(10)
+                                              ),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                   Padding(
+                                                    padding: const EdgeInsets.only(left: 20),
+                                                    child: Text('Best Deals \nof Today',
+                                                    style: TextStyle(
+                                                      height: 1.7,
+                                                      fontSize: 19,
+                                                      color: kwhite
+                                                    ),),
+                                                  ),
+                                                   Padding(
+                                                     padding: const EdgeInsets.only(right:15),
+                                                     child: Image.asset('assets/images/offersimage.png',fit:BoxFit.fitHeight,
+                                                     height: 110,),
+                                                   )
+                                                ],
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                  ],
+                                ),
+                               ),
+                             ),
+                               if(reghomeController.proindex.value==3)
+                               Container(
+                                 width: MediaQuery.of(context).size.width-195,
+                                 child: Column(
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Container(
+                                          height: 45,
+                                          width: MediaQuery.of(context).size.width-195,
+                                          decoration: BoxDecoration(
+                                            color: kblue
+                                          ),
+                                          child: Row(
+                                            children: [
+                                              InkWell(
+                                                onTap: (){
+                                                  setState(() {
+                                                      regshowController.showindex(1);
+                                                      offersindex=0;
+                                                      regshowController.update();
+                                                      });
+                                                },
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(left: 10),
+                                                  child: Container(
+                                                    height: 30,
+                                                     width:150,
+                                                    decoration: BoxDecoration(
+                                                       color: offersindex==0?kyellow:kblue,
+                                                       borderRadius: BorderRadius.circular(5),
+                                                         border: offersindex==0?Border.all(
+                                                          color: kwhite
+                                                         ):null                                     
+                                                         ),
+                                                         child: Center(child: Text('Other Coupons',
+                                                         style: TextStyle(
+                                                           color: offersindex==0?kwhite:kwhite,
+                                                         ),)),
+                                                  ),
+                                                ),
+                                              ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(left:30),
+                                                  child: InkWell(
+                                                    onTap: (){
+                                                      setState(() {
+                                                      regshowController.showindex(2);
+                                                      offersindex=1;
+                                                      regshowController.update();
+                                                      });
+                                                    },
+                                                    child: Container(
+                                                    height: 30,
+                                                     width:150,
+                                                    decoration: BoxDecoration(
+                                                         borderRadius: BorderRadius.circular(5),
+                                                         border: offersindex==1?Border.all(
+                                                          color: kwhite
+                                                         ):null,
+                                                       color: offersindex==1?kyellow:kblue,
+                                                       
+                                                         ),
+                                                         child: Center(child: Text('Vendor Coupons',
+                                                         style: TextStyle(
+                                                           color: offersindex==1?kwhite:kwhite,
+                                                         ),)),
+                                                     ),
+                                                  ),
+                                                ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    if(regshowController.showindex.value==2)
+                                     Padding(
+                                      padding: const EdgeInsets.only(left:20,top:30,right:30),
+                                      child: Container(
+                                          width: MediaQuery.of(context).size.width-195,
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: [
+                                                  Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                       Padding(
+                                                         padding: const EdgeInsets.only(bottom: 5),
+                                                         child: Image.asset('assets/images/vendorimage1.png',height: 84,
+                                                          width: 170,
+                                                                                                             fit: BoxFit.cover,),
+                                                       ),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  ),
+                                                   Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                        Image.asset('assets/images/vendorimage2.png',
+                                                      fit: BoxFit.cover,),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  ),
+                                                   Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(bottom: 5),
+                                                          child: Image.asset('assets/images/vendorimage1.png',height: 84,
+                                                          width: 170,
+                                                                                                              fit: BoxFit.cover,),
+                                                        ),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  ),
+                                                   Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                        Image.asset('assets/images/vendorimage2.png',
+                                                      fit: BoxFit.cover,),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  )
+                                                ],
+                                              ),
+                                      
+                                              Padding(
+                                                padding: const EdgeInsets.only(top:50),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  children: [
+                                                    Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(bottom: 5,right:10 ),
+                                                           child: Image.asset('assets/images/vendorimage3.png',height: 84,
+                                                            width: 170,
+                                                                                                               fit: BoxFit.cover,),
+                                                         ),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    ),
+                                                     Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                          Image.asset('assets/images/vendorimage4.png',
+                                                        fit: BoxFit.cover,),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    ),
+                                                     Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(bottom: 5),
+                                                            child: Image.asset('assets/images/vendorimage3.png',height: 84,
+                                                            width: 170,
+                                                                                                                fit: BoxFit.cover,),
+                                                          ),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    ),
+                                                     Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                          Image.asset('assets/images/vendorimage4.png',
+                                                        fit: BoxFit.cover,),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                      ),
+                                    ),
+                                   if(regshowController.showindex.value==1)
+                                    Padding(
+                                      padding: const EdgeInsets.only(left:20,top:30,right:30),
+                                      child: Container(
+                                          width: MediaQuery.of(context).size.width-195,
+                                          child: Column(
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: [
+                                                  Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                       Padding(
+                                                         padding: const EdgeInsets.only(bottom: 5),
+                                                         child: Image.asset('assets/images/offersimage.png',height: 84,
+                                                          width: 170,
+                                                                                                             fit: BoxFit.cover,),
+                                                       ),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  ),
+                                                   Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                        Image.asset('assets/images/couponsimage.png',
+                                                      fit: BoxFit.cover,),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  ),
+                                                   Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(bottom: 5),
+                                                          child: Image.asset('assets/images/offersimage.png',height: 84,
+                                                          width: 170,
+                                                                                                              fit: BoxFit.cover,),
+                                                        ),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  ),
+                                                   Container(
+                                                  
+                                                    width: 180,
+                                                    child: Column(
+                                                      children:[ 
+                                                        Image.asset('assets/images/couponsimage.png',
+                                                      fit: BoxFit.cover,),
+
+                                                      Row(
+                                                        children: [
+                                                          Text('Lorem Ipsum',
+                                                          style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: 16
+                                                          ),),
+                                                        ],
+                                                      ),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(top: 5),
+                                                        child: Row(
+                                                          children: [
+                                                            Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                            style: TextStyle(
+                                                              height: 1.5,
+                                                              fontSize: 12
+                                                            ),)
+                                                          ],
+                                                        ),
+                                                      ),
+                                                      ksizedbox20,
+                                                      Row(
+                                                        children: [
+                                                          ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                              backgroundColor: kOrange
+                                                            ),
+                                                            onPressed: (){},
+                                                           child: Text('BASISJWSW')),
+                                                        ],
+                                                      )
+                                                      ]
+                                                    ),
+                                                    
+                                                  )
+                                                ],
+                                              ),
+                                      
+                                              Padding(
+                                                padding: const EdgeInsets.only(top:50),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                  children: [
+                                                    Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(bottom: 5,right:10 ),
+                                                           child: Image.asset('assets/images/couponsimage2.png',height: 84,
+                                                            width: 170,
+                                                                                                               fit: BoxFit.cover,),
+                                                         ),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    ),
+                                                     Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                          Image.asset('assets/images/couponsimage3.png',
+                                                        fit: BoxFit.cover,),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    ),
+                                                     Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(bottom: 5),
+                                                            child: Image.asset('assets/images/couponsimage2.png',height: 84,
+                                                            width: 170,
+                                                                                                                fit: BoxFit.cover,),
+                                                          ),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    ),
+                                                     Container(
+                                                    
+                                                      width: 180,
+                                                      child: Column(
+                                                        children:[ 
+                                                          Image.asset('assets/images/couponsimage3.png',
+                                                        fit: BoxFit.cover,),
+                                              
+                                                        Row(
+                                                          children: [
+                                                            Text('Lorem Ipsum',
+                                                            style: TextStyle(
+                                                              color: kblue,
+                                                              fontWeight: FontWeight.w600,
+                                                              fontSize: 16
+                                                            ),),
+                                                          ],
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top: 5),
+                                                          child: Row(
+                                                            children: [
+                                                              Text('Reference site about Lorem \nIpsum,giving information on its \norigins, as well as a random \nLipsum generator.',
+                                                              style: TextStyle(
+                                                                height: 1.5,
+                                                                fontSize: 12
+                                                              ),)
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        ksizedbox20,
+                                                        Row(
+                                                          children: [
+                                                            ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: kOrange
+                                                              ),
+                                                              onPressed: (){},
+                                                             child: Text('BASISJWSW')),
+                                                          ],
+                                                        )
+                                                        ]
+                                                      ),
+                                                      
+                                                    )
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                      ),
+                                    ),
+
+                                  ],
+                                 ),
+                               ),
+                               if(reghomeController.proindex.value==4)
+                               Padding(
+                                 padding: const EdgeInsets.only(top:50),
+                                 child: Container(
+                                  width: MediaQuery.of(context).size.width-195,
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:55),
+                                        child: Row(
+                                          children: [
+                                            Text('Additional Coupons',
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              color: kblue,
+                                              fontWeight: FontWeight.bold
+                                            ),)
+                                          ],
+                                        ),
+                                      ),
+                                      ksizedbox40,
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Image.asset('assets/images/aditioffersimage1.png',
+                                          height: 110,fit: BoxFit.fitHeight,),
+                                            Image.asset('assets/images/aditioffersimage1.png',
+                                             height: 110,fit: BoxFit.fitHeight,)
+                                        ],
+                                      ),
+                                      ksizedbox30,
+                                         Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Image.asset('assets/images/aditioffersimage2.png',
+                                           height: 110,fit: BoxFit.fitHeight,),
+                                            Image.asset('assets/images/aditioffersimage2.png',
+                                             height: 110,fit: BoxFit.fitHeight,)
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                 ),
+                               ),
+                               if(reghomeController.proindex.value==5)
+                               Container(
+                                   width: MediaQuery.of(context).size.width-195,
+                                   child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top:50),
+                                        child: Center(
+                                          child: Container(
+                                            height:MediaQuery.of(context).size.height*0.74,
+                                            width: MediaQuery.of(context).size.width*0.29,
+                                            decoration: BoxDecoration(
+                                              color:kwhite,
+                                              boxShadow: <BoxShadow>[
+                                                BoxShadow(
+                                                  offset: Offset(0.0, 0.75),
+                                                  blurRadius: 5,
+                                                  color:kgrey
+                                                )
+                                              ]
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(bottom: 7),
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.center,
+                                                    children: [
+                                                      Image.asset('assets/images/referalimage.png',
+                                                       height: 180,
+                                                       fit:BoxFit.fitHeight
+                                                      ),
+                                                      
+                                                    ],
+                                                  ),
+                                                 ksizedbox10,
+                                                  Text('Referral Code',
+                                                  style: TextStyle(
+                                                    fontSize: 23,
+                                                    color: kblue
+                                                  ),),
+                                              
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(left:20,right:20,top:15),
+                                                    child: Container(
+                                                    
+                                                      decoration: BoxDecoration(
+                                                        color:kwhite,
+                                                       
+                                                        boxShadow: <BoxShadow>[
+                                                          BoxShadow(
+                                                            offset: Offset(0.0,0.75),
+                                                            blurRadius: 2,
+                                                            color:kgrey
+                                                          )
+                                                        ]
+                                                      ),
+                                                      child: TextField(
+                                                        controller:referalCOntroller,
+                                                        decoration: InputDecoration(
+                                                          hintText: 'ABCDEF',
+                                                          hintStyle: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight: FontWeight.w600,
+                                                            color: kblue
+                                                          ),
+                                                          suffixIcon: Icon(Icons.file_copy,
+                                                          color: kblue,size:40),
+                                                          border: OutlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                              color: kblue
+                                                            )
+                                                          )
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:25,left: 40),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('Referral Count :',
+                                                        style:TextStyle(
+                                                          fontSize:24,
+                                                          color:kblue
+                                                        )),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(left:20 ),
+                                                          child: Container(
+                                                            height: 30,
+                                                            width:30,
+                                                            decoration:BoxDecoration(
+                                                              color:kOrange,
+                                                              borderRadius: BorderRadius.circular(3)
+                                                            ),
+                                                            child:Center(child: Text('0',
+                                                            style: TextStyle(
+                                                              fontSize:20,
+                                                              color:kwhite
+                                                            ),),)
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(
+                                                            left: 20
+                                                          ),
+                                                          child: Container(
+                                                            height: 30,
+                                                            width:30,
+                                                            decoration:BoxDecoration(
+                                                              color:kOrange,
+                                                              borderRadius: BorderRadius.circular(3)
+                                                            ),
+                                                            child:Center(child: Text('0',
+                                                            style: TextStyle(
+                                                              color: kwhite,
+                                                              fontSize: 20),),)
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(left: 8),
+                                                          child: Container(
+                                                            height: 30,
+                                                            width:30,
+                                                            decoration:BoxDecoration(
+                                                              color:kOrange,
+                                                              borderRadius: BorderRadius.circular(3)
+                                                            ),
+                                                            child:Center(child: Text('0',
+                                                            style: TextStyle(
+                                                              color: kwhite
+                                                            ),),)
+                                                          ),
+                                                        )
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  ksizedbox40,
+                                                 Container(
+                                                  height: 45,
+                                                  width: MediaQuery.of(context).size.width*0.25,
+                                                  decoration: BoxDecoration(
+                                                    color:korange,
+                                                    boxShadow: <BoxShadow>[
+                                                      BoxShadow(
+                                                        offset: Offset(0.0, 0.75),
+                                                        blurRadius: 5,
+                                                        color: kyellow
+                                                      )
+                                                    ]
+                                                  ),
+                                                  child:Center(child: Text('Share Now',
+                                                  style:TextStyle(
+                                                    color:kwhite,
+                                                    fontSize: 20
+                                                  )))
+                                                 )
+                                                ]
+                                              ),
+                                            )),
+                                        ),
+                                      )
+                                    ],
+                                   ),
+                               ),
+                               if(reghomeController.proindex.value==6)
+                               Padding(
+                                 padding: const EdgeInsets.only(top:50),
+                                 child: Container(
+                                   width: MediaQuery.of(context).size.width-195,
+                                   child:GridView.builder(
+                                    itemCount: partnerimage.length,
+                                    shrinkWrap: true,
+                                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      mainAxisSpacing: 40,
+                                      crossAxisSpacing: 50,
+                                      childAspectRatio: 2
+                                      ), 
+                                    itemBuilder: (context,index){
+                                      return Padding(
+                                        padding: const EdgeInsets.only(left:70,right:70),
+                                        child: Container(
+                                               height: 10,
+                                               width: 10,
+                                               decoration: BoxDecoration(
+                                            
+                                               ),
+                                               child:Image.asset(partnerimage[index])    
+                                        ),
+                                      );
+                                    })
+                                    
+                                 ),
+                               ),
+                               if(reghomeController.proindex.value==7)
+                               Container(),
+                               if(reghomeController.proindex.value==8)
+                               Padding(
+                                 padding: const EdgeInsets.only(top:50),
+                                 child: Container(
+                                   width: MediaQuery.of(context).size.width-195,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 50),
+                                            child: Container(
+                                              height: 40,
+                                              width: MediaQuery.of(context).size.width*0.3,
+                                              decoration: BoxDecoration(
+                                                color: kgrey.withOpacity(0.3),
+                                                
+                                              ),
+                                              child: TextField(
+                                                controller: subNameController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Your Name',
+                                                  hintStyle: TextStyle(
+                                                    fontSize: 14.5
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                   borderSide: BorderSide.none
+                                                    
+                                                  
+                                                  )
+                                                ),
+                                                
+                                              ),
+                                            ),
+                                          ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(right: 150),
+                                              child: Container(
+                                              height: 40,
+                                              width: MediaQuery.of(context).size.width*0.3,
+                                              decoration: BoxDecoration(
+                                                color: kgrey.withOpacity(0.3),
+                                                
+                                              ),
+                                              child: TextField(
+                                                controller: subMobileController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Mobile',
+                                                  hintStyle: TextStyle(
+                                                    fontSize: 14.5
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                   borderSide: BorderSide.none
+                                                    
+                                                  
+                                                  )
+                                                ),
+                                                
+                                              ),
+                                                                                    ),
+                                            ),
+                                        ],
+                                      ),
+                                       Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 50,top:35),
+                                            child: Container(
+                                              height: 40,
+                                              width: MediaQuery.of(context).size.width*0.69,
+                                              decoration: BoxDecoration(
+                                                color: kgrey.withOpacity(0.3),
+                                                
+                                              ),
+                                              child: TextField(
+                                                controller: subEmailController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Email',
+                                                  hintStyle: TextStyle(
+                                                    fontSize: 14.5
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                   borderSide: BorderSide.none
+                                                    
+                                                  
+                                                  )
+                                                ),
+                                                
+                                              ),
+                                            ),
+                                          )
+                                        ]
+                                          ),
+                                           Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 50,top:35),
+                                            child: Container(
+                                            
+                                              width: MediaQuery.of(context).size.width*0.69,
+                                              decoration: BoxDecoration(
+                                                color: kgrey.withOpacity(0.3),
+                                                
+                                              ),
+                                              child: TextField(
+                                                maxLines: 4,
+                                                controller: subDescriptionController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Description',
+                                                  hintStyle: TextStyle(
+                                                    fontSize: 14.5
+                                                  ),
+                                                  border: OutlineInputBorder(
+                                                   borderSide: BorderSide.none
+                                                    
+                                                  
+                                                  )
+                                                ),
+                                                
+                                              ),
+                                            ),
+                                          )
+                                        ]
+                                          ),
+                                          ksizedbox30,
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 50),
+                                            child: Row(
+                                              children: [
+                                                ElevatedButton(
+                                                  style: ElevatedButton.styleFrom(
+                                                    minimumSize: Size(MediaQuery.of(context).size.width*0.7, 
+                                                    45),
+                                                    backgroundColor: kblue
+                                                  ),
+                                                  onPressed: (){}, 
+                                                child: Text('Submit',
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: kwhite
+                                                ),)),
+                                              ],
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 40,left:50),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  height: 150,
+                                                  width: MediaQuery.of(context).size.width*0.7,
+                                                  decoration: BoxDecoration(
+                                                    color: kwhite,
+                                                    boxShadow: <BoxShadow>[
+                                                      BoxShadow(
+                                                        offset: Offset(0.0,0.75),
+                                                        blurRadius: 5,
+                                                        color: kgrey,
+
+                                                      )
+                                                    ],
+                                                    border: Border.all(
+                                                      color: Colors.black.withOpacity(0.3)
+                                                    )
+                                                  ),
+                                                  child: Column(
+                                                    children: [
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(
+                                                              top:20,left:10
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisAlignment: MainAxisAlignment.start,
+                                                              children: [
+                                                                Text('Contact Admin :',
+                                                                
+                                                                style: TextStyle(
+                                                                  fontSize: 16
+                                                                ),),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.only(left: 15),
+                                                                    child: Text('+91 9876543210',
+                                                                    style: TextStyle(
+                                                                    color: kblue,
+                                                                    fontSize: 16
+                                                                    ),),
+                                                                  ),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(
+                                                              top:20,right: 30
+                                                            ),
+                                                            child: Row(
+                                                              mainAxisAlignment: MainAxisAlignment.end,
+                                                              children: [
+                                                                Text('Admin Email :',
+                                                                style: TextStyle(
+                                                                  fontSize: 16
+                                                                ),),
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(
+                                                                  left: 15
+                                                                  ),
+                                                                  child: Text("Customer@gmail.com",
+                                                                  style: TextStyle(
+                                                                    color: kblue,
+                                                                    fontSize: 16
+                                                                  ),),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                      ksizedbox20,
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(left:
+                                                        10),
+                                                        child: Row(
+                                                          children: [
+                                                            Row(
+                                                              children: [
+                                                                Text('Head Office Address :',
+                                                                style: TextStyle(
+                                                                    fontSize: 16
+                                                                ),),
+                                                                Padding(
+                                                                  padding: const EdgeInsets.only(left: 15),
+                                                                  child: Text('No 781, Second Street, New Chennai, Tamil nadu-600021.',
+                                                                  style: TextStyle(
+                                                                    color: kblue,
+                                                                    fontSize: 16
+                                                                  ),),
+                                                                )
+                                                              ],
+                                                            )
+                                                          ],
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                    ],
+                                  ),
+                                 ),
+                               ),
+                              
                     ]
                    ),
-                   ksizedbox40,
+                  
+                  
+                   
                 RegisterCommonBottom()
                 
           ]

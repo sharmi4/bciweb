@@ -236,17 +236,17 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    ) ],
                ),
              ),
-            //  Padding(
-            //    padding: const EdgeInsets.only(left: 20),
-            //    child: Row(children:[ 
-            //     Text('Raja Ram'),
-            //       Icon(Icons.expand_more),     
-            //     InkWell(
-            //       onTap: () {
-            //         Get.offAll(RegisterProfileScreen());
-            //       },
-            //       child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
-            //  )
+             Padding(
+               padding: const EdgeInsets.only(left: 20),
+               child: Row(children:[ 
+                Text('Raja Ram'),
+                  Icon(Icons.expand_more),     
+                InkWell(
+                  onTap: () {
+                    Get.offAll(RegisterProfileScreen());
+                  },
+                  child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
+             )
                    
                 ],
               ),

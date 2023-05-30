@@ -127,7 +127,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
       //  40)),
       body: ListView(children: [
         Column(
-          children: [RegisterCommonContainer(),
+          children: [CommonContainer(),
            // CommonContainer(),
 
             // Padding(

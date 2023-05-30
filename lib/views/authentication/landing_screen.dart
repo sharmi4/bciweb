@@ -18,7 +18,7 @@ class LandingScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(15.0),
             child: Container(
-         //     child: Image.asset('assets/images/q.png'),
+            //  child: Image.asset('assets/images/q.png'),
             ),
           ),
           Container(

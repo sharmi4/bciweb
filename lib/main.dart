@@ -1,5 +1,6 @@
 // import 'dart:html';
 
+
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
@@ -10,6 +11,7 @@ import 'package:bciweb/responsive/authentications/contact%20us/respo_contact.dar
 import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
 import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
 import 'package:bciweb/responsive/respo_services/respo_offers.dart';
+import 'package:bciweb/responsive/respo_services/widgets/resprofile/mobile_profile_screen.dart';
 import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/responsive/specialized/respo_specialized.dart';
 import 'package:bciweb/views/business/bookins/history/views/history.dart';
@@ -58,6 +60,7 @@ class MyApp extends StatelessWidget {
       //  home: BusinessHomeScreen(),
       initialRoute: '/',
       getPages: [
+          
         GetPage(name: '/', page: () => MobileHomeScreen()),
         GetPage(name: '/', page: () => BusinessHomeScreen()),
         GetPage(name: '/', page: () => RegisterProfileScreen()),
@@ -83,6 +86,10 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/respo-specialised', page: () => RespoSpecialized()),
         GetPage(name: '/respo-gallery', page: () => RespoGallery()),
         GetPage(name: '/history-screen', page: () => History()),
+         GetPage(name: '/respo-gallery', page: () => RespoGallery()),
+         GetPage(name: '/reg-profile', page: ()=>RegisterProfileScreen()),
+         GetPage(name: '/respo-profile', page: ()=>MobileProfileScreen()),
+        //  GetPage(name: '/history-screen', page: () => History()),
       ],
     );
   }
