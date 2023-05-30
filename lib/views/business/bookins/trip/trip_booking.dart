@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../constant/constans.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
@@ -103,6 +104,50 @@ class BookingTrip extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10)),
                         ),
                         Container(
+                          child: HStack([
+                            VStack([
+                              Text('WHERE YOU WANT TO GO').text.xl2.bold.make(),
+                              HStack([
+                                Icon(
+                                  Icons.search,
+                                  color: kgrey,
+                                ),
+                                Text('Search your Location')
+                                    .text
+                                    .semiBold
+                                    .gray400
+                                    .make()
+                              ])
+                            ]).px24(),
+                            Spacer(),
+                            VStack([
+                              Text('Check-in').text.xl2.bold.make(),
+                              HStack([
+                                Text('Add Date').text.semiBold.gray400.make()
+                              ])
+                            ]).px24(),
+                            Spacer(),
+                            VStack([
+                              Text('Check-OUT').text.xl2.bold.make(),
+                              HStack([
+                                Text('Add Date').text.semiBold.gray400.make()
+                              ])
+                            ]),
+                            Spacer(),
+                            VxBox(
+                                    child: Text('Explore Now')
+                                        .text
+                                        .xl2
+                                        .semiBold
+                                        .white
+                                        .make()
+                                        .px12())
+                                .color(Vx.orange500)
+                                .roundedLg
+                                .p24
+                                .make()
+                                .px20()
+                          ]),
                           height: 140,
                           width: size.width * 0.8,
                           decoration: BoxDecoration(
@@ -120,8 +165,227 @@ class BookingTrip extends StatelessWidget {
                 )
               ],
             ),
-        RegisterCommonBottom()  ],
+            Row(
+              children: [
+                Text('Search city , Country, Place for Travel advisory')
+                    .text
+                    .thin
+                    .gray600
+                    .make()
+                    .box
+                    .p12
+                    .rounded
+                    .pink300
+                    .width(context.percentWidth * 70)
+                    .make()
+                    .pSymmetric(v: 40, h: 20),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Popular Places for Vacation')
+                    .text
+                    .xl3
+                    .color(Color.fromARGB(255, 5, 67, 143))
+                    .semiBold
+                    .make()
+                    .px16()
+                    .objectCenterLeft(),
+                HStack(
+                  [
+                    Text('Sort By')
+                        .text
+                        .semiBold
+                        .make()
+                        .box
+                        .border(color: kblue, width: 2)
+                        .p12
+                        .make()
+                        .objectCenterRight(),
+                    kwidth10,
+                    Text('Filter')
+                        .text
+                        .semiBold
+                        .make()
+                        .box
+                        .border(color: kblue, width: 2)
+                        .p12
+                        .make()
+                        .objectCenterRight(),
+                  ],
+                ).p64()
+              ],
+            ),
+            ksizedbox30,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: GridView.builder(
+                  shrinkWrap: true,
+                  itemCount: 12,
+                  physics: NeverScrollableScrollPhysics(),
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
+                  ),
+                  itemBuilder: ((context, index) {
+                    return tripcontainer();
+                  })),
+            ),
+            'Happy Customers'.text.semiBold.xl3.make(),
+            ksizedbox30,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                HappyCostomer(size: size),
+                HappyCostomer(size: size),
+              ],
+            ),
+            ksizedbox40,
+            RegisterCommonBottom()
+          ],
         ),
+      ),
+    );
+  }
+}
+
+class HappyCostomer extends StatelessWidget {
+  const HappyCostomer({
+    super.key,
+    required this.size,
+  });
+
+  final Size size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+          color: kwhite,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: Offset(0, 3), // changes position of shadow
+            ),
+          ],
+          borderRadius: BorderRadius.circular(7)),
+      width: size.width * 0.4,
+      child: Column(
+        children: [
+          ksizedbox20,
+          Container(
+            width: size.width * 0.3,
+            child: Text(
+                    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ultricies mi eget mauris pharetra. Amet risus nullam eget felis eget nunc lobortis. Purus in massa tempor nec. Porta nibh venenatis cras sed. Viverra ipsum nunc aliquet bibendum enim. Risus pretium quam vulputate dignissim suspendisse in. Non quam lacus suspendisse faucibus interdum posuere lorem ipsum dolor. Facilisi cras fermentum odio eu feugiat pretium nibh ipsum. Risus sed vulputate odio ut enim blandit volutpat maecenas. Netus et malesuada fames ac turpis egestas. Sed arcu non odio euismod lacinia at quis risus sed. Praesent elementum facilisis leo vel fringilla est ullamcorper. Ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Elit pellentesque habitant morbi tristique senectus et netus. Morbi tincidunt augue interdum velit.')
+                .text
+                .thin
+                .sm
+                .color(Colors.grey)
+                .make(),
+          ),
+          ksizedbox20,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              kwidth10,
+              Image.asset(
+                'assets/images/Ellipse 24.png',
+                height: 50,
+              ),
+              kwidth5,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Shalini Singh').text.bold.make(),
+                  Text('Project Manger flyhigh')
+                      .text
+                      .thin
+                      .gray400
+                      .caption(context)
+                      .make()
+                ],
+              )
+            ],
+          ),
+          ksizedbox10
+        ],
+      ),
+    );
+  }
+}
+
+class tripcontainer extends StatelessWidget {
+  const tripcontainer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    return Container(
+      color: kwhite,
+      height: size.height * 0.1,
+      width: size.width * 0.2,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Image.asset(
+            'assets/images/bb43ca378d39364475632277f516c341.png',
+            //   height: 230,
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Text('Kadaikonal').text.semiBold.sm.make(),
+                      ],
+                    ),
+                    //  .objectCenterLeft(),
+                    ksizedbox10,
+                    Text('Price starts from ₹49,999.00')
+                        .text
+                        .sm
+                        .color(Colors.grey)
+                        .make(),
+                    //  .objectCenterLeft(),
+                  ],
+                ),
+              ),
+              Spacer(),
+              VxBox(
+                child: Center(
+                  child: Text('View Details')
+                      .text
+                      .size(10)
+                      .semiBold
+                      .sm
+                      .color(const Color.fromARGB(255, 255, 111, 0))
+                      .make(),
+                ),
+              )
+                  .shadow
+                  .roundedLg
+                  .p20
+                  .white
+                  .make()
+                  .p16()
+                  .h(
+                    context.percentHeight * 11,
+                  )
+                  .w(context.percentWidth * 9)
+            ],
+          ),
+        ],
       ),
     );
   }

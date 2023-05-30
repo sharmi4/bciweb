@@ -55,56 +55,56 @@ class _HistoryState extends State<History> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                               InkWell(
-                              onTap: () {
-                                Get.to(BookingFlight());
-                              },
-                              child: bookingbutton(
-                                size: size,
-                                text: 'FLIGHT',
-                                colorr: kblue,
+                              InkWell(
+                                onTap: () {
+                                  Get.to(BookingFlight());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'FLIGHT',
+                                  colorr: kblue,
+                                ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(BookingHotels());
-                              },
-                              child: bookingbutton(
-                                size: size,
-                                text: 'HOTELS',
-                                colorr: kblue,
+                              InkWell(
+                                onTap: () {
+                                  Get.to(BookingHotels());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'HOTELS',
+                                  colorr: kblue,
+                                ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(BookingTrip());
-                              },
-                              child: bookingbutton(
-                                size: size,
-                                text: 'TRIP',
-                                colorr: kblue,
+                              InkWell(
+                                onTap: () {
+                                  Get.to(BookingTrip());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'TRIP',
+                                  colorr: kblue,
+                                ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(BookingLiquer());
-                              },
-                              child: bookingbutton(
-                                size: size,
-                                text: 'LIQUOR',
-                                colorr: kblue,
+                              InkWell(
+                                onTap: () {
+                                  Get.to(BookingLiquer());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'LIQUOR',
+                                  colorr: kblue,
+                                ),
                               ),
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.to(History());
-                              },
-                              child: bookingbutton(
-                                size: size,
-                                text: 'HISTORY',
-                                colorr: korange,
+                              InkWell(
+                                onTap: () {
+                                  Get.to(History());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'HISTORY',
+                                  colorr: korange,
+                                ),
                               ),
-                            ),
                             ],
                           ),
                           height: 60,

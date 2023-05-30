@@ -24,3 +24,15 @@ final kpeople = Image.asset('assets/images/profile.svg');
 
 Color ktextblue=Color(0xff003366);
 // Color kOrange = Color(0xFFFF5003);
+
+
+var primaryFont = TextStyle();
+
+
+
+
+
+//fonts
+
+var primarysmallFont =  TextStyle(color: kblue,fontSize: 10);
+var primarymediumFont = TextStyle(color: kblue,fontSize: 17,fontWeight: FontWeight.w900);

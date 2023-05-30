@@ -3,7 +3,10 @@ import 'package:bciweb/responsive/mobile_body/mobile_home.dart';
 import 'package:bciweb/responsive/mobile_body/mobile_homescreen.dart';
 import 'package:flutter/material.dart';
 
-import '../../views/authentication/bookins/liquer/Liquer_booking.dart';
+//import '../../views/authentication/bookins/liquer/Liquer_booking.dart';
+import '../../views/business/bookins/hotels/booking_hotels.dart';
+import '../../views/business/bookins/liquer/Liquer_booking.dart';
+import '../../views/business/bookins/trip/trip_booking.dart';
 
 
 class MobileHomeScreen extends StatefulWidget {
@@ -21,7 +24,7 @@ class _MobileHomeScreenState extends State<MobileHomeScreen> {
     return Scaffold(
       body: ResponsiveLayout(
           mobilebody: MobileHome(),
-          desktopbody: BookingLiquer()),
+          desktopbody: BookingHotels()),
     );
   }
 }
