@@ -7,6 +7,7 @@ import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
 // import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:bciweb/responsive/authentications/contact%20us/respo_contact.dart';
+import 'package:bciweb/responsive/res_controller/yours_coupon_controller.dart';
 import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
 import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
 import 'package:bciweb/responsive/respo_services/respo_offers.dart';
@@ -46,6 +47,7 @@ void main() {
   Get.put(ProfileShowController());
   Get.put(BookingHistoryController());
   Get.put(SpecializedController());
+  Get.put(YourCouponController());
   runApp(const MyApp());
 }
 
