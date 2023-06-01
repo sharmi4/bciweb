@@ -1,4 +1,5 @@
 import 'package:bciweb/views/business/bookins/flight/booking_flight.dart';
+import 'package:bciweb/views/business/bookins/hotels/widgets/containers.dart';
 import 'package:bciweb/views/business/bookins/liquer/Liquer_booking.dart';
 import 'package:bciweb/views/business/bookins/trip/trip_booking.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,11 +14,19 @@ import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
 import '../history/views/history.dart';
 
-class BookingHotels extends StatelessWidget {
+class BookingHotels extends StatefulWidget {
   const BookingHotels({super.key});
 
   @override
+  State<BookingHotels> createState() => _BookingHotelsState();
+}
+
+class _BookingHotelsState extends State<BookingHotels> {
+  get isChecked => null;
+
+  @override
   Widget build(BuildContext context) {
+    bool isChecked = false;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
@@ -105,7 +114,8 @@ class BookingHotels extends StatelessWidget {
                         ),
                         Container(
                           child: Row(
-                            children: [Spacer(),
+                            children: [
+                              Spacer(),
                               Container(
                                 height: size.height * 0.11,
                                 width: size.width * 0.15,
@@ -115,8 +125,8 @@ class BookingHotels extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text('CITY, PROPERTY NAME OR LOCATION',
-                                          style: primarysmallFont),
+                                      //     Text('CITY, PROPERTY NAME OR LOCATION',
+                                      //         style: primarysmallFont),
                                       Spacer(),
                                       Text('Tamil Nadu',
                                           style: primarymediumFont),
@@ -132,8 +142,9 @@ class BookingHotels extends StatelessWidget {
                                     width: 1.0,
                                   ),
                                 ),
-                              ),Spacer(),
-                            Container(
+                              ),
+                              Spacer(),
+                              Container(
                                 height: size.height * 0.11,
                                 width: size.width * 0.09,
                                 child: Padding(
@@ -146,7 +157,7 @@ class BookingHotels extends StatelessWidget {
                                       Spacer(),
                                       Text('6 May23', style: primarymediumFont),
                                       Spacer(),
-                                      Text('Saturday', style: primarysmallFont),
+                                      //       Text('Saturday', style: primarysmallFont),
                                     ],
                                   ),
                                 ),
@@ -157,7 +168,9 @@ class BookingHotels extends StatelessWidget {
                                     width: 1.0,
                                   ),
                                 ),
-                              ),Spacer(),Container(
+                              ),
+                              Spacer(),
+                              Container(
                                 height: size.height * 0.11,
                                 width: size.width * 0.09,
                                 child: Padding(
@@ -166,11 +179,12 @@ class BookingHotels extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text('CHECK-OUT', style: primarysmallFont),
+                                      Text('CHECK-OUT',
+                                          style: primarysmallFont),
                                       Spacer(),
                                       Text('6 May23', style: primarymediumFont),
                                       Spacer(),
-                                      Text('Saturday', style: primarysmallFont),
+                                      //     Text('Saturday', style: primarysmallFont),
                                     ],
                                   ),
                                 ),
@@ -181,7 +195,9 @@ class BookingHotels extends StatelessWidget {
                                     width: 1.0,
                                   ),
                                 ),
-                              ),Spacer() , Container(
+                              ),
+                              Spacer(),
+                              Container(
                                 height: size.height * 0.11,
                                 width: size.width * 0.15,
                                 child: Padding(
@@ -196,7 +212,6 @@ class BookingHotels extends StatelessWidget {
                                       Text('1 Room 2 Adults',
                                           style: primarymediumFont),
                                       Spacer(),
-                           
                                     ],
                                   ),
                                 ),
@@ -207,7 +222,9 @@ class BookingHotels extends StatelessWidget {
                                     width: 1.0,
                                   ),
                                 ),
-                              ),Spacer(),  Container(
+                              ),
+                              Spacer(),
+                              Container(
                                 height: size.height * 0.11,
                                 width: size.width * 0.09,
                                 child: Padding(
@@ -216,11 +233,14 @@ class BookingHotels extends StatelessWidget {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text('PRICE PER NIGHT', style: primarysmallFont),
+                                      Text('PRICE PER NIGHT',
+                                          style: primarysmallFont),
                                       Spacer(),
-                                      Text('₹0-₹1500, ₹1500-', style: primarysmallFont),
+                                      Text('₹0-₹1500, ₹1500-',
+                                          style: primarysmallFont),
                                       Spacer(),
-                                      Text('₹2500,...', style: primarysmallFont),
+                                      //    Text('₹2500,...',
+                                      //       style: primarysmallFont),
                                     ],
                                   ),
                                 ),
@@ -231,7 +251,9 @@ class BookingHotels extends StatelessWidget {
                                     width: 1.0,
                                   ),
                                 ),
-                              ),Spacer()],
+                              ),
+                              Spacer()
+                            ],
                           ),
                           height: 140,
                           width: size.width * 0.8,
@@ -249,9 +271,239 @@ class BookingHotels extends StatelessWidget {
                   ),
                 )
               ],
-
-            ),ksizedbox30,
-            'Showing Properties in Tamil Nadu'.text.bold.xl4.hexColor('#0F2446').make(),
+            ),
+            ksizedbox30,
+            'Showing Properties in Tamil Nadu'
+                .text
+                .bold
+                .xl4
+                .hexColor('#0F2446')
+                .make(),
+            ksizedbox40,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Container(
+                  child: Column(
+                    children: [
+                      ksizedbox30,
+                      Row(
+                        children: [
+                          kwidth10,
+                          Text('Poular Filters').text.semiBold.make(),
+                        ],
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Go first                      ₹ 6,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Go first                      ₹ 6,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Go first                      ₹ 6,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Go first                      ₹ 6,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Go first                      ₹ 6,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Go first                      ₹ 6,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          children: [
+                            Checkbox(
+                              checkColor: Colors.white,
+                              fillColor: MaterialStateProperty.all(kgrey),
+                              value: isChecked,
+                              onChanged: (bool? value) {
+                                setState(() {
+                                  isChecked = value!;
+                                });
+                              },
+                            ),
+                            Text('Non Stop 17             ₹ 3,499 ')
+                                .text
+                                .gray500
+                                .sm
+                                .make()
+                          ],
+                        ),
+                      ),
+                      Text('Show Less')
+                          .text
+                          .semiBold
+                          .blue600
+                          .make()
+                          .objectCenterLeft()
+                          .p12(),
+                      ksizedbox30,
+                      Text('One Way Price')
+                          .text
+                          .semiBold
+                          .xl
+                          .make()
+                          .objectCenterLeft()
+                          .p12(),
+                      Slider(
+                        value: 35,
+                        onChanged: (Value) {},
+                        max: 100,
+                        min: 0,
+                        activeColor: Vx.blue400,
+                      ),
+                      HStack([
+                        Text('₹ 6,499 ').text.semiBold.make(),
+                        Spacer(),
+                        Text('₹ 12,499 ').text.semiBold.make()
+                      ]).px24(),
+                      ksizedbox30,
+                    ],
+                  ),
+                  decoration: new BoxDecoration(
+                      borderRadius: BorderRadius.circular(14),
+                      color: kwhite,
+                      boxShadow: [
+                        new BoxShadow(
+                          color: Color.fromARGB(255, 186, 182, 182),
+                          blurRadius: 20.0,
+                        ),
+                      ]),
+                  // height: size.height * 0.6,
+                  width: size.width * 0.18,
+                ),
+                Column(
+                  children: [
+                    ksizedbox30,
+                    HottelbookingContainer(size: size),
+                    ksizedbox10,
+                    HottelbookingContainer(size: size),
+                    ksizedbox10,
+                    HottelbookingContainer(size: size),
+                    ksizedbox10,
+                  ],
+                ),
+              ],
+            ),
+            //   HottelbookingContainer(size: size),
+            ksizedbox10,
             ksizedbox40,
             RegisterCommonBottom()
           ],

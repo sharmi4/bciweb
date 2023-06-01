@@ -1,15 +1,18 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/specialized_controller.dart';
+import 'package:bciweb/views/specialized/explor.dart';
+import 'package:bciweb/views/specialized/club.dart';
+
 ///import 'package:bciweb/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../registerhomescreen/common_reg_bottom.dart';
-import '../../../registerhomescreen/common_reg_homescreen.dart';
-import '../common_widget/common.dart';
-import '../common_widget/commoncontainer.dart';
-import '../common_widget/common_buttom.dart';
-import '../reg_wallet_screen.dart';
+import '../../registerhomescreen/common_reg_bottom.dart';
+import '../../registerhomescreen/common_reg_homescreen.dart';
+import '../members/common_widget/common.dart';
+import '../members/common_widget/commoncontainer.dart';
+import '../members/common_widget/common_buttom.dart';
+import '../members/reg_wallet_screen.dart';
 
 class SpecializedScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -43,11 +46,31 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                           fit: BoxFit.fill)),
                   child: Center(
-                      child: Text(
-                    'SPECIALIZED US',
-                    style: TextStyle(fontSize: 30, color: kwhite),
-                  ))),
-
+                      child: Text('SPECIALIZED US', style: displayfont))),
+              ksizedbox20,
+              Container(
+                height: 300,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Get.to(SpecializedClub());
+                      },
+                      child: Image.asset(
+                        'assets/images/aaa.jpg',
+                        height: 300,
+                      ),
+                    ),
+                    kwidth10,
+                    InkWell(
+                        onTap: () {
+                          Get.to(SpecializedExplore());
+                        },
+                        child: Image.asset('assets/images/bbb.jpg'))
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: Row(
@@ -85,7 +108,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                     Text(
                       'Membership features are the benefits or privileges that a member of a particular \ngroup or organization receives. These features can vary widely depending on the \ntype of membership and the goals and objectives of the \norganization. Some common membership features include:',
                       textAlign: TextAlign.center,
-                      style: TextStyle(height: 2,fontSize: 19,fontWeight: FontWeight.w500),
+                      style: TextStyle(
+                          height: 2, fontSize: 19, fontWeight: FontWeight.w500),
                     ),
                   ],
                 ),
@@ -94,9 +118,10 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  InkWell(onTap: () {
-                    Get.toNamed('/subscribe');
-                  },
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed('/subscribe');
+                    },
                     child: Container(
                       height: 220,
                       width: 230,
@@ -129,7 +154,10 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           Text(
                             'These packages can include a range \nof features and benefits, such as',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 19, height: 1.2,fontWeight: FontWeight.w500),
+                            style: TextStyle(
+                                fontSize: 19,
+                                height: 1.2,
+                                fontWeight: FontWeight.w500),
                           )
                         ],
                       ),
@@ -257,7 +285,10 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                       ],
                     ),
                   ),
-                  InkWell(onTap: (){Get.toNamed('/offer-screen');},
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed('/offer-screen');
+                    },
                     child: Container(
                       height: 220,
                       width: 230,
@@ -658,7 +689,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         specialController.specialindex(1);
                       },
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 30,left: 100,right: 100),
+                        padding:
+                            EdgeInsets.only(top: 30, left: 100, right: 100),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -925,7 +957,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         specialController.specialindex(5);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 30,left: 100,right: 100),
+                        padding: const EdgeInsets.only(
+                            top: 30, left: 100, right: 100),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -991,7 +1024,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         specialController.specialindex(6);
                       },
                       child: Padding(
-                        padding: const EdgeInsets.only(top: 30,left: 100,right: 100),
+                        padding: const EdgeInsets.only(
+                            top: 30, left: 100, right: 100),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -1057,7 +1091,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         specialController.specialindex(7);
                       },
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 30,left: 100,right: 100),
+                        padding:
+                            EdgeInsets.only(top: 30, left: 100, right: 100),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -1123,7 +1158,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         specialController.specialindex(8);
                       },
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 30,left: 100,right: 100),
+                        padding:
+                            EdgeInsets.only(top: 30, left: 100, right: 100),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -1189,7 +1225,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         specialController.specialindex(9);
                       },
                       child: const Padding(
-                        padding: EdgeInsets.only(top: 30,left: 100,right: 100),
+                        padding:
+                            EdgeInsets.only(top: 30, left: 100, right: 100),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

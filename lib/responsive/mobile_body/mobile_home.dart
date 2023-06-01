@@ -9,8 +9,6 @@ import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 import '../responsive_subscription/responsive_subscription.dart';
 import '../mobile_wdgets/drawer.dart';
 
-
-
 class MobileHome extends StatefulWidget {
   const MobileHome({super.key});
 
@@ -24,133 +22,121 @@ class _MobileHomeState extends State<MobileHome> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-           flexibleSpace: Container(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(colors: [
-      
-        Colors.orange,
-        Colors.deepOrangeAccent
-        ])
-      ),
-    ),
-  
-  actions: [
-    Padding(
-      padding: const EdgeInsets.only(right: 20),
-      child: Row(
-        children: [
-          Image.asset('assets/images/logo.png',
-          height: 43,fit: BoxFit.fitHeight,),
-        ],
-      ),
-    ),
-Padding(
-               padding: const EdgeInsets.only(right: 3),
-               child: Row(
-                     
-                 children: [
-                   Container(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.orange, Colors.deepOrangeAccent])),
+          ),
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20),
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 43,
+                    fit: BoxFit.fitHeight,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+                padding: const EdgeInsets.only(right: 3),
+                child: Row(children: [
+                  Container(
                     height: 20,
                     width: 20,
                     decoration: BoxDecoration(
-                     color: kwhite,
-                     shape: BoxShape.circle,
-                     boxShadow: <BoxShadow>[
-                      BoxShadow(
-                        offset: Offset(0.0, 0.75),
-                        blurRadius: 2,
-                        color: kgrey
-                      )
-                     ]
-                    ),
-                    child: InkWell(onTap: (){
-                     // Get.offAll(Subscribe1());
-                      },
-                      child: Icon(Icons.search,color: kblue,size: 17,)),
-                   ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 6),
-                     child: Container(
+                        color: kwhite,
+                        shape: BoxShape.circle,
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                              offset: Offset(0.0, 0.75),
+                              blurRadius: 2,
+                              color: kgrey)
+                        ]),
+                    child: InkWell(
+                        onTap: () {
+                          // Get.offAll(Subscribe1());
+                        },
+                        child: Icon(
+                          Icons.search,
+                          color: kblue,
+                          size: 17,
+                        )),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: Container(
                       height: 20,
                       width: 20,
                       decoration: BoxDecoration(
-                         color: kwhite,
-                         shape: BoxShape.circle,
-                         boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            offset: Offset(0.0, 0.75),
-                            blurRadius: 2,
-                            color: kgrey
-                          )
-                         ]
+                          color: kwhite,
+                          shape: BoxShape.circle,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                offset: Offset(0.0, 0.75),
+                                blurRadius: 2,
+                                color: kgrey)
+                          ]),
+                      child: Icon(
+                        Icons.notifications,
+                        color: kblue,
+                        size: 17,
                       ),
-                      
-                      child: Icon(Icons.notifications,color: kblue,size: 17,),
-                     ),
-                   ),
-                 ]
-               )
-),
-     
-
-   ]    ),
-    drawer: MobileDrawer(),
-   body: ListView(
-     children:[ Column(
-      children: [
-                 Padding(
-                   padding: const EdgeInsets.only(top: 10),
-                   child: Container(
-                                       height:250, 
-                                        
-                                                   width: size.width,
-                               child: Stack(
-                                 children: [
+                    ),
+                  ),
+                ])),
+          ]),
+      drawer: MobileDrawer(),
+      body: ListView(children: [
+        Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Container(
+                height: 250,
+                width: size.width,
+                child: Stack(
+                  children: [
                     Container(
                       width: size.width,
                       height: 250,
                       child: CarouselSlider(
                         items: [
-                          
                           {
-                            "image":  'assets/images/homeflaight.png',
+                            "image": 'assets/images/homeflaight.png',
                             "name": "TEMPLES OF\nKNOWLEDGE",
                             "image_large": "assets/images/sliders/Slider.jpg",
                             "ad": "1",
                           },
-                           
                           {
                             "image": "assets/images/slider01.jpg",
                             "name": "TEMPLES OF\nBAKTHI",
                             "image_large": "assets/images/sliders/Slider2.jpg",
                             "ad": "1",
                           },
-                        
-                        
-                         
                         ].map((i) {
                           return Builder(
                             builder: (BuildContext context) {
-                              return Stack(
-                                children: [
-                                  Container(
-                                      width: size.width,
-                                      height: 700,
-                                      child:  Image.asset(
-                                              i["image"]!,
-                                              fit: BoxFit.fill,
-                                            )),
-                                  Container(
+                              return Stack(children: [
+                                Container(
                                     width: size.width,
                                     height: 700,
-                                    color: Colors.black38.withOpacity(0.3),
-                                  ),
-                              
-                   ] );
+                                    child: Image.asset(
+                                      i["image"]!,
+                                      fit: BoxFit.fill,
+                                    )),
+                                Container(
+                                  width: size.width,
+                                  height: 700,
+                                  color: Colors.black38.withOpacity(0.3),
+                                ),
+                              ]);
                             },
                           );
                         }).toList(),
-                                //       carouselController: buttonCarouselController,
+                        //       carouselController: buttonCarouselController,
                         options: CarouselOptions(
                           autoPlay: true,
                           viewportFraction: 1,
@@ -167,112 +153,145 @@ Padding(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                           
-                              Row(
+                            Row(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'BOOK',
+                                      style: TextStyle(
+                                          color: kOrange, fontSize: 20),
+                                    ),
+                                    Text(
+                                      ' YOUR FLIGHT',
+                                      style: TextStyle(
+                                          fontSize: 20, color: kwhite),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            ),
+                            ksizedbox20,
+                            Text(
+                              'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
+                              style: TextStyle(
+                                  fontSize: 13, color: kwhite.withOpacity(0.7)),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 35),
+                              child: Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'BOOK',
-                                        style: TextStyle(color: kOrange, fontSize: 20),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                      left: 30,
+                                    ),
+                                    child: InkWell(
+                                      onTap: () {
+                                        // Get.toNamed('/services');
+                                      },
+                                      child: Container(
+                                        height: 38,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                            color: kwhite,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: const Padding(
+                                          padding: EdgeInsets.only(left: 10),
+                                          child: Row(
+                                            children: [
+                                              Text('BOOK NOW'),
+                                              Padding(
+                                                padding:
+                                                    EdgeInsets.only(left: 10),
+                                                child:
+                                                    Icon(Icons.arrow_forward),
+                                              )
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                      Text(
-                                        ' YOUR FLIGHT',
-                                        style: TextStyle(fontSize: 20, color: kwhite),
-                                      )
-                                    ],
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 30),
+                                    child: InkWell(
+                                      onTap: () {
+                                        // Get.toNamed('/subscribe');},
+                                      },
+                                      child: Container(
+                                        height: 38,
+                                        width: 130,
+                                        decoration: BoxDecoration(
+                                            color: kblue,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 10),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                'SUBSCRIBE',
+                                                style: TextStyle(color: kwhite),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10),
+                                                child: Icon(
+                                                  Icons.arrow_forward,
+                                                  color: kwhite,
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ],
                               ),
-                              ksizedbox20,
-                                 Text(
-                    'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
-                    style: TextStyle(
-                        fontSize: 13, color: kwhite.withOpacity(0.7)),
-                                 ),
-                                 
-                                 Padding(
-                                   padding: const EdgeInsets.only(top: 35),
-                                   child: Row(
-                                                     children: [
-                                                       Padding(
-                                                         padding: const EdgeInsets.only(left: 30,),
-                                                         child: InkWell(onTap: (){
-                                                           // Get.toNamed('/services');
-                                                           },
-                                                           child: Container(
-                                                             height: 38,
-                                                             width: 130,
-                                                             decoration: BoxDecoration(
-                                                                 color: kwhite,
-                                                                 borderRadius: BorderRadius.circular(15)),
-                                                             child: const Padding(
-                                                               padding:  EdgeInsets.only(left: 10),
-                                                               child: Row(
-                                                                 children: [
-                                    Text('BOOK NOW'),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Icon(Icons.arrow_forward),
-                                    )
-                                                                 ],
-                                                               ),
-                                                             ),
-                                                           ),
-                                                         ),
-                                                       ),
-                                                       Padding(
-                                                         padding: const EdgeInsets.only(left: 30),
-                                                         child: InkWell(onTap: (){
-                                                           // Get.toNamed('/subscribe');},
-                                                         },
-                                                           child: Container(
-                                                             height: 38,
-                                                             width: 130,
-                                                             decoration: BoxDecoration(
-                                                                 color: kblue,
-                                                                 borderRadius: BorderRadius.circular(15)),
-                                                             child: Padding(
-                                                               padding: const EdgeInsets.only(left: 10),
-                                                               child: Row(
-                                                                 children: [
-                                    Text(
-                                      'SUBSCRIBE',
-                                      style: TextStyle(color: kwhite),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Icon(
-                                        Icons.arrow_forward,
-                                        color: kwhite,
-                                      ),
-                                    )
-                                                                 ],
-                                                               ),
-                                                             ),
-                                                           ),
-                                                         ),
-                                                       ),
-                                                     ],
-                                   ),
-                                 )
+                            )
                           ],
                         ),
                       ),
                     )
-                                 ],
-                               ),
-                             ),
-                 ),
-            
+                  ],
+                ),
+              ),
+            ),ksizedbox20,
+              Text(
+              "WELCOME TO BCI",
+              style: TextStyle(
+                  fontSize: 29, fontWeight: FontWeight.bold, color: kblue),
+            ),ksizedbox20,
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '''      Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.                                                                                                         
+      We are also expanding our tie-up-affiliations to global, where 
+  Members can transact and get offers & discounts from all leading 
+  INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,
+  Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. 
+       We are having our club houses at Chennai Bolleneni Hill 
+  side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...
+       We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.
+  
+  ''',
+                style: TextStyle(fontSize: 13,color: kblue),
+                textAlign: TextAlign.center,
+              ),
+            ),
             Stack(
               children: [
-                Image.asset('assets/images/homebackground.png',
-                height:750,fit: BoxFit.fitHeight,),
+                Image.asset(
+                  'assets/images/homebackground.png',
+                  height: 750,
+                  fit: BoxFit.fitHeight,
+                ),
                 Positioned(
-                
                   child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(left: 65),
@@ -282,7 +301,7 @@ Padding(
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 9,left: 50),
+                        padding: const EdgeInsets.only(top: 9, left: 50),
                         child: Text(
                           'FIND  BEST  MEMBERSHIPS',
                           style: TextStyle(
@@ -295,7 +314,7 @@ Padding(
                   ),
                 ),
                 Positioned(
-                   top: 70,
+                  top: 70,
                   child: Column(
                     children: [
                       Padding(
@@ -305,102 +324,99 @@ Padding(
                           style: TextStyle(fontSize: 13),
                         ),
                       ),
-                      
-                      
                     ],
                   ),
                 ),
                 Positioned(
                     top: 140,
-                      right: 0,
-                      left: 0,
+                    right: 0,
+                    left: 0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 20,left: 12),
-                          child: Row(children:[ Image.asset('assets/images/apartmentimage.png'),
-                           Column(
-                             children: [
-                               Padding(
-                                 padding: const EdgeInsets.only(top: 10),
-                                 child: Text(
-                                        'HOTELS & SERVICES',
-                                        style: TextStyle(
-                                            color: kblue,
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                               ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(top: 6,left: 22),
-                                       child: Text(
-                                    'BCI Prestigious Members Can Access \nour Amazing Discounts Coupons \n@ Our Associate Hotels / Resorts \n/ Spas / Saloons / Services Apartments \n/ Marriage Halls / Tours & Travels.'),
-                                     ),
-                             ],
-                           ),
-                                
-                                              ]),
+                          padding: const EdgeInsets.only(top: 20, left: 12),
+                          child: Row(children: [
+                            Image.asset('assets/images/apartmentimage.png'),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    'HOTELS & SERVICES',
+                                    style: TextStyle(
+                                        color: kblue,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 6, left: 22),
+                                  child: Text(
+                                      'BCI Prestigious Members Can Access \nour Amazing Discounts Coupons \n@ Our Associate Hotels / Resorts \n/ Spas / Saloons / Services Apartments \n/ Marriage Halls / Tours & Travels.'),
+                                ),
+                              ],
+                            ),
+                          ]),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 30,left: 12),
-                          child:
-                              Row(children:[ Image.asset('assets/images/bazarimage.png'),
-                               Padding(
-                                 padding: const EdgeInsets.only(left: 20),
-                                 child: Column(
-                                   children: [
-                                     Text(
-                                      'ESSENTIAL BAZZAR',
-                                      style: TextStyle(
-                                          color: kblue,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
-                                                             ),
-                                 Padding(
-                                   padding: const EdgeInsets.only(left: 22,top: 6),
-                                   child: Text(
-                                      'BCI Prestigious Members Can \nAccess our Amazing Discounts \nCoupons @ Our Associate Provision \n/Restaurant /jewellery / Textile \n/Complimentary Coupon.'),
-                                 ),
-                                   ],
-                                 ),
-                               ),
-                      ]),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 12,top: 20),
-                          child:
-                              Row(children:[ Image.asset('assets/images/serviceimage.png'),
-                              Column(
+                          padding: const EdgeInsets.only(top: 30, left: 12),
+                          child: Row(children: [
+                            Image.asset('assets/images/bazarimage.png'),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20),
+                              child: Column(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Text(
-                                      'A TO Z UTILITY SERVICE & \n    ONLINE DISCOUNTS',
-                                      style: TextStyle(
-                                          color: kblue,
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                  Text(
+                                    'ESSENTIAL BAZZAR',
+                                    style: TextStyle(
+                                        color: kblue,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 22,
-                                    top: 6),
+                                    padding:
+                                        const EdgeInsets.only(left: 22, top: 6),
                                     child: Text(
-                                    'BCI Prestigious Members Can \nAccess our Amazing Discounts \nCoupons @ Our Associate Utility \nService Providers /Online Shopping \n/ Online Recharge /Online Cinema \nTickets.'),
+                                        'BCI Prestigious Members Can \nAccess our Amazing Discounts \nCoupons @ Our Associate Provision \n/Restaurant /jewellery / Textile \n/Complimentary Coupon.'),
                                   ),
                                 ],
                               ),
-                              ]),
+                            ),
+                          ]),
                         ),
-                        
-                       
+                        Padding(
+                          padding: const EdgeInsets.only(left: 12, top: 20),
+                          child: Row(children: [
+                            Image.asset('assets/images/serviceimage.png'),
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Text(
+                                    'A TO Z UTILITY SERVICE & \n    ONLINE DISCOUNTS',
+                                    style: TextStyle(
+                                        color: kblue,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 22, top: 6),
+                                  child: Text(
+                                      'BCI Prestigious Members Can \nAccess our Amazing Discounts \nCoupons @ Our Associate Utility \nService Providers /Online Shopping \n/ Online Recharge /Online Cinema \nTickets.'),
+                                ),
+                              ],
+                            ),
+                          ]),
+                        ),
                       ],
                     )),
               ],
             ),
-
-             Stack(
+            Stack(
               children: [
                 Container(
                   height: 460,
@@ -420,7 +436,7 @@ Padding(
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 5,left: 11),
+                        padding: const EdgeInsets.only(top: 5, left: 11),
                         child: Container(
                           height: 7,
                           width: 50,
@@ -454,13 +470,15 @@ Padding(
                     ))
               ],
             ),
-            
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Stack(
                 children: [
-                  Image.asset('assets/images/homebackground3.png',
-                  height: 750,fit: BoxFit.fitHeight,),
+                  Image.asset(
+                    'assets/images/homebackground3.png',
+                    height: 750,
+                    fit: BoxFit.fitHeight,
+                  ),
                   Positioned(
                       top: 50,
                       left: 100,
@@ -519,7 +537,8 @@ Padding(
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 10,top:50),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 50),
                                 child: Container(
                                   height: 140,
                                   width: 250,
@@ -549,7 +568,8 @@ Padding(
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 10,top: 50),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 50),
                                 child: Container(
                                   height: 140,
                                   width: 250,
@@ -585,10 +605,10 @@ Padding(
                   Positioned(
                       top: 50,
                       child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Padding(
-                            padding: const EdgeInsets.only(left: 160,top: 110),
+                            padding: const EdgeInsets.only(left: 160, top: 110),
                             child: CircleAvatar(
                               radius: 25,
                               backgroundColor: kOrange,
@@ -600,7 +620,7 @@ Padding(
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(left: 160,top: 156),
+                            padding: const EdgeInsets.only(left: 160, top: 156),
                             child: CircleAvatar(
                               radius: 25,
                               backgroundColor: kOrange,
@@ -612,9 +632,9 @@ Padding(
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 140,left: 170),
+                            padding: const EdgeInsets.only(top: 140, left: 170),
                             child: Row(
-                           mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 CircleAvatar(
                                   radius: 25,
@@ -634,10 +654,13 @@ Padding(
               ),
             ),
             ksizedbox30,
-             Stack(
+            Stack(
               children: [
-                Image.asset('assets/images/homebackground4.png',
-                height: 650,fit: BoxFit.fitHeight,),
+                Image.asset(
+                  'assets/images/homebackground4.png',
+                  height: 650,
+                  fit: BoxFit.fitHeight,
+                ),
                 Positioned(
                     top: 15,
                     left: 10,
@@ -811,7 +834,7 @@ Padding(
                     ))
               ],
             ),
-              Stack(children: [
+            Stack(children: [
               Container(
                   height: 150,
                   width: MediaQuery.of(context).size.width,
@@ -865,7 +888,7 @@ Padding(
                                   dashColor: Colors.grey),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 5,top: 15),
+                              padding: const EdgeInsets.only(left: 5, top: 15),
                               child: Column(
                                 children: [
                                   Text(
@@ -898,7 +921,7 @@ Padding(
                                   dashColor: Colors.grey),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 5,top:15),
+                              padding: const EdgeInsets.only(left: 5, top: 15),
                               child: Column(
                                 children: [
                                   Text(
@@ -931,9 +954,7 @@ Padding(
                                   dashColor: Colors.grey),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(
-                                left: 11,top:15
-                              ),
+                              padding: const EdgeInsets.only(left: 11, top: 15),
                               child: Column(
                                 children: [
                                   Text(
@@ -963,9 +984,12 @@ Padding(
                     ],
                   ))
             ]),
-               Stack(children: [
-              Image.asset('assets/images/homebackground6.png',
-              height: 140,fit: BoxFit.fitHeight,),
+            Stack(children: [
+              Image.asset(
+                'assets/images/homebackground6.png',
+                height: 140,
+                fit: BoxFit.fitHeight,
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 30, right: 10),
                 child: Column(
@@ -1005,8 +1029,7 @@ Padding(
                 ),
               )
             ]),
-
-             Stack(
+            Stack(
               children: [
                 Container(
                     height: 1000,
@@ -1016,12 +1039,11 @@ Padding(
                       fit: BoxFit.cover,
                     )),
                 Positioned(
-          
                   left: 0,
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 30,top:12),
+                        padding: const EdgeInsets.only(left: 30, top: 12),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -1084,7 +1106,7 @@ Padding(
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(right: 1,top: 20),
+                              padding: const EdgeInsets.only(right: 1, top: 20),
                               child: Container(
                                 height: 215,
                                 width: 250,
@@ -1124,7 +1146,7 @@ Padding(
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 2,top: 20),
+                              padding: const EdgeInsets.only(left: 2, top: 20),
                               child: Container(
                                 height: 210,
                                 width: 250,
@@ -1164,7 +1186,7 @@ Padding(
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 2,top:20 ),
+                              padding: const EdgeInsets.only(left: 2, top: 20),
                               child: Container(
                                 height: 220,
                                 width: 250,
@@ -1211,7 +1233,7 @@ Padding(
                 )
               ],
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Container(
                 height: 220,
@@ -1248,29 +1270,28 @@ Padding(
                                   style: TextStyle(fontSize: 17, color: kwhite),
                                 ),
                               ),
-                               Padding(
-                          padding: const EdgeInsets.only(left: 0, top: 10),
-                          child: Image.asset(
-                            'assets/images/playgoogle.png',
-                            height: 90,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        )
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 0, top: 10),
+                                child: Image.asset(
+                                  'assets/images/playgoogle.png',
+                                  height: 90,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                              )
                             ],
                           ),
                         ),
-                       
                       ],
                     )
                   ],
                 ),
               ),
             ),
-            
-    MobileCommonBottom()  ],
-     ),
-     ]
-   ),
+            MobileCommonBottom()
+          ],
+        ),
+      ]),
     );
   }
 }

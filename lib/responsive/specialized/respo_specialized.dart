@@ -6,9 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../registerhomescreen/common_reg_bottom.dart';
-import '../../../registerhomescreen/common_reg_homescreen.dart';
-import '../../views/members/reg_wallet_screen.dart';
 import '../mobile_wdgets/drawer.dart';
+////import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 
 class RespoSpecialized extends StatefulWidget {
@@ -23,12 +22,13 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
   final specialController = Get.find<SpecializedController>();
 
   @override
-  Widget build(BuildContext context) { var size = MediaQuery.of(context).size;
-    
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: const PreferredSize(
           child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
-          drawer: MobileDrawer(),
+      drawer: MobileDrawer(),
       body: Obx(
         () => ListView(
             //physics:ScrollPhysics(),
@@ -52,7 +52,28 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         color: kwhite,
                         fontWeight: FontWeight.w700),
                   ))),
-
+              ksizedbox20,
+              Container(
+                //height: 300,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      child: Image.asset(
+                        'assets/images/aaa.jpg',
+                        height: 120,
+                      ),
+                    ),
+                    kwidth10,
+                    InkWell(
+                      child: Image.asset(
+                        'assets/images/bbb.jpg',
+                        height: 120,
+                      ),
+                    )
+                  ],
+                ),
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 50),
                 child: Row(
@@ -144,9 +165,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                 decoration: BoxDecoration(
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        offset: Offset(0.0, 0.75),
-                        blurRadius: 1,
-                        color: kgrey)
+                        offset: Offset(0.0, 0.75), blurRadius: 1, color: kgrey)
                   ],
                   color: kwhite,
                 ),
@@ -219,21 +238,20 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                   ),
                 ),
               ),
-           //   ksizedbox30,
+              //   ksizedbox30,
               Container(
                 height: 215,
                 width: 230,
                 decoration: BoxDecoration(
                   boxShadow: <BoxShadow>[
                     BoxShadow(
-                        offset: Offset(0.0, 0.75),
-                        blurRadius: 1,
-                        color: kgrey)
+                        offset: Offset(0.0, 0.75), blurRadius: 1, color: kgrey)
                   ],
                   color: kwhite,
                 ),
                 child: Column(
-                  children: [ksizedbox10,
+                  children: [
+                    ksizedbox10,
                     Container(
                       child: Image.asset(
                         'assets/images/booking.png',
@@ -298,7 +316,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               ),
               InkWell(
                 onTap: () {
-              //    Get.to(RegisterWalletScreen());
+                  //    Get.to(RegisterWalletScreen());
                 },
                 child: Container(
                   height: 220,
@@ -344,16 +362,16 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               ),
 
               Container(
-              //  width: size.width,
+                //  width: size.width,
                 color: kgrey.withOpacity(0.2),
                 child: Column(
                   children: [
                     Image.asset(
                       'assets/images/speclbackground2.png',
-                     //   height: 300,
-                    //  fit: BoxFit.cover,
-                 //    width: size.width,
-                      ),
+                      //   height: 300,
+                      //  fit: BoxFit.cover,
+                      //    width: size.width,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -366,7 +384,8 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                               fontWeight: FontWeight.bold),
                         ),
                         ksizedbox10,
-                        Row(mainAxisAlignment: MainAxisAlignment.center,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
                               height: 7,
@@ -392,7 +411,8 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                             child: Text(
                               'Subscribe Now',
                               style: TextStyle(fontSize: 16),
-                            )),ksizedbox30
+                            )),
+                        ksizedbox30
                       ],
                     ),
                   ],
@@ -533,49 +553,48 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                 'FREQUENTLY ASKED QUESTIONS',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 20, color: kblue),
-              ),ksizedbox20,
+              ),
+              ksizedbox20,
               //starting
               specialController.specialindex.value == 0
                   ? Container(
-                  //  alignment: Alignment.center,
-                    height: 110,
-                    width: MediaQuery.of(context).size.width * 0.2,
-                    color: kgrey.withOpacity(0.1),
-                    child: const Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(top: 20,left: 10),
-                            child: Row(
-                              mainAxisAlignment:
-                                  MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'What is the Benze Club International Community?',
-                                  style: TextStyle(
-                                      color: Color(0xff2980B9),
-                                      fontSize: 15.5),
-                                ),
-                              //  Icon(Icons.expand_less)
-                              ],
+                      //  alignment: Alignment.center,
+                      height: 110,
+                      width: MediaQuery.of(context).size.width * 0.2,
+                      color: kgrey.withOpacity(0.1),
+                      child: const Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(top: 20, left: 10),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'What is the Benze Club International Community?',
+                                    style: TextStyle(
+                                        color: Color(0xff2980B9),
+                                        fontSize: 15.5),
+                                  ),
+                                  //  Icon(Icons.expand_less)
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 10, left: 10),
-                            child: Text(
-                              'The Benze Club International Community is where members can interact with other members, ask questions, share insights, learn from experiences, find answers, plan holidays better and earn Trip Coins.',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          )
-                        ]),
-                  )
+                            Padding(
+                              padding: EdgeInsets.only(top: 10, left: 10),
+                              child: Text(
+                                'The Benze Club International Community is where members can interact with other members, ask questions, share insights, learn from experiences, find answers, plan holidays better and earn Trip Coins.',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            )
+                          ]),
+                    )
                   : GestureDetector(
                       onTap: () {
                         specialController.specialindex(0);
                       },
                       child: const Padding(
-                        padding:
-                            EdgeInsets.only(top: 30, left: 10),
+                        padding: EdgeInsets.only(top: 30, left: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -597,10 +616,9 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
 
               specialController.specialindex.value == 1
                   ? Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, top: 50),
+                      padding: const EdgeInsets.only(left: 10, top: 50),
                       child: Container(
-                     //   alignment: Alignment.center,
+                        //   alignment: Alignment.center,
                         height: 110,
                         width: MediaQuery.of(context).size.width * 0.2,
                         color: kgrey.withOpacity(0.1),
@@ -610,8 +628,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                               Padding(
                                 padding: EdgeInsets.only(top: 20),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: EdgeInsets.only(right: 10),
@@ -622,12 +639,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                                             fontSize: 15.5),
                                       ),
                                     ),
-                               //     Icon(Icons.expand_less)
+                                    //     Icon(Icons.expand_less)
                                   ],
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsets.only(top: 10, ),
+                                padding: EdgeInsets.only(
+                                  top: 10,
+                                ),
                                 child: Text(
                                   'Participating in the community is open only to Benze Club International members. We are in the process of extending participation invites.',
                                   style: TextStyle(fontSize: 13),
@@ -641,8 +660,10 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         specialController.specialindex(1);
                       },
                       child: const Padding(
-                        padding:
-                            EdgeInsets.only(top: 30, left: 10, ),
+                        padding: EdgeInsets.only(
+                          top: 30,
+                          left: 10,
+                        ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -664,8 +685,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
 
               specialController.specialindex.value == 2
                   ? Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, top:10),
+                      padding: const EdgeInsets.only(left: 10, top: 10),
                       child: Container(
 //alignment: Alignment.center,
                         height: 110,
@@ -675,10 +695,9 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding: EdgeInsets.only(top: 20,left: 10),
+                                padding: EdgeInsets.only(top: 20, left: 10),
                                 child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     Text(
                                       'What is a mission?',
@@ -686,7 +705,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                                           color: Color(0xff2980B9),
                                           fontSize: 15.5),
                                     ),
-                                 //   Icon(Icons.expand_less)
+                                    //   Icon(Icons.expand_less)
                                   ],
                                 ),
                               ),
@@ -705,8 +724,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         specialController.specialindex(2);
                       },
                       child: const Padding(
-                        padding:
-                            EdgeInsets.only(top: 30, left: 10),
+                        padding: EdgeInsets.only(top: 30, left: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -1196,8 +1214,9 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               //       ),
               SizedBox(
                 height: 45,
-              ),MobileCommonBottom(),
-    //   BottomRespo()
+              ),
+              MobileCommonBottom(),
+              //   BottomRespo()
             ]),
       ),
     );

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:bciweb/views/members/about/about_screens.dart';
 import 'package:bciweb/views/members/contacs/contact_screen.dart';
 import 'package:bciweb/views/members/home_screen.dart';
-import 'package:bciweb/views/members/homescreens/specialized_screen.dart';
+import 'package:bciweb/views/specialized/specialized_screen.dart';
 import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
@@ -17,6 +17,7 @@ import '../controller/reg_home_controller.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business/Gallery/gallery.dart';
 import '../views/business/services/views/services.dart';
+import '../views/clubhouse.dart';
 
 class RegisterCommonContainer extends StatefulWidget {
    RegisterCommonContainer({super.key});
@@ -109,11 +110,11 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    
                     reghomeController.reindex(4);
                     reghomeController.update();
-                    Get.offAll(History());
+                    Get.offAll(ClubHouse());
                     
                     
                    }, 
-                   child: Text('BOOKINGS',style: TextStyle(
+                   child: Text('CLUB HOUSE',style: TextStyle(
                       color: reghomeController.reindex==4?kOrange:kblue
                      ),)),
                  ),
@@ -236,17 +237,17 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    ) ],
                ),
              ),
-             Padding(
-               padding: const EdgeInsets.only(left: 20),
-               child: Row(children:[ 
-                Text('Raja Ram'),
-                  Icon(Icons.expand_more),     
-                InkWell(
-                  onTap: () {
-                    Get.offAll(RegisterProfileScreen());
-                  },
-                  child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
-             )
+            //  Padding(
+            //    padding: const EdgeInsets.only(left: 20),
+            //    child: Row(children:[ 
+            //     Text('Raja Ram'),
+            //       Icon(Icons.expand_more),     
+            //     InkWell(
+            //       onTap: () {
+            //         Get.offAll(RegisterProfileScreen());
+            //       },
+            //       child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
+            //  )
                    
                 ],
               ),

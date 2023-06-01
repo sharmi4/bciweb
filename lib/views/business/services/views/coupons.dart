@@ -33,10 +33,11 @@ class Coupones extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'COUPONS US',
-                        style: GoogleFonts.lato(
-                            fontSize: 80,
-                            fontWeight: FontWeight.bold,
-                            color: kwhite),
+                        style: displayfont
+                        //GoogleFonts.lato(
+                          //  fontSize: 80,
+                            //fontWeight: FontWeight.bold,
+                            //color: kwhite),
                       ),
                     ),
                   )

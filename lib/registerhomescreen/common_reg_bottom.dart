@@ -98,7 +98,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                               fontWeight: FontWeight.w400
                             ),),
                             SizedBox(height: 10,),
-                            Text("Contacts",
+                            Text("Club House",
                             textAlign: TextAlign.start,
                             style: TextStyle(
                               color: Colors.white,

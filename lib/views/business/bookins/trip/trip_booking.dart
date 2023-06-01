@@ -364,9 +364,8 @@ class tripcontainer extends StatelessWidget {
               Spacer(),
               VxBox(
                 child: Center(
-                  child: Text('View Details')
+                  child: Text('Details')
                       .text
-                      .size(10)
                       .semiBold
                       .sm
                       .color(const Color.fromARGB(255, 255, 111, 0))
@@ -375,14 +374,15 @@ class tripcontainer extends StatelessWidget {
               )
                   .shadow
                   .roundedLg
-                  .p20
+              //    .px20
+                 // .py12
                   .white
                   .make()
-                  .p16()
+                  
                   .h(
-                    context.percentHeight * 11,
+                    context.percentHeight * 5,
                   )
-                  .w(context.percentWidth * 9)
+                  .w(context.percentWidth * 6)
             ],
           ),
         ],

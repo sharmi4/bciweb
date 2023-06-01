@@ -33,12 +33,9 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
               image: DecorationImage(image: AssetImage('assets/images/aboutbackground.png',),
               fit: BoxFit.cover)
             ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 100),
+            child: Center(
               child: Text('ABOUT US',textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 32,color: kwhite
-              ),),
+              style: displayfont),
             ),
           ),
           ksizedbox30,
@@ -73,14 +70,21 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             fontWeight: FontWeight.bold
                           ),),
                           const SizedBox(height: 20,),
-                          Text('''"All in one membership"\ngenerally refers to a membership\nprogram that offers a wide range\nof benefits and services to its\nmembers, often from different\ncategories or areas such as\nfitness, entertainment, travel,\nshopping, and more.''',
-                          textAlign: TextAlign.start,
-                          style: TextStyle(
-                            color: kblue,
-                            height: 1.8,
-                            fontSize: 26,
-                            fontWeight: FontWeight.w400
-                          ),),
+                          Wrap(
+                            children: [
+                              Text('''"BENZE CLUB INTERNATIONAL - One of the pioneers in the
+Hospitality-Family entertainment industry." 
+Formerly Benze Vaccations Club with around 50000 members,\n We are now transformed to BCI, with a Rejuvenated-empowered\n Board of directors and progressing towards a 6 digit membership in\n the Year 2023 with a strong Marketing, Technical,\n CRM, Media & PR teams.
+                              ''',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: kblue,
+                                height: 1.8,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w400
+                              ),),
+                            ],
+                          ),
                         ],
                       ),
                     ],

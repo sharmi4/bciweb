@@ -44,10 +44,7 @@ class _ServicesState extends State<Services> {
                     child: Center(
                       child: Text(
                         'SERVICES US',
-                        style: GoogleFonts.lato(
-                            fontSize: 80,
-                            fontWeight: FontWeight.bold,
-                            color: kwhite),
+                        style: displayfont
                       ),
                     ),
                   )

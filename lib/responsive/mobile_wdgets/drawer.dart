@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../views/authentication/landing_screen.dart';
+import '../authentications/contact us/respo_contact.dart';
 import '../authentications/langing_screen/landing_screen.dart';
 import '../respo_services/respo_service.dart';
 import '../mobile_body/mobile_home.dart';
 import '../specialized/respo_specialized.dart';
+import 'clubhousee.dart';
 
 class MobileDrawer extends StatefulWidget {
   const MobileDrawer({super.key});
@@ -57,9 +59,9 @@ class _MobileDrawerState extends State<MobileDrawer> {
             child: Row(
               children: [
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {Get.to(RespoContact());},
                     child: Text(
-                      'ABOUT',
+                      'CONTACT ',
                       style: TextStyle(fontSize: 16, color: kwhite),
                     )),
               ],
@@ -141,10 +143,11 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.toNamed('/respo-contact');
+                      
+                      Get.to(ClubHousemob());
                     },
                     child: Text(
-                      'CONTACT',
+                      'CLUB HOUSE',
                       style: TextStyle(fontSize: 16, color: kwhite),
                     ))
               ],

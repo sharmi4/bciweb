@@ -1,6 +1,5 @@
 // import 'dart:html';
 
-
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
@@ -60,7 +59,6 @@ class MyApp extends StatelessWidget {
       //  home: BusinessHomeScreen(),
       initialRoute: '/',
       getPages: [
-          
         GetPage(name: '/', page: () => MobileHomeScreen()),
         GetPage(name: '/', page: () => BusinessHomeScreen()),
         GetPage(name: '/', page: () => RegisterProfileScreen()),
@@ -86,9 +84,9 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/respo-specialised', page: () => RespoSpecialized()),
         GetPage(name: '/respo-gallery', page: () => RespoGallery()),
         GetPage(name: '/history-screen', page: () => History()),
-         GetPage(name: '/respo-gallery', page: () => RespoGallery()),
-         GetPage(name: '/reg-profile', page: ()=>RegisterProfileScreen()),
-         GetPage(name: '/respo-profile', page: ()=>MobileProfileScreen()),
+        GetPage(name: '/respo-gallery', page: () => RespoGallery()),
+        GetPage(name: '/reg-profile', page: () => RegisterProfileScreen()),
+        GetPage(name: '/respo-profile', page: () => MobileProfileScreen()),
         //  GetPage(name: '/history-screen', page: () => History()),
       ],
     );

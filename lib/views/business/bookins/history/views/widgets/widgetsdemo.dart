@@ -47,7 +47,7 @@ class index1 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'TO',
+                    'FROM',
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,
@@ -116,7 +116,7 @@ class index1 extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
-                    'TO', 
+                    'FROM', 
                     style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.bold,

@@ -238,7 +238,9 @@ class BookingLiquer extends StatelessWidget {
                   ),
                 ),
               ],
-            ),ksizedbox30, Row(
+            ),
+            ksizedbox30,
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
@@ -298,7 +300,9 @@ class BookingLiquer extends StatelessWidget {
                   ),
                 ),
               ],
-            ),ksizedbox30, Row(
+            ),
+            ksizedbox30,
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
@@ -350,7 +354,8 @@ class BookingLiquer extends StatelessWidget {
                             Text('Low Desk Bar &Night Club'),
                             Text('(240) Bar'),
                             Text('perambur'),
-                            Text('Dine in'),ksizedbox40
+                            Text('Dine in'),
+                            ksizedbox40
                           ],
                         ),
                       )

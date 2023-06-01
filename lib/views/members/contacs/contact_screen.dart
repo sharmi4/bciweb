@@ -37,8 +37,7 @@ class _ContactScreenState extends State<ContactScreen> {
                     ),
                     child: Center(
                       child: Text('CONTACT US',
-                      style: TextStyle(fontSize: 35,
-                      color: kwhite),),
+                      style: displayfont),
                     ),
                    ),
                    Padding(

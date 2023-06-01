@@ -32,7 +32,7 @@ class _GalleryState extends State<RespoGallery> {
       "assets/images/gallery/IMG_7727.jpg",
       "assets/images/gallery/IMG_7711.jpg",
       "assets/images/gallery/IMG_7708.jpg",
-    "assets/images/gallery/20180327_194857.jpg",];
+      "assets/images/gallery/20180327_194857.jpg",];
 
 
 

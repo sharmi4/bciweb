@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const SizedBox ksizedbox20 = SizedBox(height: 20);
 const SizedBox ksizedbox10 = SizedBox(height: 10);
@@ -36,3 +37,7 @@ var primaryFont = TextStyle();
 
 var primarysmallFont =  TextStyle(color: kblue,fontSize: 10);
 var primarymediumFont = TextStyle(color: kblue,fontSize: 17,fontWeight: FontWeight.w900);
+var displayfont=GoogleFonts.lato(
+                            fontSize: 80,
+                            fontWeight: FontWeight.bold,
+                            color: kwhite);
