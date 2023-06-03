@@ -18,13 +18,11 @@ class RespoCoupones extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: AppBarMob(),
-          preferredSize: Size(double.infinity, 40)),
-          drawer: MobileDrawer(),
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+      drawer: MobileDrawer(),
       body: SingleChildScrollView(
         child: Column(
           children: [
-      
             Container(
               child: Stack(
                 children: [
@@ -72,7 +70,8 @@ class RespoCoupones extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Icon(
-                      Icons.arrow_back,size: 16,
+                      Icons.arrow_back,
+                      size: 16,
                       color: kwhite,
                     ),
                     Text(
@@ -91,8 +90,9 @@ class RespoCoupones extends StatelessWidget {
               ),
             ),
             ksizedbox30,
-     //      RegisterCommonBottom()
-       MobileCommonBottom()   ],
+            //      RegisterCommonBottom()
+            MobileCommonBottom()
+          ],
         ),
       ),
     );

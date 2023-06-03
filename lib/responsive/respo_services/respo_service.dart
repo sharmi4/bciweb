@@ -1,5 +1,6 @@
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
+import 'package:bciweb/responsive/respo_services/widgets%20copy/containors.dart';
 import 'package:bciweb/views/business/services/views/widgets/containors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -88,19 +89,19 @@ class _ServicesState extends State<RespoServices> {
                   carouselController: curouselController,
                   items: [
                     InkWell(
-                      child: servicecontainer(),
+                      child: servicecontainermob(),
                       onTap: () {
                         Get.toNamed('/respo-coupon');
                       },
                     ),
                     InkWell(
-                      child: servicecontainer(),
+                      child:servicecontainermob(),
                       onTap: () {
                         Get.toNamed('/respo-coupon');
                       },
                     ),
                     InkWell(
-                      child: servicecontainer(),
+                      child: servicecontainermob(),
                       onTap: () {
                         Get.toNamed('/respo-coupon');
                       },
@@ -192,19 +193,19 @@ class _ServicesState extends State<RespoServices> {
                   carouselController: curouselController,
                   items: [
                     InkWell(
-                      child: offercontainer(),
+                      child: offercontainermob(),
                       onTap: () {
                         Get.toNamed('/respo-offer');
                       },
                     ),
                     InkWell(
-                      child: offercontainer(),
+                      child: offercontainermob(),
                       onTap: () {
                         Get.toNamed('/respo-offer');
                       },
                     ),
                     InkWell(
-                      child: offercontainer(),
+                      child:offercontainermob(),
                       onTap: () {
                         Get.toNamed('/respo-offer');
                       },

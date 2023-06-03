@@ -265,23 +265,13 @@ class _MobileHomeState extends State<MobileHome> {
               style: TextStyle(
                   fontSize: 29, fontWeight: FontWeight.bold, color: kblue),
             ),ksizedbox20,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            Container(width: size.width*0.9,
               child: Text(
-                '''      Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.                                                                                                         
-      We are also expanding our tie-up-affiliations to global, where 
-  Members can transact and get offers & discounts from all leading 
-  INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,
-  Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. 
-       We are having our club houses at Chennai Bolleneni Hill 
-  side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...
-       We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.
-  
-  ''',
-                style: TextStyle(fontSize: 13,color: kblue),
+                '''Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI,an Elite Global Network of verified-prestigious members & verified true merchants.We are also expanding our tie-up-affiliations to global, where Members can transact and get offers & discounts from all leading INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. We are having our club houses at Chennai Bolleneni Hill side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.''',
+                style: TextStyle(fontSize: 13,color: kblue,height: 1.5),
                 textAlign: TextAlign.center,
               ),
-            ),
+            ),ksizedbox30,
             Stack(
               children: [
                 Image.asset(
@@ -289,19 +279,19 @@ class _MobileHomeState extends State<MobileHome> {
                   height: 750,
                   fit: BoxFit.fitHeight,
                 ),
-                Positioned(
+                Positioned(right: 0,left: 0,
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 65),
+                        padding: const EdgeInsets.only(left: 0),
                         child: Text(
                           '3  STEPS  OR  THE  PERFECT  CLUB',
                           style: TextStyle(fontSize: 16, color: kOrange),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 9, left: 50),
+                        padding: const EdgeInsets.only(top: 9,left:0 ),
                         child: Text(
                           'FIND  BEST  MEMBERSHIPS',
                           style: TextStyle(
@@ -315,14 +305,12 @@ class _MobileHomeState extends State<MobileHome> {
                 ),
                 Positioned(
                   top: 70,
+                  right: 0,left: 0,
                   child: Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5),
-                        child: Text(
-                          'To find the best membership programs, it"s important to consider \nwhat you"re looking for in a membership. Here are some general \ntips to help you find a membership that suits your needs:',
-                          style: TextStyle(fontSize: 13),
-                        ),
+                      Text(
+                        'To find the best membership programs, it"s important to consider \nwhat you"re looking for in a membership. Here are some general \ntips to help you find a membership that suits your needs:',
+                        style: TextStyle(fontSize: 13),
                       ),
                     ],
                   ),
@@ -470,189 +458,189 @@ class _MobileHomeState extends State<MobileHome> {
                     ))
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Stack(
-                children: [
-                  Image.asset(
-                    'assets/images/homebackground3.png',
-                    height: 750,
-                    fit: BoxFit.fitHeight,
-                  ),
-                  Positioned(
-                      top: 50,
-                      left: 100,
-                      child: Text(
-                        'WHY CHOOSE US',
-                        style: TextStyle(fontSize: 25, color: kwhite),
-                      )),
-                  Positioned(
-                      left: 170,
-                      top: 90,
-                      child: Container(
-                        height: 6,
-                        width: 60,
-                        color: kOrange,
-                      )),
-                  Positioned(
-                      left: 30,
-                      top: 100,
-                      child: Text(
-                        'Adding booking services to your website or \napp can help streamline your business and make \nit easier for your customers to book your services',
-                        style: TextStyle(fontSize: 15, color: kwhite),
-                      )),
-                  Positioned(
-                      top: 200,
-                      left: 60,
-                      child: Column(
-                        children: [
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Container(
-                                height: 150,
-                                width: 250,
-                                decoration: BoxDecoration(
-                                    color: kwhite,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 30),
-                                      child: Text(
-                                        'ONLINE BOOKING',
-                                        style: TextStyle(
-                                            fontSize: 15, color: kblue),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 15),
-                                      child: Text(
-                                        'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 50),
-                                child: Container(
-                                  height: 140,
-                                  width: 250,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: kwhite),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 30),
-                                        child: Text(
-                                          'WORLD CLASS SERVICE',
-                                          style: TextStyle(
-                                              fontSize: 15, color: kblue),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 15),
-                                        child: Text(
-                                          'World-class service refers to exceptional and unparalleled service quality that sets a business apart from its competitors.',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 50),
-                                child: Container(
-                                  height: 140,
-                                  width: 250,
-                                  decoration: BoxDecoration(
-                                      color: kwhite,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 30),
-                                        child: Text(
-                                          'BEST PRICE GUARANTEE',
-                                          style: TextStyle(
-                                              fontSize: 15, color: kblue),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, top: 15),
-                                        child: Text(
-                                          'A best price guarantee is a promise made by a business or service provider to offer the lowest possible price for their product or service.',
-                                          style: TextStyle(fontSize: 12),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      )),
-                  Positioned(
-                      top: 50,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 160, top: 110),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: kOrange,
-                              child: Image.asset(
-                                'assets/icons/starbutton.png',
-                                height: 25,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 160, top: 156),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: kOrange,
-                              child: Image.asset(
-                                'assets/icons/worldbutton.png',
-                                height: 25,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 140, left: 170),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                CircleAvatar(
-                                  radius: 25,
-                                  backgroundColor: kOrange,
-                                  child: Image.asset(
-                                    'assets/icons/likebutton.png',
-                                    height: 25,
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ))
-                ],
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 10),
+            //   child: Stack(
+            //     children: [
+            //       Image.asset(
+            //         'assets/images/homebackground3.png',
+            //         height: 750,
+            //         fit: BoxFit.fitHeight,
+            //       ),
+            //       Positioned(
+            //           top: 0,
+            //           left: 0,
+            //           child: Text(
+            //             'WHY CHOOSE US',textAlign: TextAlign.center,
+            //             style: TextStyle(fontSize: 25, color: kwhite),
+            //           )),
+            //       Positioned(
+            //           left: 170,
+            //           top: 90,
+            //           child: Container(
+            //             height: 6,
+            //             width: 60,
+            //             color: kOrange,
+            //           )),
+            //       Positioned(
+            //           left: 30,
+            //           top: 100,
+            //           child: Text(
+            //             'Adding booking services to your website or \napp can help streamline your business and make \nit easier for your customers to book your services',
+            //             style: TextStyle(fontSize: 15, color: kwhite),
+            //           )),
+            //       Positioned(
+            //           top: 200,
+            //           left: 60,
+            //           child: Column(
+            //             children: [
+            //               Column(
+            //                 mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //                 children: [
+            //                   Container(
+            //                     height: 150,
+            //                     width: 250,
+            //                     decoration: BoxDecoration(
+            //                         color: kwhite,
+            //                         borderRadius: BorderRadius.circular(5)),
+            //                     child: Column(
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 30),
+            //                           child: Text(
+            //                             'ONLINE BOOKING',
+            //                             style: TextStyle(
+            //                                 fontSize: 15, color: kblue),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               left: 10, top: 15),
+            //                           child: Text(
+            //                             'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
+            //                             style: TextStyle(fontSize: 12),
+            //                           ),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding:
+            //                         const EdgeInsets.only(left: 10, top: 50),
+            //                     child: Container(
+            //                       height: 140,
+            //                       width: 250,
+            //                       decoration: BoxDecoration(
+            //                           borderRadius: BorderRadius.circular(5),
+            //                           color: kwhite),
+            //                       child: Column(
+            //                         children: [
+            //                           Padding(
+            //                             padding: const EdgeInsets.only(top: 30),
+            //                             child: Text(
+            //                               'WORLD CLASS SERVICE',
+            //                               style: TextStyle(
+            //                                   fontSize: 15, color: kblue),
+            //                             ),
+            //                           ),
+            //                           Padding(
+            //                             padding: const EdgeInsets.only(
+            //                                 left: 10, top: 15),
+            //                             child: Text(
+            //                               'World-class service refers to exceptional and unparalleled service quality that sets a business apart from its competitors.',
+            //                               style: TextStyle(fontSize: 12),
+            //                             ),
+            //                           )
+            //                         ],
+            //                       ),
+            //                     ),
+            //                   ),
+            //                   Padding(
+            //                     padding:
+            //                         const EdgeInsets.only(left: 10, top: 50),
+            //                     child: Container(
+            //                       height: 140,
+            //                       width: 250,
+            //                       decoration: BoxDecoration(
+            //                           color: kwhite,
+            //                           borderRadius: BorderRadius.circular(5)),
+            //                       child: Column(
+            //                         children: [
+            //                           Padding(
+            //                             padding: const EdgeInsets.only(top: 30),
+            //                             child: Text(
+            //                               'BEST PRICE GUARANTEE',
+            //                               style: TextStyle(
+            //                                   fontSize: 15, color: kblue),
+            //                             ),
+            //                           ),
+            //                           Padding(
+            //                             padding: const EdgeInsets.only(
+            //                                 left: 10, top: 15),
+            //                             child: Text(
+            //                               'A best price guarantee is a promise made by a business or service provider to offer the lowest possible price for their product or service.',
+            //                               style: TextStyle(fontSize: 12),
+            //                             ),
+            //                           )
+            //                         ],
+            //                       ),
+            //                     ),
+            //                   )
+            //                 ],
+            //               )
+            //             ],
+            //           )),
+            //       Positioned(
+            //           top: 50,
+            //           child: Column(
+            //             crossAxisAlignment: CrossAxisAlignment.center,
+            //             children: [
+            //               Padding(
+            //                 padding: const EdgeInsets.only(left: 160, top: 110),
+            //                 child: CircleAvatar(
+            //                   radius: 25,
+            //                   backgroundColor: kOrange,
+            //                   child: Image.asset(
+            //                     'assets/icons/starbutton.png',
+            //                     height: 25,
+            //                     fit: BoxFit.fitHeight,
+            //                   ),
+            //                 ),
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.only(left: 160, top: 156),
+            //                 child: CircleAvatar(
+            //                   radius: 25,
+            //                   backgroundColor: kOrange,
+            //                   child: Image.asset(
+            //                     'assets/icons/worldbutton.png',
+            //                     height: 25,
+            //                     fit: BoxFit.fitHeight,
+            //                   ),
+            //                 ),
+            //               ),
+            //               Padding(
+            //                 padding: const EdgeInsets.only(top: 140, left: 170),
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.center,
+            //                   children: [
+            //                     CircleAvatar(
+            //                       radius: 25,
+            //                       backgroundColor: kOrange,
+            //                       child: Image.asset(
+            //                         'assets/icons/likebutton.png',
+            //                         height: 25,
+            //                         fit: BoxFit.fitHeight,
+            //                       ),
+            //                     ),
+            //                   ],
+            //                 ),
+            //               )
+            //             ],
+            //           ))
+            //     ],
+            //   ),
+            // ),
             ksizedbox30,
             Stack(
               children: [
@@ -663,7 +651,7 @@ class _MobileHomeState extends State<MobileHome> {
                 ),
                 Positioned(
                     top: 15,
-                    left: 10,
+                    left: 0,right: 0,
                     child: Image.asset(
                       'assets/images/homebackgroundimage.png',
                       height: 380,
@@ -690,7 +678,7 @@ class _MobileHomeState extends State<MobileHome> {
                           child: Container(
                             height: 8,
                             width: 60,
-                            color: kOrange,
+                            color: kwhite,
                           ),
                         ),
                         Padding(
@@ -701,9 +689,9 @@ class _MobileHomeState extends State<MobileHome> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 0, right: 20),
+                          padding: const EdgeInsets.only(top: 0,left: 157),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 'THE ORIGINAL VISION',
@@ -833,157 +821,283 @@ class _MobileHomeState extends State<MobileHome> {
                       ],
                     ))
               ],
-            ),
-            Stack(children: [
-              Container(
-                  height: 150,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    'assets/images/homebackground5.png',
-                    fit: BoxFit.cover,
-                  )),
-              Positioned(
-                  top: 0,
-                  left: 0,
-                  child: Column(
+            ), Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 5,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        padding: const EdgeInsets.only(),
+                        child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 15),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "11K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "AMAZING BUSINESS",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 10.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "11K",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: kblue,
+                                  height: 2,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40, left: 7),
-                              child: Dash(
-                                  direction: Axis.vertical,
-                                  length: 60,
-                                  dashLength: 15,
-                                  dashColor: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5, top: 15),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "41K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "AMAZING MEMBERS",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 10.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40, left: 9),
-                              child: Dash(
-                                  direction: Axis.vertical,
-                                  length: 60,
-                                  dashLength: 15,
-                                  dashColor: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 5, top: 15),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "3K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "TOTAL SUPPORT",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 11.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40, left: 11),
-                              child: Dash(
-                                  direction: Axis.vertical,
-                                  length: 60,
-                                  dashLength: 15,
-                                  dashColor: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 11, top: 15),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "77K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "TOTAL USERS",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 11.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "AMAZING BUSINESS",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: kblue,
+                                  height: 2,
+                                  fontSize: 10.5,
+                                  fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),
                       ),
+                      const Padding(
+                        padding: EdgeInsets.only(),
+                        child: Dash(
+                            direction: Axis.vertical,
+                            length: 70,
+                            dashLength: 15,
+                            dashColor: Colors.grey),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "41K",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "AMAZING MEMBERS",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(),
+                        child: Dash(
+                            direction: Axis.vertical,
+                            length: 70,
+                            dashLength: 15,
+                            dashColor: Colors.grey),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "3K",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "TOTAL SUPPORT",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(),
+                        child: Dash(
+                            direction: Axis.vertical,
+                            length: 70,
+                            dashLength: 15,
+                            dashColor: Colors.grey),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "77K",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "TOTAL USERS",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 10.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))
-            ]),
+                  ),
+                ],
+              ),
+            ),
+            // Stack(children: [
+            //   Container(
+            //       height: 150,
+            //       width: MediaQuery.of(context).size.width,
+            //       child: Image.asset(
+            //         'assets/images/homebackground5.png',
+            //         fit: BoxFit.cover,
+            //       )),
+            //   Positioned(
+            //       top: 0,
+            //       left: 0,
+            //       child: Column(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.only(
+            //               left: 5,
+            //             ),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //               children: [
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(top: 15),
+            //                   child: Column(
+            //                     children: [
+            //                       Text(
+            //                         "11K",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 18,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                       Text(
+            //                         "AMAZING BUSINESS",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 10.5,
+            //                             fontWeight: FontWeight.w400),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //                 const Padding(
+            //                   padding: EdgeInsets.only(top: 40, left: 7),
+            //                   child: Dash(
+            //                       direction: Axis.vertical,
+            //                       length: 60,
+            //                       dashLength: 15,
+            //                       dashColor: Colors.grey),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 5, top: 15),
+            //                   child: Column(
+            //                     children: [
+            //                       Text(
+            //                         "41K",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 18,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                       Text(
+            //                         "AMAZING MEMBERS",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 10.5,
+            //                             fontWeight: FontWeight.w400),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //                 const Padding(
+            //                   padding: EdgeInsets.only(top: 40, left: 9),
+            //                   child: Dash(
+            //                       direction: Axis.vertical,
+            //                       length: 60,
+            //                       dashLength: 15,
+            //                       dashColor: Colors.grey),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 5, top: 15),
+            //                   child: Column(
+            //                     children: [
+            //                       Text(
+            //                         "3K",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 18,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                       Text(
+            //                         "TOTAL SUPPORT",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 11.5,
+            //                             fontWeight: FontWeight.w400),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //                 const Padding(
+            //                   padding: EdgeInsets.only(top: 40, left: 11),
+            //                   child: Dash(
+            //                       direction: Axis.vertical,
+            //                       length: 60,
+            //                       dashLength: 15,
+            //                       dashColor: Colors.grey),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 11, top: 15),
+            //                   child: Column(
+            //                     children: [
+            //                       Text(
+            //                         "77K",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 18,
+            //                             fontWeight: FontWeight.bold),
+            //                       ),
+            //                       Text(
+            //                         "TOTAL USERS",
+            //                         textAlign: TextAlign.start,
+            //                         style: TextStyle(
+            //                             color: kblue,
+            //                             height: 2,
+            //                             fontSize: 11.5,
+            //                             fontWeight: FontWeight.w400),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ],
+            //       ))
+            // ]),
             Stack(children: [
               Image.asset(
                 'assets/images/homebackground6.png',
@@ -998,9 +1112,9 @@ class _MobileHomeState extends State<MobileHome> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'Paid Ads Avalibales',
+                          'Paid Ads Availables',
                           style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 17,
                               fontWeight: FontWeight.bold,
                               color: kblue),
                         ),
@@ -1014,13 +1128,13 @@ class _MobileHomeState extends State<MobileHome> {
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: kblue,
-                                  minimumSize: Size(200, 45),
+                                  minimumSize: Size(100, 37),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15))),
                               onPressed: () {},
                               child: Text(
                                 'Click Now',
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(fontSize: 15),
                               ))
                         ],
                       ),
@@ -1039,7 +1153,7 @@ class _MobileHomeState extends State<MobileHome> {
                       fit: BoxFit.cover,
                     )),
                 Positioned(
-                  left: 0,
+                  left: 0,right: 0,
                   child: Column(
                     children: [
                       Padding(

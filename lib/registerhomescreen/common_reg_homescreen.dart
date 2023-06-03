@@ -188,7 +188,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                          ]
                       ),
                       
-                      child: Icon(Icons.notifications,color: kblue,),
+                      child: InkWell(onTap: (){Get.to(History());},
+                        child: Icon(Icons.notifications,color: kblue,)),
                      ),
                    ),
                   //  Padding(

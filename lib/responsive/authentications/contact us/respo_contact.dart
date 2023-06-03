@@ -27,7 +27,7 @@ class _ContactScreenState extends State<RespoContact> {
     return Scaffold(
       appBar: PreferredSize(
           child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
-          drawer: MobileDrawer(),
+      drawer: MobileDrawer(),
       body: ListView(children: [
         Column(
           children: [
@@ -47,8 +47,10 @@ class _ContactScreenState extends State<RespoContact> {
                   style: TextStyle(fontSize: 30, color: kwhite),
                 ),
               ),
-            ),ksizedbox30,
-            Row(mainAxisAlignment: MainAxisAlignment.center,
+            ),
+            ksizedbox30,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   'Get In Touch With Contact Us',
@@ -56,7 +58,8 @@ class _ContactScreenState extends State<RespoContact> {
                       fontSize: 25, fontWeight: FontWeight.bold, color: kblue),
                 ),
               ],
-            ),ksizedbox10,
+            ),
+            ksizedbox10,
             Text(
               'Lorem ipsum dolor sit amet, consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore et \ndolore magna aliqua',
               style: TextStyle(
@@ -154,7 +157,8 @@ class _ContactScreenState extends State<RespoContact> {
                       ],
                     ))
               ],
-            ),ksizedbox30,
+            ),
+            ksizedbox30,
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
@@ -171,9 +175,13 @@ class _ContactScreenState extends State<RespoContact> {
                     borderRadius: BorderRadius.circular(12)),
                 child: Column(
                   children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.center,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('assets/images/contactbackground2.png',height: 300,),
+                        Image.asset(
+                          'assets/images/contactbackground2.png',
+                          height: 300,
+                        ),
                       ],
                     ),
                     Expanded(
@@ -236,33 +244,34 @@ class _ContactScreenState extends State<RespoContact> {
                             ),
                           ),
                           Padding(
-                              padding: const EdgeInsets.only(top: 30),
-                              child: Container(
-                                height: 42,
-                                width: MediaQuery.of(context).size.width * 0.31,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    gradient: LinearGradient(colors: [
-                                      kyellow,
-                                      kOrange,
-                                    ])),
-                                child: Center(
-                                  child: Text(
-                                    'Send Message',
-                                    style:
-                                        TextStyle(color: kwhite, fontSize: 16),
-                                  ),
+                            padding: const EdgeInsets.only(top: 30),
+                            child: Container(
+                              height: 42,
+                              width: MediaQuery.of(context).size.width * 0.31,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),
+                                  gradient: LinearGradient(colors: [
+                                    kyellow,
+                                    kOrange,
+                                  ])),
+                              child: Center(
+                                child: Text(
+                                  'Send Message',
+                                  style: TextStyle(color: kwhite, fontSize: 16),
                                 ),
-                              ))
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
             ),
-            ksizedbox40,ksizedbox40,
-         MobileCommonBottom(), ],
+            ksizedbox40, ksizedbox40,
+            MobileCommonBottom(),
+          ],
         ),
       ]),
     );

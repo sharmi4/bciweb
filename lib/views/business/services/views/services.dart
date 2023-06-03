@@ -26,8 +26,7 @@ class _ServicesState extends State<Services> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(),
-          preferredSize: Size(double.infinity, 40)),
+          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -42,10 +41,7 @@ class _ServicesState extends State<Services> {
                     bottom: 0,
                     right: 0,
                     child: Center(
-                      child: Text(
-                        'SERVICES US',
-                        style: displayfont
-                      ),
+                      child: Text('SERVICES US', style: displayfont),
                     ),
                   )
                 ],
@@ -150,7 +146,47 @@ class _ServicesState extends State<Services> {
               ),
             ),
             ksizedbox30,
-            Image.asset('assets/images/Group 38585.png'),
+            Stack(children: [
+              Image.asset('assets/images/homebackground6.png'),
+              Padding(
+                padding: const EdgeInsets.only(top: 150, right: 260),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'More Available Offers',
+                          style: TextStyle(
+                              fontSize: 42,
+                              fontWeight: FontWeight.bold,
+                              color: kblue),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15, right: 100),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor: kblue,
+                                  minimumSize: Size(200, 45),
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15))),
+                              onPressed: () {},
+                              child: Text(
+                                'Click Now',
+                                style: TextStyle(fontSize: 20),
+                              ))
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ]),
             ksizedbox30,
             Text(
               'SPECIAL Offers',

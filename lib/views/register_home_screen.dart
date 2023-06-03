@@ -10,16 +10,16 @@ import 'package:flutter_dash/flutter_dash.dart';
 import '../registerhomescreen/common_reg_bottom.dart';
 import '../registerhomescreen/common_reg_homescreen.dart';
 
-
-
 class BusinessRegisterHomeScreen extends StatefulWidget {
   const BusinessRegisterHomeScreen({super.key});
 
   @override
-  State<BusinessRegisterHomeScreen> createState() => _BusinessRegisterHomeScreenState();
+  State<BusinessRegisterHomeScreen> createState() =>
+      _BusinessRegisterHomeScreenState();
 }
 
-class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen> {
+class _BusinessRegisterHomeScreenState
+    extends State<BusinessRegisterHomeScreen> {
   final _homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
@@ -126,8 +126,9 @@ class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen>
       //  40)),
       body: ListView(children: [
         Column(
-          children: [RegisterCommonContainer(),
-         //   RegisterCommonContainer(),
+          children: [
+            RegisterCommonContainer(),
+            //   RegisterCommonContainer(),
 
             // Padding(
             //   padding: const EdgeInsets.only(top: 0,left: 0),
@@ -306,7 +307,7 @@ class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen>
                                 color: kwhite,
                                 borderRadius: BorderRadius.circular(15)),
                             child: const Padding(
-                              padding:  EdgeInsets.only(left: 10),
+                              padding: EdgeInsets.only(left: 10),
                               child: Row(
                                 children: [
                                   Text('BOOK NOW'),
@@ -1224,7 +1225,7 @@ class _BusinessRegisterHomeScreenState extends State<BusinessRegisterHomeScreen>
                                       padding: const EdgeInsets.only(top: 6),
                                       child: Image.asset(
                                           'assets/icons/reviewstar.png'),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),

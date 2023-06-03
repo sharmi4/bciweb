@@ -3,14 +3,14 @@ import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+//import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
 import '../../registerhomescreen/common_reg_homescreen.dart';
 import 'common_widget/common.dart';
-import 'common_widget/commoncontainer.dart';
-import 'common_widget/common_buttom.dart';
+//import 'common_widget/commoncontainer.dart';
+//import 'common_widget/common_buttom.dart';
 
 class BusinessHomeScreen extends StatefulWidget {
   const BusinessHomeScreen({super.key});
@@ -416,33 +416,28 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                   )
                 ],
               ),
-            ),ksizedbox30,
+            ),
+            ksizedbox40, ksizedbox40,
             Text(
               "WELCOME TO BCI",
               style: TextStyle(
                   fontSize: 29, fontWeight: FontWeight.bold, color: kblue),
-            ),ksizedbox20,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                '''      Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.                                                                                                         
-  
-      We are also expanding our tie-up-affiliations to global, where 
-  
-  Members can transact and get offers & discounts from all leading 
-  
-  INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,
-  
-  Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. 
-  
-       We are having our club houses at Chennai Bolleneni Hill 
-  
-  side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...
-       We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.
-  
-  ''',
-                style: TextStyle(fontSize: 17,color: kblue),
-                textAlign: TextAlign.center,
+            ),
+            ksizedbox40,
+            Container(
+              width: size.width * 0.7,
+              child: Column(
+                children: [
+                  Text(
+                    '''Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.We are also expanding our tie-up-affiliations to global, where Members can transact and get offers & discounts from all leading INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. We are having our club houses at Chennai Bolleneni Hill side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.''',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: kblue,
+                        height: 1.9,
+                        fontWeight: FontWeight.w500),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
               ),
             ),
             ksizedbox40,
@@ -450,31 +445,31 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
               children: [
                 Image.asset('assets/images/homebackground.png'),
                 Positioned(
-                  left: 400,
+                  left: 0,
+                  right: 0,
                   top: 50,
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         '3  STEPS  OR  THE  PERFECT  CLUB',
                         style: TextStyle(fontSize: 22, color: kOrange),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 9),
-                        child: Text(
-                          'FIND  BEST  MEMBERSHIPS',
-                          style: TextStyle(
-                              fontSize: 33,
-                              color: kblue,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      Text(
+                        'FIND  BEST  MEMBERSHIPS',
+                        style: TextStyle(
+                            fontSize: 33,
+                            color: kblue,
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                 ),
                 Positioned(
                   top: 150,
-                  left: 370,
+                  left: 0,
+                  right: 0,
                   child: Column(
                     children: [
                       Text(
@@ -500,81 +495,70 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                 ),
                 Positioned(
                     top: 320,
-                    left: 230,
+                    left: 0,
+                    right: 0,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('assets/images/apartmentimage.png'),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 240),
-                              child:
-                                  Image.asset('assets/images/bazarimage.png'),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.asset('assets/images/apartmentimage.png'),
+                                ksizedbox10,
+                                Text(
+                                  'HOTELS & SERVICES',
+                                  style: TextStyle(
+                                      color: kblue,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                ksizedbox10,
+                                Text(
+                                    'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Hotels / Resorts / Spas / \nSaloons / Services Apartments / Marriage \nHalls / Tours & Travels.'),
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 240),
-                              child:
-                                  Image.asset('assets/images/serviceimage.png'),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.asset('assets/images/bazarimage.png'),
+                                ksizedbox10,
+                                Text(
+                                  'ESSENTIAL BAZZAR',
+                                  style: TextStyle(
+                                      color: kblue,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                ksizedbox10,
+                                Text(
+                                    'BCI Prestigious Members Can Access\n our Amazing Discounts Coupons @ Our \nAssociate Provision / Restaurant / \nJewellery / Textile / Complimentary \nCoupon.'),
+                              ],
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Image.asset('assets/images/serviceimage.png'),
+                                ksizedbox10,
+                                Text(
+                                  'A TO Z UTILITY SERVICE & \n    ONLINE DISCOUNTS',
+                                  style: TextStyle(
+                                      color: kblue,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                ksizedbox10,
+                                Text(
+                                    'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Utility Service Providers / \nOnline Shopping / Online Recharge / \nOnline Cinema Tickets.'),
+                              ],
                             )
                           ],
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20),
-                              child: Text(
-                                'HOTELS & SERVICES',
-                                style: TextStyle(
-                                    color: kblue,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 180, top: 20),
-                              child: Text(
-                                'ESSENTIAL BAZZAR',
-                                style: TextStyle(
-                                    color: kblue,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 120, top: 20),
-                              child: Text(
-                                'A TO Z UTILITY SERVICE & \n    ONLINE DISCOUNTS',
-                                style: TextStyle(
-                                    color: kblue,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 0, top: 10),
-                              child: Text(
-                                  'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Hotels / Resorts / Spas / \nSaloons / Services Apartments / Marriage \nHalls / Tours & Travels.'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 40, top: 10),
-                              child: Text(
-                                  'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Provision / Restaurant / \nJewellery / Textile / Complimentary \nCoupon.'),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 40, top: 10),
-                              child: Text(
-                                  'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Utility Service Providers / \nOnline Shopping / Online Recharge / \nOnline Cinema Tickets.'),
-                            )
-                          ],
-                        )
                       ],
                     )),
               ],
@@ -586,6 +570,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                   width: MediaQuery.of(context).size.width,
                   color: kgrey.withOpacity(0.1),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -608,7 +593,9 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 40, left: 210),
                         child: Text(
-                            'BCI INDIA in the Google play store makes world of \nopportunities and services, offers, value added mutual \nbenefits to members & vendors. Now we are \nExpanding Our Business Operations All over India, we \nare estimating about 1 Million Members to subscribe \nwithin Couple of Years, in The Way Of All Digital, Social, \nMedia, Member 2 Member, Vendors 2 Members & Etc.'),
+                          'BCI INDIA in the Google play store makes world of \nopportunities and services, offers, value added mutual \nbenefits to members & vendors. Now we are \nExpanding Our Business Operations All over India, we \nare estimating about 1 Million Members to subscribe \nwithin Couple of Years, in The Way Of All Digital, Social, \nMedia, Member 2 Member, Vendors 2 Members & Etc.',
+                          style: TextStyle(fontSize: 15),
+                        ),
                       )
                     ],
                   ),
@@ -626,44 +613,47 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
               ],
             ),
 
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Stack(
-                children: [
-                  Image.asset('assets/images/homebackground3.png'),
-                  Positioned(
-                      top: 70,
-                      left: 460,
-                      child: Text(
+            Stack(
+              children: [
+                Image.asset(
+                  'assets/images/homebackground3.png',
+                  width: size.width,
+                ),
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 20,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ksizedbox40, ksizedbox40,
+                      Text(
                         'WHY CHOOSE US',
                         style: TextStyle(fontSize: 55, color: kwhite),
-                      )),
-                  Positioned(
-                      left: 680,
-                      top: 140,
-                      child: Container(
+                        textAlign: TextAlign.center,
+                      ),
+
+                      Container(
                         height: 6,
                         width: 60,
                         color: kOrange,
-                      )),
-                  Positioned(
-                      left: 400,
-                      top: 180,
-                      child: Text(
+                      ),
+                      ksizedbox40,
+                      Text(
                         'Adding booking services to your website or app can help streamline your business \n         and make it easier for your customers to book your services',
                         style: TextStyle(fontSize: 17, color: kwhite),
-                      )),
-                  Positioned(
-                      top: 300,
-                      left: 150,
-                      child: Column(
+                      ),
+                      ksizedbox20,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          Stack(
                             children: [
+                              ksizedbox30,
                               Container(
-                                height: 150,
-                                width: 250,
+                                height: 180,
+                                width: 300,
                                 decoration: BoxDecoration(
                                     color: kwhite,
                                     borderRadius: BorderRadius.circular(5)),
@@ -688,11 +678,28 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 150),
-                                child: Container(
-                                  height: 140,
-                                  width: 250,
+                              Positioned(
+                                bottom: 2,
+                                right: 10,
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: kOrange,
+                                  child: Image.asset(
+                                    'assets/icons/starbutton.png',
+                                    height: 25,
+                                    fit: BoxFit.fitHeight,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 150),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: 180,
+                                  width: 300,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
                                       color: kwhite),
@@ -717,12 +724,29 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                                     ],
                                   ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 150),
-                                child: Container(
-                                  height: 140,
-                                  width: 250,
+                                Positioned(
+                                  bottom: 2,
+                                  right: 10,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: kOrange,
+                                    child: Image.asset(
+                                      'assets/icons/worldbutton.png',
+                                      height: 25,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 150),
+                            child: Stack(
+                              children: [
+                                Container(
+                                  height: 180,
+                                  width: 300,
                                   decoration: BoxDecoration(
                                       color: kwhite,
                                       borderRadius: BorderRadius.circular(5)),
@@ -747,72 +771,250 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                                     ],
                                   ),
                                 ),
-                              )
-                            ],
-                          )
-                        ],
-                      )),
-                  Positioned(
-                      top: 265,
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 248),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: kOrange,
-                              child: Image.asset(
-                                'assets/icons/starbutton.png',
-                                height: 25,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 350),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: kOrange,
-                              child: Image.asset(
-                                'assets/icons/worldbutton.png',
-                                height: 25,
-                                fit: BoxFit.fitHeight,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 355),
-                            child: CircleAvatar(
-                              radius: 25,
-                              backgroundColor: kOrange,
-                              child: Image.asset(
-                                'assets/icons/likebutton.png',
-                                height: 25,
-                                fit: BoxFit.fitHeight,
-                              ),
+                                Positioned(
+                                  bottom: 2,
+                                  right: 10,
+                                  child: CircleAvatar(
+                                    radius: 20,
+                                    backgroundColor: kOrange,
+                                    child: Image.asset(
+                                      'assets/icons/likebutton.png',
+                                      height: 25,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           )
                         ],
-                      ))
-                ],
-              ),
+                      ),
+                      //     Row(
+                      //        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      //   children: [
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(left: 248),
+                      //       child: CircleAvatar(
+                      //         radius: 25,
+                      //         backgroundColor: kOrange,
+                      //         child: Image.asset(
+                      //           'assets/icons/starbutton.png',
+                      //           height: 25,
+                      //           fit: BoxFit.fitHeight,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(left: 350),
+                      //       child: CircleAvatar(
+                      //         radius: 25,
+                      //         backgroundColor: kOrange,
+                      //         child: Image.asset(
+                      //           'assets/icons/worldbutton.png',
+                      //           height: 25,
+                      //           fit: BoxFit.fitHeight,
+                      //         ),
+                      //       ),
+                      //     ),
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(left: 355),
+                      //       child: CircleAvatar(
+                      //         radius: 25,
+                      //         backgroundColor: kOrange,
+                      //         child: Image.asset(
+                      //           'assets/icons/likebutton.png',
+                      //           height: 25,
+                      //           fit: BoxFit.fitHeight,
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ],
+                      // )
+                    ],
+                  ),
+                ),
+                // Positioned(
+                //     top: 70,
+                //     left: 0,right: 0,
+                //     child: Text(
+                //       'WHY CHOOSE US',
+                //       style: TextStyle(fontSize: 55, color: kwhite),
+                //   textAlign: TextAlign.center,  )),
+                // Positioned(
+
+                //     top: 140,
+                //     child: Container(
+                //       height: 6,
+                //       width: 60,
+                //       color: kOrange,
+                //     )),
+                // Positioned(
+                //     left: 400,
+                //     top: 180,
+                //     child: Text(
+                //       'Adding booking services to your website or app can help streamline your business \n         and make it easier for your customers to book your services',
+                //       style: TextStyle(fontSize: 17, color: kwhite),
+                //     )),
+                // Positioned(
+                //     top: 300,
+                //     left: 150,
+                //     child: Column(
+                //       children: [
+                //         Row(
+                //           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //           children: [
+                //             Container(
+                //               height: 150,
+                //               width: 250,
+                //               decoration: BoxDecoration(
+                //                   color: kwhite,
+                //                   borderRadius: BorderRadius.circular(5)),
+                //               child: Column(
+                //                 children: [
+                //                   Padding(
+                //                     padding: const EdgeInsets.only(top: 30),
+                //                     child: Text(
+                //                       'ONLINE BOOKING',
+                //                       style: TextStyle(
+                //                           fontSize: 15, color: kblue),
+                //                     ),
+                //                   ),
+                //                   Padding(
+                //                     padding: const EdgeInsets.only(
+                //                         left: 10, top: 15),
+                //                     child: Text(
+                //                       'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
+                //                       style: TextStyle(fontSize: 12),
+                //                     ),
+                //                   )
+                //                 ],
+                //               ),
+                //             ),
+                //             Padding(
+                //               padding: const EdgeInsets.only(left: 150),
+                //               child: Container(
+                //                 height: 140,
+                //                 width: 250,
+                //                 decoration: BoxDecoration(
+                //                     borderRadius: BorderRadius.circular(5),
+                //                     color: kwhite),
+                //                 child: Column(
+                //                   children: [
+                //                     Padding(
+                //                       padding: const EdgeInsets.only(top: 30),
+                //                       child: Text(
+                //                         'WORLD CLASS SERVICE',
+                //                         style: TextStyle(
+                //                             fontSize: 15, color: kblue),
+                //                       ),
+                //                     ),
+                //                     Padding(
+                //                       padding: const EdgeInsets.only(
+                //                           left: 10, top: 15),
+                //                       child: Text(
+                //                         'World-class service refers to exceptional and unparalleled service quality that sets a business apart from its competitors.',
+                //                         style: TextStyle(fontSize: 12),
+                //                       ),
+                //                     )
+                //                   ],
+                //                 ),
+                //               ),
+                //             ),
+                //             Padding(
+                //               padding: const EdgeInsets.only(left: 150),
+                //               child: Container(
+                //                 height: 140,
+                //                 width: 250,
+                //                 decoration: BoxDecoration(
+                //                     color: kwhite,
+                //                     borderRadius: BorderRadius.circular(5)),
+                //                 child: Column(
+                //                   children: [
+                //                     Padding(
+                //                       padding: const EdgeInsets.only(top: 30),
+                //                       child: Text(
+                //                         'BEST PRICE GUARANTEE',
+                //                         style: TextStyle(
+                //                             fontSize: 15, color: kblue),
+                //                       ),
+                //                     ),
+                //                     Padding(
+                //                       padding: const EdgeInsets.only(
+                //                           left: 10, top: 15),
+                //                       child: Text(
+                //                         'A best price guarantee is a promise made by a business or service provider to offer the lowest possible price for their product or service.',
+                //                         style: TextStyle(fontSize: 12),
+                //                       ),
+                //                     )
+                //                   ],
+                //                 ),
+                //               ),
+                //             )
+                //           ],
+                //         )
+                //       ],
+                //     )),
+                // Positioned(
+                //     top: 265,
+                //     child: Row(
+                //       children: [
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 248),
+                //           child: CircleAvatar(
+                //             radius: 25,
+                //             backgroundColor: kOrange,
+                //             child: Image.asset(
+                //               'assets/icons/starbutton.png',
+                //               height: 25,
+                //               fit: BoxFit.fitHeight,
+                //             ),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 350),
+                //           child: CircleAvatar(
+                //             radius: 25,
+                //             backgroundColor: kOrange,
+                //             child: Image.asset(
+                //               'assets/icons/worldbutton.png',
+                //               height: 25,
+                //               fit: BoxFit.fitHeight,
+                //             ),
+                //           ),
+                //         ),
+                //         Padding(
+                //           padding: const EdgeInsets.only(left: 355),
+                //           child: CircleAvatar(
+                //             radius: 25,
+                //             backgroundColor: kOrange,
+                //             child: Image.asset(
+                //               'assets/icons/likebutton.png',
+                //               height: 25,
+                //               fit: BoxFit.fitHeight,
+                //             ),
+                //           ),
+                //         )
+                //       ],
+                //     ))
+              ],
             ),
             Stack(
               children: [
                 Image.asset('assets/images/homebackground4.png'),
                 Positioned(
-                    top: 80,
+                    top: 0,
+                    bottom: 0,
                     left: 50,
                     child: Image.asset(
                       'assets/images/homebackgroundimage.png',
-                      height: 450,
+                      height: 200,
                       fit: BoxFit.fitHeight,
                     )),
                 Positioned(
-                    left: 0,
-                    right: 0,
+                    right: 100,
+                    //   right: 0,
                     top: 160,
-                    child: Column(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 256),
@@ -834,15 +1036,22 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 145, top: 20),
-                          child: Text(
-                            'Starting a business requires financial investment. Consider the \n  potential costs, profits, and funding options for your business.',
-                            style: TextStyle(fontSize: 17),
+                          child: Container(
+                            width: size.width * 0.3,
+                            child: Text(
+                              'Starting a business requires financial investment. Consider the  potential costs, profits, and funding options for your business.',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1),
+                              textAlign: TextAlign.end,
+                            ),
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 70, right: 335),
+                          padding: const EdgeInsets.only(top: 70, left: 423),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 'THE ORIGINAL VISION',
@@ -973,158 +1182,135 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                     ))
               ],
             ),
-            Stack(children: [
-              Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  child: Image.asset(
-                    'assets/images/homebackground5.png',
-                    fit: BoxFit.cover,
-                  )),
-              Positioned(
-                  top: 0,
-                  left: 160,
-                  child: Column(
+            ksizedbox30,
+            Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 80,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        padding: const EdgeInsets.only(),
+                        child: Column(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "11K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "AMAZING BUSINESS",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "11K",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: kblue,
+                                  height: 2,
+                                  fontSize: 40,
+                                  fontWeight: FontWeight.bold),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40, left: 60),
-                              child: Dash(
-                                  direction: Axis.vertical,
-                                  length: 130,
-                                  dashLength: 15,
-                                  dashColor: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 40),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "41K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "AMAZING MEMBERS",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40, left: 60),
-                              child: Dash(
-                                  direction: Axis.vertical,
-                                  length: 130,
-                                  dashLength: 15,
-                                  dashColor: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 40),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "3K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "TOTAL SUPPORT",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 40, left: 60),
-                              child: Dash(
-                                  direction: Axis.vertical,
-                                  length: 130,
-                                  dashLength: 15,
-                                  dashColor: Colors.grey),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                left: 40,
-                              ),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    "77K",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 40,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    "TOTAL USERS",
-                                    textAlign: TextAlign.start,
-                                    style: TextStyle(
-                                        color: kblue,
-                                        height: 2,
-                                        fontSize: 16.5,
-                                        fontWeight: FontWeight.w400),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              "AMAZING BUSINESS",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                  color: kblue,
+                                  height: 2,
+                                  fontSize: 16.5,
+                                  fontWeight: FontWeight.w400),
                             ),
                           ],
                         ),
                       ),
+                      const Padding(
+                        padding: EdgeInsets.only(),
+                        child: Dash(
+                            direction: Axis.vertical,
+                            length: 130,
+                            dashLength: 15,
+                            dashColor: Colors.grey),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "41K",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "AMAZING MEMBERS",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 16.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(),
+                        child: Dash(
+                            direction: Axis.vertical,
+                            length: 130,
+                            dashLength: 15,
+                            dashColor: Colors.grey),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "3K",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "TOTAL SUPPORT",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 16.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(),
+                        child: Dash(
+                            direction: Axis.vertical,
+                            length: 130,
+                            dashLength: 15,
+                            dashColor: Colors.grey),
+                      ),
+                      Column(
+                        children: [
+                          Text(
+                            "77K",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 40,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "TOTAL USERS",
+                            textAlign: TextAlign.start,
+                            style: TextStyle(
+                                color: kblue,
+                                height: 2,
+                                fontSize: 16.5,
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ],
+                      ),
                     ],
-                  ))
-            ]),
+                  ),
+                ],
+              ),
+            ),
+            ksizedbox30,
             Stack(children: [
               Image.asset('assets/images/homebackground6.png'),
               Padding(
@@ -1135,7 +1321,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Text(
-                          'Paid Ads Avalibales',
+                          'Paid Ads Available',
                           style: TextStyle(
                               fontSize: 42,
                               fontWeight: FontWeight.bold,
@@ -1166,213 +1352,268 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                 ),
               )
             ]),
-            Stack(
-              children: [
-                Container(
-                    height: 350,
-                    width: MediaQuery.of(context).size.width,
-                    child: Image.asset(
-                      'assets/images/homebackground5.png',
-                      fit: BoxFit.cover,
-                    )),
-                Positioned(
-                  top: 50,
-                  left: 50,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 90),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'TESTIMONIALS',
-                              style: TextStyle(
-                                color: kOrange,
-                                fontSize: 30,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100, top: 5),
-                        child: Text(
-                          'What Our Clients Say About Us',
-                          style: TextStyle(fontSize: 30),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, top: 15),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 215,
-                              width: 250,
-                              decoration: BoxDecoration(
-                                  color: kwhite,
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 15),
-                                    child: Image.asset(
-                                        'assets/images/rajarani.png'),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 8),
-                                    child: Text(
-                                      'Raja Rani',
-                                      style:
-                                          TextStyle(fontSize: 15, color: kblue),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 10, top: 4),
-                                    child: Text(
-                                      'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
-                                      style: TextStyle(fontSize: 12),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(top: 10),
-                                    child: Image.asset(
-                                        'assets/icons/reviewstar.png'),
-                                  )
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 50),
-                              child: Container(
-                                height: 215,
-                                width: 250,
-                                decoration: BoxDecoration(
-                                    color: kwhite,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 15),
-                                      child:
-                                          Image.asset('assets/images/mp.png'),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Text(
-                                        'Mp',
-                                        style: TextStyle(
-                                            fontSize: 15, color: kblue),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 7),
-                                      child: Text(
-                                        'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 5),
-                                      child: Image.asset(
-                                          'assets/icons/reviewstar.png'),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 50),
-                              child: Container(
-                                height: 210,
-                                width: 250,
-                                decoration: BoxDecoration(
-                                    color: kwhite,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 15),
-                                      child:
-                                          Image.asset('assets/images/nick.png'),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Text(
-                                        'Nick Mshow',
-                                        style: TextStyle(
-                                            fontSize: 15, color: kblue),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 7),
-                                      child: Text(
-                                        'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 6),
-                                      child: Image.asset(
-                                          'assets/icons/reviewstar.png'),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 50),
-                              child: Container(
-                                height: 220,
-                                width: 250,
-                                decoration: BoxDecoration(
-                                    color: kwhite,
-                                    borderRadius: BorderRadius.circular(5)),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 15),
-                                      child: Image.asset(
-                                          'assets/images/sunda.png'),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: Text(
-                                        'Sunda',
-                                        style: TextStyle(
-                                            fontSize: 15, color: kblue),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 10, top: 7),
-                                      child: Text(
-                                        'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
-                                        style: TextStyle(fontSize: 12),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 6),
-                                      child: Image.asset(
-                                          'assets/icons/reviewstar.png'),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
+            // Stack(
+            //   children: [
+            //     Container(
+            //         height: 350,
+            //         width: MediaQuery.of(context).size.width,
+            //         child: Image.asset(
+            //           'assets/images/homebackground5.png',
+            //           fit: BoxFit.cover,
+            //         )),
+            //     Positioned(
+            //       top: 0,
+            //       left: 0,
+            //       child: Column(
+            //         children: [
+            //           Padding(
+            //             padding: const EdgeInsets.only(left: 90),
+            //             child: Row(
+            //               mainAxisAlignment: MainAxisAlignment.center,
+            //               children: [
+            //                 Text(
+            //                   'TESTIMONIALS',
+            //                   style: TextStyle(
+            //                     color: kOrange,
+            //                     fontSize: 30,
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: const EdgeInsets.only(left: 0, top: 5,right: 0),
+            //             child: Text(
+            //               'What Our Clients Say About Us',
+            //               style: TextStyle(fontSize: 30),
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: const EdgeInsets.only(left: 20, top: 15),
+            //             child: Row(
+            //               children: [
+            //                 Container(
+            //                   height: 215,
+            //                   width: 250,
+            //                   decoration: BoxDecoration(
+            //                       color: kwhite,
+            //                       borderRadius: BorderRadius.circular(5)),
+            //                   child: Column(
+            //                     children: [
+            //                       Padding(
+            //                         padding: const EdgeInsets.only(top: 15),
+            //                         child: Image.asset(
+            //                             'assets/images/rajarani.png'),
+            //                       ),
+            //                       Padding(
+            //                         padding: const EdgeInsets.only(top: 8),
+            //                         child: Text(
+            //                           'Raja Rani',
+            //                           style:
+            //                               TextStyle(fontSize: 15, color: kblue),
+            //                         ),
+            //                       ),
+            //                       Padding(
+            //                         padding:
+            //                             const EdgeInsets.only(left: 10, top: 4),
+            //                         child: Text(
+            //                           'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
+            //                           style: TextStyle(fontSize: 12),
+            //                         ),
+            //                       ),
+            //                       Padding(
+            //                         padding: const EdgeInsets.only(top: 10),
+            //                         child: Image.asset(
+            //                             'assets/icons/reviewstar.png'),
+            //                       )
+            //                     ],
+            //                   ),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 50),
+            //                   child: Container(
+            //                     height: 215,
+            //                     width: 250,
+            //                     decoration: BoxDecoration(
+            //                         color: kwhite,
+            //                         borderRadius: BorderRadius.circular(5)),
+            //                     child: Column(
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 15),
+            //                           child:
+            //                               Image.asset('assets/images/mp.png'),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 10),
+            //                           child: Text(
+            //                             'Mp',
+            //                             style: TextStyle(
+            //                                 fontSize: 15, color: kblue),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               left: 10, top: 7),
+            //                           child: Text(
+            //                             'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
+            //                             style: TextStyle(fontSize: 12),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 5),
+            //                           child: Image.asset(
+            //                               'assets/icons/reviewstar.png'),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 50),
+            //                   child: Container(
+            //                     height: 210,
+            //                     width: 250,
+            //                     decoration: BoxDecoration(
+            //                         color: kwhite,
+            //                         borderRadius: BorderRadius.circular(5)),
+            //                     child: Column(
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 15),
+            //                           child:
+            //                               Image.asset('assets/images/nick.png'),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 10),
+            //                           child: Text(
+            //                             'Nick Mshow',
+            //                             style: TextStyle(
+            //                                 fontSize: 15, color: kblue),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               left: 10, top: 7),
+            //                           child: Text(
+            //                             'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
+            //                             style: TextStyle(fontSize: 12),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 6),
+            //                           child: Image.asset(
+            //                               'assets/icons/reviewstar.png'),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(left: 50),
+            //                   child: Container(
+            //                     height: 220,
+            //                     width: 250,
+            //                     decoration: BoxDecoration(
+            //                         color: kwhite,
+            //                         borderRadius: BorderRadius.circular(5)),
+            //                     child: Column(
+            //                       children: [
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 15),
+            //                           child: Image.asset(
+            //                               'assets/images/sunda.png'),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 10),
+            //                           child: Text(
+            //                             'Sunda',
+            //                             style: TextStyle(
+            //                                 fontSize: 15, color: kblue),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(
+            //                               left: 10, top: 7),
+            //                           child: Text(
+            //                             'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
+            //                             style: TextStyle(fontSize: 12),
+            //                           ),
+            //                         ),
+            //                         Padding(
+            //                           padding: const EdgeInsets.only(top: 6),
+            //                           child: Image.asset(
+            //                               'assets/icons/reviewstar.png'),
+            //                         )
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     )
+            //   ],
+            // ),
+            Container(
+              height: 250,
+              width: MediaQuery.of(context).size.width,
+              color: kwhite,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Text(
+                      '- - - - - - - Watch Our Story - - - - - - - - -',
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: kOrange,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                )
-              ],
+                  ksizedbox20,
+                  Text(
+                    'Unforgettable Subscrition Experiences \nGet Your Guide',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 30,
+                        color: kblue,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  ksizedbox30,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: kblue,
+                              minimumSize: Size(200, 47)),
+                          onPressed: () {},
+                          child: Text(
+                            'Contact Us',
+                            style: TextStyle(fontSize: 18),
+                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 60),
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: kOrange,
+                                minimumSize: Size(200, 47)),
+                            onPressed: () {},
+                            child: Text(
+                              'Book Now',
+                              style: TextStyle(fontSize: 18),
+                            )),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 20),
+              padding: const EdgeInsets.only(),
               child: Container(
                 height: 180,
                 width: MediaQuery.of(context).size.width,
@@ -1425,7 +1666,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                 ),
               ),
             ),
-            ksizedbox40,
+
             RegisterCommonBottom()
           ],
         ),

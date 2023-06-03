@@ -19,6 +19,7 @@ class AboutUsScreen extends StatefulWidget {
 class _AboutUsScreenState extends State<AboutUsScreen> {
   @override
   Widget build(BuildContext context) {
+    var size=MediaQuery.of(context).size;
     return  Scaffold(
       appBar: PreferredSize(child: CommonScreen(), 
      preferredSize:Size(double.infinity, 
@@ -57,7 +58,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                         width: 600,
                         fit: BoxFit.fill,
                         image: AssetImage("assets/images/aboutimage.png")),
-                        const SizedBox(width: 100,),
+                        Spacer(),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -70,23 +71,24 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             fontWeight: FontWeight.bold
                           ),),
                           const SizedBox(height: 20,),
-                          Wrap(
-                            children: [
-                              Text('''"BENZE CLUB INTERNATIONAL - One of the pioneers in the
+                          Container(width: size.width*0.4,
+                            child: Column(
+                              children: [
+                                Text('''"BENZE CLUB INTERNATIONAL - One of the pioneers in the
 Hospitality-Family entertainment industry." 
-Formerly Benze Vaccations Club with around 50000 members,\n We are now transformed to BCI, with a Rejuvenated-empowered\n Board of directors and progressing towards a 6 digit membership in\n the Year 2023 with a strong Marketing, Technical,\n CRM, Media & PR teams.
-                              ''',
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: kblue,
-                                height: 1.8,
-                                fontSize: 26,
-                                fontWeight: FontWeight.w400
-                              ),),
-                            ],
+Formerly Benze Vaccations Club with around 50000 members, We are now transformed to BCI, with a Rejuvenated-empowered Board of directors and progressing towards a 6 digit membership inthe Year 2023 with a strong Marketing, Technical,CRM, Media & PR teams.''',
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  color: kblue,
+                                  height: 1.8,
+                                  fontSize: 26,
+                                  fontWeight: FontWeight.w400
+                                ),),
+                              ],
+                            ),
                           ),
                         ],
-                      ),
+                      ),Spacer()
                     ],
                   ),
                 ),

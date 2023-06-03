@@ -32,9 +32,9 @@ class _MobileDrawerState extends State<MobileDrawer> {
               // Image.asset('')
             ],
           ),
-          ksizedbox40,
+          //   ksizedbox40,
           Padding(
-            padding: const EdgeInsets.only(top: 150, left: 10),
+            padding: const EdgeInsets.only(top: 30, left: 10),
             child: Row(
               children: [
                 TextButton(
@@ -59,7 +59,9 @@ class _MobileDrawerState extends State<MobileDrawer> {
             child: Row(
               children: [
                 TextButton(
-                    onPressed: () {Get.to(RespoContact());},
+                    onPressed: () {
+                      Get.to(RespoContact());
+                    },
                     child: Text(
                       'CONTACT ',
                       style: TextStyle(fontSize: 16, color: kwhite),
@@ -121,7 +123,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
             child: Row(
               children: [
                 TextButton(
-                    onPressed: () {Get.toNamed('/respo-gallery');
+                    onPressed: () {
+                      Get.toNamed('/respo-gallery');
                       //Get.to(RespoServices());
                     },
                     child: Text(
@@ -143,7 +146,6 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      
                       Get.to(ClubHousemob());
                     },
                     child: Text(
@@ -159,42 +161,45 @@ class _MobileDrawerState extends State<MobileDrawer> {
               color: kgrey,
             ),
           ),
-            
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 10),
-            child: Row(
-              children: [
-                TextButton(
-                    onPressed: () {
-                      Get.toNamed('/respo-profile',);
-                    },
-                    child: Row(
-                      children: [
-                        Image.asset('assets/images/nick.png',height: 30,fit: BoxFit.fitHeight,),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 15),
-                          child: Text(
-                            'PROFILE',
-                            style: TextStyle(fontSize: 16, color: kwhite),
-                          ),
-                        ),
-                      ],
-                    ))
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
-            child: Divider(
-              color: kgrey,
-            ),
-          ),
+
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 10, left: 10),
+          //   child: Row(
+          //     children: [
+          //       TextButton(
+          //           onPressed: () {
+          //             Get.toNamed('/respo-profile',);
+          //           },
+          //           child: Row(
+          //             children: [
+          //               Image.asset('assets/images/nick.png',height: 30,fit: BoxFit.fitHeight,),
+          //               Padding(
+          //                 padding: const EdgeInsets.only(left: 15),
+          //                 child: Text(
+          //                   'PROFILE',
+          //                   style: TextStyle(fontSize: 16, color: kwhite),
+          //                 ),
+          //               ),
+          //             ],
+          //           ))
+          //     ],
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+          //   child: Divider(
+          //     color: kgrey,
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(top: 100),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                InkWell(onTap: (){Get.to(landing_screen ()); },
+                InkWell(
+                  onTap: () {
+                    Get.to(landing_screen());
+                  },
                   child: Container(
                     height: 30,
                     width: 110,

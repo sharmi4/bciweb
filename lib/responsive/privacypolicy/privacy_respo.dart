@@ -255,3 +255,250 @@ MEMBER CAN PROMOTE THEIR BUSINESS THROUGH PUSH MESSAGES ON THEIR APP
     );
   }
 }
+class Tccc extends StatelessWidget {
+  const  Tccc({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: PreferredSize(
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+          drawer: MobileDrawer(),
+      body: ListView(
+        children: [
+          
+          ksizedbox40,
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              children: [
+                Text(
+                  'Terms And Conditions',
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 27,
+                      fontWeight: FontWeight.w700),
+                ),
+                ksizedbox30,
+                ksizedbox20,
+                Text(
+                  '''
+ 
+WELCOME TO OUR WEB APPLICATION & APP. IF YOU CONTINUE TO BROWSE AND USE THIS WEB APPLICATION & APP YOU ARE AGREEING TO COMPLY WITH AND BE BOUND BY THE FOLLOWING TERMS AND CONDITIONS OF USE, WHICH TOGETHER WITH OUR PRIVACY POLICY GOVERN BCI RELATIONSHIP WITH YOU IN RELATION TO THIS WEB APPLICATION & APP.
+THE TERM ‘ BCI ‘ OR ‘US’ OR ‘WE’ REFERS TO THE OWNER OF THE WEB APPLICATION & APP WHOSE CORPORATE OFFICE IS NO.781, RAYALA TOWERS, TOWER 2, ANNA SALAI, CHENNAI-600002. OUR COMPANY REGISTRATION NUMBER IS 297 / 2008 PLACE OF REGISTRATION IS CHENNAI THE TERM ‘YOU’ REFERS TO THE USER OR VIEWER OF OUR WEB APPLICATION & APP.
+THE USE OF THIS WEB APPLICATION & APP IS SUBJECT TO THE FOLLOWING TERMS OF USE: THE CONTENT OF THE PAGES OF THIS WEB APPLICATION & APP IS FOR YOUR GENERAL INFORMATION AND USE ONLY. IT IS SUBJECT TO CHANGE WITHOUT NOTICE.
+NEITHER WE NOR ANY THIRD PARTIES PROVIDE ANY WARRANTY OR GUARANTEE AS TO THE ACCURACY, TIMELINESS, PERFORMANCE, COMPLETENESS OR SUITABILITY OF THE INFORMATION AND MATERIALS FOUND OR OFFERED ON THIS WEB APPLICATION & APP FOR ANY PARTICULAR PURPOSE. YOU ACKNOWLEDGE THAT SUCH INFORMATION AND MATERIALS MAY CONTAIN INACCURACIES OR ERRORS AND WE EXPRESSLY EXCLUDE LIABILITY FOR ANY SUCH INACCURACIES OR ERRORS TO THE FULLEST EXTENT PERMITTED BY LAW.
+YOUR USE OF ANY INFORMATION OR MATERIALS ON THIS WEB APPLICATION & APP IS ENTIRELY AT YOUR OWN RISK, FOR WHICH WE SHALL NOT BE LIABLE. IT SHALL BE YOUR OWN RESPONSIBILITY TO ENSURE THAT ANY PRODUCTS, SERVICES OR INFORMATION AVAILABLE THROUGH THIS WEB APPLICATION & APP MEET YOUR SPECIFIC REQUIREMENTS.
+THIS WEB APPLICATION & APP CONTAINS MATERIAL WHICH IS OWNED BY OR LICENSED TO US. THIS MATERIAL INCLUDES, BUT IS NOT LIMITED TO, THE DESIGN, LAYOUT, LOOK, APPEARANCE AND GRAPHICS. REPRODUCTION IS PROHIBITED OTHER THAN IN ACCORDANCE WITH THE COPYRIGHT NOTICE, WHICH FORMS PART OF THESE TERMS AND CONDITIONS.
+ALL TRADEMARKS REPRODUCED IN THIS WEB APPLICATION & APP WHICH IS NOT THE PROPERTY OF, OR LICENSED TO, THE OPERATOR IS ACKNOWLEDGED ON THE WEB APPLICATION & APP.
+UNAUTHORIZED USE OF THIS WEB APPLICATION & APP MAY GIVE RISE TO A CLAIM FOR DAMAGES AND/OR BE A CRIMINAL OFFENSE.
+FROM TIME TO TIME THIS WEB APPLICATION & APP MAY ALSO INCLUDE LINKS TO OTHER WEB APPLICATION & APP. THESE LINKS ARE PROVIDED FOR YOUR CONVENIENCE TO PROVIDE FURTHER INFORMATION. THEY DO NOT SIGNIFY THAT WE ENDORSE THE WEB APPLICATION & APP (S). WE HAVE NO RESPONSIBILITY FOR THE CONTENT OF THE LINKED WEB APPLICATION & APP(S).
+YOU MAY NOT CREATE A LINK TO THIS WEB APPLICATION & APP FROM ANOTHER WEB APPLICATION & APP OR DOCUMENT WITHOUT BCI PRIOR WRITTEN CONSENT.
+YOUR USE OF THIS WEB APPLICATION & APP AND ANY DISPUTE ARISING OUT OF SUCH USE OF THE WEB APPLICATION & APP IS SUBJECT TO THE LAWS OF INDIA OR OTHER REGULATORY AUTHORITY.
+
+''',
+                  style: TextStyle(
+                      height: 1.5, fontWeight: FontWeight.w400, fontSize: 15),
+                  textAlign: TextAlign.left,
+                )
+              ],
+            ),
+          ),
+          ksizedbox40,
+          
+       MobileCommonBottom() ],
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+class SarviceAgrement extends StatelessWidget {
+  const  SarviceAgrement({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    appBar: PreferredSize(
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+          drawer: MobileDrawer(),
+      body: ListView(
+        children: [
+          
+          ksizedbox40,
+          Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              children: [
+                Text(
+                  'BCI VENDOR SERVICE AGREEMENT & SERVICE FEE TERMS ',
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 27,
+                      fontWeight: FontWeight.w700),
+                ),
+                ksizedbox30,
+                ksizedbox20,
+                Text(
+                  '''
+
+
+Dear Sir ,  As discussed, request you to please confirm the below mentioned via a response to this email Free Online Reservations via our Call Centre wherein  
+
+Customer will be able to reserve a slot for your outlet using the BCI app Our fully equipped call centre will connect with you / your team to book service slots for customers   
+
+This  BCI app is an essential and integral part of the understanding being executed along with the Vendors. 
+
+Terms and Conditions amongst BCI app and/ or Strategic Partner (“Platform Parties”) and the “Vendors”
+ 
+which shall, at all times, be read as part and parcel of the Vendors Terms and Conditions and deemed to be entered and executed on the date of signing of this BCI app 01/06/2023“Effective Date”, and which constitutes a legally binding agreement between the “Vendor” and “BCI”, for featuring the Vendor’s Offers on the “BCI app”.
+
+VENDOR’S INFORMATION
+
+LEGAL ENTITY NAME OF THE VENDOR’S
+
+ BENZE CLUB INTERNATIONAL 
+
+BRAND NAME OF THE VENDOR’S (IF ANY)
+
+ BENZE CLUB INTERNATIONAL 
+
+REGISTERED VENDOR ADDRESS
+
+NO 781, TOWER 2, 2ND FLOOR, RAYALA TOWERS, ANNASALAI ,  MOUNT ROAD, CHENNAI 600002
+
+AUTHORIZED SIGNATORY DETAILS FOR AND ON BEHALF OF VENDOR’S
+
+NAME: ASHOK KUMAR
+DESIGNATION: MARKETING HEAD 
+EMAIL ID: 
+Phone No: 9999999999
+
+ENTITY PAN:
+
+(In case of Company or Limited Liability Partnership)
+
+In case of Billing Office Address          ☐
+                                                         
+
+In case of Registered Office Address  ☐                                             
+
+AADHAR NUMBER:
+
+(In case of Proprietary Concern) 
+(In case GST is unavailable or exempted, then a Non-GST Declaration is to be provided by the Vendor’s)
+
+POWER OF ATTORNEY:
+
+(In case of Partnership Firm) 
+(For multiple entities at different locations, Vendor’s needs to mention all these locations along with their respective GSTIN vide separate Annexure to this Form)
+
+
+ENTITY GST:
+
+
+VENDOR’S BANK ACCOUNT DETAILS (Attach cancelled cheque)
+
+Beneficiary Name	BENZE CLUB INTERNATIONAL
+Bank Account No.	15000001111111111
+Bank Name	DBS BANK
+Branch Name	MOUNT ROAD
+IFSC Code	DBS000080124
+
+
+
+
+
+SERVICE DETAILS - TERMS OF ENGAGEMENT
+
+•	The Vendors’ Offers/ Deals (“Offers”) shall be featured on the Platform in accordance with the Offers/ Deals as agreed with the Vendor’s on its goods/ services from time to time during the Term of the Agreement along with the associated Terms and Conditions.
+•	The Offers and Marketplace Fee can be agreed via emails from the Registered Email ID of the Vendor’s on the Platform or by way of a separate Addendum/ Annexure to this Form.
+•	The Customers/ Users shall avail the Offers/ Deals offered by the Vendor’s on the Platform by submitting the Vouchers (containing the unique code) at the Vendor’s Establishment from where he/ she conducts the businesses
+•	The Vendor’s agrees and confirms not to undercut the agreed pricing as listed against these deals on Platforms or to offer/sell at a lower price in any manner at its Establishment directly to its customers. 
+•	The Vendor’s shall solely be responsible for the MRP’s agreed under this Agreement and shall guarantee at all times that the offer price shall not be greater than MRP of Products / Service offered.
+•	The pricing and the associated terms and conditions shall be valid from the “Effective Date”.
+
+
+OFFERS/ DEALS APPLICABILITY
+
+All Establishments                  < Y / N > Y
+
+Selective Establishments      < Y  / N > N       
+                                                     
+(In case of Select Establishments, details to be provided separately as an Annexure or over an email from the registered Email ID)
+ 
+TERMS OF PAYMENT
+
+Daily Payment on Redemption as per RBI rules.
+
+INVOICING DETAILS
+
+Daily on BCI app business login
+
+I / We, the Vendor’s, accept and acknowledge that I/ We have read and understood the Terms and Conditions (as may be amended from time to time) associated with this Form, which are displayed on BCI app Platform maintained by BCI (P) LTD, as may be amended from time to time. These Terms and Conditions & The Terms of Use, are incorporated by reference herein and shall be deemed to be a part and parcel of this Form to the same extent as if such provisions had been set forth in full herein. The Terms and Conditions & The Terms of Use are binding to the Vendors as well as its Customers and shall be read along with this Form at all times. The Parties hereby agree that this Form is in supersession to any and all previous Agreements and Forms entered between the Parties in relation to the BCI (P) LTD.
+
+AGREED, ACKNOWLEDGED AND SIGNED BY VENDOR’S 
+
+NAME:  ASHOK KUMAR
+DESIGNATION: MARKETING HEAD 
+ 
+OUTLET NAME: BENZE CLUB INTERNATIONAL 
+PREPAID OPTIONS:
+
+
+OFFER/ DEAL DETAILS
+
+UNLIMITED VEG AND NON VEG STARTERS WITH DRINKS FOR 2
+ 
+MRP OF PRODUCT PRICE / SERVICE PRICE 
+
+4000 INR
+
+VENDOR DISCOUNT PRICE ON PRODUCT/ DISCOUNT ON SERVICE
+
+3000 INR
+
+BCI SERVICE FEE %
+
+11.80% (OR) 354 INR 
+ 
+AMOUNT PAYABLE TO VENDOR’S
+2646 INR
+OFFER VALIDITY (DAYS)
+
+MONDAY TO SUNDAY
+
+OFFER VALIDITY (TIMINGS)
+
+12PM TO 3PM & 4PM TO 7PM
+BCI                                                                          VENDOR
+
+By:_________________________                          By: _______________________
+
+Title:________________________                        Title: _______________________
+     
+Date:________________________                        Date:_______________________
+''',
+                  style: TextStyle(
+                      height: 1.5, fontWeight: FontWeight.w400, fontSize: 15),
+                  textAlign: TextAlign.left,
+                )
+              ],
+            ),
+          ),
+          ksizedbox40,
+          
+       MobileCommonBottom() ],
+      ),
+    );
+  }
+}

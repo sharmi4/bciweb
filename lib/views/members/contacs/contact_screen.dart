@@ -49,12 +49,12 @@ class _ContactScreenState extends State<ContactScreen> {
                       color: kblue
                      ),),
                    ),
-                   Padding(
-                     padding: const EdgeInsets.only(top: 10),
-                     child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore et \ndolore magna aliqua',
-                     style: TextStyle(fontSize: 15,),
-                     textAlign: TextAlign.center,),
-                   ),
+                  //  Padding(
+                  //    padding: const EdgeInsets.only(top: 10),
+                  //    child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, \nsed do eiusmod tempor incididunt ut labore et \ndolore magna aliqua',
+                  //    style: TextStyle(fontSize: 15,),
+                  //    textAlign: TextAlign.center,),
+                  //  ),
                    ksizedbox20,
                    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

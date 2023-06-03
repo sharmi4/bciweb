@@ -10,16 +10,16 @@ class offercontainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
-      height: 200,
-      width: 450,
+      height: size.height * 0.4,
+      width: size.width * 0.4,
       color: kblue,
       child: Row(
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child:
-                Image.asset('assets/images/NoPath - Copy (7).png'),
+            child: Image.asset('assets/images/NoPath - Copy (7).png'),
           ),
           kwidth10,
           Column(

@@ -6,6 +6,7 @@ import 'package:bciweb/views/specialized/club.dart';
 ///import 'package:bciweb/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../registerhomescreen/common_reg_bottom.dart';
 import '../../registerhomescreen/common_reg_homescreen.dart';
@@ -46,28 +47,55 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                           fit: BoxFit.fill)),
                   child: Center(
-                      child: Text('SPECIALIZED US', style: displayfont))),
-              ksizedbox20,
+                      child: Text('MEET OUR LEGENDARY AMBASSADORS')
+                          .text
+                          .bold
+                          .xl6
+                          .white
+                          .make())),
+              ksizedbox40, ksizedbox40,
               Container(
-                height: 300,
+                height: 600,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(SpecializedClub());
-                      },
-                      child: Image.asset(
-                        'assets/images/aaa.jpg',
-                        height: 300,
-                      ),
+                    Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(SpecializedClub());
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.asset(
+                              'assets/images/2.jpg',
+                              height: 500,
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        Text('DIVAKAR').text.bold.xl6.make(),
+                      ],
                     ),
                     kwidth10,
-                    InkWell(
-                        onTap: () {
-                          Get.to(SpecializedExplore());
-                        },
-                        child: Image.asset('assets/images/bbb.jpg'))
+                    Column(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(SpecializedExplore());
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: Image.asset(
+                              'assets/images/1.jpg',
+                              height: 500,
+                            ),
+                          ),
+                        ),
+                        Spacer(),
+                        Text('MIME GOPI').text.bold.xl6.make()
+                      ],
+                    )
                   ],
                 ),
               ),
@@ -155,7 +183,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                             'These packages can include a range \nof features and benefits, such as',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 19,
+                                fontSize: 13,
                                 height: 1.2,
                                 fontWeight: FontWeight.w500),
                           )
@@ -384,6 +412,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                       width: MediaQuery.of(context).size.width,
                       color: kgrey.withOpacity(0.2),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Row(children: [
                             Image.asset(
@@ -394,9 +423,9 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ]),
                           Padding(
                             padding:
-                                const EdgeInsets.only(bottom: 30, left: 550),
+                                const EdgeInsets.only(bottom: 30, right: 15),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'CLUB SERVICES',
@@ -416,8 +445,9 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                                   padding: const EdgeInsets.only(top: 20),
                                   child: Text(
                                     'Club services refer to the various \namenities and offerings provided by \nclubs to their members. These services \ncan vary widely depending on the type of \nclub and its focus, but may include.',
-                                    textAlign: TextAlign.end,
-                                    style: TextStyle(color: kblue, height: 2),
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                        fontSize: 30, color: kblue, height: 2),
                                   ),
                                 ),
                                 ksizedbox20,
@@ -573,7 +603,8 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
               Text(
                 'FREQUENTLY ASKED QUESTIONS',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20, color: kblue),
+                style: TextStyle(
+                    fontSize: 29, color: kblue, fontWeight: FontWeight.w500),
               ),
               //starting
               specialController.specialindex.value == 0

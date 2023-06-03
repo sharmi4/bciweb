@@ -4,11 +4,14 @@ import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 //import 'package:bciweb/widget/appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../mobile_wdgets/drawer.dart';
 ////import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
+import 'club.dart';
+import 'explor.dart';
 
 class RespoSpecialized extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -45,30 +48,61 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                           ),
                           fit: BoxFit.fill)),
                   child: Center(
-                      child: Text(
-                    'SPECIALIZED US',
-                    style: TextStyle(
-                        fontSize: 30,
-                        color: kwhite,
-                        fontWeight: FontWeight.w700),
-                  ))),
+                      child:Text('MEET OUR LEGENDARY AMBASSADORS')
+                          .text
+                          
+                          .xl2
+                          .white
+                          .make())),
               ksizedbox20,
               Container(
                 //height: 300,
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    InkWell(
-                      child: Image.asset(
-                        'assets/images/aaa.jpg',
-                        height: 120,
+                    Expanded(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.to(SpecializedClubMOB());
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.asset(
+                                  'assets/images/2.jpg',
+                                  width: size.width*0.4,
+                                ),
+                              ),
+                            ),
+                            ksizedbox10,
+                            Text('DIVAKAR').text.semiBold.xl.make()
+                          ],
+                        ),
                       ),
                     ),
                     kwidth10,
-                    InkWell(
-                      child: Image.asset(
-                        'assets/images/bbb.jpg',
-                        height: 120,
+                    Expanded(
+                      child: Container(
+                        child: Column(
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                Get.to(SpecializedExploreMOB());
+                              },
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(15),
+                                child: Image.asset(
+                                  'assets/images/1.jpg',
+                                 width: size.width*0.4,
+                                ),
+                              ),
+                            ),
+                            ksizedbox10,
+                            Text('MIME GOPI').text.semiBold.xl.make()
+                          ],
+                        ),
                       ),
                     )
                   ],

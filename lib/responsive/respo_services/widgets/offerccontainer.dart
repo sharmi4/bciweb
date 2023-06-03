@@ -25,7 +25,7 @@ class Respooffers_container extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       height: 150,
-      width: size.width,
+      width: size.width*0.8,
       child: Row(
         children: [
           Padding(
@@ -41,22 +41,22 @@ class Respooffers_container extends StatelessWidget {
               Text(
                 'JK Stores Offer For ',
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 18,
                 ),
               ),
               Text(
                 'Casual Shirts',
                 style: TextStyle(
-                  fontSize: 25,
+                  fontSize: 18,
                 ),
               ),
               Text(
                 '25% Offer',
-                style: TextStyle(fontSize: 25, color: Colors.grey),
+                style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
               Text(
                 '5 Days Only',
-                style: TextStyle(fontSize: 25, color: Colors.grey),
+                style: TextStyle(fontSize: 18, color: Colors.grey),
               ),
               ksizedbox10,
             ],
