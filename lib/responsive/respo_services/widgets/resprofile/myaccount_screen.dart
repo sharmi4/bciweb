@@ -19,22 +19,35 @@ class MyAccountScreen extends StatefulWidget {
 class _MyAccountScreenState extends State<MyAccountScreen> {
     final reghomeController=Get.find<RegisterProfileController>();
   final regshowController=Get.find<ProfileShowController>();
-  var nameController=TextEditingController();
-  var dobController=TextEditingController();
-  var emailController=TextEditingController();
-  var numberController=TextEditingController();
-  var occupationController=TextEditingController();
-  var fathernameController=TextEditingController();
-  var mothernameController=TextEditingController();
-  var wedingnameController=TextEditingController();
-  var spousenameController=TextEditingController();
-  var dateofbirthController=TextEditingController();
-  var childrensController=TextEditingController();
-var referalCOntroller=TextEditingController();
-  var subNameController=TextEditingController();
+  var mobilenameController=TextEditingController();
+  var mobiledobController=TextEditingController();
+  var mobileemailController=TextEditingController();
+  var mobilenumberController=TextEditingController();
+  var mobileoccupationController=TextEditingController();
+  var mobilefathernameController=TextEditingController();
+  var mobilemothernameController=TextEditingController();
+  var mobilewedingnameController=TextEditingController();
+  var mobilespousenameController=TextEditingController();
+  var mobiledateofbirthController=TextEditingController();
+  var mobilechildrensController=TextEditingController();
+var mobilereferalCOntroller=TextEditingController();
+  var submobileNameController=TextEditingController();
   var subMobileController=TextEditingController();
-  var subEmailController=TextEditingController();
-  var subDescriptionController=TextEditingController();
+  var submobileEmailController=TextEditingController();
+  var submobileDescriptionController=TextEditingController();
+  var mobileofficedoornumber=TextEditingController();
+   var mobileofficebnumber=TextEditingController();
+    var mobileofficeaddress=TextEditingController();
+     var mobileofficecity=TextEditingController();
+      var mobileofficestate=TextEditingController();
+
+       var mobileresibnameController=TextEditingController();
+       var mobileresidoornumberController=TextEditingController();
+       var mobileresibcityController=TextEditingController();
+       var mobileresistateController=TextEditingController();
+       var mobileresiperidController=TextEditingController();
+       var mobileresiadaridController=TextEditingController();
+       var mobileresiaddressController=TextEditingController();
    File? image;
   // Future pickerimage() async {
   //   try {
@@ -72,7 +85,7 @@ var referalCOntroller=TextEditingController();
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        dobController.text = '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
+        mobiledobController.text = '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
       });
     }
   }
@@ -86,7 +99,7 @@ var referalCOntroller=TextEditingController();
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
-        dobController.text = '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
+        mobiledobController.text = '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
       });
     }
   }
@@ -113,7 +126,7 @@ List partnerimage=[
             children:[ Column(
             children:[
                      Padding(
-                       padding: const EdgeInsets.only(),
+                       padding: const EdgeInsets.only(top: 30),
                        child: Container(
                       width: MediaQuery.of(context).size.width,
                          child: Column(
@@ -152,9 +165,75 @@ List partnerimage=[
                             
                               ),
                             ),
+                            Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,top: 20),
+                                 child: Text('Office Address',
+                                 style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: kblue
+                                 ),),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(right: 150,top: 20),
+                                 child: InkWell(
+                                  onTap: (){
+                                    regshowController.showindex(1);
+                                    regshowController.update();
+                                  },
+
+                                   child: Image.asset('assets/icons/profiledropdown.png',
+                                   height: 10,fit: BoxFit.fitHeight,),
+                                 ),
+                               )
+                             ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 1,left: 10,right: 10),
+                          child: Divider(
+                            thickness: 1,
+                        
+                          ),
+                        ),
+                         Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,top: 30),
+                                 child: Text('Residential Address',
+                                 style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: kblue
+                                 ),),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(right: 150,top: 20),
+                                 child: InkWell(
+                                  onTap: (){
+                                      regshowController.showindex(2);
+                                      regshowController.update();
+                                  },
+
+                                   child: Image.asset('assets/icons/profiledropdown.png',
+                                   height: 10,fit: BoxFit.fitHeight,),
+                                 ),
+                               )
+                             ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 1,left: 10,right: 10),
+                          child: Divider(
+                            thickness: 1,
+                        
+                          ),
+                        ),
                             if(regshowController.showindex.value==0)
                             Padding(
-                              padding: const EdgeInsets.only(),
+                              padding: const EdgeInsets.only(top:40),
                               child: Column(
                                 children: [
                                   Stack(
@@ -195,11 +274,11 @@ List partnerimage=[
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top:20),
+                                        padding: const EdgeInsets.only(left: 10,right:20,top:30),
                                         child: Container(
                                           height: 31,
                                           child: TextField( 
-                                            controller: nameController,
+                                            controller: mobilenameController,
                                             decoration: InputDecoration(
                                               hintText: 'User Name',
                                               hintStyle: TextStyle(
@@ -218,13 +297,13 @@ List partnerimage=[
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top:20),
+                                        padding: const EdgeInsets.only(left: 10,right:20,top:30),
                                         child: Container(
                                           height: 31,
                                           width:20,
                                           child: TextField(
                                             
-                                            controller: dobController,
+                                            controller: mobiledobController,
                                              decoration: InputDecoration(
                                               hintText: 'Enetr Date Of Birth',
                                               hintStyle: TextStyle(
@@ -249,14 +328,14 @@ List partnerimage=[
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
                                         child: Column(
                                           children: [
                                             Container(
                                               height: 35,
                                               child: TextField( 
                                                 keyboardType: TextInputType.emailAddress,
-                                                controller: nameController,
+                                                controller: mobileemailController,
                                                 decoration: InputDecoration(
                                                   hintText: 'Enter Email',
                                                   hintStyle: TextStyle(
@@ -277,14 +356,14 @@ List partnerimage=[
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left:10,right:20,top:20),
+                                        padding: const EdgeInsets.only(left:10,right:20,top:30),
                                         child: Column(
                                             children: [
                                               Container(
                                                 height: 35,
                                                 child: TextField(
                                                   keyboardType: TextInputType.number,
-                                                  controller: dobController,
+                                                  controller: mobilenumberController,
                                                    decoration: InputDecoration(
                                                     hintText: 'Enter Phone Number',
                                                     hintStyle: TextStyle(
@@ -314,13 +393,13 @@ List partnerimage=[
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top:20),
+                                        padding: const EdgeInsets.only(left: 10,right:20,top:30),
                                         child: Column(
                                           children: [
                                             Container(
                                               height: 35,
                                               child: TextField( 
-                                                controller: nameController,
+                                                controller: mobileoccupationController,
                                                 decoration: InputDecoration(
                                                   hintText: 'Occupation',
                                                   hintStyle: TextStyle(
@@ -341,12 +420,12 @@ List partnerimage=[
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
                                         child: Container(
                                        height:35,
                                           child:    TextField(
                                                 
-                                                controller: dobController,
+                                                controller: mobilefathernameController,
                                                  decoration: InputDecoration(
                                                   hintText: 'father Name',
                                                   hintStyle: TextStyle(
@@ -374,11 +453,11 @@ List partnerimage=[
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
                                         child: Container(
                                           height: 35,
                                           child: TextField( 
-                                            controller: nameController,
+                                            controller: mobilemothernameController,
                                             decoration: InputDecoration(
                                               hintText: 'Mother Name',
                                               hintStyle: TextStyle(
@@ -396,7 +475,7 @@ List partnerimage=[
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
                                         child: Container(
                                           height: 35,
                                           decoration: BoxDecoration(
@@ -453,7 +532,7 @@ List partnerimage=[
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
                                         child: Column(
                                           children: [
                                             Container(
@@ -463,7 +542,7 @@ List partnerimage=[
                                               ),
                                               child: TextField(
                                                       
-                                                      controller: dobController,
+                                                      controller: mobilewedingnameController,
                                                        decoration: InputDecoration(
                                                         hintText: 'Wedding Date',
                                                         hintStyle: TextStyle(
@@ -487,11 +566,11 @@ List partnerimage=[
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top: 20),
+                                        padding: const EdgeInsets.only(left: 10,right:20,top: 30),
                                         child: Container(
                                           height: 35,
                                           child: TextField( 
-                                          controller: nameController,
+                                          controller: mobilespousenameController,
                                           decoration: InputDecoration(
                                             hintText: 'Spouse Name',
                                             hintStyle: TextStyle(
@@ -515,14 +594,14 @@ List partnerimage=[
                                   children: [
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
                                         child: Column(
                                           children: [
                                             Container(
                                               height: 35,
                                               child: TextField(
                                                       
-                                                      controller: dobController,
+                                                      controller: mobiledateofbirthController,
                                                        decoration: InputDecoration(
                                                         hintText: 'Date of Birth',
                                                         hintStyle: TextStyle(
@@ -546,7 +625,7 @@ List partnerimage=[
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 20),
+                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
                                   
                                           child: Column(
                                             children: [
@@ -554,7 +633,7 @@ List partnerimage=[
                                                    Container(
                                                     height: 35,
                                                      child: TextField( 
-                                                     controller: nameController,
+                                                     controller: mobilechildrensController,
                                                       decoration: InputDecoration(
                                                       hintText: 'No.Of.Children',
                                                       hintStyle: TextStyle(
@@ -579,7 +658,7 @@ List partnerimage=[
                                   ],
                                  ),
                                    Padding(
-                                     padding: const EdgeInsets.only(left: 10,top: 20),
+                                     padding: const EdgeInsets.only(left: 10,top: 30),
                                      child: Row(
                                        children: [
                                          Container(
@@ -639,10 +718,295 @@ List partnerimage=[
                                        ],
                                      ),
                                    ),
+                                   Padding(
+                                 padding: const EdgeInsets.only(top:30,left: 20),
+                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: korange,
+                                        minimumSize: Size(MediaQuery.of(context).size.width*0.9, 45)
+                                      ),
+                                      onPressed: (){}, 
+                                    child: Text('Update',
+                                    style: TextStyle(
+                                      fontSize: 17
+                                    ),))
+                                  ],
+                                 ),
+                               ),
                                             
                                 ],
                               ),
                             ),
+                           if (regshowController.showindex.value==1)
+                           Container(
+                                child:Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                                    Padding(
+                                      padding: const EdgeInsets.only(),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                        child: TextField( 
+                                          controller: mobileofficedoornumber,
+                                          decoration: InputDecoration(
+                                            hintText: 'Door Number',
+                                            suffixIcon: Icon(Icons.edit),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                                                     
+                                            )
+                                          ),
+                                                                   
+                                        ),
+                                      ),
+                                    ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                  child: TextField( 
+                                     controller: mobileofficebnumber,
+                                     decoration: InputDecoration(
+                                       hintText: 'Building Number',
+                                       suffixIcon: Icon(Icons.edit),
+                                       fillColor: Color(0xffF9F8FD),
+                                       border: OutlineInputBorder(
+                                   
+                                       )
+                                     ),
+                                                              
+                                      ),
+                                ),
+                                     Column(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                       Padding(
+                                         padding: const EdgeInsets.only(),
+                                         child: Padding(
+                                           padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                           child: TextField( 
+                                             controller: mobileofficeaddress,
+                                             decoration: InputDecoration(
+                                               hintText: 'Address',
+                                               suffixIcon: Icon(Icons.edit),
+                                               fillColor: Color(0xffF9F8FD),
+                                               border: OutlineInputBorder(
+                                                                        
+                                               )
+                                             ),
+                                                                      
+                                           ),
+                                         ),
+                                       ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                  child: TextField( 
+                                        controller: mobileofficecity,
+                                        decoration: InputDecoration(
+                                          hintText: 'City',
+                                          suffixIcon: Icon(Icons.edit),
+                                          fillColor: Color(0xffF9F8FD),
+                                          border: OutlineInputBorder(
+                                   
+                                          )
+                                        ),
+                                                                 
+                                      ),
+                                ),
+                                    ],),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:50,top:50),
+                                        child: Column(
+                                          
+                                          children: [
+                                            Container(
+                                              width:MediaQuery.of(context).size.width*0.75,
+                                              child: TextField( 
+                                                    controller: mobileofficestate,
+                                                    decoration: InputDecoration(
+                                                      hintText: 'State',
+                                                      suffixIcon: Icon(Icons.edit),
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                               
+                                                      )
+                                                    ),
+                                                                             
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                   Padding(
+                                 padding: const EdgeInsets.only(top:50),
+                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: korange,
+                                        minimumSize: Size(MediaQuery.of(context).size.width*0.6, 45)
+                                      ),
+                                      onPressed: (){}, 
+                                    child: Text('Update',
+                                    style: TextStyle(
+                                      fontSize: 17
+                                    ),))
+                                  ],
+                                 ),
+                               ),
+
+                                  ],
+                                )
+                                ),
+                                if(regshowController.showindex.value==2)
+                                 Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   Padding(
+                                     padding: const EdgeInsets.only(),
+                                     child: Padding(
+                                       padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                       child: TextField( 
+                                         controller: mobileresidoornumberController,
+                                         decoration: InputDecoration(
+                                           hintText: 'Door Number',
+                                           suffixIcon: Icon(Icons.edit),
+                                           fillColor: Color(0xffF9F8FD),
+                                           border: OutlineInputBorder(
+                                                                    
+                                           )
+                                         ),
+                                                                  
+                                       ),
+                                     ),
+                                   ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                  child: TextField( 
+                                    controller: mobileresibnameController,
+                                    decoration: InputDecoration(
+                                      hintText: 'Building Number',
+                                      suffixIcon: Icon(Icons.edit),
+                                      fillColor: Color(0xffF9F8FD),
+                                      border: OutlineInputBorder(
+                                   
+                                      )
+                                    ),
+                                                             
+                                  ),
+                                ),
+                                     Padding(
+                                       padding: const EdgeInsets.only(),
+                                       child: Padding(
+                                         padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                         child: TextField( 
+                                           controller: mobileresiaddressController,
+                                           decoration: InputDecoration(
+                                             hintText: 'Address',
+                                             suffixIcon: Icon(Icons.edit),
+                                             fillColor: Color(0xffF9F8FD),
+                                             border: OutlineInputBorder(
+                                                                      
+                                             )
+                                           ),
+                                                                    
+                                         ),
+                                       ),
+                                     ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                  child: TextField( 
+                                      controller: mobileresibcityController,
+                                      decoration: InputDecoration(
+                                        hintText: 'City',
+                                        suffixIcon: Icon(Icons.edit),
+                                        fillColor: Color(0xffF9F8FD),
+                                        border: OutlineInputBorder(
+                                   
+                                        )
+                                      ),
+                                                               
+                                    ),
+                                ),
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                       child: TextField( 
+                                         controller: mobileresistateController,
+                                         decoration: InputDecoration(
+                                           hintText: 'State',
+                                           suffixIcon: Icon(Icons.edit),
+                                           fillColor: Color(0xffF9F8FD),
+                                           border: OutlineInputBorder(
+                                                                    
+                                           )
+                                         ),
+                                                                  
+                                       ),
+                                     ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                  child: TextField( 
+                                      controller: mobileresiperidController,
+                                      decoration: InputDecoration(
+                                        hintText: 'Personal Id',
+                                        suffixIcon: Icon(Icons.upload),
+                                        fillColor: Color(0xffF9F8FD),
+                                        border: OutlineInputBorder(
+                                   
+                                        )
+                                      ),
+                                                               
+                                    ),
+                                ),
+                                     Padding(
+                                        padding: const EdgeInsets.only(left:50,top:50),
+                                        child: Column(
+                                          
+                                          children: [
+                                            Container(
+                                              width:MediaQuery.of(context).size.width*0.75,
+                                              child: TextField( 
+                                                    controller: mobileresiadaridController,
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Adhaar Id',
+                                                      suffixIcon: Icon(Icons.upload),
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                               
+                                                      )
+                                                    ),
+                                                                             
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                 padding: const EdgeInsets.only(top:50),
+                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: korange,
+                                        minimumSize: Size(MediaQuery.of(context).size.width*0.5, 45)
+                                      ),
+                                      onPressed: (){}, 
+                                    child: Text('Update',
+                                    style: TextStyle(
+                                      fontSize: 17
+                                    ),))
+                                  ],
+                                 ),
+                               ),
+                               ksizedbox10,
+                                ],
+                              ),
+                             ) 
                            
                           ],
                          ),

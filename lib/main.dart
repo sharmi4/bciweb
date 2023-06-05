@@ -35,7 +35,9 @@ import 'package:bciweb/views/business/subscribe/views/add_wallet.dart';
 // import 'package:bciweb/views/business/subscribe/views/payment.dart';
 // import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 
+import 'controller/flaight _controller.dart';
 import 'controller/historycontroller.dart';
+import 'controller/profile_controller.dart';
 import 'controller/specialized_controller.dart';
 // import 'responsive/responsive_homescreen/responsive_homescreen.dart';/
 
@@ -48,6 +50,10 @@ void main() {
   Get.put(BookingHistoryController());
   Get.put(SpecializedController());
   Get.put(YourCouponController());
+  Get.put(ProfileController());
+  Get.put(FlaightController());
+    Get.put(Flaight2Controller());
+      Get.put(Flaight3Controller());
   runApp(const MyApp());
 }
 

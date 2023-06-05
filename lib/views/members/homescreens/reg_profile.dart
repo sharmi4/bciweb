@@ -7,6 +7,7 @@ import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../controller/profile_controller.dart';
 import '../../../controller/profile_show_controller.dart';
 //import '../../../registerhomescreen/common_reg_appbar';
 import '../../../registerhomescreen/common_reg_bottom.dart';
@@ -22,6 +23,7 @@ class  RegisterProfileScreen extends StatefulWidget {
 class _RegisterProfileScreenState extends State< RegisterProfileScreen> {
   final reghomeController=Get.find<RegisterProfileController>();
   final regshowController=Get.find<ProfileShowController>();
+  final profileController=Get.find<ProfileController>();
   var nameController=TextEditingController();
   var dobController=TextEditingController();
   var emailController=TextEditingController();
@@ -38,6 +40,21 @@ var referalCOntroller=TextEditingController();
   var subMobileController=TextEditingController();
   var subEmailController=TextEditingController();
   var subDescriptionController=TextEditingController();
+
+  var officebnameController=TextEditingController();
+   var officedoornoController=TextEditingController();
+    var officeaddressController=TextEditingController();
+     var officeaddresController=TextEditingController();
+      var officecityController=TextEditingController();
+       var officestateController=TextEditingController();
+
+       var resibnameController=TextEditingController();
+       var residoornumberController=TextEditingController();
+       var resibcityController=TextEditingController();
+       var resistateController=TextEditingController();
+       var resiperidController=TextEditingController();
+       var resiadaridController=TextEditingController();
+       var resiaddressController=TextEditingController();
    File? image;
   // Future pickerimage() async {
   //   try {
@@ -553,8 +570,8 @@ List partnerimage=[
                                  padding: const EdgeInsets.only(right: 150,top: 20),
                                  child: InkWell(
                                   onTap: (){
-                                    regshowController.showindex(0);
-                                    regshowController.update();
+                                   profileController.profileindex(0);
+                                   profileController.update();
                                   },
 
                                    child: Image.asset('assets/icons/profiledropdown.png',
@@ -570,7 +587,8 @@ List partnerimage=[
                         
                           ),
                         ),
-                        if(regshowController.showindex.value==0)
+                          
+                        if(profileController.profileindex.value==0)
                         Padding(
                           padding: const EdgeInsets.only(top: 80),
                           child: Column(
@@ -639,7 +657,7 @@ List partnerimage=[
                                             
                                             controller: dobController,
                                              decoration: InputDecoration(
-                                              hintText: 'Enetr Date Of Birth',
+                                              hintText: 'Enter Date Of Birth',
                                               suffixIcon: IconButton(onPressed: (){
                                                 _selectDate(context);
                                               }, 
@@ -740,7 +758,7 @@ List partnerimage=[
                                             
                                             controller: dobController,
                                              decoration: InputDecoration(
-                                              hintText: 'father Name',
+                                              hintText: 'Father Name',
                                               suffixIcon: IconButton(onPressed: (){
                                               
                                               }, 
@@ -967,7 +985,7 @@ List partnerimage=[
                                                             });
                                                           }),
                                                         ),
-                                                        Text('Blove')
+                                                        Text('Blow')
                                                       ],
                                                     ),
                                                   )
@@ -978,15 +996,403 @@ List partnerimage=[
                                    ],
                                  ),
                                ),
+                               Padding(
+                                 padding: const EdgeInsets.only(left:40,top:40),
+                                 child: Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: korange,
+                                        minimumSize: Size(MediaQuery.of(context).size.width*0.35, 45)
+                                      ),
+                                      onPressed: (){}, 
+                                    child: Text('Update'))
+                                  ],
+                                 ),
+                               ),
                                         
                             ],
                           ),
                         ),
+                          Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,top: 20),
+                                 child: Text('Office Address',
+                                 style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: kblue
+                                 ),),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(right: 150,top: 20),
+                                 child: InkWell(
+                                  onTap: (){
+                                    profileController.profileindex(1);
+                                    profileController.update();
+                                  },
+
+                                   child: Image.asset('assets/icons/profiledropdown.png',
+                                   height: 10,fit: BoxFit.fitHeight,),
+                                 ),
+                               )
+                             ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 1,left: 10,right: 10),
+                          child: Divider(
+                            thickness: 1,
+                        
+                          ),
+                        ),
+                          
+                          Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                             children: [
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,top: 20),
+                                 child: Text('Residential Address',
+                                 style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: kblue
+                                 ),),
+                               ),
+                               Padding(
+                                 padding: const EdgeInsets.only(right: 150,top: 20),
+                                 child: InkWell(
+                                  onTap: (){
+                                    profileController.profileindex(2);
+                                    profileController.update();
+                                  },
+
+                                   child: Image.asset('assets/icons/profiledropdown.png',
+                                   height: 10,fit: BoxFit.fitHeight,),
+                                 ),
+                               )
+                             ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 1,left: 10,right: 10),
+                          child: Divider(
+                            thickness: 1,
+                        
+                          ),
+                        ),
+                          
+                       if(profileController.profileindex.value==1)
+                       
+                                Container(
+                                child:Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                       Expanded(
+                                         child: Padding(
+                                           padding: const EdgeInsets.only(),
+                                           child: Padding(
+                                             padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                             child: TextField( 
+                                               controller: officedoornoController,
+                                               decoration: InputDecoration(
+                                                 hintText: 'Door Number',
+                                                 suffixIcon: Icon(Icons.edit),
+                                                 fillColor: Color(0xffF9F8FD),
+                                                 border: OutlineInputBorder(
+                                                                          
+                                                 )
+                                               ),
+                                                                        
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                    child: TextField( 
+                                          controller: officebnameController,
+                                          decoration: InputDecoration(
+                                            hintText: 'Building Number',
+                                            suffixIcon: Icon(Icons.edit),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                     
+                                            )
+                                          ),
+                                                                   
+                                        ),
+                                  ),
+                                ),
+                                    ],),
+                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                       Expanded(
+                                         child: Padding(
+                                           padding: const EdgeInsets.only(),
+                                           child: Padding(
+                                             padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                             child: TextField( 
+                                               controller: officeaddresController,
+                                               decoration: InputDecoration(
+                                                 hintText: 'Address',
+                                                 suffixIcon: Icon(Icons.edit),
+                                                 fillColor: Color(0xffF9F8FD),
+                                                 border: OutlineInputBorder(
+                                                                          
+                                                 )
+                                               ),
+                                                                        
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                    child: TextField( 
+                                          controller: officecityController,
+                                          decoration: InputDecoration(
+                                            hintText: 'City',
+                                            suffixIcon: Icon(Icons.edit),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                     
+                                            )
+                                          ),
+                                                                   
+                                        ),
+                                  ),
+                                ),
+                                    ],),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left:50,top:50),
+                                        child: Column(
+                                          
+                                          children: [
+                                            Container(
+                                              width:MediaQuery.of(context).size.width*0.35,
+                                              child: TextField( 
+                                                    controller: officestateController,
+                                                    decoration: InputDecoration(
+                                                      hintText: 'State',
+                                                      suffixIcon: Icon(Icons.edit),
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                               
+                                                      )
+                                                    ),
+                                                                             
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                   Padding(
+                                 padding: const EdgeInsets.only(left:50,top:50),
+                                 child: Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: korange,
+                                        minimumSize: Size(MediaQuery.of(context).size.width*0.36, 45)
+                                      ),
+                                      onPressed: (){}, 
+                                    child: Text('Update',
+                                    style: TextStyle(
+                                      fontSize: 17
+                                    ),))
+                                  ],
+                                 ),
+                               ),
+
+                                  ],
+                                )
+                                ),
+
+                             if(profileController.profileindex.value==2) 
+                             Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                   Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                       Expanded(
+                                         child: Padding(
+                                           padding: const EdgeInsets.only(),
+                                           child: Padding(
+                                             padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                             child: TextField( 
+                                               controller: residoornumberController,
+                                               decoration: InputDecoration(
+                                                 hintText: 'Door Number',
+                                                 suffixIcon: Icon(Icons.edit),
+                                                 fillColor: Color(0xffF9F8FD),
+                                                 border: OutlineInputBorder(
+                                                                          
+                                                 )
+                                               ),
+                                                                        
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                    child: TextField( 
+                                          controller: resibnameController,
+                                          decoration: InputDecoration(
+                                            hintText: 'Building Number',
+                                            suffixIcon: Icon(Icons.edit),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                     
+                                            )
+                                          ),
+                                                                   
+                                        ),
+                                  ),
+                                ),
+                                    ],),
+                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                       Expanded(
+                                         child: Padding(
+                                           padding: const EdgeInsets.only(),
+                                           child: Padding(
+                                             padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                             child: TextField( 
+                                               controller: resiaddressController,
+                                               decoration: InputDecoration(
+                                                 hintText: 'Address',
+                                                 suffixIcon: Icon(Icons.edit),
+                                                 fillColor: Color(0xffF9F8FD),
+                                                 border: OutlineInputBorder(
+                                                                          
+                                                 )
+                                               ),
+                                                                        
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                    child: TextField( 
+                                          controller: resibcityController,
+                                          decoration: InputDecoration(
+                                            hintText: 'City',
+                                            suffixIcon: Icon(Icons.edit),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                     
+                                            )
+                                          ),
+                                                                   
+                                        ),
+                                  ),
+                                ),
+                                    ],),
+                                     Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                       Expanded(
+                                         child: Padding(
+                                           padding: const EdgeInsets.only(),
+                                           child: Padding(
+                                             padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                             child: TextField( 
+                                               controller: resistateController,
+                                               decoration: InputDecoration(
+                                                 hintText: 'State',
+                                                 suffixIcon: Icon(Icons.edit),
+                                                 fillColor: Color(0xffF9F8FD),
+                                                 border: OutlineInputBorder(
+                                                                          
+                                                 )
+                                               ),
+                                                                        
+                                             ),
+                                           ),
+                                         ),
+                                       ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left:50,right:50,top:50),
+                                    child: TextField( 
+                                          controller: resiperidController,
+                                          decoration: InputDecoration(
+                                            hintText: 'Personal Id',
+                                            suffixIcon: Icon(Icons.upload),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                     
+                                            )
+                                          ),
+                                                                   
+                                        ),
+                                  ),
+                                ),
+                                    ],),
+                                     Padding(
+                                        padding: const EdgeInsets.only(left:50,top:50),
+                                        child: Column(
+                                          
+                                          children: [
+                                            Container(
+                                              width:MediaQuery.of(context).size.width*0.35,
+                                              child: TextField( 
+                                                    controller: resiadaridController,
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Adhaar Id',
+                                                      suffixIcon: Icon(Icons.upload),
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                               
+                                                      )
+                                                    ),
+                                                                             
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                 padding: const EdgeInsets.only(left:50,top:50),
+                                 child: Row(
+                                  children: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: korange,
+                                        minimumSize: Size(MediaQuery.of(context).size.width*0.36, 45)
+                                      ),
+                                      onPressed: (){}, 
+                                    child: Text('Update',
+                                    style: TextStyle(
+                                      fontSize: 17
+                                    ),))
+                                  ],
+                                 ),
+                               ),
+                                ],
+                              ),
+                             )  
                        
                       ],
                      ),
                    ),
                  ),
+                 
                      if(reghomeController.proindex.value==1)
                        Padding(
                          padding: const EdgeInsets.only(top: 50),
@@ -1530,7 +1936,7 @@ List partnerimage=[
                                               InkWell(
                                                 onTap: (){
                                                   setState(() {
-                                                      regshowController.showindex(1);
+                                                      regshowController.showindex(0);
                                                       offersindex=0;
                                                       regshowController.update();
                                                       });
@@ -1559,7 +1965,7 @@ List partnerimage=[
                                                   child: InkWell(
                                                     onTap: (){
                                                       setState(() {
-                                                      regshowController.showindex(2);
+                                                      regshowController.showindex(1);
                                                       offersindex=1;
                                                       regshowController.update();
                                                       });
@@ -1587,7 +1993,7 @@ List partnerimage=[
                                         ),
                                       ],
                                     ),
-                                    if(regshowController.showindex.value==2)
+                                    if(regshowController.showindex.value==1)
                                      Padding(
                                       padding: const EdgeInsets.only(left:20,top:30,right:30),
                                       child: Container(
@@ -1988,7 +2394,7 @@ List partnerimage=[
                                           ),
                                       ),
                                     ),
-                                   if(regshowController.showindex.value==1)
+                                   if(regshowController.showindex.value==0)
                                     Padding(
                                       padding: const EdgeInsets.only(left:20,top:30,right:30),
                                       child: Container(
@@ -2893,6 +3299,9 @@ List partnerimage=[
                                   ),
                                  ),
                                ),
+
+
+                              
                               
                     ]
                    ),

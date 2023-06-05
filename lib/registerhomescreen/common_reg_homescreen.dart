@@ -63,7 +63,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       color: reghomeController.reindex==0?kOrange:kblue
                      ),)),
                      Padding(
-                       padding: const EdgeInsets.only(left: 20),
+                       padding: const EdgeInsets.only(left: 10),
                        child: TextButton(onPressed: (){
                         Get.offAll(AboutUsScreen());
                         print("-------------------------");
@@ -76,7 +76,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                      ),
                       Padding(
-                   padding: const EdgeInsets.only(left: 20),
+                   padding: const EdgeInsets.only(left: 10),
                    child: TextButton(onPressed: (){
                 
                     reghomeController.reindex(2);
@@ -91,7 +91,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                  ),
                   
                  Padding(
-                   padding: const EdgeInsets.only(left: 30),
+                   padding: const EdgeInsets.only(left: 10),
                    child: TextButton(onPressed: (){
                 
                     reghomeController.reindex(3);
@@ -105,7 +105,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
                   Padding(
-                   padding: const EdgeInsets.only(left: 20),
+                   padding: const EdgeInsets.only(left: 10),
                    child: TextButton(onPressed: (){
                    
                     reghomeController.reindex(4);
@@ -119,7 +119,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
                    Padding(
-                   padding: const EdgeInsets.only(left: 20),
+                   padding: const EdgeInsets.only(left: 10),
                    child: TextButton(onPressed: (){
                 
                     reghomeController.reindex(5);
@@ -136,7 +136,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   
                   
                  Padding(
-                   padding: const EdgeInsets.only(left: 20),
+                   padding: const EdgeInsets.only(left: 10),
                    child: TextButton(onPressed: (){
                     reghomeController.reindex(6);
                     reghomeController.update();
@@ -151,7 +151,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                              ),
              ),
              Padding(
-               padding: const EdgeInsets.only(left: 50),
+               padding: const EdgeInsets.only(left: 10),
                child: Row(
                      
                  children: [
@@ -172,7 +172,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   //   child: Icon(Icons.search,color: kblue,),
                   //  ),
                    Padding(
-                     padding: const EdgeInsets.only(left: 20),
+                     padding: const EdgeInsets.only(left: 10),
                      child: Container(
                       height: 30,
                       width: 30,
@@ -192,30 +192,30 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         child: Icon(Icons.notifications,color: kblue,)),
                      ),
                    ),
-                  //  Padding(
-                  //    padding: const EdgeInsets.only(left: 20),
-                  //    child: InkWell(
-                  //     onTap: (){
-                  //       Get.to(Subscribe());
-                  //     },
-                  //      child: Container(
-                  //       height: 35,
-                  //       width:120,
-                  //       decoration: BoxDecoration(
-                  //         gradient: LinearGradient(colors:[
-                  //           korange,
-                  //           kyellow
-                  //         ]),
-                  //         borderRadius: BorderRadius.circular(15)
+                   Padding(
+                     padding: const EdgeInsets.only(left: 15),
+                     child: InkWell(
+                      onTap: (){
+                        Get.to(History());
+                      },
+                       child: Container(
+                        height: 35,
+                        width:120,
+                        decoration: BoxDecoration(
+                          gradient: LinearGradient(colors:[
+                            korange,
+                            kyellow
+                          ]),
+                          borderRadius: BorderRadius.circular(15)
                                 
-                  //       ),
-                  //       child: Center(child: Text('Subscription',
-                  //       style: TextStyle(fontSize: 15,color: kwhite),)),
-                  //      ),
-                  //    ),
-                  //  ),
+                        ),
+                        child: Center(child: Text('Subscription',
+                        style: TextStyle(fontSize: 15,color: kwhite),)),
+                       ),
+                     ),
+                   ),
                      Padding(
-                     padding: const EdgeInsets.only(left: 30),
+                     padding: const EdgeInsets.only(left: 20),
                      child: InkWell(
                       onTap: (){
                         Get.to(LandingScreen());
@@ -247,7 +247,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   onTap: () {
                     Get.offAll(RegisterProfileScreen());
                   },
-                  child: Image.asset('assets/images/nick.png',height: 35,fit: BoxFit.fitHeight,))]),
+                  child: Image.asset('assets/images/nick.png',
+                   height: 35,fit: BoxFit.fitHeight,))]),
              )
                    
                 ],
