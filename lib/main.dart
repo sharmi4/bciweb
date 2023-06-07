@@ -52,8 +52,8 @@ void main() {
   Get.put(YourCouponController());
   Get.put(ProfileController());
   Get.put(FlaightController());
-    Get.put(Flaight2Controller());
-      Get.put(Flaight3Controller());
+  Get.put(Flaight2Controller());
+  Get.put(Flaight3Controller());
   runApp(const MyApp());
 }
 

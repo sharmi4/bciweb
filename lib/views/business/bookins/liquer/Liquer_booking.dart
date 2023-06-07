@@ -1,3 +1,4 @@
+import 'package:bciweb/views/business/bookins/liquer/liquer_brand.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -116,12 +117,13 @@ class BookingLiquer extends StatelessWidget {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Icon(Icons.search),
+                                        kwidth10,
                                         Text(
                                           'Search Your Brand',
                                           style: TextStyle(
                                               fontSize: 20, color: kgrey),
                                         ),
-                                        kwidth10,
+                                        Spacer(),
                                         Image.asset(
                                             'assets/images/Icon material-location-on.png')
                                       ],
@@ -133,18 +135,24 @@ class BookingLiquer extends StatelessWidget {
                                   height: size.height * 0.061,
                                   width: size.width * 0.5,
                                 ),
-                                Container(
-                                  child: Center(
-                                      child: Text(
-                                    'Search',
-                                    style:
-                                        TextStyle(fontSize: 30, color: kwhite),
-                                  )),
-                                  height: size.height,
-                                  width: size.width * 0.1,
-                                  decoration: BoxDecoration(
-                                      color: kyellow,
-                                      borderRadius: BorderRadius.circular(10)),
+                                InkWell(
+                                  onTap: () {
+                                    Get.to(LiquerBrand());
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                        child: Text(
+                                      'Search',
+                                      style: TextStyle(
+                                          fontSize: 30, color: kwhite),
+                                    )),
+                                    height: 50,
+                                    width: size.width * 0.1,
+                                    decoration: BoxDecoration(
+                                        color: kyellow,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                  ),
                                 )
                               ],
                             ),
