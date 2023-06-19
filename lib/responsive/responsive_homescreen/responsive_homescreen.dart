@@ -1,5 +1,5 @@
 import 'package:bciweb/responsive/mobile_body/mobile_home.dart';
-import 'package:bciweb/responsive/mobile_body/mobile_homescreen.dart';
+import 'package:bciweb/responsive/mobile_body/mobile_homescreenn.dart';
 import 'package:flutter/material.dart';
 
 import '../../views/business/bookins/hotels/resort.dart';
