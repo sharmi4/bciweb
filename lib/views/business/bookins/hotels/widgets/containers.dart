@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../constant/constans.dart';
+import '../resort.dart';
 
 class HottelbookingContainer extends StatelessWidget {
   const HottelbookingContainer({
@@ -53,14 +56,19 @@ class HottelbookingContainer extends StatelessWidget {
                     .blue900
                     .make(),
                 ksizedbox10,
-                VxBox(
-                        child:
-                            Text('Explore Now').text.xl.thin.white.make().px2())
-                    .color(Vx.orange500)
-                    .roundedLg
-                    .p16
-                    .make()
-                    .px2()
+                InkWell(onTap: (){Get.to(ResortBooking());},
+                  child: VxBox(
+                          child: Text('Couple Friendly')
+                              .text
+                              .thin
+                              .white
+                              .make()
+                              .px1())
+                      .color(Vx.orange500)
+                      .p12
+                      .make()
+                      .px2(),
+                )
               ],
             ),
           ),
@@ -79,19 +87,13 @@ class HottelbookingContainer extends StatelessWidget {
                     Text('₹ 2,490').text.white.make(),
                     Text('₹ 508 taxes & fees').text.white.make(),
                     Text('Saving ₹ 1,009').text.white.make(),
-                    VxBox(
-                            child: Text('Book Now')
-                                .text
-                                .semiBold
-                                .thin
-                                .white
-                                .make()
-                                .px2())
+                    VxBox(child: Text('Book Now').text.thin.white.make()
+                            //    .px2()
+                            )
                         .color(Vx.orange500)
-                        .roundedLg
                         .p12
                         .make()
-                        .px2()
+//.px2()
                   ],
                 ),
               ),

@@ -19,14 +19,14 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
     return Container(
       color: kblue,
       child: Padding(
-        padding: EdgeInsets.only(bottom:20 ),
+        padding: EdgeInsets.only(bottom: 20),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(mainAxisAlignment: MainAxisAlignment.start,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                
                 Text(
                   "Privacy&Policy",
                   textAlign: TextAlign.start,
@@ -204,7 +204,6 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
             //   ],
             // ),
 
-            
             Padding(
               padding: EdgeInsets.only(bottom: 20),
               child: Column(
@@ -270,7 +269,8 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
             ),
             Padding(
               padding: EdgeInsets.only(bottom: 40),
-              child: Column(mainAxisAlignment: MainAxisAlignment.start,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(

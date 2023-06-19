@@ -1,5 +1,6 @@
 import 'package:bciweb/views/business/bookins/hotels/booking_hotels.dart';
 import 'package:bciweb/views/business/bookins/liquer/Liquer_booking.dart';
+import 'package:bciweb/views/business/bookins/trip/trip_about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -134,19 +135,21 @@ class BookingTrip extends StatelessWidget {
                               ])
                             ]),
                             Spacer(),
-                            VxBox(
-                                    child: Text('Explore Now')
-                                        .text
-                                        .xl2
-                                        .semiBold
-                                        .white
-                                        .make()
-                                        .px12())
-                                .color(Vx.orange500)
-                                .roundedLg
-                                .p24
-                                .make()
-                                .px20()
+                            InkWell(onTap: (){Get.to(AboutTrip());},
+                              child: VxBox(
+                                      child: Text('Explore Now')
+                                          .text
+                                          .xl2
+                                          .semiBold
+                                          .white
+                                          .make()
+                                          .px12())
+                                  .color(Vx.orange500)
+                                  .roundedLg
+                                  .p24
+                                  .make()
+                                  .px20(),
+                            )
                           ]),
                           height: 140,
                           width: size.width * 0.8,

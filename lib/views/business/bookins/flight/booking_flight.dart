@@ -66,6 +66,10 @@ class _BookingFlightState extends State<BookingFlight> {
     ];
  DateTime flaight2selectedDate = DateTime.now();
    DateTime flaightselectedDate = DateTime.now();
+ 
+  int increament = 0;
+  int decrement = 0;
+ 
   Future<void> _flaightselectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
@@ -75,11 +79,13 @@ class _BookingFlightState extends State<BookingFlight> {
     if (picked != null && picked != flaightselectedDate) {
       setState(() {
         flaightselectedDate = picked;
-        falightdobController.text = '${flaightselectedDate.day}-${flaightselectedDate.month}-${flaightselectedDate.year}';
+        falightdobController.text =
+            '${flaightselectedDate.day}-${flaightselectedDate.month}-${flaightselectedDate.year}';
       });
     }
   }
-    Future<void> _flaight2selectDate(BuildContext context) async {
+
+  Future<void> _flaight2selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: flaight2selectedDate,
@@ -88,14 +94,16 @@ class _BookingFlightState extends State<BookingFlight> {
     if (picked != null && picked != flaight2selectedDate) {
       setState(() {
         flaight2selectedDate = picked;
-        falight2dobController.text = '${flaight2selectedDate.day}-${flaight2selectedDate.month}-${flaight2selectedDate.year}';
+        falight2dobController.text =
+            '${flaight2selectedDate.day}-${flaight2selectedDate.month}-${flaight2selectedDate.year}';
       });
     }
   }
-   var falightdobController=TextEditingController();
-    var falight2dobController=TextEditingController();
-     var faligsearchController=TextEditingController();
-      var faligsearch2Controller=TextEditingController();
+
+  var falightdobController = TextEditingController();
+  var falight2dobController = TextEditingController();
+  var faligsearchController = TextEditingController();
+  var faligsearch2Controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final flaightController=Get.find<FlaightController>();
