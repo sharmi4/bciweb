@@ -44,7 +44,7 @@ class _CommonContainerState extends State<CommonContainer> {
                      TextButton(onPressed: (){
                      _homeController.index(0);
                      _homeController.update();
-                     Get.offAll(BusinessHomeScreen());
+                     Get.offAll(MemberHomeScreen());
                      }, 
                      child: Text('HOME',style: TextStyle(
                       color: _homeController.index==0?kOrange:kblue

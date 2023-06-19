@@ -1,3 +1,6 @@
+import 'dart:math';
+
+import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,7 +13,8 @@ import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
 
 class OfferScreen extends StatelessWidget {
-  const OfferScreen({super.key});
+   OfferScreen({super.key});
+  final authController=Get.find <AuthController>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,39 +59,79 @@ class OfferScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             ksizedbox40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                offers_container(),
-                offers_container(),
-              ],
+               GetBuilder<AuthController>(
+              builder: (_){
+                
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                 
+                  offers_container(
+                    
+                    image: authController.dataList.first.image,
+                    description: authController.dataList.first.description,),
+                  offers_container(image: authController.dataList.first.image,
+                  description: authController.dataList.first.description,),
+                ],
+              );
+              }
             ),
             ksizedbox30,
             ksizedbox40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                offers_container(),
-                offers_container(),
-              ],
+               GetBuilder<AuthController>(
+              builder: (_){
+                
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                 
+                  offers_container(
+                    
+                    image: authController.dataList.first.image,
+                    description: authController.dataList.first.description,),
+                  offers_container(image: authController.dataList.first.image,
+                  description: authController.dataList.first.description,),
+                ],
+              );
+              }
             ),
             ksizedbox30,
             ksizedbox40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                offers_container(),
-                offers_container(),
-              ],
+              GetBuilder<AuthController>(
+              builder: (_){
+                
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                 
+                  offers_container(
+                    
+                    image: authController.dataList.first.image,
+                    description: authController.dataList.first.description,),
+                  offers_container(image: authController.dataList.first.image,
+                  description: authController.dataList.first.description,),
+                ],
+              );
+              }
             ),
             ksizedbox30,
             ksizedbox40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                offers_container(),
-                offers_container(),
-              ],
+            GetBuilder<AuthController>(
+              builder: (_){
+                
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                 
+                  offers_container(
+                    
+                    image: authController.dataList.first.image,
+                    description: authController.dataList.first.description,),
+                  offers_container(image: authController.dataList.first.image,
+                  description: authController.dataList.first.description,),
+                ],
+              );
+              }
             ),
             ksizedbox30,
             InkWell(
@@ -128,8 +172,11 @@ class OfferScreen extends StatelessWidget {
 }
 
 class offers_container extends StatelessWidget {
-  const offers_container({
+  String image;
+  String description;
+ offers_container({
     super.key,
+    required this.description,required this.image
   });
 
   @override
@@ -153,34 +200,34 @@ class offers_container extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/images/NoPath - Copy (7).png'),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15)
+              ),
+              width: MediaQuery.of(context).size.width*0.15,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(image,fit: BoxFit.cover,))),
           ),
           kwidth10,
           Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
+           
             children: [
               ksizedbox10,
-              Text(
-                'JK Stores Offer For ',
-                style: TextStyle(
-                  fontSize: 25,
+              Container(
+                width: 100,
+                child: Text(
+                
+                  description,
+                  maxLines: 3,
+                  style: TextStyle(
+                    
+                    fontSize: 18,
+                    
+                  ),
                 ),
               ),
-              Text(
-                'Casual Shirts',
-                style: TextStyle(
-                  fontSize: 25,
-                ),
-              ),
-              Text(
-                '25% Offer',
-                style: TextStyle(fontSize: 25, color: Colors.grey),
-              ),
-              Text(
-                '5 Days Only',
-                style: TextStyle(fontSize: 25, color: Colors.grey),
-              ),
+             
               ksizedbox10,
             ],
           ),

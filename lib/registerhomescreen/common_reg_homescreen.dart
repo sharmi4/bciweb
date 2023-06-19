@@ -1,5 +1,6 @@
 
 
+import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/views/business/bookins/history/views/history.dart';
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 import 'package:bciweb/views/members/homescreens/reg_profile.dart';
@@ -14,6 +15,7 @@ import 'package:get/get.dart';
 import '../../../constant/constans.dart';
 import '../../../controller/home_controller.dart';
 import '../controller/reg_home_controller.dart';
+import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business/Gallery/gallery.dart';
 import '../views/business/services/views/services.dart';
@@ -29,7 +31,17 @@ class RegisterCommonContainer extends StatefulWidget {
 class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
   @override
   final reghomeController=Get.find<RegisterHomeController>();
+  final authController=Get.find<AuthController>();
   // final _homeController=Get.find<HomeController>();
+  
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authController.checkAuthendication();
+  }
+
+  
 
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -57,7 +69,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      TextButton(onPressed: (){
                      reghomeController.reindex(0);
                      reghomeController.update();
-                     Get.offAll(BusinessHomeScreen());
+                     Get.offAll(MemberHomeScreen());
                      }, 
                      child: Text('HOME',style: TextStyle(
                       color: reghomeController.reindex==0?kOrange:kblue
@@ -150,92 +162,118 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                  ),
                              ),
              ),
-             Padding(
-               padding: const EdgeInsets.only(left: 10),
-               child: Row(
-                     
-                 children: [
-                  //  Container(
-                  //   height: 30,
-                  //   width: 30,
-                  //   decoration: BoxDecoration(
-                  //    color: kwhite,
-                  //    shape: BoxShape.circle,
-                  //    boxShadow: <BoxShadow>[
-                  //     BoxShadow(
-                  //       offset: Offset(0.0, 0.75),
-                  //       blurRadius: 2,
-                  //       color: kgrey
-                  //     )
-                  //    ]
-                  //   ),
-                  //   child: Icon(Icons.search,color: kblue,),
-                  //  ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 10),
-                     child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                         color: kwhite,
-                         shape: BoxShape.circle,
-                         boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            offset: Offset(0.0, 0.75),
-                            blurRadius: 2,
-                            color: kgrey
-                          )
-                         ]
-                      ),
-                      
-                      child: InkWell(onTap: (){Get.to(History());},
-                        child: Icon(Icons.notifications,color: kblue,)),
-                     ),
-                   ),
-                   Padding(
-                     padding: const EdgeInsets.only(left: 15),
-                     child: InkWell(
-                      onTap: (){
-                        Get.to(History());
-                      },
-                       child: Container(
-                        height: 35,
-                        width:120,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(colors:[
-                            korange,
-                            kyellow
-                          ]),
-                          borderRadius: BorderRadius.circular(15)
-                                
-                        ),
-                        child: Center(child: Text('Subscription',
-                        style: TextStyle(fontSize: 15,color: kwhite),)),
-                       ),
-                     ),
-                   ),
+             Obx(()=>
+                Padding(
+                 padding: const EdgeInsets.only(left: 10),
+                 child: Row(
+                       
+                   children: [
+                    //  Container(
+                    //   height: 30,
+                    //   width: 30,
+                    //   decoration: BoxDecoration(
+                    //    color: kwhite,
+                    //    shape: BoxShape.circle,
+                    //    boxShadow: <BoxShadow>[
+                    //     BoxShadow(
+                    //       offset: Offset(0.0, 0.75),
+                    //       blurRadius: 2,
+                    //       color: kgrey
+                    //     )
+                    //    ]
+                    //   ),
+                    //   child: Icon(Icons.search,color: kblue,),
+                    //  ),
                      Padding(
-                     padding: const EdgeInsets.only(left: 20),
-                     child: InkWell(
-                      onTap: (){
-                        Get.to(LandingScreen());
-                      },
+                       padding: const EdgeInsets.only(left: 10),
                        child: Container(
-                        height: 35,
-                        width:120,
+                        height: 30,
+                        width: 30,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(colors:[
-                            korange,
-                            kyellow
-                          ]),
-                          borderRadius: BorderRadius.circular(15)
-                                
+                           color: kwhite,
+                           shape: BoxShape.circle,
+                           boxShadow: <BoxShadow>[
+                            BoxShadow(
+                              offset: Offset(0.0, 0.75),
+                              blurRadius: 2,
+                              color: kgrey
+                            )
+                           ]
                         ),
-                        child: Center(child: Text('Registration',
-                        style: TextStyle(fontSize: 15,color: kwhite),)),
+                        
+                        child: InkWell(onTap: (){Get.to(History());},
+                          child: Icon(Icons.notifications,color: kblue,)),
                        ),
                      ),
-                   ) ],
+                     Padding(
+                       padding: const EdgeInsets.only(left: 15),
+                       child: InkWell(
+                        onTap: (){
+                          Get.to(Subscribe());
+                        },
+                         child: Container(
+                          height: 35,
+                          width:120,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors:[
+                              korange,
+                              kyellow
+                            ]),
+                            borderRadius: BorderRadius.circular(15)
+                                  
+                          ),
+                          child: Center(child: Text('Membership',
+                          style: TextStyle(fontSize: 15,color: kwhite),)),
+                         ),
+                       ),
+                     ),
+                    authController.isLogedin==false? 
+                       Padding(
+                       padding: const EdgeInsets.only(left: 20),
+                       child: InkWell(
+                        onTap: (){
+                          Get.to(LandingScreen());
+                        },
+                         child: Container(
+                          height: 35,
+                          width:120,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors:[
+                              korange,
+                              kyellow
+                            ]),
+                            borderRadius: BorderRadius.circular(15)
+                                  
+                          ),
+                          child: Center(child: Text('Registration',
+                          style: TextStyle(fontSize: 15,color: kwhite),)),
+                         ),
+                       ),
+                     ) : 
+                     Padding(
+                       padding: const EdgeInsets.only(left: 20),
+                       child: InkWell(
+                        onTap: (){
+                          Get.to(MobileVerification());
+                        },
+                         child: Container(
+                          height: 35,
+                          width:120,
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(colors:[
+                              korange,
+                              kyellow
+                            ]),
+                            borderRadius: BorderRadius.circular(15)
+                                  
+                          ),
+                          child: Center(child: Text('LogOut',
+                          style: TextStyle(fontSize: 15,color: kwhite),)),
+                         ),
+                       ),
+                     ) 
+                     ],
+                 ),
                ),
              ),
              Padding(

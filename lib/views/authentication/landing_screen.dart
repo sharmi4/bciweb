@@ -32,8 +32,9 @@ class LandingScreen extends StatelessWidget {
                 ksizedbox20,
                 InkWell(
                   onTap: () {
+                      Get.toNamed('/otp-verification');
                     // Get.toNamed('/otp-verification');
-                    //  Get.to(const MemberLoginScreen());
+                    //  Get.to(const MemberLoginScreen()); 
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, left: 20),
@@ -80,7 +81,7 @@ class LandingScreen extends StatelessWidget {
                 ksizedbox20,
                 InkWell(
                   onTap: () {
-                    Get.toNamed('/otp-verification');
+                  
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, left: 20),

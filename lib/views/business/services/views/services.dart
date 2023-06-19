@@ -1,4 +1,5 @@
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/views/business/bookins/history/views/widgets/widgetsdemo.dart';
 import 'package:bciweb/views/business/services/views/widgets/containors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -8,8 +9,11 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../../constant/constans.dart';
 //import '../../../../registerhomescreen/common_reg_appbar';
+import '../../../../controller/auth_controller/auth_controller.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
+import '../../../../services/networks/services/service_list_apiservice.dart';
 import '../../../members/common_widget/common.dart';
+import 'offerce.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -21,7 +25,15 @@ class Services extends StatefulWidget {
 CarouselController curouselController = CarouselController();
 
 class _ServicesState extends State<Services> {
+
+@override
+void initState() {
+  super.initState();
+  authController.getservice();
+}
   int pageIndex = 0;
+
+  final authController=Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +53,7 @@ class _ServicesState extends State<Services> {
                     bottom: 0,
                     right: 0,
                     child: Center(
-                      child: Text('SERVICES US', style: displayfont),
+                      child: Text('SERVICE', style: displayfont),
                     ),
                   )
                 ],
@@ -70,61 +82,79 @@ class _ServicesState extends State<Services> {
                   style: TextStyle(color: ktextblue),
                 )),
             ksizedbox20,
-            Column(
-              children: [
-                CarouselSlider(
-                  carouselController: curouselController,
-                  items: [
+            GetBuilder<AuthController>(
+              
+              builder: (_){
+              print(authController.dataList);
+        return  Column(
+                children: [
+                  CarouselSlider(
+                    
+                    carouselController: curouselController,
+                    items: [
+            
+              
+                  for( var i=0;i<authController.dataList.length;i++)  
                     InkWell(
-                      child: servicecontainer(),
-                      onTap: () {
-                        Get.toNamed('/coupones');
+                      
+                        child: servicecontainer(
+                          
+                          image: authController.dataList[i].image,
+                        
+                          title: authController.dataList[i].title,
+                          description: authController.dataList[i].description,
+                        ),
+                        
+                        onTap: () {
+                          Get.toNamed('/coupones');
+                        },
+                      ),
+                      // InkWell(
+                      //   child: servicecontainer(),
+                      //   onTap: () {
+                      //     Get.toNamed('/coupones');
+                      //   },
+                      // ),
+                      // InkWell(
+                      //   child: servicecontainer(),
+                      //   onTap: () {
+                      //     Get.toNamed('/coupones');
+                      //   },
+                      // ),
+                    ],
+                    options: CarouselOptions(
+                      height: 170.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 3200),
+                      viewportFraction: 0.8,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          pageIndex = index;
+                        });
                       },
                     ),
-                    InkWell(
-                      child: servicecontainer(),
-                      onTap: () {
-                        Get.toNamed('/coupones');
-                      },
-                    ),
-                    InkWell(
-                      child: servicecontainer(),
-                      onTap: () {
-                        Get.toNamed('/coupones');
-                      },
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    height: 150.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 3200),
-                    viewportFraction: 0.8,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        pageIndex = index;
-                      });
-                    },
                   ),
-                ),
-                ksizedbox10,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: pageIndex,
-                      count: 3,
-                      effect: ScaleEffect(
-                          dotHeight: 9.0,
-                          dotWidth: 9.0,
-                          dotColor: kgrey,
-                          activeDotColor: Colors.yellow),
-                    ),
-                  ],
-                ),
-              ],
+                  ksizedbox10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedSmoothIndicator(
+                        activeIndex: pageIndex,
+                        count: 3,
+                        effect: ScaleEffect(
+                            dotHeight: 9.0,
+                            dotWidth: 9.0,
+                            dotColor: kgrey,
+                            activeDotColor: Colors.yellow),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+              }
             ),
             ksizedbox30,
             InkWell(
@@ -211,61 +241,60 @@ class _ServicesState extends State<Services> {
                 )),
             ksizedbox40,
             ksizedbox30,
-            Column(
-              children: [
-                CarouselSlider(
-                  carouselController: curouselController,
-                  items: [
-                    InkWell(
-                      child: offercontainer(),
-                      onTap: () {
-                        Get.toNamed('/offer-screen');
+            GetBuilder<AuthController>(
+   builder: (_){
+              return Column(
+                children: [
+                  
+                  CarouselSlider(
+                    carouselController: curouselController,
+                    
+                    items: [
+                      for(var j=0 ; j< authController.dataList.length;j++)
+                      InkWell(
+                        child: offers_container(
+                          image: authController.dataList[j].image,
+                          description: authController.dataList[j].description,
+                        ),
+                        onTap: () {
+                          Get.toNamed('/offer-screen');
+                        },
+                      ),
+                      
+                    ],
+                    options: CarouselOptions(
+                      height: 170.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 3200),
+                      viewportFraction: 0.8,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          pageIndex = index;
+                        });
                       },
                     ),
-                    InkWell(
-                      child: offercontainer(),
-                      onTap: () {
-                        Get.toNamed('/offer-screen');
-                      },
-                    ),
-                    InkWell(
-                      child: offercontainer(),
-                      onTap: () {
-                        Get.toNamed('/offer-screen');
-                      },
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    height: 170.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 3200),
-                    viewportFraction: 0.8,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        pageIndex = index;
-                      });
-                    },
                   ),
-                ),
-                ksizedbox10,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: pageIndex,
-                      count: 3,
-                      effect: ScaleEffect(
-                          dotHeight: 9.0,
-                          dotWidth: 9.0,
-                          dotColor: kgrey,
-                          activeDotColor: Colors.yellow),
-                    ),
-                  ],
-                ),
-              ],
+                  ksizedbox10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedSmoothIndicator(
+                        activeIndex: pageIndex,
+                        count: 3,
+                        effect: ScaleEffect(
+                            dotHeight: 9.0,
+                            dotWidth: 9.0,
+                            dotColor: kgrey,
+                            activeDotColor: Colors.yellow),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+   }
             ),
             //  offercontainer(),
             ksizedbox30,

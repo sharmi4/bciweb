@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
@@ -5,10 +6,21 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
 import '../../constant/constans.dart';
+import '../../controller/auth_controller/auth_controller.dart';
 
-class OtpVerification extends StatelessWidget {
-  const OtpVerification({super.key});
+class OtpVerification extends StatefulWidget {
+   OtpVerification({super.key, this.phoneNumber='',this.otp=''});
+  String phoneNumber;
+  String otp;
 
+  @override
+  State<OtpVerification> createState() => _OtpVerificationState();
+}
+
+class _OtpVerificationState extends State<OtpVerification> {
+  String otpString = "";
+  
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -21,47 +33,62 @@ class OtpVerification extends StatelessWidget {
               children: [
                 ksizedbox30,
                 Image.asset('assets/images/3534.png'),
+                ksizedbox20,
                 Text(
                   'OTP Verification',
                 style: TextStyle(
                 fontSize: 22, color: kblue, fontWeight: FontWeight.w700),
                 ),
-                ksizedbox10,
+                ksizedbox30,
                 Text(
-                  'Enter the OTP sent to +91 9633749714',
+                  'Enter the OTP sent to ${widget.phoneNumber}',
                    style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.w600,
                     //   decoration: TextDecoration.underline,
                     color: kblue),
                 ),
                 ksizedbox20,
-                SingleChildScrollView(
-                  child: OtpTextField(
-                    numberOfFields: 5,
-                    borderColor: Color(0xFF512DA8),
-                    //set to true to show as box or false to show as dash
-                    showFieldAsBox: true,
-                    //runs when a code is typed in
-                    onCodeChanged: (String code) {
-                      //handle validation or checks here
-                    },
-                    //runs when every textfield is filled
-                    onSubmit: (String verificationCode) {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              title: Text("Verification Code"),
-                              content:
-                                  Text('Code entered is $verificationCode'),
-                            );
-                          });
-                    }, // end onSubmit
+                Text(
+                    'OTP is ${widget.otp}',
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        //   decoration: TextDecoration.underline,
+                        color: kblue),
                   ),
-                ),
                 ksizedbox30,
-                Row(
+                SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      OtpTextField(
+                        numberOfFields: 4,
+                        borderColor: Color(0xFF512DA8),
+                        //set to true to show as box or false to show as dash
+                        showFieldAsBox: true,
+                        //runs when a code is typed in
+                        onCodeChanged: (String code) {
+                          //handle validation or checks here
+                        },
+                        //runs when every textfield is filled
+                        onSubmit: (String verificationCode) {
+                             setState(() {
+                               otpString=verificationCode;
+                             });
+
+                          // showDialog(
+                          //     context: context,
+                          //     builder: (context) {
+                          //       return AlertDialog(
+                          //         title: Text("Verification Code"),
+                          //         content:
+                          //             Text('Code entered is $verificationCode'),
+                          //       );
+                          //     });
+                        }, // end onSubmit
+                      ),
+                      ksizedbox20,
+                       Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -72,52 +99,96 @@ class OtpVerification extends StatelessWidget {
                     //   decoration: TextDecoration.underline,
                     color: kblue),
                     ),
-                    Text(
-                      "Resent",
-                     style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    decoration: TextDecoration.underline,
-                    color: kOrange),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 8),
+                      child: Text(
+                        "Resent",
+                       style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                      color: kOrange),
+                      ),
                     ),
-                    ksizedbox20,
+                  
                   ],
                 ),
-                ksizedbox30,
-                InkWell(
-                  onTap: () {Get.toNamed('/verification-done');
-                    //     Get.to(BusinessverifiedScreen());
-                  },
-                  child: Container(
-                    width: size.width*0.3,
-                    height: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        4,
-                      ),
-                      border: Border.all(color: const Color(0xffFFBF7E)),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0xFFFF5C29),
-                          blurRadius: 3.0,
-                        )
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Color(0xFFFF5C29),
-                          Color(0xFFFFCD38),
-                        ],
-                      ),
-                    ),
-                    child: Text(
-                      'Verify',
-                      style: TextStyle(
-                          fontSize: 22,
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40),
+                  child: Obx(()=>
+                  authController.isLoading.isTrue?
+                  Padding(
+                      padding: const EdgeInsets.only(left: 20, right: 20),
+                      child: Container(
+                        width: double.infinity,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            4,
+                          ),
+                          border: Border.all(color: const Color(0xffFFBF7E)),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xFFFF5C29),
+                              blurRadius: 3.0,
+                            )
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color(0xFFFF5C29),
+                              Color(0xFFFFCD38),
+                            ],
+                          ),
+                        ),
+                        child: const CircularProgressIndicator(
                           color: Colors.white,
-                          fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ):
+                     InkWell(
+                      onTap: () {
+                        authController.loginUsers(mobile: widget.phoneNumber, 
+                        otp: widget.otp,screen: false);
+                        //     Get.to(BusinessverifiedScreen());
+                      },
+                      child: Container(
+                        width: size.width*0.3,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(
+                            4,
+                          ),
+                          border: Border.all(color: const Color(0xffFFBF7E)),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xFFFF5C29),
+                              blurRadius: 3.0,
+                            )
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color(0xFFFF5C29),
+                              Color(0xFFFFCD38),
+                            ],
+                          ),
+                        ),
+                        child: Text(
+                          'Verify',
+                          style: TextStyle(
+                              fontSize: 22,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ),
                   ),
                 ),

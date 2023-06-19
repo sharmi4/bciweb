@@ -4,10 +4,19 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import '../../constant/constans.dart';
+import '../../controller/auth_controller/auth_controller.dart';
 
-class MobileVerification extends StatelessWidget {
+class MobileVerification extends StatefulWidget {
   const MobileVerification({super.key});
 
+  @override
+  State<MobileVerification> createState() => _MobileVerificationState();
+}
+
+class _MobileVerificationState extends State<MobileVerification> {
+   var phoneNumberController = TextEditingController();
+
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -33,13 +42,7 @@ class MobileVerification extends StatelessWidget {
                           color: kblue,
                           fontWeight: FontWeight.w700),
                     ),
-                    Text(
-                      'Enter Your Phone Number',
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: kblue,
-                          fontWeight: FontWeight.w700),
-                    ),
+                    ksizedbox30,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -48,49 +51,53 @@ class MobileVerification extends StatelessWidget {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 18, color: kblue),
                         ),
-                        Text(
-                          'One Time Password',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              color: kblue),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 5),
+                          child: Text(
+                            'One Time Password',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                color: kblue),
+                          ),
                         ),
                       ],
                     ),
-                    Text(
-                      'on this mobile number',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18, color: kblue),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Text(
+                        'on this mobile number',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 18, color: kblue),
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(top: 30),
                       child: Container(
                         width: size.width * 0.3,
                         height: 50,
                         child: TextFormField(
+                          controller: phoneNumberController,
                           decoration: InputDecoration(
                             prefixIcon:
                                 Image.asset('assets/images/Image 8.png'),
                             suffixIcon: Image.asset(
                                 'assets/images/flaightcorrectimage.png'),
-                            hintText: 'Enter your username',
-                            labelText: '+91 9633749714',
+                            hintText: 'Enter your Number',
+                          
                             border: const OutlineInputBorder(),
                           ),
                         ),
                       ),
                     ),
-                    ksizedbox20,
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed('/final-otp-verification');
-                        },
-                        //   Get.to(const BusinessOtpvarification());},
-                        child: Container(
-                          width: size.width * 0.3,
+                    ksizedbox30,
+                    Obx(()=>
+                       Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: authController.isLoading.isTrue ?
+                        Container(
+                          width: size.width*0.25,
                           height: 50,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
@@ -113,12 +120,58 @@ class MobileVerification extends StatelessWidget {
                               ],
                             ),
                           ),
-                          child: const Text(
-                            'Genarate OTP',
-                            style: TextStyle(
-                                fontSize: 22,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
+                          child: const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ):InkWell(
+                          onTap: () {
+                             if (phoneNumberController.text.isNotEmpty) {
+                              authController.getOtpFunction(
+                                  mobileNumber: phoneNumberController.text, isMobile: false);
+                            } else {
+                              Get.rawSnackbar(
+                                backgroundColor: Colors.red,
+                                messageText: Text(
+                                  "Please Enter your number",
+                                  style:
+                                      primaryFont.copyWith(color: Colors.white),
+                                ),
+                              );
+                            }
+                            //Get.toNamed('/final-otp-verification');
+                          },
+                          //   Get.to(const BusinessOtpvarification());},
+                          child: Container(
+                            width: size.width * 0.25,
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                              border: Border.all(color: const Color(0xffFFBF7E)),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0xFFFF5C29),
+                                  blurRadius: 3.0,
+                                )
+                              ],
+                              gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Color(0xFFFF5C29),
+                                  Color(0xFFFFCD38),
+                                ],
+                              ),
+                            ),
+                            child: const Text(
+                              'Genarate OTP',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         ),
                       ),

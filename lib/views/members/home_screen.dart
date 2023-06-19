@@ -8,18 +8,19 @@ import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
 import '../../registerhomescreen/common_reg_homescreen.dart';
+import '../business/bookins/flight/booking_flight.dart';
 import 'common_widget/common.dart';
 //import 'common_widget/commoncontainer.dart';
 //import 'common_widget/common_buttom.dart';
 
-class BusinessHomeScreen extends StatefulWidget {
-  const BusinessHomeScreen({super.key});
+class MemberHomeScreen extends StatefulWidget {
+  const MemberHomeScreen({super.key});
 
   @override
-  State<BusinessHomeScreen> createState() => _BusinessHomeScreenState();
+  State<MemberHomeScreen> createState() => _MemberHomeScreenState();
 }
 
-class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
+class _MemberHomeScreenState extends State<MemberHomeScreen> {
   final _homeController = Get.find<HomeController>();
   @override
   Widget build(BuildContext context) {
@@ -320,19 +321,24 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                         children: [
                           Row(
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    'BOOK',
-                                    style:
-                                        TextStyle(color: kOrange, fontSize: 45),
-                                  ),
-                                  Text(
-                                    ' YOUR FLIGHT',
-                                    style:
-                                        TextStyle(fontSize: 45, color: kwhite),
-                                  )
-                                ],
+                              GestureDetector(
+                                onTap: (){
+                                  Get.to(BookingFlight());
+                                },
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      'BOOK',
+                                      style:
+                                          TextStyle(color: kOrange, fontSize: 45),
+                                    ),
+                                    Text(
+                                      ' YOUR FLIGHT',
+                                      style:
+                                          TextStyle(fontSize: 45, color: kwhite),
+                                    )
+                                  ],
+                                ),
                               ),
                             ],
                           ),

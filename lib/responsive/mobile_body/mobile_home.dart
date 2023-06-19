@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
 
+import '../../controller/auth_controller/auth_controller.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 import '../responsive_subscription/responsive_subscription.dart';
 import '../mobile_wdgets/drawer.dart';
@@ -17,6 +18,13 @@ class MobileHome extends StatefulWidget {
 }
 
 class _MobileHomeState extends State<MobileHome> {
+final authController=Get.find<AuthController>();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authController.checkAuthendication();
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

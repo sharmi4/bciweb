@@ -6,13 +6,21 @@ import 'package:flutter/src/widgets/placeholder.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../../constant/constans.dart';
+import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../views/authentication/signup.dart';
 import '../otp_verification/otp_verification.dart';
 import '../sign_up_view/sign_up_screen.dart';
 
-class MemberLoginScreen extends StatelessWidget {
+class MemberLoginScreen extends StatefulWidget {
   const MemberLoginScreen({super.key});
 
+  @override
+  State<MemberLoginScreen> createState() => _MemberLoginScreenState();
+}
+
+class _MemberLoginScreenState extends State<MemberLoginScreen> {
+  final authController = Get.find<AuthController>();
+   var phoneNumberController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -65,60 +73,108 @@ class MemberLoginScreen extends StatelessWidget {
               ksizedbox40,
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 50,
-                  child: TextFormField(
-                    decoration: InputDecoration(
-                      prefixIcon: Image.asset('assets/images/Image 8.png'),
-                      suffixIcon: Image.asset('assets/images/Path 471.png'),
-                      hintText: 'Enter your username',
-                      labelText: '+91 9633749714',
-                      border: const OutlineInputBorder(),
+                child: Form(
+                  child: Container(
+                    height: 50,
+                    child: TextFormField(
+                      controller: phoneNumberController,
+                      decoration: InputDecoration(
+                        
+                        prefixIcon: Image.asset('assets/images/Image 8.png'),
+                        //suffixIcon: Image.asset('assets/images/Path 471.png'),
+                        hintText: 'Enter your Number',
+                      
+                        border: const OutlineInputBorder(),
+                      ),
                     ),
                   ),
                 ),
               ),
               ksizedbox10,
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(const otp_varification());
-                  },
-                  child: Container(
-                    width: size.width,
-                    height: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        4,
-                      ),
-                      border: Border.all(color: const Color(0xffFFBF7E)),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0xFFFF5C29),
-                          blurRadius: 3.0,
-                        )
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Color(0xFFFF5C29),
-                          Color(0xFFFFCD38),
-                        ],
+             Obx(()=>
+                       Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: authController.isLoading.isTrue ?
+                        Container(
+                          width: size.width*0.42,
+                          height: 45,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              8,
+                            ),
+                            border: Border.all(color: const Color(0xffFFBF7E)),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0xFFFF5C29),
+                                blurRadius: 3.0,
+                              )
+                            ],
+                            gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color(0xFFFF5C29),
+                                Color(0xFFFFCD38),
+                              ],
+                            ),
+                          ),
+                          child: const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ):InkWell(
+                          onTap: () {
+                             if (phoneNumberController.text.isNotEmpty) {
+                              authController.getOtpFunction(
+                                  mobileNumber: phoneNumberController.text, isMobile: true);
+                            } else {
+                              Get.rawSnackbar(
+                                backgroundColor: Colors.red,
+                                messageText: Text(
+                                  "Please Enter your number",
+                                  style:
+                                      primaryFont.copyWith(color: Colors.white),
+                                ),
+                              );
+                            }
+                            //Get.toNamed('/final-otp-verification');
+                          },
+                          //   Get.to(const BusinessOtpvarification());},
+                          child: Container(
+                           width: size.width*0.42,
+                          height: 45,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                8,
+                              ),
+                              border: Border.all(color: const Color(0xffFFBF7E)),
+                              boxShadow: const [
+                                BoxShadow(
+                                  color: Color(0xFFFF5C29),
+                                  blurRadius: 3.0,
+                                )
+                              ],
+                              gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Color(0xFFFF5C29),
+                                  Color(0xFFFFCD38),
+                                ],
+                              ),
+                            ),
+                            child: const Text(
+                              'Genarate OTP',
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                    child: const Text(
-                      'Genarate OTP',
-                      style: TextStyle(
-                          fontSize: 22,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ),
-              ),
               ksizedbox10,
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

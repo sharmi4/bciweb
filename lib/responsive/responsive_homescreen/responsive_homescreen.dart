@@ -23,7 +23,7 @@ class _MobileHomeScreenState extends State<MobileHomeScreen> {
     final currentWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: ResponsiveLayout(
-          mobilebody: MobileHome(), desktopbody: BusinessHomeScreen()),
+          mobilebody: MobileHome(), desktopbody: MemberHomeScreen()),
     );
   }
 }

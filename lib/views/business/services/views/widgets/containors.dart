@@ -53,8 +53,12 @@ class offercontainer extends StatelessWidget {
 }
 
 class servicecontainer extends StatelessWidget {
-  const servicecontainer({
+  String title;
+  String image;
+  String description;
+ servicecontainer({
     super.key,
+    required this.description,required this.image,required this.title
   });
 
   @override
@@ -66,15 +70,23 @@ class servicecontainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-                width: 180,
+                width: 200,
                 child: Column(
                   children: [
-                    Text(
-                      'New Shopping Get In New Coupons availables into more coupons.',
-                      style: TextStyle(
-                        color: ktextblue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
+                    Padding(
+                      padding: const EdgeInsets.only(top:30),
+                      child: Column(
+                        children: [
+                          Text(
+                          description,
+                            style: TextStyle(
+                              height: 1,
+                              color: ktextblue,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     ksizedbox10,
@@ -83,7 +95,7 @@ class servicecontainer extends StatelessWidget {
                           color: kblue, borderRadius: BorderRadius.circular(4)),
                       child: Center(
                           child: Text(
-                        'Click Now',
+                      'Check Now',
                         style: TextStyle(
                             fontWeight: FontWeight.w600, color: kwhite),
                       )),
@@ -94,7 +106,13 @@ class servicecontainer extends StatelessWidget {
                 )),
             Container(
               height: 150,
-              child: Image.asset('assets/images/NoPath - Copy (3).png'),
+              width:170,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20)
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(image,fit: BoxFit.cover,)),
             )
           ],
         ),

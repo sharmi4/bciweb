@@ -7,9 +7,12 @@ import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import '../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../controller/profile_controller.dart';
 import '../../../controller/profile_show_controller.dart';
 //import '../../../registerhomescreen/common_reg_appbar';
+import '../../../models/create_account_model.dart';
+import '../../../models/member profileupdate.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
@@ -23,7 +26,10 @@ class  RegisterProfileScreen extends StatefulWidget {
 class _RegisterProfileScreenState extends State< RegisterProfileScreen> {
   final reghomeController=Get.find<RegisterProfileController>();
   final regshowController=Get.find<ProfileShowController>();
-  final profileController=Get.find<ProfileController>();
+  final authprofileController=Get.find<AuthProfileController>();
+    final profileController=Get.find<ProfileController>();
+
+
   var nameController=TextEditingController();
   var dobController=TextEditingController();
   var emailController=TextEditingController();
@@ -35,7 +41,7 @@ class _RegisterProfileScreenState extends State< RegisterProfileScreen> {
   var spousenameController=TextEditingController();
   var dateofbirthController=TextEditingController();
   var childrensController=TextEditingController();
-var referalCOntroller=TextEditingController();
+  var referalCOntroller=TextEditingController();
   var subNameController=TextEditingController();
   var subMobileController=TextEditingController();
   var subEmailController=TextEditingController();
@@ -55,32 +61,9 @@ var referalCOntroller=TextEditingController();
        var resiperidController=TextEditingController();
        var resiadaridController=TextEditingController();
        var resiaddressController=TextEditingController();
-   File? image;
-  // Future pickerimage() async {
-  //   try {
-  //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //     if (image == null) return;
-  //     final imagetemp = File(image.path);
-  //     setState(() {
-  //       this.image = imagetemp;
-  //     });
-  //   } catch (e) {
-  //     print('Failed to pick image:$e');
-  //   }
-  // }
-   
-  Future imagepic() async {
-    try {
-      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image == null) return;
-      final imagetemp = File(image.path);
-      setState(() {
-        this.image = imagetemp;
-      });
-    } catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
+  dynamic imageprofile;
+
+  
 
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
@@ -110,11 +93,12 @@ var referalCOntroller=TextEditingController();
       });
     }
   }
-bool _value=false;
-bool _value2=false;
+bool isMarried =false;
+bool isUnmarried =false;
 bool _value3=false;
 bool _value4=false;
 int offersindex=0;
+bool isLoading=false;
 List partnerimage=[
   'assets/images/partnerimage1.png',
   'assets/images/partnerimage2.png',
@@ -123,8 +107,48 @@ List partnerimage=[
   'assets/images/partnerimage5.png',
   'assets/images/partnerimage6.png'
   ];
+@override
+void initState() {
+
+  super.initState();
+    setDefauld();
+}
+  setDefauld()async{
+     await authprofileController.getProfile();
+     if(authprofileController.profileData.isNotEmpty){
+    nameController.text= authprofileController.profileData.first.name;
+    numberController.text= authprofileController.profileData.first.mobile;
+    emailController.text= authprofileController.profileData.first.email;
+    occupationController.text= authprofileController.profileData.first.occupation;
+    fathernameController.text=authprofileController.profileData.first.fatherName;
+    mothernameController.text=authprofileController.profileData.first.motherName;
+    
+     officedoornoController.text =
+          authprofileController.profileData.first.officialAddress.doorNo;
+      officebnameController.text =
+          authprofileController.profileData.first.officialAddress.buildingName;
+      officeaddresController.text =
+          authprofileController.profileData.first.officialAddress.address;
+
+      officeaddresController.text = authprofileController.profileData.first.officialAddress.city;
+      officestateController.text = authprofileController.profileData.first.officialAddress.state;
+
+      
+
+      setState(() {
+        isMarried =
+            authprofileController.profileData.first.isMarried == "0" ? false : true;
+              isUnmarried =
+            authprofileController.profileData.first.isMarried == "0" ? false : true;
+      });
+      dateofbirthController.text = authprofileController.profileData.first.dob;
+    }
+     }
+    
+  
   @override
   Widget build(BuildContext context) {
+     var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -595,33 +619,63 @@ List partnerimage=[
                             children: [
                               Stack(
                                 children:[ 
-                                  Center(
-                                    child: image!=null?Image.file(image!):InkWell(
-                                      onTap: (){
-
-                                      },
-                                      child: Image.asset('assets/images/profileimage.png',
-                                                                    height: 90,fit: BoxFit.fitHeight,),
-                                    ),
-                                  ),
+                                  
                                  Padding(
                                 padding: const EdgeInsets.only(top: 60,left: 75),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    
-                                    InkWell(
-                                      onTap: (){
-                                        imagepic();
+                                child: GetBuilder<AuthProfileController>(
+                                  builder:(_){
+                                  return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(""),
+                                if (authprofileController.profileData.isNotEmpty)
+                                  InkWell(
+                                      onTap: ()async {
+                                       
+                          PickedFile? pickedFile = await ImagePicker().getImage(
+                            source: ImageSource.gallery,
+                          );
+                           
+                           
+                          var tempCont = await pickedFile!.readAsBytes();
+                          setState(() {
+                            imageprofile = tempCont;
+                          });
+                          authprofileController.updateProfilePic(imageprofile);
+
                                       },
-                                      child: CircleAvatar(
-                                        backgroundColor: kblue,
-                                        radius: 12,
-                                        child: Icon(
-                                          Icons.camera_alt_outlined,size: 15,),
-                                      ),
-                                    )
-                                  ],
+                                      child:imageprofile != null ? Image.memory(
+                                              imageprofile!) :   authprofileController.profileData.first
+                                                  .profilePicture ==
+                                              null
+                                          ?  Image.asset(
+                                              'assets/images/profileimage.png')
+                                          : Container(
+                                              height: 60,
+                                              width: 60,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          authprofileController
+                                                              .profileData
+                                                              .first
+                                                              .profilePicture))),
+                                            )),
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 40),
+                                  child: Text(
+                                    "",
+                                    style: TextStyle(
+                                        color: Color(0xffFF5003),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            );
+                                  }
                                 ), 
                               )
                                 ]
@@ -655,7 +709,7 @@ List partnerimage=[
                                         children: [
                                           TextField(
                                             
-                                            controller: dobController,
+                                            controller: dateofbirthController,
                                              decoration: InputDecoration(
                                               hintText: 'Enter Date Of Birth',
                                               suffixIcon: IconButton(onPressed: (){
@@ -684,7 +738,7 @@ List partnerimage=[
                                     padding: const EdgeInsets.only(left: 40,right: 70,top: 0,bottom: 30),
                                     child: TextField( 
                                       keyboardType: TextInputType.emailAddress,
-                                      controller: nameController,
+                                      controller: emailController,
                                       decoration: InputDecoration(
                                         hintText: 'Enter Email',
                                         suffixIcon: Icon(Icons.edit),
@@ -706,7 +760,7 @@ List partnerimage=[
                                         children: [
                                           TextField(
                                             keyboardType: TextInputType.number,
-                                            controller: dobController,
+                                            controller: numberController,
                                              decoration: InputDecoration(
                                               hintText: 'Enter Phone Number',
                                               suffixIcon: IconButton(onPressed: (){
@@ -734,7 +788,7 @@ List partnerimage=[
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 40,right: 70,top: 0,bottom: 30),
                                     child: TextField( 
-                                      controller: nameController,
+                                      controller: occupationController,
                                       decoration: InputDecoration(
                                         hintText: 'Occupation',
                                         suffixIcon: Icon(Icons.edit),
@@ -756,7 +810,7 @@ List partnerimage=[
                                         children: [
                                           TextField(
                                             
-                                            controller: dobController,
+                                            controller: fathernameController,
                                              decoration: InputDecoration(
                                               hintText: 'Father Name',
                                               suffixIcon: IconButton(onPressed: (){
@@ -784,7 +838,7 @@ List partnerimage=[
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 40,right: 70,top: 0,bottom: 30),
                                     child: TextField( 
-                                      controller: nameController,
+                                      controller: mothernameController,
                                       decoration: InputDecoration(
                                         hintText: 'Mother Name',
                                         fillColor: Color(0xffF9F8FD),
@@ -817,19 +871,19 @@ List partnerimage=[
                                               child: Row(
                                                                                       
                                                 children: [
-                                                  Checkbox(value: _value, 
+                                                  Checkbox(value: isMarried, 
                                                   onChanged: (value){
                                                      setState(() {
-                                                         _value=value!;
+                                                         isMarried=value!;
                                                      });
                                                   }),
                                                   Text('Married'),
                                                   Padding(
                                                     padding: const EdgeInsets.only(left: 40),
-                                                    child: Checkbox(value: _value2, 
+                                                    child: Checkbox(value: isUnmarried, 
                                                     onChanged: (value){
                                                       setState(() {
-                                                        _value2=value!;
+                                                        isUnmarried=value!;
                                                       });
                                                     }),
                                                   ),
@@ -853,7 +907,7 @@ List partnerimage=[
                                     padding: const EdgeInsets.only(left: 40,right: 70,top: 0,bottom: 30),
                                     child: TextField(
                                             
-                                            controller: dobController,
+                                            controller: wedingnameController,
                                              decoration: InputDecoration(
                                               hintText: 'Wedding Date',
                                               suffixIcon: IconButton(onPressed: (){
@@ -877,7 +931,7 @@ List partnerimage=[
                                         children: [
                                           
                                                TextField( 
-                                      controller: nameController,
+                                      controller: spousenameController,
                                       decoration: InputDecoration(
                                         hintText: 'Spouse Name',
                                         suffixIcon: Icon(Icons.edit),
@@ -928,7 +982,7 @@ List partnerimage=[
                                         children: [
                                           
                                                TextField( 
-                                      controller: nameController,
+                                      controller: childrensController,
                                       decoration: InputDecoration(
                                         hintText: 'No.Of.Children',
                                         suffixIcon: Icon(Icons.edit),
@@ -996,20 +1050,80 @@ List partnerimage=[
                                    ],
                                  ),
                                ),
-                               Padding(
-                                 padding: const EdgeInsets.only(left:40,top:40),
-                                 child: Row(
-                                  children: [
+                               Obx(
+                            () => authprofileController.isLoading.isTrue
+                                ? Padding(
+                                  padding: const EdgeInsets.only(top:50,left:50),
+                                  child: Row(
+                                                              
+                                   children: [
                                     ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: korange,
-                                        minimumSize: Size(MediaQuery.of(context).size.width*0.35, 45)
-                                      ),
-                                      onPressed: (){}, 
-                                    child: Text('Update'))
-                                  ],
-                                 ),
-                               ),
+                                  style: ElevatedButton.styleFrom(
+                                     backgroundColor: korange,
+                                     minimumSize: Size(MediaQuery.of(context).size.width*0.35, 45)
+                                  ),
+                                     onPressed: (){
+                                      MemberProfileUpdateModel
+                                        memberProfileUpdateModel =
+                                        MemberProfileUpdateModel(
+                                      name: nameController.text,
+                                      email: emailController.text,
+                                      dateOfBirth:
+                                          dateofbirthController.text,
+                                      fatherName: fathernameController.text,
+                                      isMarried:
+                                          isMarried == true ? "1" : "0",
+                                      mobile: numberController.text,
+                                      motherName: mothernameController.text,
+                                      occupation: occupationController.text,
+                                    );
+                                
+                                    authprofileController.updateProfile(
+                                        memberProfileUpdateModel:
+                                            memberProfileUpdateModel);
+                                   }, 
+                                     child: CircularProgressIndicator(
+                                      color: kwhite,
+                                     ))
+                                   ],
+                                  ),
+                                )
+                                : Padding(
+                                  padding: const EdgeInsets.only(top:50,left:50),
+                                  child: Row(
+                                                              
+                                   children: [
+                                    ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                     backgroundColor: korange,
+                                     minimumSize: Size(MediaQuery.of(context).size.width*0.35, 45)
+                                  ),
+                                     onPressed: (){
+                                      MemberProfileUpdateModel
+                                        memberProfileUpdateModel =
+                                        MemberProfileUpdateModel(
+                                      name: nameController.text,
+                                      email: emailController.text,
+                                      dateOfBirth:
+                                          dateofbirthController.text,
+                                      fatherName: fathernameController.text,
+                                      isMarried:
+                                          isMarried == true ? "1" : "0",
+                                      mobile: numberController.text,
+                                      motherName: mothernameController.text,
+                                      occupation: occupationController.text,
+                                    );
+                                
+                                    authprofileController.updateProfile(
+                                        memberProfileUpdateModel:
+                                            memberProfileUpdateModel);
+                                   }, 
+                                     child: Text('Update'))
+                                   ],
+                                  ),
+                                ),
+                          ),
+                          
                                         
                             ],
                           ),
@@ -1194,23 +1308,73 @@ List partnerimage=[
                                           ],
                                         ),
                                       ),
-                                   Padding(
+
+                                                                Obx(
+                            () => authprofileController.isLoading.isTrue
+                                ? Padding(
                                  padding: const EdgeInsets.only(left:50,top:50),
                                  child: Row(
                                   children: [
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: korange,
-                                        minimumSize: Size(MediaQuery.of(context).size.width*0.36, 45)
-                                      ),
-                                      onPressed: (){}, 
-                                    child: Text('Update',
-                                    style: TextStyle(
-                                      fontSize: 17
-                                    ),))
+                                ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: korange,
+                                  minimumSize: Size(MediaQuery.of(context).size.width*0.36, 45)
+                                ),
+                                onPressed: (){
+                                         AddressModel addressModel =
+                                      AddressModel(
+                                    aadhrId: "",
+                                    address: officeaddresController.text,
+                                    buildingName: officebnameController.text,
+                                    city: officecityController.text,
+                                    doorNo: officedoornoController.text,
+                                    personalId: "",
+                                    state: officestateController.text,
+                                  );
+
+                                  authprofileController.updateOfficalAddress(
+                                      officialAddress: addressModel);
+                                }, 
+                                child:CircularProgressIndicator(
+                                  color:kwhite
+                                )
+                                )
+                                  ],
+                                 ),
+                               )
+                                : Padding(
+                                 padding: const EdgeInsets.only(left:50,top:50),
+                                 child: Row(
+                                  children: [
+                                ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: korange,
+                                  minimumSize: Size(MediaQuery.of(context).size.width*0.36, 45)
+                                ),
+                                onPressed: (){
+                                         AddressModel addressModel =
+                                      AddressModel(
+                                    aadhrId: "",
+                                    address: officeaddresController.text,
+                                    buildingName: officebnameController.text,
+                                    city: officecityController.text,
+                                    doorNo: officedoornoController.text,
+                                    personalId: "",
+                                    state: officestateController.text,
+                                  );
+
+                                  authprofileController.updateOfficalAddress(
+                                      officialAddress: addressModel);
+                                }, 
+                                child: Text('Update',
+                                style: TextStyle(
+                                fontSize: 17
+                                ),))
                                   ],
                                  ),
                                ),
+                          ),
+
 
                                   ],
                                 )
@@ -1367,23 +1531,97 @@ List partnerimage=[
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                 padding: const EdgeInsets.only(left:50,top:50),
-                                 child: Row(
-                                  children: [
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: korange,
-                                        minimumSize: Size(MediaQuery.of(context).size.width*0.36, 45)
+                                      Obx(
+                            () => Padding(
+                              padding: const EdgeInsets.only(top: 20,left: 40),
+                              child: profileController.isLoading.isTrue
+                                  ? InkWell(
+                                      onTap: () {
+                                        AddressModel addressModel =
+                                            AddressModel(
+                                                aadhrId: resiadaridController.text,
+                                                address: resiaddressController.text,
+                                                buildingName:
+                                                    resibnameController.text,
+                                                city: resibcityController.text,
+                                                doorNo: residoornumberController.text,
+                                                personalId: resiperidController.text,
+                                                state: resistateController.text);
+                                        authprofileController
+                                            .updateRecidencyAddress(
+                                                residentialAddress:
+                                                    addressModel);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top:20,left:40),
+                                        child: Container(
+                                          height: 50,
+                                          width: size.width*0.36,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(3),
+                                              border: Border.all(
+                                                  color: const Color(0xffFF9021)),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Color(0xffFF5003),
+                                                  blurRadius: 2.0,
+                                                ),
+                                              ]),
+                                          child: CircularProgressIndicator(
+                                            color:kwhite
+                                          )
+                                          ),
+                                        ),
+                                      )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        AddressModel addressModel =
+                                            AddressModel(
+                                                aadhrId: resiadaridController.text,
+                                                address: resiaddressController.text,
+                                                buildingName:
+                                                    resibnameController.text,
+                                                city: resibcityController.text,
+                                                doorNo: residoornumberController.text,
+                                                personalId: resiperidController.text,
+                                                state: resistateController.text);
+                                        authprofileController
+                                            .updateRecidencyAddress(
+                                                residentialAddress:
+                                                    addressModel);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top:20,left:40),
+                                        child: Container(
+                                          height: 50,
+                                          width: size.width*0.36,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(3),
+                                              border: Border.all(
+                                                  color: const Color(0xffFF9021)),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Color(0xffFF5003),
+                                                  blurRadius: 2.0,
+                                                ),
+                                              ]),
+                                          child: const Center(
+                                            child: Text(
+                                              "Submit",
+                                           style: TextStyle(
+                                          color: Colors.white,
+                                fontSize: 17
+                                ),
+                                              
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      onPressed: (){}, 
-                                    child: Text('Update',
-                                    style: TextStyle(
-                                      fontSize: 17
-                                    ),))
-                                  ],
-                                 ),
-                               ),
+                                    ),
+                            ),
+                          ),
                                 ],
                               ),
                              )  
@@ -3039,8 +3277,7 @@ List partnerimage=[
                                     
                                  ),
                                ),
-                               if(reghomeController.proindex.value==7)
-                               Container(),
+                             
                                if(reghomeController.proindex.value==8)
                                Padding(
                                  padding: const EdgeInsets.only(top:50),
@@ -3169,25 +3406,63 @@ List partnerimage=[
                                         ]
                                           ),
                                           ksizedbox30,
-                                          Padding(
-                                            padding: const EdgeInsets.only(left: 50),
-                                            child: Row(
-                                              children: [
-                                                ElevatedButton(
-                                                  style: ElevatedButton.styleFrom(
-                                                    minimumSize: Size(MediaQuery.of(context).size.width*0.7, 
-                                                    45),
-                                                    backgroundColor: kblue
-                                                  ),
-                                                  onPressed: (){}, 
-                                                child: Text('Submit',
-                                                style: TextStyle(
-                                                  fontSize: 17,
-                                                  color: kwhite
-                                                ),)),
-                                              ],
+                                          Obx(()=>
+                                             Padding(
+                                              padding: const EdgeInsets.only(left: 50),
+                                              child: profileController.isLoading.isTrue?
+                                               Container(
+                                      height: 50,
+                                      width: size.width,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(3),
+                                          border: Border.all(
+                                              color: const Color(0xffFF9021)),
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Color(0xffFF5003),
+                                              blurRadius: 2.0,
                                             ),
-                                          ),
+                                          ]),
+                                      child: const Center(
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ):
+                                                 Row(
+                                                  children: [
+                                                    ElevatedButton(
+                                                      style: ElevatedButton.styleFrom(
+                                                        minimumSize: Size(MediaQuery.of(context).size.width*0.7, 
+                                                        45),
+                                                        backgroundColor: kblue
+                                                      ),
+                                                      onPressed: (){
+                                                         AddressModel addressModel =
+                                            AddressModel(
+                                                aadhrId: resiadaridController.text,
+                                                address: resiaddressController.text,
+                                                buildingName:
+                                                  resibnameController.text,
+                                                city: resibcityController.text,
+                                                doorNo: residoornumberController.text,
+                                                personalId: resiperidController.text,
+                                                state:resistateController.text);
+                                       authprofileController
+                                            .updateRecidencyAddress(
+                                                residentialAddress:
+                                                    addressModel);
+                                                      }, 
+                                                    child: Text('Submit',
+                                                    style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kwhite
+                                                    ),)),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
                                           Padding(
                                             padding: const EdgeInsets.only(top: 40,left:50),
                                             child: Row(
@@ -3228,7 +3503,7 @@ List partnerimage=[
                                                                 ),),
                                                                   Padding(
                                                                     padding: const EdgeInsets.only(left: 15),
-                                                                    child: Text('+91 9876543210',
+                                                                    child: Text(authprofileController.profileData.first.name,
                                                                     style: TextStyle(
                                                                     color: kblue,
                                                                     fontSize: 16
@@ -3253,7 +3528,7 @@ List partnerimage=[
                                                                   padding: const EdgeInsets.only(
                                                                   left: 15
                                                                   ),
-                                                                  child: Text("Customer@gmail.com",
+                                                                  child: Text(authprofileController.profileData.first.email,
                                                                   style: TextStyle(
                                                                     color: kblue,
                                                                     fontSize: 16
@@ -3278,7 +3553,7 @@ List partnerimage=[
                                                                 ),),
                                                                 Padding(
                                                                   padding: const EdgeInsets.only(left: 15),
-                                                                  child: Text('No 781, Second Street, New Chennai, Tamil nadu-600021.',
+                                                                  child: Text(authprofileController.profileData.first.address,
                                                                   style: TextStyle(
                                                                     color: kblue,
                                                                     fontSize: 16

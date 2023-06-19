@@ -27,148 +27,152 @@ class landing_screen extends StatelessWidget {
         ),
       ),
       child: Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+          body: ListView(
             children: [
-                  Image.asset('assets/images/Group 5814.png'),ksizedbox40,
-              InkWell(
-                onTap: () {
-                 Get.to( MemberLoginScreen());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20),
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: const Color(0xffFFBF7E)),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Color(0xFFFF5C29),
-                          blurRadius: 3.0,
-                        )
-                      ],
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Color(0xFFFF5C29),
-                          Color(0xFFFFCD38),
-                        ],
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Members Login",
-                        style: TextStyle(shadows: [
-                        Shadow(
-                        blurRadius: 5.0,
-                         color: Color(0xff0000007A),
-                         offset: Offset(3.0, 3.0),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                      Image.asset('assets/images/Group 5814.png'),ksizedbox40,
+                  GestureDetector(
+                    onTap: () {
+                     Get.to( MemberLoginScreen());
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20, left: 20),
+                      child: Container(
+                        height: 40,
+                        width: size.width*0.43,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: const Color(0xffFFBF7E)),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0xFFFF5C29),
+                              blurRadius: 3.0,
+                            )
+                          ],
+                          gradient: const LinearGradient(
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                            colors: [
+                              Color(0xFFFF5C29),
+                              Color(0xFFFFCD38),
+                            ],
                           ),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Members Login",
+                            style: TextStyle(shadows: [
+                            Shadow(
+                            blurRadius: 5.0,
+                             color: Color(0xff0000007A),
+                             offset: Offset(3.0, 3.0),
+                              ),
         ],
-                            fontSize: 22,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-              // SizedBox(
-              //   height: 65,
-              //   width: double.infinity,
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(left: 20, right: 20),
-              //     child: ElevatedButton(
-              //         style: ElevatedButton.styleFrom(// primary: Colors.teal,
-              //  // onPrimary: Colors.green,
-              // //onSurface: Colors.orange,
-              // //backgroundColor: Color.fromARGB(255, 177, 126, 60),
-              //           shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(4.0),
-              //           ),
-              //         ),
-              //         onPressed: () {
-              //           Get.off(Generate_otp());
-              //         },
-              //         child: Text(
-              //           'Member Login',
-              //           style: TextStyle(
-              //               fontSize: 22,
-              //               color: Colors.white,
-              //               fontWeight: FontWeight.bold),
-              //         )),
-              //   ),
-              // ),
-              ksizedbox20,
-              InkWell(
-                onTap: () {
+                  // SizedBox(
+                  //   height: 65,
+                  //   width: double.infinity,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(left: 20, right: 20),
+                  //     child: ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(// primary: Colors.teal,
+                  //  // onPrimary: Colors.green,
+                  // //onSurface: Colors.orange,
+                  // //backgroundColor: Color.fromARGB(255, 177, 126, 60),
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(4.0),
+                  //           ),
+                  //         ),
+                  //         onPressed: () {
+                  //           Get.off(Generate_otp());
+                  //         },
+                  //         child: Text(
+                  //           'Member Login',
+                  //           style: TextStyle(
+                  //               fontSize: 22,
+                  //               color: Colors.white,
+                  //               fontWeight: FontWeight.bold),
+                  //         )),
+                  //   ),
+                  // ),
+                  ksizedbox40,
+                  GestureDetector(
+                    onTap: () {
 //Get.to(const BusinessLoginScreen());
-                },
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20),
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: kblue,
-                      borderRadius: BorderRadius.circular(6),
-                      border: Border.all(color: Colors.white),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.white,
-                          blurRadius: 3.0,
-                        )
-                      ],
-                     
-                    ),
-                    child: Center(
-                      child: Text(
-                        "Bussiness login",
-                        style: TextStyle(shadows: [
-                        Shadow(
-                        blurRadius: 5.0,
-                         color: Color(0xff707070),
-                         offset: Offset(3.0, 3.0),
-                          ),
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 20, left: 20),
+                      child: Container(
+                         height: 40,
+                        width: size.width*0.43,
+                        decoration: BoxDecoration(
+                          color: kblue,
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: Colors.white),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Colors.white,
+                              blurRadius: 3.0,
+                            )
+                          ],
+                         
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Bussiness login",
+                            style: TextStyle(shadows: [
+                            Shadow(
+                            blurRadius: 5.0,
+                             color: Color(0xff707070),
+                             offset: Offset(3.0, 3.0),
+                              ),
         ],
-                            fontSize: 22,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w500),
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
+                  // SizedBox(
+                  //   height: 50.h,
+                  //   width: double.infinity,
+                  //   child: Padding(
+                  //     padding: const EdgeInsets.only(left: 20, right: 20),
+                  //     child: ElevatedButton(
+                  //         style: ElevatedButton.styleFrom(
+                  //           backgroundColor:const Color.fromARGB(0, 246, 246, 246),
+                  //           shape: RoundedRectangleBorder(
+                  //             borderRadius: BorderRadius.circular(4.0),
+                  //           ),
+                  //         ),
+                  //         onPressed: () {
+                  //           Get.to(const BusinessLoginScreen());
+                  //         },
+                  //         child: Text(
+                  //           'Bussiness login',
+                  //           style: TextStyle(
+                  //               fontSize: 22.sp,
+                  //               color: Colors.white,
+                  //               fontWeight: FontWeight.bold),
+                  //         )),
+                  //   ),
+                  // ),
+                  ksizedbox30,
+                  ksizedbox30,
+                  ksizedbox30
+                ],
               ),
-              // SizedBox(
-              //   height: 50.h,
-              //   width: double.infinity,
-              //   child: Padding(
-              //     padding: const EdgeInsets.only(left: 20, right: 20),
-              //     child: ElevatedButton(
-              //         style: ElevatedButton.styleFrom(
-              //           backgroundColor:const Color.fromARGB(0, 246, 246, 246),
-              //           shape: RoundedRectangleBorder(
-              //             borderRadius: BorderRadius.circular(4.0),
-              //           ),
-              //         ),
-              //         onPressed: () {
-              //           Get.to(const BusinessLoginScreen());
-              //         },
-              //         child: Text(
-              //           'Bussiness login',
-              //           style: TextStyle(
-              //               fontSize: 22.sp,
-              //               color: Colors.white,
-              //               fontWeight: FontWeight.bold),
-              //         )),
-              //   ),
-              // ),
-              ksizedbox30,
-              ksizedbox30,
-              ksizedbox30
             ],
           ),
           backgroundColor: Colors.transparent),

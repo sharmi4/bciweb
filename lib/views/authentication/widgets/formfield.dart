@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../../constant/constans.dart';
 
 class Formfield extends StatelessWidget {
-  const Formfield({super.key, required this.text});
+Formfield({super.key, required this.text,required this.controller});
 final String text;
+TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return Padding(
                 padding: const EdgeInsets.only(top: 15),
                 child: TextFormField(
-             //     controller: addressController,
+               controller: controller,
                   autovalidateMode: AutovalidateMode.onUserInteraction,
                   validator: (value) {
                     if (value!.isEmpty) {
