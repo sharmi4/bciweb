@@ -2,9 +2,8 @@ import 'package:bciweb/services/networks/auth_api_service.dart';
 import 'package:bciweb/services/networks/get_otp_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:dio/dio.dart'as dio;
+import 'package:dio/dio.dart' as dio;
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:velocity_x/velocity_x.dart';
 import '../../constant/constans.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
@@ -16,66 +15,57 @@ import '../../services/networks/services/service_list_apiservice.dart';
 import '../../views/authentication/Verification_done.dart';
 import '../../views/authentication/otp_verification.dart';
 
-class AuthController extends GetxController{
- RxBool isLoading = false.obs;
- RxBool isLogedin=false.obs;
+class AuthController extends GetxController {
+  RxBool isLoading = false.obs;
+  RxBool isLogedin = false.obs;
 
- MemberRegisterApiservices memberRegisterApiservices=MemberRegisterApiservices();  
+  MemberRegisterApiservices memberRegisterApiservices =
+      MemberRegisterApiservices();
 //this api calling
 
   GetOtpApiService getOTPApiServices = GetOtpApiService();
-  
-   LoginApiServices loginApiServices = LoginApiServices();
-   ServiceApiService serviceApiServices=ServiceApiService();
-   
 
- memberRegister({
- required CreateAccountModel? memberRegisterModel,
+  LoginApiServices loginApiServices = LoginApiServices();
+  ServiceApiService serviceApiServices = ServiceApiService();
+
+  memberRegister({
+    required CreateAccountModel? memberRegisterModel,
     required AddressModel? residentialAddress,
-     required AddressModel? officialAddress,
-     required bool isMobile,
- })async{
-isLoading(true);
- dio.Response<dynamic>response=await 
- memberRegisterApiservices.memberRegister(
-  memberRegisterModel: memberRegisterModel, 
-  residentialAddress: residentialAddress, 
-  
-  officialAddress: officialAddress);
-  isLoading(false);
+    required AddressModel? officialAddress,
+    required bool isMobile,
+  }) async {
+    isLoading(true);
+    dio.Response<dynamic> response =
+        await memberRegisterApiservices.memberRegister(
+            memberRegisterModel: memberRegisterModel,
+            residentialAddress: residentialAddress,
+            officialAddress: officialAddress);
+    isLoading(false);
     if (response.statusCode == 201) {
-       final prefs = await SharedPreferences.getInstance();
-        await prefs.setString("auth_token", response.data["token"]);
-      if(isMobile==true){
-        
-         Get.to(otp_varification(
-     phoneNumber: memberRegisterModel!.mobilenumber,
-        otp: response.data["user"]["otp"].toString(),
-      ));
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString("auth_token", response.data["token"]);
+      if (isMobile == true) {
+        Get.to(otp_varification(
+          phoneNumber: memberRegisterModel!.mobilenumber,
+          otp: response.data["user"]["otp"].toString(),
+        ));
+      } else {
+        Get.to(OtpVerification(
+          phoneNumber: memberRegisterModel!.mobilenumber,
+          otp: response.data["user"]["otp"].toString(),
+        ));
       }
-      else{
-            Get.to(OtpVerification(
-        phoneNumber: memberRegisterModel!.mobilenumber,
-        otp: response.data["user"]["otp"].toString(),
-      ));
-      }
-     
-
-    }
-          else {
+    } else {
       Get.rawSnackbar(
           backgroundColor: Colors.red,
           messageText: Text(
             response.data["errors"].first,
             style: primaryFont.copyWith(color: Colors.white),
           ));
+    }
+  }
 
- }
-
-
- } 
-
-   getOtpFunction({required String mobileNumber,required bool isMobile}) async {
+  getOtpFunction({required String mobileNumber, required bool isMobile}) async {
     isLoading(true);
 
     dio.Response<dynamic> response =
@@ -83,19 +73,17 @@ isLoading(true);
     isLoading(false);
 
     if (response.statusCode == 200) {
-      if(isMobile==true){
+      if (isMobile == true) {
         Get.to(otp_varification(
-        phoneNumber: mobileNumber,
-        otp: response.data["otp"].toString(),
-      ));
-
-      }else{
-         Get.to(OtpVerification(
-        phoneNumber: mobileNumber,
-        otp: response.data["otp"].toString(),
-      ));
+          phoneNumber: mobileNumber,
+          otp: response.data["otp"].toString(),
+        ));
+      } else {
+        Get.to(OtpVerification(
+          phoneNumber: mobileNumber,
+          otp: response.data["otp"].toString(),
+        ));
       }
-     
     } else if (response.statusCode == 404) {
       Get.rawSnackbar(
           backgroundColor: Colors.red,
@@ -105,23 +93,24 @@ isLoading(true);
           ));
     }
   }
-  loginUsers({required String mobile, required String otp,required bool screen}) async {
+
+  loginUsers(
+      {required String mobile,
+      required String otp,
+      required bool screen}) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await loginApiServices.loginApi(mobile: mobile, otp: otp);
     isLoading(false);
     if (response.statusCode == 200) {
-      
       if (response.data["user"]["role_id"] == "3") {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString("auth_token", response.data["token"]);
-        if(screen==true){
+        if (screen == true) {
           Get.offAll(verified_Screen());
+        } else {
+          Get.offAll(const Verification_Done());
         }
-        else{
-              Get.offAll(const Verification_Done());
-        }
-     
       } else {
         Get.rawSnackbar(
             backgroundColor: Colors.red,
@@ -139,46 +128,40 @@ isLoading(true);
           ));
     }
   }
-  
+
   logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
-    Get.to(const MemberLoginScreen());
+    Get.to(const MemberLoginScreenrespo());
   }
 
-   checkAuthendication()async{
-   
-     final prefs = await SharedPreferences.getInstance();
+  checkAuthendication() async {
+    final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString("auth_token");
-   
+
     print("Token is here");
     print(authtoken);
     if (authtoken == "null" || authtoken == null) {
       isLogedin(false);
     } else {
       isLogedin(true);
-
     }
     update();
-   
   }
 
-   List <ServiceData> dataList = []; 
-    
-       getservice() async {
+  List<ServiceData> dataList = [];
+
+  getservice() async {
     isLoading(true);
 
-    dio.Response<dynamic> response =
-        await serviceApiServices.getServiceApi();
+    dio.Response<dynamic> response = await serviceApiServices.getServiceApi();
     isLoading(false);
 
     if (response.statusCode == 200) {
-        ServiceModel serviceModel = ServiceModel.fromJson(response.data);
-        dataList = serviceModel.data;       
+      ServiceModel serviceModel = ServiceModel.fromJson(response.data);
+      dataList = serviceModel.data;
       update();
-         
-      }
-      else if (response.statusCode == 404) {
+    } else if (response.statusCode == 404) {
       Get.rawSnackbar(
           backgroundColor: Colors.red,
           messageText: Text(

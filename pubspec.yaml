@@ -51,12 +51,13 @@ dependencies:
   dotted_line: ^3.1.0
   otp_text_field: ^1.1.3
   dio: ^5.2.1
-  convert: ^3.1.1
+  convert: ^3.1.1 
   shared_preferences: ^2.1.2
   http: ^0.13.6
   custom_clippers: ^2.0.0
   clipboard: ^0.1.3
   fluttertoast: ^8.2.2
+  url_strategy: ^0.2.0 
 
 dev_dependencies:
   flutter_test:

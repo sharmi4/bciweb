@@ -1,8 +1,11 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/views/authentication/generate_otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
+
+import '../../responsive/authentications/generate_otp/generate_otp.dart';
 
 class LandingScreen extends StatelessWidget {
   const LandingScreen({super.key});
@@ -32,9 +35,9 @@ class LandingScreen extends StatelessWidget {
                 ksizedbox20,
                 InkWell(
                   onTap: () {
-                      Get.toNamed('/otp-verification');
+                     // Get.toNamed('/otp-verification');
                     // Get.toNamed('/otp-verification');
-                    //  Get.to(const MemberLoginScreen()); 
+                      Get.to(const MobileVerification()); 
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 20, left: 20),

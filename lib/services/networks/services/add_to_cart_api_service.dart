@@ -1,31 +1,35 @@
 import 'dart:io';
+
+import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../base_url/base_url.dart';
 
-import 'package:flutter/material.dart';
-
-class ServiceApiService extends BaseApiService{
-    Future getServiceApi() async {
+class AddToCartApiServices extends BaseApiService {
+  Future addToCartApiServices({required String serviceid}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
-                         final prefs = await SharedPreferences.getInstance();
+      final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
-      var response = await dio.post(serviceListurl,
-          options: Options(
-              headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer $authtoken'
-              },
 
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          );
-     
+      var response = await dio.post(
+        addToCartApiUrl,
+        options: Options(
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $authtoken'
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            }),
+            data: {
+              "service_id" : serviceid
+            }
+      );
+      print("::::::::<Add To Cart Api Services Api>::::::::status code::::::::::");
       print(response.statusCode);
+      print(response.data);
       responseJson = response;
     } on SocketException {
       print("no internet");

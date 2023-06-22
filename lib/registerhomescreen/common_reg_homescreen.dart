@@ -1,6 +1,7 @@
 
 
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/business/bookins/history/views/history.dart';
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 import 'package:bciweb/views/members/homescreens/reg_profile.dart';
@@ -18,7 +19,7 @@ import '../controller/reg_home_controller.dart';
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business/Gallery/gallery.dart';
-import '../views/business/services/views/services.dart';
+import '../views/business/services/views/servicescart/services.dart';
 import '../views/clubhouse.dart';
 
 class RegisterCommonContainer extends StatefulWidget {
@@ -69,7 +70,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      TextButton(onPressed: (){
                      reghomeController.reindex(0);
                      reghomeController.update();
-                     Get.offAll(MemberHomeScreen());
+                     Get.toNamed(Routes.MEMBHOME);
                      }, 
                      child: Text('HOME',style: TextStyle(
                       color: reghomeController.reindex==0?kOrange:kblue
@@ -77,7 +78,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      Padding(
                        padding: const EdgeInsets.only(left: 10),
                        child: TextButton(onPressed: (){
-                        Get.offAll(AboutUsScreen());
+                        Get.toNamed(Routes.about_screens);
                         print("-------------------------");
                                    reghomeController.reindex(1);
                                    reghomeController.update();
@@ -94,7 +95,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                     reghomeController.reindex(2);
                     reghomeController.update();
                     
-                      Get.to(SpecializedScreen());
+                      Get.toNamed(Routes.SpecializedScreen);
                     
                    }, 
                    child: Text('SPECIALIZED',style: TextStyle(
@@ -108,7 +109,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 
                     reghomeController.reindex(3);
                     reghomeController.update();
-                     Get.to(Services());
+                     Get.toNamed(Routes.Service);
                     
                     
                    }, 
@@ -122,7 +123,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    
                     reghomeController.reindex(4);
                     reghomeController.update();
-                    Get.offAll(ClubHouse());
+                    Get.toNamed(Routes.ClubHouse);
                     
                     
                    }, 
@@ -136,7 +137,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 
                     reghomeController.reindex(5);
                     reghomeController.update();
-                    Get.offAll(Gallery());
+                    Get.toNamed(Routes.Gallery);
                     
                       
                     
@@ -152,12 +153,29 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                    child: TextButton(onPressed: (){
                     reghomeController.reindex(6);
                     reghomeController.update();
-                    Get.offAll(ContactScreen());
+                    
+                    Get.toNamed(Routes.contact_screen);
                    }, 
                    child: Text('CONTACT',style: TextStyle(
                       color: reghomeController.reindex==6?kOrange:kblue
                      ),)),
-                 )
+                 ),
+
+ Padding(
+                   padding: const EdgeInsets.only(left: 10),
+                   child: TextButton(onPressed: (){
+                    reghomeController.reindex(7);
+                    reghomeController.update();
+                  //  Get.to(Hstory());
+                    Get.toNamed(Routes.BOOKINGS);
+                   }, 
+                   child: Text('BOOKINGS',style: TextStyle(
+                      color: reghomeController.reindex==7?kOrange:kblue
+                     ),)),
+                 ),
+
+
+
                    ],
                  ),
                              ),
@@ -201,7 +219,9 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                            ]
                         ),
                         
-                        child: InkWell(onTap: (){Get.to(History());},
+                        child: InkWell(onTap: (){
+                          //
+                          },
                           child: Icon(Icons.notifications,color: kblue,)),
                        ),
                      ),
@@ -209,7 +229,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        padding: const EdgeInsets.only(left: 15),
                        child: InkWell(
                         onTap: (){
-                          Get.to(Subscribe());
+                         
+                          Get.toNamed(Routes.Subscrib);
                         },
                          child: Container(
                           height: 35,
@@ -232,7 +253,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        padding: const EdgeInsets.only(left: 20),
                        child: InkWell(
                         onTap: (){
-                          Get.to(LandingScreen());
+                        //  Get.to(LandingScree());
+                          Get.toNamed(Routes.landing_screen);
                         },
                          child: Container(
                           height: 35,
@@ -254,7 +276,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        padding: const EdgeInsets.only(left: 20),
                        child: InkWell(
                         onTap: (){
-                          Get.to(MobileVerification());
+                         // Get.to(MobileVerificatio());
+                          Get.toNamed(Routes.MobileVerification);
                         },
                          child: Container(
                           height: 35,

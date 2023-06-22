@@ -1,19 +1,23 @@
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
-import 'package:bciweb/views/business/bookins/history/views/widgets/widgetsdemo.dart';
+import 'package:bciweb/views/business/services/views/servicescart/service_list.dart';
+
+import 'package:bciweb/views/business/services/views/servicescart/servicescart.dart';
 import 'package:bciweb/views/business/services/views/widgets/containors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../constant/constans.dart';
-//import '../../../../registerhomescreen/common_reg_appbar';
-import '../../../../controller/auth_controller/auth_controller.dart';
-import '../../../../registerhomescreen/common_reg_homescreen.dart';
-import '../../../../services/networks/services/service_list_apiservice.dart';
-import '../../../members/common_widget/common.dart';
-import 'offerce.dart';
+import '../../../../../constant/constans.dart';
+
+import '../../../../../controller/auth_controller/auth_controller.dart';
+import '../../../../../controller/home_controller.dart';
+import '../../../../../controller/subscription_controller/home_controller.dart';
+import '../../../../../registerhomescreen/common_reg_homescreen.dart';
+
+import '../../../../members/common_widget/common.dart';
+import '../offerce.dart';
 
 class Services extends StatefulWidget {
   const Services({super.key});
@@ -22,18 +26,20 @@ class Services extends StatefulWidget {
   State<Services> createState() => _ServicesState();
 }
 
+final homeController = Get.find<HomeServiceController>();
+
 CarouselController curouselController = CarouselController();
 
 class _ServicesState extends State<Services> {
+  @override
+  void initState() {
+    super.initState();
+    authController.getservice();
+  }
 
-@override
-void initState() {
-  super.initState();
-  authController.getservice();
-}
   int pageIndex = 0;
 
-  final authController=Get.find<AuthController>();
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,33 +88,31 @@ void initState() {
                   style: TextStyle(color: ktextblue),
                 )),
             ksizedbox20,
-            GetBuilder<AuthController>(
-              
-              builder: (_){
+            GetBuilder<AuthController>(builder: (_) {
               print(authController.dataList);
-        return  Column(
+              return Column(
                 children: [
                   CarouselSlider(
-                    
                     carouselController: curouselController,
                     items: [
-            
-              
-                  for( var i=0;i<authController.dataList.length;i++)  
-                    InkWell(
-                      
-                        child: servicecontainer(
-                          
-                          image: authController.dataList[i].image,
-                        
-                          title: authController.dataList[i].title,
-                          description: authController.dataList[i].description,
+                      for (var i = 0; i < authController.dataList.length; i++)
+                        InkWell(
+                          child: servicecontainer(
+                            image: authController.dataList[i].image,
+                            title: authController.dataList[i].title,
+                            description: authController.dataList[i].description,
+                          ),
+                          onTap: () {
+                            Get.to(ListCart(
+                              servicedata: authController.dataList[i],
+                            ));
+
+                            // authController.dataList[i]
+                            // homeController.addToCart(
+                            //     serviceid:
+                            //         authController.dataList[i].id.toString());
+                          },
                         ),
-                        
-                        onTap: () {
-                          Get.toNamed('/coupones');
-                        },
-                      ),
                       // InkWell(
                       //   child: servicecontainer(),
                       //   onTap: () {
@@ -154,8 +158,7 @@ void initState() {
                   ),
                 ],
               );
-              }
-            ),
+            }),
             ksizedbox30,
             InkWell(
               onTap: () {
@@ -241,26 +244,22 @@ void initState() {
                 )),
             ksizedbox40,
             ksizedbox30,
-            GetBuilder<AuthController>(
-   builder: (_){
+            GetBuilder<AuthController>(builder: (_) {
               return Column(
                 children: [
-                  
                   CarouselSlider(
                     carouselController: curouselController,
-                    
                     items: [
-                      for(var j=0 ; j< authController.dataList.length;j++)
-                      InkWell(
-                        child: offers_container(
-                          image: authController.dataList[j].image,
-                          description: authController.dataList[j].description,
+                      for (var j = 0; j < authController.dataList.length; j++)
+                        InkWell(
+                          child: offers_container(
+                            image: authController.dataList[j].image,
+                            description: authController.dataList[j].description,
+                          ),
+                          onTap: () {
+                            Get.toNamed('/offer-screen');
+                          },
                         ),
-                        onTap: () {
-                          Get.toNamed('/offer-screen');
-                        },
-                      ),
-                      
                     ],
                     options: CarouselOptions(
                       height: 170.0,
@@ -294,8 +293,7 @@ void initState() {
                   ),
                 ],
               );
-   }
-            ),
+            }),
             //  offercontainer(),
             ksizedbox30,
             InkWell(

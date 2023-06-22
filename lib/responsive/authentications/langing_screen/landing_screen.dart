@@ -35,7 +35,7 @@ class landing_screen extends StatelessWidget {
                       Image.asset('assets/images/Group 5814.png'),ksizedbox40,
                   GestureDetector(
                     onTap: () {
-                     Get.to( MemberLoginScreen());
+                     Get.to( MemberLoginScreenrespo());
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20, left: 20),

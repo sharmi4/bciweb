@@ -3,17 +3,15 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:convert/convert.dart';
 
-
 // CreateAccountModel createaccountmodelFromJson(String str)=>
 // CreateAccountModel.fromJson(json.decode(str));
 
 // String createaccountmodelToJson(CreateAccountModel data)=>
 // json.encode(data.toJson());
 
-class CreateAccountModel{
-  
-    String name;
-    String dateofbirth;
+class CreateAccountModel {
+  String name;
+  String dateofbirth;
   String mobilenumber;
   String email;
   String unmarried;
@@ -46,21 +44,21 @@ class CreateAccountModel{
 
 //   factory  CreateAccountModel.fromJson(Map<String,dynamic>json)=>
 //   CreateAccountModel(
-//     name: json['jayaseelan'], 
-//   dateofbirth: json[''], 
-//   email: json['sharmilamani2025@gmail.com'], 
-//   fatherName:json[''], 
-//   motherName: json[''], 
-//   isMarried: json[''], 
-//   mobilenumber: json['98765432'], 
-//   occupation: json[''], 
+//     name: json['jayaseelan'],
+//   dateofbirth: json[''],
+//   email: json['sharmilamani2025@gmail.com'],
+//   fatherName:json[''],
+//   motherName: json[''],
+//   isMarried: json[''],
+//   mobilenumber: json['98765432'],
+//   occupation: json[''],
 //   unmarried: json[''],
 //   roleId: json[''],
 //   panNo: json[''],
 //   password: json[''],
 //   passwordConfirmation: json[''],
 //   aadharNo: json['']
-//   ); 
+//   );
 
 // Map<String,dynamic>toJson()=>{
 //   'jayaseelan':name,

@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
@@ -16,14 +15,13 @@ import '../../services/networks/profile_api_service/update_residentialaddressapi
 import 'auth_controller.dart';
 
 class AuthProfileController extends GetxController {
-
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
 
   ProfileUpdateApiServices profileUpdateApi = ProfileUpdateApiServices();
 
   UpdateResidencialAddressApiServices updateResidencialAddressApiServices =
       UpdateResidencialAddressApiServices();
-      
+
   UpdateOfficialApiServices updateOfficialApiServices =
       UpdateOfficialApiServices();
 
@@ -41,7 +39,7 @@ class AuthProfileController extends GetxController {
       print('--------------------------Api success-----------------------');
       MemberProfileModel profileModel =
           MemberProfileModel.fromJson(response.data);
-        print("<------------------Working on 01------------------>");
+      print("<------------------Working on 01------------------>");
       profileData.add(profileModel.user);
       update();
     } else if (response.statusCode == 401) {

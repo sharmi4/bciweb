@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
 import '../responsive/responsive_homescreen/responsive_homescreen.dart';
-import '../views/business/services/views/services.dart';
+import '../views/business/services/views/servicescart/services.dart';
 import '../views/members/about/about_screens.dart';
 import '../views/members/contacs/contact_screen.dart';
 
