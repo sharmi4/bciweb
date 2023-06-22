@@ -1,3 +1,4 @@
+import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/responsive/respo_services/widgets%20copy/containors.dart';
@@ -27,6 +28,13 @@ CarouselController curouselController = CarouselController();
 
 class _ServicesState extends State<RespoServices> {
   int pageIndex = 0;
+  final authController=Get.find<AuthController>();
+  @override
+  void initState() {
+    super.initState();
+    authController.getservice();
+    authController.update();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar:PreferredSize(child:  AppBarMob(), preferredSize:Size.fromHeight(50) ),
@@ -46,7 +54,7 @@ class _ServicesState extends State<RespoServices> {
                     right: 0,
                     child: Center(
                       child: Text(
-                        'SERVICES US',
+                        'SERVICES',
                         style: GoogleFonts.lato(
                             fontSize: 35,
                             fontWeight: FontWeight.bold,
@@ -76,69 +84,65 @@ class _ServicesState extends State<RespoServices> {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Container(
-                //  width: 800,
+                  //width: 800,
                   child: Text(
                     'Special coupons are promotional discounts offered by businesses to encourage customers to make a purchase or use their services. These coupons may be available in various forms such as printed coupons, digital coupons, or promo codes.',
                     style: TextStyle(color: ktextblue),
                   )),
             ),
             ksizedbox20,
-            Column(
-              children: [
-                CarouselSlider(
-                  carouselController: curouselController,
-                  items: [
-                    InkWell(
-                      child: servicecontainermob(),
-                      onTap: () {
-                        Get.toNamed('/respo-coupon');
-                      },
-                    ),
-                    InkWell(
-                      child:servicecontainermob(),
-                      onTap: () {
-                        Get.toNamed('/respo-coupon');
-                      },
-                    ),
-                    InkWell(
-                      child: servicecontainermob(),
-                      onTap: () {
-                        Get.toNamed('/respo-coupon');
-                      },
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    height: 150.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 3200),
-                    viewportFraction: 0.8,
-                    onPageChanged: (index, reason) {
-                      setState(() {
+            
+                  GetBuilder<AuthController>(
+                    builder: (_) {
+                      return authController.dataList.isEmpty ?  const Center(child: Text("No Data Found"),) :
+                         CarouselSlider(
+                        carouselController: curouselController,
+                        items: [
+                          for(var i=0;i<authController.dataList.length;i++)
+                          InkWell(
+                            child: servicecontainermob(
+                              image: authController.dataList[i].image,
+                              title: authController.dataList[i].title,
+                              description: authController.dataList[i].description,
+                            ),
+                            onTap: () {
+                              Get.toNamed('/respo-coupon');
+                            },
+                          ),
+                        ],
+                        options: CarouselOptions(
+                        height: 140.0,
+                        enlargeCenterPage: true,
+                        autoPlay: true,
+                        aspectRatio: 16 / 9,
+                        enableInfiniteScroll: true,
+                        autoPlayAnimationDuration: Duration(milliseconds: 3200),
+                        viewportFraction: 0.8,
+                        onPageChanged: (index, reason) {
+                          setState(() {
                         pageIndex = index;
-                      });
-                    },
+                          });
+                        },
+                                          ),
+                      );
+                    }
                   ),
-                ),
-                ksizedbox10,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: pageIndex,
-                      count: 3,
-                      effect: ScaleEffect(
-                          dotHeight: 9.0,
-                          dotWidth: 9.0,
-                          dotColor: kgrey,
-                          activeDotColor: Colors.yellow),
-                    ),
-                  ],
-                ),
-              ],
-            ),
+                  ksizedbox10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedSmoothIndicator(
+                        activeIndex: pageIndex,
+                        count: 3,
+                        effect: ScaleEffect(
+                            dotHeight: 9.0,
+                            dotWidth: 9.0,
+                            dotColor: kgrey,
+                            activeDotColor: Colors.yellow),
+                      ),
+                    ],
+                  ),
+           
             ksizedbox30,
             InkWell(
               onTap: () {
@@ -185,61 +189,72 @@ class _ServicesState extends State<RespoServices> {
                     style: TextStyle(color: ktextblue),
                   )),
             ),
-            ksizedbox40,
+       
             ksizedbox30,
-            Column(
-              children: [
-                CarouselSlider(
-                  carouselController: curouselController,
-                  items: [
-                    InkWell(
-                      child: offercontainermob(),
-                      onTap: () {
-                        Get.toNamed('/respo-offer');
-                      },
+            GetBuilder<AuthController>(
+              
+              builder: (_){
+              
+              return CarouselSlider(
+                
+                carouselController: curouselController,
+                items: [
+                  
+                  for(var j=0;j<authController.dataList.length;j++)
+                  
+                  InkWell(
+                    child: offercontainermob(
+                      image: authController.dataList[j].image,
+                      title: authController.dataList[j].title,
+                      description: authController.dataList[j].description,
                     ),
-                    InkWell(
-                      child: offercontainermob(),
-                      onTap: () {
-                        Get.toNamed('/respo-offer');
-                      },
-                    ),
-                    InkWell(
-                      child:offercontainermob(),
-                      onTap: () {
-                        Get.toNamed('/respo-offer');
-                      },
-                    ),
-                  ],
-                  options: CarouselOptions(
-                    height: 170.0,
-                    enlargeCenterPage: true,
-                    autoPlay: true,
-                    aspectRatio: 16 / 9,
-                    enableInfiniteScroll: true,
-                    autoPlayAnimationDuration: Duration(milliseconds: 3200),
-                    viewportFraction: 0.8,
-                    onPageChanged: (index, reason) {
-                      setState(() {
-                        pageIndex = index;
-                      });
+                    onTap: () {
+                      Get.toNamed('/respo-offer');
                     },
                   ),
+                  // InkWell(
+                  //   child: offercontainermob(),
+                  //   onTap: () {
+                  //     Get.toNamed('/respo-offer');
+                  //   },
+                  // ),
+                  // InkWell(
+                  //   child:offercontainermob(),
+                  //   onTap: () {
+                  //     Get.toNamed('/respo-offer');
+                  //   },
+                  // ),
+                ],
+                options: CarouselOptions(
+                  height: 150.0,
+                  enlargeCenterPage: true,
+                  autoPlay: true,
+                  aspectRatio: 16 / 9,
+                  enableInfiniteScroll: true,
+                  autoPlayAnimationDuration: Duration(milliseconds: 3000),
+                  viewportFraction: 0.8,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      pageIndex = index;
+                    });
+                  },
                 ),
-                ksizedbox10,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    AnimatedSmoothIndicator(
-                      activeIndex: pageIndex,
-                      count: 3,
-                      effect: ScaleEffect(
-                          dotHeight: 9.0,
-                          dotWidth: 9.0,
-                          dotColor: kgrey,
-                          activeDotColor: Colors.yellow),
-                    ),
-                  ],
+              );
+              }
+            ),
+            
+            ksizedbox10,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedSmoothIndicator(
+                  activeIndex: pageIndex,
+                  count: 3,
+                  effect: ScaleEffect(
+                      dotHeight: 9.0,
+                      dotWidth: 9.0,
+                      dotColor: kgrey,
+                      activeDotColor: Colors.yellow),
                 ),
               ],
             ),

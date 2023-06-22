@@ -50,22 +50,23 @@ class LiquerBrand extends StatelessWidget {
             ksizedbox40,
             ksizedbox30,
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
+              padding: const EdgeInsets.only(left: 15,right: 15),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Hello Raja, Choose Your')
-                      .text
-                      .xl6
-                      .thin
-                      .make()
-                      .objectCenterLeft(),
+                  Text('Hello Raja, Choose Your',
+                  style: TextStyle(
+                    fontSize: 22
+                  ),),
+                     
                   ksizedbox40,
-                  Text('Best Liquor Brands')
-                      .text
-                      .xl6
-                      .semiBold
-                      .make()
-                      .objectCenterLeft(),
+                  Text('Best Liquor Brands',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: kblue
+                  ),),
+            
                   ksizedbox30,
                   Container(
                     decoration: BoxDecoration(

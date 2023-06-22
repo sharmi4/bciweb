@@ -11,6 +11,7 @@ import '../../../../controller/flaight _controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
+import '../history/others/others_booking_list.dart';
 import '../history/views/history.dart';
 import '../hotels/booking_hotels.dart';
 import '../liquer/Liquer_booking.dart';
@@ -194,6 +195,16 @@ class _BookingFlightState extends State<BookingFlight> {
                                       colorr: kblue,
                                     ),
                                   ),
+                                  // InkWell(
+                                  //   onTap: () {
+                                  //     Get.to(OthersBooking());
+                                  //   },
+                                  //   child: bookingbutton(
+                                  //     size: size,
+                                  //     text: 'Others',
+                                  //     colorr: kblue,
+                                  //   ),
+                                  // ),
                                 ],
                               ),
                               height: 60,

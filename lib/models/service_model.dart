@@ -83,7 +83,8 @@ class ServiceData {
         description: json["description"],
         isBooking: json["is_booking"],
         status: json["status"],
-        amenties: json["amenties"] == null ? [] : List<Amenty>.from(json["amenties"]!.map((x) => Amenty.fromJson(x))),
+        amenties: json["amenties"] == null ? [] :
+         List<Amenty>.from(json["amenties"]!.map((x) => Amenty.fromJson(x))),
         image: json["image"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),

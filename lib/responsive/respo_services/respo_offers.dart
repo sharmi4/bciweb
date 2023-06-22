@@ -1,3 +1,4 @@
+import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/responsive/respo_services/widgets/offerccontainer.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,9 +14,25 @@ import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 //import '../../../members/common_widget/common.dart';
 
-class RespOffer extends StatelessWidget {
-  const RespOffer({super.key});
+class RespOffer extends StatefulWidget {
+  String image;
+  String title;
+  String description;
+  RespOffer({super.key,required this.description,
+  required this.image,required this.title});
 
+  @override
+  State<RespOffer> createState() => _RespOfferState();
+}
+
+class _RespOfferState extends State<RespOffer> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authController.getservice();
+  }
+  final authController=Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,96 +41,116 @@ class RespOffer extends StatelessWidget {
           preferredSize: Size(double.infinity, 40)),
           drawer:    MobileDrawer(),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-          
-            Container(
-              child: Stack(
-                children: [
-                  Image.asset('assets/images/offer.png'),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    child: Center(
-                      child: Text(
-                        'OFFERS US',
-                        style: GoogleFonts.lato(
-                            fontSize: 35,
-                            fontWeight: FontWeight.bold,
-                            color: kwhite),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            ksizedbox20,
-            Text(
-              'All Offers Available',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Color(0xff003366),
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
-            ),
-            ksizedbox40,
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Column(
+        child: GetBuilder<AuthController>(
+          builder: (_){
+          return Column(
+            children: [
+            
+              Container(
+                child: Stack(
                   children: [
-                    Respooffers_container(),
-                        //    Respooffers_container(),
-                    ksizedbox30,
-                        //  ksizedbox40,
-                    Respooffers_container(),
-                        //      Respooffers_container(),
-                    ksizedbox30,
-                     //     ksizedbox40,
-                    Respooffers_container(),
-                      //  Respooffers_container(),
-                    ksizedbox30,
-                       //   ksizedbox40,
-                    //Respooffers_container(),
-                     Respooffers_container(),
+                    Image.asset('assets/images/offer.png'),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      child: Center(
+                        child: Text(
+                          'OFFERS',
+                          style: GoogleFonts.lato(
+                              fontSize: 35,
+                              fontWeight: FontWeight.bold,
+                              color: kwhite),
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ),
-            ),
-            ksizedbox30,
-            InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                child: Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Icon(
-                      Icons.arrow_back,size: 18,
-                      color: kwhite,
-                    ),
-                    Text(
-                      'BACK',
-                      style: TextStyle(
-                          color: kwhite,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                )),
-                height: 45,
-                width: 150,
-                decoration: BoxDecoration(
-                    color: kOrange, borderRadius: BorderRadius.circular(15)),
+              ksizedbox20,
+              Text(
+                'All Offers Available',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(0xff003366),
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold),
               ),
-            ),
-            ksizedbox40,
-         //   RegisterCommonBottom()
-      MobileCommonBottom()    ],
+              ksizedbox40,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Respooffers_container(
+                        image: authController.dataList.first.image,
+                        title: authController.dataList.first.title,
+                        description: authController.dataList.first.description,
+                      ),
+                          //    Respooffers_container(),
+                      ksizedbox30,
+                          //  ksizedbox40,
+                      Respooffers_container(
+                        title: authController.dataList.first.title,
+                        image: authController.dataList.first.image,
+                        description: authController.dataList.first.description,
+                      ),
+                          //      Respooffers_container(),
+                      ksizedbox30,
+                       //     ksizedbox40,
+                      Respooffers_container(
+                        image: authController.dataList.first.image,
+                        title: authController.dataList.first.title,
+                        description: authController.dataList.first.description,
+                      ),
+                        //  Respooffers_container(),
+                      ksizedbox30,
+                         //   ksizedbox40,
+                      //Respooffers_container(),
+                       Respooffers_container(
+                        title: authController.dataList.first.title,
+                        image: authController.dataList.first.image,
+                        description: authController.dataList.first.description,
+                       ),
+                    ],
+                  ),
+                ),
+              ),
+              ksizedbox30,
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  child: Center(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.arrow_back,size: 18,
+                        color: kwhite,
+                      ),
+                      Text(
+                        'BACK',
+                        style: TextStyle(
+                            color: kwhite,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  )),
+                  height: 45,
+                  width: 150,
+                  decoration: BoxDecoration(
+                      color: kOrange, borderRadius: BorderRadius.circular(15)),
+                ),
+              ),
+              ksizedbox40,
+           //   RegisterCommonBottom()
+              MobileCommonBottom()    ],
+          );
+          }
         ),
       ),
     );

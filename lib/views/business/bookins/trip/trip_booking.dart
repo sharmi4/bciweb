@@ -21,7 +21,7 @@ class BookingTrip extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
+   appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(
@@ -29,7 +29,7 @@ class BookingTrip extends StatelessWidget {
             RegisterCommonContainer(),
             Stack(
               children: [
-                Container(
+                Container(      
                     width: size.width,
                     child: Image.asset('assets/images/Group 39749.png')),
                 Positioned(
@@ -96,6 +96,16 @@ class BookingTrip extends StatelessWidget {
                                   colorr: kblue,
                                 ),
                               ),
+                              //  InkWell(
+                              //   onTap: () {
+                              //     Get.to(History());
+                              //   },
+                              //   child: bookingbutton(
+                              //     size: size,
+                              //     text: 'Others',
+                              //     colorr: kblue,
+                              //   ),
+                              // ),
                             ],
                           ),
                           height: 60,

@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 import '../../../../../constant/constans.dart';
 
 class offercontainermob extends StatelessWidget {
-  const offercontainermob({
+  String image;
+  String title;
+  String description;
+   offercontainermob({
+    required this.image,
+    required this.description,
+    required this.title,
     super.key,
   });
 
@@ -14,12 +20,20 @@ class offercontainermob extends StatelessWidget {
     return Container(
       height: size.height * 0.3,
       width: size.width * 0.9,
-      color: kblue,
+     
+    decoration: BoxDecoration(
+         color: kblue,
+         borderRadius: BorderRadius.circular(10)
+    ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Image.asset('assets/images/NoPath - Copy (7).png'),
+            padding: const EdgeInsets.only(left: 0),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(image,
+              fit: BoxFit.fitHeight,height: 100,)),
           ),
           kwidth10,
           Column(
@@ -28,19 +42,19 @@ class offercontainermob extends StatelessWidget {
             children: [
               ksizedbox10,
               Text(
-                'JK Stores Offer For ',
-                style: TextStyle(fontSize: 19, color: kwhite),
+                title,
+                style: TextStyle(fontSize: 14, color: kwhite),
               ),
               Text(
-                'Casual Shirts',
-                style: TextStyle(fontSize: 19, color: kwhite),
+                title,
+                style: TextStyle(fontSize: 14, color: kwhite),
               ),
               Text(
-                '25% Offer',
+                title,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               Text(
-                '5 Days Only',
+                title,
                 style: TextStyle(fontSize: 14, color: Colors.grey),
               ),
               ksizedbox10
@@ -53,10 +67,16 @@ class offercontainermob extends StatelessWidget {
 }
 
 class servicecontainermob extends StatelessWidget {
-  const servicecontainermob({
+
+  servicecontainermob({
+    required this.description,
+    required this.image,
+    required this.title,
     super.key,
   });
-
+ String image;
+ String title;
+ String description;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -66,36 +86,37 @@ class servicecontainermob extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
-                width: 180,
-                child: Column(
-                  children: [
-                    Text(
-                      'New Shopping Get In New Coupons availables into more coupons.',
-                      style: TextStyle(
-                        color: ktextblue,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    ksizedbox10,
-                    Container(
-                      decoration: BoxDecoration(
-                          color: kblue, borderRadius: BorderRadius.circular(4)),
-                      child: Center(
-                          child: Text(
-                        'Click Now',
-                        style: TextStyle(
-                            fontWeight: FontWeight.w600, color: kwhite),
-                      )),
-                      height: 20,
-                      width: 90,
-                    )
-                  ],
-                )),
-            Container(
-              height: 150,
-              child: Image.asset('assets/images/NoPath - Copy (3).png'),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: ktextblue,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                ksizedbox30,
+                Container(
+                  decoration: BoxDecoration(
+                      color: kblue, borderRadius: BorderRadius.circular(4)),
+                  child: Center(
+                      child: Text(
+                    'Click Now',
+                    style: TextStyle(
+                        fontWeight: FontWeight.w600, color: kwhite),
+                  )),
+                  height: 20,
+                  width: 90,
+                )
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(image,fit:BoxFit.fitHeight,height: 100,)),
             )
           ],
         ),

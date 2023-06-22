@@ -50,6 +50,7 @@ import 'controller/flaightdate_controller.dart';
 import 'controller/historycontroller.dart';
 import 'controller/profile_controller.dart';
 import 'controller/specialized_controller.dart';
+import 'controller/subscription_controller/subscription_controller.dart';
 // import 'responsive/responsive_homescreen/responsive_homescreen.dart';/
 
 void main() {
@@ -72,6 +73,7 @@ void main() {
       Get.put(PaymentController());
       Get.put(AuthController());
       Get.put(AuthProfileController());
+      Get.put(SubscriptionApiController());
   runApp(const MyApp());
 }
 
@@ -96,7 +98,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/office-addreass', page: () => OfficeAddress()),
         GetPage(name: '/signin', page: () => SignUpView()),
         GetPage(name: '/residential-address', page: () => ResidentialAddress( )),
-         GetPage(name: '/subscribe', page: () => Subscribe()),
+         GetPage(name: '/subscribe', page: () => Subscribe( )),
         // GetPage(name: '/payment', page: () => Payment(
         //  image: "assets/images/Group 38637.png",
         //  )),
@@ -106,7 +108,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: '/reghome', page: () => BusinessRegisterHomeScreen()),
         GetPage(name: '/offer-screen', page: () => OfferScreen()),
         GetPage(name: '/respo-coupon', page: () => RespoCoupones()),
-        GetPage(name: '/respo-offer', page: () => RespOffer()),
+        GetPage(name: '/respo-offer', page: () => RespOffer(image: '',title: '',description: '',)),
         GetPage(name: '/respo-contact', page: () => RespoContact()),
         GetPage(name: '/respo-specialised', page: () => RespoSpecialized()),
         GetPage(name: '/respo-gallery', page: () => RespoGallery()),

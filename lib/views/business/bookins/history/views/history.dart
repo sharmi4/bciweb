@@ -16,6 +16,7 @@ import '../../../../members/common_widget/common.dart';
 import '../../hotels/booking_hotels.dart';
 import '../../liquer/Liquer_booking.dart';
 import '../../trip/trip_booking.dart';
+import '../others/others_booking_list.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -105,6 +106,16 @@ class _HistoryState extends State<History> {
                                   colorr: korange,
                                 ),
                               ),
+                              // InkWell(
+                              //   onTap: () {
+                              //     Get.to((OthersBooking()));
+                              //   },
+                              //   child: bookingbutton(
+                              //     size: size,
+                              //     text: 'Others',
+                              //     colorr: kblue,
+                              //   ),
+                              // ),
                             ],
                           ),
                           height: 60,
@@ -218,11 +229,35 @@ class _HistoryState extends State<History> {
                                     width: 200,
                                   ),
                                 ),
+                                InkWell(
+                                  onTap: () {
+                                    historyController.hisindex(4);
+                                    historyController.update();
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                        child: Text(
+                                      'Others',
+                                      style: TextStyle(
+                                          color: kwhite,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                    decoration: BoxDecoration(
+                                        color: historyController.hisindex == 4
+                                            ? kyellow
+                                            : kgrey,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    height: 100,
+                                    width: 200,
+                                  ),
+                                ),
                               ],
                             ),
                           ),
                           height: 140,
-                          width: size.width * 0.8,
+                          width: size.width * 0.9,
                           decoration: BoxDecoration(
                               color: kwhite,
                               borderRadius: BorderRadius.only(
@@ -244,8 +279,9 @@ class _HistoryState extends State<History> {
                     if (historyController.hisindex.value == 0) index1(),
                     if (historyController.hisindex.value == 1) index2(),
                     if (historyController.hisindex.value == 2) index3(),
-                    if (historyController.hisindex.value == 3)
-                      bottle_container(),
+                    if (historyController.hisindex.value == 3)   bottle_container(),
+                     if (historyController.hisindex.value == 4)  index4(),
+                     
                   ],
                 )),
             ksizedbox30,

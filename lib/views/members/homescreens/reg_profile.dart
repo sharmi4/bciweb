@@ -143,7 +143,7 @@ void initState() {
       });
       dateofbirthController.text = authprofileController.profileData.first.dob;
     }
-     }
+     }  
     
   
   @override

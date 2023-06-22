@@ -21,4 +21,13 @@ abstract class BaseApiService{
   final String getPlanList =
       "https://bci.generation360tech.in/api/auth/get_plan_list";
 
+   //Get payment
+   final String addSubscriptionPlan='https://bci.generation360tech.in/api/auth/add_subscription_plan';
+
+   //Get Coupons
+   final  String getCoupons='https://bci.generation360tech.in/api/auth/getUserCoupons';
+    
+    //Get  OtherBooking
+   final String getothersBooking='https://bci.generation360tech.in/api/auth/booking_list';
+
 }

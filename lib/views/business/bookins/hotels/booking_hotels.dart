@@ -1,4 +1,5 @@
 import 'package:bciweb/views/business/bookins/flight/booking_flight.dart';
+import 'package:bciweb/views/business/bookins/history/others/others_booking_list.dart';
 import 'package:bciweb/views/business/bookins/hotels/widgets/containers.dart';
 import 'package:bciweb/views/business/bookins/liquer/Liquer_booking.dart';
 import 'package:bciweb/views/business/bookins/trip/trip_booking.dart';
@@ -103,6 +104,16 @@ class _BookingHotelsState extends State<BookingHotels> {
                                   colorr: kblue,
                                 ),
                               ),
+                              // InkWell(
+                              //   onTap: () {
+                              //     Get.to(OthersBooking());
+                              //   },
+                              //   child: bookingbutton(
+                              //     size: size,
+                              //     text: 'Others',
+                              //     colorr: kblue,
+                              //   ),
+                              // ),
                             ],
                           ),
                           height: 60,

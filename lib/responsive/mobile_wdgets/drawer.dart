@@ -173,35 +173,35 @@ final authController=Get.find<AuthController>();
               ),
             ),
       
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 10, left: 10),
-            //   child: Row(
-            //     children: [
-            //       TextButton(
-            //           onPressed: () {
-            //             Get.toNamed('/respo-profile',);
-            //           },
-            //           child: Row(
-            //             children: [
-            //               Image.asset('assets/images/nick.png',height: 30,fit: BoxFit.fitHeight,),
-            //               Padding(
-            //                 padding: const EdgeInsets.only(left: 15),
-            //                 child: Text(
-            //                   'PROFILE',
-            //                   style: TextStyle(fontSize: 16, color: kwhite),
-            //                 ),
-            //               ),
-            //             ],
-            //           ))
-            //     ],
-            //   ),
-            // ),
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
-            //   child: Divider(
-            //     color: kgrey,
-            //   ),
-            // ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Get.toNamed('/respo-profile',);
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset('assets/images/nick.png',height: 30,fit: BoxFit.fitHeight,),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 15),
+                            child: Text(
+                              'PROFILE',
+                              style: TextStyle(fontSize: 16, color: kwhite),
+                            ),
+                          ),
+                        ],
+                      ))
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+              child: Divider(
+                color: kgrey,
+              ),
+            ),
             authController.isLogedin.isFalse ?
             Padding(
               padding: const EdgeInsets.only(top: 100),
