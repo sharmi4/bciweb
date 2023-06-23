@@ -151,10 +151,17 @@ void initState() {
      var size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: Obx(()=>
        ListView(
-          children:[ RegisterCommonContainer(),
+          children:[
+            // RegisterCommonContainer(),
                 
                    Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

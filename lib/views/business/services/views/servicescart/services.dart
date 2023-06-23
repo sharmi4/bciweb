@@ -44,11 +44,17 @@ class _ServicesState extends State<Services> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            RegisterCommonContainer(),
+           // RegisterCommonContainer(),
             Container(
               child: Stack(
                 children: [

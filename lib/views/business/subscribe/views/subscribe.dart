@@ -44,15 +44,20 @@ int button=0;
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(),
-          preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body:  GetBuilder<SubscriptionApiController>(
           builder: (_){
             
             return ListView(
             //  crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              RegisterCommonContainer(),
+             // RegisterCommonContainer(),
               Container(
                 child: Stack(
                   children: [

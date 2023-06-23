@@ -21,12 +21,18 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
     return  Scaffold(
-      appBar: PreferredSize(child: CommonScreen(), 
-     preferredSize:Size(double.infinity, 
-             40)),
+      appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
-        children: [RegisterCommonContainer(),
-       //   CommonContainer(),
+        children: [
+          // RegisterCommonContainer(),
+          // CommonContainer(),
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width,

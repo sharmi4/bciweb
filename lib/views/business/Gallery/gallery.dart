@@ -60,11 +60,17 @@ class _GalleryState extends State<Gallery> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            RegisterCommonContainer(),
+            //RegisterCommonContainer(),
             ksizedbox40,
             Padding(
               padding: const EdgeInsets.all(10.0),

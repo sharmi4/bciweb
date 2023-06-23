@@ -29,14 +29,20 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+      appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: Obx(
         () => ListView(
             //physics:ScrollPhysics(),
             children: [
               // CommonContainer(),
-              RegisterCommonContainer(),
+              // RegisterCommonContainer(),
               Container(
                   width: MediaQuery.of(context).size.width,
                   height: 200,

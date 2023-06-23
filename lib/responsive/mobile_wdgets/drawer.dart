@@ -1,6 +1,7 @@
 import 'dart:js_util';
 
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/responsive/booking_view/booking_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -180,7 +181,7 @@ final authController=Get.find<AuthController>();
                 children: [
                   TextButton(
                       onPressed: () {
-                        
+                        Get.to(const MembersBooking());
                       },
                       child: Text(
                         'BOOKINGS',

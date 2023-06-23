@@ -22,6 +22,7 @@ class CommonScreen extends StatelessWidget {
             )
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ksizedbox10,
                 Row(
@@ -87,10 +88,12 @@ class CommonScreen extends StatelessWidget {
                   ]),
  ),
                   ],
-                )
+                ),
+                ksizedbox10
               ],
             ),
           ),
+          ksizedbox10
           // Positioned(
           // left: -2,
           //   top: 0,

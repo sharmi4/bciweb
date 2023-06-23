@@ -63,7 +63,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
           
              Obx(()=>
                 Padding(
-                 padding: const EdgeInsets.only(left: 20),
+                 padding: const EdgeInsets.only(left: 10),
                  child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                    children: [
@@ -76,7 +76,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       color: reghomeController.reindex==0?kOrange:kblue
                      ),)),
                      Padding(
-                       padding: const EdgeInsets.only(left: 10),
+                       padding: const EdgeInsets.only(left: 7),
                        child: TextButton(onPressed: (){
                         Get.toNamed(Routes.about_screens);
                         print("-------------------------");
@@ -89,7 +89,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                      ),
                       Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                   padding: const EdgeInsets.only(left: 7),
                    child: TextButton(onPressed: (){
                 
                     reghomeController.reindex(2);
@@ -104,7 +104,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                  ),
                   
                  Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                   padding: const EdgeInsets.only(left: 7),
                    child: TextButton(onPressed: (){
                 
                     reghomeController.reindex(3);
@@ -118,7 +118,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
                   Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                   padding: const EdgeInsets.only(left: 7),
                    child: TextButton(onPressed: (){
                    
                     reghomeController.reindex(4);
@@ -132,7 +132,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
                    Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                   padding: const EdgeInsets.only(left: 7),
                    child: TextButton(onPressed: (){
                 
                     reghomeController.reindex(5);
@@ -149,7 +149,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   
                   
                  Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                   padding: const EdgeInsets.only(left: 7),
                    child: TextButton(onPressed: (){
                     reghomeController.reindex(6);
                     reghomeController.update();
@@ -161,8 +161,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),)),
                  ),
 
- Padding(
-                   padding: const EdgeInsets.only(left: 10),
+                    Padding(
+                   padding: const EdgeInsets.only(left: 7),
                    child: TextButton(onPressed: (){
                     reghomeController.reindex(7);
                     reghomeController.update();
@@ -182,7 +182,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
              ),
              Obx(()=>
                 Padding(
-                 padding: const EdgeInsets.only(left: 10),
+                 padding: const EdgeInsets.only(left: 0),
                  child: Row(
                        
                    children: [
@@ -226,7 +226,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        ),
                      ),
                      Padding(
-                       padding: const EdgeInsets.only(left: 15),
+                       padding: const EdgeInsets.only(left: 10),
                        child: InkWell(
                         onTap: (){
                          
@@ -234,7 +234,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         },
                          child: Container(
                           height: 35,
-                          width:120,
+                          width:110,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(colors:[
                               korange,
@@ -250,7 +250,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                      ),
                     authController.isLogedin==false? 
                        Padding(
-                       padding: const EdgeInsets.only(left: 20),
+                       padding: const EdgeInsets.only(left: 10),
                        child: InkWell(
                         onTap: (){
                         //  Get.to(LandingScree());
@@ -258,7 +258,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         },
                          child: Container(
                           height: 35,
-                          width:120,
+                          width:110,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(colors:[
                               korange,
@@ -273,7 +273,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        ),
                      ) : 
                      Padding(
-                       padding: const EdgeInsets.only(left: 20),
+                       padding: const EdgeInsets.only(left: 10),
                        child: InkWell(
                         onTap: (){
                          // Get.to(MobileVerificatio());
@@ -281,7 +281,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         },
                          child: Container(
                           height: 35,
-                          width:120,
+                          width:110,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(colors:[
                               korange,
@@ -300,7 +300,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                ),
              ),
              Padding(
-               padding: const EdgeInsets.only(left: 20),
+               padding: const EdgeInsets.only(left: 10),
                child: Row(children:[ 
                 Text('Raja Ram'),
                   Icon(Icons.expand_more),     

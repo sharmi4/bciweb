@@ -1144,7 +1144,6 @@ class _index4State extends State<index4> {
       children:[ GetBuilder<SubscriptionApiController>(
         builder: (_){
         return Container(
-         height: 1000,
           width: 1000,
         
           child: GridView.builder(

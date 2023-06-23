@@ -21,12 +21,18 @@ class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(child: CommonScreen(), 
-      preferredSize: Size(double.infinity, 
-             40)),
+     appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
              body: ListView(
                children:[ Column(
-                 children: [RegisterCommonContainer(),
+                 children: [
+                  //RegisterCommonContainer(),
                   // CommonContainer(),
                    Container(
                     height: 235,
