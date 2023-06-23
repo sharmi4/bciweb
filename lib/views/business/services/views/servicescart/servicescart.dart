@@ -41,7 +41,7 @@ class _ServicesCartState extends State<ServicesCart> {
           //  Text('data'),
           GetBuilder<HomeServiceController>(builder: (_) {
             return Container(
-              height: size.height * 0.5,
+           //   height: size.height * 0.5,
               width: size.width,
               child: ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
