@@ -36,7 +36,7 @@ class AuthProfileController extends GetxController {
     profileData.clear();
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
     if (response.statusCode == 200) {
-      print('--------------------------Api success-----------------------');
+      print('--------------------------Api success---------profile--------------');
       MemberProfileModel profileModel =
           MemberProfileModel.fromJson(response.data);
       print("<------------------Working on 01------------------>");

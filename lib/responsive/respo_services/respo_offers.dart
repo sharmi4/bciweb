@@ -15,11 +15,10 @@ import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 //import '../../../members/common_widget/common.dart';
 
 class RespOffer extends StatefulWidget {
-  String image;
-  String title;
-  String description;
-  RespOffer({super.key,required this.description,
-  required this.image,required this.title});
+  
+  RespOffer({super.key,
+  
+  });
 
   @override
   State<RespOffer> createState() => _RespOfferState();

@@ -129,7 +129,7 @@ void initState() {
                   InkWell(
                     onTap: () {
                      
-                      subsciptionController.addPaymentSubscription(id:widget.id,
+                      subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
                       showpayment: true);
                       
                      // Get.toNamed('/add-wallet');

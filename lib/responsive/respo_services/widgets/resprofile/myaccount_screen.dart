@@ -5,8 +5,12 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 import '../../../../constant/constans.dart';
+import '../../../../controller/auth_controller/auth_profile_controller.dart';
+import '../../../../controller/profile_controller.dart';
 import '../../../../controller/profile_show_controller.dart';
 import '../../../../controller/reg_profile_controller.dart';
+import '../../../../models/create_account_model.dart';
+import '../../../../models/member profileupdate.dart';
 import '../../../mobile_wdgets/comomappbar.dart';
 
 class MyAccountScreen extends StatefulWidget {
@@ -61,7 +65,7 @@ var mobilereferalCOntroller=TextEditingController();
   //     print('Failed to pick image:$e');
   //   }
   // }
-   
+     dynamic imageprofile;
   Future imagepic() async {
     try {
       final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -116,8 +120,51 @@ List partnerimage=[
   'assets/images/partnerimage5.png',
   'assets/images/partnerimage6.png'
   ];
+ final authprofileController=Get.find<AuthProfileController>();
+  final profileController=Get.find<ProfileController>();
+
+  @override
+void initState() {
+
+  super.initState();
+    setDefauld();
+}
+  setDefauld()async{
+     await authprofileController.getProfile();
+     if(authprofileController.profileData.isNotEmpty){
+    mobilenameController.text= authprofileController.profileData.first.name;
+    mobilenumberController.text= authprofileController.profileData.first.mobile;
+    mobileemailController.text= authprofileController.profileData.first.email;
+    mobileoccupationController.text= authprofileController.profileData.first.occupation;
+    mobilefathernameController.text=authprofileController.profileData.first.fatherName;
+    mobilemothernameController.text=authprofileController.profileData.first.motherName;
+    
+     mobileofficedoornumber.text =
+          authprofileController.profileData.first.officialAddress.doorNo;
+      mobileresibnameController.text =
+          authprofileController.profileData.first.officialAddress.buildingName;
+      mobileofficeaddress.text =
+          authprofileController.profileData.first.officialAddress.address;
+
+      mobileresibnameController.text = authprofileController.profileData.first.officialAddress.city;
+      mobileofficestate.text = authprofileController.profileData.first.officialAddress.state;
+
+      
+
+      setState(() {
+        isMarried =
+            authprofileController.profileData.first.isMarried == "0" ? false : true;
+              isUnmarried =
+            authprofileController.profileData.first.isMarried == "0" ? false : true;
+      });
+      mobiledateofbirthController.text = authprofileController.profileData.first.dob;
+    }
+     } 
+     bool isMarried =false;
+bool isUnmarried =false; 
   @override
   Widget build(BuildContext context) {
+     var size = MediaQuery.of(context).size;
     return Scaffold(
        appBar: PreferredSize(
           child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
@@ -238,35 +285,62 @@ List partnerimage=[
                                 children: [
                                   Stack(
                                     children:[ 
-                                      Center(
-                                        child: image!=null?Image.file(image!):InkWell(
-                                          onTap: (){
-                 
-                                          },
-                                          child: Image.asset('assets/images/profileimage.png',
-                                                                        height: 90,fit: BoxFit.fitHeight,),
-                                        ),
-                                      ),
-                                     Padding(
-                                    padding: const EdgeInsets.only(top: 60,left: 75),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        
-                                        InkWell(
-                                          onTap: (){
-                                            imagepic();
-                                          },
-                                          child: CircleAvatar(
-                                            backgroundColor: kblue,
-                                            radius: 12,
-                                            child: Icon(
-                                              Icons.camera_alt_outlined,size: 15,),
-                                          ),
-                                        )
-                                      ],
-                                    ), 
-                                  )
+                                      GetBuilder<AuthProfileController>(
+                                  builder:(_){
+                                  return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(""),
+                                if (authprofileController.profileData.isNotEmpty)
+                                  InkWell(
+                                      onTap: ()async {
+                                       
+                          PickedFile? pickedFile = await ImagePicker().getImage(
+                            source: ImageSource.gallery,
+                          );
+                           
+                           
+                          var tempCont = await pickedFile!.readAsBytes();
+                          setState(() {
+                            imageprofile = tempCont;
+                          });
+                          authprofileController.updateProfilePic(imageprofile);
+
+                                      },
+                                      child:imageprofile != null ? Image.memory(
+                                              imageprofile!) :   authprofileController.profileData.first
+                                                  .profilePicture ==
+                                              null
+                                          ?  Image.asset(
+                                              'assets/images/profileimage.png')
+                                          : Container(
+                                              height: 60,
+                                              width: 60,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(50),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          authprofileController
+                                                              .profileData
+                                                              .first
+                                                              .profilePicture))),
+                                            )),
+                                const Padding(
+                                  padding: EdgeInsets.only(bottom: 40),
+                                  child: Text(
+                                    "",
+                                    style: TextStyle(
+                                        color: Color(0xffFF5003),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                ),
+                              ],
+                            );
+                                  }
+                                ), 
+                                    
                                     ]
                                   ),
                                  Row(
@@ -493,10 +567,10 @@ List partnerimage=[
                                                   child: Row(
                                                                                           
                                                     children: [
-                                                      Checkbox(value: _value, 
+                                                      Checkbox(value: isMarried, 
                                                       onChanged: (value){
                                                          setState(() {
-                                                             _value=value!;
+                                                             isMarried=value!;
                                                          });
                                                       }),
                                                       Text('Married',
@@ -505,10 +579,10 @@ List partnerimage=[
                                                       ),),
                                                       Padding(
                                                         padding: const EdgeInsets.only(),
-                                                        child: Checkbox(value: _value2, 
+                                                        child: Checkbox(value: isUnmarried, 
                                                         onChanged: (value){
                                                           setState(() {
-                                                            _value2=value!;
+                                                            isUnmarried=value!;
                                                           });
                                                         }),
                                                       ),
@@ -718,25 +792,80 @@ List partnerimage=[
                                        ],
                                      ),
                                    ),
-                                   Padding(
-                                 padding: const EdgeInsets.only(top:30,left: 20),
-                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
+                                  Obx(
+                            () => authprofileController.isLoading.isTrue
+                                ? Padding(
+                                  padding: const EdgeInsets.only(top:50,left:60),
+                                  child: Row(
+                                                              
+                                   children: [
                                     ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: korange,
-                                        minimumSize: Size(MediaQuery.of(context).size.width*0.9, 45)
-                                      ),
-                                      onPressed: (){}, 
-                                    child: Text('Update',
-                                    style: TextStyle(
-                                      fontSize: 17
-                                    ),))
-                                  ],
-                                 ),
-                               ),
-                                            
+                                  style: ElevatedButton.styleFrom(
+                                     backgroundColor: korange,
+                                     minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
+                                  ),
+                                     onPressed: (){
+                                      MemberProfileUpdateModel
+                                        memberProfileUpdateModel =
+                                        MemberProfileUpdateModel(
+                                      name: mobilenameController.text,
+                                      email: mobileemailController.text,
+                                      dateOfBirth:
+                                          mobiledateofbirthController.text,
+                                      fatherName: mobilefathernameController.text,
+                                      isMarried:
+                                          isMarried == true ? "1" : "0",
+                                      mobile: mobilenumberController.text,
+                                      motherName: mobilemothernameController.text,
+                                      occupation: mobileoccupationController.text,
+                                    );
+                                
+                                    authprofileController.updateProfile(
+                                        memberProfileUpdateModel:
+                                            memberProfileUpdateModel);
+                                   }, 
+                                     child: CircularProgressIndicator(
+                                      color: kwhite,
+                                     ))
+                                   ],
+                                  ),
+                                )
+                                : Padding(
+                                  padding: const EdgeInsets.only(top:50,left:60),
+                                  child: Row(
+                                                              
+                                   children: [
+                                    ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                     backgroundColor: korange,
+                                     minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
+                                  ),
+                                     onPressed: (){
+                                      MemberProfileUpdateModel
+                                        memberProfileUpdateModel =
+                                        MemberProfileUpdateModel(
+                                      name: mobilenameController.text,
+                                      email: mobileemailController.text,
+                                      dateOfBirth:
+                                          mobiledateofbirthController.text,
+                                      fatherName: mobilefathernameController.text,
+                                      isMarried:
+                                          isMarried == true ? "1" : "0",
+                                      mobile: mobilenumberController.text,
+                                      motherName: mobilemothernameController.text,
+                                      occupation: mobileoccupationController.text,
+                                    );
+                                
+                                    authprofileController.updateProfile(
+                                        memberProfileUpdateModel:
+                                            memberProfileUpdateModel);
+                                   }, 
+                                     child: Text('Update'))
+                                   ],
+                                  ),
+                                ),
+                          ),
+                              ksizedbox20,              
                                 ],
                               ),
                             ),
@@ -839,25 +968,72 @@ List partnerimage=[
                                           ],
                                         ),
                                       ),
-                                   Padding(
-                                 padding: const EdgeInsets.only(top:50),
+                                                                         Obx(
+                            () => authprofileController.isLoading.isTrue
+                                ? Padding(
+                                 padding: const EdgeInsets.only(left:50,top:50),
                                  child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: korange,
-                                        minimumSize: Size(MediaQuery.of(context).size.width*0.6, 45)
-                                      ),
-                                      onPressed: (){}, 
-                                    child: Text('Update',
-                                    style: TextStyle(
-                                      fontSize: 17
-                                    ),))
+                                ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: korange,
+                                  minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
+                                ),
+                                onPressed: (){
+                                         AddressModel addressModel =
+                                      AddressModel(
+                                    aadhrId: "",
+                                    address: mobileofficeaddress.text,
+                                    buildingName: mobileofficebnumber.text,
+                                    city: mobileofficecity.text,
+                                    doorNo: mobileofficedoornumber.text,
+                                    personalId: "",
+                                    state: mobileofficestate.text,
+                                  );
+
+                                  authprofileController.updateOfficalAddress(
+                                      officialAddress: addressModel);
+                                }, 
+                                child:CircularProgressIndicator(
+                                  color:kwhite
+                                )
+                                )
+                                  ],
+                                 ),
+                               )
+                                : Padding(
+                                 padding: const EdgeInsets.only(left:50,top:50),
+                                 child: Row(
+                                  children: [
+                                ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor: korange,
+                                  minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
+                                ),
+                                onPressed: (){
+                                         AddressModel addressModel =
+                                      AddressModel(
+                                    aadhrId: "",
+                                    address: mobileofficeaddress.text,
+                                    buildingName: mobileofficebnumber.text,
+                                    city: mobileofficecity.text,
+                                    doorNo: mobileofficedoornumber.text,
+                                    personalId: "",
+                                    state: mobileofficestate.text,
+                                  );
+
+                                  authprofileController.updateOfficalAddress(
+                                      officialAddress: addressModel);
+                                }, 
+                                child: Text('Update',
+                                style: TextStyle(
+                                fontSize: 17
+                                ),))
                                   ],
                                  ),
                                ),
-
+                          ),
+                             ksizedbox30,
                                   ],
                                 )
                                 ),
@@ -985,24 +1161,97 @@ List partnerimage=[
                                           ],
                                         ),
                                       ),
-                                      Padding(
-                                 padding: const EdgeInsets.only(top:50),
-                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: korange,
-                                        minimumSize: Size(MediaQuery.of(context).size.width*0.5, 45)
+                                           Obx(
+                            () => Padding(
+                              padding: const EdgeInsets.only(top: 20,left: 50),
+                              child: profileController.isLoading.isTrue
+                                  ? InkWell(
+                                      onTap: () {
+                                        AddressModel addressModel =
+                                            AddressModel(
+                                                aadhrId: mobileresiadaridController.text,
+                                                address: mobileresiaddressController.text,
+                                                buildingName:
+                                                    mobileresibnameController.text,
+                                                city: mobileresibcityController.text,
+                                                doorNo: mobileresidoornumberController.text,
+                                                personalId: mobileresiperidController.text,
+                                                state: mobileresistateController.text);
+                                        authprofileController
+                                            .updateRecidencyAddress(
+                                                residentialAddress:
+                                                    addressModel);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top:20,left:50),
+                                        child: Container(
+                                          height: 40,
+                                          width: size.width*0.42,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(3),
+                                              border: Border.all(
+                                                  color: const Color(0xffFF9021)),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Color(0xffFF5003),
+                                                  blurRadius: 2.0,
+                                                ),
+                                              ]),
+                                          child: CircularProgressIndicator(
+                                            color:kwhite
+                                          )
+                                          ),
+                                        ),
+                                      )
+                                  : GestureDetector(
+                                      onTap: () {
+                                        AddressModel addressModel =
+                                            AddressModel(
+                                                aadhrId: mobileresiadaridController.text,
+                                                address: mobileresiaddressController.text,
+                                                buildingName:
+                                                    mobileresibnameController.text,
+                                                city: mobileresibcityController.text,
+                                                doorNo: mobileresidoornumberController.text,
+                                                personalId: mobileresiperidController.text,
+                                                state: mobileresistateController.text);
+                                        authprofileController
+                                            .updateRecidencyAddress(
+                                                residentialAddress:
+                                                    addressModel);
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(top:20,left:50),
+                                        child: Container(
+                                          height: 40,
+                                          width: size.width*0.42,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(3),
+                                              border: Border.all(
+                                                  color: const Color(0xffFF9021)),
+                                              boxShadow: const [
+                                                BoxShadow(
+                                                  color: Color(0xffFF5003),
+                                                  blurRadius: 2.0,
+                                                ),
+                                              ]),
+                                          child: const Center(
+                                            child: Text(
+                                              "Submit",
+                                           style: TextStyle(
+                                          color: Colors.white,
+                                fontSize: 17
+                                ),
+                                              
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      onPressed: (){}, 
-                                    child: Text('Update',
-                                    style: TextStyle(
-                                      fontSize: 17
-                                    ),))
-                                  ],
-                                 ),
-                               ),
+                                    ),
+                            ),
+                          ),
                                ksizedbox10,
                                 ],
                               ),

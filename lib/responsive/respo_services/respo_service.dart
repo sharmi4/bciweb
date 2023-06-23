@@ -1,6 +1,8 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
+import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
+import 'package:bciweb/responsive/respo_services/respo_offers.dart';
 import 'package:bciweb/responsive/respo_services/widgets%20copy/containors.dart';
 import 'package:bciweb/views/business/services/views/widgets/containors.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -106,7 +108,7 @@ class _ServicesState extends State<RespoServices> {
                               description: authController.dataList[i].description,
                             ),
                             onTap: () {
-                              Get.toNamed('/respo-coupon');
+                              Get.to(RespoCoupones());
                             },
                           ),
                         ],
@@ -146,7 +148,7 @@ class _ServicesState extends State<RespoServices> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                Get.toNamed('/respo-coupon');
+                Get.to(RespoCoupones());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -209,7 +211,7 @@ class _ServicesState extends State<RespoServices> {
                       description: authController.dataList[j].description,
                     ),
                     onTap: () {
-                      Get.toNamed('/respo-offer');
+                      Get.to(RespOffer());
                     },
                   ),
                   // InkWell(
@@ -262,7 +264,8 @@ class _ServicesState extends State<RespoServices> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                Get.toNamed('/respo-offer');
+                Get.to(RespOffer(
+                ));
               },
               child: Container(
                 decoration: BoxDecoration(

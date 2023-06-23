@@ -6,12 +6,14 @@ import 'package:get/get.dart';
 
 import '../../controller/auth_controller/auth_controller.dart';
 import '../../views/authentication/landing_screen.dart';
+import '../../views/members/homescreens/reg_profile.dart';
 import '../authentications/contact us/respo_contact.dart';
 import '../authentications/generate_otp/generate_otp.dart';
 import '../authentications/langing_screen/landing_screen.dart';
 import '../authentications/otp_verification/otp_verification.dart';
 import '../respo_services/respo_service.dart';
 import '../mobile_body/mobile_home.dart';
+import '../respo_services/widgets/resprofile/mobile_profile_screen.dart';
 import '../specialized/respo_specialized.dart';
 import 'clubhousee.dart';
 
@@ -172,14 +174,55 @@ final authController=Get.find<AuthController>();
                 color: kgrey,
               ),
             ),
-      
+                Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        
+                      },
+                      child: Text(
+                        'BOOKINGS',
+                        style: TextStyle(fontSize: 16, color: kwhite),
+                      ))
+                ],
+              ),
+            ),
+             Padding(
+              padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+              child: Divider(
+                color: kgrey,
+              ),
+            ),
+              Padding(
+              padding: const EdgeInsets.only(top: 10, left: 10),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        
+                      },
+                      child: Text(
+                        'MEMBERSHIP',
+                        style: TextStyle(fontSize: 16, color: kwhite),
+                      ))
+                ],
+              ),
+            ),
+              Padding(
+              padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+              child: Divider(
+                color: kgrey,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/respo-profile',);
+                        Get.to(MobileProfileScreen());
                       },
                       child: Row(
                         children: [
