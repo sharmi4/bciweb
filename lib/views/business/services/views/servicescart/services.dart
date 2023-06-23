@@ -17,6 +17,7 @@ import '../../../../../controller/subscription_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 
 import '../../../../members/common_widget/common.dart';
+import '../coupons.dart';
 import '../offerce.dart';
 
 class Services extends StatefulWidget {
@@ -168,7 +169,7 @@ class _ServicesState extends State<Services> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                Get.toNamed('/coupones');
+                Get.to(Coupones());
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -304,7 +305,8 @@ class _ServicesState extends State<Services> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                Get.toNamed('/offer-screen');
+                Get.to(offers_container(description: authController.dataList.first.description,
+                image: authController.dataList.first.image,));
               },
               child: Container(
                 decoration: BoxDecoration(

@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
       //   //  image: "assets/images/Group 38637.png",
       //   //  )),
       //   GetPage(name: '/add-wallet', page: () => AddWallet()),
-      //   GetPage(name: '/services', page: () => Services()),
+        // GetPage(name: '/services', page: () => Services()),
       //   GetPage(name: '/coupones', page: () => Coupones()),
       //   GetPage(name: '/reghome', page: () => BusinessRegisterHomeScreen()),
       //   GetPage(name: '/offer-screen', page: () => OfferScreen()),

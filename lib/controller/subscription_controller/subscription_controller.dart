@@ -1,4 +1,5 @@
 import 'package:bciweb/models/get_coupons_model.dart';
+import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_paymentsucess.dart';
 import 'package:bciweb/services/networks/get_coupons_api_service.dart';
 import 'package:bciweb/services/networks/profile_api_service/profile_api_service.dart';
 import 'package:bciweb/services/networks/subscription/get_payment_apiservice.dart';
@@ -38,17 +39,22 @@ class SubscriptionApiController extends GetxController{
     update();
   }
 
-  addPaymentSubscription({required dynamic id,required bool showpayment})async{
+  addPaymentSubscription({required dynamic id,required bool showpayment,})async{
     await authprofileController.getProfile();
+    print(showpayment);
     dio.Response<dynamic>response=await addpaymentApiService.addPaymentFuction(
       userid:authprofileController.profileData.first.id.toString(),
       planid:id
     );
-    
-     
     if(response.statusCode==200){
-      
-       Get.to(PaymentSucess());
+      if(showpayment==true){
+           Get.to(PaymentSucess());
+      } else{
+        Get.to(MobilePaymentSuccess());
+      }
+
+      // showpayment == true ? Get.to(PaymentSucess()) :Get.to(MobilePaymentSuccess()); 
+     
     }  else{
        Get.rawSnackbar(
           backgroundColor: Colors.red,

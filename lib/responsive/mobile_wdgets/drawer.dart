@@ -2,6 +2,7 @@ import 'dart:js_util';
 
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/responsive/booking_view/booking_screen.dart';
+import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -202,7 +203,7 @@ final authController=Get.find<AuthController>();
                 children: [
                   TextButton(
                       onPressed: () {
-                        
+                        Get.to(MobileSubscription());
                       },
                       child: Text(
                         'MEMBERSHIP',

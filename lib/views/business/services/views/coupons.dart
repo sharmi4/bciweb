@@ -1,7 +1,11 @@
+import 'dart:math';
+
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+import 'package:clipboard/clipboard.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -24,6 +28,11 @@ class _CouponesState extends State<Coupones> {
     super.initState();
     subscripeController.getcouponsList();
   }
+   List colors = [const Color(0xffFCE2E2),const Color(0xffE4E4E4),
+  const Color(0xffF8AC61),const Color(0xff8DC6FF),
+   const Color(0xffEDD076), const Color(0xff90E79C), 
+   const Color(0xff00D8E0), const Color(0xff396DB4), const Color(0xffD9908A),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,44 +60,67 @@ class _CouponesState extends State<Coupones> {
               itemBuilder:(context,index){
                 return Padding(
                       padding: const EdgeInsets.only(top:30,left: 20,right: 20),
-                      child:          ClipPath(
-            clipper: TicketPassClipper(),
-            
-
-                       child: Container(
-                        color: kOrange,
-                         child: Column(
-                          children: [
-                            ksizedbox10,
-                         
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(subscripeController.couponsdatalist[index].couponcode)
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 15,left: 15),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(subscripeController.couponsdatalist[index].name),
-                                  Text(subscripeController.couponsdatalist[index].amount)
-                                ],
+                      child:            ClipPath(
+              clipper: TicketPassClipper(),
+              
+        
+                         child: Container(
+                          
+                          color: colors[Random().nextInt(9)],
+                           child: Column(
+                            children: [
+                              ksizedbox10,
+                             Padding(
+                                padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
+                                child: Row(
+                                  
+                                  children: [
+                                    Text(subscripeController.couponsdatalist[index].createdAt.toString()),
+                                     Padding(
+                                       padding: const EdgeInsets.only(left: 50),
+                                       child: Text(subscripeController.couponsdatalist[index].name),
+                                     ),
+                                    
+                                  ],
+                                ),
                               ),
-                            ),
-                            ksizedbox10,
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(subscripeController.couponsdatalist[index].createdAt.toString()),
-                                
-                              ],
-                            )
-                          ],
+                               ksizedbox10,
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10,left:10,right: 80),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(subscripeController.couponsdatalist[index].couponcode),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 0,left: 10),
+                                      child: InkWell(
+
+                                        onTap: (){
+                                          FlutterClipboard.copy(subscripeController.couponsdatalist[index].couponcode).then((value) => 
+                                          Fluttertoast.showToast(
+                                           msg: "Copy to clipboard",
+                                           toastLength: Toast.LENGTH_SHORT,
+                                           gravity: ToastGravity.CENTER,
+                                           timeInSecForIosWeb: 1,
+                                           backgroundColor: Colors.white,
+                                           textColor: Colors.black,
+                                           fontSize: 16.0
+                                            ),
+                                          //print("code copied")
+                                          );
+                                        },
+                                        child: Icon(Icons.copy),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            
+                            
+                            ],
+                           ),
                          ),
-                       ),
-                      ),
+                        ),
                     );
               }),
             
