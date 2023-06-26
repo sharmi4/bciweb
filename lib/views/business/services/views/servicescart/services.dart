@@ -1,4 +1,5 @@
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/views/business/services/views/coupons.dart';
 import 'package:bciweb/views/business/services/views/servicescart/service_list.dart';
 
 import 'package:bciweb/views/business/services/views/servicescart/servicescart.dart';
@@ -13,7 +14,7 @@ import '../../../../../constant/constans.dart';
 
 import '../../../../../controller/auth_controller/auth_controller.dart';
 import '../../../../../controller/home_controller.dart';
-import '../../../../../controller/subscription_controller/home_controller.dart';
+import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 
 import '../../../../members/common_widget/common.dart';
@@ -168,8 +169,8 @@ class _ServicesState extends State<Services> {
             }),
             ksizedbox30,
             InkWell(
-              onTap: () {
-                Get.to(Coupones());
+              onTap: () {Get.to(Coupones());
+              //  Get.toNamed('/coupones');
               },
               child: Container(
                 decoration: BoxDecoration(

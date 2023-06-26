@@ -1,31 +1,36 @@
 import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../../base_url/base_url.dart';
 
-import 'package:flutter/material.dart';
+import '../../../base_url/base_url.dart';
 
-class ServiceApiService extends BaseApiService{
-    Future getServiceApi() async {
+class RedeemCouponApiServices extends BaseApiService {
+  Future redeemCouponApiServices({required String couponcode}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
-                         final prefs = await SharedPreferences.getInstance();
+      final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
-      var response = await dio.post(serviceListurl,
-          options: Options(
-              headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer $authtoken'
-              },
 
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          );
-     
+      var response = await dio.post(
+        redeemCouponsApiUrl,
+        options: Options(
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $authtoken'
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            }),
+            data: {
+              "coupon_code" : couponcode
+            }
+      );
+      print("::::::::<redeem coupon Api Services Api>::::::::status code::::::::::");
       print(response.statusCode);
+      print(response.data);
       responseJson = response;
     } on SocketException {
       print("no internet");

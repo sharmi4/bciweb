@@ -5,7 +5,7 @@ import 'package:bciweb/models/create_account_model.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../base_url/base_url.dart';
+import '../../../base_url/base_url.dart';
 
 class MemberRegisterApiservices extends BaseApiService{
   

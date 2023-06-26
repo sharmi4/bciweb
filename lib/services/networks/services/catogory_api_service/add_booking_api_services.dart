@@ -4,28 +4,43 @@ import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddToCartApiServices extends BaseApiService {
-  Future addToCartApiServices(
-      {required String serviceid, required String amount}) async {
+class AddBookingApiServices extends BaseApiService {
+  Future addBookingApiServices({
+    required String serviceid,
+    required String cartid,
+    required String qty,
+    required String offerOrCoupon,
+    required String couponcode,
+    required String amount
+    }) async {
     dynamic responseJson;
     try {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(addToCartApiUrl,
-          options: Options(
-              headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer $authtoken'
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          data: {"service_id": serviceid, "amount": amount});
-      print(
-          "::::::::<Add To Cart Api Services Api>::::::::status code::::::::::");
+      var response = await dio.post(
+        addBookingApiUrl,
+        options: Options(
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer $authtoken'
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            }),
+            data: {
+              "service_id" : serviceid,
+              "cart_id": cartid,
+              "quantity":qty,
+              "offer_or_coupon": "offer",
+              "coupon_code": couponcode,
+              "amount": amount
+            }
+      );
+      print("::::::::<Add booking Api Services Api>::::::::status code::::::::::");
+      print("....<$serviceid>...<$cartid>...<$qty>...<$amount>...<$couponcode>...***");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

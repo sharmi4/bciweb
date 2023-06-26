@@ -1,14 +1,18 @@
 import 'dart:io';
-import 'package:dio/dio.dart';
-import '../base_url/base_url.dart';
-import 'package:flutter/material.dart';
 
-class GetOtpApiService extends BaseApiService{
-    Future getOtpApi({required String mobileNumber}) async {
+import 'package:dio/dio.dart';
+
+import '../../../base_url/base_url.dart';
+
+class LoginApiServices extends BaseApiService {
+  Future loginApi({
+    required String mobile,
+    required String otp,
+  }) async {
     dynamic responseJson;
     try {
       var dio = Dio();
-      var response = await dio.post(getOtpUrl,
+      var response = await dio.post(loginURL,
           options: Options(
               headers: {
                 'Accept': 'application/json',
@@ -17,8 +21,8 @@ class GetOtpApiService extends BaseApiService{
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {"mobile": mobileNumber});
-      print("::::::::<Get OTP>::::::::status code::::::::::");
+          data: {"mobile": mobile, "otp": otp});
+      print("::::::::<otp verify URL>::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

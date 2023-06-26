@@ -3,6 +3,7 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/flaight_payment_controller.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/controller/profile_controler/profile_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
@@ -52,8 +53,9 @@ import 'controller/flaightdate_controller.dart';
 import 'controller/historycontroller.dart';
 import 'controller/profile_controller.dart';
 import 'controller/specialized_controller.dart';
-import 'controller/subscription_controller/home_controller.dart';
+import 'controller/service_controller/home_controller.dart';
 import 'controller/subscription_controller/subscription_controller.dart';
+
 // import 'responsive/responsive_homescreen/responsive_homescreen.dart';/
 // MobileHomeScreen()
 // MobileHome()
@@ -61,6 +63,7 @@ import 'controller/subscription_controller/subscription_controller.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
+  Get.put(ProfileControllers());
   Get.put(HomeServiceController());
   Get.put(HomeController());
   Get.put(SubscribeController());
@@ -72,16 +75,16 @@ void main() {
   Get.put(YourCouponController());
   Get.put(ProfileController());
   Get.put(FlaightController());
-    Get.put(Flaight2Controller());
-      Get.put(Flaight3Controller());
-      Get.put(FlaightShowController());
-      Get.put(FlaightDateSCotroller());
-      Get.put(FlaightBookingOptionController());
-      Get.put(SeatController());
-      Get.put(PaymentController());
-      Get.put(AuthController());
-      Get.put(AuthProfileController());
-      Get.put(SubscriptionApiController());
+  Get.put(Flaight2Controller());
+  Get.put(Flaight3Controller());
+  Get.put(FlaightShowController());
+  Get.put(FlaightDateSCotroller());
+  Get.put(FlaightBookingOptionController());
+  Get.put(SeatController());
+  Get.put(PaymentController());
+  Get.put(AuthController());
+  Get.put(AuthProfileController());
+  Get.put(SubscriptionApiController());
   runApp(const MyApp());
 }
 
@@ -92,7 +95,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-        onGenerateRoute: RouteGenerator.generateRoute,
+      onGenerateRoute: RouteGenerator.generateRoute,
 //   initialRoute: TRoutes.HOME_PAGE,
       initialRoute: Routes.SPLASH,
       // initialRoute: '/',

@@ -15,10 +15,14 @@ import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 //import '../../../members/common_widget/common.dart';
 
 class RespOffer extends StatefulWidget {
-  
-  RespOffer({super.key,
-  
-  });
+  String image;
+  String title;
+  String description;
+  RespOffer(
+      {super.key,
+      required this.description,
+      required this.image,
+      required this.title});
 
   @override
   State<RespOffer> createState() => _RespOfferState();
@@ -31,20 +35,18 @@ class _RespOfferState extends State<RespOffer> {
     super.initState();
     authController.getservice();
   }
-  final authController=Get.find<AuthController>();
+
+  final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: AppBarMob(),
-          preferredSize: Size(double.infinity, 40)),
-          drawer:    MobileDrawer(),
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+      drawer: MobileDrawer(),
       body: SingleChildScrollView(
-        child: GetBuilder<AuthController>(
-          builder: (_){
+        child: GetBuilder<AuthController>(builder: (_) {
           return Column(
             children: [
-            
               Container(
                 child: Stack(
                   children: [
@@ -87,31 +89,31 @@ class _RespOfferState extends State<RespOffer> {
                         title: authController.dataList.first.title,
                         description: authController.dataList.first.description,
                       ),
-                          //    Respooffers_container(),
+                      //    Respooffers_container(),
                       ksizedbox30,
-                          //  ksizedbox40,
+                      //  ksizedbox40,
                       Respooffers_container(
                         title: authController.dataList.first.title,
                         image: authController.dataList.first.image,
                         description: authController.dataList.first.description,
                       ),
-                          //      Respooffers_container(),
+                      //      Respooffers_container(),
                       ksizedbox30,
-                       //     ksizedbox40,
+                      //     ksizedbox40,
                       Respooffers_container(
                         image: authController.dataList.first.image,
                         title: authController.dataList.first.title,
                         description: authController.dataList.first.description,
                       ),
-                        //  Respooffers_container(),
+                      //  Respooffers_container(),
                       ksizedbox30,
-                         //   ksizedbox40,
+                      //   ksizedbox40,
                       //Respooffers_container(),
-                       Respooffers_container(
+                      Respooffers_container(
                         title: authController.dataList.first.title,
                         image: authController.dataList.first.image,
                         description: authController.dataList.first.description,
-                       ),
+                      ),
                     ],
                   ),
                 ),
@@ -127,7 +129,8 @@ class _RespOfferState extends State<RespOffer> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Icon(
-                        Icons.arrow_back,size: 18,
+                        Icons.arrow_back,
+                        size: 18,
                         color: kwhite,
                       ),
                       Text(
@@ -146,14 +149,12 @@ class _RespOfferState extends State<RespOffer> {
                 ),
               ),
               ksizedbox40,
-           //   RegisterCommonBottom()
-              MobileCommonBottom()    ],
+              //   RegisterCommonBottom()
+              MobileCommonBottom()
+            ],
           );
-          }
-        ),
+        }),
       ),
     );
   }
 }
-
-

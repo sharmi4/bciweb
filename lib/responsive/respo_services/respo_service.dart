@@ -108,7 +108,7 @@ class _ServicesState extends State<RespoServices> {
                               description: authController.dataList[i].description,
                             ),
                             onTap: () {
-                              Get.to(RespoCoupones());
+                              Get.toNamed('/respo-coupon');
                             },
                           ),
                         ],
@@ -211,7 +211,11 @@ class _ServicesState extends State<RespoServices> {
                       description: authController.dataList[j].description,
                     ),
                     onTap: () {
-                      Get.to(RespOffer());
+                      Get.to(RespOffer(
+                           image: authController.dataList[j].image,
+                      title: authController.dataList[j].title,
+                      description: authController.dataList[j].description,
+                      ));
                     },
                   ),
                   // InkWell(
@@ -264,8 +268,8 @@ class _ServicesState extends State<RespoServices> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                Get.to(RespOffer(
-                ));
+              //  Get.to(RespOffer(
+             //   ));
               },
               child: Container(
                 decoration: BoxDecoration(

@@ -1,30 +1,31 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../../base_url/base_url.dart';
 
-import '../base_url/base_url.dart';
 
-class LoginApiServices extends BaseApiService {
-  Future loginApi({
-    required String mobile,
-    required String otp,
-  }) async {
+
+class ServiceApiService extends BaseApiService{
+    Future getServiceApi() async {
     dynamic responseJson;
     try {
       var dio = Dio();
-      var response = await dio.post(loginURL,
+                         final prefs = await SharedPreferences.getInstance();
+      String? authtoken = prefs.getString("auth_token");
+      var response = await dio.post(serviceListurl,
           options: Options(
               headers: {
                 'Accept': 'application/json',
+                'Authorization': 'Bearer $authtoken'
               },
+
               followRedirects: false,
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {"mobile": mobile, "otp": otp});
-      print("::::::::<otp verify URL>::::::::status code::::::::::");
+          );
+     
       print(response.statusCode);
-      print(response.data);
       responseJson = response;
     } on SocketException {
       print("no internet");

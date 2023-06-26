@@ -1,5 +1,5 @@
-import 'package:bciweb/services/networks/auth_api_service.dart';
-import 'package:bciweb/services/networks/get_otp_api_service.dart';
+import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
+import 'package:bciweb/services/networks/services/authapi_service/get_otp_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
@@ -10,8 +10,8 @@ import '../../models/service_model.dart';
 import '../../responsive/authentications/generate_otp/generate_otp.dart';
 import '../../responsive/authentications/otp_verification/otp_verification.dart';
 import '../../responsive/authentications/verified_screen/verified_screen.dart';
-import '../../services/networks/login_api_service.dart';
-import '../../services/networks/services/service_list_apiservice.dart';
+import '../../services/networks/services/authapi_service/login_api_service.dart';
+import '../../services/networks/services/catogory_api_service/service_list_apiservice.dart';
 import '../../views/authentication/Verification_done.dart';
 import '../../views/authentication/otp_verification.dart';
 

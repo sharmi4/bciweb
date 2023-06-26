@@ -7,8 +7,11 @@ import 'package:get/get.dart';
 
 import '../../../../../constant/constans.dart';
 import '../../../../../controller/home_controller.dart';
+import '../../../../../controller/profile_controler/profile_controller.dart';
+import '../../../../../controller/profile_controler/profile_controller.dart';
+import '../../../../../controller/profile_controler/profile_controller.dart';
 import '../../../../../controller/profile_controller.dart';
-import '../../../../../controller/subscription_controller/home_controller.dart';
+import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../../members/common_widget/common.dart';
@@ -27,7 +30,7 @@ class _ListCartState extends State<ListCart> {
 
   final redeemCouponcontroller = TextEditingController();
 
-  final profileController = Get.find<ProfileController>();
+  final profileControllerss = Get.find<ProfileControllers>();
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +130,51 @@ class _ListCartState extends State<ListCart> {
                                 disabledBorder: const OutlineInputBorder(),
                                 hintText: 'Enter Your Coupon code',
                                 fillColor: kwhite,
+                                    suffixIcon: Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Container(
+                        height: 20,
+                        width: 130,
+                        decoration: BoxDecoration(
+                          color: kblue,
+                          borderRadius: BorderRadius.circular(6.0),
+                        ),
+                        child: InkWell(
+                          onTap: () async {
+                            String tempSaleAmount =
+                                widget.servicedata.saleAmount;
+                            String amount =
+                                await profileControllerss.redeemCoupon(
+                                    couponcode: redeemCouponcontroller.text);
+
+                            double tAmount = double.parse(amount);
+                            double tempSaleAmounz =
+                                double.parse(tempSaleAmount);
+
+                            double totalAmountTobeAdded =
+                                tempSaleAmounz - tAmount;
+
+                            setState(() {
+                              widget.servicedata.saleAmount =
+                                  totalAmountTobeAdded.toStringAsFixed(2);
+                            });
+                          },
+                          // {
+                          //  profileControllerss.redeemCoupon(
+                          //      couponcode: redeemCouponcontroller.text);
+                          // },
+                          // child: Center(
+                            child: Text(
+                              'Redeem Now',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      ),
+                    
                                 focusColor: kwhite,
                                 isDense: true,
                                 filled: true,
@@ -159,21 +207,21 @@ class _ListCartState extends State<ListCart> {
                                             color: kyellow,
                                             borderRadius:
                                                 BorderRadius.circular(16)),
-                                        // child: const Center(
-                                        //     child: Text(
-                                        //   "Book Now",
-                                        //   style: TextStyle(
-                                        //       fontSize: 18,
-                                        //       fontWeight: FontWeight.w700),
-                                        // )),
+                                        child:  Center(
+                                            child: Text(
+                                          "Total : ₹${widget.servicedata.saleAmount}",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w700),
+                                        )),
                                       ),
                                     ),
                                   ),
-                                  Padding(
+                                  Padding( 
                                     padding: const EdgeInsets.all(8),
                                     child: InkWell(
                                       onTap: () {
-                                        homeController.addToCart(
+                                        homeController.addToCart(amount: widget.servicedata.saleAmount,
                                             serviceid: widget.servicedata.id
                                                 .toString());
                                       },
