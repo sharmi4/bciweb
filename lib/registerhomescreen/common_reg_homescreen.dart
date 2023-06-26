@@ -254,7 +254,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        child: InkWell(
                         onTap: (){
                         //  Get.to(LandingScree());
-                          Get.toNamed(Routes.landing_screen);
+                          Get.toNamed(Routes.MobileVerification);
                         },
                          child: Container(
                           height: 35,
@@ -277,6 +277,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                        child: InkWell(
                         onTap: (){
                          // Get.to(MobileVerificatio());
+                         authController.logoutWeb();
                           Get.toNamed(Routes.MobileVerification);
                         },
                          child: Container(

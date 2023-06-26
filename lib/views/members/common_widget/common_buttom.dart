@@ -12,9 +12,8 @@ class _CommonBottomState extends State<CommonBottom> {
   @override
   Widget build(BuildContext context) {
     return  Container(
-            
             color: kblue,
-            child:const Padding(
+            child: const Padding(
               padding:  EdgeInsets.only(top: 20),
               child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,

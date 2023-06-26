@@ -183,7 +183,7 @@ class _MobileVerificationState extends State<MobileVerification> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "Dont't have an account? ",
+                              "Don't have an account? ",
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 18, color: kblue),
                             ),

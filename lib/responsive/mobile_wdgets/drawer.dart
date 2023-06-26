@@ -1,18 +1,13 @@
-import 'dart:js_util';
-
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/responsive/booking_view/booking_screen.dart';
 import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_subscription.dart';
+import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../controller/auth_controller/auth_controller.dart';
-import '../../views/authentication/landing_screen.dart';
-import '../../views/members/homescreens/reg_profile.dart';
 import '../authentications/contact us/respo_contact.dart';
 import '../authentications/generate_otp/generate_otp.dart';
 import '../authentications/langing_screen/landing_screen.dart';
-import '../authentications/otp_verification/otp_verification.dart';
 import '../respo_services/respo_service.dart';
 import '../mobile_body/mobile_home.dart';
 import '../respo_services/widgets/resprofile/mobile_profile_screen.dart';
@@ -27,20 +22,25 @@ class MobileDrawer extends StatefulWidget {
 }
 
 class _MobileDrawerState extends State<MobileDrawer> {
-final authController=Get.find<AuthController>();
+  final authController = Get.find<AuthController>();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     authController.checkAuthendication();
   }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: kblue,
       shadowColor: kOrange,
-      child: Obx(()=>
-         ListView(
+      child: Obx(
+        () => ListView(
           children: [
             Row(
               children: [
@@ -117,7 +117,7 @@ final authController=Get.find<AuthController>();
                 children: [
                   TextButton(
                       onPressed: () {
-                        Get.to(Get.toNamed('/respo-specialised'));
+                        Get.to(Get.to(RespoSpecialized()));
                         //  Get.to(RespoServices());
                       },
                       child: Text(
@@ -139,7 +139,7 @@ final authController=Get.find<AuthController>();
                 children: [
                   TextButton(
                       onPressed: () {
-                        Get.toNamed('/respo-gallery');
+                        Get.to(RespoGallery());
                         //Get.to(RespoServices());
                       },
                       child: Text(
@@ -176,7 +176,7 @@ final authController=Get.find<AuthController>();
                 color: kgrey,
               ),
             ),
-                Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
@@ -191,13 +191,13 @@ final authController=Get.find<AuthController>();
                 ],
               ),
             ),
-             Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
               child: Divider(
                 color: kgrey,
               ),
             ),
-              Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 10, left: 10),
               child: Row(
                 children: [
@@ -212,7 +212,7 @@ final authController=Get.find<AuthController>();
                 ],
               ),
             ),
-              Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
               child: Divider(
                 color: kgrey,
@@ -228,7 +228,11 @@ final authController=Get.find<AuthController>();
                       },
                       child: Row(
                         children: [
-                          Image.asset('assets/images/nick.png',height: 30,fit: BoxFit.fitHeight,),
+                          Image.asset(
+                            'assets/images/nick.png',
+                            height: 30,
+                            fit: BoxFit.fitHeight,
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 15),
                             child: Text(
@@ -247,58 +251,61 @@ final authController=Get.find<AuthController>();
                 color: kgrey,
               ),
             ),
-            authController.isLogedin.isFalse ?
-            Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.to(landing_screen());
-                    },
-                    child: Container(
-                      height: 30,
-                      width: 110,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [kyellow, kOrange]),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                        child: Text(
-                          'REGISTER',
-                          style: TextStyle(color: kwhite),
-                        ),
-                      ),
+            authController.isLogedin.isFalse
+                ? Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to( MemberLoginScreenrespo());
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 110,
+                            decoration: BoxDecoration(
+                                gradient:
+                                    LinearGradient(colors: [kyellow, kOrange]),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Center(
+                              child: Text(
+                                'REGISTER',
+                                style: TextStyle(color: kwhite),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                   )
-                ],
-              ),
-            ) :    Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Get.to(MemberLoginScreenrespo());
-                    },
-                    child: Container(
-                      height: 30,
-                      width: 110,
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [kyellow, kOrange]),
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Center(
-                        child: Text(
-                          'LogOut',
-                          style: TextStyle(color: kwhite),
-                        ),
-                      ),
+                : Padding(
+                    padding: const EdgeInsets.only(top: 100),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(MemberLoginScreenrespo());
+                          },
+                          child: Container(
+                            height: 30,
+                            width: 110,
+                            decoration: BoxDecoration(
+                                gradient:
+                                    LinearGradient(colors: [kyellow, kOrange]),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Center(
+                              child: Text(
+                                'LogOut',
+                                style: TextStyle(color: kwhite),
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
-            ),
+                  ),
             Padding(
               padding: const EdgeInsets.only(top: 150, left: 20),
               child: Row(children: [

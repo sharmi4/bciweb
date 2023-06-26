@@ -135,6 +135,14 @@ class AuthController extends GetxController {
     Get.to(const MemberLoginScreenrespo());
   }
 
+
+  logoutWeb() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("auth_token", "null");
+    // Get.to(const MemberLoginScreenrespo());
+  }
+
+
   checkAuthendication() async {
     final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString("auth_token");

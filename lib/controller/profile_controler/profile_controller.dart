@@ -128,7 +128,7 @@ class ProfileControllers extends GetxController {
  // redeem coupon
   RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
 
-  redeemCoupon({required String couponcode}) async {
+  redeemCoupon({required String couponcode, required String serviceId}) async {
     dio.Response<dynamic> response = await redeemCouponApiServices
         .redeemCouponApiServices(couponcode: couponcode);
     if (response.statusCode == 200) {
@@ -142,6 +142,8 @@ class ProfileControllers extends GetxController {
       Get.rawSnackbar(
           message: response.data["error"], backgroundColor: Colors.red);
     }
+
+    return response.data["amount"].toString();
   }
 
   //easebuzz

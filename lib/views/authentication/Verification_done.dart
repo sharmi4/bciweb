@@ -55,31 +55,7 @@ class Verification_Done extends StatelessWidget {
                   
                     Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top:40),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                "Don't Recive OTP ",
-                              style: TextStyle(
-                              fontSize: 16.5,
-                              fontWeight: FontWeight.w600,
-                              //   decoration: TextDecoration.underline,
-                              color: kblue),
-                              ),
-                              Text(
-                                "Resent",
-                               style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                              decoration: TextDecoration.underline,
-                              color: kOrange),
-                              ),
-                          
-                            ],
-                          ),
-                        ),
+                   
                                             Padding(
                     padding: const EdgeInsets.only(top:50),
                     child: InkWell(

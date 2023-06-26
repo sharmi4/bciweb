@@ -6,11 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../constant/constans.dart';
-import '../../../../../controller/home_controller.dart';
 import '../../../../../controller/profile_controler/profile_controller.dart';
-import '../../../../../controller/profile_controler/profile_controller.dart';
-import '../../../../../controller/profile_controler/profile_controller.dart';
-import '../../../../../controller/profile_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -81,7 +77,6 @@ class _ListCartState extends State<ListCart> {
                                   color: kblue),
                             ),
                             ksizedbox30,
-                            ksizedbox20,
                             Text(
                               widget.servicedata.description,
                               style: TextStyle(
@@ -89,40 +84,79 @@ class _ListCartState extends State<ListCart> {
                                   fontWeight: FontWeight.w400,
                                   color: kgrey),
                             ),
-                            ksizedbox40,  Container(
-                                    height: 40,
-                                    width: 110,
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            ksizedbox10,
+                            Text(
+                              'Services',
+                              style: TextStyle(
+                                  fontSize: 45,
+                                  fontWeight: FontWeight.bold,
+                                  color: kblue),
+                            ),
+                            ksizedbox10,
+                            for (int i = 0;
+                                i < widget.servicedata.amenties!.length;
+                                i++)
+                              Row(
+                                children: [
+                                  Container(
+                                    height: 10,
+                                    width: 10,
                                     decoration: BoxDecoration(
-                                      color: Colors.green,
+                                      color: kgrey,
                                       borderRadius: BorderRadius.circular(5),
                                     ),
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: const [
-                                          Text(
-                                            "View Cart",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          Icon(
-                                            Icons.shopping_cart,
-                                            color: Colors.white,
-                                          )
-                                        ],
-                                      ),
-                                    ),
                                   ),
+                                  const SizedBox(
+                                    width: 10,
+                                  ),
+                                  Text(
+                                    widget.servicedata.amenties![i].value,
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w400,
+                                        color: kgrey),
+                                  ),
+                                ],
+                              ),
+                            ksizedbox40,
+                            Container(
+                              height: 40,
+                              width: 110,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Center(
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: const [
+                                    Text(
+                                      "View Cart",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w500),
+                                    ),
+                                    Icon(
+                                      Icons.shopping_cart,
+                                      color: Colors.white,
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
                             ksizedbox40,
                             Text(
-                              "₹ ${widget.servicedata.actualAmount}",
+                              "₹ ${widget.servicedata.saleAmount}",
                               style: TextStyle(
                                   fontSize: 40,
                                   fontWeight: FontWeight.bold,
                                   color: kOrange),
-                            ),ksizedbox40,
+                            ),
+                            ksizedbox40,
                             ksizedbox40,
                             TextField(
                               controller: redeemCouponcontroller,
@@ -130,51 +164,84 @@ class _ListCartState extends State<ListCart> {
                                 disabledBorder: const OutlineInputBorder(),
                                 hintText: 'Enter Your Coupon code',
                                 fillColor: kwhite,
-                                    suffixIcon: Padding(
-                      padding: const EdgeInsets.all(4.0),
-                      child: Container(
-                        height: 20,
-                        width: 130,
-                        decoration: BoxDecoration(
-                          color: kblue,
-                          borderRadius: BorderRadius.circular(6.0),
-                        ),
-                        child: InkWell(
-                          onTap: () async {
-                            String tempSaleAmount =
-                                widget.servicedata.saleAmount;
-                            String amount =
-                                await profileControllerss.redeemCoupon(
-                                    couponcode: redeemCouponcontroller.text);
+                                suffixIcon: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Container(
+                                    height: 20,
+                                    width: 130,
+                                    decoration: BoxDecoration(
+                                      color: kblue,
+                                      borderRadius: BorderRadius.circular(6.0),
+                                    ),
+                                    child: InkWell(
+                                      onTap: () async {
+                                        String tempSaleAmount =
+                                            widget.servicedata.saleAmount;
+                                        String amount =
+                                            await profileControllerss
+                                                .redeemCoupon(
+                                                    couponcode:
+                                                        redeemCouponcontroller
+                                                            .text,
+                                                    serviceId: widget
+                                                        .servicedata.id
+                                                        .toString());
 
-                            double tAmount = double.parse(amount);
-                            double tempSaleAmounz =
-                                double.parse(tempSaleAmount);
+                                        double tAmount = double.parse(amount);
+                                        double tempSaleAmounz =
+                                            double.parse(tempSaleAmount);
 
-                            double totalAmountTobeAdded =
-                                tempSaleAmounz - tAmount;
+                                        if (tAmount < tempSaleAmounz) {
+                                          double totalAmountTobeAdded =
+                                              tempSaleAmounz - tAmount;
 
-                            setState(() {
-                              widget.servicedata.saleAmount =
-                                  totalAmountTobeAdded.toStringAsFixed(2);
-                            });
-                          },
-                          // {
-                          //  profileControllerss.redeemCoupon(
-                          //      couponcode: redeemCouponcontroller.text);
-                          // },
-                          // child: Center(
-                            child: Text(
-                              'Redeem Now',
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.white),
-                            ),
-                          ),
-                        ),
-                      ),
-                    
+                                          setState(() {
+                                            widget.servicedata.saleAmount =
+                                                totalAmountTobeAdded
+                                                    .toStringAsFixed(2);
+                                          });
+                                        } else {
+                                          Get.rawSnackbar(
+                                              message:
+                                                  "Coupon is not applicable for this service",
+                                              backgroundColor: Colors.red);
+                                        }
+
+                                        // String tempSaleAmount =
+                                        //     widget.servicedata.saleAmount;
+                                        // String amount =
+                                        //     await profileControllerss.redeemCoupon(
+                                        //         couponcode: redeemCouponcontroller.text);
+
+                                        // double tAmount = double.parse(amount);
+                                        // double tempSaleAmounz =
+                                        //     double.parse(tempSaleAmount);
+
+                                        // double totalAmountTobeAdded =
+                                        //     tempSaleAmounz - tAmount;
+
+                                        // setState(() {
+                                        //   widget.servicedata.saleAmount =
+                                        //       totalAmountTobeAdded.toStringAsFixed(2);
+                                        // });
+                                      },
+                                      // {
+                                      //  profileControllerss.redeemCoupon(
+                                      //      couponcode: redeemCouponcontroller.text);
+                                      // },
+                                      // child: Center(
+                                      child: Center(
+                                        child: Text(
+                                          'Redeem Now',
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 focusColor: kwhite,
                                 isDense: true,
                                 filled: true,
@@ -207,21 +274,24 @@ class _ListCartState extends State<ListCart> {
                                             color: kyellow,
                                             borderRadius:
                                                 BorderRadius.circular(16)),
-                                        child:  Center(
+                                        child: Center(
                                             child: Text(
                                           "Total : ₹${widget.servicedata.saleAmount}",
                                           style: TextStyle(
+                                              color: kwhite,
                                               fontSize: 18,
                                               fontWeight: FontWeight.w700),
                                         )),
                                       ),
                                     ),
                                   ),
-                                  Padding( 
+                                  Padding(
                                     padding: const EdgeInsets.all(8),
                                     child: InkWell(
                                       onTap: () {
-                                        homeController.addToCart(amount: widget.servicedata.saleAmount,
+                                        homeController.addToCart(
+                                            amount:
+                                                widget.servicedata.saleAmount,
                                             serviceid: widget.servicedata.id
                                                 .toString());
                                       },

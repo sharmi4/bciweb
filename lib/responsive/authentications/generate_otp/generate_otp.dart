@@ -96,8 +96,8 @@ class _MemberLoginScreenrespoState extends State<MemberLoginScreenrespo> {
                         padding: const EdgeInsets.all(8.0),
                         child: authController.isLoading.isTrue ?
                         Container(
-                          width: size.width*0.42,
-                          height: 45,
+                           height: 40,
+                        width: size.width*0.43,
                           alignment: Alignment.center,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(
@@ -180,7 +180,7 @@ class _MemberLoginScreenrespoState extends State<MemberLoginScreenrespo> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Dont't have an account? ",
+                    "Don't have an account? ",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 18, color: kblue),
                   ),

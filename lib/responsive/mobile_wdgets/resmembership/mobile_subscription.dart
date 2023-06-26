@@ -1,20 +1,13 @@
 import 'package:bciweb/constant/constans.dart';
-import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
-import 'package:bciweb/views/business/subscribe/views/payment.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../controller/subscribe_controllers.dart';
-//import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../controller/subscription_controller/subscription_controller.dart';
-import '../../../../models/get_plansmodel.dart';
-import '../../../../registerhomescreen/common_reg_homescreen.dart';
-
 import '../comomappbar.dart';
 import '../drawer.dart';
+import '../mobile_common_bottom/bottom.dart';
 import 'mobile_payment.dart';
 
 class MobileSubscription extends StatefulWidget { 
@@ -179,7 +172,7 @@ int button=0;
                 ],
               ),
               ksizedbox40,
-              RegisterCommonBottom()
+              MobileCommonBottom()
             ]
             
             );

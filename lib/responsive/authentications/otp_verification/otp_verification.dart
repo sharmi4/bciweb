@@ -25,6 +25,7 @@ class _otp_varificationState extends State<otp_varification> {
   final authController =Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
+    var size=MediaQuery.of(context).size;
     return Scaffold(
       body: ListView(
         children: [
@@ -45,7 +46,7 @@ class _otp_varificationState extends State<otp_varification> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Enter the OTP sent to ${widget.phoneNumber}',
+                    'Enter the OTP send to ${widget.phoneNumber}',
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -97,7 +98,7 @@ class _otp_varificationState extends State<otp_varification> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Don't Recive OTP ",
+                    "Don't Receive OTP ",
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -105,7 +106,7 @@ class _otp_varificationState extends State<otp_varification> {
                         color: kblue),
                   ),
                   Text(
-                    "Resent",
+                    "Resend",
                     style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -125,8 +126,8 @@ class _otp_varificationState extends State<otp_varification> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Container(
-                    width: double.infinity,
-                    height: 50,
+                    height: 40,
+                        width: size.width*0.43,
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(

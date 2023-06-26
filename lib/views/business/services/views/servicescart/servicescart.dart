@@ -1,15 +1,10 @@
 import 'package:bciweb/routes/app_pages.dart';
-import 'package:bciweb/views/business/bookins/history/views/history.dart';
-import 'package:bciweb/views/business/bookins/liquer/widgets/addsubstract.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:velocity_x/velocity_x.dart';
-
 import '../../../../../constant/constans.dart';
-import '../../../../../controller/profile_controler/profile_controller.dart';
+import '../../../../../controller/home_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
-
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../../members/common_widget/common.dart';
@@ -28,12 +23,13 @@ class _ServicesCartState extends State<ServicesCart> {
     homeController.getCartdetails();
   }
 
- // final profileController = Get.find<ProfileController>();
+  // final profileController = Get.find<ProfileController>();
   final homeController = Get.find<HomeServiceController>();
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -153,7 +149,7 @@ class _ServicesCartState extends State<ServicesCart> {
                                             )),
                                         ksizedbox10,
                                         Text(
-                                          '₹ ${homeController.cartListData[index].price}',
+                                          '₹ ${homeController.cartListData[index].amount}',
                                           style: TextStyle(
                                               fontSize: 17,
                                               fontWeight: FontWeight.w600,
@@ -195,14 +191,20 @@ class _ServicesCartState extends State<ServicesCart> {
                           decoration: BoxDecoration(
                               color: kyellow,
                               borderRadius: BorderRadius.circular(16)),
-                          //  child:  Center(
-                          //     child: Text('566',
-                          //      // homeController.cartListData.totalamount,
-                            
-                          //   style: TextStyle(
-                          //       fontSize: 18,
-                          //       fontWeight: FontWeight.w700),
-                          // )),
+                          child: Center(
+                              child: GetBuilder<HomeServiceController>(builder: (_) {
+                            return Text(
+                              homeController.getGrandTotal(
+                                tcartListData: homeController.cartListData
+                              ).toStringAsFixed(2),
+                              // homeController.cartListData.totalamount,
+
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700),
+                            );
+                          })),
                         ),
                       ),
                     ),
@@ -221,8 +223,7 @@ class _ServicesCartState extends State<ServicesCart> {
                                 qty: homeController.cartListData[i].quantity,
                                 offerOrCoupon: "",
                                 couponcode: "",
-                                amount: homeController.cartListData[i].price
-                                );
+                                amount: homeController.cartListData[i].amount);
                           }
 
                           Get.toNamed(Routes.MEMBHOME);

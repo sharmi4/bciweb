@@ -4,27 +4,44 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-
 import '../../constant/constans.dart';
-//import '../../services/networks/services/catogory_api_service/add_to_cart_api_service.dart';
 import '../../responsive/mobile_body/cart_divertion.dart';
 import '../../services/networks/services/add_to_cart_api_service.dart';
 import '../../services/networks/services/catogory_api_service/add_booking_api_services.dart';
 import '../../services/networks/services/catogory_api_service/delete_cart_api_services.dart';
-//import '../../services/networks/services/catogory_api_service/get_cart_service.dart';
 import 'package:dio/dio.dart' as dio;
-
 import '../../services/networks/services/get_cart_service.dart';
-import '../../views/business/services/views/servicescart/servicescart.dart';
 
 class HomeServiceController extends GetxController {
-    RxBool isSubscribed = false.obs;
+  RxBool isSubscribed = false.obs;
 
   RxBool isLoading = false.obs;
   GetCartListApiServices getCartListApiServices = GetCartListApiServices();
   List<Datum> cartListData = [];
+
+  double getGrandTotal({required List<Datum> tcartListData}) {
+    double grandTotal = 0.0;
+
+    print(
+        "--------------${tcartListData.length}<<-----Riyas ikka------->>${tcartListData.length}-----------");
+    print(grandTotal);
+
+    for (var i = 0; i < tcartListData.length; i++) {
+      double amount = double.parse(tcartListData[i].amount);
+      int qty = int.parse(tcartListData[i].quantity);
+      double tempTotalAmount = amount * qty;
+
+      grandTotal = grandTotal + tempTotalAmount;
+      print("--------------<<-----wasim------->>-----------");
+      print(grandTotal);
+    }
+
+    return grandTotal;
+  }
+
 //list cart
   getCartdetails() async {
+    cartListData.clear();
     dio.Response<dynamic> response =
         await getCartListApiServices.getCartListApiServices();
 
@@ -33,9 +50,9 @@ class HomeServiceController extends GetxController {
       cartListData = getCartList.data;
     } else {
       Get.rawSnackbar(
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.black,
           messageText: Text(
-            "Something went wrong",
+            response.data["message"],
             style: primaryFont.copyWith(color: Colors.white),
           ));
     }
@@ -45,11 +62,11 @@ class HomeServiceController extends GetxController {
   //add cart
   AddToCartApiServices addToCartApiServices = AddToCartApiServices();
 
-  addToCart({required String serviceid,required String amount}) async {
-    dio.Response<dynamic> response =
-        await addToCartApiServices.addToCartApiServices(serviceid: serviceid, amount: amount);
+  addToCart({required String serviceid, required String amount}) async {
+    dio.Response<dynamic> response = await addToCartApiServices
+        .addToCartApiServices(serviceid: serviceid, amount: amount);
     if (response.statusCode == 201) {
-      Get.to(const MobilecartDivertion ());
+      Get.to(const MobilecartDivertion());
       Get.rawSnackbar(
           message: response.data["message"], backgroundColor: Colors.green);
     } else {
@@ -80,16 +97,11 @@ class HomeServiceController extends GetxController {
     }
   }
 
-
-
-
-
   //add booking api
   AddBookingApiServices addBookingApiServices = AddBookingApiServices();
 
   addBooking(
-      {
-      required String serviceid,
+      {required String serviceid,
       required String cartid,
       required String qty,
       required String offerOrCoupon,
@@ -106,10 +118,7 @@ class HomeServiceController extends GetxController {
             amount: amount);
     isLoading(false);
     if (response.statusCode == 200) {
-
-       deleteToCart(serviceid: serviceid);
-
-      
+      deleteToCart(serviceid: serviceid);
 
       Get.rawSnackbar(
           message: response.data["message"], backgroundColor: Colors.green);

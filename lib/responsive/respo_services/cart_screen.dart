@@ -139,7 +139,7 @@ class _CartScreenState extends State<CartScreen> {
                                                       )),
                                                   ksizedbox10,
                                                   Text(
-                                                    '₹ ${homeController.cartListData[index].price}',
+                                                    '₹ ${homeController.cartListData[index].amount}',
                                                     style: TextStyle(
                                                         fontSize: 17,
                                                         fontWeight:
@@ -216,7 +216,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ]),
               ),
-            ),
+            ),ksizedbox20,
             InkWell(
               onTap: () {
                 for (int i = 0; i < homeController.cartListData.length; i++) {
@@ -256,7 +256,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                 ),
               ),
-            ),
+            ),ksizedbox20,
         MobileCommonBottom()  ],
         ),
       ),

@@ -41,7 +41,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                 ),
                 ksizedbox30,
                 Text(
-                  'Enter the OTP sent to ${widget.phoneNumber}',
+                  'Enter the OTP send to ${widget.phoneNumber}',
                    style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -92,7 +92,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Don't Recive OTP ",
+                      "Don't Receive OTP ",
                     style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
@@ -123,7 +123,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                   Padding(
                       padding: const EdgeInsets.only(left: 20, right: 20),
                       child: Container(
-                        width: double.infinity,
+                        width:  size.width*0.3,
                         height: 50,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
