@@ -27,6 +27,25 @@ class AuthController extends GetxController {
 
   LoginApiServices loginApiServices = LoginApiServices();
   ServiceApiService serviceApiServices = ServiceApiService();
+  RxBool isGstAvailable = true.obs;
+ // RxBool isLoading = false.obs;
+  RxBool isOTPLoading = false.obs;
+
+
+  Future<String> rendOtpFunction({required String mobileNumber}) async {
+    String otpCode = "null";
+    isOTPLoading(true);
+
+    dio.Response<dynamic> response =
+        await getOTPApiServices.getOtpApi(mobileNumber: mobileNumber);
+    isOTPLoading(false);
+
+    if (response.statusCode == 200) {
+      otpCode = response.data["otp"].toString();
+    }
+    return otpCode;
+  }
+
 
   memberRegister({
     required CreateAccountModel? memberRegisterModel,
@@ -64,6 +83,11 @@ class AuthController extends GetxController {
           ));
     }
   }
+
+
+
+
+  
 
   getOtpFunction({required String mobileNumber, required bool isMobile}) async {
     isLoading(true);

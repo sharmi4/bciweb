@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
+import '../../controller/auth_controller/auth_profile_controller.dart';
 import '../../registerhomescreen/common_reg_homescreen.dart';
 import '../business/bookins/flight/booking_flight.dart';
 import 'common_widget/common.dart';
@@ -22,6 +23,12 @@ class MemberHomeScreen extends StatefulWidget {
 
 class _MemberHomeScreenState extends State<MemberHomeScreen> {
   final _homeController = Get.find<HomeController>();
+  final authProfileController=Get.find<AuthProfileController>();
+  @override
+  void initState() {
+    super.initState();
+    authProfileController.getProfile();
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

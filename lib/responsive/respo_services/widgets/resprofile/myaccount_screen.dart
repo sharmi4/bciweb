@@ -731,67 +731,67 @@ bool isUnmarried =false;
                                   
                                   ],
                                  ),
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 10,top: 30),
-                                     child: Row(
-                                       children: [
-                                         Container(
-                                                height: 35,
-                                                width: MediaQuery.of(context).size.width*0.42,
-                                                decoration: BoxDecoration(
-                                                  color: kwhite,
-                                                border: Border.all(
-                                                  color: kgrey
-                                                ),
-                                                borderRadius: BorderRadius.circular(5)
-                                                ),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.only( ),
-                                                        child: Row(
+                                  //  Padding(
+                                  //    padding: const EdgeInsets.only(left: 10,top: 30),
+                                  //    child: Row(
+                                  //      children: [
+                                  //        Container(
+                                  //               height: 35,
+                                  //               width: MediaQuery.of(context).size.width*0.42,
+                                  //               decoration: BoxDecoration(
+                                  //                 color: kwhite,
+                                  //               border: Border.all(
+                                  //                 color: kgrey
+                                  //               ),
+                                  //               borderRadius: BorderRadius.circular(5)
+                                  //               ),
+                                  //                 child: Column(
+                                  //                   crossAxisAlignment: CrossAxisAlignment.center,
+                                  //                   children: [
+                                  //                     Padding(
+                                  //                       padding: const EdgeInsets.only( ),
+                                  //                       child: Row(
                                                                                            
-                                                          children: [
-                                                            Text('18 Yrs',
-                                                            style: TextStyle(
-                                                              fontSize: 12
-                                                            ),),
-                                                            Padding(
-                                                              padding: const EdgeInsets.only(),
-                                                              child: Checkbox(value: _value3, 
-                                                              onChanged: (value){
-                                                                 setState(() {
-                                                                     _value3=value!;
-                                                                 });
-                                                              }),
-                                                            ),
-                                                            Text('Above',
-                                                            style: TextStyle(
-                                                              fontSize: 12
-                                                            ),),
-                                                            Padding(
-                                                              padding: const EdgeInsets.only(),
-                                                              child: Checkbox(value: _value4, 
-                                                              onChanged: (value){
-                                                                setState(() {
-                                                                  _value4=value!;
-                                                                });
-                                                              }),
-                                                            ),
-                                                            Text('Blove',style: TextStyle(
-                                                              fontSize: 12
-                                                            ),)
-                                                          ],
-                                                        ),
-                                                      )
-                                                    ],
-                                                  ),
+                                  //                         children: [
+                                  //                           Text('18 Yrs',
+                                  //                           style: TextStyle(
+                                  //                             fontSize: 12
+                                  //                           ),),
+                                  //                           Padding(
+                                  //                             padding: const EdgeInsets.only(),
+                                  //                             child: Checkbox(value: _value3, 
+                                  //                             onChanged: (value){
+                                  //                                setState(() {
+                                  //                                    _value3=value!;
+                                  //                                });
+                                  //                             }),
+                                  //                           ),
+                                  //                           Text('Above',
+                                  //                           style: TextStyle(
+                                  //                             fontSize: 12
+                                  //                           ),),
+                                  //                           Padding(
+                                  //                             padding: const EdgeInsets.only(),
+                                  //                             child: Checkbox(value: _value4, 
+                                  //                             onChanged: (value){
+                                  //                               setState(() {
+                                  //                                 _value4=value!;
+                                  //                               });
+                                  //                             }),
+                                  //                           ),
+                                  //                           Text('Blove',style: TextStyle(
+                                  //                             fontSize: 12
+                                  //                           ),)
+                                  //                         ],
+                                  //                       ),
+                                  //                     )
+                                  //                   ],
+                                  //                 ),
                                                 
-                                              ),
-                                       ],
-                                     ),
-                                   ),
+                                  //             ),
+                                  //      ],
+                                  //    ),
+                                  //  ),
                                   Obx(
                             () => authprofileController.isLoading.isTrue
                                 ? Padding(

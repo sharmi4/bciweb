@@ -122,29 +122,34 @@ class _ListCartState extends State<ListCart> {
                                 ],
                               ),
                             ksizedbox40,
-                            Container(
-                              height: 40,
-                              width: 110,
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              child: Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: const [
-                                    Text(
-                                      "View Cart",
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    Icon(
-                                      Icons.shopping_cart,
-                                      color: Colors.white,
-                                    )
-                                  ],
+                            InkWell(
+                              onTap: () {
+                                Get.to(ServicesCart());
+                              },
+                              child: Container(
+                                height: 40,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                child: Center(
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: const [
+                                      Text(
+                                        "View Cart",
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      Icon(
+                                        Icons.shopping_cart,
+                                        color: Colors.white,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),

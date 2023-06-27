@@ -36,7 +36,7 @@ class CommonScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
-                          child: Text('+91 8939 804 805 / +91 8939 806 807',
+                          child: Text('+91  9884 551 551 / +91  9884 660 660',
                           style: TextStyle(color: kwhite,fontSize: 13),),
                         ),
                         Padding(

@@ -2,6 +2,7 @@ import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../../../../../constant/constans.dart';
 import '../../../../../controller/home_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
@@ -39,8 +40,12 @@ class _ServicesCartState extends State<ServicesCart> {
           //  Text('data'),
           GetBuilder<HomeServiceController>(
             builder: (_) {
-              return Container(
-                //   height: size.height * 0.5,
+              return homeController.cartListData.isEmpty
+            ? Container(height: 300,
+              child: Center(child: Text(' item not  fount').text.xl2.thin.make())):
+
+               Container(
+                   height: size.height * 0.5,
                 width: size.width,
                 child: ListView.builder(
                   physics: NeverScrollableScrollPhysics(),
@@ -51,7 +56,7 @@ class _ServicesCartState extends State<ServicesCart> {
                       padding: const EdgeInsets.all(5.0),
                       child: Container(
                           width: size.width * 0.7,
-                          height: 110,
+                          height: 130,
                           decoration: BoxDecoration(
                               color: kwhite,
                               borderRadius: BorderRadius.circular(10),
@@ -131,11 +136,19 @@ class _ServicesCartState extends State<ServicesCart> {
 
                                     //   ],
                                     // ),
-                                    Column(
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceAround,
                                       children: [
-                                        InkWell(
+                                    
+                                        ksizedbox10,
+                                        Text(
+                                          '₹ ${homeController.cartListData[index].amount}',
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.black),
+                                        ),kwidth10,    InkWell(
                                             onTap: () {
                                               homeController.deleteToCart(
                                                   serviceid: homeController
@@ -144,17 +157,10 @@ class _ServicesCartState extends State<ServicesCart> {
                                                       .toString());
                                             },
                                             child: const Icon(
-                                              Icons.delete,
-                                              color: Colors.redAccent,
-                                            )),
-                                        ksizedbox10,
-                                        Text(
-                                          '₹ ${homeController.cartListData[index].amount}',
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w600,
-                                              color: kyellow),
-                                        ),
+                                              Icons.close,
+                                              color: Colors.grey,
+                                              size: 18,
+                                            )),kwidth10,
                                       ],
                                     ),
                                   ],
@@ -167,7 +173,8 @@ class _ServicesCartState extends State<ServicesCart> {
                 ),
               );
             },
-          ),
+          ),ksizedbox40,ksizedbox40,
+          ksizedbox40,
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -191,16 +198,14 @@ class _ServicesCartState extends State<ServicesCart> {
                           decoration: BoxDecoration(
                               color: kyellow,
                               borderRadius: BorderRadius.circular(16)),
-                          child: Center(
-                              child: GetBuilder<HomeServiceController>(builder: (_) {
+                          child: Center(child:
+                              GetBuilder<HomeServiceController>(builder: (_) {
                             return Text(
-                              homeController.getGrandTotal(
-                                tcartListData: homeController.cartListData
-                              ).toStringAsFixed(2),
+                              'Total : ₹${homeController.getGrandTotal(tcartListData: homeController.cartListData).toStringAsFixed(2)}',
                               // homeController.cartListData.totalamount,
 
                               style: TextStyle(
-                                  color: Colors.red,
+                                  color: kwhite,
                                   fontSize: 18,
                                   fontWeight: FontWeight.w700),
                             );
@@ -254,51 +259,52 @@ class _ServicesCartState extends State<ServicesCart> {
               kwidth10,
             ],
           ),
-          const Divider(
-            thickness: 1,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child:
-                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              // ksizedbox40,
-              Text(
-                'Support',
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-              ),
-              ksizedbox10,
-              Text(
-                'Member ID Number:',
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w400, color: korange),
-              ),
-              Text(
-                'BCI123456QWE',
-                style: TextStyle(fontSize: 15),
-              ),
-              ksizedbox10,
-              Text(
-                'Phone Number:',
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w400, color: korange),
-              ),
-              Text(
-                '92345 43453',
-                style: TextStyle(fontSize: 15),
-              ),
-              ksizedbox10,
-              Text(
-                'Delivery Address:',
-                style: TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.w400, color: korange),
-              ),
-              Text(
-                '2A,Street Nager, Anna Nagar, Chennai, 600021.',
-                style: TextStyle(fontSize: 15),
-              ),
-            ]),
-          ),
-
+          ksizedbox40,
+          // const Divider(
+          //   thickness: 1,
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child:
+          //       Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          //     // ksizedbox40,
+          //     Text(
+          //       'Support',
+          //       style: TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
+          //     ),
+          //     ksizedbox10,
+          //     Text(
+          //       'Member ID Number:',
+          //       style: TextStyle(
+          //           fontSize: 20, fontWeight: FontWeight.w400, color: korange),
+          //     ),
+          //     Text(
+          //       'BCI123456QWE',
+          //       style: TextStyle(fontSize: 15),
+          //     ),
+          //     ksizedbox10,
+          //     Text(
+          //       'Phone Number:',
+          //       style: TextStyle(
+          //           fontSize: 20, fontWeight: FontWeight.w400, color: korange),
+          //     ),
+          //     Text(
+          //       '92345 43453',
+          //       style: TextStyle(fontSize: 15),
+          //     ),
+          //     ksizedbox10,
+          //     Text(
+          //       'Delivery Address:',
+          //       style: TextStyle(
+          //           fontSize: 20, fontWeight: FontWeight.w400, color: korange),
+          //     ),
+          //     Text(
+          //       '2A,Street Nager, Anna Nagar, Chennai, 600021.',
+          //       style: TextStyle(fontSize: 15),
+          //     ),
+          //   ]),
+          // ),
+ksizedbox40,ksizedbox40,
           RegisterCommonBottom()
         ],
       ),

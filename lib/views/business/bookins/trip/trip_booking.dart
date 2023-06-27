@@ -360,7 +360,7 @@ class tripcontainer extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        Text('Kadaikonal').text.semiBold.sm.make(),
+                        Text('Kololamba').text.semiBold.sm.make(),
                       ],
                     ),
                     //  .objectCenterLeft(),

@@ -176,7 +176,7 @@ class _CommonBottomState extends State<CommonBottom> {
                                     fit: BoxFit.cover,
                                     image: AssetImage("assets/images/phoneimage.png")),
                                     SizedBox(width: 10,),
-                                   Text("+91 8939 804 805  ",
+                                   Text("+91  9884 551 551  ",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                     color: Colors.white,
@@ -186,7 +186,7 @@ class _CommonBottomState extends State<CommonBottom> {
                                  ],
                                ),
                               SizedBox(height: 10,),
-                              Text("+91 8939 806 807",
+                              Text("+91  9884 660 660",
                               textAlign: TextAlign.start,
                               style: TextStyle(
                                 color: Colors.white,

@@ -25,6 +25,7 @@ class verified_Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size =MediaQuery.of(context).size;
     return Scaffold(
       body: ListView(
         children: [
@@ -63,8 +64,8 @@ class verified_Screen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 20, right: 20),
                   child: Container(
-                    height: 50,
-                    width: double.infinity,
+                     height: 40,
+                        width: size.width*0.43,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(6),
                       border: Border.all(color: const Color(0xffFFBF7E)),

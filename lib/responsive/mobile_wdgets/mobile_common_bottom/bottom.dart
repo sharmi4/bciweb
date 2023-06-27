@@ -288,7 +288,7 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
                     width: 10,
                   ),
                   Text(
-                    "+91 8939 804 805  ",
+                    "+91  9884 551 551  ",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -299,7 +299,7 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
                     height: 10,
                   ),
                   Text(
-                    "+91 8939 806 807",
+                    "+91  9884 660 660",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,

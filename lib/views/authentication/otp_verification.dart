@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -20,6 +22,29 @@ class OtpVerification extends StatefulWidget {
 class _OtpVerificationState extends State<OtpVerification> {
   String otpString = "";
   
+int _start = 60; // Timer duration in seconds
+  bool _isActive = false;
+  late Timer _timer;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (timer) {
+      setState(() {
+        if (_start == 1) {
+          _isActive = false;
+          timer.cancel();
+          _start = 60;
+        } else {
+          _start--;
+        }
+      });
+    });
+  }
+ @override
+  void dispose() {
+    _timer.cancel(); // Cancel the timer to avoid memory leaks
+    super.dispose();
+  }
   final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
@@ -88,31 +113,43 @@ class _OtpVerificationState extends State<OtpVerification> {
                         }, // end onSubmit
                       ),
                       ksizedbox20,
-                       Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Don't Receive OTP ",
+                        Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Didn't Receive OTP ",
                     style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    //   decoration: TextDecoration.underline,
-                    color: kblue),
+                      fontSize: 19,
+                      color: Colors.black,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 8),
-                      child: Text(
-                        "Resent",
-                       style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.underline,
-                      color: kOrange),
-                      ),
-                    ),
-                  
-                  ],
-                ),
+                  ),
+                  _isActive
+                      ? Text(
+                          "Resend in $_start",
+                          style: primaryFont.copyWith(color: Colors.blue),
+                        )
+                      : InkWell(
+                          onTap: () async {
+                            String tempOtp =
+                                await authController.rendOtpFunction(
+                                    mobileNumber: widget.phoneNumber);
+                            setState(() {
+                              _isActive = true;
+                              widget.otp = tempOtp;
+                            });
+                            startTimer();
+                          },
+                          child: Text(
+                            "Resend",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                                color: kOrange),
+                          ),
+                        ),
+                ],
+              ),
                     ],
                   ),
                 ),
@@ -154,7 +191,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                      InkWell(
                       onTap: () {
                         authController.loginUsers(mobile: widget.phoneNumber, 
-                        otp: widget.otp,screen: false);
+                        otp: otpString,screen: false);
                         //     Get.to(BusinessverifiedScreen());
                       },
                       child: Container(

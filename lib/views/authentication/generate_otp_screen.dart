@@ -1,3 +1,4 @@
+import 'package:bciweb/views/authentication/signup.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
@@ -189,7 +190,7 @@ class _MobileVerificationState extends State<MobileVerification> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.toNamed('/signin');
+                                Get.to(SignUpView());
                               },
                               child: Text(
                                 'Sign up',

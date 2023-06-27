@@ -117,13 +117,13 @@ class _ContactScreenState extends State<RespoContact> {
                         ),
                         ksizedbox10,
                         Text(
-                          '+91 8939 804 805',
+                          '+91  9884 551 551',
                           style: TextStyle(fontSize: 13, color: kwhite),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 2),
                           child: Text(
-                            '+91 8939 806 807',
+                            '+91  9884 660 660',
                             style: TextStyle(fontSize: 13, color: kwhite),
                           ),
                         )

@@ -332,7 +332,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     height: 15,
                   ),
                   Text(
-                    "Fight Book",
+                    "Fight Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -343,7 +343,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     height: 10,
                   ),
                   Text(
-                    "Hotel Book",
+                    "Hotel Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -354,7 +354,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     height: 10,
                   ),
                   Text(
-                    "holidays Trip Book",
+                    "holidays Trip Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -365,7 +365,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     height: 10,
                   ),
                   Text(
-                    "Liquor Book",
+                    "Liquor Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -395,7 +395,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     width: 10,
                   ),
                   Text(
-                    "+91 8939 804 805  ",
+                    "+91 9884551551  ",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -406,7 +406,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                     height: 10,
                   ),
                   Text(
-                    "+91 8939 806 807",
+                    "+91 9884660660",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,

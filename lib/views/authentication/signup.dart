@@ -1,6 +1,7 @@
 import 'package:bciweb/responsive/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/authentication/residential_Address.dart';
 import 'package:bciweb/views/authentication/widgets/formfield.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
@@ -29,6 +30,50 @@ class _SignUpViewState extends State<SignUpView> {
 
        bool ismarried= false;
     bool isunmarried=false;
+
+   
+
+     DateTime date = DateTime.now().subtract(const Duration(days: 6570));
+
+  _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: date,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime(1910),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now().subtract(const Duration(days: 6570)),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null)
+      setState(() {
+        date = picked;
+        dobController.text = formatDate(date, [dd, "/", mm, "/", yyyy]);
+      });
+  }
+
+  var dateOfBirthController = TextEditingController();
+
+
+
   @override
   Widget build(BuildContext context) {
  
@@ -75,10 +120,48 @@ class _SignUpViewState extends State<SignUpView> {
                                   
                                 ),
                                 ksizedbox20,
-                                Formfield(
-                                  text: 'Date Of Birth',
-                                  controller: dobController,
-                                ),
+                                Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: TextFormField(
+               controller: dobController,
+               readOnly: true,
+               onTap: () {
+                    _selectDate(context);
+                  },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "DOB can't be empty";
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      fillColor: Colors.white,
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide:
+                              const BorderSide(color: const Color(0xff707070))),
+                      focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide:
+                              const BorderSide(color: const Color(0xff707070))),
+                      isCollapsed: false,
+                      isDense: true,
+                      contentPadding:
+                          const EdgeInsets.only(top: 12, bottom: 12, left: 15),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(5),
+                          borderSide:
+                              const BorderSide(color: const Color(0xff707070))),
+                      hintText: "Date Of Birth",
+                      hintStyle: TextStyle(
+                        color: kblue,
+                        fontWeight: FontWeight.w400,
+                      )),
+                ),
+              ),
+                               
                                 ksizedbox20,
                                 Formfield(
                                   text: 'Email',

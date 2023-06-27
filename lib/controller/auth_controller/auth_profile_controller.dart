@@ -12,7 +12,7 @@ import '../../services/networks/profile_api_service/profile_update.dart';
 import '../../services/networks/profile_api_service/update_officialaddress.dart';
 import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
 
-import 'auth_controller.dart';
+
 
 class AuthProfileController extends GetxController {
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
@@ -42,9 +42,7 @@ class AuthProfileController extends GetxController {
       print("<------------------Working on 01------------------>");
       profileData.add(profileModel.user);
       update();
-    } else if (response.statusCode == 401) {
-      Get.find<AuthController>().logout();
-    }
+    } 
   }
 
   updateProfile(
