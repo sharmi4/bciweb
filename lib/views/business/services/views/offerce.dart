@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,8 @@ import '../../../members/common_widget/common.dart';
 
 class OfferScreen extends StatelessWidget {
    OfferScreen({super.key});
-  final authController=Get.find <AuthController>();
+ 
+  final seriveoffersController=Get.find<HomeServiceController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class OfferScreen extends StatelessWidget {
                     right: 0,
                     child: Center(
                       child: Text(
-                        'OFFERS US',
+                        'OFFERS',
                         style:displayfont
                         // GoogleFonts.lato(
                           //  fontSize: 80,
@@ -58,82 +60,47 @@ class OfferScreen extends StatelessWidget {
                   fontSize: 35,
                   fontWeight: FontWeight.bold),
             ),
-            ksizedbox40,
-               GetBuilder<AuthController>(
-              builder: (_){
-                
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                 
-                  offers_container(
-                    
-                    image: authController.dataList.first.image,
-                    description: authController.dataList.first.description,),
-                  offers_container(image: authController.dataList.first.image,
-                  description: authController.dataList.first.description,),
-                ],
-              );
-              }
-            ),
+           
             ksizedbox30,
             ksizedbox40,
-               GetBuilder<AuthController>(
+               GetBuilder<HomeServiceController>(
               builder: (_){
-                
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                 
-                  offers_container(
+                return Padding(
+                  padding: const EdgeInsets.only(left: 50,right: 50),
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: seriveoffersController.todayofferslist.length,
                     
-                    image: authController.dataList.first.image,
-                    description: authController.dataList.first.description,),
-                  offers_container(image: authController.dataList.first.image,
-                  description: authController.dataList.first.description,),
-                ],
-              );
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      childAspectRatio: 3,
+                      mainAxisSpacing: 60,
+                      crossAxisSpacing: 50,
+                    crossAxisCount: 2), 
+                    itemBuilder: (context,index){
+                      return offers_container(
+                        
+                        image: seriveoffersController.todayofferslist[index].image,
+                        title: seriveoffersController.todayofferslist[index].title,
+                        description: seriveoffersController.todayofferslist[index].description,);
+                    }),
+                );
+              // return Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+                 
+              //     offers_container(
+                    
+              //       image: seriveoffersController.todayofferslist.first.image,
+              //       description: seriveoffersController.todayofferslist.first.description,),
+              //     offers_container(image: seriveoffersController.todayofferslist.first.image,
+              //     description: seriveoffersController.todayofferslist.first.description,),
+              //   ],
+              // );
               }
             ),
-            ksizedbox30,
+            
+          
             ksizedbox40,
-              GetBuilder<AuthController>(
-              builder: (_){
-                
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                 
-                  offers_container(
-                    
-                    image: authController.dataList.first.image,
-                    description: authController.dataList.first.description,),
-                  offers_container(image: authController.dataList.first.image,
-                  description: authController.dataList.first.description,),
-                ],
-              );
-              }
-            ),
-            ksizedbox30,
-            ksizedbox40,
-            GetBuilder<AuthController>(
-              builder: (_){
-                
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                 
-                  offers_container(
-                    
-                    image: authController.dataList.first.image,
-                    description: authController.dataList.first.description,),
-                  offers_container(image: authController.dataList.first.image,
-                  description: authController.dataList.first.description,),
-                ],
-              );
-              }
-            ),
-            ksizedbox30,
             InkWell(
               onTap: () {
                 Get.back();
@@ -174,9 +141,11 @@ class OfferScreen extends StatelessWidget {
 class offers_container extends StatelessWidget {
   String image;
   String description;
+  String title;
  offers_container({
     super.key,
-    required this.description,required this.image
+    required this.description,required this.image,
+    required this.title
   });
 
   @override
@@ -195,7 +164,7 @@ class offers_container extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       height: 200,
-      width: 450,
+      width: 500,
       child: Row(
         children: [
           Padding(
@@ -209,27 +178,43 @@ class offers_container extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5),
                 child: Image.network(image,fit: BoxFit.cover,))),
           ),
-          kwidth10,
-          Column(
-           
-            children: [
-              ksizedbox10,
-              Container(
-                width: 100,
-                child: Text(
-                
-                  description,
-                  maxLines: 3,
-                  style: TextStyle(
-                    
-                    fontSize: 18,
-                    
+        
+          Padding(
+            padding: const EdgeInsets.only(left: 60),
+            child: Column(
+             
+              children: [
+                ksizedbox10,
+                Container(
+                  width: 150,
+                  child: Text(
+                  
+                    title,
+              
+                    style: TextStyle(
+                       fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      
+                    ),
                   ),
                 ),
-              ),
-             
-              ksizedbox10,
-            ],
+                              ksizedbox10,
+                Container(
+                  width: 150,
+                  child: Text(
+                  
+                 description ,
+              
+                    style: TextStyle(
+                       fontSize: 16
+                      
+                    ),
+                  ),
+                ),
+               
+                ksizedbox10,
+              ],
+            ),
           ),
         ],
       ),

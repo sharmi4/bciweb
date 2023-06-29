@@ -31,6 +31,8 @@ class RegisterProfileScreen extends StatefulWidget {
 }
 
 class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
+
+   final subscriptionapiController = Get.find<SubscriptionApiController>();
   final reghomeController = Get.find<RegisterProfileController>();
   final regshowController = Get.find<ProfileShowController>();
   final authprofileController = Get.find<AuthProfileController>();
@@ -176,7 +178,34 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
       dateofbirthController.text = authprofileController.profileData.first.dob;
     }
   }
-
+AlertDialog mAlertItem2 = AlertDialog(
+      backgroundColor: Colors.white,
+      title: Text("Confirmation", style:TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold
+      )),
+      content: Text(
+        "Are you sure you want to logout?",
+        style: TextStyle(color: Colors.black),
+      ),
+      actions: [
+        TextButton(
+          child: Text(
+            "Yes",
+            style: TextStyle(color: kblue),
+          ),
+          onPressed: () {
+           Get.offAll(LandingScreen());
+          },
+        ),
+        TextButton(
+          child: Text("No", style: TextStyle(color: kblue)),
+          onPressed: () {
+            Get.back();
+          },
+        ),
+      ],
+    );
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -397,7 +426,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 11),
                                     child: Text(
-                                      'Additional Coupons',
+                                      'My Subscription',
                                       style: TextStyle(color: kwhite),
                                     ),
                                   ),
@@ -589,7 +618,12 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           onTap: () {
                             reghomeController.proindex(9);
                             reghomeController.update();
-                            Get.offAll(LandingScreen());
+                          showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return mAlertItem2;
+                });
+                            //Get.offAll(LandingScreen());
                           },
                           child: Container(
                             width: 195,
@@ -624,6 +658,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
+
+                  
                 ],
               ),
             ),
@@ -768,6 +804,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 30,
                                           bottom: 30),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: nameController,
                                         decoration: InputDecoration(
                                             hintText: 'User Name',
@@ -822,6 +859,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         controller: emailController,
@@ -844,6 +882,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
+                                                 textInputAction: TextInputAction.next,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 controller: numberController,
@@ -877,6 +916,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: occupationController,
                                         decoration: InputDecoration(
                                             hintText: 'Occupation',
@@ -897,6 +937,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
+                                                 textInputAction: TextInputAction.next,
                                                 controller:
                                                     fathernameController,
                                                 decoration: InputDecoration(
@@ -928,6 +969,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: mothernameController,
                                         decoration: InputDecoration(
                                             hintText: 'Mother Name',
@@ -1002,6 +1044,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                           controller: wedingnameController,
                                           decoration: InputDecoration(
                                               hintText: 'Wedding Date',
@@ -1026,6 +1069,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
+                                                 textInputAction: TextInputAction.next,
                                               controller: spousenameController,
                                               decoration: InputDecoration(
                                                   hintText: 'Spouse Name',
@@ -1052,6 +1096,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                           controller: dobController,
                                           decoration: InputDecoration(
                                               hintText: 'Date of Birth',
@@ -1076,6 +1121,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
+                                                 textInputAction: TextInputAction.next,
                                               controller: childrensController,
                                               decoration: InputDecoration(
                                                   hintText: 'No.Of.Children',
@@ -1331,6 +1377,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: officedoornoController,
                                         decoration: InputDecoration(
                                             hintText: 'Door Number',
@@ -1346,6 +1393,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                     padding: const EdgeInsets.only(
                                         left: 50, right: 50, top: 50),
                                     child: TextField(
+                                         textInputAction: TextInputAction.next,
                                       controller: officebnameController,
                                       decoration: InputDecoration(
                                           hintText: 'Building Number',
@@ -1367,6 +1415,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: officeaddresController,
                                         decoration: InputDecoration(
                                             hintText: 'Address',
@@ -1382,6 +1431,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                     padding: const EdgeInsets.only(
                                         left: 50, right: 50, top: 50),
                                     child: TextField(
+                                         textInputAction: TextInputAction.next,
                                       controller: officecityController,
                                       decoration: InputDecoration(
                                           hintText: 'City',
@@ -1401,6 +1451,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                     width: MediaQuery.of(context).size.width *
                                         0.35,
                                     child: TextField(
+                                         textInputAction: TextInputAction.next,
                                       controller: officestateController,
                                       decoration: InputDecoration(
                                           hintText: 'State',
@@ -1521,6 +1572,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         padding: const EdgeInsets.only(
                                             left: 50, right: 50, top: 50),
                                         child: TextField(
+                                             textInputAction: TextInputAction.next,
                                           controller: residoornumberController,
                                           decoration: InputDecoration(
                                               hintText: 'Door Number',
@@ -1536,6 +1588,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: resibnameController,
                                         decoration: InputDecoration(
                                             hintText: 'Building Number',
@@ -1558,6 +1611,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         padding: const EdgeInsets.only(
                                             left: 50, right: 50, top: 50),
                                         child: TextField(
+                                             textInputAction: TextInputAction.next,
                                           controller: resiaddressController,
                                           decoration: InputDecoration(
                                               hintText: 'Address',
@@ -1573,6 +1627,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: resibcityController,
                                         decoration: InputDecoration(
                                             hintText: 'City',
@@ -1595,6 +1650,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         padding: const EdgeInsets.only(
                                             left: 50, right: 50, top: 50),
                                         child: TextField(
+                                             textInputAction: TextInputAction.next,
                                           controller: resistateController,
                                           decoration: InputDecoration(
                                               hintText: 'State',
@@ -1610,6 +1666,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: resiperidController,
                                         decoration: InputDecoration(
                                             hintText: 'Personal Id',
@@ -1630,6 +1687,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       child: TextField(
+                                           textInputAction: TextInputAction.next,
                                         controller: resiadaridController,
                                         decoration: InputDecoration(
                                             hintText: 'Adhaar Id',
@@ -3182,150 +3240,197 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                 ),
               ),
             if (reghomeController.proindex.value == 4)
-              //coupons here
-              //   Coupones(
-              Padding(
-                padding: const EdgeInsets.only(top: 50),
-                child: Container(
-                  width: MediaQuery.of(context).size.width - 195,
-                  child: Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 55),
-                        child: Row(
-                          children: [
-                            Text(
-                              'Additional Coupons',
+                   Container(
+
+                child: Column(
+                  children: [
+                    Stack(
+                      children: [
+                        // Image.asset('assets/images/Group 39757.png'),
+                        Positioned(
+                          top: 0,
+                          left: 0,
+                          bottom: 0,
+                          right: 0,
+                          child: Center(
+                            child: Text(
+                              'Subscribe',
                               style: TextStyle(
                                   fontSize: 20,
-                                  color: kblue,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      ),
-                      ksizedbox40,
-                      ksizedbox30,
-                      GetBuilder<SubscriptionApiController>(builder: (_) {
-                        return Column(
-                          children: [
-                            //    RegisterCommonContainer(),
-                            ksizedbox30,
-                            Container(
-                              width: 1000,
-                              child: GridView.builder(
-                                  shrinkWrap: true,
-                                  itemCount: subscripeController
-                                      .couponsdatalist.length,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          childAspectRatio: 3.5,
-                                          crossAxisSpacing: 20,
-                                          mainAxisSpacing: 7,
-                                          crossAxisCount: 2),
-                                  itemBuilder: (context, index) {
-                                    return Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 30, left: 20, right: 20),
-                                      child: ClipPath(
-                                        clipper: TicketPassClipper(),
-                                        child: Container(
-                                          color: colors[Random().nextInt(9)],
-                                          child: Column(
-                                            children: [
-                                              ksizedbox10,
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10,
-                                                    right: 10,
-                                                    top: 5),
-                                                child: Row(
-                                                  children: [
-                                                    Text(subscripeController
-                                                        .couponsdatalist[index]
-                                                        .createdAt
-                                                        .toString()),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 50),
-                                                      child: Text(
-                                                          subscripeController
-                                                              .couponsdatalist[
-                                                                  index]
-                                                              .name),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              ksizedbox10,
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 10,
-                                                    left: 10,
-                                                    right: 80),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(subscripeController
-                                                        .couponsdatalist[index]
-                                                        .couponcode),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 0, left: 10),
-                                                      child: InkWell(
-                                                        onTap: () {
-                                                          FlutterClipboard.copy(
-                                                                  subscripeController
-                                                                      .couponsdatalist[
-                                                                          index]
-                                                                      .couponcode)
-                                                              .then(
-                                                            (value) => Fluttertoast.showToast(
-                                                                msg:
-                                                                    "Copy to clipboard",
-                                                                toastLength: Toast
-                                                                    .LENGTH_SHORT,
-                                                                gravity:
-                                                                    ToastGravity
-                                                                        .CENTER,
-                                                                timeInSecForIosWeb:
-                                                                    1,
-                                                                backgroundColor:
-                                                                    Colors
-                                                                        .white,
-                                                                textColor:
-                                                                    Colors
-                                                                        .black,
-                                                                fontSize: 16.0),
-                                                            //print("code copied")
-                                                          );
-                                                        },
-                                                        child: Icon(Icons.copy),
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  }),
+                                  fontWeight: FontWeight.bold,
+                                  color: kwhite),
                             ),
-                            ksizedbox30,
-                            //   RegisterCommonBottom()
-                          ],
-                        );
-                      }),
-                    ],
-                  ),
+                          ),
+                        )
+                      ],
+                    ),
+
+                    GetBuilder<SubscriptionApiController>(
+                      builder: (_){
+                        return Row(
+                        children: [
+
+                         subscripeController.plansdataList.isEmpty?Container(
+                          child: Center(
+                            child: Text('No Datas'),
+                          ),
+                         ) :Image.network(subscripeController.plansdataList.first.cardImg)
+                        ],
+                      );
+                      },
+                      
+                    )
+                  ],
                 ),
+                
               ),
+
+           
+
+              //coupons here
+              //   Coupones(
+              // Padding(
+              //   padding: const EdgeInsets.only(top: 50),
+              //   child: Container(
+              //     width: MediaQuery.of(context).size.width - 195,
+              //     child: Column(
+              //       children: [
+              //         Padding(
+              //           padding: const EdgeInsets.only(left: 55),
+              //           child: Row(
+              //             children: [
+              //               Text(
+              //                 'Additional Coupons',
+              //                 style: TextStyle(
+              //                     fontSize: 20,
+              //                     color: kblue,
+              //                     fontWeight: FontWeight.bold),
+              //               )
+              //             ],
+              //           ),
+              //         ),
+              //         ksizedbox40,
+              //         ksizedbox30,
+              //         GetBuilder<SubscriptionApiController>(builder: (_) {
+              //           return Column(
+              //             children: [
+              //               //    RegisterCommonContainer(),
+              //               ksizedbox30,
+              //               Container(
+              //                 width: 1000,
+              //                 child: GridView.builder(
+              //                     shrinkWrap: true,
+              //                     itemCount: subscripeController
+              //                         .couponsdatalist.length,
+              //                     gridDelegate:
+              //                         SliverGridDelegateWithFixedCrossAxisCount(
+              //                             childAspectRatio: 3.5,
+              //                             crossAxisSpacing: 20,
+              //                             mainAxisSpacing: 7,
+              //                             crossAxisCount: 2),
+              //                     itemBuilder: (context, index) {
+              //                       return Padding(
+              //                         padding: const EdgeInsets.only(
+              //                             top: 30, left: 20, right: 20),
+              //                         child: ClipPath(
+              //                           clipper: TicketPassClipper(),
+              //                           child: Container(
+              //                             color: colors[Random().nextInt(9)],
+              //                             child: Column(
+              //                               children: [
+              //                                 ksizedbox10,
+              //                                 Padding(
+              //                                   padding: const EdgeInsets.only(
+              //                                       left: 10,
+              //                                       right: 10,
+              //                                       top: 5),
+              //                                   child: Row(
+              //                                     children: [
+              //                                       Text(subscripeController
+              //                                           .couponsdatalist[index]
+              //                                           .createdAt
+              //                                           .toString()),
+              //                                       Padding(
+              //                                         padding:
+              //                                             const EdgeInsets.only(
+              //                                                 left: 50),
+              //                                         child: Text(
+              //                                             subscripeController
+              //                                                 .couponsdatalist[
+              //                                                     index]
+              //                                                 .name),
+              //                                       ),
+              //                                     ],
+              //                                   ),
+              //                                 ),
+              //                                 ksizedbox10,
+              //                                 Padding(
+              //                                   padding: const EdgeInsets.only(
+              //                                       top: 10,
+              //                                       left: 10,
+              //                                       right: 80),
+              //                                   child: Row(
+              //                                     mainAxisAlignment:
+              //                                         MainAxisAlignment
+              //                                             .spaceBetween,
+              //                                     children: [
+              //                                       Text(subscripeController
+              //                                           .couponsdatalist[index]
+              //                                           .couponcode),
+              //                                       Padding(
+              //                                         padding:
+              //                                             const EdgeInsets.only(
+              //                                                 top: 0, left: 10),
+              //                                         child: InkWell(
+              //                                           onTap: () {
+              //                                             FlutterClipboard.copy(
+              //                                                     subscripeController
+              //                                                         .couponsdatalist[
+              //                                                             index]
+              //                                                         .couponcode)
+              //                                                 .then(
+              //                                               (value) => Fluttertoast.showToast(
+              //                                                   msg:
+              //                                                       "Copy to clipboard",
+              //                                                   toastLength: Toast
+              //                                                       .LENGTH_SHORT,
+              //                                                   gravity:
+              //                                                       ToastGravity
+              //                                                           .CENTER,
+              //                                                   timeInSecForIosWeb:
+              //                                                       1,
+              //                                                   backgroundColor:
+              //                                                       Colors
+              //                                                           .white,
+              //                                                   textColor:
+              //                                                       Colors
+              //                                                           .black,
+              //                                                   fontSize: 16.0),
+              //                                               //print("code copied")
+              //                                             );
+              //                                           },
+              //                                           child: Icon(Icons.copy),
+              //                                         ),
+              //                                       )
+              //                                     ],
+              //                                   ),
+              //                                 ),
+              //                               ],
+              //                             ),
+              //                           ),
+              //                         ),
+              //                       );
+              //                     }),
+              //               ),
+              //               ksizedbox30,
+              //               //   RegisterCommonBottom()
+              //             ],
+              //           );
+              //         }),
+              //       ],
+              //     ),
+              //   ),
+              // ),
             if (reghomeController.proindex.value == 5)
               Container(
                 width: MediaQuery.of(context).size.width - 195,
@@ -3375,6 +3480,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                               color: kgrey)
                                         ]),
                                     child: TextField(
+                                         
                                       controller: referalCOntroller,
                                       decoration: InputDecoration(
                                           hintText: 'ABCDEF',
@@ -3524,6 +3630,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                 color: kgrey.withOpacity(0.3),
                               ),
                               child: TextField(
+                                   textInputAction: TextInputAction.next,
                                 controller: subNameController,
                                 decoration: InputDecoration(
                                     hintText: 'Your Name',
@@ -3542,6 +3649,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                 color: kgrey.withOpacity(0.3),
                               ),
                               child: TextField(
+                                   textInputAction: TextInputAction.next,
                                 controller: subMobileController,
                                 decoration: InputDecoration(
                                     hintText: 'Mobile',
@@ -3565,6 +3673,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   color: kgrey.withOpacity(0.3),
                                 ),
                                 child: TextField(
+                                     textInputAction: TextInputAction.next,
                                   controller: subEmailController,
                                   decoration: InputDecoration(
                                       hintText: 'Email',
@@ -3586,6 +3695,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   color: kgrey.withOpacity(0.3),
                                 ),
                                 child: TextField(
+                                    
                                   maxLines: 4,
                                   controller: subDescriptionController,
                                   decoration: InputDecoration(

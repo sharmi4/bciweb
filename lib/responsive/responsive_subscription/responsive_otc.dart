@@ -88,6 +88,7 @@ class _PaymentState extends State< ResponsiveOtc> {
               child: Column(
                 children: [
                   TextField(
+                      textInputAction: TextInputAction.next,
                     // controller: _controller,
 
                     decoration: InputDecoration(

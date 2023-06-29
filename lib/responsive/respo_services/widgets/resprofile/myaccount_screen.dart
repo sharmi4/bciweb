@@ -352,6 +352,7 @@ bool isUnmarried =false;
                                         child: Container(
                                           height: 31,
                                           child: TextField( 
+                                              textInputAction: TextInputAction.next,
                                             controller: mobilenameController,
                                             decoration: InputDecoration(
                                               hintText: 'User Name',
@@ -376,7 +377,7 @@ bool isUnmarried =false;
                                           height: 31,
                                           width:20,
                                           child: TextField(
-                                            
+                                              textInputAction: TextInputAction.next,
                                             controller: mobiledobController,
                                              decoration: InputDecoration(
                                               hintText: 'Enetr Date Of Birth',
@@ -408,6 +409,7 @@ bool isUnmarried =false;
                                             Container(
                                               height: 35,
                                               child: TextField( 
+                                                  textInputAction: TextInputAction.next,
                                                 keyboardType: TextInputType.emailAddress,
                                                 controller: mobileemailController,
                                                 decoration: InputDecoration(
@@ -436,6 +438,7 @@ bool isUnmarried =false;
                                               Container(
                                                 height: 35,
                                                 child: TextField(
+                                                    textInputAction: TextInputAction.next,
                                                   keyboardType: TextInputType.number,
                                                   controller: mobilenumberController,
                                                    decoration: InputDecoration(
@@ -473,6 +476,7 @@ bool isUnmarried =false;
                                             Container(
                                               height: 35,
                                               child: TextField( 
+                                                  textInputAction: TextInputAction.next,
                                                 controller: mobileoccupationController,
                                                 decoration: InputDecoration(
                                                   hintText: 'Occupation',
@@ -498,7 +502,7 @@ bool isUnmarried =false;
                                         child: Container(
                                        height:35,
                                           child:    TextField(
-                                                
+                                                  textInputAction: TextInputAction.next,
                                                 controller: mobilefathernameController,
                                                  decoration: InputDecoration(
                                                   hintText: 'father Name',
@@ -531,6 +535,7 @@ bool isUnmarried =false;
                                         child: Container(
                                           height: 35,
                                           child: TextField( 
+                                              textInputAction: TextInputAction.next,
                                             controller: mobilemothernameController,
                                             decoration: InputDecoration(
                                               hintText: 'Mother Name',
@@ -615,7 +620,7 @@ bool isUnmarried =false;
                                                 borderRadius: BorderRadius.circular(8)
                                               ),
                                               child: TextField(
-                                                      
+                                                        textInputAction: TextInputAction.next,
                                                       controller: mobilewedingnameController,
                                                        decoration: InputDecoration(
                                                         hintText: 'Wedding Date',
@@ -644,6 +649,7 @@ bool isUnmarried =false;
                                         child: Container(
                                           height: 35,
                                           child: TextField( 
+                                               textInputAction: TextInputAction.next,
                                           controller: mobilespousenameController,
                                           decoration: InputDecoration(
                                             hintText: 'Spouse Name',
@@ -674,7 +680,7 @@ bool isUnmarried =false;
                                             Container(
                                               height: 35,
                                               child: TextField(
-                                                      
+                                                         textInputAction: TextInputAction.next,
                                                       controller: mobiledateofbirthController,
                                                        decoration: InputDecoration(
                                                         hintText: 'Date of Birth',
@@ -707,6 +713,7 @@ bool isUnmarried =false;
                                                    Container(
                                                     height: 35,
                                                      child: TextField( 
+                                                      
                                                      controller: mobilechildrensController,
                                                       decoration: InputDecoration(
                                                       hintText: 'No.Of.Children',
@@ -880,6 +887,7 @@ bool isUnmarried =false;
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 50,right:50,top:50),
                                         child: TextField( 
+                                             textInputAction: TextInputAction.next,
                                           controller: mobileofficedoornumber,
                                           decoration: InputDecoration(
                                             hintText: 'Door Number',
@@ -896,6 +904,7 @@ bool isUnmarried =false;
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
                                   child: TextField( 
+                                       textInputAction: TextInputAction.next,
                                      controller: mobileofficebnumber,
                                      decoration: InputDecoration(
                                        hintText: 'Building Number',
@@ -916,6 +925,7 @@ bool isUnmarried =false;
                                          child: Padding(
                                            padding: const EdgeInsets.only(left: 50,right:50,top:50),
                                            child: TextField( 
+                                               textInputAction: TextInputAction.next,
                                              controller: mobileofficeaddress,
                                              decoration: InputDecoration(
                                                hintText: 'Address',
@@ -932,6 +942,7 @@ bool isUnmarried =false;
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
                                   child: TextField( 
+                                       textInputAction: TextInputAction.next,
                                         controller: mobileofficecity,
                                         decoration: InputDecoration(
                                           hintText: 'City',
@@ -952,7 +963,8 @@ bool isUnmarried =false;
                                           children: [
                                             Container(
                                               width:MediaQuery.of(context).size.width*0.75,
-                                              child: TextField( 
+                                              child: TextField(
+                                                 
                                                     controller: mobileofficestate,
                                                     decoration: InputDecoration(
                                                       hintText: 'State',
@@ -1047,8 +1059,10 @@ bool isUnmarried =false;
                                      child: Padding(
                                        padding: const EdgeInsets.only(left: 50,right:50,top:50),
                                        child: TextField( 
+                                         textInputAction: TextInputAction.next,
                                          controller: mobileresidoornumberController,
                                          decoration: InputDecoration(
+                                            
                                            hintText: 'Door Number',
                                            suffixIcon: Icon(Icons.edit),
                                            fillColor: Color(0xffF9F8FD),
@@ -1063,6 +1077,7 @@ bool isUnmarried =false;
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
                                   child: TextField( 
+                                     textInputAction: TextInputAction.next,
                                     controller: mobileresibnameController,
                                     decoration: InputDecoration(
                                       hintText: 'Building Number',
@@ -1080,6 +1095,7 @@ bool isUnmarried =false;
                                        child: Padding(
                                          padding: const EdgeInsets.only(left: 50,right:50,top:50),
                                          child: TextField( 
+                                           textInputAction: TextInputAction.next,
                                            controller: mobileresiaddressController,
                                            decoration: InputDecoration(
                                              hintText: 'Address',
@@ -1096,6 +1112,7 @@ bool isUnmarried =false;
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
                                   child: TextField( 
+                                     textInputAction: TextInputAction.next,
                                       controller: mobileresibcityController,
                                       decoration: InputDecoration(
                                         hintText: 'City',
@@ -1111,6 +1128,7 @@ bool isUnmarried =false;
                                      Padding(
                                        padding: const EdgeInsets.only(left: 50,right:50,top:50),
                                        child: TextField( 
+                                         textInputAction: TextInputAction.next,
                                          controller: mobileresistateController,
                                          decoration: InputDecoration(
                                            hintText: 'State',
@@ -1126,6 +1144,7 @@ bool isUnmarried =false;
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
                                   child: TextField( 
+                                     textInputAction: TextInputAction.next,
                                       controller: mobileresiperidController,
                                       decoration: InputDecoration(
                                         hintText: 'Personal Id',

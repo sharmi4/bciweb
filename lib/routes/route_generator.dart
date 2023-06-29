@@ -1,3 +1,4 @@
+import 'package:bciweb/responsive/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -63,8 +64,8 @@ class RouteGenerator {
       case Routes.History:
         return _GeneratePageRoute(widget: History(), routeName: settings.name);
 
-     // case Routes.CART:
-       // return _GeneratePageRoute(widget: CartScreen(servicedata: null,), routeName: settings.name);
+     case Routes.MobLogin:
+       return _GeneratePageRoute(widget: MemberLoginScreenrespo(), routeName: settings.name);
 
       case Routes.Gallery:
         return _GeneratePageRoute(widget: Gallery(), routeName: settings.name);

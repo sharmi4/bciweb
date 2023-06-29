@@ -35,11 +35,14 @@ class _ServicesState extends State<Services> {
   void initState() {
     super.initState();
     authController.getservice();
+     serviceofferController.GettodayoffersList();
   }
-
+ 
   int pageIndex = 0;
 
   final authController = Get.find<AuthController>();
+
+  final serviceofferController=Get.find<HomeServiceController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -274,7 +277,7 @@ class _ServicesState extends State<Services> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                Get.to(Coupones());
+                Get.offAll(Coupones());
                 //  Get.toNamed('/coupones');
               },
               child: Container(
@@ -334,103 +337,102 @@ class _ServicesState extends State<Services> {
               )
             ]),
             ksizedbox30,
-            // Text(
-            //   'SPECIAL Offers',
-            //   textAlign: TextAlign.center,
-            //   style: TextStyle(
-            //       color: Color(0xff003366),
-            //       fontSize: 70,
-            //       fontWeight: FontWeight.bold),
-            // ),
-          //  ksizedbox10,
-            // Container(
-            //   height: 20,
-            //   width: 100,
-            //   color: korange,
-            // ),
-          //  ksizedbox10,
-            // Container(
-            //     width: 800,
-            //     child: Text(
-            //       'Special coupons are promotional discounts offered by businesses to encourage customers to make a purchase or use their services. These coupons may be available in various forms such as printed coupons, digital coupons, or promo codes.',
-            //       style: TextStyle(color: ktextblue),
-            //     )),
-           // ksizedbox40,
-          //  ksizedbox30,
-            // GetBuilder<AuthController>(builder: (_) {
-            //   return Column(
-            //     children: [
-            //       CarouselSlider(
-            //         carouselController: curouselController,
-            //         items: [
-            //           for (var j = 0; j < authController.dataList.length; j++)
-            //             InkWell(
-            //               child: offers_container(
-            //                 image: authController.dataList[j].image,
-            //                 description: authController.dataList[j].description,
-            //               ),
-            //               onTap: () {
-            //                 Get.toNamed('/offer-screen');
-            //               },
-            //             ),
-            //         ],
-            //         options: CarouselOptions(
-            //           height: 170.0,
-            //           enlargeCenterPage: true,
-            //           autoPlay: true,
-            //           aspectRatio: 16 / 9,
-            //           enableInfiniteScroll: true,
-            //           autoPlayAnimationDuration: Duration(milliseconds: 3200),
-            //           viewportFraction: 0.8,
-            //           onPageChanged: (index, reason) {
-            //             setState(() {
-            //               pageIndex = index;
-            //             });
-            //           },
-            //         ),
-            //       ),
-            //       ksizedbox10,
-            //       // Row(
-            //       //   mainAxisAlignment: MainAxisAlignment.center,
-            //       //   children: [
-            //       //     AnimatedSmoothIndicator(
-            //       //       activeIndex: pageIndex,
-            //       //       count: 3,
-            //       //       effect: ScaleEffect(
-            //       //           dotHeight: 9.0,
-            //       //           dotWidth: 9.0,
-            //       //           dotColor: kgrey,
-            //       //           activeDotColor: Colors.yellow),
-            //       //     ),
-            //       //   ],
-            //       // ),
-            //     ],
-            //   );
-          //  }),
-            //  offercontainer(),
-          //  ksizedbox30,
-            // InkWell(
-            //   onTap: () {
-            //     Get.to(offers_container(
-            //       description: authController.dataList.first.description,
-            //       image: authController.dataList.first.image,
-            //     ));
-            //   },
-            //   child: Container(
-            //     decoration: BoxDecoration(
-            //         color: Color(0XFFE4E4E6),
-            //         borderRadius: BorderRadius.circular(4)),
-            //     child: Center(
-            //         child: Text(
-            //       'More Offers',
-            //       style:
-            //           TextStyle(fontWeight: FontWeight.w600, color: ktextblue),
-            //     )),
-            //     height: 30,
-            //     width: 180,
-            //   ),
-            // ),
-          //  ksizedbox40,
+            Text(
+              'TODAYS OFFERS',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: Color(0xff003366),
+                  fontSize: 70,
+                  fontWeight: FontWeight.bold),
+            ),
+           ksizedbox10,
+            Container(
+              height: 20,
+              width: 100,
+              color: korange,
+            ),
+           ksizedbox10,
+            Container(
+                width: 800,
+                child: Text(
+                  'Special coupons are promotional discounts offered by businesses to encourage customers to make a purchase or use their services. These coupons may be available in various forms such as printed coupons, digital coupons, or promo codes.',
+                  style: TextStyle(color: ktextblue),
+                )),
+           ksizedbox40,
+           ksizedbox30,
+            GetBuilder<HomeServiceController>(builder: (_) {
+              return Column(
+                children: [
+                  CarouselSlider(
+                    carouselController: curouselController,
+                    items: [
+                      for (var j = 0; j < serviceofferController.todayofferslist.length; j++)
+                        InkWell(
+                          child: offers_container(
+                            image: serviceofferController.todayofferslist[j].image,
+                            title: serviceofferController.todayofferslist[j].title,
+                            description: serviceofferController.todayofferslist[j].description,
+                          ),
+                          onTap: () {
+                            Get.to(OfferScreen());
+                          },
+                        ),
+                    ],
+                    options: CarouselOptions(
+                      height: 170.0,
+                      enlargeCenterPage: true,
+                      autoPlay: true,
+                      aspectRatio: 16 / 9,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 3200),
+                      viewportFraction: 0.8,
+                      onPageChanged: (index, reason) {
+                        setState(() {
+                          pageIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                  ksizedbox10,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      AnimatedSmoothIndicator(
+                        activeIndex: pageIndex,
+                        count: 3,
+                        effect: ScaleEffect(
+                            dotHeight: 9.0,
+                            dotWidth: 9.0,
+                            dotColor: kgrey,
+                            activeDotColor: Colors.yellow),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+           }),
+             //offercontainer(),
+           ksizedbox30,
+            InkWell(
+              onTap: () {
+                Get.to(OfferScreen()
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Color(0XFFE4E4E6),
+                    borderRadius: BorderRadius.circular(4)),
+                child: Center(
+                    child: Text(
+                  'Todays Offers',
+                  style:
+                      TextStyle(fontWeight: FontWeight.w600, color: ktextblue),
+                )),
+                height: 30,
+                width: 180,
+              ),
+            ),
+           ksizedbox40,
             RegisterCommonBottom()
           ],
         ),

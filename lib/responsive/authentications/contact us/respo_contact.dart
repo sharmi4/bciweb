@@ -191,6 +191,7 @@ class _ContactScreenState extends State<RespoContact> {
                             padding: const EdgeInsets.only(
                                 left: 40, right: 40, top: 40),
                             child: TextField(
+                                textInputAction: TextInputAction.next,
                               controller: nameController,
                               keyboardType: TextInputType.name,
                               decoration: InputDecoration(
@@ -204,6 +205,7 @@ class _ContactScreenState extends State<RespoContact> {
                             padding: const EdgeInsets.only(
                                 left: 40, right: 40, top: 25),
                             child: TextField(
+                                textInputAction: TextInputAction.next,
                               keyboardType: TextInputType.emailAddress,
                               controller: emailController,
                               decoration: InputDecoration(
@@ -233,6 +235,7 @@ class _ContactScreenState extends State<RespoContact> {
                               height: 45,
                               width: MediaQuery.of(context).size.width,
                               child: TextField(
+                                
                                 maxLines: 5,
                                 controller: messageController,
                                 decoration: InputDecoration(

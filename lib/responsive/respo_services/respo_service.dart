@@ -15,6 +15,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import '../../../../constant/constans.dart';
 //import '../../../../registerhomescreen/common_reg_appbar';
 
+import '../../controller/service_controller/home_controller.dart';
 import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 //import '../../../members/common_widget/common.dart';
@@ -31,10 +32,13 @@ CarouselController curouselController = CarouselController();
 class _ServicesState extends State<RespoServices> {
   int pageIndex = 0;
   final authController = Get.find<AuthController>();
+  final serviceController= Get.find<HomeServiceController>();
+
   @override
   void initState() {
     super.initState();
     authController.getservice();
+    serviceController.GettodayoffersList();
    // authController.update();
   }
 
@@ -96,85 +100,95 @@ class _ServicesState extends State<RespoServices> {
             ),
             ksizedbox20,
 
-            GetBuilder<AuthController>(builder: (_) {
-              return authController.dataList.isEmpty
-                  ? const Center(
-                      child: Text("No Data Found"),
-                    )
-                  : CarouselSlider(
-                      carouselController: curouselController,
-                      items: [
-                        for (var i = 0; i < authController.dataList.length; i++)
-                          InkWell(
-                            child: servicecontainermob(
-                              image: authController.dataList[i].image,
-                              title: authController.dataList[i].title,
-                              description:
-                                  authController.dataList[i].description,
+            Container(
+             height: 3090,
+              child: GetBuilder<AuthController>(builder: (_) {
+                return ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  itemCount: authController.dataList.length,
+                  itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 40,left: 10,right: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: kwhite,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(blurRadius: 5,
+                            color: kgrey,
+                            offset: Offset(0.0, 0.75))
+                          ]
+                        ),
+                        height: 180,
+                        width: 250,
+                       
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Image.network(authController.dataList[index].image,
+                            fit: BoxFit.fitWidth,width: 180,)),
+                          ksizedbox10,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 20),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                
+                                Text(authController.dataList[index].title,
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold
+                                ),),
+                                ksizedbox10,
+                                Container(
+                                  width: 150,
+                                  child: Text(authController.dataList[index].description,
+                                  maxLines: 4,),
+                                ),
+                              
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 15),
+                                  child: InkWell(
+                                              onTap: () {
+                                                Get.to(RespoCoupones());
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: Color(0XFFE4E4E6),
+                                                    borderRadius: BorderRadius.circular(4)),
+                                                child: Center(
+                                                    child: Text(
+                                                  'More Coupons',
+                                                  style: TextStyle(
+                                                      fontSize: 13,
+                                                      fontWeight: FontWeight.w600,
+                                                      color: ktextblue),
+                                                )),
+                                                height: 30,
+                                                width: 140,
+                                              ),
+                                            ),
+                                ),
+                              ],
                             ),
-                            onTap: () {
-                              Get.to(RespoServiceCartList(servicedata: authController.dataList[i],));
-                            },
-                          ),
-                      ],
-                      options: CarouselOptions(
-                        height: 140.0,
-                        enlargeCenterPage: true,
-                        autoPlay: true,
-                        aspectRatio: 16 / 9,
-                        enableInfiniteScroll: true,
-                        autoPlayAnimationDuration: Duration(milliseconds: 3200),
-                        viewportFraction: 0.8,
-                        onPageChanged: (index, reason) {
-                          setState(() {
-                            pageIndex = index;
-                          });
-                        },
+                          )
+                        ]),
                       ),
                     );
-            }),
-            ksizedbox10,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                AnimatedSmoothIndicator(
-                  activeIndex: pageIndex,
-                  count: 3,
-                  effect: ScaleEffect(
-                      dotHeight: 9.0,
-                      dotWidth: 9.0,
-                      dotColor: kgrey,
-                      activeDotColor: Colors.yellow),
-                ),
-              ],
+                  });
+              }),
             ),
+       
 
-            ksizedbox30,
-            InkWell(
-              onTap: () {
-                Get.to(RespoCoupones());
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                    color: Color(0XFFE4E4E6),
-                    borderRadius: BorderRadius.circular(4)),
-                child: Center(
-                    child: Text(
-                  'More Coupons',
-                  style: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                      color: ktextblue),
-                )),
-                height: 30,
-                width: 140,
-              ),
-            ),
+            ksizedbox10,
+            
             ksizedbox30,
             Image.asset('assets/images/Group 38585.png'),
             ksizedbox30,
             Text(
-              'SPECIAL Offers',
+              'TODAYS OFFERS',
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Color(0xff003366),
@@ -199,22 +213,22 @@ class _ServicesState extends State<RespoServices> {
             ),
 
             ksizedbox30,
-            GetBuilder<AuthController>(builder: (_) {
+            GetBuilder<HomeServiceController>(builder: (_) {
               return CarouselSlider(
                 carouselController: curouselController,
                 items: [
-                  for (var j = 0; j < authController.dataList.length; j++)
+                  for (var j = 0; j < serviceController.todayofferslist.length; j++)
                     InkWell(
                       child: offercontainermob(
-                        image: authController.dataList[j].image,
-                        title: authController.dataList[j].title,
-                        description: authController.dataList[j].description,
+                        image: serviceController.todayofferslist[j].image,
+                        title: serviceController.todayofferslist[j].title,
+                        description: serviceController.todayofferslist[j].description,
                       ),
                       onTap: () {
                         Get.to(RespOffer(
-                          image: authController.dataList[j].image,
-                          title: authController.dataList[j].title,
-                          description: authController.dataList[j].description,
+                          image: serviceController.todayofferslist[j].image,
+                          title: serviceController.todayofferslist[j].title,
+                          description: serviceController.todayofferslist[j].description,
                         ));
                       },
                     ),
@@ -267,8 +281,9 @@ class _ServicesState extends State<RespoServices> {
             ksizedbox30,
             InkWell(
               onTap: () {
-                //  Get.to(RespOffer(
-                //   ));
+Get.to(RespOffer(description: serviceController.todayofferslist.first.description,
+image: serviceController.todayofferslist.first.image,
+title: serviceController.todayofferslist.first.title,));
               },
               child: Container(
                 decoration: BoxDecoration(
@@ -276,7 +291,7 @@ class _ServicesState extends State<RespoServices> {
                     borderRadius: BorderRadius.circular(4)),
                 child: Center(
                     child: Text(
-                  'More Offers',
+                  'TODAY OFFERS',
                   style: TextStyle(
                       fontSize: 12,
                       fontWeight: FontWeight.w600,

@@ -1189,7 +1189,7 @@ class _index4State extends State<index4> {
                         Column(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 0),
+                              padding: const EdgeInsets.only(),
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(5),
                                 child: Container(
@@ -1222,7 +1222,7 @@ class _index4State extends State<index4> {
                         Padding(
                               padding: const EdgeInsets.only(left: 40),
                               child: Container(
-                                width: 110,
+                                width: 200,
                                 child: Text(subscriptionapiController.othersbookinglist[index].description,
                                                   overflow: TextOverflow.ellipsis,
                                                   maxLines: 4,

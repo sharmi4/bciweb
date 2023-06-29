@@ -17,6 +17,7 @@ abstract class Routes {
   static const ClubHouse = _Paths.ClubHouse;
   static const History = _Paths.History;
   static const Gallery = _Paths.Gallery;
+  static const MobLogin = _Paths.Moblogin;
   static const landing_screen = _Paths.landing_screen;
   static const BOOKINGS = _Paths.BOOKINGS;
 
@@ -38,6 +39,7 @@ abstract class _Paths {
   static const ClubHouse = '/clubhouse-screen';
   static const History = '/booking-screen';
   static const Gallery = '/gallery-screen';
+  static const Moblogin = '/login-screen';
   static const Subscrib = '/subscription';
   static const SpecializedScreen = '/specialised-screen';
   static const contact_screen = '/contact-us';

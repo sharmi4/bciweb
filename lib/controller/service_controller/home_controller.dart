@@ -5,19 +5,25 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../constant/constans.dart';
+import '../../models/get_plansmodel.dart';
+import '../../models/todayoffers_model.dart';
 import '../../responsive/mobile_body/cart_divertion.dart';
 import '../../services/networks/services/add_to_cart_api_service.dart';
 import '../../services/networks/services/catogory_api_service/add_booking_api_services.dart';
 import '../../services/networks/services/catogory_api_service/delete_cart_api_services.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../services/networks/services/get_cart_service.dart';
+import '../../services/networks/services/today_offers_apiservice.dart';
 
 class HomeServiceController extends GetxController {
   RxBool isSubscribed = false.obs;
 
   RxBool isLoading = false.obs;
   GetCartListApiServices getCartListApiServices = GetCartListApiServices();
+  GetTodayOffersApiService getTodayOffersApiService=GetTodayOffersApiService();
+
   List<Datum> cartListData = [];
+  List<Message> todayofferslist=[];
 
   double getGrandTotal({required List<Datum> tcartListData}) {
     double grandTotal = 0.0;
@@ -138,4 +144,14 @@ class HomeServiceController extends GetxController {
           ));
     }
   }
+  GettodayoffersList() async {
+    dio.Response<dynamic> response = await getTodayOffersApiService.getTodayoffers();
+    if (response.statusCode == 200) {
+       Todayoffersmodel todayoffersmodel = Todayoffersmodel.fromJson(response.data); 
+      todayofferslist = todayoffersmodel.message;
+    }
+   
+    update();
+  }
+
 }

@@ -293,6 +293,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                          borderRadius: BorderRadius.circular(5)
                                                     ),
                                                      child: TextField(
+                                                        textInputAction: TextInputAction.next,
                                                       controller: faligsearch2Controller,
                                                       decoration: InputDecoration(
                                                         hintText: 'Any Airport or City',
@@ -316,6 +317,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                          borderRadius: BorderRadius.circular(5)
                                                     ),
                                                     child: TextField(
+                                                        textInputAction: TextInputAction.next,
                                                       controller: faligsearchController,
                                                       decoration: InputDecoration(
                                                         hintText: 'Any Airport or City',

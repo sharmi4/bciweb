@@ -2,12 +2,12 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/responsive/booking_view/booking_screen.dart';
 import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_subscription.dart';
 import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../controller/auth_controller/auth_controller.dart';
 import '../authentications/contact us/respo_contact.dart';
 import '../authentications/generate_otp/generate_otp.dart';
-import '../authentications/langing_screen/landing_screen.dart';
 import '../respo_services/respo_service.dart';
 import '../mobile_body/mobile_home.dart';
 import '../respo_services/widgets/resprofile/mobile_profile_screen.dart';
@@ -39,8 +39,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
     return Drawer(
       backgroundColor: kblue,
       shadowColor: kOrange,
-      child: Obx(
-        () => ListView(
+      child:  ListView(
           children: [
             Row(
               children: [
@@ -259,7 +258,9 @@ class _MobileDrawerState extends State<MobileDrawer> {
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.to( MemberLoginScreenrespo());
+                            // Get.offAll(()=> const MemberLoginScreenrespo());
+                            Get.toNamed(Routes.MobLogin);
+                            // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MemberLoginScreenrespo()));
                           },
                           child: Container(
                             height: 30,
@@ -412,7 +413,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
             ),
           ],
         ),
-      ),
+      
     );
   }
 }

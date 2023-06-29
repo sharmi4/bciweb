@@ -187,6 +187,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 130,right: 40,top: 40),
                                   child: TextField(
+                                       textInputAction: TextInputAction.next,
                                   controller: nameController,
                                   keyboardType: TextInputType.name,
                                   decoration: InputDecoration(
@@ -203,6 +204,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                  Padding(
                                   padding: const EdgeInsets.only(left: 130,right: 40,top: 25),
                                   child: TextField(
+                                       textInputAction: TextInputAction.next,
                                     keyboardType: TextInputType.emailAddress,
                                   controller: emailController,
                                   decoration: InputDecoration(
@@ -218,7 +220,7 @@ class _ContactScreenState extends State<ContactScreen> {
                                  Padding(
                                   padding: const EdgeInsets.only(left: 130,right: 40,top: 40),
                                   child: TextField(
-                                    
+                                       textInputAction: TextInputAction.next,
                                   controller: subjectController,
                                   decoration: InputDecoration(
                                     hintText: 'Your Subject',

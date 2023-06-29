@@ -1032,6 +1032,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               // )
                                             ),
                                             child: TextField(
+                                                textInputAction: TextInputAction.next,
                                               controller: countrynumberController,
                                               decoration:InputDecoration(
                                                
@@ -1076,6 +1077,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                 color:kwhite
                                               ),
                                               child: TextField(
+                                                  textInputAction: TextInputAction.next,
                                                 controller: mobilenumberController,
                                                 
                                                 decoration: InputDecoration(
@@ -1114,6 +1116,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                        Padding(
                                          padding: const EdgeInsets.only(left: 60,top:20),
                                          child: OtpTextField(
+                                           
                                           mainAxisAlignment: MainAxisAlignment.start,
                                          
                                            numberOfFields: 4,
@@ -1176,6 +1179,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                             
                                           ),
                                           child:TextField(
+                                             textInputAction: TextInputAction.next,
                                             controller: emailController,
                                             decoration: InputDecoration(
                                               hintText: 'Email address',
@@ -1676,6 +1680,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                 color:kwhite,
                                               ),
                                               child: TextField(
+                                                 textInputAction: TextInputAction.next,
                                                 controller: firstnameController,
                                                 decoration: InputDecoration(
                                                   hintText: 'First Name',
@@ -1692,6 +1697,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   color:kwhite,
                                                 ),
                                                 child: TextField(
+                                                   textInputAction: TextInputAction.next,
                                                   controller: lastnameController,
                                                   decoration: InputDecoration(
                                                     hintText: 'last Name',
@@ -1716,6 +1722,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               // )
                                             ),
                                             child: TextField(
+                                               textInputAction: TextInputAction.next,
                                               controller: genderController,
                                               decoration:InputDecoration(
                                                 hintText: 'Gender',
@@ -1786,6 +1793,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                           // )
                                         ),
                                         child: TextField(
+                                           textInputAction: TextInputAction.next,
                                           controller: dateController,
                                           decoration:InputDecoration(
                                             hintText: 'DD',
@@ -1815,6 +1823,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                             // )
                                              ),
                                             child: TextField(
+                                               textInputAction: TextInputAction.next,
                                             controller: monthController,
                                             decoration:InputDecoration(
                                               hintText: 'MM',
@@ -1845,6 +1854,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                             // )
                                           ),
                                           child: TextField(
+                                             textInputAction: TextInputAction.next,
                                             controller: yearController,
                                             decoration:InputDecoration(
                                               hintText: 'yyyy',
@@ -1891,6 +1901,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                 
                                               ),
                                               child:TextField(
+                                                 textInputAction: TextInputAction.next,
                                                 controller: passportnumberController,
                                                 decoration: InputDecoration(
                                                   suffixIcon: PopupMenuButton<String>(
@@ -1930,6 +1941,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   
                                                 ),
                                                 child:TextField(
+                                                   textInputAction: TextInputAction.next,
                                                   controller: nationalityController,
                                                   decoration: InputDecoration(
                                                     suffixIcon: PopupMenuButton<String>(
@@ -1987,6 +1999,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   
                                                 ),
                                                 child:TextField(
+                                                   textInputAction: TextInputAction.next,
                                                   controller: issuedcountryController,
                                                   decoration: InputDecoration(
                                                     suffixIcon: PopupMenuButton<String>(
@@ -2028,6 +2041,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               // )
                                             ),
                                             child: TextField(
+                                               textInputAction: TextInputAction.next,
                                               controller: yearController,
                                               decoration:InputDecoration(
                                                 hintText: 'DD',
@@ -2059,6 +2073,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               // )
                                             ),
                                             child: TextField(
+                                               textInputAction: TextInputAction.next,
                                               controller: yearController,
                                               decoration:InputDecoration(
                                                 hintText: 'MM',
@@ -2090,6 +2105,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               // )
                                             ),
                                             child: TextField(
+                                            
                                               controller: yearController,
                                               decoration:InputDecoration(
                                                 hintText: 'yyyy',

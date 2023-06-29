@@ -10,6 +10,7 @@ import '../../../../constant/constans.dart';
 //import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
+import '../../controller/service_controller/home_controller.dart';
 import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 //import '../../../members/common_widget/common.dart';
@@ -29,14 +30,10 @@ class RespOffer extends StatefulWidget {
 }
 
 class _RespOfferState extends State<RespOffer> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    authController.getservice();
-  }
 
-  final authController = Get.find<AuthController>();
+  
+
+  final serviceController = Get.find<HomeServiceController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +41,7 @@ class _RespOfferState extends State<RespOffer> {
           child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
       drawer: MobileDrawer(),
       body: SingleChildScrollView(
-        child: GetBuilder<AuthController>(builder: (_) {
+        child: GetBuilder<HomeServiceController>(builder: (_) {
           return Column(
             children: [
               Container(
@@ -82,40 +79,43 @@ class _RespOfferState extends State<RespOffer> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  child: Column(
-                    children: [
-                      Respooffers_container(
-                        image: authController.dataList.first.image,
-                        title: authController.dataList.first.title,
-                        description: authController.dataList.first.description,
+                   height: 1500,
+                  child: ListView.builder(
+                    itemCount: serviceController.todayofferslist.length,
+                    itemBuilder: (context,index){
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 40),
+                      child: Container(
+                        height: 150,
+                        width: 200,
+                        decoration: BoxDecoration(
+                          color: kwhite,
+                         boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            offset: Offset(0.0, 0.75),
+                            blurRadius: 1,
+                            color: kblue
+                          )
+                         ]
+                        ),
+                        child: Row(
+                          children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10),
+                            child: Container(
+                              height: 120,
+                              width: 120,
+                              child: Image.network(serviceController.todayofferslist[index].image,
+                              fit: BoxFit.cover),
+                            )),
+                        )
+                          ],
+                        ),
                       ),
-                      //    Respooffers_container(),
-                      ksizedbox30,
-                      //  ksizedbox40,
-                      Respooffers_container(
-                        title: authController.dataList.first.title,
-                        image: authController.dataList.first.image,
-                        description: authController.dataList.first.description,
-                      ),
-                      //      Respooffers_container(),
-                      ksizedbox30,
-                      //     ksizedbox40,
-                      Respooffers_container(
-                        image: authController.dataList.first.image,
-                        title: authController.dataList.first.title,
-                        description: authController.dataList.first.description,
-                      ),
-                      //  Respooffers_container(),
-                      ksizedbox30,
-                      //   ksizedbox40,
-                      //Respooffers_container(),
-                      Respooffers_container(
-                        title: authController.dataList.first.title,
-                        image: authController.dataList.first.image,
-                        description: authController.dataList.first.description,
-                      ),
-                    ],
-                  ),
+                    );
+                  }),
                 ),
               ),
               ksizedbox30,

@@ -41,6 +41,7 @@ class _MobileSuportScreenState extends State<MobileSuportScreen> {
                        
                      ),
                      child: TextField(
+                        textInputAction: TextInputAction.next,
                        controller: mobilesubNameController,
                        decoration: InputDecoration(
                          hintText: 'Your Name',
@@ -67,6 +68,7 @@ class _MobileSuportScreenState extends State<MobileSuportScreen> {
                            
                          ),
                          child: TextField(
+                            textInputAction: TextInputAction.next,
                            controller: mobilesubMobileController,
                            decoration: InputDecoration(
                              hintText: 'Mobile',
@@ -93,6 +95,7 @@ class _MobileSuportScreenState extends State<MobileSuportScreen> {
                         
                       ),
                       child: TextField(
+                          textInputAction: TextInputAction.next,
                         controller: mobilesubEmailController,
                         decoration: InputDecoration(
                           hintText: 'Email',
@@ -119,6 +122,7 @@ class _MobileSuportScreenState extends State<MobileSuportScreen> {
                             
                           ),
                           child: TextField(
+                            
                             maxLines: 4,
                             controller: mobilesubDescriptionController,
                             decoration: InputDecoration(

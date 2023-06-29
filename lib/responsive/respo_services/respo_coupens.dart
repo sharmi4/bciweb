@@ -181,7 +181,7 @@ class _RespoCouponesState extends State<RespoCoupones> {
                         'BACK',
                         style: TextStyle(
                             color: kwhite,
-                            fontSize: 14,
+                            fontSize: 16,
                             fontWeight: FontWeight.w600),
                       ),
                     ],
