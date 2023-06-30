@@ -30,6 +30,7 @@ class AuthController extends GetxController {
   RxBool isGstAvailable = true.obs;
  // RxBool isLoading = false.obs;
   RxBool isOTPLoading = false.obs;
+  RxInt imageIndex = 0.obs;
 
 
   Future<String> rendOtpFunction({required String mobileNumber}) async {

@@ -1,5 +1,6 @@
 import 'package:bciweb/views/authentication/signup.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
@@ -82,11 +83,17 @@ class _MobileVerificationState extends State<MobileVerification> {
                             height: 50,
                             child: TextFormField(
                               controller: phoneNumberController,
+                               keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(10),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
                               decoration: InputDecoration(
                                 prefixIcon:
                                     Image.asset('assets/images/Image 8.png'),
-                                suffixIcon: Image.asset(
-                                    'assets/images/flaightcorrectimage.png'),
+                                // suffixIcon: Image.asset(
+                                //     'assets/images/flaightcorrectimage.png'),
                                 hintText: 'Enter your Number',
                               
                                 border: const OutlineInputBorder(),

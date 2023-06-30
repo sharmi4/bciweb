@@ -1,4 +1,6 @@
 //import 'package:bci/constands/constands.dart';
+import 'dart:async';
+
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
@@ -23,6 +25,26 @@ class otp_varification extends StatefulWidget {
 class _otp_varificationState extends State<otp_varification> {
   String otpString = "";
   final authController =Get.find<AuthController>();
+
+  int _start = 60; // Timer duration in seconds
+  bool _isActive = false;
+  late Timer _timer;
+
+  void startTimer() {
+    const oneSec = Duration(seconds: 1);
+    _timer = Timer.periodic(oneSec, (timer) {
+      setState(() {
+        if (_start == 1) {
+          _isActive = false;
+          timer.cancel();
+          _start = 60;
+        } else {
+          _start--;
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
@@ -105,14 +127,31 @@ class _otp_varificationState extends State<otp_varification> {
                         //   decoration: TextDecoration.underline,
                         color: kblue),
                   ),
-                  Text(
-                    "Resend",
-                    style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.underline,
-                        color: kOrange),
-                  ),
+                  _isActive
+                      ? Text(
+                          "Resend in $_start",
+                          style: primaryFont.copyWith(color: Colors.blue),
+                        )
+                      : InkWell(
+                          onTap: () async {
+                            String tempOtp =
+                                await authController.rendOtpFunction(
+                                    mobileNumber: widget.phoneNumber);
+                            setState(() {
+                              _isActive = true;
+                              widget.otp = tempOtp;
+                            });
+                            startTimer();
+                          },
+                          child: Text(
+                            "Resend",
+                            style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                                decoration: TextDecoration.underline,
+                                color: kOrange),
+                          ),
+                        ),
                 ],
               ),
               ksizedbox10,

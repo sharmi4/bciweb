@@ -1,6 +1,7 @@
 // 'package:bci/constands/constands.dart';
 //import 'package:bci/screens/members/sign_up_view/sign_up_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 //import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -66,7 +67,7 @@ class _MemberLoginScreenrespoState extends State<MemberLoginScreenrespo> {
                 ],
               ),
               Text(
-                'on this mobile number',
+                'on this mobile numer',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 18, color: kblue),
               ),
@@ -78,12 +79,16 @@ class _MemberLoginScreenrespoState extends State<MemberLoginScreenrespo> {
                     height: 50,
                     child: TextFormField(
                       controller: phoneNumberController,
+                      keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(10),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
                       decoration: InputDecoration(
-                        
                         prefixIcon: Image.asset('assets/images/Image 8.png'),
                         //suffixIcon: Image.asset('assets/images/Path 471.png'),
                         hintText: 'Enter your Number',
-                      
                         border: const OutlineInputBorder(),
                       ),
                     ),

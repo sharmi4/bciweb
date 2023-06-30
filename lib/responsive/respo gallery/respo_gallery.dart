@@ -1,9 +1,11 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/views/business/Gallery/widgets/photo_img_view.dart';
 import 'package:bciweb/views/business/Gallery/widgets/stagerdgridview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:photo_view/photo_view.dart';
 
 //import '../../../registerhomescreen/common_reg_appbar';
 import '../../../registerhomescreen/common_reg_bottom.dart';
@@ -20,6 +22,8 @@ class RespoGallery extends StatefulWidget {
 }
 
 class _GalleryState extends State<RespoGallery> {
+
+  final authController = Get.find<AuthController>();
 
    List<String> galleryImage = [
     "assets/images/gallery/20180327_194900.jpg",
@@ -98,9 +102,73 @@ class _GalleryState extends State<RespoGallery> {
                 ), itemBuilder: ((context, index) {
                 return InkWell(
                   onTap: (){
-                    Get.to(PhotoImageView(
-image: galleryImage[index],
-                    ));
+                    setState(() {
+                          authController.imageIndex(index);
+                        });
+                        showDialog(
+                         context: context,
+                         builder: (BuildContext context) {
+                         return AlertDialog(
+                          title: Row(
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                  Get.back();
+                                },
+                                child:const Icon(Icons.close_sharp)),
+                            ],
+                          ),
+                          content: Obx( () =>
+                            Container(
+                              height: 300,
+                              width: 300,
+                              color: Colors.white,
+                              child: Center(
+                                child: PhotoView(
+                                      imageProvider: AssetImage(galleryImage[authController.imageIndex.value]),
+                                      backgroundDecoration:const BoxDecoration(color: Colors.white),
+                              ),
+                            ),
+                            ),
+                          ),
+                          actions: [
+                            Obx( () =>
+                               Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                 authController.imageIndex.value != 0 ? InkWell(
+                                    onTap: (){
+                                      setState(() {
+                                        if(authController.imageIndex.value != 0){
+                                          authController.imageIndex.value --;
+                                        }
+                                      });
+                                    },
+                                    child:const Icon(Icons.arrow_back_ios)) : const Icon(Icons.arrow_back_ios,color: Colors.grey,),
+                                    kwidth10,
+                                    kwidth10,
+                                  galleryImage.length != authController.imageIndex.value +1 ?
+                                  InkWell(
+                                    onTap: (){
+                                       setState(() {
+                                        {if(galleryImage.length != authController.imageIndex.value +1)
+                                           authController.imageIndex.value ++;
+                                        }
+                                       
+                                      });
+                                    },
+                                    child:const Icon(Icons.arrow_forward_ios)) : const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
+                                ],
+                              ),
+                            ),
+                          ],
+                           );
+                          
+                              },
+                          );
+//                     Get.to(PhotoImageView(
+// image: galleryImage[index],
+//                     ));
                   },
                   child: Container(
                     height: 100,

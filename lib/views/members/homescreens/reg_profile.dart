@@ -1032,58 +1032,58 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   )
                                 ],
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 40,
-                                          right: 70,
-                                          top: 0,
-                                          bottom: 30),
-                                      child: TextField(
-                                           textInputAction: TextInputAction.next,
-                                          controller: wedingnameController,
-                                          decoration: InputDecoration(
-                                              hintText: 'Wedding Date',
-                                              suffixIcon: IconButton(
-                                                onPressed: () {
-                                                  // _selectDate2(context);
-                                                },
-                                                icon: Icon(Icons.edit),
-                                              ),
-                                              fillColor: Color(0xffF9F8FD),
-                                              border: OutlineInputBorder())),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 70,
-                                          right: 50,
-                                          top: 0,
-                                          bottom: 30),
-                                      child: Container(
-                                        child: Column(
-                                          children: [
-                                            TextField(
-                                                 textInputAction: TextInputAction.next,
-                                              controller: spousenameController,
-                                              decoration: InputDecoration(
-                                                  hintText: 'Spouse Name',
-                                                  suffixIcon: Icon(Icons.edit),
-                                                  fillColor: Color(0xffF9F8FD),
-                                                  border: OutlineInputBorder()),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
+                              // Row(
+                              //   mainAxisAlignment:
+                              //       MainAxisAlignment.spaceAround,
+                              //   children: [
+                              //     Expanded(
+                              //       child: Padding(
+                              //         padding: const EdgeInsets.only(
+                              //             left: 40,
+                              //             right: 70,
+                              //             top: 0,
+                              //             bottom: 30),
+                              //         child: TextField(
+                              //              textInputAction: TextInputAction.next,
+                              //             controller: wedingnameController,
+                              //             decoration: InputDecoration(
+                              //                 hintText: 'Wedding Date',
+                              //                 suffixIcon: IconButton(
+                              //                   onPressed: () {
+                              //                     // _selectDate2(context);
+                              //                   },
+                              //                   icon: Icon(Icons.edit),
+                              //                 ),
+                              //                 fillColor: Color(0xffF9F8FD),
+                              //                 border: OutlineInputBorder())),
+                              //       ),
+                              //     ),
+                              //     Expanded(
+                              //       child: Padding(
+                              //         padding: const EdgeInsets.only(
+                              //             left: 70,
+                              //             right: 50,
+                              //             top: 0,
+                              //             bottom: 30),
+                              //         child: Container(
+                              //           child: Column(
+                              //             children: [
+                              //               TextField(
+                              //                    textInputAction: TextInputAction.next,
+                              //                 controller: spousenameController,
+                              //                 decoration: InputDecoration(
+                              //                     hintText: 'Spouse Name',
+                              //                     suffixIcon: Icon(Icons.edit),
+                              //                     fillColor: Color(0xffF9F8FD),
+                              //                     border: OutlineInputBorder()),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //     )
+                              //   ],
+                              // ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -1110,30 +1110,30 @@ AlertDialog mAlertItem2 = AlertDialog(
                                               border: OutlineInputBorder())),
                                     ),
                                   ),
-                                  Expanded(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(
-                                          left: 70,
-                                          right: 50,
-                                          top: 0,
-                                          bottom: 30),
-                                      child: Container(
-                                        child: Column(
-                                          children: [
-                                            TextField(
-                                                 textInputAction: TextInputAction.next,
-                                              controller: childrensController,
-                                              decoration: InputDecoration(
-                                                  hintText: 'No.Of.Children',
-                                                  suffixIcon: Icon(Icons.edit),
-                                                  fillColor: Color(0xffF9F8FD),
-                                                  border: OutlineInputBorder()),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )
+                                  // Expanded(
+                                  //   child: Padding(
+                                  //     padding: const EdgeInsets.only(
+                                  //         left: 70,
+                                  //         right: 50,
+                                  //         top: 0,
+                                  //         bottom: 30),
+                                  //     child: Container(
+                                  //       child: Column(
+                                  //         children: [
+                                  //           TextField(
+                                  //                textInputAction: TextInputAction.next,
+                                  //             controller: childrensController,
+                                  //             decoration: InputDecoration(
+                                  //                 hintText: 'No.Of.Children',
+                                  //                 suffixIcon: Icon(Icons.edit),
+                                  //                 fillColor: Color(0xffF9F8FD),
+                                  //                 border: OutlineInputBorder()),
+                                  //           ),
+                                  //         ],
+                                  //       ),
+                                  //     ),
+                                  //   ),
+                                  // )
                                 ],
                               ),
                               // Padding(

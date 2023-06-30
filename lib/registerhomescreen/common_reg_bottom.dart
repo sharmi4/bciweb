@@ -31,7 +31,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
               children: [
                 Image(
                   image: AssetImage(
-                    "assets/images/logo.png",
+                    "assets/images/logo1.png",
                   ),
                   height: 70,
                   fit: BoxFit.fitHeight,

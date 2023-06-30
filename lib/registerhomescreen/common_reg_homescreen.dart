@@ -232,6 +232,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             )),
                       ),
                     ),
+                    authController.isLogedin == false ? Container(width: 110,color: Colors.white,) :
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: InkWell(
@@ -293,7 +294,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                     borderRadius: BorderRadius.circular(15)),
                                 child: Center(
                                     child: Text(
-                                  'LogOut',
+                                  'Logout',
                                   style: TextStyle(fontSize: 15, color: kwhite),
                                 )),
                               ),
