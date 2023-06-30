@@ -1,4 +1,5 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/models/service_model.dart';
 
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
@@ -147,12 +148,17 @@ class _ServicesState extends State<RespoServices> {
                                   child: Text(authController.dataList[index].description,
                                   maxLines: 4,),
                                 ),
-                              
-                                Padding(
+                               Padding(
                                   padding: const EdgeInsets.only(top: 15),
                                   child: InkWell(
                                               onTap: () {
-                                                Get.to(RespoCoupones());
+
+                                                 
+
+
+
+                                                Get.to(RespoServiceCartList(
+                                                  servicedata: authController.dataList[index],));
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
@@ -160,7 +166,7 @@ class _ServicesState extends State<RespoServices> {
                                                     borderRadius: BorderRadius.circular(4)),
                                                 child: Center(
                                                     child: Text(
-                                                  'More Coupons',
+                                                  'Clik Now',
                                                   style: TextStyle(
                                                       fontSize: 13,
                                                       fontWeight: FontWeight.w600,
@@ -171,6 +177,29 @@ class _ServicesState extends State<RespoServices> {
                                               ),
                                             ),
                                 ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(top: 15),
+                                //   child: InkWell(
+                                //               onTap: () {
+                                //                 Get.to(RespoCoupones());
+                                //               },
+                                //               child: Container(
+                                //                 decoration: BoxDecoration(
+                                //                     color: Color(0XFFE4E4E6),
+                                //                     borderRadius: BorderRadius.circular(4)),
+                                //                 child: Center(
+                                //                     child: Text(
+                                //                   'More Coupons',
+                                //                   style: TextStyle(
+                                //                       fontSize: 13,
+                                //                       fontWeight: FontWeight.w600,
+                                //                       color: ktextblue),
+                                //                 )),
+                                //                 height: 30,
+                                //                 width: 140,
+                                //               ),
+                                //             ),
+                                // ),
                               ],
                             ),
                           )

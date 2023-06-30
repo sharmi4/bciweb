@@ -75,11 +75,11 @@ class _RespOfferState extends State<RespOffer> {
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
-              ksizedbox40,
+              ksizedbox20,
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Container(
-                   height: 1500,
+                   height: 700,
                   child: ListView.builder(
                     itemCount: serviceController.todayofferslist.length,
                     itemBuilder: (context,index){
@@ -98,20 +98,46 @@ class _RespOfferState extends State<RespOffer> {
                           )
                          ]
                         ),
-                        child: Row(
-                          children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Container(
-                              height: 120,
-                              width: 120,
-                              child: Image.network(serviceController.todayofferslist[index].image,
-                              fit: BoxFit.cover),
-                            )),
-                        )
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 10),
+                          child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            
+                            children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Container(
+                                height: 120,
+                                width: 120,
+                                child: Image.network(serviceController.todayofferslist[index].image,
+                                fit: BoxFit.cover),
+                              )),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left:40),
+                            child: Column(
+                              
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(serviceController.todayofferslist[index].title,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: kblue,
+                                  fontWeight: FontWeight.bold
+                                ),),
+                                Text(serviceController.todayofferslist[index].description,
+                            style: TextStyle(
+                              fontSize: 16,
+                          
+                            ),)
+                              ],
+                            ),
+                          ),
+                          
+                            ],
+                          ),
                         ),
                       ),
                     );

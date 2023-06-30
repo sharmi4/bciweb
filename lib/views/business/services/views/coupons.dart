@@ -30,8 +30,8 @@ class _CouponesState extends State<Coupones> {
   }
    List colors = [const Color(0xffFCE2E2),const Color(0xffE4E4E4),
   const Color(0xffF8AC61),const Color(0xff8DC6FF),
-   const Color(0xffEDD076), const Color(0xff90E79C), 
-   const Color(0xff00D8E0), const Color(0xff396DB4), const Color(0xffD9908A),
+   const Color(0xffEDD076), const Color(0xfff06292), 
+   const Color(0xFFFFF59D), const Color(0xff396DB4), const Color(0xFFFFCDD2),
   ];
   @override
   Widget build(BuildContext context) {
@@ -78,7 +78,7 @@ class _CouponesState extends State<Coupones> {
                                           padding: const EdgeInsets.only(left: 10,top: 10,right: 10,bottom: 5),
                                           child: Column(
                                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
                                             children: [
                                               Container(
                                                   width:200,
@@ -113,11 +113,14 @@ class _CouponesState extends State<Coupones> {
                                         const SizedBox(
                                           width: 10,
                                         ),
-                                        CustomPaint(
-                                            size: const Size(1, double.infinity),
-                                            painter: DashedLineVerticalPainter()),
                                         Padding(
-                                          padding: const EdgeInsets.all(10.0),
+                                          padding: const EdgeInsets.only(left: 65),
+                                          child: CustomPaint(
+                                              size: const Size(1, double.infinity),
+                                              painter: DashedLineVerticalPainter()),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 45),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,

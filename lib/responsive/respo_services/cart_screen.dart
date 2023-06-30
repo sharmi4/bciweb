@@ -44,7 +44,7 @@ class _CartScreenState extends State<CartScreen> {
           children: [
             GetBuilder<HomeServiceController>(builder: (_) {
               return Container(
-                height: size.height * 0.5,
+                height: size.height * 0.6,
                 child: homeController.cartListData.isEmpty
                     ? const Center(
                         child: Text("No Items In Your Cart"),
@@ -54,10 +54,10 @@ class _CartScreenState extends State<CartScreen> {
                         itemCount: homeController.cartListData.length,
                         itemBuilder: (context, index) {
                           return Padding(
-                            padding: const EdgeInsets.all(5.0),
+                            padding: const EdgeInsets.only(top: 15,left: 10,right: 10),
                             child: Container(
                                 width: double.infinity,
-                                height: 110,
+                                height: 130,
                                 decoration: BoxDecoration(
                                     color: kwhite,
                                     borderRadius: BorderRadius.circular(10),

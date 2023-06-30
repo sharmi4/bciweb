@@ -10,9 +10,11 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../constant/constans.dart';
 import '../../models/get_payment_model.dart';
+import '../../models/get_plansdetails_model.dart';
 import '../../models/get_plansmodel.dart';
 import '../../models/other_bookingmodel.dart';
 import '../../services/networks/othersbooking_api_service.dart';
+import '../../services/networks/subscription/get_plan_details_apiservice.dart';
 import '../../services/networks/subscription/get_planlist_api_service.dart';
 import '../auth_controller/auth_profile_controller.dart';
 
@@ -21,6 +23,7 @@ class SubscriptionApiController extends GetxController{
    AddPaymentApiServices addpaymentApiService = AddPaymentApiServices();
    GetCouponsApiService getcouponesAPiService = GetCouponsApiService();
    GetOthersBookingApiService getOthersbookingApiService = GetOthersBookingApiService();
+   GetPlansDetailsApiServices getPlansdetailsApiService=GetPlansDetailsApiServices();
   
   
   final authprofileController=Get.find<AuthProfileController>();
@@ -28,6 +31,7 @@ class SubscriptionApiController extends GetxController{
     List<CouponsData> couponsdatalist=[];
 
     List<Datum>othersbookinglist=[];
+     List<Plan> subscriptionplan=[];
 
      getplansList() async {
     dio.Response<dynamic> response = await getPlansApiServices.getPlans();
@@ -81,6 +85,19 @@ class SubscriptionApiController extends GetxController{
     if (response.statusCode == 200) {
     OtherbookingModel   otherbookingModel = OtherbookingModel.fromJson(response.data); 
       othersbookinglist=otherbookingModel.data;
+    }
+    update();
+  }
+   getPlanDetails({required int id}) async {
+    subscriptionplan.clear();
+    dio.Response<dynamic> response =
+        await getPlansdetailsApiService.getPlansDetails(planId: id);
+
+    if (response.statusCode == 200) {
+      PlandetailsModel planDetailsModel =
+          PlandetailsModel.fromJson(response.data);
+
+      subscriptionplan.add(planDetailsModel.plan);
     }
     update();
   }

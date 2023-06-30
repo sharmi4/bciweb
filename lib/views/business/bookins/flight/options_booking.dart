@@ -1938,7 +1938,6 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                 width: MediaQuery.of(context).size.width*0.25,
                                                 decoration: BoxDecoration(
                                                   color:kwhite,
-                                                  
                                                 ),
                                                 child:TextField(
                                                    textInputAction: TextInputAction.next,

@@ -18,9 +18,11 @@ import '../../../../controller/profile_show_controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../mobile_wdgets/comomappbar.dart';
 import '../../../mobile_wdgets/mobile_common_bottom/bottom.dart';
+import '../../respo_coupens.dart';
 import 'additional_coupons_screen.dart';
 import 'dasboard_screen.dart';
 import 'myaccount_screen.dart';
+import 'mysubscription_profile_screen.dart';
 class  MobileProfileScreen extends StatefulWidget {
   const  MobileProfileScreen({super.key});
 
@@ -170,7 +172,10 @@ class _MobileProfileScreenState extends State< MobileProfileScreen> {
 
                                 ),
                                 onPressed: (){
-                                  Get.offAll(YoursCouponsScreen());
+                                  Get.offAll(
+                                    RespoCoupones()
+                                    //YoursCouponsScreen()
+                                    );
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -209,7 +214,7 @@ class _MobileProfileScreenState extends State< MobileProfileScreen> {
 
                                 ),
                                 onPressed: (){
-                                  Get.offAll(MobileAdditionalCouponScreen());
+                                  Get.offAll(MySubscriptionMobileScreen());
                                 },
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -221,7 +226,8 @@ class _MobileProfileScreenState extends State< MobileProfileScreen> {
                                     ),
                                      Padding(
                                  padding: const EdgeInsets.only(left: 11),
-                                 child: Text('Additional Coupons',
+                                 child: Text("My Subscription",
+                                  //'Additional Coupons',
                                  style: TextStyle(
                                    color: kblue,
                                  fontSize: 16 

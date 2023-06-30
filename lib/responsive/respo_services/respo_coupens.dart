@@ -95,69 +95,143 @@ class _RespoCouponesState extends State<RespoCoupones> {
                 crossAxisCount: 1), 
                 itemBuilder:(context,index){
                   return Padding(
-                        padding: const EdgeInsets.only(top:30,left: 20,right: 20),
-                        child:          ClipPath(
-              clipper: TicketPassClipper(),
-              
-        
-                         child: Container(
-                          
-                          color: colors[Random().nextInt(9)],
-                           child: Column(
-                            children: [
-                              ksizedbox10,
-                             Padding(
-                                padding: const EdgeInsets.only(left: 10,right: 10,top: 5),
-                                child: Row(
-                                  
-                                  children: [
-                                    Text(subscripeController.couponsdatalist[index].createdAt.toString()),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left: 50),
-                                       child: Text(subscripeController.couponsdatalist[index].name),
-                                     ),
-                                    
-                                  ],
-                                ),
+                              padding: const EdgeInsets.only(top: 5, bottom: 5),
+                              child: ClipPath(
+                                clipper: TicketPassClipper(),
+                                child: Container(
+                                    height: 90,
+                                    decoration: BoxDecoration(
+                                        color: colors[Random().nextInt(9)],
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10,top: 10,right: 10,bottom: 5),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Container(
+                                                  width:200,
+                                                  child: Text(
+                                                    subscripeController.couponsdatalist
+                                                        [index].name
+                                                        .toString(),
+                                                    maxLines: 2,
+                                                    style: primaryFont.copyWith(
+                                                        fontSize: 15,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  )),
+                                         if(subscripeController.couponsdatalist[index].isRedeemed == "1")     Container(
+                                                height: 30,
+                                                width: 85,
+                                                decoration: BoxDecoration(
+                                                    color: const Color.fromARGB(255, 75, 133, 76),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5)),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  "Redeemed",
+                                                  style: primaryFont.copyWith(
+                                                      color: Colors.white),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 0),
+                                          child: CustomPaint(
+                                              size: const Size(1, double.infinity),
+                                              painter: DashedLineVerticalPainter()),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 8,top: 3,bottom: 3),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              Text(
+                                                "Coupon Code :",
+                                                style: primaryFont.copyWith(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w400),
+                                              ),
+                                              Text(
+                                                 subscripeController.couponsdatalist[index]
+                                                    .couponcode,
+                                                style: primaryFont.copyWith(
+                                                    fontSize: 14,
+                                                    color: Color.fromARGB(255, 235, 145, 10),
+                                                    fontWeight: FontWeight.w500),
+                                              ),
+                                              InkWell(
+                                                onTap: (){
+                                                  FlutterClipboard.copy(
+                                                          subscripeController.couponsdatalist[index]
+                                                              .couponcode)
+                                                      .then(
+                                                    (value) =>
+                                                        Fluttertoast.showToast(
+                                                            msg:
+                                                                "Copy to clipboard",
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity: ToastGravity
+                                                                .CENTER,
+                                                            timeInSecForIosWeb: 1,
+                                                            backgroundColor:
+                                                                Colors.white,
+                                                            textColor:
+                                                                Colors.black,
+                                                            fontSize: 16.0),
+                                                    //print("code copied")
+                                                  );
+                                                },
+                                                child: Container(
+                                                  height: 25,
+                                                  width: 90,
+                                                  decoration: BoxDecoration(
+                                                      color: kblue,
+                                                      borderRadius:
+                                                          BorderRadius.circular(4)),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.center,
+                                                    children: [
+                                                      Text(
+                                                        "Copy",
+                                                        style: primaryFont.copyWith(
+                                                            color: Colors.white,
+                                                            fontWeight:
+                                                                FontWeight.w500),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 5,
+                                                      ),
+                                                      const Icon(
+                                                        Icons.copy,
+                                                        color: Colors.white,
+                                                        size: 15,
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    )),
                               ),
-                               ksizedbox10,
-                              Padding(
-                                padding: const EdgeInsets.only(top: 10,left:10,right: 80),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(subscripeController.couponsdatalist[index].couponcode),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 0,left: 10),
-                                      child: InkWell(
-
-                                        onTap: (){
-                                          FlutterClipboard.copy(subscripeController.couponsdatalist[index].couponcode).then((value) => 
-                                          Fluttertoast.showToast(
-                                           msg: "Copy to clipboard",
-                                           toastLength: Toast.LENGTH_SHORT,
-                                           gravity: ToastGravity.CENTER,
-                                           timeInSecForIosWeb: 1,
-                                           backgroundColor: Colors.white,
-                                           textColor: Colors.black,
-                                           fontSize: 16.0
-                                            ),
-                                          //print("code copied")
-                                          );
-                                        },
-                                        child: Icon(Icons.copy),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            
-                            
-                            ],
-                           ),
-                         ),
-                        ),
-                      );
+                            );
                 }),
               
                 ),
@@ -202,4 +276,20 @@ class _RespoCouponesState extends State<RespoCoupones> {
       ),
     );
   }
+}
+class DashedLineVerticalPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    double dashHeight = 5, dashSpace = 3, startY = 0;
+    final paint = Paint()
+      ..color = Color.fromARGB(255, 233, 230, 230)
+      ..strokeWidth = size.width;
+    while (startY < size.height) {
+      canvas.drawLine(Offset(0, startY), Offset(0, startY + dashHeight), paint);
+      startY += dashHeight + dashSpace;
+    }
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }

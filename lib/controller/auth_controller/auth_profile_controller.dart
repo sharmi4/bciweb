@@ -11,6 +11,7 @@ import '../../services/networks/profile_api_service/profile_pick.dart';
 import '../../services/networks/profile_api_service/profile_update.dart';
 import '../../services/networks/profile_api_service/update_officialaddress.dart';
 import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
+import 'auth_controller.dart';
 
 
 
@@ -31,18 +32,30 @@ class AuthProfileController extends GetxController {
   List<MemberUser> profileData = [];
 
   RxBool isLoading = false.obs;
+  
+  RxBool isSubscribed = false.obs;
+
+  RxString planId = "".obs;
 
   getProfile() async {
     profileData.clear();
+    isLoading(true);
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
+    isLoading(false);
     if (response.statusCode == 200) {
-      print('--------------------------Api success---------profile--------------');
       MemberProfileModel profileModel =
           MemberProfileModel.fromJson(response.data);
-      print("<------------------Working on 01------------------>");
+      isSubscribed(profileModel.subscription);
+      
       profileData.add(profileModel.user);
+      planId(profileModel.planId.toString());
       update();
-    } 
+} else if (response.statusCode == 401) {
+      Get.find<AuthController>().logout();
+  }
+
+  return planId.value;
+
   }
 
   updateProfile(

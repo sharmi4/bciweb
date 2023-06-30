@@ -88,8 +88,12 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     super.initState();
     setDefauld();
     subscripeController.getcouponsList();
-  }
+    authprofileController.getProfile();
+    plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
 
+  }
+ final plansController=Get.find<SubscriptionApiController>();
+ 
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -3240,50 +3244,106 @@ AlertDialog mAlertItem2 = AlertDialog(
                 ),
               ),
             if (reghomeController.proindex.value == 4)
-                   Container(
-
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        // Image.asset('assets/images/Group 39757.png'),
-                        Positioned(
-                          top: 0,
-                          left: 0,
-                          bottom: 0,
-                          right: 0,
-                          child: Center(
-                            child: Text(
-                              'Subscribe',
-                              style: TextStyle(
-                                  fontSize: 20,
+                               Container(
+                               
+                                             child: Column(
+                                               crossAxisAlignment: CrossAxisAlignment.start,
+                                               children: [
+                                                 Container(
+                                                   height: 180,
+                                                   decoration: BoxDecoration(
+                                                    image: DecorationImage(image: AssetImage('assets/images/subscriptionbackimage.png',
+                                                  ), fit: BoxFit.cover,)
+                                                   ),
+                                                   width: MediaQuery.of(context).size.width*0.8471,
+                                                   child:     Center(
+                                                   child: Text(
+                                                     'SUBSCRIBE',
+                                                     style: TextStyle(
+                                letterSpacing:1,
+                                  fontSize: 23,
                                   fontWeight: FontWeight.bold,
                                   color: kwhite),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
+                                                   ),
+                                                 ),
+                                                 ),
+                                                 // Image.asset('assets/images/Group 39757.png'),
+                                             
+                                                   Padding(
+                                                     padding: const EdgeInsets.only(left:30,right:30,top:40),
+                                                     child: GetBuilder<SubscriptionApiController>(
+                                                      builder: (_){
+                                                       return Row(
+                                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                       crossAxisAlignment: CrossAxisAlignment.start,
+                                                         children: [
+                                                           plansController.subscriptionplan.isEmpty?Image.asset('assets/images/si1.png',
+                                                           height: 200,fit:BoxFit.fitHeight):Image.network(plansController.subscriptionplan.first.cardImg,
+                                                            height: 200,fit:BoxFit.fitHeight),
+                                                                                                        
+                                                           Padding(
+                                                             padding: const EdgeInsets.only(left:90),
+                                                             child: Column(
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                               children: [
+                                                               plansController.subscriptionplan.isEmpty?Container():Text(plansController.subscriptionplan.first.title,
+                                                                style:TextStyle(
+                                                                  letterSpacing: 1,
+                                                                 color: kblue,
+                                                                 fontSize: 25,
+                                                                  fontWeight: FontWeight.w700
+                                                                 )),
+                                                                 ksizedbox10,
+                                                                 Text('Subscribe Details :',
+                                                                 style:TextStyle(
+                                                                  fontSize: 17,
+                                                                  color:kblue,
+                                                                  fontWeight: FontWeight.w500
+                                                                 )),
+                                                                 ksizedbox20,
+                                                                 plansController.subscriptionplan.isEmpty?Container():Container(
+                                                                  width: 420,
+                                                                   child: Text(plansController.subscriptionplan.first.planDescription,
+                                                                   style: TextStyle(
+                                                                    
+                                                                    fontSize: 18,
+                                                                                                                                 
+                                                                   ),),
+                                                                 ),
 
-                    GetBuilder<SubscriptionApiController>(
-                      builder: (_){
-                        return Row(
-                        children: [
-
-                         subscripeController.plansdataList.isEmpty?Container(
-                          child: Center(
-                            child: Text('No Datas'),
-                          ),
-                         ) :Image.network(subscripeController.plansdataList.first.cardImg)
-                        ],
-                      );
-                      },
-                      
-                    )
-                  ],
-                ),
-                
-              ),
+                                                               ],
+                                                             ),
+                                                           ),
+                                                           Padding(
+                                                             padding: const EdgeInsets.only(left:30),
+                                                             child: Container(
+                                                              height: 40,
+                                                              width: 120,
+                                                              decoration: BoxDecoration(
+                                                                color: kblue,
+                                                             borderRadius: BorderRadius.circular(5)
+                                                              ),
+                                                              child:Center(
+                                                                child:plansController.subscriptionplan.isEmpty?Container():Text(plansController.subscriptionplan.first.saleAmount,
+                                                                style: TextStyle(
+                                                                  fontSize: 17,
+                                                                  color:kwhite,
+                                                                  
+                                                                ),)
+                                                              )
+                                                                                     
+                                                             ),
+                                                           )
+                                                         ],
+                                                       );
+                                                      }
+                                                     ),
+                                                   )
+                                                 
+                                               ],
+                                             ),
+                                             
+                                           ),
 
            
 

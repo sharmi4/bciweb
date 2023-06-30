@@ -181,7 +181,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        Get.to(const MembersBooking());
+                        Get.to(const MembersBookingCommonContainer());
                       },
                       child: Text(
                         'BOOKINGS',
