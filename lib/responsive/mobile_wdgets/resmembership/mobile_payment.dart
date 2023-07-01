@@ -63,18 +63,18 @@ void initState() {
           //       color: Color(0xff003366)),
           // ),
           ksizedbox40,
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Container(
-                  width: size.width * 0.4,
-                  child: Image(image: NetworkImage(widget.image))
+                  width: size.width * 0.8,
+                  child: Image(image: NetworkImage(widget.image),fit: BoxFit.cover,)
                   ),
               ksizedbox10,
               Container(
                 width: size.width * 0.5,
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       widget.htext,
@@ -85,14 +85,30 @@ void initState() {
                           fontWeight: FontWeight.w600),
                     ),
                     ksizedbox20,
-                    Text(
-                    widget.text,
-                      style: TextStyle(color: kblue, fontSize: 20),
-                    ),
+                   
                   ],
                 ),
               ),
             ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 42),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                 Container(
+                  width: 250,
+                   child: Text(
+                    
+                        widget.text,
+                    
+                          style: TextStyle(
+                            
+                            color: kblue, fontSize: 18),
+                        ),
+                 ),
+              ],
+            ),
           ),
           ksizedbox30,
           Padding(

@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../constant/constans.dart';
-import 'booking_screen.dart';
+import '../../../constant/constans.dart';
+import '../booking_screen.dart';
 
-class MobileFlightBooking extends StatefulWidget {
-  const MobileFlightBooking({super.key});
+class MobileFlightHome extends StatefulWidget {
+  const MobileFlightHome({super.key});
 
   @override
-  State<MobileFlightBooking> createState() => _MobileFlightBookingState();
+  State<MobileFlightHome> createState() => _MobileFlightHomeState();
 }
 
-class _MobileFlightBookingState extends State<MobileFlightBooking> {
+class _MobileFlightHomeState extends State<MobileFlightHome> {
   @override
   Widget build(BuildContext context) {
     return Container(

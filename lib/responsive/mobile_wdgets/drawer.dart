@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/responsive/booking_view/booking_screen.dart';
 import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_subscription.dart';
 import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
@@ -23,11 +24,13 @@ class MobileDrawer extends StatefulWidget {
 
 class _MobileDrawerState extends State<MobileDrawer> {
   final authController = Get.find<AuthController>();
+  final authprofileController=Get.find<AuthProfileController>();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     authController.checkAuthendication();
+    authprofileController.getProfile();
   }
 
 
@@ -225,22 +228,56 @@ class _MobileDrawerState extends State<MobileDrawer> {
                       onPressed: () {
                         Get.to(MobileProfileScreen());
                       },
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/nick.png',
-                            height: 30,
-                            fit: BoxFit.fitHeight,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 15),
-                            child: Text(
-                              'PROFILE',
-                              style: TextStyle(fontSize: 16, color: kwhite),
+                      child: GetBuilder<AuthProfileController>(
+                        builder: (_){
+                         return authprofileController.profileData.isNotEmpty
+                          ? authprofileController
+                                  .profileData.first.profilePicture !=
+                              null
+                          ? CircleAvatar(
+                              radius: 22.0,
+                              backgroundImage: NetworkImage(
+                                authprofileController
+                                    .profileData.first.profilePicture,
+                              )):
+
+                     Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/nick.png',
+                              height: 30,
+                              fit: BoxFit.fitHeight,
                             ),
-                          ),
-                        ],
-                      ))
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Text(
+                                'PROFILE',
+                                style: TextStyle(fontSize: 16, color: kwhite),
+                              ),
+                            ),
+                          ],
+                     ):
+                     
+                     Row(
+                          children: [
+                            Image.asset(
+                              'assets/images/nick.png',
+                              height: 30,
+                              fit: BoxFit.fitHeight,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 15),
+                              child: Text(
+                                'PROFILE',
+                                style: TextStyle(fontSize: 16, color: kwhite),
+                              ),
+                            ),
+                          ],
+                     );
+                        }
+            
+                      )
+                      )
                 ],
               ),
             ),

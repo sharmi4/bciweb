@@ -48,6 +48,7 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'controller/flaibooking_option.dart';
 import 'controller/flaight _controller.dart';
+import 'controller/flaight_booking_controller.dart';
 import 'controller/flaight_show_controller.dart';
 import 'controller/flaightdate_controller.dart';
 import 'controller/historycontroller.dart';
@@ -85,6 +86,7 @@ void main() {
   Get.put(AuthController());
   Get.put(AuthProfileController());
   Get.put(SubscriptionApiController());
+  Get.put(FlaightBookingController());
   runApp(const MyApp());
 }
 

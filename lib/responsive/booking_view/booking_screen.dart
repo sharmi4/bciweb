@@ -1,6 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/historycontroller.dart';
-import 'package:bciweb/responsive/booking_view/flight_booking.dart';
+import 'package:bciweb/responsive/booking_view/flight/flight_home.dart';
 import 'package:bciweb/responsive/booking_view/others_booking.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/responsive/mobile_wdgets/drawer.dart';
@@ -194,10 +194,10 @@ class _MembersBookingCommonContainerState extends State<MembersBookingCommonCont
                             //         bottomRight: Radius.circular(15))),
                           ),
                           if(historyController.hisindex.value == 4)
-                          const OthersBookingsView(),
+                          const OthersBookingsView(),  
                           ksizedbox40,
                           if(historyController.hisindex.value == 0)
-                          MobileFlightBooking(),
+                          MobileFlightHome(),
 
                           if(historyController.hisindex.value==1)
                            MobileHotelBooking(),

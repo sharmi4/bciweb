@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../../controller/subscription_controller/subscription_controller.dart';
+import '../../../mobile_wdgets/comomappbar.dart';
+import '../../../mobile_wdgets/drawer.dart';
 
 class MySubscriptionMobileScreen extends StatefulWidget {
   const MySubscriptionMobileScreen({super.key});
@@ -48,6 +50,9 @@ _getPlanDetails() async{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: PreferredSize(
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+            drawer: MobileDrawer(),
       body: SingleChildScrollView(
         child: Column(
            children: [
@@ -79,8 +84,11 @@ _getPlanDetails() async{
                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                       children: [
-                                                        plansController.subscriptionplan.isEmpty?Image.asset('assets/images/si1.png',
-                                                        height: 200,fit:BoxFit.fitHeight):Image.network(plansController.subscriptionplan.first.cardImg,
+                                                        plansController.subscriptionplan.isEmpty?Center(
+                                                          child: CircularProgressIndicator(
+                                                            color: kblue,
+                                                          ),
+                                                        ):Image.network(plansController.subscriptionplan.first.cardImg,
                                                          height: 200,fit:BoxFit.fitHeight),
                                                                Row(
                                                                 mainAxisAlignment: MainAxisAlignment.center,

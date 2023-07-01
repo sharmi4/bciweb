@@ -6,6 +6,8 @@ import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
 
 import '../../controller/auth_controller/auth_controller.dart';
+import '../booking_view/flight/flightBooking_screen.dart';
+import '../booking_view/flight/flight_booking_landing_screen.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 import '../responsive_subscription/responsive_subscription.dart';
 import '../mobile_wdgets/drawer.dart';
@@ -195,6 +197,7 @@ final authController=Get.find<AuthController>();
                                     ),
                                     child: InkWell(
                                       onTap: () {
+                                        Get.to(FlightBookingLandingScreen());
                                         // Get.toNamed('/services');
                                       },
                                       child: Container(
