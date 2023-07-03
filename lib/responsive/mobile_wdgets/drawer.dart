@@ -234,12 +234,24 @@ class _MobileDrawerState extends State<MobileDrawer> {
                           ? authprofileController
                                   .profileData.first.profilePicture !=
                               null
-                          ? CircleAvatar(
-                              radius: 22.0,
-                              backgroundImage: NetworkImage(
-                                authprofileController
-                                    .profileData.first.profilePicture,
-                              )):
+                          ? Row(
+                            children: [
+                              CircleAvatar(
+                                  radius: 22.0,
+                                  backgroundImage: NetworkImage(
+                                    authprofileController
+                                        .profileData.first.profilePicture,
+                                  )),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 15),
+                                    child: Text(authprofileController.profileData.first.name,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: kwhite
+                                    ),),
+                                  )
+                            ],
+                          ):
 
                      Row(
                           children: [

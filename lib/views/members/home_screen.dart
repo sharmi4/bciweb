@@ -142,7 +142,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                 padding: const EdgeInsets.only(left: 30),
                                 child: InkWell(
                                   onTap: () {
-                                    Get.toNamed('/services');
+                                    Get.to(BookingFlight());
                                   },
                                   child: Container(
                                     height: 38,
