@@ -55,7 +55,7 @@ class _ServicesCartState extends State<ServicesCart> {
                     return Padding(
                       padding: const EdgeInsets.all(5.0),
                       child: Container(
-                          width: size.width * 0.7,
+                          width: 250,
                           height: 130,
                           decoration: BoxDecoration(
                               color: kwhite,

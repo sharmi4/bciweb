@@ -682,9 +682,9 @@ class _FlaightOrderDetailsScreenState extends State<FlaightOrderDetailsScreen> {
                               padding: const EdgeInsets.only(
                                   top: 10, right: 10, left: 10),
                               child: Container(
-                                height: 220,
+                                height: 240,
                                 width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
+                                decoration: BoxDecoration( 
                                     image: DecorationImage(
                                         image: AssetImage(
                                           'assets/images/ordercontainer.png',
