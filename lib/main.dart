@@ -24,6 +24,7 @@ import 'package:bciweb/splash_screen/Splash_screen.dart';
 import 'package:bciweb/views/business/bookins/flight/options_booking.dart';
 import 'package:bciweb/views/business/bookins/flight/payment_screen.dart';
 import 'package:bciweb/views/business/bookins/history/views/history.dart';
+import 'package:bciweb/views/business/bookins/trip/hollidays.dart';
 import 'package:bciweb/views/business/services/views/offerce.dart';
 import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 import 'package:bciweb/views/members/home_screen.dart';
@@ -96,10 +97,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.generateRoute,
-//   initialRoute: TRoutes.HOME_PAGE,
-      initialRoute: Routes.SPLASH,
+      home: HolidaysScreen(),
+
+//       debugShowCheckedModeBanner: false,
+//       onGenerateRoute: RouteGenerator.generateRoute,
+// //   initialRoute: TRoutes.HOME_PAGE,
+//       initialRoute: Routes.SPLASH,
       // initialRoute: '/',
       // getPages: [
       //     GetPage(name: '/', page: () => splash()),
@@ -118,7 +121,7 @@ class MyApp extends StatelessWidget {
       //   //  image: "assets/images/Group 38637.png",
       //   //  )),
       //   GetPage(name: '/add-wallet', page: () => AddWallet()),
-        // GetPage(name: '/services', page: () => Services()),
+      // GetPage(name: '/services', page: () => Services()),
       //   GetPage(name: '/coupones', page: () => Coupones()),
       //   GetPage(name: '/reghome', page: () => BusinessRegisterHomeScreen()),
       //   GetPage(name: '/offer-screen', page: () => OfferScreen()),

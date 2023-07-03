@@ -1,5 +1,6 @@
 import 'package:bciweb/views/business/bookins/hotels/booking_hotels.dart';
 import 'package:bciweb/views/business/bookins/liquer/Liquer_booking.dart';
+import 'package:bciweb/views/business/bookins/trip/hollidays.dart';
 import 'package:bciweb/views/business/bookins/trip/trip_about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +146,7 @@ class BookingTrip extends StatelessWidget {
                               ])
                             ]),
                             Spacer(),
-                            InkWell(onTap: (){Get.to(AboutTrip());},
+                            InkWell(onTap: (){Get.to(HolidaysScreen());},
                               child: VxBox(
                                       child: Text('Explore Now')
                                           .text

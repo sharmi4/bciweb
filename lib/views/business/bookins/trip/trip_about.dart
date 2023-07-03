@@ -148,76 +148,84 @@ class _AboutTripState extends State<AboutTrip> {
                           fontSize: 35,
                           fontWeight: FontWeight.w700,
                           color: Color(0xFF003366)),
-                    ),ksizedbox30,
+                    ),
+                    ksizedbox30,
                     Text('choose from date   ${formatDate(flaightselectedDate, [
-                          dd,'-',
-                          
-                          mm,'-',
-                        
+                          dd,
+                          '-',
+                          mm,
+                          '-',
                           yyyy
-                        ])}').text.blue800.make(),
+                        ])}')
+                        .text
+                        .blue800
+                        .make(),
                     IconButton(
                         onPressed: () {
                           _flaightselectDate(context);
                         },
-                        icon: Icon(Icons.date_range_outlined,color: kblue,))
-            ,ksizedbox40,  Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      '₹288',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 35,
-                      ),
+                        icon: Icon(
+                          Icons.date_range_outlined,
+                          color: kblue,
+                        )),
+                    ksizedbox40,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              '₹288',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 35,
+                              ),
+                            ),
+                            Text(
+                              '/person',
+                              style: TextStyle(color: kgrey),
+                            )
+                          ],
+                        ),
+                        InkWell(
+                          onTap: () {
+                            //  Get.to(Sucessful_screen());
+                          },
+                          child: Container(
+                            width: 200,
+                            height: 45,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                4,
+                              ),
+                              gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Color(0xFFFF5C29),
+                                  Color(0xFFFFCD38),
+                                ],
+                              ),
+                            ),
+                            child: Center(
+                              child: Text(
+                                'payment',
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    Text(
-                      '/person',
-                      style: TextStyle(color: kgrey),
-                    )
                   ],
-                ),
-                InkWell(
-                  onTap: () {
-                    //  Get.to(Sucessful_screen());
-                  },
-                  child: Container(
-                    width: 200,
-                    height: 45,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(
-                        4,
-                      ),
-                      gradient: const LinearGradient(
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                        colors: [
-                          Color(0xFFFF5C29),
-                          Color(0xFFFFCD38),
-                        ],
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'payment',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),    ],
                 ),
               ],
             ),
             ksizedbox30,
-            
             ksizedbox40,
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -229,47 +237,27 @@ class _AboutTripState extends State<AboutTrip> {
               ),
             ),
             ksizedbox30,
-                        Column(
-            
-                            mainAxisAlignment: MainAxisAlignment.start,
-            
-                            children: [
-            
-                              raintingwidget(
-            
-                                text: '     Cleaning',
-            
-                              ),
-            
-                              ksizedbox10,
-            
-                              raintingwidget(
-            
-                                text: '     Food',
-            
-                              ),
-            
-                              ksizedbox10,
-            
-                              raintingwidget(
-            
-                                text: '     Atmosphere',
-            
-                              ),
-            
-                              ksizedbox10,
-            
-                              raintingwidget(
-            
-                                text: '     Economy',
-            
-                              ),
-            
-                              ksizedbox10,
-            
-                            ],
-            
-                          ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                raintingwidget(
+                  text: '     Cleaning',
+                ),
+                ksizedbox10,
+                raintingwidget(
+                  text: '     Food',
+                ),
+                ksizedbox10,
+                raintingwidget(
+                  text: '     Atmosphere',
+                ),
+                ksizedbox10,
+                raintingwidget(
+                  text: '     Economy',
+                ),
+                ksizedbox10,
+              ],
+            ),
             RegisterCommonBottom()
           ],
         ),
@@ -289,15 +277,20 @@ class raintingwidget extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Container(width: 500,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-            children: [kwidth10,
-              Text(        text).text.semiBold.xl5.make(),
+        Container(
+          width: 500,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              kwidth10,
+              Text(text).text.semiBold.xl5.make(),
             ],
           ),
         ),
-        Container(width: 500,
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+        Container(
+          width: 500,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Row(
@@ -333,7 +326,8 @@ class raintingwidget extends StatelessWidget {
             ],
           ),
         ),
-        Container(width: 500,
+        Container(
+          width: 500,
           child: Column(
             children: [
               Text('1.23k Reviews').text.gray400.thin.xl4.make(),
