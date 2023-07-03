@@ -22,7 +22,7 @@ class BookingTrip extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-   appBar: PreferredSize(
+      appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
         child: Column(
@@ -30,7 +30,7 @@ class BookingTrip extends StatelessWidget {
             RegisterCommonContainer(),
             Stack(
               children: [
-                Container(      
+                Container(
                     width: size.width,
                     child: Image.asset('assets/images/Group 39749.png')),
                 Positioned(
@@ -132,12 +132,20 @@ class BookingTrip extends StatelessWidget {
                               ])
                             ]).px24(),
                             Spacer(),
-                            VStack([
-                              Text('Check-in').text.xl2.bold.make(),
-                              HStack([
-                                Text('Add Date').text.semiBold.gray400.make()
-                              ])
-                            ]).px24(),
+                            VStack(
+                              [
+                                Text('Check-in').text.xl2.bold.make(),
+                                HStack(
+                                  [
+                                    Text('Add Date')
+                                        .text
+                                        .semiBold
+                                        .gray400
+                                        .make()
+                                  ],
+                                )
+                              ],
+                            ).px24(),
                             Spacer(),
                             VStack([
                               Text('Check-OUT').text.xl2.bold.make(),
@@ -146,7 +154,10 @@ class BookingTrip extends StatelessWidget {
                               ])
                             ]),
                             Spacer(),
-                            InkWell(onTap: (){Get.to(HolidaysScreen());},
+                            InkWell(
+                              onTap: () {
+                                Get.to(HolidaysScreen());
+                              },
                               child: VxBox(
                                       child: Text('Explore Now')
                                           .text
@@ -388,11 +399,10 @@ class tripcontainer extends StatelessWidget {
               )
                   .shadow
                   .roundedLg
-              //    .px20
-                 // .py12
+                  //    .px20
+                  // .py12
                   .white
                   .make()
-                  
                   .h(
                     context.percentHeight * 5,
                   )
