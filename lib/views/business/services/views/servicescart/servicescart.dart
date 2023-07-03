@@ -1,4 +1,5 @@
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -41,140 +42,192 @@ class _ServicesCartState extends State<ServicesCart> {
           GetBuilder<HomeServiceController>(
             builder: (_) {
               return homeController.cartListData.isEmpty
-            ? Container(height: 300,
-              child: Center(child: Text(' item not  fount').text.xl2.thin.make())):
-
-               Container(
-                   height: size.height * 0.5,
-                width: size.width,
-                child: ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: homeController.cartListData.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Container(
-                          width: 250,
-                          height: 130,
-                          decoration: BoxDecoration(
-                              color: kwhite,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: kgrey,
-                                  blurRadius: 0.5,
-                                ),
-                              ]),
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Image.network(
-                                          homeController
-                                              .cartListData[index].image,
-                                          height: 50,
-                                          width: 60,
-                                          fit: BoxFit.cover,
+                  ? Container(
+                      height: 300,
+                      child: Center(
+                          child: Text(' item not  fount').text.xl2.thin.make()))
+                  : Padding(
+                    padding: const EdgeInsets.only(top: 30,left: 30,right: 30),
+                    child: Container(
+                        height: size.height * 0.8,
+                        width: 10,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: homeController.cartListData.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: Container(
+                                  width: 150,
+                                  height: 130,
+                                  decoration: BoxDecoration(
+                                      color: kwhite,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: kgrey,
+                                          blurRadius: 0.5,
                                         ),
-                                        kwidth10,
-                                        Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text(
-                                              homeController.cartListData[index]
-                                                  .serviceName,
-                                              style: const TextStyle(
-                                                  fontSize: 20,
-                                                  color: Colors.black,
-                                                  fontWeight: FontWeight.w600),
-                                            ),
-                                            SizedBox(
-                                                width: 230,
-                                                child: Text(
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Image.network(
                                                   homeController
-                                                      .cartListData[index]
-                                                      .description,
-                                                  maxLines: 3,
+                                                      .cartListData[index].image,
+                                                  height: 80,
+                                                  width: 90,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                kwidth10,
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      homeController
+                                                          .cartListData[index]
+                                                          .serviceName,
+                                                      style: const TextStyle(
+                                                          fontSize: 20,
+                                                          color: Colors.black,
+                                                          fontWeight:
+                                                              FontWeight.w600),
+                                                    ),
+                                                    SizedBox(
+                                                        width: 230,
+                                                        child: Text(
+                                                          homeController
+                                                              .cartListData[index]
+                                                              .description,
+                                                          maxLines: 3,
+                                                        )),
+                                                    Text(
+                                                        "Qty: ${homeController.cartListData[index].quantity}"),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                            // Row(
+                                            //   children: [
+                                            //     Column(
+                                            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            //       children: [
+                                            //         InkWell(
+                                            //           onTap: (){
+                                            //             homeController.deleteToCart(serviceid: homeController.cartListData[index].serviceId.toString());
+                                            //           },
+                                            //           child:const Icon(Icons.delete,color: Colors.redAccent,)),
+                                            //         ksizedbox10,
+                                            //         Text(
+                                            //   '₹ ${homeController.cartListData[index].price}',
+                                            //    style: TextStyle(
+                                            //    fontSize: 17.sp,
+                                            //    fontWeight: FontWeight.w600,
+                                            //   color: kyellow),
+                                            // ),
+                                            //       ],
+                                            //     ),
+                  
+                                            //   ],
+                                            // ),
+                                           Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 10,top: 10),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.end,
+                                          children: [
+                                            InkWell(
+                                                onTap: () {
+                                                  showDialog(
+                                                    context: context,
+                                                    builder: (BuildContext context) {
+                                                    return AlertDialog(
+      backgroundColor: Colors.white,
+      title: Text("Remove Item", style: TextStyle(color: Colors.black)),
+      content: Text(
+        "Are you sure do you want to remove this item?",
+        style: TextStyle(color: Colors.black),
+      ),
+      actions: [
+        TextButton(
+          child: Text(
+            "cancel",
+            style: TextStyle(color: Colors.grey),
+          ),
+          onPressed: () {
+            Get.back();
+           //Get.find<AuthController>().logout();
+          },
+        ),
+        TextButton(
+          child: Text("Remove", style: TextStyle(color: Colors.grey)),
+          onPressed: () {
+             homeController.deleteToCart(
+             serviceid: homeController.cartListData[index].serviceId.toString());
+            Get.back();
+          },
+        ),
+      ],
+    );
+                                                    });
+                                                  // homeController.deleteToCart(
+                                                  //     serviceid: homeController
+                                                  //         .cartListData[index]
+                                                  //         .serviceId
+                                                  //         .toString());
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                     Icon(
+                                                      CupertinoIcons.delete,
+                                                      color: Colors.grey,
+                                                      size: 15,
+                                                    ),
+                                                    SizedBox(width: 5,),
+                                                    Text("Remove",style: TextStyle(color: Colors.grey),)
+                                                  ],
                                                 )),
+
+                                            ksizedbox10,
                                             Text(
-                                                "Qty: ${homeController.cartListData[index].quantity}"),
+                                              '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: kyellow),
+                                            ),
                                           ],
                                         ),
-                                      ],
-                                    ),
-                                    // Row(
-                                    //   children: [
-                                    //     Column(
-                                    //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    //       children: [
-                                    //         InkWell(
-                                    //           onTap: (){
-                                    //             homeController.deleteToCart(serviceid: homeController.cartListData[index].serviceId.toString());
-                                    //           },
-                                    //           child:const Icon(Icons.delete,color: Colors.redAccent,)),
-                                    //         ksizedbox10,
-                                    //         Text(
-                                    //   '₹ ${homeController.cartListData[index].price}',
-                                    //    style: TextStyle(
-                                    //    fontSize: 17.sp,
-                                    //    fontWeight: FontWeight.w600,
-                                    //   color: kyellow),
-                                    // ),
-                                    //       ],
-                                    //     ),
-
-                                    //   ],
-                                    // ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                    
-                                        ksizedbox10,
-                                        Text(
-                                          '₹ ${homeController.cartListData[index].amount}',
-                                          style: TextStyle(
-                                              fontSize: 17,
-                                              fontWeight: FontWeight.w600,
-                                              color: Colors.black),
-                                        ),kwidth10,    InkWell(
-                                            onTap: () {
-                                              homeController.deleteToCart(
-                                                  serviceid: homeController
-                                                      .cartListData[index]
-                                                      .serviceId
-                                                      .toString());
-                                            },
-                                            child: const Icon(
-                                              Icons.close,
-                                              color: Colors.grey,
-                                              size: 18,
-                                            )),kwidth10,
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              )
-                            ],
-                          )),
-                    );
-                  },
-                ),
-              );
+                                      ),
+                                    ],
+                                  ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                            );
+                          },
+                        ),
+                      ),
+                  );
             },
-          ),ksizedbox40,ksizedbox40,
+          ),
           ksizedbox40,
+          ksizedbox40,
+        
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
@@ -304,7 +357,7 @@ class _ServicesCartState extends State<ServicesCart> {
           //     ),
           //   ]),
           // ),
-ksizedbox40,ksizedbox40,
+          ksizedbox40, ksizedbox40,
           RegisterCommonBottom()
         ],
       ),

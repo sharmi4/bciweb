@@ -54,5 +54,8 @@ abstract class BaseApiService {
   //get plan detsila
   final String getPlanDetailsURL =
       "https://bci.generation360tech.in/api/auth/get_plan_details";
-}
 
+  // un reddem coupon api
+  final String unRedeemCouponsApiUrl = "https://bci.generation360tech.in/api/auth/redeemCoupon";
+}
+ 

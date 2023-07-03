@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../../constant/constans.dart';
 import '../../controller/auth_controller/auth_controller.dart';
 import '../../controller/home_controller.dart';
-import '../../controller/profile_controler/profile_controller.dart';
+import '../../controller/redeem_controller/redeem_controller.dart';
 import '../../controller/profile_controller.dart';
 import '../../controller/service_controller/home_controller.dart';
 import '../../models/service_model.dart';
@@ -26,7 +26,7 @@ class _RespoServiceCartListState extends State<RespoServiceCartList> {
   final authController = Get.find<AuthController>();
   final redeemCouponcontroller = TextEditingController();
 
-  final profileControllerss = Get.find<ProfileControllers>();
+  final profileControllerss = Get.find<RedeemController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

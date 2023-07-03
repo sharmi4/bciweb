@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../constant/constans.dart';
-import '../../../../../controller/profile_controler/profile_controller.dart';
+import '../../../../../controller/redeem_controller/redeem_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -26,7 +26,7 @@ class _ListCartState extends State<ListCart> {
 
   final redeemCouponcontroller = TextEditingController();
 
-  final profileControllerss = Get.find<ProfileControllers>();
+  final profileControllerss = Get.find<RedeemController>();
 
   @override
   Widget build(BuildContext context) {

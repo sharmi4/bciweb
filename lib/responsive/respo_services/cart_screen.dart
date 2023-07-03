@@ -1,4 +1,5 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/responsive/mobile_body/mobile_home.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant/constans.dart';
 import '../../controller/service_controller/home_controller.dart';
+import '../../routes/app_pages.dart';
+import '../../views/business/services/views/servicescart/services.dart';
 import '../mobile_wdgets/comomappbar.dart';
 import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
@@ -138,7 +141,7 @@ class _CartScreenState extends State<CartScreen> {
       backgroundColor: Colors.white,
       title: Text("Remove Item", style: TextStyle(color: Colors.black)),
       content: Text(
-        "Are you sure do you want to remove this item?",
+        "Are you sure you want to remove this item?",
         style: TextStyle(color: Colors.black),
       ),
       actions: [
@@ -202,106 +205,98 @@ class _CartScreenState extends State<CartScreen> {
                       ),
               );
             }),
-            // const Divider(
-            //   thickness: 1,
-            // ),
-            // Container(
-            //  // height: 100,
-            //   width: double.infinity,
-            //   color: kwhite,
-            //   child: Padding(
-            // padding: const EdgeInsets.all(8.0),
-            // child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: [
-            //       // ksizedbox40,
-            //       Text(
-            //         'Support',
-            //         style:
-            //             TextStyle(fontSize: 25, fontWeight: FontWeight.w600),
-            //       ),
-            //       ksizedbox10,
-            //       Text(
-            //         'Member ID Number:',
-            //         style: TextStyle(
-            //             fontSize: 20,
-            //             fontWeight: FontWeight.w400,
-            //             color: korange),
-            //       ),
-            //       Text(
-            //         'BCI123456QWE',
-            //         style: TextStyle(fontSize: 15),
-            //       ),
-            //       ksizedbox10,
-            //       Text(
-            //         'Phone Number:',
-            //         style: TextStyle(
-            //             fontSize: 20,
-            //             fontWeight: FontWeight.w400,
-            //             color: korange),
-            //       ),
-            //       Text(
-            //         '92345 43453',
-            //         style: TextStyle(fontSize: 15),
-            //       ),
-            //       ksizedbox10,
-            //       Text(
-            //         'Delivery Address:',
-            //         style: TextStyle(
-            //             fontSize: 20,
-            //             fontWeight: FontWeight.w400,
-            //             color: korange),
-            //       ),
-            //       Text(
-            //         '2A,Street Nager, Anna Nagar, Chennai, 600021.',
-            //         style: TextStyle(fontSize: 15),
-            //       ),
-            //     ]),
-            //   ),
-            // ),ksizedbox20,
-            // InkWell(
-            //   onTap: () {
-            //     for (int i = 0; i < homeController.cartListData.length; i++) {
-            //       homeController.addBooking(
-            //           serviceid: homeController.cartListData[i].serviceId,
-            //           cartid: homeController.cartListData[i].id.toString(),
-            //           qty: homeController.cartListData[i].quantity,
-            //           offerOrCoupon: "",
-            //           couponcode: "",
-            //           amount: homeController.cartListData[i].price);
-            //     }
+      Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Row(
+           
+              children: [
+                Container(
+                  height: 70,
+                  width: size.width * 0.9,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16), color: kyellow),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: InkWell(
+                          onTap: () {
+                            //  dialogBuilder(context);
+                          },
+                          child: Container(
+                            height: 75,
+                            width: 160,
+                            decoration: BoxDecoration(
+                                color: kyellow,
+                                borderRadius: BorderRadius.circular(16)),
+                            child: Center(child:
+                                GetBuilder<HomeServiceController>(builder: (_) {
+                              return Text(
+                                'Total : ₹${homeController.getGrandTotal(tcartListData: homeController.cartListData).toStringAsFixed(2)}',
+                                // homeController.cartListData.totalamount,
       
-            //     // for(int i = 0; i < homeController.cartListData.length; i++){
-            //     //   homeController.addBooking(
-            //     //   serviceid: homeController.cartListData[i].serviceId,
-            //     //   qty: homeController.cartListData[i].quantity,
-            //     //   offerOrCoupon: "",
-            //     //   couponcode: "",
-            //     //   amount: homeController.cartListData[i].price
-            //     //   );
-            //     // }
-            //   },
-            //   child: Container(
-            //     height: 40,
-            //     width: 150,
-            //     decoration: BoxDecoration(
-            //       color: kblue,
-            //       borderRadius: BorderRadius.circular(10),
-            //     ),
-            //     child: Center(
-            //       child: Text(
-            //         "Book Now",
-            //         style: TextStyle(
-            //             fontSize: 15,
-            //             color: Colors.white,
-            //             fontWeight: FontWeight.w500),
-            //       ),
-            //     ),
-            //   ),
-            ksizedbox20,
-        MobileCommonBottom()  ],
-        ),
+                                style: TextStyle(
+                                    color: kwhite,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w700),
+                              );
+                            })),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: InkWell(
+                          onTap: () {
+                            for (int i = 0;
+                                i < homeController.cartListData.length;
+                                i++) {
+                              homeController.addBooking(
+                                  serviceid:
+                                      homeController.cartListData[i].serviceId,
+                                  cartid: homeController.cartListData[i].id
+                                      .toString(),
+                                  qty: homeController.cartListData[i].quantity,
+                                  offerOrCoupon: "",
+                                  couponcode: "",
+                                  amount: homeController.cartListData[i].amount);
+                            }
+      
+                            Get.to(MobileHome());
+                          },
+                          //  onTap: () {
+                          //  homeController.addToCart(
+                          ///serviceid: widget.servicedata.id
+                          //                           .toString());
+                          //   },
+                          child: Container(
+                            height: 65,
+                            width: 150,
+                            decoration: BoxDecoration(
+                                color: kwhite,
+                                borderRadius: BorderRadius.circular(16)),
+                            child: const Center(
+                                child: Text(
+                              "BOOK NOW",
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w700),
+                            )),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                kwidth10,
+              ],
+            ),
       ),
+        ksizedbox40,
+        MobileCommonBottom()
+          ]
+      ),
+      )
     );
   }
 }

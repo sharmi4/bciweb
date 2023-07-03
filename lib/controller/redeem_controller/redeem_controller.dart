@@ -1,6 +1,7 @@
 import 'dart:io';
 
 
+import 'package:bciweb/services/networks/services/catogory_api_service/unreddem_coupons_Api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -20,7 +21,7 @@ import '../auth_controller/auth_controller.dart';
 import '../home_controller.dart';
 //import '../services/network/profile_api_services/update_residencial_address_api_services.dart';
 
-class ProfileControllers extends GetxController {
+class RedeemController extends GetxController {
  // GetProfileApiServices getProfileApiServices = GetProfileApiServices();
   //ProfileUpdateApiServices profileUpdateApi = ProfileUpdateApiServices();
  // UpdateResidencialAddressApiServices updateResidencialAddressApiServices =
@@ -128,6 +129,8 @@ class ProfileControllers extends GetxController {
  // redeem coupon
   RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
 
+  UnRedeemCouponApiServices  unRedeemCouponApiServices = UnRedeemCouponApiServices();
+
   redeemCoupon({required String couponcode, required String serviceId}) async {
     dio.Response<dynamic> response = await redeemCouponApiServices
         .redeemCouponApiServices(couponcode: couponcode);
@@ -145,7 +148,26 @@ class ProfileControllers extends GetxController {
 
     return response.data["amount"].toString();
   }
+  
 
+    
+   unRedeemCoupon({required String couponcode, required String serviceId}) async {
+    dio.Response<dynamic> response = await unRedeemCouponApiServices
+        .unRedeemCouponApiServices(couponcode: couponcode);
+    if (response.statusCode == 200) {
+      Get.rawSnackbar(
+          message: response.data["message"], backgroundColor: Colors.green);
+    } else if (response.statusCode == 400) {
+      Get.rawSnackbar(
+          message: response.data["errors"]["coupon_code"].first,
+          backgroundColor: Colors.red);
+    } else {
+      Get.rawSnackbar(
+          message: response.data["error"], backgroundColor: Colors.red);
+    }
+
+    return response.data["amount"].toString();
+  }
   //easebuzz
 
  // static MethodChannel _channel = MethodChannel('easebuzz');

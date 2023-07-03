@@ -3,7 +3,7 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/flaight_payment_controller.dart';
 import 'package:bciweb/controller/home_controller.dart';
-import 'package:bciweb/controller/profile_controler/profile_controller.dart';
+import 'package:bciweb/controller/redeem_controller/redeem_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
@@ -65,7 +65,7 @@ import 'controller/subscription_controller/subscription_controller.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
-  Get.put(ProfileControllers());
+  Get.put(RedeemController());
   Get.put(HomeServiceController());
   Get.put(HomeController());
   Get.put(SubscribeController());
@@ -99,7 +99,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       home: HolidaysScreen(),
 
-//       debugShowCheckedModeBanner: false,
+   debugShowCheckedModeBanner: false,
 //       onGenerateRoute: RouteGenerator.generateRoute,
 // //   initialRoute: TRoutes.HOME_PAGE,
 //       initialRoute: Routes.SPLASH,
