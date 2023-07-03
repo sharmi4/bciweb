@@ -100,9 +100,9 @@ class MyApp extends StatelessWidget {
       home: HolidaysScreen(),
 
    debugShowCheckedModeBanner: false,
-//       onGenerateRoute: RouteGenerator.generateRoute,
-// //   initialRoute: TRoutes.HOME_PAGE,
-//       initialRoute: Routes.SPLASH,
+      onGenerateRoute: RouteGenerator.generateRoute,
+  //initialRoute: TRoutes.HOME_PAGE,
+      initialRoute: Routes.SPLASH,
       // initialRoute: '/',
       // getPages: [
       //     GetPage(name: '/', page: () => splash()),
