@@ -2,6 +2,7 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/flaight_payment_controller.dart';
+import 'package:bciweb/controller/holiday_controller.dart';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/redeem_controller/redeem_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
@@ -88,6 +89,9 @@ void main() {
   Get.put(AuthProfileController());
   Get.put(SubscriptionApiController());
   Get.put(FlaightBookingController());
+  Get.put(HolidayController());
+   Get.put(Holiday2Controller());
+    Get.put(Holiday3Controller());
   runApp(const MyApp());
 }
 
@@ -99,10 +103,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       home: HolidaysScreen(),
 
-   debugShowCheckedModeBanner: false,
-      onGenerateRoute: RouteGenerator.generateRoute,
-  //initialRoute: TRoutes.HOME_PAGE,
-      initialRoute: Routes.SPLASH,
+  //  debugShowCheckedModeBanner: false,
+  //     onGenerateRoute: RouteGenerator.generateRoute,
+  // //initialRoute: TRoutes.HOME_PAGE,
+  //     initialRoute: Routes.SPLASH,
       // initialRoute: '/',
       // getPages: [
       //     GetPage(name: '/', page: () => splash()),
