@@ -65,6 +65,29 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 ],
               ),
             ),
+
+ Padding(
+              padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+              child: Divider(
+                color: kgrey,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 10),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Get.to(RespoContact());
+                      },
+                      child: Text(
+                        'TRIP ',
+                        style: TextStyle(fontSize: 16, color: kwhite),
+                      )),
+                ],
+              ),
+            ),
+
             Padding(
               padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
               child: Divider(
