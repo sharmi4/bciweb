@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import '../../controller/auth_controller/auth_controller.dart';
 import '../authentications/contact us/respo_contact.dart';
 import '../authentications/generate_otp/generate_otp.dart';
+import '../holiday/holidaybookings.dart';
 import '../respo_services/respo_service.dart';
 import '../mobile_body/mobile_home.dart';
 import '../respo_services/widgets/resprofile/mobile_profile_screen.dart';
@@ -78,7 +79,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        Get.to(RespoContact());
+                        Get.to(HolidayScreen());
                       },
                       child: Text(
                         'TRIP ',
