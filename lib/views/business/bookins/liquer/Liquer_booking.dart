@@ -126,7 +126,9 @@ class BookingLiquer extends StatelessWidget {
                                    controller: searchController,
                                    
                                    decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10)
+                                    ),
                                     hintText:  'Search Your Brand',
                                     prefixIcon:Icon(Icons.search),
                                     suffixIcon: Image.asset(
@@ -235,7 +237,18 @@ class BookingLiquer extends StatelessWidget {
                 Container(
                   height: 150,
                   width: 400,
-                  color: kwhite,
+                 
+                  decoration: BoxDecoration(
+                         color: kwhite,
+                         borderRadius: BorderRadius.circular(10),
+                         boxShadow: <BoxShadow>[
+                          BoxShadow(
+                            offset: Offset(0.0, 0.75),
+                            blurRadius: 5,
+                            color: kgrey
+                          )
+                         ]
+                  ),
                   child: Row(
                     children: [
                       Padding(

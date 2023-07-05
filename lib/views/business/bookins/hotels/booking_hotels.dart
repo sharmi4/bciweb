@@ -127,7 +127,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                             children: [
                               Spacer(),
                               Container(
-                                height: size.height * 0.11,
+                                height: size.height * 0.14,
                                 width: size.width * 0.15,
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
@@ -141,7 +141,10 @@ class _BookingHotelsState extends State<BookingHotels> {
                                       Text('Tamil Nadu',
                                           style: primarymediumFont),
                                       Spacer(),
-                                      Text('India', style: primarysmallFont),
+                                      Text('India', style: TextStyle(
+                                        fontSize: 16
+                                      )
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -155,7 +158,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               ),
                               Spacer(),
                               Container(
-                                height: size.height * 0.11,
+                                height: size.height * 0.14,
                                 width: size.width * 0.09,
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
@@ -163,7 +166,9 @@ class _BookingHotelsState extends State<BookingHotels> {
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text('CHECK-IN', style: primarysmallFont),
+                                      Text('CHECK-IN', style: TextStyle(
+                                        fontSize: 13
+                                      )),
                                       Spacer(),
                                       Text('6 May23', style: primarymediumFont),
                                       Spacer(),
@@ -181,7 +186,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               ),
                               Spacer(),
                               Container(
-                                height: size.height * 0.11,
+                                height: size.height * 0.15,
                                 width: size.width * 0.09,
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
@@ -190,7 +195,9 @@ class _BookingHotelsState extends State<BookingHotels> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text('CHECK-OUT',
-                                          style: primarysmallFont),
+                                          style: TextStyle(
+                                            fontSize: 13
+                                          )),
                                       Spacer(),
                                       Text('6 May23', style: primarymediumFont),
                                       Spacer(),
@@ -208,7 +215,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               ),
                               Spacer(),
                               Container(
-                                height: size.height * 0.11,
+                                height: size.height * 0.15,
                                 width: size.width * 0.15,
                                 child: Padding(
                                   padding: const EdgeInsets.all(15.0),
@@ -217,7 +224,9 @@ class _BookingHotelsState extends State<BookingHotels> {
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
                                       Text('ROOMS & GUESTS',
-                                          style: primarysmallFont),
+                                          style: TextStyle(
+                                            fontSize: 13
+                                          )),
                                       Spacer(),
                                       Text('1 Room 2 Adults',
                                           style: primarymediumFont),
@@ -283,12 +292,14 @@ class _BookingHotelsState extends State<BookingHotels> {
               ],
             ),
             ksizedbox30,
-            'Showing Properties in Tamil Nadu'
-                .text
-                .bold
-                .xl4
-                .hexColor('#0F2446')
-                .make(),
+            Text('Showing Properties in Tamil Nadu',
+            style: TextStyle(
+              fontSize: 25,
+              color: kblue,
+              fontWeight: FontWeight.bold
+            ),),
+            
+                
             ksizedbox40,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

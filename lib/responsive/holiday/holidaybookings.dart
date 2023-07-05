@@ -48,7 +48,7 @@ class _HolidayScreenState extends State<HolidayScreen> {
                   width: size.width * 0.9,
                   child: Column(
                     children: [
-                      Image.asset('assets/images/NoPath - Copy (13).png'),
+                      Image.asset('assets/images/overviewimage.png'),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [

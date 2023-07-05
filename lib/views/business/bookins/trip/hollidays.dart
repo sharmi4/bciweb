@@ -588,7 +588,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10,right: 10),
                                     child: Image.asset(
-                                      'assets/images/overviewimage.png'
+                                      'assets/images/munnar1.jpg'
                                     ),
                                   ),
                                   Padding(
@@ -779,7 +779,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10,right: 10),
                                     child: Image.asset(
-                                      'assets/images/overviewimage.png'
+                                      'assets/images/munnar2.jpg'
                                     ),
                                   ),
                                   Padding(
@@ -1063,7 +1063,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 10,right: 10),
                                     child: Image.asset(
-                                      'assets/images/overviewimage.png'
+                                      'assets/images/munnar3.jpg'
                                     ),
                                   ),
                                    Padding(
@@ -1269,7 +1269,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                     
                     ),
                     Container(
-                      height: MediaQuery.of(context).size.height,
+                      height: 830,
                       width: MediaQuery.of(context).size.width * 0.3,
                       color: kwhite,
                       child: Column(
@@ -1517,14 +1517,168 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                             ],
                           ),
                           ksizedbox10,
+                          Padding(
+                            padding: const EdgeInsets.only(left:10),
+                            child: Row(
+                              children: [
+                                Text('Contact Details',
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500
+                                ),)
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:15,left:10),
+                            child: Container(
+                              height: 45,
+                              width: MediaQuery.of(context).size.width*0.25,
+                              child: TextField(
+                                controller: nameController,
+                                decoration: InputDecoration(
+                                  hintText: 'Your Name',
+                                  border: OutlineInputBorder(
+                          
+                                  )
+                                ),
+                          
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:15,left:10),
+                            child: Container(
+                              height: 45,
+                              width: MediaQuery.of(context).size.width*0.25,
+                              child: TextField(
+                                controller: emailController,
+                                decoration: InputDecoration(
+                                  hintText: 'Email',
+                                  border: OutlineInputBorder(
+                          
+                                  )
+                                ),
+                          
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:15,left:10),
+                            child: Container(
+                              height: 45,
+                              width: MediaQuery.of(context).size.width*0.25,
+                              child: TextField(
+                                controller: numberController,
+                                decoration: InputDecoration(
+                                  hintText: 'Phone Number',
+                                  border: OutlineInputBorder(
+                          
+                                  )
+                                ),
+                          
+                              ),
+                            ),
+                          ),
+                          ksizedbox20,
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('Contact Details',
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.w500
-                              ),)
+                              Container(
+                                height: 45,
+                                width:MediaQuery.of(context).size.width*0.2,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color:korange
+                                ),
+                                child:Center(
+                                  child:Text('Send Query',
+                                  style:TextStyle(
+                                    color:kwhite
+                                  ))
+                                )
+                              )
                             ],
+                          ),
+                          ksizedbox10,
+                          Padding(
+                            padding: const EdgeInsets.only(left:10),
+                            child: Row(
+                              children: [
+                                Icon(Icons.schedule,
+                                color:korange),
+                                Text('Duration :6 Nights & 7 Days')
+                              ],
+                            ),
+                          ),
+                          ksizedbox10,
+                          Padding(
+                            padding: const EdgeInsets.only(left:10),
+                            child: Row(
+                              children: [
+                                Icon(Icons.add_location,
+                                color:korange),
+                                Text('Places to Visit :06N Mauritius')
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top:20,left:10),
+                            child: Row(
+                              children:[
+                                Text('Packages Include',
+                                style:TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w500
+                                ))
+                              ]
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left:10,top:15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children:[
+                                Icon(Icons.flight_sharp,
+                                color:kgrey),
+                                Icon(Icons.hotel,
+                                color:kgrey),
+                                Icon(Icons.explore,
+                                color:kgrey),
+                                Icon(Icons.car_crash,
+                                color:kgrey),
+                                Icon(Icons.set_meal,
+                                color:kgrey)
+                              ]
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left:10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children:[
+                                Text('Flight',
+                                style:TextStyle(
+                                  color:kgrey
+                                )),
+                                 Text('Hotel',
+                                 style: TextStyle(
+                                  color:kgrey
+                                 ),),
+                                  Text('Sightseeing',
+                                  style: TextStyle(
+                                    color:kgrey
+                                  ),),
+                                   Text('Car',
+                                   style: TextStyle(
+                                    color:kgrey
+                                   ),),
+                                   Text('Meals',
+                                   style:TextStyle(
+                                    color:kgrey
+                                   ))
+                              ]
+                            ),
                           )
                         ],
                       ),

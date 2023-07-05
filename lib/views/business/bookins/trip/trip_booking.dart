@@ -352,64 +352,69 @@ class tripcontainer extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
-    return Container(
-      color: kwhite,
-      height: size.height * 0.1,
-      width: size.width * 0.2,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Image.asset(
-            'assets/images/bb43ca378d39364475632277f516c341.png',
-            //   height: 230,
-          ),
-          Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Text('Kololamba').text.semiBold.sm.make(),
-                      ],
-                    ),
-                    //  .objectCenterLeft(),
-                    ksizedbox10,
-                    Text('Price starts from ₹49,999.00')
+    return InkWell(
+      onTap: (){
+       Get.to( HolidaysScreen());
+      },
+      child: Container(
+        color: kwhite,
+        height: size.height * 0.1,
+        width: size.width * 0.2,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Image.asset(
+              'assets/images/bb43ca378d39364475632277f516c341.png',
+              //   height: 230,
+            ),
+            Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text('Kololamba').text.semiBold.sm.make(),
+                        ],
+                      ),
+                      //  .objectCenterLeft(),
+                      ksizedbox10,
+                      Text('Price starts from ₹49,999.00')
+                          .text
+                          .sm
+                          .color(Colors.grey)
+                          .make(),
+                      //  .objectCenterLeft(),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                VxBox(
+                  child: Center(
+                    child: Text('Details')
                         .text
+                        .semiBold
                         .sm
-                        .color(Colors.grey)
+                        .color(const Color.fromARGB(255, 255, 111, 0))
                         .make(),
-                    //  .objectCenterLeft(),
-                  ],
-                ),
-              ),
-              Spacer(),
-              VxBox(
-                child: Center(
-                  child: Text('Details')
-                      .text
-                      .semiBold
-                      .sm
-                      .color(const Color.fromARGB(255, 255, 111, 0))
-                      .make(),
-                ),
-              )
-                  .shadow
-                  .roundedLg
-                  //    .px20
-                  // .py12
-                  .white
-                  .make()
-                  .h(
-                    context.percentHeight * 5,
-                  )
-                  .w(context.percentWidth * 6)
-            ],
-          ),
-        ],
+                  ),
+                )
+                    .shadow
+                    .roundedLg
+                    //    .px20
+                    // .py12
+                    .white
+                    .make()
+                    .h(
+                      context.percentHeight * 5,
+                    )
+                    .w(context.percentWidth * 6)
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

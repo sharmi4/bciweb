@@ -20,12 +20,15 @@ class HottelbookingContainer extends StatelessWidget {
       child: Row(
         children: [
           kwidth10,
-          Image.asset(
-            'assets/images/Mask Group 10.png',
-            height: 200,
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: Image.asset(
+              'assets/images/Mask Group 10.png',
+              height: 140,
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.only(left: 10),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,28 +50,40 @@ class HottelbookingContainer extends StatelessWidget {
                   ],
                 ),
                 ksizedbox10,
-                'Alagoa Resort'.text.bold.xl3.blue900.make(),
+                Text('Alagoa Resort',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: kOrange
+                ),),
+                
                 ksizedbox10,
-                Text('Betalbatim, Goa | 1.8 km from Betalbatim Beach')
-                    .text
-                    .xl
-                    .thin
-                    .blue900
-                    .make(),
+                Text('Betalbatim, Goa | 1.8 km from Betalbatim Beach',
+                style: TextStyle(
+                  fontSize: 15,
+                  color: kblue
+                ),),
+                  
                 ksizedbox10,
-                InkWell(onTap: (){Get.to(ResortBooking());},
-                  child: VxBox(
-                          child: Text('Couple Friendly')
-                              .text
-                              .thin
-                              .white
-                              .make()
-                              .px1())
-                      .color(Vx.orange500)
-                      .p12
-                      .make()
-                      .px2(),
-                )
+             InkWell(
+              onTap: (){
+             Get.to(   ResortBooking());
+              },
+               child: Container(
+                height: 30,
+                width: 120,
+                decoration: BoxDecoration(
+                    color: kOrange,
+                    borderRadius: BorderRadius.circular(5)     
+                ),
+                child: Center(
+                  child: Text('Couple  Friendly',
+                  style: TextStyle(
+                    color: kwhite
+                  ),),
+                ),
+               ),
+             )
               ],
             ),
           ),
@@ -87,12 +102,24 @@ class HottelbookingContainer extends StatelessWidget {
                     Text('₹ 2,490').text.white.make(),
                     Text('₹ 508 taxes & fees').text.white.make(),
                     Text('Saving ₹ 1,009').text.white.make(),
-                    VxBox(child: Text('Book Now').text.thin.white.make()
-                            //    .px2()
-                            )
-                        .color(Vx.orange500)
-                        .p12
-                        .make()
+                  
+                     Padding(
+                       padding: const EdgeInsets.only(top: 1),
+                       child: Container(
+                        height: 22,
+                        width: 90,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: kOrange
+                        ),
+                        child: Center(
+                          child: Text('Book Now',
+                          style: TextStyle(
+                            color: kwhite
+                          ),),
+                        ),
+                       ),
+                     )
 //.px2()
                   ],
                 ),

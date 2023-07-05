@@ -1,7 +1,11 @@
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
+import '../../../controller/holiday_controller.dart';
+import '../../mobile_wdgets/comomappbar.dart';
+import '../../mobile_wdgets/drawer.dart';
 
 
 class EnquiryNowWidget extends StatefulWidget {
@@ -14,8 +18,14 @@ class EnquiryNowWidget extends StatefulWidget {
 class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
   @override
   Widget build(BuildContext context) {
+    final mobileholidaysController=Get.find<HolidayController>();
+    final mobileholidays2Controller=Get.find<Holiday2Controller>();
+    final mobileholidays3Controller=Get.find<Holiday3Controller>();
     var size = MediaQuery.of(context).size;
     return Scaffold(
+       appBar: PreferredSize(
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+      drawer: MobileDrawer(),
       body: SafeArea(
         child: ListView(
           children: [
@@ -158,110 +168,151 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                   ),
                 ),
                 ksizedbox20,
-                Row(
-                  children: [
-                    Column(
-                      children: [
-                        Text('Adult',
-                          style: TextStyle(
-                          fontSize: 20, 
-                          color: kblue,
-                          fontWeight: FontWeight.w500),
-                  ),
-                  ksizedbox10,
-                  Container(
-                    height: 25,
-                    width: 75,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      Column(
+                        children: [
+                          Text('Adult',
+                            style: TextStyle(
+                            fontSize: 20, 
+                            color: kblue,
+                            fontWeight: FontWeight.w500),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(Icons.remove,size: 20,),
-                        Container(
-                          height: 25,
-                          width: 25,
-                          color: Colors.orange,
-                          child:const Center(
-                              child: Text("1",style: TextStyle(color: Colors.white),),
-                          ),
+                    ksizedbox10,
+                    Obx(()=> Container(
+                        height: 25,
+                        width: 107,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
                         ),
-                        const Icon(Icons.add,size: 20,),
-                      ],
-                    ),
-                  ),
-                      ],
-                    ),
-                    kwidth10,
-                    Column(
-                      children: [
-                        Text('Child',
-                          style: TextStyle(
-                          fontSize: 20, 
-                          color: kblue,
-                          fontWeight: FontWeight.w500),
-                  ),
-                  ksizedbox10,
-                  Container(
-                    height: 25,
-                    width: 75,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(Icons.remove,size: 20,),
-                        Container(
-                          height: 25,
-                          width: 25,
-                          color: Colors.orange,
-                          child:const Center(
-                              child: Text("1",style: TextStyle(color: Colors.white),),
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(onPressed: (){
+                              mobileholidaysController.decrement();
+                              mobileholidaysController.update();
+                            }, 
+                            icon: Icon(Icons.remove,
+                            size: 12,)),
+                            Container(
+                              height: 25,
+                              width: 25,
+                              color: Colors.orange,
+                              child: Center(
+                                  child: Text('${mobileholidaysController.cout.value}',style: TextStyle(color: Colors.white),),
+                              ),
+                            ),
+                             IconButton(onPressed: (){
+                              mobileholidaysController.increament();
+                              mobileholidaysController.update();
+                            }, 
+                            icon: Icon(Icons.add,
+                            size: 12,)),
+                          ],
                         ),
-                        const Icon(Icons.add,size: 20,),
-                      ],
+                      ),
                     ),
-                  ),
-                      ],
+                        ],
+                      ),
+                      kwidth10,
+                      Column(
+                        children: [
+                          Text('Child',
+                            style: TextStyle(
+                            fontSize: 20, 
+                            color: kblue,
+                            fontWeight: FontWeight.w500),
                     ),
-                    kwidth10,
-                    Column(
-                      children: [
-                        Text('Infant',
-                          style: TextStyle(
-                          fontSize: 20, 
-                          color: kblue,
-                          fontWeight: FontWeight.w500),
-                  ),
-                  ksizedbox10,
-                  Container(
-                    height: 25,
-                    width: 75,
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Icon(Icons.remove,size: 20,),
-                        Container(
-                          height: 25,
-                          width: 25,
-                          color: Colors.orange,
-                          child:const Center(
-                              child: Text("2",style: TextStyle(color: Colors.white),),
-                          ),
+                    ksizedbox10,
+                    Obx(()=>
+                               Container(
+                        height: 25,
+                        width: 107,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
                         ),
-                        const Icon(Icons.add,size: 20,),
-                      ],
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(onPressed: (){
+                              mobileholidays2Controller.decrement();
+                              mobileholidays2Controller.update();
+                            }, 
+                            icon: Icon(Icons.remove,
+                            size: 12,)),
+                            Container(
+                              height: 25,
+                              width: 25,
+                              color: Colors.orange,
+                              child: Center(
+                                  child: Text('${mobileholidays2Controller.cout.value}',style: TextStyle(color: Colors.white),),
+                              ),
+                            ),
+                              IconButton(onPressed: (){
+                              mobileholidays2Controller.increament();
+                              mobileholidays2Controller.update();
+                            }, 
+                            icon: Icon(Icons.add,
+                            size: 12,)),
+                          ],
+                        ),
+                      ),
                     ),
+                        ],
+                      ),
+                      kwidth10,
+                      Column(
+                        children: [
+                          Text('Infant',
+                            style: TextStyle(
+                            fontSize: 20, 
+                            color: kblue,
+                            fontWeight: FontWeight.w500),
+                    ),
+                    ksizedbox10,
+                    Obx(()=>
+                       Container(
+                        height: 25,
+                        width: 115,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            IconButton(onPressed: (){
+                              mobileholidays3Controller.decrement();
+                              mobileholidays3Controller.update();
+                            }, 
+                            icon: Icon(Icons.remove,
+                            size: 12,)),
+                            Container(
+                              height: 25,
+                              width: 25,
+                              color: Colors.orange,
+                              child: Center(
+                                  child: Text('${mobileholidays3Controller.cout.value}',style: TextStyle(color: Colors.white),),
+                              ),
+                            ),
+                             Padding(
+                               padding: const EdgeInsets.only(right: 5),
+                               child: IconButton(onPressed: (){
+                                mobileholidays3Controller.increament();
+                                mobileholidays3Controller.update();
+                                                       }, 
+                                                       icon: Icon(Icons.add,
+                                                       size: 12,)),
+                             ),
+                          ],
+                        ),
+                      ),
+                    ),
+                        ],
+                      ),
+                    ],
                   ),
-                      ],
-                    ),
-                  ],
                 ),
                 ksizedbox20,
                 Text('Contact Details',
