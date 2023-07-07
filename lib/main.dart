@@ -49,6 +49,7 @@ import 'package:url_strategy/url_strategy.dart';
 // import 'package:bciweb/views/business/subscribe/views/payment.dart';
 // import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
 
+import 'controller/api_flightcontroller/api_flight_Controller.dart';
 import 'controller/flaibooking_option.dart';
 import 'controller/flaight _controller.dart';
 import 'controller/flaight_booking_controller.dart';
@@ -94,6 +95,7 @@ void main() {
    Get.put(Holiday2Controller());
     Get.put(Holiday3Controller());
     Get.put(HolidayyController());
+    Get.put(ApiflightsController());
   runApp(const MyApp());
 }
 

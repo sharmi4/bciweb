@@ -115,7 +115,7 @@ class _FlightBookingLandingScreenState
             padding: const EdgeInsets.only(left: 42, right: 41),
             child: InkWell(
               onTap: () {
-                Get.to(ParNycSCreen());
+                //Get.to(ParNycSCreen(flightSearchDataModel: null,));
               },
               child: Container(
                 width: double.infinity,

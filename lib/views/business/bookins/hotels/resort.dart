@@ -1,6 +1,8 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/views/business/bookins/hotels/resort_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../registerhomescreen/common_reg_bottom.dart';
@@ -345,7 +347,7 @@ class _ResortBookingState extends State<ResortBooking> {
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: 6,
+              itemCount: hotelsimage.length,
               itemBuilder: (context,index){
               return Padding(
                 padding: const EdgeInsets.only(left: 30,right: 30,top: 20,bottom: 10),
@@ -420,18 +422,23 @@ class _ResortBookingState extends State<ResortBooking> {
                          child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Container(
-                              height: 30,
-                              width: 80,
-                              decoration: BoxDecoration(
-                                color: korange,
-                                borderRadius: BorderRadius.circular(5)
-                              ),
-                              child: Center(
-                                child: Text('View',
-                                style: TextStyle(
-                                  color: kwhite
-                                ),),
+                            InkWell(
+                              onTap: (){
+                                Get.to(ResortDetailsScreen());
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 80,
+                                decoration: BoxDecoration(
+                                  color: korange,
+                                  borderRadius: BorderRadius.circular(5)
+                                ),
+                                child: Center(
+                                  child: Text('View',
+                                  style: TextStyle(
+                                    color: kwhite
+                                  ),),
+                                ),
                               ),
                             )
                           ],

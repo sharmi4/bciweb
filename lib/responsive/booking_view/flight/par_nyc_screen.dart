@@ -1,4 +1,5 @@
 
+import 'package:bciweb/models/flight_searchdatamodel.dart';
 import 'package:date_format/date_format.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,8 @@ import 'flight_details_screen.dart';
 
 
 class ParNycSCreen extends StatefulWidget {
-  const ParNycSCreen({super.key});
+   FlightSearchDataModel flightSearchDataModel;
+   ParNycSCreen({super.key,required this.flightSearchDataModel});
 
   @override
   State<ParNycSCreen> createState() => _ParNycSCreenState();

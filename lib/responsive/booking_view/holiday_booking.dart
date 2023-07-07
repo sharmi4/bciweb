@@ -18,8 +18,8 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 127,
-              width: 400,
+              height: 145,
+              width: 350,
               color: kwhite,
               child: Row(
                 children: [
@@ -42,7 +42,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                         style: TextStyle(color: kblue),
                       ),
                       Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
+                        'Check in : 03:44PM Check Out \n03:43 PM',
                         style: TextStyle(color: kblue),
                       ),
                       Text(
@@ -59,48 +59,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                 ],
               ),
             ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/NoPath.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Text(
-                        'Tourist Place, Turkey',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
+           
           ],
         ),
         ksizedbox40,
@@ -108,8 +67,8 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 127,
-              width: 400,
+              height: 145,
+              width: 350,
               color: kwhite,
               child: Row(
                 children: [
@@ -132,7 +91,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                         style: TextStyle(color: kblue),
                       ),
                       Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
+                        'Check in : 03:44PM Check Out \n03:43 PM',
                         style: TextStyle(color: kblue),
                       ),
                       Text(
@@ -149,48 +108,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                 ],
               ),
             ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/NoPath.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Text(
-                        'Tourist Place, Turkey',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
+         
           ],
         ),
         ksizedbox40,
@@ -198,8 +116,8 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 127,
-              width: 400,
+              height: 145,
+              width: 350,
               color: kwhite,
               child: Row(
                 children: [
@@ -222,7 +140,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                         style: TextStyle(color: kblue),
                       ),
                       Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
+                        'Check in : 03:44PM Check Out \n03:43 PM',
                         style: TextStyle(color: kblue),
                       ),
                       Text(
@@ -239,48 +157,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                 ],
               ),
             ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/NoPath.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Text(
-                        'Tourist Place, Turkey',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
+            
           ],
         ),
         ksizedbox40,
@@ -288,8 +165,8 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              height: 127,
-              width: 400,
+              height: 145,
+              width: 350,
               color: kwhite,
               child: Row(
                 children: [
@@ -312,7 +189,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                         style: TextStyle(color: kblue),
                       ),
                       Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
+                        'Check in : 03:44PM Check Out \n03:43 PM',
                         style: TextStyle(color: kblue),
                       ),
                       Text(
@@ -329,52 +206,11 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                 ],
               ),
             ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/NoPath.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Text(
-                        'Tourist Place, Turkey',
-                        style: TextStyle(fontSize: 21),
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
+          
           ],
         )
       ],
-    ),
+        ),
     );
   }
 }

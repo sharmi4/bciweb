@@ -57,5 +57,12 @@ abstract class BaseApiService {
 
   // un reddem coupon api
   final String unRedeemCouponsApiUrl = "https://bci.generation360tech.in/api/auth/redeemCoupon";
+
+   // ----------- Flight bookings  ----------- //
+
+  final String airSearchUrl =
+      "https://bci.generation360tech.in/api/auth/flight_search";
+
+        final String airportSearch = "https://openflights.org/php/apsearch.php";
 }
  
