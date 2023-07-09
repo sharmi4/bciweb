@@ -1,6 +1,8 @@
+import 'package:bciweb/controller/api_flightcontroller/api_flight_Controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:get/get.dart';
 
 //import 'package:simpa/constands/constands.dart';
 //import 'package:simpa/constands/constands.dart';
@@ -51,6 +53,7 @@ class search extends StatelessWidget {
     );
   }
 }
+
 class search2 extends StatelessWidget {
   const search2({super.key});
 
@@ -87,6 +90,12 @@ class search2 extends StatelessWidget {
             ),
             Expanded(
               child: TextField(
+                onChanged: (value)async{
+                      if(value.length>1){
+                        await Future.delayed(Duration(milliseconds: 200));
+                        Get.find<ApiflightsController>().seachAirport(keyWord: value);
+                      }
+                },
                   decoration: InputDecoration.collapsed(hintText: "City, Country, Airport")),
             ),
           ],

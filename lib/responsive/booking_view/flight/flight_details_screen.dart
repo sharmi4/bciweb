@@ -1,4 +1,5 @@
 
+import 'package:bciweb/controller/api_flightcontroller/api_flight_Controller.dart';
 import 'package:bciweb/responsive/booking_view/flight/plane_details_scree.dart';
 import 'package:flutter/material.dart';
 
@@ -6,10 +7,15 @@ import 'package:get/get.dart';
 import 'dart:math' as math;
 
 import '../../../constant/constans.dart';
+import '../../../models/air_search_model.dart';
+import '../../../models/flight_searchdatamodel.dart';
 
 
 class FlightDetailsScreen extends StatefulWidget {
-  const FlightDetailsScreen({super.key});
+   Flight flight;
+  FlightSearchDataModel flightSearchDataModel;
+  String searchKey;
+   FlightDetailsScreen({super.key,required this.flight,required this.flightSearchDataModel,required this.searchKey});
 
   @override
   State<FlightDetailsScreen> createState() => _FlightDetailsScreenState();
@@ -17,6 +23,8 @@ class FlightDetailsScreen extends StatefulWidget {
 
 class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
   var numberController = TextEditingController();
+
+  final apiflightController=Get.find<ApiflightsController>();
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -98,7 +106,7 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                           padding: const EdgeInsets.only(
                                               left: 30, top: 19),
                                           child: Text(
-                                            'JFK',
+                                            widget.flightSearchDataModel.fromIata,
                                             style: TextStyle(
                                                 fontSize: 15, color: kblue),
                                           ),
@@ -107,7 +115,7 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                           padding: const EdgeInsets.only(
                                               left: 108, top: 20),
                                           child: Text(
-                                            'BTJ',
+                                            widget.flightSearchDataModel.toIata,
                                             style: TextStyle(
                                                 color: kblue, fontSize: 15),
                                           ),
@@ -120,7 +128,7 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                           padding:  EdgeInsets.only(
                                               left: 28, top: 19),
                                           child: Text(
-                                            'John F. Kennedy \nAirport',
+                                            widget.flightSearchDataModel.fromName,
                                             style: TextStyle(
                                                 fontSize: 15, color: kblue),
                                           ),
@@ -129,7 +137,7 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                           padding:  EdgeInsets.only(
                                               left: 22, top: 5),
                                           child: Text(
-                                            'Abbotsford National \nAirport',
+                                            widget.flightSearchDataModel.toIata,
                                             style: TextStyle(
                                                 color: kblue, fontSize: 15),
                                           ),
@@ -213,7 +221,8 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                                 padding: const EdgeInsets.only(
                                                     right: 18),
                                                 child: Text(
-                                                  '24 October',
+                                                  widget.flight.segments.first.departureDateTime
+                                                  .split("").first,
                                                   style: TextStyle(
                                                       fontSize: 14,
                                                       color: Color(0xff8C8AAf)),
@@ -229,7 +238,8 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                                       size: 13,
                                                     ),
                                                     Text(
-                                                      '19:00',
+                                                      widget.flight.segments.first
+                                                      .departureDateTime.split('').last,
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           color:
@@ -246,18 +256,33 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                                          EdgeInsets.only(
                                                             left: 27, top: 30),
                                                     child: Text(
-                                                      'Duration: 2h 55min',
+                                                      'Duration: ${widget.flight.segments.first.duration}',
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           color:
                                                               Color(0xff8C8AAf)),
                                                     ),
                                                   ),
-                                                  Text('Non Stop',
-                                                      style: TextStyle(
-                                                          fontSize: 14,
-                                                          color:
-                                                              Color(0xff8C8AAf)))
+ Center(
+                                                    child: widget
+                                                                .flight
+                                                                .segments
+                                                                .length ==
+                                                            1
+                                                        ? const Text('Non stop',
+                                                            style: TextStyle(
+                                                                color: Color(
+                                                                    0xff8C8AAF)))
+                                                        : Padding(
+                                                          padding: const EdgeInsets.only(left: 12),
+                                                          child: Text(
+                                                              '${widget.flight.segments.length - 1} stop, via ${widget.flight.segments.first.destinationCity} ',
+                                                              style: const TextStyle(
+                                                                fontSize: 11,
+                                                                  color: Color(
+                                                                      0xff8C8AAF))),
+                                                        ),
+                                                  )
                                                 ],
                                               ),
                                               ksizedbox40,
@@ -268,7 +293,9 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                                          EdgeInsets.only(
                                                             right: 18, top: 50),
                                                     child: Text(
-                                                      '31 October',
+                                                      widget.flight.segments.
+                                                      first.arrivalDateTime.
+                                                      split('').first,
                                                       style: TextStyle(
                                                           fontSize: 14,
                                                           color:
@@ -285,7 +312,8 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                                           Icons.schedule,
                                                           size: 13,
                                                         ),
-                                                        Text('21:55',
+                                                        Text(widget.flight.
+                                                        segments.first.arrivalDateTime.split('').last,
                                                             style: TextStyle(
                                                                 fontSize: 14,
                                                                 color: Color(
@@ -370,7 +398,10 @@ class _FlightDetailsScreenState extends State<FlightDetailsScreen> {
                                   ksizedbox40,
                                   InkWell(
                                     onTap: () {
-                                      Get.to(PlaneDetailsScreen());
+                                      Get.to(PlaneDetailsScreen(
+                                         flight: widget.flight,
+                      flightSearchDataModel: widget.flightSearchDataModel,
+                                      ));
                                     },
                                     child: Container(
                                       height: 45,

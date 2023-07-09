@@ -1,4 +1,6 @@
 
+import 'package:bciweb/models/air_search_model.dart';
+import 'package:bciweb/models/flight_searchdatamodel.dart';
 import 'package:bciweb/responsive/booking_view/flight/plane_economy_details.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +11,7 @@ import '../../../constant/constans.dart';
 
 
 class PlaneDetailsScreen extends StatefulWidget {
-  const PlaneDetailsScreen({super.key});
+  const PlaneDetailsScreen({super.key, required Flight flight, required FlightSearchDataModel flightSearchDataModel});
 
   @override
   State<PlaneDetailsScreen> createState() => _PlaneDetailsScreenState();

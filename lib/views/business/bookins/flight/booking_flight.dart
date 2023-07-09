@@ -1,3 +1,4 @@
+import 'package:bciweb/controller/api_flightcontroller/api_flight_Controller.dart';
 import 'package:bciweb/controller/flaight_show_controller.dart';
 import 'package:bciweb/controller/flaightdate_controller.dart';
 import 'package:bciweb/views/business/bookins/trip/trip_booking.dart';
@@ -49,7 +50,7 @@ class _BookingFlightState extends State<BookingFlight> {
   bool airline5=false;
   bool airline6=false;
 
-  
+
 
    var mobilenumberController=TextEditingController();
 
@@ -116,7 +117,7 @@ class _BookingFlightState extends State<BookingFlight> {
       final flaightdetailsController=Get.find<FlaightDateSCotroller>();
 
     var size = MediaQuery.of(context).size;
-
+        final apiflightController = Get.find<ApiflightsController>();
    
     return Scaffold( 
        appBar: PreferredSize(

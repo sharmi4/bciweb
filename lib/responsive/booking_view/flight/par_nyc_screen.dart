@@ -7,12 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
+import '../../../controller/api_flightcontroller/api_flight_Controller.dart';
 import 'flight_details_screen.dart';
 
 
 class ParNycSCreen extends StatefulWidget {
    FlightSearchDataModel flightSearchDataModel;
-   ParNycSCreen({super.key,required this.flightSearchDataModel});
+  String searchKey;
+   ParNycSCreen({super.key,required this.flightSearchDataModel, required this. searchKey});
 
   @override
   State<ParNycSCreen> createState() => _ParNycSCreenState();
@@ -33,7 +35,7 @@ class _ParNycSCreenState extends State<ParNycSCreen> {
         selectedDate = picked;
       });
   }
-
+  final apiflightsController=Get.find<ApiflightsController>();
   @override
   Widget build(BuildContext context) {
     final _mediaQuery = MediaQuery.of(context).size;
@@ -185,13 +187,22 @@ class _ParNycSCreenState extends State<ParNycSCreen> {
                 ]),
               ),
               ksizedbox30,
+              if(apiflightsController.flightList.isEmpty)
+              Center(
+                child: Text('No Flights For the Selected Options'),
+              ),
+              for(int i=0;i<apiflightsController.flightList.length;i++)
               Padding(
                 padding: const EdgeInsets.only(right: 10, left: 10),
                 child: Stack(
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.to(FlightDetailsScreen());
+                        Get.to(FlightDetailsScreen(
+                          flight: apiflightsController.flightList[i],
+                          flightSearchDataModel: widget.flightSearchDataModel,
+                          searchKey: widget.searchKey,
+                        ));
                       },
                       child: Container(
                         height: 240,
@@ -309,13 +320,22 @@ class _ParNycSCreenState extends State<ParNycSCreen> {
                 ),
               ),
               ksizedbox20,
+              if(apiflightsController.flightList.isEmpty)
+              Center(
+                child: Text('No flights For the Selected Options'),
+              ),
+              for(int i=0;i<apiflightsController.flightList.length;i++)
               Padding(
                 padding: const EdgeInsets.only(right: 10, left: 10),
                 child: Stack(
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.to(FlightDetailsScreen());
+                        Get.to(FlightDetailsScreen(
+                          flight: apiflightsController.flightList[i],
+                          flightSearchDataModel: widget.flightSearchDataModel,
+                          searchKey: widget.searchKey,
+                        ));
                       },
                       child: Container(
                         height: 240,
@@ -434,13 +454,18 @@ class _ParNycSCreenState extends State<ParNycSCreen> {
                 ),
               ),
               ksizedbox20,
-              Padding(
-                padding: const EdgeInsets.only(right: 10, left: 10),
-                child: Stack(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.to(FlightDetailsScreen());
+              for (int i = 0; i < apiflightsController.flightList.length; i++)
+                Padding(
+                  padding: const EdgeInsets.only(right: 10, left: 10),
+                  child: Stack(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          Get.to(FlightDetailsScreen(
+                            flight: apiflightsController.flightList[i],
+                            flightSearchDataModel: widget.flightSearchDataModel,
+                            searchKey: widget.searchKey,
+                          ));
                       },
                       child: Container(
                         height: 240,

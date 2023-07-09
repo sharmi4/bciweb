@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 
@@ -19,6 +20,8 @@ class ApiflightsController extends GetxController {
   RxInt adultsCount = 1.obs;
   RxInt childsCount = 0.obs;
 
+  RxInt domesticORInternational = 0.obs;
+
   DateTime depatureDate = DateTime.now();
   RxBool isDepatureDateSelected = false.obs;
 
@@ -34,14 +37,17 @@ class ApiflightsController extends GetxController {
 
   RxBool airPortFound = false.obs;
 
-  RxString origin = "Choose".obs;
+  RxString origin = "MAA".obs;
   RxString originFullName = "Choose".obs;
-  RxString destination = "Choose".obs;
+  RxString destination = "COK".obs;
   RxString destinationFullName = "Choose".obs;
 
   RxInt isMaleOrFemale = 2.obs;
 
   List<PassengerDetail> passengersDetailsList = [];
+
+
+  
 
   seachAirport({required String keyWord}) async {
     dio.Response<dynamic> response = await airportSearchApiServices
@@ -69,17 +75,47 @@ class ApiflightsController extends GetxController {
   airSearch({required FlightSearchDataModel flightSearchModel}) async {
     isLoading(true);
     flightList.clear();
+    String seachKey = "";
     dio.Response<dynamic> response = await airSearchApiServices
         .airSearchApiServices(flightSearchModel: flightSearchModel);
     isLoading(false);
-    if (response.statusCode == 200) {
+    if (response.data["Response_Header"]["Error_Code"] == "0000") {
       AirSearchModel airSearchModel = AirSearchModel.fromJson(response.data);
       flightList = airSearchModel.tripDetails.first.flights;
+      seachKey = airSearchModel.searchKey;
     }
+
     Get.to(ParNycSCreen(
       flightSearchDataModel: flightSearchModel,
+      searchKey: seachKey,
     ));
 
     update();
+  }
+
+  increaseAdultCount() {
+    adultsCount(adultsCount.value + 1);
+    update();
+  }
+
+  decreaseAdultCount() {
+    if (adultsCount.value == 1) {
+    } else {
+      adultsCount(adultsCount.value - 1);
+      update();
+    }
+  }
+
+  increaseChildCount() {
+    childsCount(childsCount.value + 1);
+    update();
+  }
+
+  decreaseChildCount() {
+    if (childsCount.value == 0) {
+    } else {
+      childsCount(childsCount.value - 1);
+      update();
+    }
   }
 }

@@ -63,6 +63,6 @@ abstract class BaseApiService {
   final String airSearchUrl =
       "https://bci.generation360tech.in/api/auth/flight_search";
 
-        final String airportSearch = "https://openflights.org/php/apsearch.php";
+  final String airportSearch = "https://openflights.org/php/apsearch.php";
 }
  
