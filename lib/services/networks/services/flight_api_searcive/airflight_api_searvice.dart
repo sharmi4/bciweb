@@ -29,8 +29,8 @@ class AirSearchApiServices extends BaseApiService {
               }),
           data: {
             "imei_number": "64654546546546",
-            "origin": flightSearchModel.fromIata,
-            "destination": flightSearchModel.toIata,
+            "origin": "MAA",
+            "destination": "COK",
             "travel_date": formatDate(
                 flightSearchModel.depatureDate, [mm, "/", dd, "/", yyyy]),
             "travel_type": 0,
@@ -45,6 +45,14 @@ class AirSearchApiServices extends BaseApiService {
       print("::::::::<--Air search-->::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
+      print(flightSearchModel.isOneWayOrRoundTrip);
+      print(flightSearchModel.adultsCount);
+      print(flightSearchModel.cabinClass);
+      print(flightSearchModel.depatureDate);
+      print(flightSearchModel.childCount);
+      print(flightSearchModel.toIata);
+      print(flightSearchModel.fromIata);
+
       responseJson = response;
     } on SocketException {
       print("no internet");

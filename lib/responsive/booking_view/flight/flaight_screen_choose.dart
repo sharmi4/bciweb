@@ -1,3 +1,4 @@
+import 'package:bciweb/models/flight_searchdatamodel.dart';
 import 'package:bciweb/responsive/booking_view/flight/search.dart';
 import 'package:flutter/material.dart';
 
@@ -83,6 +84,7 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                 ],
                                 borderRadius: BorderRadius.circular(5)),
                             child: GetBuilder<ApiflightsController>(builder: (_) {
+                              print(FlightSearchDataModel);
                               return apiflightsController.airports.isEmpty &&
                                       apiflightsController.airPortFound.isTrue
                                   ? const Center(

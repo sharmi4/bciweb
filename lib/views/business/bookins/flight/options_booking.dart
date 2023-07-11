@@ -804,7 +804,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: 5),
                                             child: Container(
-                                             height: MediaQuery.of(context).size.width*0.1,
+                                             height: MediaQuery.of(context).size.width*0.12,
                                              width: MediaQuery.of(context).size.width*0.18,
                                             decoration: BoxDecoration(
                                               color: kwhite,

@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:date_format/date_format.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/flaight _controller.dart';
+import '../../../../models/flight_searchdatamodel.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
@@ -73,6 +74,7 @@ class _BookingFlightState extends State<BookingFlight> {
  
   int increament = 0;
   int decrement = 0;
+  
  
   Future<void> _flaightselectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -108,6 +110,31 @@ class _BookingFlightState extends State<BookingFlight> {
   var falight2dobController = TextEditingController();
   var faligsearchController = TextEditingController();
   var faligsearch2Controller = TextEditingController();
+  
+       @override
+  void initState() {
+    super.initState();
+    
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    apiflightController.flightList.length;
+  }
+
+  setDefault() async {
+  apiflightController.adultsCount(1);
+  apiflightController.childsCount(0);
+  }
+  int wayindex=0;
+  
+        final apiflightController = Get.find<ApiflightsController>();
   @override
   Widget build(BuildContext context) {
     final flaightController=Get.find<FlaightController>();
@@ -117,7 +144,7 @@ class _BookingFlightState extends State<BookingFlight> {
       final flaightdetailsController=Get.find<FlaightDateSCotroller>();
 
     var size = MediaQuery.of(context).size;
-        final apiflightController = Get.find<ApiflightsController>();
+  
    
     return Scaffold( 
        appBar: PreferredSize(
@@ -249,7 +276,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                         padding: const EdgeInsets.only(left: 10),
                                                         child: Text(dropvalue2),
                                                       ),
-                                                        PopupMenuButton(
+                                                     PopupMenuButton(
                                                         child: Icon(Icons.arrow_drop_down_sharp),
                                                       itemBuilder: (context)=>[
                                                          PopupMenuItem(
@@ -277,15 +304,24 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 
                                                     ],
                                                     onSelected: (value){
+                                                    
+                                                      if(value == "One Way"){
+                                                            apiflightController.onwayOrTwoWay(0);
+                                                      }else{
+                                                        apiflightController.onwayOrTwoWay(1);
+                                                      }
+
                                                       setState(() {
                                                       dropvalue2=value.toString();
+                                                      
                                                       });
                                                     },
                                                     ),
                                                     
+                                                    
                                                     ],
                                                   ),
-                                                ),
+                                                ), 
                                                 Container(
                                                     height: 40,
                                                     width: MediaQuery.of(context).size.width*0.12,
@@ -297,6 +333,13 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     ),
                                                      child: TextField(
                                                         textInputAction: TextInputAction.next,
+                                                        onChanged:(value)async{
+                                                           if(value.length >1){
+                                                           await Future.delayed(Duration(milliseconds: 200));
+                                                              Get.find<ApiflightsController>()
+                                                              .seachAirport(keyWord: value);
+                                                           }
+                                                      },
                                                       controller: faligsearch2Controller,
                                                       decoration: InputDecoration(
                                                         hintText: 'Any Airport or City',
@@ -320,13 +363,22 @@ class _BookingFlightState extends State<BookingFlight> {
                                                          borderRadius: BorderRadius.circular(5)
                                                     ),
                                                     child: TextField(
+                                                      onChanged:(value)async{
+                                                           if(value.length >1){
+                                                           await Future.delayed(Duration(milliseconds: 200));
+                                                              Get.find<ApiflightsController>()
+                                                              .seachAirport(keyWord: value);
+                                                           }
+                                                      },
                                                         textInputAction: TextInputAction.next,
                                                       controller: faligsearchController,
                                                       decoration: InputDecoration(
                                                         hintText: 'Any Airport or City',
+                                                        
                                                         hintStyle: TextStyle(
                                                           fontSize: 14
                                                         ),
+                                                      
                                                         border: OutlineInputBorder(
                             
                                                         )
@@ -350,7 +402,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                           ,
                                                           children: [
                                                         
-                                                            Text('${formatDate(flaight2selectedDate,[dd,"/",mm,'/',yyyy])}'),
+                                                            Text('${formatDate(apiflightController.depatureDate,[dd,"/",mm,'/',yyyy])}'),
                                                             IconButton(onPressed: (){
                                                               _flaight2selectDate(context);
                                                             }, 
@@ -362,6 +414,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     ),
                                                     
                                                   ),
+                                                  if(apiflightController.onwayOrTwoWay==1)
                                                    Container(
                                                     height: 40,
                                                     width: MediaQuery.of(context).size.width*0.12,
@@ -379,7 +432,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                           ,
                                                           children: [
                                                         
-                                                            Text('${formatDate(flaightselectedDate,[dd,"/",mm,'/',yyyy])}'),
+                                                            Text('${formatDate(apiflightController.returnDate,[dd,"/",mm,'/',yyyy])}'),
                                                             IconButton(onPressed: (){
                                                               _flaightselectDate(context);
                                                             }, 
@@ -390,7 +443,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                       ),
                                                     ),
                                                     
-                                                  ),
+                                                                                                   ),
                                                    Container(
                                                     height: 40,
                                                     width: MediaQuery.of(context).size.width*0.12,
@@ -419,13 +472,13 @@ class _BookingFlightState extends State<BookingFlight> {
                                                           ),)),
                                                         
                                                          PopupMenuItem(
-                                                          value: 'Adults ${flaightController.cout.value}',
+                                                          value: 'Adults ${apiflightController.adultsCount.value}',
                                                           child: Row(
                                                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                             children: [
                                                           Row(
                                                             children: [
-                                                              Text('${flaightController.cout.value}'),
+                                                              Text('${apiflightController.adultsCount.value}'),
                                                               Text('Adults',
                                                               style: TextStyle(
                                                                 fontSize: 13
@@ -436,18 +489,18 @@ class _BookingFlightState extends State<BookingFlight> {
                                                             children: [
                                                               IconButton(
                                                                 onPressed: (){
-                                                                  flaightController.decrement();
-                                                                  flaightController.update();
+                                                                  apiflightController.decreaseAdultCount();
+                                                                  apiflightController.update();
                                                                 },
                                                                 icon: Icon(Icons.do_not_disturb_on_outlined)),
-                                                                Obx(()=> Text('${flaightController.cout.value}',
+                                                                Obx(()=> Text('${apiflightController.adultsCount.value}',
                                                           style: TextStyle(
                                                             fontSize: 14
                                                           ),)),
                                                           IconButton(
                                                             onPressed: (){
-                                                              flaightController.increament();
-                                                              flaightController.update();
+                                                              apiflightController.increaseAdultCount();
+                                                              apiflightController.update();
                                                             },
                                                             icon: Icon(Icons.add_circle_outline_outlined))
                                                             ],
@@ -470,19 +523,19 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                    children: [
                                                                      IconButton(
                                                             onPressed: (){
-                                                              flaight2Controller.decrement();
-                                                              flaight2Controller.update();
+                                                              apiflightController.decreaseChildCount();
+                                                              apiflightController.update();
                                                             },
                                                             icon: Icon(Icons.do_not_disturb_on_outlined)),
                             
-                                                             Obx(()=> Text('${flaight2Controller.cout.value}',
+                                                             Obx(()=> Text('${apiflightController.childsCount.value}',
                                                           style: TextStyle(
                                                             fontSize: 14
                                                           ),)),
                                                           IconButton(
                                                             onPressed: (){
-                                                              flaight2Controller.increament();
-                                                              flaight2Controller.update();
+                                                              apiflightController.increaseChildCount();
+                                                              apiflightController.update();
                                                             },
                                                             icon: Icon(Icons.add_circle_outline_outlined))
                                                                    ],
@@ -490,39 +543,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                          
                                                           ],
                                                          )),
-                                                         PopupMenuItem(
-                                                          child: Row(
-                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                                Text('Infants (Below 2 yrs)',
-                                                                style: TextStyle(
-                                                                  fontSize: 14
-                                                                ),),
-                                                                                                                           Row(
-                                                                   children: [
-                                                                     IconButton(
-                                                            onPressed: (){
-                                                              flaight3Controller.decrement();
-                                                              flaight3Controller.update();
-                                                            },
-                                                            icon: Icon(Icons.do_not_disturb_on_outlined)),
-                            
-                                                             Obx(()=> Text('${flaight3Controller.cout.value}',
-                                                          style: TextStyle(
-                                                            fontSize: 14
-                                                          ),)),
-                                                          IconButton(
-                                                            onPressed: (){
-                                                              flaight3Controller.increament();
-                                                              flaight3Controller.update();
-                                                            },
-                                                            icon: Icon(Icons.add_circle_outline_outlined))
-                                                                   ],
-                                                                 ),
-                                                          ],
-                                                         ),
-                                                         
-                                                         )
+                                                      
                                                 
                                                     ],
                                                     onSelected: (value){
@@ -599,10 +620,10 @@ class _BookingFlightState extends State<BookingFlight> {
                                                            ),
                                                         ],
                                                                                                      
-                                                                                               ),
+                                                    ),
                                                       ),
                                                      
-                                                                                           ),
+                                                      ),
                                                    )
                                               ],
                                             ),
@@ -624,7 +645,33 @@ class _BookingFlightState extends State<BookingFlight> {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Container(
+                                 apiflightController.isLoading.isTrue? Container(
+                                      height: 40,
+                                       width: MediaQuery.of(context).size.width*0.14,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(color: kwhite),
+                                        gradient: LinearGradient(colors: [
+                                        kOrange,
+                                        kyellow 
+                                                     ])
+                                                  ),
+                                                  child: GestureDetector(
+                                                    onTap: (){
+                                                      flaightshowController.flaightshowindex(1);
+                                                      flaightshowController.update();
+                                                      print('............');
+                                                      
+                                                    },
+                                                    child: Center(
+                                                      child: Text('SEARCH',
+                                                      style: TextStyle(
+                                                        color: kwhite,
+                                                        fontSize: 16
+                                                      ),
+                                                      textAlign: TextAlign.center,)),
+                                                  ),
+                                                ): Container(
                                       height: 40,
                                        width: MediaQuery.of(context).size.width*0.14,
                                         decoration: BoxDecoration(
@@ -639,6 +686,32 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     onTap: (){
                                                       flaightshowController.flaightshowindex(1);
                                                       flaightshowController.update();
+                                                  FlightSearchDataModel flightSearchDataModel =
+                              FlightSearchDataModel(
+                                  adultsCount: apiflightController
+                                      .adultsCount.value,
+                                  cabinClass: apiflightController
+                                      .cabinClassIndex.value,
+                                  fromName: apiflightController
+                                      .originFullName.value,
+                                  toName:
+                                      apiflightController
+                                          .destinationFullName.value,
+                                  childCount:
+                                      apiflightController.childsCount.value,
+                                  depatureDate:
+                                      apiflightController.depatureDate,
+                                  fromIata:
+                                      apiflightController.origin.value,
+                                  isOneWayOrRoundTrip:
+                                      apiflightController.wayIndex.value,
+                                  returnDate:
+                                      apiflightController.returnDate,
+                                  toIata: apiflightController
+                                      .destination.value);
+
+                          apiflightController.airSearch(
+                              flightSearchModel: flightSearchDataModel,ismobilorweb: false);
                                                     },
                                                     child: Center(
                                                       child: Text('SEARCH',
@@ -648,7 +721,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                       ),
                                                       textAlign: TextAlign.center,)),
                                                   ),
-                                                ),
+                                                )
                                 ],
                               ),
                                           )
@@ -1747,7 +1820,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                               
                                               mainAxisAlignment: MainAxisAlignment.center,
                                               children:[
-                                                Text('Thu,May8',
+                                                Text(formatDate(apiflightController.depatureDate, 
+                                                [DD,'',mm,'']),
                                                    style:TextStyle(
                                                   color:kblue,
                                             
@@ -1786,7 +1860,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                                
                                                mainAxisAlignment: MainAxisAlignment.center,
                                                children:[
-                                                 Text('Thu,May9',
+                                                 Text(formatDate(apiflightController.depatureDate,
+                                                  [DD,'',mm,'']),
                                                     style:TextStyle(
                                                    color:kblue,
                                              
@@ -1825,7 +1900,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                                
                                                mainAxisAlignment: MainAxisAlignment.center,
                                                children:[
-                                                 Text('Thu,May10',
+                                                 Text(formatDate(apiflightController.depatureDate, 
+                                                 [DD,'',mm,'']),
                                                     style:TextStyle(
                                                    color:kblue,
                                              
@@ -1864,7 +1940,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                                
                                                mainAxisAlignment: MainAxisAlignment.center,
                                                children:[
-                                                 Text('Thu,May11',
+                                                 Text(formatDate(apiflightController.depatureDate,
+                                                  [DD,'',mm,'']),
                                                     style:TextStyle(
                                                    color:kblue,
                                              
@@ -1903,14 +1980,15 @@ class _BookingFlightState extends State<BookingFlight> {
                                                
                                                mainAxisAlignment: MainAxisAlignment.center,
                                                children:[
-                                                 Text('Thu,May12',
+                                                 Text(formatDate(apiflightController.depatureDate, 
+                                                 [DD,'',mm,'']),
                                                     style:TextStyle(
                                                    color:kblue,
                                              
                                                  )),
                                                  Padding(
                                                    padding: const EdgeInsets.only(top:4),
-                                                   child: Text('₹ 6,123',
+                                                   child: Text('',
                                                    style:TextStyle(
                                                      color:kblue,
                                                      fontWeight: FontWeight.bold
@@ -2077,7 +2155,7 @@ class _BookingFlightState extends State<BookingFlight> {
                             Padding(
                               padding: const EdgeInsets.only(left: 20,top:40),
                               child: Container(
-                                height: MediaQuery.of(context).size.height*0.6,
+                                
                                 width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
                                 decoration: BoxDecoration(
                                   color: kwhite,
@@ -2089,1222 +2167,1257 @@ class _BookingFlightState extends State<BookingFlight> {
                                     )
                                   ]
                                 ),
-                                child: Column(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:20,left:20,),
-                                      child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
-                                        children: [
-                                          Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                child: GetBuilder<ApiflightsController>(
+                                  builder: (_){
+                                  return ListView.builder(
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    itemCount: apiflightController.flightList.length,
+                                    itemBuilder: (context,index){
+                                    return Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top:20,left:20,),
+                                          child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
                                             children: [
-                                              Text('Sorted By:',
-                                              style: TextStyle(
-                                                fontSize: 14
-                                              ),),
-                                                 Padding(
-                                                   padding: const EdgeInsets.only(top:20),
-                                                   child: Row(
-                                                     children:[ Image.asset('assets/images/bookingflaight.png',
-                                                          height: 35,fit:BoxFit.fitHeight,),
-                                                   
-                                                         Padding(
-                                                        padding: const EdgeInsets.only(left:10),
-                                                        child: Column(
-                                                            children: [
-                                                              Text('IndiGo',
-                                                              style: TextStyle(
-                                                                fontSize: 12,
-                                                                color:kblue,
-                                                                fontWeight: FontWeight.bold
-                                                              ),),
-                                                              Padding(
-                                                                padding: const EdgeInsets.only(top:4),
-                                                                child: Text('6E8282',
-                                                                style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  color:kblue,
-                                                                  fontWeight: FontWeight.bold
-                                                                ),),
-                                                              )
-                                                            ],
-                                                          ),
-                                                      ),
-                                                     ]
-                                                   ),
-                                                 )
-
-                                            ],
-                                          ),
-                                             Padding(
-                                               padding: const EdgeInsets.only(right:0),
-                                               child: Column(
+                                              Column(
                                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                                 children: [
-                                                   Text('Departure',
-                                                   style: TextStyle(
+                                                children: [
+                                                  Text('Sorted By:',
+                                                  style: TextStyle(
                                                     fontSize: 14
+                                                  ),),
+                                                     Padding(
+                                                       padding: const EdgeInsets.only(top:20),
+                                                       child: Row(
+                                                         children:[ Image.asset('assets/images/bookingflaight.png',
+                                                              height: 35,fit:BoxFit.fitHeight,),
+                                                       
+                                                             Padding(
+                                                            padding: const EdgeInsets.only(left:10),
+                                                            child: Column(
+                                                                children: [
+                                                                  Text(apiflightController.flightList[index].segments.first.airlineName,
+                                                                  style: TextStyle(
+                                                                    fontSize: 12,
+                                                                    color:kblue,
+                                                                    fontWeight: FontWeight.bold
+                                                                  ),),
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.only(top:4),
+                                                                    child: Text(apiflightController.flightList[index].segments.first.flightNumber,
+                                                                    style: TextStyle(
+                                                                      fontSize: 12,
+                                                                      color:kblue,
+                                                                      fontWeight: FontWeight.bold
+                                                                    ),),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                          ),
+                                                         ]
+                                                       ),
+                                                     )
+                                  
+                                                ],
+                                              ),
+                                                 Padding(
+                                                   padding: const EdgeInsets.only(right:0),
+                                                   child: Column(
+                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                     children: [
+                                                       Text('Departure',
+                                                       style: TextStyle(
+                                                        fontSize: 14
+                                                        ),),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top:20),
+                                                          child: Column(
+                                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                                            children:[
+                                                               Text(
+                                                          apiflightController.flightList[index].segments.first.departureDateTime.split(" ").last,
+                                                               style:TextStyle(
+                                                                color:kblue,
+                                                                fontSize: 15,
+                                                                fontWeight: FontWeight.bold
+                                                               )),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:4),
+                                                            child: Text(apiflightController.flightList[index].segments.first.originCity,
+                                                            style:TextStyle(
+                                                              color:kblue,
+                                                              fontSize: 12
+                                                            )),
+                                                          )
+                                                            ]
+                                                          ),
+                                                        )
+                                                       
+                                                     ],
+                                                   ),
+                                                 ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(right: 0),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text('Duration',
+                                                     style: TextStyle(
+                                                      fontSize: 14
                                                     ),),
                                                     Padding(
                                                       padding: const EdgeInsets.only(top:20),
                                                       child: Column(
-                                                        children:[
-                                                           Text('10:34',
-                                                           style:TextStyle(
-                                                            color:kblue,
-                                                            fontSize: 15,
-                                                            fontWeight: FontWeight.bold
-                                                           )),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:4),
-                                                        child: Text('Chennai',
-                                                        style:TextStyle(
-                                                          color:kblue,
-                                                          fontSize: 12
-                                                        )),
-                                                      )
-                                                        ]
-                                                      ),
-                                                    )
-                                                   
-                                                 ],
-                                               ),
-                                             ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(right: 0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Duration',
-                                                 style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:20),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text('02 h 50 m',
-                                                      style:TextStyle(
-                                                        fontSize: 12
-                                                      )),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:4),
-                                                        child: Container(
-                                                           height: 2,
-                                                            width:50,
-                                                            color:korange
-                                                            ),
-                                                      ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:4),
-                                                    child: Text('Non Stop',
-                                                    style:TextStyle(
-                                                      fontSize:12
-                                                    )),
-                                                  )
-                                                    ],
-                                                  ),
-                                                ),
-                                                
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(right:0),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Arrival',
-                                                 style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:20),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text('01:25',
-                                                      style:TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight: FontWeight.bold,
-                                                        color:kblue
-                                                      )),
-                                                       Padding(
-                                                         padding: const EdgeInsets.only(top:4),
-                                                         child: Text('New Delhi',
-                                                         style:TextStyle(
-                                                          fontSize:12
-                                                         )),
-                                                       )
-                                                    ],
-                                                  ),
-                                                ),
-                                               
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(right:60),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Price',
-                                                 style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:35),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                      Text('₹ 5,183',
-                                                      style:TextStyle(fontSize: 15,
-                                                      color:kblue,
-                                                      fontWeight: FontWeight.bold)),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(left:45),
-                                                        child: ElevatedButton(
-                                                          style: ElevatedButton.styleFrom(
-                                                            backgroundColor: korange
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(apiflightController.flightList[index].segments.first.duration,
+                                                          style:TextStyle(
+                                                            fontSize: 12
+                                                          )),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:4),
+                                                            child: Container(
+                                                               height: 2,
+                                                                width:50,
+                                                                color:korange
+                                                                ),
                                                           ),
-                                                          onPressed:(){
-                                                            Get.offAll(BookingOptionsScreen());
-                                                          } ,
-                                                           child: Text('Book')),
-                                                      )
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          
-                                        ],
-                                      ),
-                                    ),
-                                    ksizedbox10,
-                                    Divider(
-                                      thickness: 1,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left:20,top:10),
-                                      child: Row(
-                                        children: [
-                                          Text('Hide details',
-                                          style:TextStyle(fontSize:12,
-                                          color:korange)),
-                                         
-                                        ],
-                                      ),
-                                    ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(left:20),
-                                       child: Row(
-                                         children: [
-                                           Container(
-                                                  height: 1,
-                                                  width:65,
-                                                  color:korange
-                                                ),
-                                         ],
-                                       ),
-                                     ),
-                                     Padding(
-                                       padding: const EdgeInsets.only(top:20,left:20,right:20),
-                                       child: Container(
-                                                                                         
-                                       width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
-                                       decoration:BoxDecoration(
-                                        color:kwhite,
-                                        border:Border.all(
-                                          color:kgrey
-                                        )
-                                       ),
-                                       child: Column(
-                                        children:[
-                                          Padding(
-                                            padding: const EdgeInsets.only(left:20,top:10),
-                                            child: Row(
-                                              children:[
-                                                Text('Chennai → New Delhi Sun, 4 Jun',
-                                                style:TextStyle(
-                                                  fontSize:12
-                                                ))
-                                              ]
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top:10),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children:[
-                                                Padding(
-                                                  padding: const EdgeInsets.only(left:20),
-                                                  child: Image.asset('assets/images/bookingflaight.png',
-                                                  height:35,
-                                                  fit:BoxFit.fitHeight),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:40),
-                                                  child: Column(
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Text('CHE 10:34',
-                                                      style:TextStyle(
-                                                        fontSize:15,
-                                                        fontWeight: FontWeight.bold,
-                                                        color:kblue
-
-                                                      )),
                                                       Padding(
-                                                        padding: const EdgeInsets.only(top:5),
-                                                        child: Text('Sun, 12 May 2023',
+                                                        padding: const EdgeInsets.only(top:4),
+                                                        child:apiflightController.flightList[index].segments.length==1? Text('Non stop',
+                                    style: TextStyle(color: Color(0xff8C8AAF))):Text('${apiflightController.flightList[index].segments.length - 1} stop,via ${apiflightController.flightList[index].segments.first.destinationCity}',
                                                         style:TextStyle(
                                                           fontSize:12
                                                         )),
                                                       )
-                                                    ],
-                                                  ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    
+                                                  ],
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:40),
-                                                  child: Column(
-                                                    children:[
-                                                      Icon(Icons.schedule_outlined),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:5),
-                                                        child: Text('02 h 50 m',
-                                                        style:TextStyle(
-                                                          fontSize:12
-                                                        )),
-                                                      )
-                                                    ]
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:40),
-                                                  child: Column(
-                                                    children: [
-                                                      Text('DEL 01:25',
-                                                      style:TextStyle(
-                                                        fontSize:15,
-                                                        fontWeight: FontWeight.bold,
-                                                        color:kblue
-                                                      )),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:5),
-                                                        child: Text('Sun, 12 May 2023',
-                                                        style:TextStyle(
-                                                          fontSize:12
-                                                        )),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(right:60,top:40),
-                                                  child: Column(
-                                                    children:[
-                                                      Text('Check-in baggage',
-                                                      style:TextStyle(
-                                                        fontSize:12,
-                                                
-                                                      )),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:5),
-                                                        child: Text('Cabin baggage',
-                                                        style:TextStyle(
-                                                             fontSize:12
-                                                        )),
-                                                      )
-                                                    ]
-                                                  ),
-                                                )
-                                                
-                                              ]
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(left:20),
-                                            child: Row(
-                                              children:[
-                                                Column(
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:0),
+                                                child: Column(
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Text('Indigo airline',
-                                                    style:TextStyle(
-                                                      fontSize: 12
-                                                    )),
+                                                    Text('Arrival',
+                                                     style: TextStyle(
+                                                      fontSize: 14
+                                                    ),),
                                                     Padding(
-                                                      padding: const EdgeInsets.only(top:4),
-                                                      child: Text('Indigo-23',style:TextStyle(
-                                                        fontSize: 12
-                                                      )),
+                                                      padding: const EdgeInsets.only(top:20),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(apiflightController.flightList[index].segments.first.arrivalDateTime.split(" ").last,
+                                                          style:TextStyle(
+                                                            fontSize: 15,
+                                                            fontWeight: FontWeight.bold,
+                                                            color:kblue
+                                                          )),
+                                                           Padding(
+                                                             padding: const EdgeInsets.only(top:4),
+                                                             child: Text(apiflightController.flightList[index].segments.first.destination,
+                                                             style:TextStyle(
+                                                              fontSize:12
+                                                             )),
+                                                           )
+                                                        ],
+                                                      ),
                                                     ),
+                                                   
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(right:60),
+                                                child: Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text('Price',
+                                                     style: TextStyle(
+                                                      fontSize: 14
+                                                    ),),
                                                     Padding(
-                                                      padding: const EdgeInsets.only(top:4),
-                                                      child: Text('Economy',
-                                                      style:TextStyle(
-                                                        fontSize: 12
-                                                      )),
+                                                      padding: const EdgeInsets.only(top:35),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                        children: [
+                                                          Text('₹ ${apiflightController.flightList[index].fares.first.fareDetails.first.totalAmount}',
+                                                          style:TextStyle(fontSize: 15,
+                                                          color:kblue,
+                                                          fontWeight: FontWeight.bold)),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(left:45),
+                                                            child: ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                backgroundColor: korange
+                                                              ),
+                                                              onPressed:(){
+                                                                Get.offAll(BookingOptionsScreen());
+                                                              } ,
+                                                               child: Text('Book')),
+                                                          )
+                                                        ],
+                                                      ),
                                                     )
                                                   ],
                                                 ),
-                                         
-                                              ]
-                                            ),
+                                              ),
+                                              
+                                            ],
                                           ),
-                                           ksizedbox10,
-                                        ]
-                                       ),
-                                       ),
-                                     )
-                                   
-                                  ],
+                                        ),
+                                        ksizedbox10,
+                                        Divider(
+                                          thickness: 1,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left:20,top:10),
+                                          child: Row(
+                                            children: [
+                                              Text('Hide details',
+                                              style:TextStyle(fontSize:12,
+                                              color:korange)),
+                                             
+                                            ],
+                                          ),
+                                        ),
+                                         Padding(
+                                           padding: const EdgeInsets.only(left:20),
+                                           child: Row(
+                                             children: [
+                                               Container(
+                                                      height: 1,
+                                                      width:65,
+                                                      color:korange
+                                                    ),
+                                             ],
+                                           ),
+                                         ),
+                                         Padding(
+                                           padding: const EdgeInsets.only(top:20,left:20,right:20),
+                                           child: Container(
+                                                                                             
+                                           width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
+                                           decoration:BoxDecoration(
+                                            color:kwhite,
+                                            border:Border.all(
+                                              color:kgrey
+                                            )
+                                           ),
+                                           child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children:[
+                                              Padding(
+                                                padding: const EdgeInsets.only(left:20,top:10),
+                                                child: Row(
+                                                  children:[
+                                                    Text('Chennai → New Delhi Sun, 4 Jun',
+                                                    style:TextStyle(
+                                                      fontSize:12
+                                                    ))
+                                                  ]
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(top:10),
+                                                child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children:[
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left:20),
+                                                      child: Image.asset('assets/images/bookingflaight.png',
+                                                      height:35,
+                                                      fit:BoxFit.fitHeight),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top:40),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('${apiflightController.flightList[index].segments.first.originCity} ${apiflightController.flightList[index].segments.first.departureDateTime.split(' ').last}',
+                                                          style:TextStyle(
+                                                            fontSize:15,
+                                                            fontWeight: FontWeight.bold,
+                                                            color:kblue
+                                  
+                                                          )),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:5),
+                                                            child: Text(
+                                                            formatDate(apiflightController.splitdate(apiflightController.flightList[index].segments.first.departureDateTime.split(' ').first), 
+                                                            [DD, ',', dd,' ',   MM,' ', yyyy,'']),
+                                                            style:TextStyle(
+                                                              fontSize:12
+                                                            )),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top:40),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children:[
+                                                          Icon(Icons.schedule_outlined),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:5),
+                                                            child: Text(apiflightController.flightList[index].segments.first.duration,
+                                                            style:TextStyle(
+                                                              fontSize:12
+                                                            )),
+                                                          )
+                                                        ]
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(top:40),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text('${apiflightController.flightList[index].segments.first.destination} ${apiflightController.flightList[index].segments.first.arrivalDateTime.split(' ').last}',
+                                                          style:TextStyle(
+                                                            fontSize:15,
+                                                            fontWeight: FontWeight.bold,
+                                                            color:kblue
+                                                          )),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:5),
+                                                            child: Text(formatDate(apiflightController.splitdate(apiflightController.flightList[index].segments.first.arrivalDateTime.split(' ').first), 
+                                                            [DD, ',',dd, ' ',MM,' ',yyyy]),
+                                                            style:TextStyle(
+                                                              fontSize:12
+                                                            )),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(right:60,top:50),
+                                                      child: Column(
+                                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                                        
+                                                        children:[
+                                                          Text(
+                                            'Baggage',
+                                            style: TextStyle(
+                                                fontSize: 17,
+                                                color: kblue,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:3),
+                                                            child: Text(  'Check In Baggage: ${apiflightController.flightList[index].fares.last.fareDetails.last.freeBaggage.checkInBaggage}',
+                                                            style:TextStyle(
+                                                              fontSize:13,
+                                                              color: kblue
+                                                                                                              
+                                                            )),
+                                                          ),
+                                                          Padding(
+                                                            padding: const EdgeInsets.only(top:5),
+                                                            child: Text('Hand Baggage: ${apiflightController.flightList[index].fares.last.fareDetails.last.freeBaggage.handBaggage}',
+                                                            style:TextStyle(
+                                                                 fontSize:13,
+                                                                 color:kblue,
+                                                                 
+                                                            )),
+                                                          )
+                                                        ]
+                                                      ),
+                                                    )
+                                                    
+                                                  ]
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(left:20),
+                                                child: Row(
+                                                  children:[
+                                                    Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text('Indigo airline',
+                                                        style:TextStyle(
+                                                          fontSize: 12
+                                                        )),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top:4),
+                                                          child: Text('Indigo-23',style:TextStyle(
+                                                            fontSize: 12
+                                                          )),
+                                                        ),
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(top:4),
+                                                          child: Text('Economy',
+                                                          style:TextStyle(
+                                                            fontSize: 12
+                                                          )),
+                                                        )
+                                                      ],
+                                                    ),
+                                             
+                                                  ]
+                                                ),
+                                              ),
+                                               ksizedbox10,
+                                            ]
+                                           ),
+                                           ),
+                                         )
+                                       
+                                      ],
+                                    );
+                                    }
+                                  );
+                                  }
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top:40,left:20),
-                              child: Container(
-                                  height: MediaQuery.of(context).size.height*0.2,
-                                  width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
-                                  decoration: BoxDecoration(
-                                    color: kwhite,
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                        offset: Offset(0.0, 0.75),
-                                        blurRadius: 5,
-                                        color:kgrey
-                                      )
-                                    ],
+                            // Padding(
+                            //   padding: const EdgeInsets.only(top:40,left:20),
+                            //   child: Container(
+                            //       height: MediaQuery.of(context).size.height*0.2,
+                            //       width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
+                            //       decoration: BoxDecoration(
+                            //         color: kwhite,
+                            //         boxShadow: <BoxShadow>[
+                            //           BoxShadow(
+                            //             offset: Offset(0.0, 0.75),
+                            //             blurRadius: 5,
+                            //             color:kgrey
+                            //           )
+                            //         ],
                                 
-                                  ),
-                                  child:Padding(
-                                    padding: const EdgeInsets.only(top:20,left:20),
-                                    child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Sorted By:',
-                                                style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                   Padding(
-                                                     padding: const EdgeInsets.only(top:20),
-                                                     child: Row(
-                                                       children:[ Image.asset('assets/images/bookingflaight.png',
-                                                            height: 35,fit:BoxFit.fitHeight,),
+                            //       ),
+                            //       child:Padding(
+                            //         padding: const EdgeInsets.only(top:20,left:20),
+                            //         child: Row(
+                            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
+                            //               children: [
+                            //                 Column(
+                            //                   crossAxisAlignment: CrossAxisAlignment.start,
+                            //                   children: [
+                            //                     Text('Sorted By:',
+                            //                     style: TextStyle(
+                            //                       fontSize: 14
+                            //                     ),),
+                            //                        Padding(
+                            //                          padding: const EdgeInsets.only(top:20),
+                            //                          child: Row(
+                            //                            children:[ Image.asset('assets/images/bookingflaight.png',
+                            //                                 height: 35,fit:BoxFit.fitHeight,),
                                                      
-                                                           Padding(
-                                                          padding: const EdgeInsets.only(left:10),
-                                                          child: Column(
-                                                              children: [
-                                                                Text('IndiGo',
-                                                                style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  color:kblue,
-                                                                  fontWeight: FontWeight.bold
-                                                                ),),
-                                                                Padding(
-                                                                  padding: const EdgeInsets.only(top:4),
-                                                                  child: Text('6E8282',
-                                                                  style: TextStyle(
-                                                                    fontSize: 12,
-                                                                    color:kblue,
-                                                                    fontWeight: FontWeight.bold
-                                                                  ),),
-                                                                )
-                                                              ],
-                                                            ),
-                                                        ),
-                                                       ]
-                                                     ),
-                                                   )
+                            //                                Padding(
+                            //                               padding: const EdgeInsets.only(left:10),
+                            //                               child: Column(
+                            //                                   children: [
+                            //                                     Text('IndiGo',
+                            //                                     style: TextStyle(
+                            //                                       fontSize: 12,
+                            //                                       color:kblue,
+                            //                                       fontWeight: FontWeight.bold
+                            //                                     ),),
+                            //                                     Padding(
+                            //                                       padding: const EdgeInsets.only(top:4),
+                            //                                       child: Text('6E8282',
+                            //                                       style: TextStyle(
+                            //                                         fontSize: 12,
+                            //                                         color:kblue,
+                            //                                         fontWeight: FontWeight.bold
+                            //                                       ),),
+                            //                                     )
+                            //                                   ],
+                            //                                 ),
+                            //                             ),
+                            //                            ]
+                            //                          ),
+                            //                        )
                                   
-                                              ],
-                                            ),
-                                               Padding(
-                                                 padding: const EdgeInsets.only(right:0),
-                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                   children: [
-                                                     Text('Departure',
-                                                     style: TextStyle(
-                                                      fontSize: 14
-                                                      ),),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:20),
-                                                        child: Column(
-                                                          children:[
-                                                             Text('10:34',
-                                                             style:TextStyle(
-                                                              color:kblue,
-                                                              fontSize: 15,
-                                                              fontWeight: FontWeight.bold
-                                                             )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Text('Chennai',
-                                                          style:TextStyle(
-                                                            color:kblue,
-                                                            fontSize: 12
-                                                          )),
-                                                        )
-                                                          ]
-                                                        ),
-                                                      )
+                            //                   ],
+                            //                 ),
+                            //                    Padding(
+                            //                      padding: const EdgeInsets.only(right:0),
+                            //                      child: Column(
+                            //                       crossAxisAlignment: CrossAxisAlignment.start,
+                            //                        children: [
+                            //                          Text('Departure',
+                            //                          style: TextStyle(
+                            //                           fontSize: 14
+                            //                           ),),
+                            //                           Padding(
+                            //                             padding: const EdgeInsets.only(top:20),
+                            //                             child: Column(
+                            //                               children:[
+                            //                                  Text('10:34',
+                            //                                  style:TextStyle(
+                            //                                   color:kblue,
+                            //                                   fontSize: 15,
+                            //                                   fontWeight: FontWeight.bold
+                            //                                  )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Text('Chennai',
+                            //                               style:TextStyle(
+                            //                                 color:kblue,
+                            //                                 fontSize: 12
+                            //                               )),
+                            //                             )
+                            //                               ]
+                            //                             ),
+                            //                           )
                                                      
-                                                   ],
-                                                 ),
-                                               ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right: 0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Duration',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('02 h 50 m',
-                                                        style:TextStyle(
-                                                          fontSize: 12
-                                                        )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Container(
-                                                             height: 2,
-                                                              width:50,
-                                                              color:korange
-                                                              ),
-                                                        ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(top:4),
-                                                      child: Text('Non Stop',
-                                                      style:TextStyle(
-                                                        fontSize:12
-                                                      )),
-                                                    )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                        ],
+                            //                      ),
+                            //                    ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right: 0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Duration',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('02 h 50 m',
+                            //                             style:TextStyle(
+                            //                               fontSize: 12
+                            //                             )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Container(
+                            //                                  height: 2,
+                            //                                   width:50,
+                            //                                   color:korange
+                            //                                   ),
+                            //                             ),
+                            //                         Padding(
+                            //                           padding: const EdgeInsets.only(top:4),
+                            //                           child: Text('Non Stop',
+                            //                           style:TextStyle(
+                            //                             fontSize:12
+                            //                           )),
+                            //                         )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                   
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Arrival',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('01:25',
-                                                        style:TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight: FontWeight.bold,
-                                                          color:kblue
-                                                        )),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(top:4),
-                                                           child: Text('New Delhi',
-                                                           style:TextStyle(
-                                                            fontSize:12
-                                                           )),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Arrival',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('01:25',
+                            //                             style:TextStyle(
+                            //                               fontSize: 15,
+                            //                               fontWeight: FontWeight.bold,
+                            //                               color:kblue
+                            //                             )),
+                            //                              Padding(
+                            //                                padding: const EdgeInsets.only(top:4),
+                            //                                child: Text('New Delhi',
+                            //                                style:TextStyle(
+                            //                                 fontSize:12
+                            //                                )),
+                            //                              )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                  
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:60),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Price',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:35),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        Text('₹ 5,183',
-                                                        style:TextStyle(fontSize: 15,
-                                                        color:kblue,
-                                                        fontWeight: FontWeight.bold)),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(left:45),
-                                                          child: ElevatedButton(
-                                                            style: ElevatedButton.styleFrom(
-                                                              backgroundColor: korange
-                                                            ),
-                                                            onPressed:(){
-                                                              Get.offAll(BookingOptionsScreen());
-                                                            } ,
-                                                             child: Text('Book')),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:60),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Price',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:35),
+                            //                         child: Row(
+                            //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //                           children: [
+                            //                             Text('₹ 5,183',
+                            //                             style:TextStyle(fontSize: 15,
+                            //                             color:kblue,
+                            //                             fontWeight: FontWeight.bold)),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(left:45),
+                            //                               child: ElevatedButton(
+                            //                                 style: ElevatedButton.styleFrom(
+                            //                                   backgroundColor: korange
+                            //                                 ),
+                            //                                 onPressed:(){
+                            //                                   Get.offAll(BookingOptionsScreen());
+                            //                                 } ,
+                            //                                  child: Text('Book')),
+                            //                             )
+                            //                           ],
+                            //                         ),
+                            //                       )
+                            //                     ],
+                            //                   ),
+                            //                 ),
                                             
-                                          ],
-                                        ),
-                                  ),
-                              ),
-                            ),
-                             Padding(
-                              padding: const EdgeInsets.only(top:40,left:20),
-                              child: Container(
-                                  height: MediaQuery.of(context).size.height*0.2,
-                                  width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
-                                  decoration: BoxDecoration(
-                                    color: kwhite,
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                        offset: Offset(0.0, 0.75),
-                                        blurRadius: 5,
-                                        color:kgrey
-                                      )
-                                    ],
+                            //               ],
+                            //             ),
+                            //       ),
+                            //   ),
+                            // ),
+                            //  Padding(
+                            //   padding: const EdgeInsets.only(top:40,left:20),
+                            //   child: Container(
+                            //       height: MediaQuery.of(context).size.height*0.2,
+                            //       width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
+                            //       decoration: BoxDecoration(
+                            //         color: kwhite,
+                            //         boxShadow: <BoxShadow>[
+                            //           BoxShadow(
+                            //             offset: Offset(0.0, 0.75),
+                            //             blurRadius: 5,
+                            //             color:kgrey
+                            //           )
+                            //         ],
                                 
-                                  ),
-                                  child:Padding(
-                                    padding: const EdgeInsets.only(top:20,left:20),
-                                    child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Sorted By:',
-                                                style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                   Padding(
-                                                     padding: const EdgeInsets.only(top:20),
-                                                     child: Row(
-                                                       children:[ Image.asset('assets/images/bookingflaight.png',
-                                                            height: 35,fit:BoxFit.fitHeight,),
+                            //       ),
+                            //       child:Padding(
+                            //         padding: const EdgeInsets.only(top:20,left:20),
+                            //         child: Row(
+                            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
+                            //               children: [
+                            //                 Column(
+                            //                   crossAxisAlignment: CrossAxisAlignment.start,
+                            //                   children: [
+                            //                     Text('Sorted By:',
+                            //                     style: TextStyle(
+                            //                       fontSize: 14
+                            //                     ),),
+                            //                        Padding(
+                            //                          padding: const EdgeInsets.only(top:20),
+                            //                          child: Row(
+                            //                            children:[ Image.asset('assets/images/bookingflaight.png',
+                            //                                 height: 35,fit:BoxFit.fitHeight,),
                                                      
-                                                           Padding(
-                                                          padding: const EdgeInsets.only(left:10),
-                                                          child: Column(
-                                                              children: [
-                                                                Text('IndiGo',
-                                                                style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  color:kblue,
-                                                                  fontWeight: FontWeight.bold
-                                                                ),),
-                                                                Padding(
-                                                                  padding: const EdgeInsets.only(top:4),
-                                                                  child: Text('6E8282',
-                                                                  style: TextStyle(
-                                                                    fontSize: 12,
-                                                                    color:kblue,
-                                                                    fontWeight: FontWeight.bold
-                                                                  ),),
-                                                                )
-                                                              ],
-                                                            ),
-                                                        ),
-                                                       ]
-                                                     ),
-                                                   )
+                            //                                Padding(
+                            //                               padding: const EdgeInsets.only(left:10),
+                            //                               child: Column(
+                            //                                   children: [
+                            //                                     Text('IndiGo',
+                            //                                     style: TextStyle(
+                            //                                       fontSize: 12,
+                            //                                       color:kblue,
+                            //                                       fontWeight: FontWeight.bold
+                            //                                     ),),
+                            //                                     Padding(
+                            //                                       padding: const EdgeInsets.only(top:4),
+                            //                                       child: Text('6E8282',
+                            //                                       style: TextStyle(
+                            //                                         fontSize: 12,
+                            //                                         color:kblue,
+                            //                                         fontWeight: FontWeight.bold
+                            //                                       ),),
+                            //                                     )
+                            //                                   ],
+                            //                                 ),
+                            //                             ),
+                            //                            ]
+                            //                          ),
+                            //                        )
                                   
-                                              ],
-                                            ),
-                                               Padding(
-                                                 padding: const EdgeInsets.only(right:0),
-                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                   children: [
-                                                     Text('Departure',
-                                                     style: TextStyle(
-                                                      fontSize: 14
-                                                      ),),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:20),
-                                                        child: Column(
-                                                          children:[
-                                                             Text('10:34',
-                                                             style:TextStyle(
-                                                              color:kblue,
-                                                              fontSize: 15,
-                                                              fontWeight: FontWeight.bold
-                                                             )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Text('Chennai',
-                                                          style:TextStyle(
-                                                            color:kblue,
-                                                            fontSize: 12
-                                                          )),
-                                                        )
-                                                          ]
-                                                        ),
-                                                      )
+                            //                   ],
+                            //                 ),
+                            //                    Padding(
+                            //                      padding: const EdgeInsets.only(right:0),
+                            //                      child: Column(
+                            //                       crossAxisAlignment: CrossAxisAlignment.start,
+                            //                        children: [
+                            //                          Text('Departure',
+                            //                          style: TextStyle(
+                            //                           fontSize: 14
+                            //                           ),),
+                            //                           Padding(
+                            //                             padding: const EdgeInsets.only(top:20),
+                            //                             child: Column(
+                            //                               children:[
+                            //                                  Text('10:34',
+                            //                                  style:TextStyle(
+                            //                                   color:kblue,
+                            //                                   fontSize: 15,
+                            //                                   fontWeight: FontWeight.bold
+                            //                                  )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Text('Chennai',
+                            //                               style:TextStyle(
+                            //                                 color:kblue,
+                            //                                 fontSize: 12
+                            //                               )),
+                            //                             )
+                            //                               ]
+                            //                             ),
+                            //                           )
                                                      
-                                                   ],
-                                                 ),
-                                               ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right: 0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Duration',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('02 h 50 m',
-                                                        style:TextStyle(
-                                                          fontSize: 12
-                                                        )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Container(
-                                                             height: 2,
-                                                              width:50,
-                                                              color:korange
-                                                              ),
-                                                        ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(top:4),
-                                                      child: Text('Non Stop',
-                                                      style:TextStyle(
-                                                        fontSize:12
-                                                      )),
-                                                    )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                        ],
+                            //                      ),
+                            //                    ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right: 0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Duration',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('02 h 50 m',
+                            //                             style:TextStyle(
+                            //                               fontSize: 12
+                            //                             )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Container(
+                            //                                  height: 2,
+                            //                                   width:50,
+                            //                                   color:korange
+                            //                                   ),
+                            //                             ),
+                            //                         Padding(
+                            //                           padding: const EdgeInsets.only(top:4),
+                            //                           child: Text('Non Stop',
+                            //                           style:TextStyle(
+                            //                             fontSize:12
+                            //                           )),
+                            //                         )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                   
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Arrival',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('01:25',
-                                                        style:TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight: FontWeight.bold,
-                                                          color:kblue
-                                                        )),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(top:4),
-                                                           child: Text('New Delhi',
-                                                           style:TextStyle(
-                                                            fontSize:12
-                                                           )),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Arrival',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('01:25',
+                            //                             style:TextStyle(
+                            //                               fontSize: 15,
+                            //                               fontWeight: FontWeight.bold,
+                            //                               color:kblue
+                            //                             )),
+                            //                              Padding(
+                            //                                padding: const EdgeInsets.only(top:4),
+                            //                                child: Text('New Delhi',
+                            //                                style:TextStyle(
+                            //                                 fontSize:12
+                            //                                )),
+                            //                              )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                  
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:60),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Price',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:35),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        Text('₹ 5,183',
-                                                        style:TextStyle(fontSize: 15,
-                                                        color:kblue,
-                                                        fontWeight: FontWeight.bold)),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(left:45),
-                                                          child: ElevatedButton(
-                                                            style: ElevatedButton.styleFrom(
-                                                              backgroundColor: korange
-                                                            ),
-                                                            onPressed:(){} ,
-                                                             child: Text('Book')),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:60),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Price',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:35),
+                            //                         child: Row(
+                            //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //                           children: [
+                            //                             Text('₹ 5,183',
+                            //                             style:TextStyle(fontSize: 15,
+                            //                             color:kblue,
+                            //                             fontWeight: FontWeight.bold)),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(left:45),
+                            //                               child: ElevatedButton(
+                            //                                 style: ElevatedButton.styleFrom(
+                            //                                   backgroundColor: korange
+                            //                                 ),
+                            //                                 onPressed:(){} ,
+                            //                                  child: Text('Book')),
+                            //                             )
+                            //                           ],
+                            //                         ),
+                            //                       )
+                            //                     ],
+                            //                   ),
+                            //                 ),
                                             
-                                          ],
-                                        ),
-                                  ),
-                              ),
-                            ),
+                            //               ],
+                            //             ),
+                            //       ),
+                            //   ),
+                            // ),
                             
-                             Padding(
-                              padding: const EdgeInsets.only(top:40,left:20),
-                              child: Container(
-                                  height: MediaQuery.of(context).size.height*0.2,
-                                  width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
-                                  decoration: BoxDecoration(
-                                    color: kwhite,
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                        offset: Offset(0.0, 0.75),
-                                        blurRadius: 5,
-                                        color:kgrey
-                                      )
-                                    ],
+                            //  Padding(
+                            //   padding: const EdgeInsets.only(top:40,left:20),
+                            //   child: Container(
+                            //       height: MediaQuery.of(context).size.height*0.2,
+                            //       width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
+                            //       decoration: BoxDecoration(
+                            //         color: kwhite,
+                            //         boxShadow: <BoxShadow>[
+                            //           BoxShadow(
+                            //             offset: Offset(0.0, 0.75),
+                            //             blurRadius: 5,
+                            //             color:kgrey
+                            //           )
+                            //         ],
                                 
-                                  ),
-                                  child:Padding(
-                                    padding: const EdgeInsets.only(top:20,left:20),
-                                    child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Sorted By:',
-                                                style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                   Padding(
-                                                     padding: const EdgeInsets.only(top:20),
-                                                     child: Row(
-                                                       children:[ Image.asset('assets/images/bookingflaight.png',
-                                                            height: 35,fit:BoxFit.fitHeight,),
+                            //       ),
+                            //       child:Padding(
+                            //         padding: const EdgeInsets.only(top:20,left:20),
+                            //         child: Row(
+                            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
+                            //               children: [
+                            //                 Column(
+                            //                   crossAxisAlignment: CrossAxisAlignment.start,
+                            //                   children: [
+                            //                     Text('Sorted By:',
+                            //                     style: TextStyle(
+                            //                       fontSize: 14
+                            //                     ),),
+                            //                        Padding(
+                            //                          padding: const EdgeInsets.only(top:20),
+                            //                          child: Row(
+                            //                            children:[ Image.asset('assets/images/bookingflaight.png',
+                            //                                 height: 35,fit:BoxFit.fitHeight,),
                                                      
-                                                           Padding(
-                                                          padding: const EdgeInsets.only(left:10),
-                                                          child: Column(
-                                                              children: [
-                                                                Text('IndiGo',
-                                                                style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  color:kblue,
-                                                                  fontWeight: FontWeight.bold
-                                                                ),),
-                                                                Padding(
-                                                                  padding: const EdgeInsets.only(top:4),
-                                                                  child: Text('6E8282',
-                                                                  style: TextStyle(
-                                                                    fontSize: 12,
-                                                                    color:kblue,
-                                                                    fontWeight: FontWeight.bold
-                                                                  ),),
-                                                                )
-                                                              ],
-                                                            ),
-                                                        ),
-                                                       ]
-                                                     ),
-                                                   )
+                            //                                Padding(
+                            //                               padding: const EdgeInsets.only(left:10),
+                            //                               child: Column(
+                            //                                   children: [
+                            //                                     Text('IndiGo',
+                            //                                     style: TextStyle(
+                            //                                       fontSize: 12,
+                            //                                       color:kblue,
+                            //                                       fontWeight: FontWeight.bold
+                            //                                     ),),
+                            //                                     Padding(
+                            //                                       padding: const EdgeInsets.only(top:4),
+                            //                                       child: Text('6E8282',
+                            //                                       style: TextStyle(
+                            //                                         fontSize: 12,
+                            //                                         color:kblue,
+                            //                                         fontWeight: FontWeight.bold
+                            //                                       ),),
+                            //                                     )
+                            //                                   ],
+                            //                                 ),
+                            //                             ),
+                            //                            ]
+                            //                          ),
+                            //                        )
                                   
-                                              ],
-                                            ),
-                                               Padding(
-                                                 padding: const EdgeInsets.only(right:0),
-                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                   children: [
-                                                     Text('Departure',
-                                                     style: TextStyle(
-                                                      fontSize: 14
-                                                      ),),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:20),
-                                                        child: Column(
-                                                          children:[
-                                                             Text('10:34',
-                                                             style:TextStyle(
-                                                              color:kblue,
-                                                              fontSize: 15,
-                                                              fontWeight: FontWeight.bold
-                                                             )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Text('Chennai',
-                                                          style:TextStyle(
-                                                            color:kblue,
-                                                            fontSize: 12
-                                                          )),
-                                                        )
-                                                          ]
-                                                        ),
-                                                      )
+                            //                   ],
+                            //                 ),
+                            //                    Padding(
+                            //                      padding: const EdgeInsets.only(right:0),
+                            //                      child: Column(
+                            //                       crossAxisAlignment: CrossAxisAlignment.start,
+                            //                        children: [
+                            //                          Text('Departure',
+                            //                          style: TextStyle(
+                            //                           fontSize: 14
+                            //                           ),),
+                            //                           Padding(
+                            //                             padding: const EdgeInsets.only(top:20),
+                            //                             child: Column(
+                            //                               children:[
+                            //                                  Text('10:34',
+                            //                                  style:TextStyle(
+                            //                                   color:kblue,
+                            //                                   fontSize: 15,
+                            //                                   fontWeight: FontWeight.bold
+                            //                                  )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Text('Chennai',
+                            //                               style:TextStyle(
+                            //                                 color:kblue,
+                            //                                 fontSize: 12
+                            //                               )),
+                            //                             )
+                            //                               ]
+                            //                             ),
+                            //                           )
                                                      
-                                                   ],
-                                                 ),
-                                               ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right: 0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Duration',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('02 h 50 m',
-                                                        style:TextStyle(
-                                                          fontSize: 12
-                                                        )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Container(
-                                                             height: 2,
-                                                              width:50,
-                                                              color:korange
-                                                              ),
-                                                        ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(top:4),
-                                                      child: Text('Non Stop',
-                                                      style:TextStyle(
-                                                        fontSize:12
-                                                      )),
-                                                    )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                        ],
+                            //                      ),
+                            //                    ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right: 0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Duration',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('02 h 50 m',
+                            //                             style:TextStyle(
+                            //                               fontSize: 12
+                            //                             )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Container(
+                            //                                  height: 2,
+                            //                                   width:50,
+                            //                                   color:korange
+                            //                                   ),
+                            //                             ),
+                            //                         Padding(
+                            //                           padding: const EdgeInsets.only(top:4),
+                            //                           child: Text('Non Stop',
+                            //                           style:TextStyle(
+                            //                             fontSize:12
+                            //                           )),
+                            //                         )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                   
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Arrival',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('01:25',
-                                                        style:TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight: FontWeight.bold,
-                                                          color:kblue
-                                                        )),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(top:4),
-                                                           child: Text('New Delhi',
-                                                           style:TextStyle(
-                                                            fontSize:12
-                                                           )),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Arrival',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('01:25',
+                            //                             style:TextStyle(
+                            //                               fontSize: 15,
+                            //                               fontWeight: FontWeight.bold,
+                            //                               color:kblue
+                            //                             )),
+                            //                              Padding(
+                            //                                padding: const EdgeInsets.only(top:4),
+                            //                                child: Text('New Delhi',
+                            //                                style:TextStyle(
+                            //                                 fontSize:12
+                            //                                )),
+                            //                              )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                  
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:60),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Price',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:35),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        Text('₹ 5,183',
-                                                        style:TextStyle(fontSize: 15,
-                                                        color:kblue,
-                                                        fontWeight: FontWeight.bold)),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(left:45),
-                                                          child: ElevatedButton(
-                                                            style: ElevatedButton.styleFrom(
-                                                              backgroundColor: korange
-                                                            ),
-                                                            onPressed:(){} ,
-                                                             child: Text('Book')),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:60),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Price',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:35),
+                            //                         child: Row(
+                            //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //                           children: [
+                            //                             Text('₹ 5,183',
+                            //                             style:TextStyle(fontSize: 15,
+                            //                             color:kblue,
+                            //                             fontWeight: FontWeight.bold)),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(left:45),
+                            //                               child: ElevatedButton(
+                            //                                 style: ElevatedButton.styleFrom(
+                            //                                   backgroundColor: korange
+                            //                                 ),
+                            //                                 onPressed:(){} ,
+                            //                                  child: Text('Book')),
+                            //                             )
+                            //                           ],
+                            //                         ),
+                            //                       )
+                            //                     ],
+                            //                   ),
+                            //                 ),
                                             
-                                          ],
-                                        ),
-                                  ),
-                              ),
-                            ),
-                             Padding(
-                              padding: const EdgeInsets.only(top:40,left:20),
-                              child: Container(
-                                  height: MediaQuery.of(context).size.height*0.2,
-                                  width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
-                                  decoration: BoxDecoration(
-                                    color: kwhite,
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                        offset: Offset(0.0, 0.75),
-                                        blurRadius: 5,
-                                        color:kgrey
-                                      )
-                                    ],
+                            //               ],
+                            //             ),
+                            //       ),
+                            //   ),
+                            // ),
+                            //  Padding(
+                            //   padding: const EdgeInsets.only(top:40,left:20),
+                            //   child: Container(
+                            //       height: MediaQuery.of(context).size.height*0.2,
+                            //       width:MediaQuery.of(context).size.width-MediaQuery.of(context).size.width*0.28,
+                            //       decoration: BoxDecoration(
+                            //         color: kwhite,
+                            //         boxShadow: <BoxShadow>[
+                            //           BoxShadow(
+                            //             offset: Offset(0.0, 0.75),
+                            //             blurRadius: 5,
+                            //             color:kgrey
+                            //           )
+                            //         ],
                                 
-                                  ),
-                                  child:Padding(
-                                    padding: const EdgeInsets.only(top:20,left:20),
-                                    child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Sorted By:',
-                                                style: TextStyle(
-                                                  fontSize: 14
-                                                ),),
-                                                   Padding(
-                                                     padding: const EdgeInsets.only(top:20),
-                                                     child: Row(
-                                                       children:[ Image.asset('assets/images/bookingflaight.png',
-                                                            height: 35,fit:BoxFit.fitHeight,),
+                            //       ),
+                            //       child:Padding(
+                            //         padding: const EdgeInsets.only(top:20,left:20),
+                            //         child: Row(
+                            //                 mainAxisAlignment: MainAxisAlignment.spaceBetween,                    
+                            //               children: [
+                            //                 Column(
+                            //                   crossAxisAlignment: CrossAxisAlignment.start,
+                            //                   children: [
+                            //                     Text('Sorted By:',
+                            //                     style: TextStyle(
+                            //                       fontSize: 14
+                            //                     ),),
+                            //                        Padding(
+                            //                          padding: const EdgeInsets.only(top:20),
+                            //                          child: Row(
+                            //                            children:[ Image.asset('assets/images/bookingflaight.png',
+                            //                                 height: 35,fit:BoxFit.fitHeight,),
                                                      
-                                                           Padding(
-                                                          padding: const EdgeInsets.only(left:10),
-                                                          child: Column(
-                                                              children: [
-                                                                Text('IndiGo',
-                                                                style: TextStyle(
-                                                                  fontSize: 12,
-                                                                  color:kblue,
-                                                                  fontWeight: FontWeight.bold
-                                                                ),),
-                                                                Padding(
-                                                                  padding: const EdgeInsets.only(top:4),
-                                                                  child: Text('6E8282',
-                                                                  style: TextStyle(
-                                                                    fontSize: 12,
-                                                                    color:kblue,
-                                                                    fontWeight: FontWeight.bold
-                                                                  ),),
-                                                                )
-                                                              ],
-                                                            ),
-                                                        ),
-                                                       ]
-                                                     ),
-                                                   )
+                            //                                Padding(
+                            //                               padding: const EdgeInsets.only(left:10),
+                            //                               child: Column(
+                            //                                   children: [
+                            //                                     Text('IndiGo',
+                            //                                     style: TextStyle(
+                            //                                       fontSize: 12,
+                            //                                       color:kblue,
+                            //                                       fontWeight: FontWeight.bold
+                            //                                     ),),
+                            //                                     Padding(
+                            //                                       padding: const EdgeInsets.only(top:4),
+                            //                                       child: Text('6E8282',
+                            //                                       style: TextStyle(
+                            //                                         fontSize: 12,
+                            //                                         color:kblue,
+                            //                                         fontWeight: FontWeight.bold
+                            //                                       ),),
+                            //                                     )
+                            //                                   ],
+                            //                                 ),
+                            //                             ),
+                            //                            ]
+                            //                          ),
+                            //                        )
                                   
-                                              ],
-                                            ),
-                                               Padding(
-                                                 padding: const EdgeInsets.only(right:0),
-                                                 child: Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                   children: [
-                                                     Text('Departure',
-                                                     style: TextStyle(
-                                                      fontSize: 14
-                                                      ),),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(top:20),
-                                                        child: Column(
-                                                          children:[
-                                                             Text('10:34',
-                                                             style:TextStyle(
-                                                              color:kblue,
-                                                              fontSize: 15,
-                                                              fontWeight: FontWeight.bold
-                                                             )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Text('Chennai',
-                                                          style:TextStyle(
-                                                            color:kblue,
-                                                            fontSize: 12
-                                                          )),
-                                                        )
-                                                          ]
-                                                        ),
-                                                      )
+                            //                   ],
+                            //                 ),
+                            //                    Padding(
+                            //                      padding: const EdgeInsets.only(right:0),
+                            //                      child: Column(
+                            //                       crossAxisAlignment: CrossAxisAlignment.start,
+                            //                        children: [
+                            //                          Text('Departure',
+                            //                          style: TextStyle(
+                            //                           fontSize: 14
+                            //                           ),),
+                            //                           Padding(
+                            //                             padding: const EdgeInsets.only(top:20),
+                            //                             child: Column(
+                            //                               children:[
+                            //                                  Text('10:34',
+                            //                                  style:TextStyle(
+                            //                                   color:kblue,
+                            //                                   fontSize: 15,
+                            //                                   fontWeight: FontWeight.bold
+                            //                                  )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Text('Chennai',
+                            //                               style:TextStyle(
+                            //                                 color:kblue,
+                            //                                 fontSize: 12
+                            //                               )),
+                            //                             )
+                            //                               ]
+                            //                             ),
+                            //                           )
                                                      
-                                                   ],
-                                                 ),
-                                               ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right: 0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Duration',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('02 h 50 m',
-                                                        style:TextStyle(
-                                                          fontSize: 12
-                                                        )),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(top:4),
-                                                          child: Container(
-                                                             height: 2,
-                                                              width:50,
-                                                              color:korange
-                                                              ),
-                                                        ),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(top:4),
-                                                      child: Text('Non Stop',
-                                                      style:TextStyle(
-                                                        fontSize:12
-                                                      )),
-                                                    )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                        ],
+                            //                      ),
+                            //                    ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right: 0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Duration',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('02 h 50 m',
+                            //                             style:TextStyle(
+                            //                               fontSize: 12
+                            //                             )),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(top:4),
+                            //                               child: Container(
+                            //                                  height: 2,
+                            //                                   width:50,
+                            //                                   color:korange
+                            //                                   ),
+                            //                             ),
+                            //                         Padding(
+                            //                           padding: const EdgeInsets.only(top:4),
+                            //                           child: Text('Non Stop',
+                            //                           style:TextStyle(
+                            //                             fontSize:12
+                            //                           )),
+                            //                         )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                   
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:0),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Arrival',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:20),
-                                                    child: Column(
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text('01:25',
-                                                        style:TextStyle(
-                                                          fontSize: 15,
-                                                          fontWeight: FontWeight.bold,
-                                                          color:kblue
-                                                        )),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(top:4),
-                                                           child: Text('New Delhi',
-                                                           style:TextStyle(
-                                                            fontSize:12
-                                                           )),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:0),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Arrival',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:20),
+                            //                         child: Column(
+                            //                           crossAxisAlignment: CrossAxisAlignment.start,
+                            //                           children: [
+                            //                             Text('01:25',
+                            //                             style:TextStyle(
+                            //                               fontSize: 15,
+                            //                               fontWeight: FontWeight.bold,
+                            //                               color:kblue
+                            //                             )),
+                            //                              Padding(
+                            //                                padding: const EdgeInsets.only(top:4),
+                            //                                child: Text('New Delhi',
+                            //                                style:TextStyle(
+                            //                                 fontSize:12
+                            //                                )),
+                            //                              )
+                            //                           ],
+                            //                         ),
+                            //                       ),
                                                  
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(right:60),
-                                              child: Column(
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Price',
-                                                   style: TextStyle(
-                                                    fontSize: 14
-                                                  ),),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:35),
-                                                    child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                      children: [
-                                                        Text('₹ 5,183',
-                                                        style:TextStyle(fontSize: 15,
-                                                        color:kblue,
-                                                        fontWeight: FontWeight.bold)),
-                                                        Padding(
-                                                          padding: const EdgeInsets.only(left:45),
-                                                          child: ElevatedButton(
-                                                            style: ElevatedButton.styleFrom(
-                                                              backgroundColor: korange
-                                                            ),
-                                                            onPressed:(){} ,
-                                                             child: Text('Book')),
-                                                        )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
+                            //                     ],
+                            //                   ),
+                            //                 ),
+                            //                 Padding(
+                            //                   padding: const EdgeInsets.only(right:60),
+                            //                   child: Column(
+                            //                     crossAxisAlignment: CrossAxisAlignment.start,
+                            //                     children: [
+                            //                       Text('Price',
+                            //                        style: TextStyle(
+                            //                         fontSize: 14
+                            //                       ),),
+                            //                       Padding(
+                            //                         padding: const EdgeInsets.only(top:35),
+                            //                         child: Row(
+                            //                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            //                           children: [
+                            //                             Text('₹ 5,183',
+                            //                             style:TextStyle(fontSize: 15,
+                            //                             color:kblue,
+                            //                             fontWeight: FontWeight.bold)),
+                            //                             Padding(
+                            //                               padding: const EdgeInsets.only(left:45),
+                            //                               child: ElevatedButton(
+                            //                                 style: ElevatedButton.styleFrom(
+                            //                                   backgroundColor: korange
+                            //                                 ),
+                            //                                 onPressed:(){} ,
+                            //                                  child: Text('Book')),
+                            //                             )
+                            //                           ],
+                            //                         ),
+                            //                       )
+                            //                     ],
+                            //                   ),
+                            //                 ),
                                             
-                                          ],
-                                        ),
-                                  ),
-                              ),
-                            ),
+                            //               ],
+                            //             ),
+                            //       ),
+                            //   ),
+                            // ),
                           ],
                          )
                       ],

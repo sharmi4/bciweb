@@ -160,7 +160,14 @@ class _ParNycSCreenState extends State<ParNycSCreen> {
                             Image.asset(
                               'assets/images/parflaightperson.png',
                               color: kwhite,
-                            )
+                            ),
+                             Padding(
+                               padding: const EdgeInsets.only(left: 50),
+                               child: Image.asset(
+                                'assets/images/parflaightperson.png',
+                                color: kwhite,
+                                                         ),
+                             )
                           ],
                         ),
                       ),
@@ -170,9 +177,20 @@ class _ParNycSCreenState extends State<ParNycSCreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              '1 Adult',
-                              style: TextStyle(color: kwhite),
+                            Row(
+                              children: [
+                                Text(
+                                  ' Adult ${apiflightsController.adultsCount.value}',
+                                  style: TextStyle(color: kwhite),
+                                ),
+                                 Padding(
+                                   padding: const EdgeInsets.only(left: 22),
+                                   child: Text(
+                                    ' Children ${apiflightsController.childsCount.value}',
+                                    style: TextStyle(color: kwhite),
+                                                                 ),
+                                 ),
+                              ],
                             ),
                             Text(
                               'Economy',

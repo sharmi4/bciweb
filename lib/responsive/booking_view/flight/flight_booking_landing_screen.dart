@@ -162,7 +162,7 @@ class _FlightBookingLandingScreenState
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Text(
-                    '${apiflightController.adultsCount.value}1 Adult',
+                    '${apiflightController.adultsCount.value}Adult',
                     style: TextStyle(fontSize: 15, color: kgrey),
                   ),
                 ),
@@ -193,13 +193,73 @@ class _FlightBookingLandingScreenState
                                   },
                                   icon: Icon(Icons.do_not_disturb_on_outlined)),
                               Obx(() => Text(
-                                    '${apiflightController.adultsCount.value}',
+                                    ' ${apiflightController.adultsCount.value}',
                                     style: TextStyle(fontSize: 14),
                                   )),
                               IconButton(
                                   onPressed: () {
                                     apiflightController
                                         .increaseAdultCount();
+                                    flightBookingController.update();
+                                  },
+                                  icon: const Icon(
+                                      Icons.add_circle_outline_outlined))
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                  onSelected: (value) {
+                    setState(() {
+                      // dropvalue1 = value.toString();
+                    });
+                  },
+                ),
+                     const SizedBox(
+                  width: 10,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    '${apiflightController.childsCount.value} Children',
+                    style: TextStyle(fontSize: 15, color: kgrey),
+                  ),
+                ),
+                PopupMenuButton(
+                  child: Image.asset('assets/images/Group 447.png'),
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value:
+                          'Childrens ${apiflightController.childsCount.value}',
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                'Childrens',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () {
+                                    apiflightController
+                                        .decreaseChildCount();
+                                    flightBookingController.update();
+                                  },
+                                  icon: Icon(Icons.do_not_disturb_on_outlined)),
+                              Obx(() => Text(
+                                    '${apiflightController.childsCount.value}',
+                                    style: TextStyle(fontSize: 14),
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    apiflightController
+                                        .increaseChildCount();
                                     flightBookingController.update();
                                   },
                                   icon: const Icon(
@@ -276,7 +336,7 @@ class _FlightBookingLandingScreenState
                                       .destination.value);
 
                           apiflightController.airSearch(
-                              flightSearchModel: flightSearchDataModel);
+                              flightSearchModel: flightSearchDataModel,ismobilorweb: true);
                         },
                         child: Container(
                           width: double.infinity,

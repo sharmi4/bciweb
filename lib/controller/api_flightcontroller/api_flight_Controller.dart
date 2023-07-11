@@ -19,6 +19,7 @@ class ApiflightsController extends GetxController {
 
   RxInt adultsCount = 1.obs;
   RxInt childsCount = 0.obs;
+  RxInt onwayOrTwoWay=0.obs;
 
   RxInt domesticORInternational = 0.obs;
 
@@ -72,7 +73,7 @@ class ApiflightsController extends GetxController {
   //air search flight list
   List<Flight> flightList = [];
 
-  airSearch({required FlightSearchDataModel flightSearchModel}) async {
+  airSearch({required FlightSearchDataModel flightSearchModel, required bool ismobilorweb }) async {
     isLoading(true);
     flightList.clear();
     String seachKey = "";
@@ -85,10 +86,16 @@ class ApiflightsController extends GetxController {
       seachKey = airSearchModel.searchKey;
     }
 
+
+if(ismobilorweb){
     Get.to(ParNycSCreen(
       flightSearchDataModel: flightSearchModel,
       searchKey: seachKey,
     ));
+}else{
+  
+}
+   
 
     update();
   }
@@ -117,5 +124,21 @@ class ApiflightsController extends GetxController {
       childsCount(childsCount.value - 1);
       update();
     }
+  }
+
+  splitdate(String tempDate){
+    //  String tempDate = "07/22/2023";
+  
+  var splittedString = tempDate.split("/");
+  
+  print(splittedString);
+  
+  int tempYear = int.parse(splittedString.last);
+  int tempDay = int.parse(splittedString[1]);
+  int monthTemp = int.parse(splittedString.first);
+  
+  DateTime parsedDate = DateTime(tempYear,monthTemp,tempDay);
+  
+  return parsedDate;
   }
 }
