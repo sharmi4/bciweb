@@ -9,14 +9,36 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../constant/constans.dart';
+import '../../../../controller/holiday_booking_controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
 import '../flight/booking_flight.dart';
 import '../history/views/history.dart';
 
-class BookingTrip extends StatelessWidget {
+class BookingTrip extends StatefulWidget {
   const BookingTrip({super.key});
+
+  @override
+  State<BookingTrip> createState() => _BookingTripState();
+}
+
+class _BookingTripState extends State<BookingTrip> {
+   final holidayPackageController = Get.find<HolidayPackageController>();
+
+
+     @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    holidayPackageController.getPackageCategory();
+   // holidayPackageController.getPackage();
+   // searchController.addListener(searchUsers);
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -206,6 +228,33 @@ class BookingTrip extends StatelessWidget {
                     .pSymmetric(v: 40, h: 20),
               ],
             ),
+            Container(
+              height: 120,
+              child: GetBuilder<HolidayPackageController>(
+                builder: (_) {
+                  return ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: holidayPackageController.packageCategoryData.length, // Replace witsh your desired number of items
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          height: 200,
+                          width: 200,
+                          color: Colors.blue, // Replace with your desired color
+                          child: Center(
+                            child: Text(
+                              holidayPackageController.packageCategoryData[index].name,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        );
+                      });
+                }
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -353,8 +402,8 @@ class tripcontainer extends StatelessWidget {
     var size = MediaQuery.of(context).size;
 
     return InkWell(
-      onTap: (){
-       Get.to( HolidaysScreen());
+      onTap: () {
+        Get.to(HolidaysScreen());
       },
       child: Container(
         color: kwhite,

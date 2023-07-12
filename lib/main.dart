@@ -2,6 +2,7 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/flaight_payment_controller.dart';
+import 'package:bciweb/controller/holiday_booking_controller.dart';
 import 'package:bciweb/controller/holiday_controller.dart';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/redeem_controller/redeem_controller.dart';
@@ -97,7 +98,7 @@ void main() {
     Get.put(Holiday3Controller());
     Get.put(HolidayyController());
     Get.put(ApiflightsController());
-  
+   Get.put(HolidayPackageController());
   runApp(const MyApp());
 }
 
