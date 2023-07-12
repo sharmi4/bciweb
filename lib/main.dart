@@ -55,6 +55,7 @@ import 'controller/flaight _controller.dart';
 import 'controller/flaight_booking_controller.dart';
 import 'controller/flaight_show_controller.dart';
 import 'controller/flaightdate_controller.dart';
+
 import 'controller/historycontroller.dart';
 import 'controller/profile_controller.dart';
 import 'controller/specialized_controller.dart';
@@ -96,6 +97,7 @@ void main() {
     Get.put(Holiday3Controller());
     Get.put(HolidayyController());
     Get.put(ApiflightsController());
+  
   runApp(const MyApp());
 }
 

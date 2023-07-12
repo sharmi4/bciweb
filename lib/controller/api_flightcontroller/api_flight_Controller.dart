@@ -16,6 +16,7 @@ import '../../services/networks/services/flight_api_searcive/airport_search_apis
 class ApiflightsController extends GetxController {
   RxInt wayIndex = 0.obs;
   RxInt cabinClassIndex = 0.obs;
+   RxInt flighttypeindex=0.obs;
 
   RxInt adultsCount = 1.obs;
   RxInt childsCount = 0.obs;

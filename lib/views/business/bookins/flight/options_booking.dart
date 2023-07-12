@@ -1,5 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/api_flightcontroller/api_flight_Controller.dart';
 import 'package:bciweb/views/business/bookins/flight/seat_booking.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter_dash/flutter_dash.dart';
@@ -7,6 +9,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
 import '../../../../controller/flaibooking_option.dart';
+import '../../../../models/air_search_model.dart';
+import '../../../../models/flight_searchdatamodel.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
@@ -14,7 +18,9 @@ import '../../../members/common_widget/common_buttom.dart';
 import 'package:get/get.dart';
 
 class BookingOptionsScreen extends StatefulWidget {
-  const BookingOptionsScreen({super.key});
+   Flight flight;
+  FlightSearchDataModel flightSearchDataModel;
+   BookingOptionsScreen({super.key,required this.flight,required this.flightSearchDataModel});
 
   @override
   State<BookingOptionsScreen> createState() => _BookingOptionsScreenState();
@@ -133,7 +139,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
       });
     }
   }
-  
+  final apiflightController=Get.find<ApiflightsController>();
   @override
   Widget build(BuildContext context) {
     final flaightOptionController=Get.find<FlaightBookingOptionController>();
@@ -157,7 +163,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                           ),fit: BoxFit.cover )
                         ),
                             child:Center(
-                              child: Text('Flight Book Options',
+                              child: Text('Flight Booking Options',
                               style: TextStyle(
                                 fontSize: 40,
                                 color: kwhite,
@@ -232,7 +238,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                     Text('Total Price'),
-                                                    Text('₹ 13,521',
+                                                    Text('₹ ${widget.flight.fares.first.fareDetails.first.totalAmount}',
                                                     style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       color: kblue
@@ -240,10 +246,10 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   ],),
                                                 ),
                                                 Padding(
-                                                  padding: const EdgeInsets.only(left: 10,top: 5),
+                                                  padding:  EdgeInsets.only(left: 10,top: 5),
                                                   child: Row(
                                                     children: [
-                                                      Text('1 adult',
+                                                      Text(apiflightController.adultsCount.value.toString(),
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: kgrey
@@ -251,33 +257,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                     ],
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:6,left: 10,right: 10),
-                                                  child: Container(
-                                                    height: 25,
-                                                    width: MediaQuery.of(context).size.width*0.17,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius: BorderRadius.circular(5),
-                                                      color: Colors.pink[50]
-                                                    ),
-                                                    child: Padding(
-                                                      padding: const EdgeInsets.only(left: 5,right: 5),
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                        children: [
-                                                          Text('EMI from ₹649/mo',
-                                                          style: TextStyle(
-                                                            fontSize: 10
-                                                          ),),
-                                                          Text('Details',
-                                                          style:TextStyle(
-                                                            fontSize: 10
-                                                          ))
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
+                                          
                                                 Divider(
                                                   thickness: 1,
                                                 ),
@@ -286,11 +266,11 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      Text('Base fare (1 traveller)',
+                                                      Text('Base fare ${apiflightController.childsCount}',
                                                       style: TextStyle(
                                                         fontSize: 10.5
                                                       ),),
-                                                       Text('₹11,599',
+                                                       Text('₹${widget.flight.fares.first.fareDetails.first.totalAmount}',
                                                        style: TextStyle(
                                                         fontSize: 10.5
                                                        ),)
@@ -306,7 +286,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       style: TextStyle(
                                                         fontSize: 10.5
                                                       ),),
-                                                       Text('₹1,961',
+                                                       Text('₹${widget.flight.fares.first.fareDetails.first.airportTaxes.first.taxAmount}',
                                                        style: TextStyle(
                                                         fontSize: 10.5
                                                        ),)
@@ -342,7 +322,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                         children: [
-                                                          Text('NON REFUNDABLE',
+                                                          Text('NON REFUNDABLE  ${widget.flight.fares.first.refundable}',
                                                           style: TextStyle(
                                                             fontSize: 14
                                                           ),),
@@ -374,7 +354,9 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                             padding: const EdgeInsets.only(left: 70,bottom: 50),
                             child: Row(
                               children: [
-                                Text('Chennai → New Delhi Sun, 4 Jun,2023')
+                                Text('${widget.flight.segments.first.origin} → ${widget.flight.segments.first.destination}'),
+                                Text(formatDate(apiflightController.splitdate(widget.flight.segments.first.departureDateTime.split(' ').first), 
+                                [DD,',', dd,' ',MM ,',',yyyy]))
                               ],
                             ),
                           ),
@@ -392,22 +374,25 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                     fit: BoxFit.fitHeight,),
                                     Padding(
                                       padding: const EdgeInsets.only(top:4),
-                                      child: Text('Indigo airline',
+                                      child: Text(widget.flight.segments.first.airlineName,
                                       style: TextStyle(
                                         fontSize: 12
                                       ),),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top:4),
-                                      child: Text('Indigo-23',
+                                      child: Text('${widget.flight.segments.first.airlineName} ${widget.flight.segments.first.airlineCode}',
                                       style: TextStyle(
                                         fontSize: 12
                                       ),),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top:4),
-                                      child: Text('Economy',
+                                      child: widget.flightSearchDataModel.cabinClass==0?Text('Economy',
                                       style: TextStyle(
+                                        fontSize: 12
+                                      ),):Text('Business',
+                                      style:TextStyle(
                                         fontSize: 12
                                       ),),
                                     )
@@ -465,7 +450,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                           Row(
                                            
                                             children: [
-                                              Text('CHEENAI',
+                                              Text(widget.flight.origin,
                                               style: TextStyle(
                                                    fontSize: 14,
                                                 fontWeight: FontWeight.bold,
@@ -473,7 +458,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               ),),
                                               Padding(
                                                 padding: const EdgeInsets.only(left: 10),
-                                                child: Text('10:34',
+                                                child: Text(widget.flight.segments.first.departureDateTime.split(' ').last,
                                                 style: TextStyle(
                                                      fontSize: 14,
                                                   fontWeight: FontWeight.bold,
@@ -501,7 +486,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                     Icon(Icons.schedule_outlined),
                                                     Padding(
                                                       padding: const EdgeInsets.only(top:4),
-                                                      child: Text('02 h 50 m',
+                                                      child: Text(widget.flight.segments.first.duration,
                                                       style: TextStyle(
                                                         fontSize: 12
                                                       ),),
@@ -516,7 +501,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                             padding: const EdgeInsets.only(top:15),
                                             child: Row(
                                               children: [
-                                                Text('NEW DELHI',
+                                                Text(widget.flight.destination,
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 14,
@@ -524,7 +509,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                 ),),
                                                 Padding(
                                                   padding: const EdgeInsets.only(left: 10),
-                                                  child: Text('01:25',
+                                                  child: Text(widget.flight.segments.first.arrivalDateTime.split(' ').last,
                                                   style: TextStyle(
                                                     fontSize: 14,
                                                     fontWeight: FontWeight.bold,
@@ -624,11 +609,17 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                         child: Row(
                                          
                                           children: [
-                                            Text('Add contact details',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      color:kgrey
-                                                    ),),
+                                            InkWell(
+                                              onTap: (){
+                                                 flaightOptionController.booptionindex(1);
+                                    flaightOptionController.update();
+                                              },
+                                              child: Text('Add contact details',
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        color:kgrey
+                                                      ),),
+                                            ),
                                                     Padding(
                                                       padding: const EdgeInsets.only(left: 100),
                                                       child: Container(
@@ -658,62 +649,65 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                           Row(
                            
                             children: [
-                              Container(
-                                height: MediaQuery.of(context).size.height*0.15,
-                                width: MediaQuery.of(context).size.width*0.4,
-                                decoration: BoxDecoration(
-                                
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.only(left: 60),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        height: 50,
-                                        width: 50,
-                                        decoration: BoxDecoration(
-                                          color: kgrey,
-                                          shape: BoxShape.circle
+                              InkWell(
+                                onTap: (){},
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height*0.15,
+                                  width: MediaQuery.of(context).size.width*0.4,
+                                  decoration: BoxDecoration(
+                                  
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(left: 60),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: 50,
+                                          width: 50,
+                                          decoration: BoxDecoration(
+                                            color: kgrey,
+                                            shape: BoxShape.circle
+                                          ),
+                                          child: Center(
+                                            child: Text('03',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              color: kwhite
+                                            ),),
+                                          ),
                                         ),
-                                        child: Center(
-                                          child: Text('03',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            color: kwhite
-                                          ),),
+                                        Padding(
+                                          padding: const EdgeInsets.only(right: 60),
+                                          child: Row(
+                                           
+                                            children: [
+                                              Text('Add contact details',
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        color:kgrey
+                                                      ),),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(left: 100),
+                                                        child: Container(
+                                                            height: 25,
+                                                           width: 25,
+                                                         decoration: BoxDecoration(
+                                                          shape: BoxShape.circle,
+                                                          color: kgrey
+                                                          ),
+                                                          child: Center(
+                                                          child: Icon(Icons.keyboard_arrow_down_outlined,
+                                                          color: kwhite,),
+                                                          ),
+                                                          ),
+                                                      )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 60),
-                                        child: Row(
-                                         
-                                          children: [
-                                            Text('Add contact details',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      color:kgrey
-                                                    ),),
-                                                    Padding(
-                                                      padding: const EdgeInsets.only(left: 100),
-                                                      child: Container(
-                                                          height: 25,
-                                                         width: 25,
-                                                       decoration: BoxDecoration(
-                                                        shape: BoxShape.circle,
-                                                        color: kgrey
-                                                        ),
-                                                        child: Center(
-                                                        child: Icon(Icons.keyboard_arrow_down_outlined,
-                                                        color: kwhite,),
-                                                        ),
-                                                        ),
-                                                    )
-                                          ],
-                                        ),
-                                      ),
-                                      
-                                    ],
+                                        
+                                      ],
+                                    ),
                                   ),
                                 ),
                               )
@@ -822,7 +816,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                     Text('Total Price'),
-                                                    Text('₹ 13,521',
+                                                    Text('₹ ${widget.flight.fares.first.fareDetails.first.totalAmount}',
                                                     style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       color: kblue
@@ -833,7 +827,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   padding: const EdgeInsets.only(left: 10,top: 5),
                                                   child: Row(
                                                     children: [
-                                                      Text('1 adult',
+                                                      Text('adult${widget.flightSearchDataModel.adultsCount}',
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: kgrey
@@ -855,10 +849,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                         children: [
-                                                          Text('EMI from ₹649/mo',
-                                                          style: TextStyle(
-                                                            fontSize: 10
-                                                          ),),
+                                                          
                                                           Text('Details',
                                                           style:TextStyle(
                                                             fontSize: 10
@@ -876,11 +867,11 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      Text('Base fare (1 traveller)',
+                                                      Text('Base fare ${widget.flightSearchDataModel.childCount}',
                                                       style: TextStyle(
                                                         fontSize: 10.5
                                                       ),),
-                                                       Text('₹11,599',
+                                                       Text('₹ ${widget.flight.fares.first.fareDetails.first.totalAmount}',
                                                        style: TextStyle(
                                                         fontSize: 10.5
                                                        ),)
@@ -896,7 +887,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       style: TextStyle(
                                                         fontSize: 10.5
                                                       ),),
-                                                       Text('₹1,961',
+                                                       Text('₹1${widget.flight.fares.first.fareDetails.first.airportTaxes.first.taxAmount}',
                                                        style: TextStyle(
                                                         fontSize: 10.5
                                                        ),)
@@ -932,7 +923,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                         children: [
-                                                          Text('NON REFUNDABLE',
+                                                          Text('NON REFUNDABLE ${widget.flight.fares.first.refundable}',
                                                           style: TextStyle(
                                                             fontSize: 14
                                                           ),),
@@ -1099,62 +1090,6 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                      ],
                                    ),
                                  ),
-                                   Padding(
-                                     padding: const EdgeInsets.only(left: 60,top:20),
-                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                       children: [
-                                         Text('OTP(Optional)',
-                                         style: TextStyle(
-                                           fontSize: 20,
-                                           color:kblue
-                                         ),),
-                                        
-                                       ],
-                                     ),
-                                   ),
-                                       Padding(
-                                         padding: const EdgeInsets.only(left: 60,top:20),
-                                         child: OtpTextField(
-                                           
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         
-                                           numberOfFields: 4,
-                                           borderColor:kgrey,
-                                           //set to true to show as box or false to show as dash
-                                           showFieldAsBox: true, 
-                                           //runs when a code is typed in
-                                           onCodeChanged: (String code) {
-                                               //handle validation or checks here           
-                                           },
-                                           //runs when every textfield is filled
-                                           // onSubmit: (String verificationCode){
-                                           //     showDialog(
-                                           //         context: context,
-                                           //         builder: (context){
-                                           //         return AlertDialog(
-                                           //             title: Text("Verification Code"),
-                                           //             content: Text('Code entered is $verificationCode'),
-                                           //         );
-                                           //         }
-                                               // );
-                                           // }, // end onSubmit
-                                           ),
-
-                                       ),
-                                       Padding(
-                                         padding: const EdgeInsets.only(left:60,top:20),
-                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                          children: [
-                                            Text('Resend OTP',
-                                            style: TextStyle(
-                                              fontSize: 12,
-                                              color: kblue
-                                            ),)
-                                          ],
-                                         ),
-                                       ),
                                        Padding(
                                          padding: const EdgeInsets.only(top:0,left:60),
                                          child: Row(
@@ -1235,73 +1170,79 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                                   child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                            Container(
-                            height: MediaQuery.of(context).size.height*0.15   ,
-                            width: MediaQuery.of(context).size.width*0.6,
-                            decoration: BoxDecoration(
-                             color: kwhite,
-                            border: BorderDirectional(
-                            top:BorderSide(
-                            color: kgrey,
-                             )
-                             )
-                             ),
-                             child:Padding(
-                               padding: const EdgeInsets.only(left: 80),
-                               child: Row(
-                                            
-                                            children: [
-                                              Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                   CircleAvatar(
-                                       radius: 20,
-                                       backgroundColor: kgrey,
-                                       child: Center(
-                                         child: Text('03',
-                                         style:TextStyle(
-                                           fontSize: 20,
-                                           color:kwhite
-                                         )),
+                            InkWell(
+                              onTap: (){
+                                  flaightOptionController.booptionindex(2);
+                                    flaightOptionController.update();
+                              },
+                              child: Container(
+                              height: MediaQuery.of(context).size.height*0.15   ,
+                              width: MediaQuery.of(context).size.width*0.6,
+                              decoration: BoxDecoration(
+                               color: kwhite,
+                              border: BorderDirectional(
+                              top:BorderSide(
+                              color: kgrey,
+                               )
+                               )
+                               ),
+                               child:Padding(
+                                 padding: const EdgeInsets.only(left: 80),
+                                 child: Row(
+                                              
+                                              children: [
+                                                Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                     CircleAvatar(
+                                         radius: 20,
+                                         backgroundColor: kgrey,
+                                         child: Center(
+                                           child: Text('03',
+                                           style:TextStyle(
+                                             fontSize: 20,
+                                             color:kwhite
+                                           )),
+                                         ),
                                        ),
-                                     ),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(left: 20),
-                                                    child: Text('Add traveller details',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: kblue
-                                                    )),
-                                                  ),
-                                                  
-                                                     
-                                                ],
-                                              ),
-                                               Padding(
-                                                 padding: const EdgeInsets.only(left: 400),
-                                                 child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.end,
-                                                          children:[
-                                                             Container(
-                                                              height: 30,
-                                                              width: 30,
-                                                              decoration: BoxDecoration(
-                                                                color: kgrey,
-                                                                shape: BoxShape.circle
-                                                              ),
-                                                              child: Center(
-                                                                child: Icon(Icons.expand_more,
-                                                                color: kwhite,),
-                                                              ),
-                                                             )
-                                                          ]
-                                                        ),
-                                               ),
-                                            ],
-                                          ),
-                             ),
-                             )
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 20),
+                                                      child: Text('Add traveller details',
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: kblue
+                                                      )),
+                                                    ),
+                                                    
+                                                       
+                                                  ],
+                                                ),
+                                                 Padding(
+                                                   padding: const EdgeInsets.only(left: 400),
+                                                   child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.end,
+                                                            children:[
+                                                               Container(
+                                                                height: 30,
+                                                                width: 30,
+                                                                decoration: BoxDecoration(
+                                                                  color: kgrey,
+                                                                  shape: BoxShape.circle
+                                                                ),
+                                                                child: Center(
+                                                                  child: Icon(Icons.expand_more,
+                                                                  color: kwhite,),
+                                                                ),
+                                                               )
+                                                            ]
+                                                          ),
+                                                 ),
+                                              ],
+                                            ),
+                               ),
+                               ),
+                            )
                             ],
                              ),
                             ),
@@ -1336,23 +1277,29 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                           children: [
                                             Padding(
                                               padding: const EdgeInsets.only(left: 10),
-                                              child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                children: [
-                                                  Image.asset('assets/images/flaightcorrect.png',
-                                                  height: 40,fit: BoxFit.fitHeight,),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(left: 20),
-                                                    child: Text('Review your itinerary',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: kblue
-                                                    )),
-                                                  ),
-                                                  
-                                                     
-                                                ],
+                                              child: InkWell(
+                                                onTap: (){
+                                                   flaightOptionController.booptionindex(2);
+                                                flaightOptionController.update();
+                                                },
+                                                child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Image.asset('assets/images/flaightcorrect.png',
+                                                    height: 40,fit: BoxFit.fitHeight,),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 20),
+                                                      child: Text('Review your itinerary',
+                                                      style: TextStyle(
+                                                        fontSize: 20,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: kblue
+                                                      )),
+                                                    ),
+                                                    
+                                                       
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                              Padding(
@@ -1390,7 +1337,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                           Padding(
                                             padding: const EdgeInsets.only(left: 5),
                                             child: Container(
-                                             height: MediaQuery.of(context).size.width*0.1,
+                                             height: MediaQuery.of(context).size.width*0.12,
                                              width: MediaQuery.of(context).size.width*0.18,
                                             decoration: BoxDecoration(
                                               color: kwhite,
@@ -1408,7 +1355,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
                                                     Text('Total Price'),
-                                                    Text('₹ 13,521',
+                                                    Text('₹ ${widget.flight.fares.first.fareDetails.first.totalAmount}',
                                                     style: TextStyle(
                                                       fontWeight: FontWeight.bold,
                                                       color: kblue
@@ -1419,7 +1366,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   padding: const EdgeInsets.only(left: 10,top: 5),
                                                   child: Row(
                                                     children: [
-                                                      Text('1 adult',
+                                                      Text(' adult ${widget.flightSearchDataModel.adultsCount}',
                                                       style: TextStyle(
                                                         fontSize: 12,
                                                         color: kgrey
@@ -1441,10 +1388,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                         children: [
-                                                          Text('EMI from ₹649/mo',
-                                                          style: TextStyle(
-                                                            fontSize: 10
-                                                          ),),
+                                                          
                                                           Text('Details',
                                                           style:TextStyle(
                                                             fontSize: 10
@@ -1462,11 +1406,11 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                   child: Row(
                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                     children: [
-                                                      Text('Base fare (1 traveller)',
+                                                      Text('Base fare',
                                                       style: TextStyle(
                                                         fontSize: 10.5
                                                       ),),
-                                                       Text('₹11,599',
+                                                       Text('₹${widget.flight.fares.first.fareDetails.first.totalAmount}',
                                                        style: TextStyle(
                                                         fontSize: 10.5
                                                        ),)
@@ -1482,7 +1426,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       style: TextStyle(
                                                         fontSize: 10.5
                                                       ),),
-                                                       Text('₹1,961',
+                                                       Text('₹${widget.flight.fares.first.fareDetails.first.airportTaxAmount}',
                                                        style: TextStyle(
                                                         fontSize: 10.5
                                                        ),)
@@ -1518,7 +1462,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                         children: [
-                                                          Text('NON REFUNDABLE',
+                                                          Text('NON REFUNDABLE ${widget.flight.fares.first.refundable}',
                                                           style: TextStyle(
                                                             fontSize: 14
                                                           ),),
@@ -1650,7 +1594,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                    child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text('Adult 1',
+                                      Text('Adult',
                                     
                                       style: TextStyle(
                                         letterSpacing: 1,

@@ -9,6 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:date_format/date_format.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/flaight _controller.dart';
+
 import '../../../../models/flight_searchdatamodel.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -142,6 +143,7 @@ class _BookingFlightState extends State<BookingFlight> {
       final flaight3Controller=Get.find<Flaight3Controller>();
       final flaightshowController=Get.find<FlaightShowController>();
       final flaightdetailsController=Get.find<FlaightDateSCotroller>();
+    
 
     var size = MediaQuery.of(context).size;
   
@@ -563,67 +565,91 @@ class _BookingFlightState extends State<BookingFlight> {
                                             padding: const EdgeInsets.only(left: 22,top:40),
                                             child: Row(
                                               children: [
-                                                Container(
-                                                  height: 21,
-                                              width: MediaQuery.of(context).size.width*0.1,
-                                                  decoration: BoxDecoration(
-                                                    color: kOrange
+                                                InkWell(
+                                                  onTap: (){
+                                                   apiflightController.cabinClassIndex(0);
+                                                   apiflightController.update();
+                                                  },
+                                                  child: Container(
+                                                    height: 21,
+                                                                                              width: MediaQuery.of(context).size.width*0.1,
+                                                    decoration: BoxDecoration(
+                                                      color: kOrange
+                                                    ),
+                                                    child: Center(
+                                                      child: Text('Economy',
+                                                      textAlign: TextAlign.center,
+                                                      style: TextStyle(
+                                                        fontSize: 11,
+                                                        color:apiflightController.cabinClassIndex.value==0?kwhite:kblue
+                                                      ),),
+                                                    ),
+                                                                                          
                                                   ),
-                                                  child: Center(
-                                                    child: Text('Economy',
-                                                    textAlign: TextAlign.center,
-                                                    style: TextStyle(
-                                                      fontSize: 11,
-                                                      color: kwhite
-                                                    ),),
-                                                  ),
-                                          
                                                 ),
                                             
                                                    Padding(
                                                      padding: const EdgeInsets.only(left: 12),
-                                                     child: Container(
-                                                            height: 20,
-                                                            width: MediaQuery.of(context).size.width*0.22,
-                                                            decoration: BoxDecoration(
-                                                      color: kblue
-                                                       ),
-                                                      child: Center(
-                                                        child: Row(
-                                                        children: [
-                                                          Padding(
-                                                            padding: const EdgeInsets.only(left: 12),
-                                                            child: Text('Premimum Economy ',
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                              fontSize: 11,
-                                                              color: kwhite
-                                                            ),),
-                                                          ),
-                                                          Padding(
-                                                            padding: const EdgeInsets.only(left: 20),
-                                                            child: Text('Business',
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                              fontSize: 11,
-                                                              color: kwhite
-                                                            ),),
-                                                          ),
-                                                           Padding(
-                                                             padding: const EdgeInsets.only(left: 20),
-                                                             child: Text('First Class',
-                                                             textAlign: TextAlign.center,
+                                                     child: InkWell(
+                                                      onTap: (){
+                                                        apiflightController.cabinClassIndex(1);
+                                                        apiflightController.update();
+                                                      },
+                                                       child: Container(
+                                                              height: 20,
+                                                              width: MediaQuery.of(context).size.width*0.22,
+                                                              decoration: BoxDecoration(
+                                                        color: kblue
+                                                         ),
+                                                        child: Center(
+                                                          child: Row(
+                                                          children: [
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(left: 12),
+                                                              child: Text('Premimum Economy ',
+                                                              textAlign: TextAlign.center,
                                                               style: TextStyle(
-                                                              fontSize: 11,
-                                                              color: kwhite
-                                                               ),),
-                                                           ),
-                                                        ],
-                                                                                                     
-                                                    ),
-                                                      ),
-                                                     
-                                                      ),
+                                                                fontSize: 11,
+                                                                color:apiflightController.cabinClassIndex==1?korange:kwhite
+                                                              ),),
+                                                            ),
+                                                            Padding(
+                                                              padding: const EdgeInsets.only(left: 20),
+                                                              child: InkWell(
+                                                                onTap: (){
+                                                                  apiflightController.cabinClassIndex(2);
+                                                                  apiflightController.update();
+                                                                },
+                                                                child: Text('Business',
+                                                                textAlign: TextAlign.center,
+                                                                style: TextStyle(
+                                                                  fontSize: 11,
+                                                                  color:apiflightController.cabinClassIndex.value==2?korange:kwhite
+                                                                ),),
+                                                              ),
+                                                            ),
+                                                             Padding(
+                                                               padding: const EdgeInsets.only(left: 20),
+                                                               child: InkWell(
+                                                                onTap: (){
+                                                                  apiflightController.cabinClassIndex(3);
+                                                                  apiflightController.update();
+                                                                },
+                                                                 child: Text('First Class',
+                                                                 textAlign: TextAlign.center,
+                                                                  style: TextStyle(
+                                                                  fontSize: 11,
+                                                                  color:apiflightController.cabinClassIndex.value==3?korange:kwhite
+                                                                   ),),
+                                                               ),
+                                                             ),
+                                                          ],
+                                                                                                       
+                                                         ),
+                                                        ),
+                                                       
+                                                        ),
+                                                     ),
                                                    )
                                               ],
                                             ),
@@ -2358,7 +2384,34 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                 backgroundColor: korange
                                                               ),
                                                               onPressed:(){
-                                                                Get.offAll(BookingOptionsScreen());
+                                                                Get.offAll(BookingOptionsScreen(
+                                                                  flight:apiflightController.flightList[index] ,
+                                                                 flightSearchDataModel :
+                              FlightSearchDataModel(
+                                  adultsCount: apiflightController
+                                      .adultsCount.value,
+                                  cabinClass: apiflightController
+                                      .cabinClassIndex.value,
+                                  fromName: apiflightController
+                                      .originFullName.value,
+                                  toName:
+                                      apiflightController
+                                          .destinationFullName.value,
+                                  childCount:
+                                      apiflightController.childsCount.value,
+                                  depatureDate:
+                                      apiflightController.depatureDate,
+                                  fromIata:
+                                      apiflightController.origin.value,
+                                  isOneWayOrRoundTrip:
+                                      apiflightController.wayIndex.value,
+                                  returnDate:
+                                      apiflightController.returnDate,
+                                  toIata: apiflightController
+                                      .destination.value),
+
+                          
+                                                                ));
                                                               } ,
                                                                child: Text('Book')),
                                                           )
