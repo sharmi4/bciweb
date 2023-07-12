@@ -65,7 +65,17 @@ abstract class BaseApiService {
 
   final String airportSearch = "https://openflights.org/php/apsearch.php";
 
+  //----------- holidays bookings ---------------//
 
   final String getPackageCategoryApiUrl = "https://bci.generation360tech.in/api/auth/get_package_category";
+
+  final String getPackageListApiUrl = "https://bci.generation360tech.in/api/auth/get_package_list";
+
+  final String getPackageDetailsApiUrl = "https://bci.generation360tech.in/api/auth/get_package_details";
+
+  final String createEnquiryApiUrl = "https://bci.generation360tech.in/api/auth/create_enquiry";
+
+  final String searchPackageListApiUrl = "https://bci.generation360tech.in/api/auth/search_packages";
+
 }
  

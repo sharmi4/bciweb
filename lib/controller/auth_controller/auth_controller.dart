@@ -131,6 +131,7 @@ class AuthController extends GetxController {
       if (response.data["user"]["role_id"] == "3") {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString("auth_token", response.data["token"]);
+        await prefs.setString("id", response.data["user"]["id"].toString());
         if (screen == true) {
           Get.offAll(verified_Screen());
         } else {

@@ -9,7 +9,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../constant/constans.dart';
-import '../../../../controller/holiday_booking_controller.dart';
+import '../../../../controller/holiday_package_controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
