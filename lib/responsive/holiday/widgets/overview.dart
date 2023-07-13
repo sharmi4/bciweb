@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../../../constant/constans.dart';
 
 class OverviewWidget extends StatefulWidget {
-  const OverviewWidget({super.key});
+  const OverviewWidget({super.key,});
 
   @override
   State<OverviewWidget> createState() => _OverviewWidgetState();

@@ -1,11 +1,11 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/holiday_package_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/auth_controller/auth_profile_controller.dart';
-import '../../../../controller/holiday_booking_controller.dart';
 import '../../../../controller/holiday_controller.dart';
 import '../../../../controller/profile_controller.dart';
 import '../../../../models/holiday_packages_models/get_package_details_model.dart';
@@ -28,7 +28,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
     var size = MediaQuery.of(context).size;
     var packagenameController=TextEditingController();
   
-    final holidaycontroller=Get.find<HolidayController>();
+    final holidaycontroller=Get.find<HolidayController>(); 
     final holiday2controller=Get.find<Holiday2Controller>();
     final holiday3controller=Get.find<Holiday3Controller>();
     
@@ -47,7 +47,6 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
     super.initState();
     profileController.getProfile();
   }
-    final getPackageDetailsData=Get.find<GetPackageDetailsData>();
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -1619,7 +1618,6 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                     print(mobileController.text);
                          holidayPackageController.createEnquiry(
                           packageid: widget.packageId, 
-                          vendorid:"107", //profileController.profileData.first.id.toString(),
                           cityofdeparture: cityOfDepController.text, 
                           dateofdeparture: dateOfDepController.text, 
                           adultcount: holidayPackageController.adult.value.toString(), 

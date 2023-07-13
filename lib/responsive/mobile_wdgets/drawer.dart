@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/responsive/booking_view/booking_screen.dart';
+import 'package:bciweb/responsive/holiday/holiday_home.dart';
 import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_subscription.dart';
 import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
 import 'package:bciweb/routes/app_pages.dart';
@@ -67,7 +68,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               ),
             ),
 
- Padding(
+            Padding(
               padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
               child: Divider(
                 color: kgrey,
@@ -79,7 +80,8 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        Get.to(HolidayScreen());
+                       // Get.to(HolidayScreen());
+                        Get.to(HolidayHomeScreen());
                       },
                       child: Text(
                         'TRIP ',
