@@ -1,16 +1,21 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-
+import '../../../../controller/auth_controller/auth_profile_controller.dart';
+import '../../../../controller/holiday_booking_controller.dart';
 import '../../../../controller/holiday_controller.dart';
+import '../../../../controller/profile_controller.dart';
+import '../../../../models/holiday_packages_models/get_package_details_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
 
 class HolidaysScreen extends StatefulWidget {
-  const HolidaysScreen({super.key});
+   String packageId;
+   HolidaysScreen({super.key, required this.packageId});
 
   @override
   State<HolidaysScreen> createState() => _HolidaysScreenState();
@@ -22,14 +27,27 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     var packagenameController=TextEditingController();
-    var citydepratureController=TextEditingController();
-    var dateDepratureController=TextEditingController();
-    var nameController=TextEditingController();
-    var emailController=TextEditingController();
-    var numberController=TextEditingController();
+  
     final holidaycontroller=Get.find<HolidayController>();
     final holiday2controller=Get.find<Holiday2Controller>();
     final holiday3controller=Get.find<Holiday3Controller>();
+    
+  final holidayPackageController = Get.find<HolidayPackageController>();
+  final profileController = Get.find<AuthProfileController>();
+
+  final cityOfDepController = TextEditingController();
+  final dateOfDepController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final mobileController = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    profileController.getProfile();
+  }
+    final getPackageDetailsData=Get.find<GetPackageDetailsData>();
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -495,6 +513,12 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                           fontSize: 17,
                                           fontWeight: FontWeight.w600
                                         ),),
+                      //                    HtmlContentViewer(
+                      //   htmlContent: holidayPackageController.getPackageDetailsData.first.inclusion,
+                      //   initialContentHeight:
+                      //       MediaQuery.of(context).size.height,
+                      //   initialContentWidth: MediaQuery.of(context).size.width,
+                      // ),
                                         Padding(
                                           padding: const EdgeInsets.only(left: 36),
                                           child: Container(
@@ -1313,7 +1337,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                               height: 45,
                               width: MediaQuery.of(context).size.width*0.25,
                               child: TextField(
-                                controller: citydepratureController,
+                                controller: cityOfDepController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder()
                                 ),
@@ -1336,7 +1360,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                               height: 45,
                               width: MediaQuery.of(context).size.width*0.25,
                               child: TextField(
-                                controller: dateDepratureController,
+                                controller: dateOfDepController,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder()
                                 ),
@@ -1372,7 +1396,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(bottom: 10),
-                                            child: IconButton(onPressed: (){
+                                            child: IconButton(onPressed: (){holidayPackageController.adult--;
                                               holidaycontroller.decrement();
                                               holidaycontroller.update();
                                             }, 
@@ -1569,7 +1593,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                               height: 45,
                               width: MediaQuery.of(context).size.width*0.25,
                               child: TextField(
-                                controller: numberController,
+                                controller:  mobileController,
                                 decoration: InputDecoration(
                                   hintText: 'Phone Number',
                                   border: OutlineInputBorder(
@@ -1584,19 +1608,43 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Container(
-                                height: 45,
-                                width:MediaQuery.of(context).size.width*0.2,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color:korange
+                              InkWell(    onTap: (){
+                    print("---------testing enquiry--------------");
+                    print(widget.packageId);
+                    print(profileController.profileData);
+                    print(cityOfDepController.text);
+                    print(dateOfDepController.text);
+                    print(nameController.text);
+                    print(emailController.text);
+                    print(mobileController.text);
+                         holidayPackageController.createEnquiry(
+                          packageid: widget.packageId, 
+                          vendorid:"107", //profileController.profileData.first.id.toString(),
+                          cityofdeparture: cityOfDepController.text, 
+                          dateofdeparture: dateOfDepController.text, 
+                          adultcount: holidayPackageController.adult.value.toString(), 
+                          childcount: holidayPackageController.child.value.toString(), 
+                          infantcount:  holidayPackageController.infant.value.toString(), 
+                          name: nameController.text, 
+                          email: emailController.text, 
+                          mobile: mobileController.text, 
+                          status: "pending",
+                          );
+                  },
+                                child: Container(
+                                  height: 45,
+                                  width:MediaQuery.of(context).size.width*0.2,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color:korange
+                                  ),
+                                  child:Center(
+                                    child:Text('Send Query',
+                                    style:TextStyle(
+                                      color:kwhite
+                                    ))
+                                  )
                                 ),
-                                child:Center(
-                                  child:Text('Send Query',
-                                  style:TextStyle(
-                                    color:kwhite
-                                  ))
-                                )
                               )
                             ],
                           ),

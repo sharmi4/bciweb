@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CreateEnquiryApiService extends BaseApiService {
   Future createEnquiryApiService({
     required String packageid,
+    required String vendorid,
     required String cityofdeparture,
     required String dateofdeparture,
     required String adultcount,
@@ -21,9 +22,9 @@ class CreateEnquiryApiService extends BaseApiService {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
-      String? vendorid = prefs.getString("id");
+
       var response = await dio.get(
-        createEnquiryApiUrl,
+        getPackageDetailsApiUrl,
         options: Options(
             headers: {
               'Content-Type': 'application/json',
@@ -47,7 +48,7 @@ class CreateEnquiryApiService extends BaseApiService {
               "status": status
             }
       );
-      print("::::::::<create enquiry Api>::::::::status code::::::$vendorid::::");
+      print("::::::::<create enquiry Api>::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

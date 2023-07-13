@@ -16,6 +16,7 @@ class HolidayPackageController extends GetxController{
   RxInt child = 0.obs;
   RxInt adult = 0.obs;
   RxInt infant = 0.obs;
+  RxInt index = 0.obs;
 
   //get package category
   GetPackageCategoryApiServices getPackageCategoryApiServices = GetPackageCategoryApiServices();
@@ -103,6 +104,7 @@ class HolidayPackageController extends GetxController{
     required String status,
   }) async {
      dio.Response<dynamic> response = await createEnquiryApiService.createEnquiryApiService(
+      vendorid:"",
       packageid: packageid, 
       cityofdeparture: cityofdeparture, 
       dateofdeparture: dateofdeparture, 
@@ -153,5 +155,13 @@ class HolidayPackageController extends GetxController{
     }
     update();
   }
+
+
+
+
+
+
+
+  
   
   }

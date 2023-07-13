@@ -1,13 +1,11 @@
 import 'package:bciweb/views/business/bookins/hotels/booking_hotels.dart';
 import 'package:bciweb/views/business/bookins/liquer/Liquer_booking.dart';
 import 'package:bciweb/views/business/bookins/trip/hollidays.dart';
-import 'package:bciweb/views/business/bookins/trip/trip_about.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../../constant/constans.dart';
 import '../../../../controller/holiday_package_controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
@@ -24,26 +22,31 @@ class BookingTrip extends StatefulWidget {
 }
 
 class _BookingTripState extends State<BookingTrip> {
-   final holidayPackageController = Get.find<HolidayPackageController>();
+  final holidayPackageController = Get.find<HolidayPackageController>();
+  final searchController = TextEditingController();
 
-
-     @override
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     holidayPackageController.getPackageCategory();
-   // holidayPackageController.getPackage();
-   // searchController.addListener(searchUsers);
+    holidayPackageController.getPackage();
+    searchController.addListener(searchUsers);
   }
 
-
-
-
+  searchUsers() {
+    if (searchController.text.trim().isNotEmpty) {
+      holidayPackageController.searchPackageList(name: searchController.text);
+    } else {
+      holidayPackageController.getPackage();
+      holidayPackageController.update();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
+    return Scaffold(backgroundColor: kwhite,
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
@@ -178,7 +181,7 @@ class _BookingTripState extends State<BookingTrip> {
                             Spacer(),
                             InkWell(
                               onTap: () {
-                                Get.to(HolidaysScreen());
+                                // Get.to(HolidaysScreen());
                               },
                               child: VxBox(
                                       child: Text('Explore Now')
@@ -212,48 +215,100 @@ class _BookingTripState extends State<BookingTrip> {
                 )
               ],
             ),
-            Row(
+            ksizedbox40,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Search city , Country, Place for Travel advisory')
-                    .text
-                    .thin
-                    .gray600
-                    .make()
-                    .box
-                    .p12
-                    .rounded
-                    .pink300
-                    .width(context.percentWidth * 70)
-                    .make()
-                    .pSymmetric(v: 40, h: 20),
+                GetBuilder<HolidayPackageController>(builder: (_) {
+                  return Container(
+                    height: 55,
+                    width: size.width * 0.5,
+                    child: TextFormField(
+                        controller: searchController,
+                        decoration: InputDecoration(
+                          hintText: 'Search',
+                          fillColor: const Color(0xFFFFFFFF),
+                          focusColor: Colors.grey[200],
+                          isDense: true,
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 0.5,
+                                color: Colors.grey.withOpacity(0.2)),
+                            borderRadius: BorderRadius.circular(19.0),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.search,
+                            color: Colors.grey,
+                          ),
+                        )),
+                  );
+                }),
+                // const Text('Search city , Country, Place for Travel advisory')
+                //     .text
+                //     .thin
+                //     .gray600
+                //     .make()
+                //     .box
+                //     .p12
+                //     .rounded
+                //     .pink300
+                //     .width(context.percentWidth * 70)
+                //     .make()
+                //     .pSymmetric(v: 40, h: 20),
               ],
             ),
             Container(
               height: 120,
-              child: GetBuilder<HolidayPackageController>(
-                builder: (_) {
-                  return ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: holidayPackageController.packageCategoryData.length, // Replace witsh your desired number of items
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          height: 200,
-                          width: 200,
-                          color: Colors.blue, // Replace with your desired color
+              child: GetBuilder<HolidayPackageController>(builder: (_) {
+                return ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: holidayPackageController.packageCategoryData
+                      .length, // Replace witsh your desired number of items
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: InkWell(
+                        onTap: () {
+                          holidayPackageController.index(index);
+                          holidayPackageController.update();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color:
+                                  holidayPackageController.index.value == index
+                                      ? kyellow
+                                      : kwhite,
+                              borderRadius: BorderRadius.circular(15)),
+                          height: 110,
+                          width: 150,
+                          // Replace with your desired color
                           child: Center(
                             child: Text(
-                              holidayPackageController.packageCategoryData[index].name,
+                              holidayPackageController
+                                  .packageCategoryData[index].name,
                               style: TextStyle(
+                                fontWeight: FontWeight.w500,
                                 fontSize: 20,
-                                color: Colors.white,
+                                color: holidayPackageController.index.value ==
+                                        index
+                                    ? kwhite
+                                    : kyellow,
                               ),
                             ),
                           ),
-                        );
-                      });
-                }
-              ),
+                        ),
+                      ),
+                    );
+                  },
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 2,
+                    );
+                  },
+                );
+              }),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -291,23 +346,109 @@ class _BookingTripState extends State<BookingTrip> {
                 ).p64()
               ],
             ),
-            ksizedbox30,
-            Padding(
-              padding: const EdgeInsets.all(10.0),
-              child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: 12,
-                  physics: NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 4,
-                    crossAxisSpacing: 10.0,
-                    mainAxisSpacing: 10.0,
-                  ),
-                  itemBuilder: ((context, index) {
-                    return tripcontainer();
-                  })),
-            ),
-            'Happy Customers'.text.semiBold.xl3.make(),
+
+            GetBuilder<HolidayPackageController>(builder: (_) {
+              return Container(
+                height: 500,
+                child: holidayPackageController.packageListData.isEmpty
+                    ? const Center(
+                        child: Text("No Data Found"),
+                      )
+                    : ListView.builder(
+                        itemCount:
+                            holidayPackageController.packageListData.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(HolidaysScreen(
+                                  packageId: holidayPackageController
+                                      .packageListData[index].id
+                                      .toString(),
+                                ));
+                              },
+                              child: Container(
+                               height: size.height * 0.4,
+                                width: size.width * 0.2,
+                                //  height: 250,
+                                //  width: 800,
+                                decoration: BoxDecoration(
+                                    color: kwhite,
+                                    borderRadius: BorderRadius.circular(19)),
+                                child: Column(
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(19),
+                                      child: Image.network(
+                                        holidayPackageController
+                                            .packageListData[index]
+                                            .images
+                                            .first,width: size.width*0.9,height: size.height*0.35,
+                                        //  height: 150,
+                                        //  width: 165,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: 100,
+                                            child: Text(
+                                              holidayPackageController
+                                                  .packageListData[index].title,
+                                              maxLines: 2,
+                                              style: TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w700),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Row(
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/location-svgrepo-com (1).png',
+                                          height: 30,
+                                        ),
+                                        kwidth5,
+                                        Text(
+                                          'Jordan',
+                                          style: TextStyle(
+                                              fontSize: 13, color: kgrey),
+                                        ),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }),
+              );
+            }),
+
+            // ksizedbox30,
+            // Padding(
+            //   padding: const EdgeInsets.all(10.0),
+            //   child: GridView.builder(
+            //       shrinkWrap: true,
+            //       itemCount: 12,
+            //       physics: NeverScrollableScrollPhysics(),
+            //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            //         crossAxisCount: 4,
+            //         crossAxisSpacing: 10.0,
+            //         mainAxisSpacing: 10.0,
+            //       ),
+            //       itemBuilder: ((context, index) {
+            //         return tripcontainer();
+            //       })),
+            // ),
+            'Happy Customers'.text.bold.xl3.make(),
             ksizedbox30,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -403,7 +544,7 @@ class tripcontainer extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Get.to(HolidaysScreen());
+        //Get.to(HolidaysScreen());
       },
       child: Container(
         color: kwhite,
