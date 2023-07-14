@@ -1,17 +1,11 @@
-
 import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
-import 'package:bciweb/views/members/common_widget/common.dart';
-import 'package:bciweb/views/members/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../constant/image.dart';
-import '../responsive/authentications/generate_otp/generate_otp.dart';
-import '../views/authentication/generate_otp_screen.dart';
+
 
 
 

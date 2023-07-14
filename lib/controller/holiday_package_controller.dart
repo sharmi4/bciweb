@@ -17,6 +17,7 @@ class HolidayPackageController extends GetxController{
   RxInt adult = 0.obs;
   RxInt infant = 0.obs;
   RxInt index = 0.obs;
+  RxInt tripindex = 0.obs;
 
   //get package category
   GetPackageCategoryApiServices getPackageCategoryApiServices = GetPackageCategoryApiServices();

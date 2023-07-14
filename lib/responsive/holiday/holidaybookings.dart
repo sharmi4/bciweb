@@ -1,5 +1,3 @@
-
-
 import 'package:bciweb/controller/holiday_package_controller.dart';
 import 'package:bciweb/responsive/holiday/controllers/holidaycontroller.dart';
 import 'package:bciweb/responsive/holiday/widgets/additional_info.dart';
@@ -9,13 +7,12 @@ import 'package:bciweb/responsive/holiday/widgets/hoteldetails.dart';
 import 'package:bciweb/responsive/holiday/widgets/overview.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:carousel_slider/carousel_controller.dart';
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../constant/constans.dart';

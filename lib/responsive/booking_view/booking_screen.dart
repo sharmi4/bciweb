@@ -4,14 +4,10 @@ import 'package:bciweb/responsive/booking_view/flight/flight_home.dart';
 import 'package:bciweb/responsive/booking_view/others_booking.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/responsive/mobile_wdgets/drawer.dart';
-import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-
 import 'holiday_booking.dart';
 import 'hotel_booking.dart';
 import 'liqour/liqour_booking_screen.dart';

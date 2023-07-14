@@ -1,10 +1,6 @@
 import 'dart:convert';
-
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
-
 import '../../models/air_search_model.dart';
 import '../../models/airport_search_model.dart';
 import '../../models/flight_searchdatamodel.dart';
