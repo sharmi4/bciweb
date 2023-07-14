@@ -123,10 +123,11 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                           ],
               ),
             ),
-            body: TabBarView(children: [ holiday_listview(), holiday_listview(), holiday_listview(),
-              
-              
-              
+            body: TabBarView(
+              children: [ 
+                holiday_listview(), 
+                holiday_listview(),  
+                holiday_listview(),
             ]),
           ),
         );
