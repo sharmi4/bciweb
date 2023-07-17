@@ -23,10 +23,10 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
       color: kblue,
       child: Padding(
         padding: EdgeInsets.only(top: 20),
-        child: Row(
+        child: Row(crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Column(
+            Column(mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image(
@@ -77,12 +77,10 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
               ],
             ),
-            Column(
+            Column(mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: 15,
-                ),
+               ksizedbox20,
                 Text(
                   "MENU",
                   textAlign: TextAlign.start,
@@ -181,14 +179,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontSize: 17,
                         fontWeight: FontWeight.w400),
                   ),
-                )
-              ],
+                ),
+        ksizedbox20,      ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 15,
+                  height: 20,
                 ),
                 Text(
                   "Privacy&Policy",
@@ -230,22 +228,22 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // InkWell(
-                //   onTap: () {
-                //     Get.to(Disclimer());
-                //   },
-                //   child: Text(
-                //     "FAQ",
-                //     textAlign: TextAlign.start,
-                //     style: TextStyle(
-                //         color: Colors.white,
-                //         fontSize: 17,
-                //         fontWeight: FontWeight.w400),
-                //   ),
-                // ),
+                SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    Get.to(Canslation());
+                  },
+                  child: Text(
+                    "REFUND AND CANCELLATION POLICY",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
                 SizedBox(
                   height: 10,
                 ),
@@ -312,120 +310,114 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
               ],
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 35),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: 0,
-                  ),
-                  Text(
-                    "Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Color(0xffEF5323),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Text(
-                    "Fight Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Hotel Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "holidays Trip Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "Liquor Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  "Booking",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Color(0xffEF5323),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                Text(
+                  "Fight Booking",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400),
+                ),
+                // SizedBox(
+                //   height: 10,
+                // ),
+                // Text(
+                //   "Hotel Booking",
+                //   textAlign: TextAlign.start,
+                //   style: TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 17,
+                //       fontWeight: FontWeight.w400),
+                // ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "holidays Trip Booking",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Liquor Booking",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 80),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Contact Us",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Color(0xffEF5323),
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Text(
-                    "+91 9884551551  ",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "+91 9884660660",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    "customercare@bcipvtltd.com",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ],
-              ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [ksizedbox20,
+                Text(
+                  "Contact Us",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Color(0xffEF5323),
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(
+                  "+91 9884551551  ",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "+91 9884660660",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "customercare@bcipvtltd.com",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w400),
+                ),
+              ],
             ),
           ],
         ),

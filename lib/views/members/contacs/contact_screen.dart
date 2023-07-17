@@ -62,99 +62,176 @@ class _ContactScreenState extends State<ContactScreen> {
                   //    textAlign: TextAlign.center,),
                   //  ),
                    ksizedbox20,
-                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Stack(
-                        children: [
-                          Image.asset('assets/images/locationcontainer.png',
-                          height: 190,fit: BoxFit.fitHeight,),
-                          Positioned(
-                            top: 80,
-                            left: 0,
-                            right: 0,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Text('Our Location',
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: kwhite
-                                ),
-                                textAlign: TextAlign.center,),
-                                ksizedbox10,
-                                Text('#781, Rayala Towers, 2nd Floor,\nAnna Salai, Mount Road, Chennai - 600002',
-                               textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: kwhite
-                                ),)
-                              ],
-                            ))
-                        ],
-                      ),
-                      Stack(
-                        children: [
-                          Image.asset('assets/images/phonecontainer.png',
-                          height: 190,fit: BoxFit.fitHeight,),
-                          Positioned(
-                            top: 80,
-                            left: 0,
-                            right: 0,
-                            child: Column(
-                              children: [
-                                Text('Phone Number',
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: kwhite
-                                ),
-                                textAlign: TextAlign.center,),
-                                ksizedbox10,
-                                Text('+91  9884 551 551',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  color: kwhite
-                                ),),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 2),
-                                  child: Text('+91  9884 660 660',
+                   SingleChildScrollView(scrollDirection: Axis.horizontal,
+                     child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [    Stack(
+                          children: [
+                            Image.asset('assets/images/locationcontainer.png',
+                            height: 190,fit: BoxFit.fitHeight,),
+                            Positioned(
+                              top: 80,
+                              left: 0,
+                              right: 0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('Registered office',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    color: kwhite
+                                  ),
+                                  textAlign: TextAlign.center,),
+                                  ksizedbox10,
+                                  Text('Address : ShopNo.S101,Door No.769 , Suite #25, Spencer Plaza, Anna Road, Chennai-600002.',
+                                 textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: kwhite
+                                  ),)
+                                ],
+                              ))
+                          ],
+                        ),    Stack(
+                          children: [
+                            Image.asset('assets/images/phonecontainer.png',
+                            height: 190,fit: BoxFit.fitHeight,),
+                            Positioned(
+                              top: 80,
+                              left: 0,
+                              right: 0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('Club house',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    color: kwhite
+                                  ),
+                                  textAlign: TextAlign.center,),
+                                //  ksizedbox10,
+                                  Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Text('414/2B3, Bollineni Hillside West, Perumbakkam Main Road, Nookampalayam, Arasankazhani, Sithalapakkam, Chennai 600126.',
+                                                                       textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          color: kwhite
+                                        ),),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ))
+                          ],
+                        ),
+
+                            Stack(
+                          children: [
+                            Image.asset('assets/images/gmailcontainer.png',height: 190,
+                            fit: BoxFit.fitHeight,),
+                            Positioned(
+                              top: 80,
+                              left: 0,
+                              right: 0,
+                              child: Column(
+                                children: [
+                                  Text('Email Id',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    color: kwhite
+                                  ),
+                                  textAlign: TextAlign.center,),
+                                  ksizedbox10,
+                                  Text('customercare@bcipvtltd.com',
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: kwhite
+                                  ),),
+                                 
+                                ],
+                              ))
+                          ],
+                        ),
+
+
+                           Stack(
+                          children: [
+                            Image.asset('assets/images/phonecontainer.png',
+                            height: 190,fit: BoxFit.fitHeight,),
+                            Positioned(
+                              top: 80,
+                              left: 0,
+                              right: 0,
+                              child: Column(
+                                children: [
+                                  Text('Phone Number',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    color: kwhite
+                                  ),
+                                  textAlign: TextAlign.center,),
+                                  ksizedbox10,
+                                  Text('+91  9884 551 551',
                                   style: TextStyle(
                                     fontSize: 13,
                                     color: kwhite
                                   ),),
-                                )
-                              ],
-                            ))
-                        ],
-                      ),
-                      Stack(
-                        children: [
-                          Image.asset('assets/images/gmailcontainer.png',height: 190,
-                          fit: BoxFit.fitHeight,),
-                          Positioned(
-                            top: 80,
-                            left: 0,
-                            right: 0,
-                            child: Column(
-                              children: [
-                                Text('Email Id',
-                                style: TextStyle(
-                                  fontSize: 19,
-                                  color: kwhite
-                                ),
-                                textAlign: TextAlign.center,),
-                                ksizedbox10,
-                                Text('customercare@bcipvtltd.com',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  color: kwhite
-                                ),),
-                               
-                              ],
-                            ))
-                        ],
-                      )
-                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 2),
+                                    child: Text('+91  9884 660 660',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      color: kwhite
+                                    ),),
+                                  )
+                                ],
+                              ))
+                          ],
+                        ),
+
+
+                        Stack(
+                          children: [
+                            Image.asset('assets/images/locationcontainer.png',
+                            height: 190,fit: BoxFit.fitHeight,),
+                            Positioned(
+                              top: 80,
+                              left: 0,
+                              right: 0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('Our Location',
+                                  style: TextStyle(
+                                    fontSize: 19,
+                                    color: kwhite
+                                  ),
+                                  textAlign: TextAlign.center,),
+                                  ksizedbox10,
+                                  Text('#781, Rayala Towers, 2nd Floor,\nAnna Salai, Mount Road, Chennai - 600002',
+                                 textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                    color: kwhite
+                                  ),)
+                                ],
+                              ))
+                          ],
+                        ),
+
+
+
+
+
+
+
+                     
+                    
+                      ],
+                     ),
                    ),
                   Padding(
                     padding: const EdgeInsets.only(top: 30,left: 50,right: 50),

@@ -9,6 +9,73 @@ import '../views/members/common_widget/common.dart';
 import 'common_reg_bottom.dart';
 import 'common_reg_homescreen.dart';
 
+
+
+
+class Canslation extends StatefulWidget {
+  const Canslation({super.key});
+
+  @override
+  State<Canslation> createState() => _CanslationState();
+}
+
+class _CanslationState extends State<Canslation> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+      body: ListView(
+        children: [
+          RegisterCommonContainer(),
+          ksizedbox40,
+          Padding(
+            padding: const EdgeInsets.all(80.0),
+            child: Column(
+              children: [
+                Text(
+                  'REFUND AND CANCELLATION POLICY',
+                  style: TextStyle(
+                      decoration: TextDecoration.underline,
+                      fontSize: 27,
+                      fontWeight: FontWeight.w700),
+                ),
+                ksizedbox30,
+                ksizedbox20,
+                Text(
+                  '''1.	THERE SHALL BE NO CANCELLATION OF MEMBERSHIP AFTER 48 HOURS OF BECOMING A MEMBER AS WELL AS FOR TRAVEL, MEMBERS STAY.
+2.	IF YOU HAVE CANCELLED MEMBERSHIP AMOUNT WILL BE REFUNDED WITHIN 24 HOURS THROUGH NET BANKING
+3.	THERE SHALL BE 20% DEDUCTED FOR CANCELLING THE MEMBERSHIP WITHIN STIPULATED TIME WHATEVER THE FEES PAID FOR MEMBERSHIP, TRAVEL, STAY, SPA, FOOD, LIQUOR, ETC.
+4.	THERE SHALL BE 50% OF THE ADVANCE AMOUNT BE PAID BY THE MEMBER FOR TRAVEL, STAY, LIQUOR, FOOD, ETC BEFORE 30 DAYS OF CHECK-IN DATE AND 100% OF THE AMOUNT SHALL BE PAID LESS THAN 15 DAYS OF CHECK-IN DATE FOR THE SAME.
+5.	ADVANCE BOOKING OF MEMBERS FOR TRAVEL, STAY, SPA, LIQUOR FOOD, ETC SHALL NOT BE MORE THAN 90 DAYS.
+6.	LIFETIME SHALL MEAN THE LIFETIME OF A MEMBER ONCE BECAME A MEMBER OF BCI
+
+7.	IN CASE YOU FEEL THAT THE SERVICE AVAIL IS NOT AS LISTED ON THE SITE OR AS PER YOUR EXPECTATIONS, YOU MUST BRING IT TO THE NOTICE OF OUR CUSTOMER CARE WITHIN 48 HOURS OF REGISTERING THE ONLINE MEMBERSHIP. THE CUSTOMER CARE TEAM AFTER LOOKING INTO YOUR COMPLAINT WILL TAKE AN APPROPRIATE DECISION.
+
+8.	NO REFUND IS ENTERTAINED FOR THE PRODUCTS/SERVICES YOU AVAILED FROM OUR BCI APP. IF YOU ARE, FOR ANY REASON, NOT ENTIRELY HAPPY WITH OUR SERVICE, WE WILL CHEERFULLY ISSUE THE REFUND BASED ON THE SERVICE UTILIZED. 
+
+9.	WE MAINTAIN AND SERVE OUR BCI PRESTIGIOUS MEMBERS THAT HUNDREDS OF SATISFIED CUSTOMERS WIDE COUNTRY, AND OUR SUPPORT ARE SECOND TO NONE.
+
+10.	TO REQUEST A REFUND, SIMPLY CONTACT US WITH YOUR MEMBERSHIP DETAILS WITHIN 24 HOURS OF SERVICE UTILIZE. PLEASE MENTION THE MEMBERSHIP DETAILS AND OPTIONALLY TELL US WHY YOU’RE REQUESTING A REFUND – WE TAKE CUSTOMER OPINIONS VERY SERIOUSLY AND USE IT TO CONSTANTLY IMPROVE OUR QUALITY OF SERVICE.
+
+11.	REFUNDS ARE NOT BEING PROVIDED FOR SERVICES DELIVERED IN FULL SUCH AS ROOM STAY, CONSUMPTION OF ALCOHOL, PARTIES, EVENTS AND ON SPECIAL OCCASIONS. REFUNDS ARE BEING PROCESSED WITHIN 3 WEEKS PERIOD.
+''',
+                  style: TextStyle(
+                      height: 1.5, fontWeight: FontWeight.w400, fontSize: 15),
+                  textAlign: TextAlign.left,
+                )
+              ],
+            ),
+          ),
+          ksizedbox40,
+          RegisterCommonBottom()
+        ],
+      ),
+    );
+  }
+}
+
+
 class PrivacyPolicy extends StatefulWidget {
   const PrivacyPolicy({super.key});
 
