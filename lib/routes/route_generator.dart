@@ -5,17 +5,17 @@ import 'package:flutter/material.dart';
 import '../splash_screen/Splash_screen.dart';
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
-import '../views/business/Gallery/gallery.dart';
-import '../views/business/Gallery/gallery.dart';
-import '../views/business/bookins/history/views/history.dart';
-import '../views/business/services/views/servicescart/service_list.dart';
-import '../views/business/services/views/servicescart/services.dart';
-import '../views/business/subscribe/views/subscribe.dart';
+import '../views/members/Gallery/gallery.dart';
+
+import '../views/members/bookins/history/views/history.dart';
+
+import '../views/members/services/views/servicescart/services.dart';
+import '../views/members/subscribe/views/subscribe.dart';
 import '../views/clubhouse.dart';
 import '../views/members/about/about_screens.dart';
 import '../views/members/contacs/contact_screen.dart';
 import '../views/members/home_screen.dart';
-import '../views/specialized/specialized_screen.dart';
+import '../views/members/specialized/specialized_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

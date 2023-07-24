@@ -4,7 +4,7 @@ import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-//import '../../registerhomescreen/common_reg_appbar';
+
 import '../../registerhomescreen/common_reg_bottom.dart';
 
 class RegisterWalletScreen extends StatefulWidget {

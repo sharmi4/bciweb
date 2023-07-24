@@ -3,7 +3,7 @@ import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_paymentsuce
 import 'package:bciweb/services/networks/get_coupons_api_service.dart';
 import 'package:bciweb/services/networks/profile_api_service/profile_api_service.dart';
 import 'package:bciweb/services/networks/subscription/get_payment_apiservice.dart';
-import 'package:bciweb/views/business/subscribe/views/payment_sucess.dart';
+import 'package:bciweb/views/members/subscribe/views/payment_sucess.dart';
 import 'package:bciweb/views/members/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

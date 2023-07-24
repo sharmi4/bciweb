@@ -3,11 +3,16 @@ import 'package:bciweb/views/clubhouse.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
+
+
 import '../../../constant/constans.dart';
 import '../responsive/responsive_homescreen/responsive_homescreen.dart';
-import '../views/business/services/views/servicescart/services.dart';
+import '../views/members/services/views/servicescart/services.dart';
 import '../views/members/about/about_screens.dart';
 import '../views/members/contacs/contact_screen.dart';
+
+
 
 class RegisterCommonBottom extends StatefulWidget {
   const RegisterCommonBottom({super.key});
@@ -235,8 +240,8 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                   onTap: () {
                     Get.to(Canslation());
                   },
-                  child: Text(
-                    "REFUND AND CANCELLATION POLICY",
+                  child: Text('Refund and Cancellation Policy',
+                  //  "REFUND AND CANCELLATION POLICY",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -350,7 +355,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                   height: 10,
                 ),
                 Text(
-                  "holidays Trip Booking",
+                  "Holidays Trip Booking",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       color: Colors.white,
@@ -360,14 +365,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Liquor Booking",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
-                ),
+                // Text(
+                //   "Liquor Booking",
+                //   textAlign: TextAlign.start,
+                //   style: TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 17,
+                //       fontWeight: FontWeight.w400),
+                // ),
               ],
             ),
             Column(

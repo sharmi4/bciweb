@@ -232,28 +232,32 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             )),
                       ),
                     ),
-                    authController.isLogedin == false ? Container(width: 110,color: Colors.white,) :
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: InkWell(
-                        onTap: () {
-                          Get.toNamed(Routes.Subscrib);
-                        },
-                        child: Container(
-                          height: 35,
-                          width: 110,
-                          decoration: BoxDecoration(
-                              gradient:
-                                  LinearGradient(colors: [korange, kyellow]),
-                              borderRadius: BorderRadius.circular(15)),
-                          child: Center(
-                              child: Text(
-                            'Membership',
-                            style: TextStyle(fontSize: 15, color: kwhite),
-                          )),
-                        ),
-                      ),
-                    ),
+                    authController.isLogedin == false
+                        ? Container(
+                            width: 110,
+                            color: Colors.white,
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: InkWell(
+                              onTap: () {
+                                Get.toNamed(Routes.Subscrib);
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [korange, kyellow]),
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Center(
+                                    child: Text(
+                                  'Membership',
+                                  style: TextStyle(fontSize: 15, color: kwhite),
+                                )),
+                              ),
+                            ),
+                          ),
                     authController.isLogedin == false
                         ? Padding(
                             padding: const EdgeInsets.only(left: 10),
@@ -304,40 +308,45 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20),
-              child: Row(children: [
-                GetBuilder<AuthProfileController>(builder: (_) {
-                  return authProfileController.profileData.isNotEmpty ? Text(authProfileController
-                                  .profileData.first.name):Text('');
-                }),
-                Icon(Icons.expand_more),kwidth10,
-                GestureDetector(onTap: () {
-                  Get.offAll(RegisterProfileScreen());
-                }, child: GetBuilder<AuthProfileController>(builder: (_) {
-                  return authProfileController.profileData.isNotEmpty
-                      ? authProfileController
-                                  .profileData.first.profilePicture !=
-                              null
-                          ? CircleAvatar(
-                              radius: 22.0,
-                              backgroundImage: NetworkImage(
-                                authProfileController
-                                    .profileData.first.profilePicture,
-                              ))
-                          : Image.asset(
-                              'assets/images/nick.png',
-                              height: 35,
-                              fit: BoxFit.fitHeight,
-                            )
-                      : Image.asset(
-                          'assets/images/nick.png',
-                          height: 35,
-                          fit: BoxFit.fitHeight,
-                        );
-                }))
-              ]),
-            )
+           Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(children: [
+                  GetBuilder<AuthProfileController>(builder: (_) {
+                    return authProfileController.profileData.isNotEmpty
+                        ? Text(authProfileController.profileData.first.name)
+                        : Text('');
+                  }),
+               //   Icon(Icons.expand_more),
+                  kwidth10,
+                  GestureDetector(onTap: () {
+                    Get.offAll(RegisterProfileScreen());
+                  }, child: GetBuilder<AuthProfileController>(builder: (_) {
+                    return authProfileController.profileData.isNotEmpty
+                        ? authProfileController
+                                    .profileData.first.profilePicture !=
+                                null
+                            ? CircleAvatar(
+                                radius: 22.0,
+                                backgroundImage: NetworkImage(
+                                  authProfileController
+                                      .profileData.first.profilePicture,
+                                ))
+                                :Text('')
+                            // : Image.asset(
+                            //     'assets/images/nick.png',
+                            //     height: 35,
+                            //     fit: BoxFit.fitHeight,
+                            //   )
+                            :Text('');
+                        // : Image.asset(
+                        //     'assets/images/nick.png',
+                        //     height: 35,
+                        //     fit: BoxFit.fitHeight,
+                        //   );
+                  }))
+                ]),
+              ),
+            
           ],
         ),
       ),

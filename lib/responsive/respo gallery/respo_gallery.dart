@@ -1,8 +1,8 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
-import 'package:bciweb/views/business/Gallery/widgets/photo_img_view.dart';
-import 'package:bciweb/views/business/Gallery/widgets/stagerdgridview.dart';
+import 'package:bciweb/views/members/Gallery/widgets/photo_img_view.dart';
+import 'package:bciweb/views/members/Gallery/widgets/stagerdgridview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';

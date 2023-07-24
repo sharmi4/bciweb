@@ -20,7 +20,7 @@ import '../../../models/create_account_model.dart';
 import '../../../models/member profileupdate.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
-import '../../business/services/views/coupons.dart';
+import '../services/views/coupons.dart';
 import '../common_widget/common.dart';
 
 class RegisterProfileScreen extends StatefulWidget {

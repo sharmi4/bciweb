@@ -3,16 +3,15 @@ import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 
 import '../../controller/auth_controller/auth_profile_controller.dart';
 import '../../registerhomescreen/common_reg_homescreen.dart';
-import '../business/bookins/flight/booking_flight.dart';
+import 'bookins/flight/booking_flight.dart';
 import 'common_widget/common.dart';
-//import 'common_widget/commoncontainer.dart';
-//import 'common_widget/common_buttom.dart';
+
 
 class MemberHomeScreen extends StatefulWidget {
   const MemberHomeScreen({super.key});

@@ -1,7 +1,7 @@
 import 'package:bciweb/views/members/about/about_screens.dart';
 import 'package:bciweb/views/members/contacs/contact_screen.dart';
 import 'package:bciweb/views/members/home_screen.dart';
-import 'package:bciweb/views/specialized/specialized_screen.dart';
+import 'package:bciweb/views/members/specialized/specialized_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

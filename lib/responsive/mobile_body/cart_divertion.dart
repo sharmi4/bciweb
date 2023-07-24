@@ -4,7 +4,7 @@ import 'package:bciweb/responsive/mobile_body/mobile_homescreen.dart';
 import 'package:bciweb/views/members/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../views/business/services/views/servicescart/servicescart.dart';
+import '../../views/members/services/views/servicescart/servicescart.dart';
 import '../respo_services/cart_screen.dart';
 
 class MobilecartDivertion extends StatefulWidget {

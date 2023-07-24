@@ -12,7 +12,7 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../constant/constans.dart';
 import '../../controller/service_controller/home_controller.dart';
 import '../../routes/app_pages.dart';
-import '../../views/business/services/views/servicescart/services.dart';
+import '../../views/members/services/views/servicescart/services.dart';
 import '../mobile_wdgets/comomappbar.dart';
 import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
