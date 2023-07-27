@@ -24,7 +24,9 @@ import 'package:bciweb/responsive/specialized/respo_specialized.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/routes/route_generator.dart';
 import 'package:bciweb/splash_screen/Splash_screen.dart';
+import 'package:bciweb/views/members/bookins/bus/bus_seats.dart';
 import 'package:bciweb/views/members/bookins/bus/buslist.dart';
+import 'package:bciweb/views/members/bookins/bus/passengers_details.dart';
 import 'package:bciweb/views/members/bookins/flight/options_booking.dart';
 import 'package:bciweb/views/members/bookins/flight/payment_screen.dart';
 import 'package:bciweb/views/members/bookins/history/views/history.dart';
@@ -108,12 +110,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-     // home: BusList(),
+    //  home: History(),
 
    debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
   //initialRoute: TRoutes.HOME_PAGE,
-      initialRoute: Routes.SPLASH,
+  //     initialRoute: Routes.SPLASH,
       // initialRoute: '/',
       // getPages: [
       //     GetPage(name: '/', page: () => splash()),

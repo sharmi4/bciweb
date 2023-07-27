@@ -23,21 +23,32 @@ Color kyellow = Color(0xFFff9021);
 final kpeople = Image.asset('assets/images/profile.svg');
 //final kimgadd = SvgPicture.asset('assets/images/add.svg');
 
-Color ktextblue=Color(0xff003366);
+Color ktextblue = Color(0xff003366);
 // Color kOrange = Color(0xFFFF5003);
-
 
 var primaryFont = TextStyle();
 
-
-
-
-
 //fonts
 
-var primarysmallFont =  TextStyle(color: kblue,fontSize: 10);
-var primarymediumFont = TextStyle(color: kblue,fontSize: 17,fontWeight: FontWeight.w900);
-var displayfont=GoogleFonts.lato(
-                            fontSize: 80,
-                            fontWeight: FontWeight.bold,
-                            color: kwhite);
+var primarysmallFont = TextStyle(color: kblue, fontSize: 10);
+var primarymediumFont =
+    TextStyle(color: kblue, fontSize: 17, fontWeight: FontWeight.w900);
+var displayfont =
+    GoogleFonts.lato(fontSize: 80, fontWeight: FontWeight.bold, color: kwhite);
+
+var kcontainer = BoxDecoration(
+  color: kwhite,
+  boxShadow: [
+    BoxShadow(
+      color:
+          Color.fromARGB(255, 190, 190, 190).withOpacity(0.5), // Shadow color
+      spreadRadius: 1, // The spread radius of the shadow
+      blurRadius: 5, // The blur radius of the shadow
+      offset: Offset(0, 3), // The offset of the shadow
+    ),
+  ],
+  border: Border.all(
+    color: Colors.grey, // Border color
+    width: 0.2, // Border width
+  ),
+);

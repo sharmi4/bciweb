@@ -60,6 +60,9 @@ dependencies:
   url_strategy: ^0.2.0 
   dashed_line: ^0.1.0+3
   syncfusion_flutter_datepicker: ^22.1.36
+  websafe_svg: ^3.0.0+5
+  flutter_typeahead: ^4.6.2
+ 
   # flutter_super_html_viewer: ^0.1.0
 
 dev_dependencies:

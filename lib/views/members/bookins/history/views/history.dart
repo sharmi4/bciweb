@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/views/members/bookins/history/views/widgets/buswigit.dart';
 
 import 'package:bciweb/views/members/bookins/history/views/widgets/orders.dart';
 import 'package:bciweb/views/members/bookins/history/views/widgets/widgetsdemo.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../controller/historycontroller.dart';
 import '../../../../../controller/reg_home_controller.dart';
@@ -40,7 +42,8 @@ class _HistoryState extends State<History> {
               CommonScreen(),
               RegisterCommonContainer(),
             ],
-          ), preferredSize:const Size(double.infinity, 110)),
+          ),
+          preferredSize: const Size(double.infinity, 110)),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -114,7 +117,7 @@ class _HistoryState extends State<History> {
                                   colorr: korange,
                                 ),
                               ),
-                                InkWell(
+                              InkWell(
                                 onTap: () {
                                   Get.to(BusBookingMain());
                                 },
@@ -213,30 +216,30 @@ class _HistoryState extends State<History> {
                                     width: 200,
                                   ),
                                 ),
-                                // InkWell(
-                                //   onTap: () {
-                                //     historyController.hisindex(3);
-                                //     historyController.update();
-                                //   },
-                                //   child: Container(
-                                //     child: Center(
-                                //         child: Text(
-                                //       'Liquor',
-                                //       style: TextStyle(
-                                //           color: kwhite,
-                                //           fontSize: 19,
-                                //           fontWeight: FontWeight.w700),
-                                //     )),
-                                //     decoration: BoxDecoration(
-                                //         color: historyController.hisindex == 3
-                                //             ? kyellow
-                                //             : kgrey,
-                                //         borderRadius:
-                                //             BorderRadius.circular(15)),
-                                //     height: 100,
-                                //     width: 200,
-                                //   ),
-                                // ),
+                                InkWell(
+                                  onTap: () {
+                                    historyController.hisindex(3);
+                                    historyController.update();
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                        child: Text(
+                                      'Bus',
+                                      style: TextStyle(
+                                          color: kwhite,
+                                          fontSize: 19,
+                                          fontWeight: FontWeight.w700),
+                                    )),
+                                    decoration: BoxDecoration(
+                                        color: historyController.hisindex == 3
+                                            ? kyellow
+                                            : kgrey,
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    height: 100,
+                                    width: 200,
+                                  ),
+                                ),
                                 InkWell(
                                   onTap: () {
                                     historyController.hisindex(4);
@@ -287,9 +290,8 @@ class _HistoryState extends State<History> {
                     if (historyController.hisindex.value == 0) index1(),
                     if (historyController.hisindex.value == 1) index2(),
                     if (historyController.hisindex.value == 2) index3(),
-                    if (historyController.hisindex.value == 3)   bottle_container(),
-                     if (historyController.hisindex.value == 4)  index4(),
-                     
+                    if (historyController.hisindex.value == 3) BussHistory(),
+                    if (historyController.hisindex.value == 4) index4(),
                   ],
                 )),
             ksizedbox30,
@@ -325,6 +327,34 @@ class bookingbutton extends StatelessWidget {
       height: size.height,
       width: size.width * 0.1,
       color: colorr,
+    );
+  }
+}
+
+class BussHistory extends StatelessWidget {
+  const BussHistory({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+        ksizedbox30,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [Buswigit(), Buswigit()],
+        ),
+          ksizedbox30,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [Buswigit(), Buswigit()],
+        ),    ksizedbox30,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [Buswigit(), Buswigit()],
+        ),],
     );
   }
 }

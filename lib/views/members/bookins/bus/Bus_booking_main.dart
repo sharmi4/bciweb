@@ -4,14 +4,13 @@ import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
 import 'package:bciweb/views/members/bookins/history/views/history.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
 import '../hotels/booking_hotels.dart';
-import '../liquer/Liquer_booking.dart';
-import '../liquer/liquer_brand.dart';
 import '../trip/trip_booking.dart';
 
 class BusBookingMain extends StatefulWidget {
@@ -46,6 +45,7 @@ class _BusBookingMainState extends State<BusBookingMain> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    final List<String> items = List.generate(50, (index) => "Item $index");
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -156,15 +156,34 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                           fontWeight: FontWeight.w500,
                                           color: kblue),
                                     ),
-                                    Container(
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          hintText: 'Enter Boarding',
-                                        ),
-                                      ),
+                                                            Container(
+                                      child:    TypeAheadField<String>(
+        getImmediateSuggestions: true,
+        textFieldConfiguration: TextFieldConfiguration(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter Bording'),
+        ),
+        suggestionsCallback: (String pattern) async {
+          return items
+              .where((item) =>
+                  item.toLowerCase().startsWith(pattern.toLowerCase()))
+              .toList();
+        },
+        itemBuilder: (context, String suggestion) {
+          return ListTile(
+            title: Text(suggestion),
+          );
+        },
+        itemSeparatorBuilder: (context, index) {
+          return Divider();
+        },
+        onSuggestionSelected: (String suggestion) {
+          print("Suggestion selected");
+        },
+      ),
+           
+                                    
                                       decoration: BoxDecoration(
                                           //  color: Colors.grey[200],
                                           borderRadius:
@@ -184,15 +203,34 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                           fontWeight: FontWeight.w500,
                                           color: kblue),
                                     ),
-                                    Container(
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          hintText: 'Enter Designation',
-                                        ),
-                                      ),
+                              Container(
+                                      child:    TypeAheadField<String>(
+        getImmediateSuggestions: true,
+        textFieldConfiguration: TextFieldConfiguration(
+          decoration: InputDecoration(
+              border: OutlineInputBorder(),
+              hintText: 'Enter Destination'),
+        ),
+        suggestionsCallback: (String pattern) async {
+          return items
+              .where((item) =>
+                  item.toLowerCase().startsWith(pattern.toLowerCase()))
+              .toList();
+        },
+        itemBuilder: (context, String suggestion) {
+          return ListTile(
+            title: Text(suggestion),
+          );
+        },
+        itemSeparatorBuilder: (context, index) {
+          return Divider();
+        },
+        onSuggestionSelected: (String suggestion) {
+          print("Suggestion selected");
+        },
+      ),
+           
+                                    
                                       decoration: BoxDecoration(
                                           //  color: Colors.grey[200],
                                           borderRadius:
