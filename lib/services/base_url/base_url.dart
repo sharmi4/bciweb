@@ -88,4 +88,27 @@ abstract class BaseApiService {
 
   final String searchPackageListApiUrl =
       "https://bci.generation360tech.in/api/auth/search_packages";
+
+
+
+  final String getCityListApiUrl =
+      "https://bci.generation360tech.in/api/auth/Bus_CityList";
+
+   final String searchBusApiUrl =
+      "https://bci.generation360tech.in/api/auth/Bus_Search";
+
+   final String busSeatMapApiUrl =
+      "https://bci.generation360tech.in/api/auth/bus_seat_map";
+
+   final String busTempBooking =
+      "https://bci.generation360tech.in/api/auth/bus_temp_booking";
+
+   final String busTicketing =
+      "https://bci.generation360tech.in/api/auth/bus_ticketing";
+
+   final String busRequiryURL = "https://bci.generation360tech.in/api/auth/bus_requery";
+
+
+// final String testURL = "https://bci.batechnology.in.net/api/sub_category";
+
 }

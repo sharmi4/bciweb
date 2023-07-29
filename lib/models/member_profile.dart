@@ -11,7 +11,7 @@ String memberProfileModelToJson(MemberProfileModel data) =>
     json.encode(data.toJson());
 
 class MemberProfileModel {
-  String message;
+  dynamic message;
   bool subscription;
   int remainingDays;
   dynamic percentage;
@@ -52,7 +52,7 @@ class MemberUser {
   String name;
   String email;
   String mobile;
-  String isVerrifiedMobile;
+  dynamic isVerrifiedMobile;
   String otp;
   dynamic category;
   dynamic subCategory;
@@ -80,7 +80,7 @@ class MemberUser {
   dynamic pincode;
   dynamic city;
   dynamic state;
-  String status;
+  dynamic status;
   DateTime createdAt;
   DateTime updatedAt;
 

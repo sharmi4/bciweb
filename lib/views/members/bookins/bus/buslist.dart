@@ -15,7 +15,7 @@ import '../hotels/booking_hotels.dart';
 import '../trip/trip_booking.dart';
 
 class BusList extends StatefulWidget {
-  const BusList({super.key});
+  const BusList(   {super.key, required String fromCityName, required String toCityName, required String tdate, required String searchKey, });
 
   @override
   State<BusList> createState() => _BusListState();
@@ -124,7 +124,9 @@ class _BusListState extends State<BusList> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(BusList());
+                               //   Get.to(
+                                 //   BusList()
+                                 //   );
                                 },
                                 child: bookingbutton(
                                   size: size,

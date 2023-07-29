@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
+import '../../../../controller/bus_controllers.dart';
+import '../../../../models/busbookingmodels/bus_cityList_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
@@ -24,28 +26,63 @@ DateTime flaight2selectedDate = DateTime.now();
 DateTime flaightselectedDate = DateTime.now();
 
 class _BusBookingMainState extends State<BusBookingMain> {
-  Future<void> _flaightselectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: flaightselectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != flaightselectedDate) {
-      setState(() {
-        flaightselectedDate = picked;
-        falightdobController.text =
-            '${flaightselectedDate.day}-${flaightselectedDate.month}-${flaightselectedDate.year}';
-      });
-    }
+  setDefault() async {
+    WidgetsBinding.instance.addPostFrameCallback((timings) {
+      busController.getBusCityList.clear();
+      busController.update();
+    });
   }
 
   final apiflightController = Get.find<ApiflightsController>();
   var falightdobController = TextEditingController();
+  final busController = Get.find<BusController>();
+
+  final Bordingcontrolr = TextEditingController();
+  final Destinationcontrolr = TextEditingController();
+
+  DateTime date = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: date,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime(1910),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now().add(const Duration(days: 6570)),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null)
+      setState(() {
+        date = picked;
+        busController.date(formatDate(date, [dd, "/", mm, "/", yyyy]));
+        busController.travelDatess = date;
+        //busController.day(formatDate(date, []));
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    final List<String> items = List.generate(50, (index) => "Item $index");
+
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -141,163 +178,6 @@ class _BusBookingMainState extends State<BusBookingMain> {
                               borderRadius: BorderRadius.circular(10)),
                         ),
                         Container(
-                          child: Center(
-                              child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'From',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: kblue),
-                                    ),
-                                                            Container(
-                                      child:    TypeAheadField<String>(
-        getImmediateSuggestions: true,
-        textFieldConfiguration: TextFieldConfiguration(
-          decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Enter Bording'),
-        ),
-        suggestionsCallback: (String pattern) async {
-          return items
-              .where((item) =>
-                  item.toLowerCase().startsWith(pattern.toLowerCase()))
-              .toList();
-        },
-        itemBuilder: (context, String suggestion) {
-          return ListTile(
-            title: Text(suggestion),
-          );
-        },
-        itemSeparatorBuilder: (context, index) {
-          return Divider();
-        },
-        onSuggestionSelected: (String suggestion) {
-          print("Suggestion selected");
-        },
-      ),
-           
-                                    
-                                      decoration: BoxDecoration(
-                                          //  color: Colors.grey[200],
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      height: size.height * 0.06,
-                                      width: size.width * 0.2,
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'To',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: kblue),
-                                    ),
-                              Container(
-                                      child:    TypeAheadField<String>(
-        getImmediateSuggestions: true,
-        textFieldConfiguration: TextFieldConfiguration(
-          decoration: InputDecoration(
-              border: OutlineInputBorder(),
-              hintText: 'Enter Destination'),
-        ),
-        suggestionsCallback: (String pattern) async {
-          return items
-              .where((item) =>
-                  item.toLowerCase().startsWith(pattern.toLowerCase()))
-              .toList();
-        },
-        itemBuilder: (context, String suggestion) {
-          return ListTile(
-            title: Text(suggestion),
-          );
-        },
-        itemSeparatorBuilder: (context, index) {
-          return Divider();
-        },
-        onSuggestionSelected: (String suggestion) {
-          print("Suggestion selected");
-        },
-      ),
-           
-                                    
-                                      decoration: BoxDecoration(
-                                          //  color: Colors.grey[200],
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      height: size.height * 0.06,
-                                      width: size.width * 0.2,
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  height: 40,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.12,
-                                  decoration: BoxDecoration(
-                                      border: Border.all(color: kgrey),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Container(
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          Text(
-                                              '${formatDate(apiflightController.returnDate, [
-                                                dd,
-                                                "/",
-                                                mm,
-                                                '/',
-                                                yyyy
-                                              ])}'),
-                                          IconButton(
-                                              onPressed: () {
-                                                _flaightselectDate(context);
-                                              },
-                                              icon: Icon(
-                                                  Icons.date_range_outlined))
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(BusList());
-                                  },
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                      'Search',
-                                      style: TextStyle(
-                                          fontSize: 20, color: kwhite),
-                                    )),
-                                    height: 40,
-                                    width: size.width * 0.1,
-                                    decoration: BoxDecoration(
-                                        color: kyellow,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                )
-                              ],
-                            ),
-                            height: 90,
-                            width: size.width * 0.7,
-                            //   color: kgrey,
-                          )),
                           height: 140,
                           width: size.width * 0.8,
                           decoration: BoxDecoration(
@@ -307,6 +187,224 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                   bottomLeft: Radius.circular(15),
                                   topRight: Radius.circular(15),
                                   bottomRight: Radius.circular(15))),
+                          child: Center(
+                              child: Container(
+                            height: 90,
+                            width: size.width * 0.7,
+                            child: GetBuilder<BusController>(builder: (_) {
+                              return Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'From',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: kblue),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            //  color: Colors.grey[200],
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        height: size.height * 0.06,
+                                        width: size.width * 0.2,
+                                        child: TypeAheadField<GetBusCityList>(
+                                          getImmediateSuggestions: true,
+                                          textFieldConfiguration:
+                                              TextFieldConfiguration(
+                                            controller: Bordingcontrolr,
+                                            onChanged: (value) async {
+                                              if (value.length > 1) {
+                                                await Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 200));
+                                                Get.find<BusController>()
+                                                    .busCityList(
+                                                        searchCity: value);
+                                              }
+                                            },
+                                            decoration: const InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                hintText: 'Enter Bording'),
+                                          ),
+                                          suggestionsCallback:
+                                              (String pattern) async {
+                                            return busController.getBusCityList
+                                                .where(
+                                                  (item) => item.cityName
+                                                      .toLowerCase()
+                                                      .startsWith(
+                                                        pattern.toLowerCase(),
+                                                      ),
+                                                )
+                                                .toList();
+                                          },
+                                          itemBuilder: (context,
+                                              GetBusCityList citymodel) {
+                                            return ListTile(
+                                              title: Text(citymodel.cityName),
+                                            );
+                                          },
+                                          itemSeparatorBuilder:
+                                              (context, index) {
+                                            return const Divider();
+                                          },
+                                          onSuggestionSelected:
+                                              (GetBusCityList citymodel) {
+                                            print("bording selected");
+                                            Bordingcontrolr.text =
+                                                citymodel.cityName;
+                                            busController
+                                                .fromCity(citymodel.cityName);
+                                            busController
+                                                .fromcityId(citymodel.cityId);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        'To',
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: kblue),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            //  color: Colors.grey[200],
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        height: size.height * 0.06,
+                                        width: size.width * 0.2,
+                                        child: TypeAheadField<GetBusCityList>(
+                                          getImmediateSuggestions: true,
+                                          textFieldConfiguration:
+                                              TextFieldConfiguration(     onChanged: (value) async {
+                                              if (value.length > 1) {
+                                                await Future.delayed(
+                                                    const Duration(
+                                                        milliseconds: 200));
+                                                Get.find<BusController>()
+                                                    .busCityList(
+                                                        searchCity: value);
+                                              }
+                                            },
+                                            controller: Destinationcontrolr,
+                                            decoration: const InputDecoration(
+                                                border: OutlineInputBorder(),
+                                                hintText: 'Enter Destination'),
+                                          ),
+                                          suggestionsCallback:
+                                              (String pattern) async {
+                                            return busController.getBusCityList
+                                                .where((item) => item.cityName
+                                                    .toLowerCase()
+                                                    .startsWith(
+                                                        pattern.toLowerCase()))
+                                                .toList();
+                                          },
+                                          itemBuilder: (context,
+                                              GetBusCityList citymodel) {
+                                            return ListTile(
+                                              title: Text(citymodel.cityName),
+                                            );
+                                          },
+                                          itemSeparatorBuilder:
+                                              (context, index) {
+                                            return Divider();
+                                          },
+                                          onSuggestionSelected:
+                                              (GetBusCityList citymodel) {
+                                            print("destination selected");
+                                            Destinationcontrolr.text =
+                                                citymodel.cityName;
+                                            busController
+                                                .toCity(citymodel.cityName);
+                                            busController
+                                                .tocityId(citymodel.cityId);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Container(
+                                    height: 40,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.12,
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: kgrey),
+                                        borderRadius: BorderRadius.circular(5)),
+                                    child: Container(
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 5),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Text(busController.date.value),
+
+                                            // Text(
+                                            //     '${formatDate(apiflightController.returnDate, [
+                                            //       dd,
+                                            //       "/",
+                                            //       mm,
+                                            //       '/',
+                                            //       yyyy
+                                            //     ])}'),
+                                            IconButton(
+                                                onPressed: () {
+                                                  _selectDate(context);
+                                                },
+                                                icon: Icon(
+                                                    Icons.date_range_outlined))
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      busController.searchBus(
+                                          fromCityId: busController
+                                              .fromcityId.value
+                                              .toString(),
+                                          toCityId: busController.tocityId.value
+                                              .toString(),
+                                          travelDate: formatDate(
+                                              busController.travelDatess,
+                                              [mm, "/", dd, "/", yyyy]));
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        'Search',
+                                        style: TextStyle(
+                                            fontSize: 20, color: kwhite),
+                                      )),
+                                      height: 40,
+                                      width: size.width * 0.1,
+                                      decoration: BoxDecoration(
+                                          color: kyellow,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }),
+                            //   color: kgrey,
+                          )),
                         ),
                         Spacer()
                       ],
@@ -331,8 +429,8 @@ class _BusBookingMainState extends State<BusBookingMain> {
               height: 210,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                               itemCount:2,
-                               // flaightimage.length,
+                  itemCount: 2,
+                  // flaightimage.length,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
                     return Padding(
@@ -357,8 +455,9 @@ class _BusBookingMainState extends State<BusBookingMain> {
                               Column(
                                 children: [
                                   Container(
-                                      child: Image.asset('assets/images/busa.png',
-                                  //  flaightimage[index],
+                                      child: Image.asset(
+                                    'assets/images/busa.png',
+                                    //  flaightimage[index],
                                     fit: BoxFit.fitHeight,
                                     height: 170,
                                   )),
@@ -369,25 +468,26 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('KPN Travels',
-                                   //   title[index],
+                                    Text(
+                                      'KPN Travels',
+                                      //   title[index],
                                       textAlign: TextAlign.start,
-                                      style: TextStyle(
-                                          fontSize: 18, color: kblue),
+                                      style:
+                                          TextStyle(fontSize: 18, color: kblue),
                                     ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 10),
-                                        child: Text('Offers Today',
-                                    //      description[index],
-                                          textAlign: TextAlign.start,
-                                          style: TextStyle(
-                                              height: 1.2,
-                                              fontSize: 22,
-                                              color: kblue,
-                                              fontWeight: FontWeight.bold),
-                                        ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 10),
+                                      child: Text(
+                                        'Offers Today',
+                                        //      description[index],
+                                        textAlign: TextAlign.start,
+                                        style: TextStyle(
+                                            height: 1.2,
+                                            fontSize: 22,
+                                            color: kblue,
+                                            fontWeight: FontWeight.bold),
                                       ),
+                                    ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 12),
                                       child: Container(
