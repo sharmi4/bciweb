@@ -1,20 +1,31 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/views/members/bookins/bus/wigets/bus_details_wiget.dart';
-import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
-import 'package:bciweb/views/members/bookins/history/views/history.dart';
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
+import '../../../../models/busbookingmodels/search_bus_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
-import '../hotels/booking_hotels.dart';
-import '../trip/trip_booking.dart';
+
+
 
 class PssengesDetails extends StatefulWidget {
-  const PssengesDetails({super.key});
+   Bus busData;
+  String boardingId;
+  String dropingId;
+  String searchkey;
+  List<String> seatIds;
+  String amount;
+  PssengesDetails(
+      {super.key,
+       required this.boardingId,
+      required this.busData,
+      required this.dropingId,
+      required this.searchkey,
+      required this.amount,
+      required this.seatIds});
 
   @override
   State<PssengesDetails> createState() => _PssengesDetailsState();
@@ -58,242 +69,12 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                 Container(
                     width: size.width,
                     child: Image.asset('assets/images/buss.png')),
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Spacer(),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BookingFlight());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'FLIGHT',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BookingHotels());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'HOTELS',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BookingTrip());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'TRIP',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              // InkWell(
-                              //   onTap: () {
-                              //     Get.to(BookingLiquer());
-                              //   },
-                              //   child: bookingbutton(
-                              //     size: size,
-                              //     text: 'LIQUOR',
-                              //     colorr: kblue,
-                              //   ),
-                              // ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(History());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'HISTORY',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(PssengesDetails());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'Bus',
-                                  colorr: korange,
-                                ),
-                              ),
-                            ],
-                          ),
-                          height: 60,
-                          width: size.width * 0.7,
-                          decoration: BoxDecoration(
-                              color: kblue,
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                        Container(
-                          child: Center(
-                              child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'From',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: kblue),
-                                    ),
-                                    Container(
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          hintText: 'Enter Boarding',
-                                        ),
-                                      ),
-                                      decoration: BoxDecoration(
-                                          //  color: Colors.grey[200],
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      height: size.height * 0.06,
-                                      width: size.width * 0.2,
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'To',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: kblue),
-                                    ),
-                                    Container(
-                                      child: TextField(
-                                        decoration: InputDecoration(
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
-                                          hintText: 'Enter Designation',
-                                        ),
-                                      ),
-                                      decoration: BoxDecoration(
-                                          //  color: Colors.grey[200],
-                                          borderRadius:
-                                              BorderRadius.circular(15)),
-                                      height: size.height * 0.06,
-                                      width: size.width * 0.2,
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      'Date',
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w500,
-                                          color: kblue),
-                                    ),
-                                    Container(
-                                      height: 40,
-                                      width: MediaQuery.of(context).size.width *
-                                          0.12,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Container(
-                                        child: Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 5),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                  '${formatDate(apiflightController.returnDate, [
-                                                    dd,
-                                                    "/",
-                                                    mm,
-                                                    '/',
-                                                    yyyy
-                                                  ])}'),
-                                              IconButton(
-                                                  onPressed: () {
-                                                    _flaightselectDate(context);
-                                                  },
-                                                  icon: Icon(Icons
-                                                      .date_range_outlined))
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    //   Get.to(LiquerBrand());
-                                  },
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                      'Search',
-                                      style: TextStyle(
-                                          fontSize: 20, color: kwhite),
-                                    )),
-                                    height: 40,
-                                    width: size.width * 0.1,
-                                    decoration: BoxDecoration(
-                                        color: kyellow,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                  ),
-                                )
-                              ],
-                            ),
-                            height: 90,
-                            width: size.width * 0.7,
-                            //   color: kgrey,
-                          )),
-                          height: 140,
-                          width: size.width * 0.8,
-                          decoration: BoxDecoration(
-                              color: kwhite,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.zero,
-                                  bottomLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                  bottomRight: Radius.circular(15))),
-                        ),
-                        Spacer()
-                      ],
-                    ),
-                  ),
-                )
+             
               ],
             ),
             ksizedbox20,
-            Row(crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
                   width: size.width * 0.83,
@@ -728,7 +509,7 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                     ],
                   ),
                 ),
-           BussDetails()
+                BussDetails()
               ],
             ),
             ksizedbox30,

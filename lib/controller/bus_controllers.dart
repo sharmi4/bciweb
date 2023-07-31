@@ -5,8 +5,10 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../constant/constans.dart';
 import '../models/busbookingmodels/bus_cityList_model.dart';
+import '../models/busbookingmodels/bus_seat_map_model.dart';
 import '../models/busbookingmodels/search_bus_model.dart';
 import '../services/networks/profile_api_service/bus_api_service/bus_cityList_api_service.dart';
+import '../services/networks/profile_api_service/bus_api_service/bus_seatMap_api_service.dart';
 import '../services/networks/profile_api_service/bus_api_service/search_bus_api_service.dart';
 import '../views/members/bookins/bus/buslist.dart';
 import '../views/members/bookins/bus/wigets/seats.dart';
@@ -67,6 +69,42 @@ class BusController extends GetxController {
         tdate: date.value,
         searchKey: searchBusList.searchKey,
       ));
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "something went wrong ${response.statusCode}",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+
+
+
+   //bus seat map
+  BusSeatMapApiService busSeatMapApiService = BusSeatMapApiService();
+  List<SeatMap> seatMap = [];
+
+  RxDouble totalAmount = 0.0.obs;
+
+  RxString seatMapKey = "".obs;
+
+  busSeat(
+      {required String boardingId,
+      required String droppingId,
+      required String searchKey,
+      required Bus busData}) async {
+    dio.Response<dynamic> response =
+        await busSeatMapApiService.busSeatMapApiService(
+            boardingId: boardingId,
+            droppingId: droppingId,
+            busData: busData,
+            searcKey: searchKey);
+    if (response.statusCode == 200) {
+      BusSeatMapList busSeatMapList = BusSeatMapList.fromJson(response.data);
+      seatMap = busSeatMapList.seatMap;
+      seatMapKey(busSeatMapList.seatMapKey);
     } else {
       Get.rawSnackbar(
           backgroundColor: Colors.red,

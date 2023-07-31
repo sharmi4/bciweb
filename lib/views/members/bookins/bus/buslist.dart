@@ -1,5 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
-import 'package:bciweb/views/members/bookins/bus/bus_seats.dart';
+import 'package:bciweb/views/members/bookins/bus/bus_boarding.dart';
 import 'package:bciweb/views/members/bookins/bus/wigets/wiget_buslist.dart';
 import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
 import 'package:bciweb/views/members/bookins/history/views/history.dart';
@@ -40,7 +40,9 @@ class _BusListState extends State<BusList> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+        child: CommonScreen(),
+        preferredSize: Size(double.infinity, 40),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -56,34 +58,33 @@ class _BusListState extends State<BusList> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      GetBuilder<BusController>(builder: (_) {
-                        return Row(
-                          children: [
-                            kwidth10,
-                            Text('we have got ${busController.busData.length} results')
-                                .text
-                                .semiBold
-                                .blue900
-                                .xl2
-                                .make()
-                          ],
-                        );
-                      }),
+                      GetBuilder<BusController>(
+                        builder: (_) {
+                          return Row(
+                            children: [
+                              kwidth10,
+                              Text('we have got ${busController.busData.length} results')
+                                  .text
+                                  .semiBold
+                                  .blue900
+                                  .xl2
+                                  .make()
+                            ],
+                          );
+                        },
+                      ),
                       //  ksizedbox10,
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Container(
-                              width: size.width * 0.2,
-                              child: Column(
-                                children: [
-                                  Text('Operator')
-                                      .text
-                                      .semiBold
-                                      .orange500
-                                      .make(),
-                                ],
-                              )),
+                            width: size.width * 0.2,
+                            child: Column(
+                              children: [
+                                Text('Operator').text.semiBold.orange500.make(),
+                              ],
+                            ),
+                          ),
                           Text('Departure').text.semiBold.orange500.make(),
                           //   Text('Total Duration').text.semiBold.orange500.make(),
                           Text('Arrival').text.semiBold.orange500.make(),
