@@ -108,7 +108,8 @@ abstract class BaseApiService {
 
    final String busRequiryURL = "https://bci.generation360tech.in/api/auth/bus_requery";
 
-
+    //get wallet details
+  final String getWalletDetailsApiUrl = "https://bci.generation360tech.in/api/auth/getUserwallet";
 // final String testURL = "https://bci.batechnology.in.net/api/sub_category";
 
 }
