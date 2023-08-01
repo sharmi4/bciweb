@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'dart:math';
-
+import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
@@ -15,6 +15,7 @@ import '../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../controller/profile_controller.dart';
 import '../../../controller/profile_show_controller.dart';
 //import '../../../registerhomescreen/common_reg_appbar';
+import '../../../controller/setting_controller/setting_controller.dart';
 import '../../../controller/subscription_controller/subscription_controller.dart';
 import '../../../models/create_account_model.dart';
 import '../../../models/member profileupdate.dart';
@@ -89,7 +90,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     setDefauld();
     subscripeController.getcouponsList();
     authprofileController.getProfile();
-    plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
+    apisettingController.getwalletList();
+    // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
 
   }
  final plansController=Get.find<SubscriptionApiController>();
@@ -179,9 +181,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             ? false
             : true;
       });
-      dateofbirthController.text = authprofileController.profileData.first.dob;
+      // dateofbirthController.text = authprofileController.profileData.first.dob;
     }
   }
+  
 AlertDialog mAlertItem2 = AlertDialog(
       backgroundColor: Colors.white,
       title: Text("Confirmation", style:TextStyle(
@@ -210,9 +213,17 @@ AlertDialog mAlertItem2 = AlertDialog(
         ),
       ],
     );
+    final apisettingController =Get.find <ApiSettingController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+            final List<ChartData> chartData = [
+            ChartData('David', 25, Color.fromRGBO(9,0,136,1)),
+            ChartData('Steve', 38, Color.fromRGBO(147,0,119,1)),
+            ChartData('Jack', 34, Color.fromRGBO(228,0,124,1)),
+            ChartData('Others', 52, Color.fromRGBO(255,189,57,1))
+        ];
+
     return Scaffold(
       appBar: PreferredSize(
           child: Column(
@@ -1832,379 +1843,441 @@ AlertDialog mAlertItem2 = AlertDialog(
                 padding: const EdgeInsets.only(top: 50),
                 child: Container(
                   width: MediaQuery.of(context).size.width - 195,
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: GetBuilder<ApiSettingController>(
+                    builder: (_) {
+                      return Column(
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100),
+                                child:authprofileController.profileData.isEmpty?Text(
+                                  'Hello, Benze',
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      color: kblue,
+                                      fontWeight: FontWeight.w500),
+                                ):Text('Hello${authprofileController.profileData.first.name}'),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 100),
+                                child:authprofileController.profileData.isEmpty? Image.asset(
+                                  'assets/images/profileimage.png',
+                                  height: 75,
+                                  fit: BoxFit.fitHeight,
+                                ):Image.network(authprofileController.profileData.first.profilePicture),
+                              ),
+                            ],
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(left: 100),
-                            child: Text(
-                              'Hello, Benze',
-                              style: TextStyle(
-                                  fontSize: 22,
-                                  color: kblue,
-                                  fontWeight: FontWeight.w500),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 100),
-                            child: Image.asset(
-                              'assets/images/profileimage.png',
-                              height: 75,
-                              fit: BoxFit.fitHeight,
-                            ),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100),
-                        child: Row(
-                          children: [
-                            Text(
-                              'View Profile',
-                              style: TextStyle(color: kblue),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 1,
-                              width: 80,
-                              color: kgrey,
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100, top: 30),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 50,
-                              width: MediaQuery.of(context).size.width * 0.68,
-                              decoration: BoxDecoration(
-                                  color: kwhite,
-                                  border: Border.all(color: kblue),
-                                  borderRadius: BorderRadius.circular(5),
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                        offset: Offset(0.0, 0.75),
-                                        blurRadius: 5,
-                                        color: kgrey)
-                                  ]),
-                              child: Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 30),
-                                    child: Text(
-                                      'Wallet Amount',
-                                      style:
-                                          TextStyle(fontSize: 17, color: kblue),
-                                    ),
+                            child: Row(
+                              children: [
+                                GestureDetector(
+                                  onTap: (){
+                                    Get.offAll(RegisterProfileController());
+                                  },
+                                  child: Text(
+                                    'View Profile',
+                                    style: TextStyle(color: kblue),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 580),
-                                    child: Text(
-                                      '₹ 1.00',
-                                      textAlign: TextAlign.end,
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        color: kblue,
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 13),
-                                    child: CircleAvatar(
-                                      radius: 15,
-                                      backgroundColor: kblue,
-                                      child: Icon(
-                                        Icons.chevron_right,
-                                        color: kwhite,
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100, top: 45),
-                            child: Text(
-                              'Your Coupons',
-                              style: TextStyle(fontSize: 22, color: kblue),
+                                ),
+                              ],
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(right: 110, top: 45),
-                            child: Text(
-                              'View',
-                              style: TextStyle(fontSize: 22, color: kyellow),
+                            padding: const EdgeInsets.only(left: 100),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 1,
+                                  width: 80,
+                                  color: kgrey,
+                                )
+                              ],
                             ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100, top: 35),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 140,
-                              width: MediaQuery.of(context).size.width * 0.68,
-                              decoration: BoxDecoration(
-                                  color: kwhite,
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                        color: kgrey,
-                                        blurRadius: 5,
-                                        offset: Offset(0.0, 0.75))
-                                  ],
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 100, top: 30),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width * 0.68,
+                                  decoration: BoxDecoration(
+                                      color: kwhite,
+                                      border: Border.all(color: kblue),
+                                      borderRadius: BorderRadius.circular(5),
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                            offset: Offset(0.0, 0.75),
+                                            blurRadius: 5,
+                                            color: kgrey)
+                                      ]),
+                                  child: Row(
                                     children: [
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 40, top: 25),
-                                        child: Container(
-                                          height: 70,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              color: kwhite,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: kblue)),
-                                          child: Center(
-                                              child: Text(
-                                            '0',
-                                            style: TextStyle(fontSize: 22),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 25),
-                                        child: Container(
-                                          height: 70,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              color: kwhite,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: kblue)),
-                                          child: Center(
-                                              child: Text(
-                                            '0',
-                                            style: TextStyle(fontSize: 22),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 60, top: 25),
-                                        child: Container(
-                                          height: 70,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              color: kwhite,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: kblue)),
-                                          child: Center(
-                                              child: Text(
-                                            '0',
-                                            style: TextStyle(fontSize: 22),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 60, top: 5),
+                                        padding: const EdgeInsets.only(left: 30),
                                         child: Text(
-                                          'Total',
-                                          style: TextStyle(
-                                              fontSize: 17, color: kblue),
+                                          'Wallet Amount',
+                                          style:
+                                              TextStyle(fontSize: 17, color: kblue),
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(top: 5),
-                                        child: Text(
-                                          'Used',
+                                        padding: const EdgeInsets.only(left: 580),
+                                        child:apisettingController.getWalletData.isEmpty? Text(
+                                          '',
+                                          textAlign: TextAlign.end,
                                           style: TextStyle(
-                                              fontSize: 17, color: kblue),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 60, top: 5),
-                                        child: Text(
-                                          'Pending',
-                                          style: TextStyle(
-                                              fontSize: 17, color: kblue),
-                                        ),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100, top: 45),
-                            child: Text(
-                              'Your Referrals',
-                              style: TextStyle(fontSize: 22, color: kblue),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 110, top: 45),
-                            child: Text(
-                              'Invite',
-                              style: TextStyle(fontSize: 22, color: kyellow),
-                            ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 100, top: 35),
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 140,
-                              width: MediaQuery.of(context).size.width * 0.68,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  color: kwhite,
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                        offset: Offset(0.0, 0.75),
-                                        blurRadius: 5,
-                                        color: kgrey)
-                                  ]),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 40, top: 25),
-                                        child: Container(
-                                          height: 70,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              color: kwhite,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: kblue)),
-                                          child: Center(
-                                              child: Text(
-                                            '0',
-                                            textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 22),
-                                          )),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 25),
-                                        child: Container(
-                                          height: 70,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                            color: kwhite,
-                                            shape: BoxShape.circle,
-                                            border: Border.all(color: kblue),
+                                            fontSize: 17,
+                                            color: kblue,
                                           ),
-                                          child: Center(
-                                              child: Text(
-                                            '0',
-                                            style: TextStyle(fontSize: 22),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                        ),
+                                        ):Text('₹'),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 60, top: 25),
-                                        child: Container(
-                                          height: 70,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                              color: kwhite,
-                                              shape: BoxShape.circle,
-                                              border: Border.all(color: kblue)),
-                                          child: Center(
-                                              child: Text(
-                                            '0',
-                                            style: TextStyle(fontSize: 22),
-                                            textAlign: TextAlign.center,
-                                          )),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 60, top: 5),
-                                        child: Text(
-                                          'Total',
-                                          style: TextStyle(
-                                              fontSize: 17, color: kblue),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 5),
-                                        child: Text(
-                                          'Used',
-                                          style: TextStyle(
-                                              fontSize: 17, color: kblue),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            right: 60, top: 5),
-                                        child: Text(
-                                          'Pending',
-                                          style: TextStyle(
-                                              fontSize: 17, color: kblue),
+                                        padding: const EdgeInsets.only(left: 13),
+                                        child: CircleAvatar(
+                                          radius: 15,
+                                          backgroundColor: kblue,
+                                          child: Icon(
+                                            Icons.chevron_right,
+                                            color: kwhite,
+                                          ),
                                         ),
                                       )
                                     ],
-                                  )
-                                ],
-                              ),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
-                      ),
-                    ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100, top: 45),
+                                child: Text(
+                                  'Your Coupons',
+                                  style: TextStyle(fontSize: 22, color: kblue),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 110, top: 45),
+                                child: Text(
+                                  'View',
+                                  style: TextStyle(fontSize: 22, color: kyellow),
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 100, top: 35),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 160,
+                                  width: MediaQuery.of(context).size.width * 0.68,
+                                  decoration: BoxDecoration(
+                                      color: kwhite,
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                            color: kgrey,
+                                            blurRadius: 5,
+                                            offset: Offset(0.0, 0.75))
+                                      ],
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 40, top: 25),
+                                            child:Container(
+                                              height: 110,
+                                              width: 110,
+                    child: SfCircularChart(
+                        annotations: <CircularChartAnnotation>[
+                         CircularChartAnnotation(
+                           widget: Container(
+                            height: 100,
+                            width: 100,
+           
+)),
+                                CircularChartAnnotation(
+                                  widget: Container(
+                                    
+                                  child: apisettingController.getWalletData.isEmpty? 
+                                  Text('')
+                                  :Text(apisettingController.getWalletData.first.coupon.totalCouponCodes.toString(),
+                                 style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 25))))
+                                   ],
+                        series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '80%'
+                            )
+                        ]
+                    )
+                ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 25),
+                                            child: Container(
+                                              height: 110,
+                                              width: 110,
+                    child: SfCircularChart(
+                        annotations: <CircularChartAnnotation>[
+                         CircularChartAnnotation(
+                           widget: Container(
+                            height: 100,
+                            width: 100,
+           
+)),
+                                CircularChartAnnotation(
+                                  widget: Container(
+                                    
+                                  child: apisettingController.getWalletData.isEmpty? 
+                                  Text('')
+                                  :Text(apisettingController.getWalletData.first.coupon.todayUsed.toString(),
+                                 style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 25))))
+                                   ],
+                        series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '80%'
+                            )
+                        ]
+                    )
+                ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 60, top: 0),
+                                            child: Container(
+                                              height: 110,
+                                              width: 110,
+                    child: SfCircularChart(
+                        annotations: <CircularChartAnnotation>[
+                         CircularChartAnnotation(
+                           widget: Container(
+                            height: 100,
+                            width: 100,
+           
+)),
+                                CircularChartAnnotation(
+                                  widget: Container(
+                                    
+                                  child: apisettingController.getWalletData.isEmpty? 
+                                  Text('')
+                                  :Text(apisettingController.getWalletData.first.coupon.thisMonthUsed.toString(),
+                                 style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 25))))
+                                   ],
+                        series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '80%'
+                            )
+                        ]
+                    )
+                ),
+                                              ),
+                                          
+                                        
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 60, top: 0),
+                                            child: Text(
+                                              'Total',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 0),
+                                            child: Text(
+                                              'Used',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 65, top: 0),
+                                            child: Text(
+                                              'Pending',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 100, top: 45),
+                                child: Text(
+                                  'Your Referrals',
+                                  style: TextStyle(fontSize: 22, color: kblue),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 110, top: 45),
+                                child: Text(
+                                  'Invite',
+                                  style: TextStyle(fontSize: 22, color: kyellow),
+                                ),
+                              )
+                            ],
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 100, top: 35),
+                            child: Row(
+                              children: [
+                                Container(
+                                  height: 140,
+                                  width: MediaQuery.of(context).size.width * 0.68,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: kwhite,
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                            offset: Offset(0.0, 0.75),
+                                            blurRadius: 5,
+                                            color: kgrey)
+                                      ]),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 40, top: 25),
+                                            child: Container(
+                                              height: 70,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                  color: kwhite,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(color: kblue)),
+                                              child: Center(
+                                                  child: Text(
+                                                '0',
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(fontSize: 22),
+                                              )),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 25),
+                                            child: Container(
+                                              height: 70,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                color: kwhite,
+                                                shape: BoxShape.circle,
+                                                border: Border.all(color: kblue),
+                                              ),
+                                              child: Center(
+                                                  child: Text(
+                                                '0',
+                                                style: TextStyle(fontSize: 22),
+                                                textAlign: TextAlign.center,
+                                              )),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 60, top: 25),
+                                            child: Container(
+                                              height: 70,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                  color: kwhite,
+                                                  shape: BoxShape.circle,
+                                                  border: Border.all(color: kblue)),
+                                              child: Center(
+                                                  child: Text(
+                                                '0',
+                                                style: TextStyle(fontSize: 22),
+                                                textAlign: TextAlign.center,
+                                              )),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 60, top: 5),
+                                            child: Text(
+                                              'Total',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(top: 5),
+                                            child: Text(
+                                              'Used',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 60, top: 5),
+                                            child: Text(
+                                              'Pending',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    }
                   ),
                 ),
               ),
@@ -3951,4 +4024,16 @@ AlertDialog mAlertItem2 = AlertDialog(
       ),
     );
   }
+   
+
 }
+  class ChartData {
+        ChartData(this.x, this.y, this.color);
+            final String x;
+            final double y;
+            final Color color;
+    }
+
+ 
+
+

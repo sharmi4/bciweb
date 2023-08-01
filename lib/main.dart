@@ -62,6 +62,7 @@ import 'controller/flaightdate_controller.dart';
 
 import 'controller/historycontroller.dart';
 import 'controller/profile_controller.dart';
+import 'controller/setting_controller/setting_controller.dart';
 import 'controller/specialized_controller.dart';
 import 'controller/service_controller/home_controller.dart';
 import 'controller/subscription_controller/subscription_controller.dart';
@@ -103,6 +104,7 @@ void main() {
     Get.put(ApiflightsController());
    Get.put(HolidayPackageController());
    Get.put(BusController());
+   Get.put(ApiSettingController());
   runApp(const MyApp());
 }
 

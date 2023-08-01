@@ -62,6 +62,9 @@ dependencies:
   syncfusion_flutter_datepicker: ^22.1.36
   websafe_svg: ^3.0.0+5
   flutter_typeahead: ^4.6.2
+  html_view: ^0.0.3
+  flutter_super_html_viewer: ^0.1.0
+  syncfusion_flutter_charts: ^22.2.5
  
   # flutter_super_html_viewer: ^0.1.0
 

@@ -12,7 +12,7 @@ class GetPackageDetailsApiServices extends BaseApiService {
       String? authtoken = prefs.getString("auth_token");
 
       var response = await dio.get(
-        getPackageDetailsApiUrl,
+        "$getPackageDetailsApiUrl?package_id=$packageid",
         options: Options(
             headers: {
               'Content-Type': 'application/json',
@@ -22,9 +22,7 @@ class GetPackageDetailsApiServices extends BaseApiService {
             validateStatus: (status) {
               return status! <= 500;
             }),
-            data: {
-              "package_id": packageid
-            }
+         
       );
       print("::::::::<get package details Api>::::::::status code::::::::::");
       print(response.statusCode);

@@ -29,10 +29,10 @@ class MemberProfileModel {
 
   factory MemberProfileModel.fromJson(Map<String, dynamic> json) =>
       MemberProfileModel(
-        message: json["message"],
+        message: json["message"]??"",
         subscription: json["subscription"] ?? false,
         remainingDays: json["remaining_days"] ?? 0,
-        percentage: json["percentage"] ?? 0,
+        percentage: json["percentage"] ?? "",
         planId: json["plan_id"] ?? "",
         user: MemberUser.fromJson(json["user"]),
       );
@@ -49,11 +49,11 @@ class MemberProfileModel {
 class MemberUser {
   int id;
   dynamic roleId;
-  String name;
-  String email;
-  String mobile;
+  dynamic name;
+  dynamic email;
+  dynamic mobile;
   dynamic isVerrifiedMobile;
-  String otp;
+  dynamic otp;
   dynamic category;
   dynamic subCategory;
   dynamic alternateMobile;
@@ -64,7 +64,7 @@ class MemberUser {
   dynamic clientSecret;
   dynamic clientId;
   dynamic keyName;
-  String keyStatus;
+  dynamic keyStatus;
   dynamic emailVerifiedAt;
   dynamic address;
   dynamic dob;
@@ -124,40 +124,40 @@ class MemberUser {
   });
 
   factory MemberUser.fromJson(Map<String, dynamic> json) => MemberUser(
-        id: json["id"],
-        roleId: json["role_id"],
-        name: json["name"],
-        email: json["email"],
-        mobile: json["mobile"],
-        isVerrifiedMobile: json["is_verrified_mobile"],
-        otp: json["otp"],
+        id: json["id"]??0,
+        roleId: json["role_id"]??"",
+        name: json["name"]??"",
+        email: json["email"]??"",
+        mobile: json["mobile"]??"",
+        isVerrifiedMobile: json["is_verrified_mobile"]??"",
+        otp: json["otp"]??"",
         category: json["category"] ?? "",
         subCategory: json["sub_category"] ?? "",
-        alternateMobile: json["alternate_mobile"],
+        alternateMobile: json["alternate_mobile"]??"",
         gstNo: json["gst_no"] ?? "",
         adharProof: json["adhar_proof"] ?? '',
         panProof: json["pan_proof"] ?? '',
-        profilePicture: json["profile_picture"],
-        clientSecret: json["client_secret"],
-        clientId: json["client_id"],
-        keyName: json["Key_name"],
-        keyStatus: json["Key_status"],
+        profilePicture: json["profile_picture"]??"",
+        clientSecret: json["client_secret"]??"",
+        clientId: json["client_id"]??"",
+        keyName: json["Key_name"]??"",
+        keyStatus: json["Key_status"]??"",
         emailVerifiedAt: json["email_verified_at"] ?? '',
         address: json["address"] ?? "",
         dob: json["dob"] ?? "",
-        occupation: json["occupation"],
-        fatherName: json["father_name"],
-        motherName: json["mother_name"],
-        isMarried: json["is_married"],
-        residentialAddress: json["residential_address"],
-        officialAddress: json["official_address"],
-        panNo: json["pan_no"],
-        aadharNo: json["aadhar_no"],
-        bio: json["bio"],
-        pincode: json["pincode"],
-        city: json["city"],
-        state: json["state"],
-        status: json["status"],
+        occupation: json["occupation"]??"",
+        fatherName: json["father_name"]??"",
+        motherName: json["mother_name"]??"",
+        isMarried: json["is_married"]??"",
+        residentialAddress: json["residential_address"]??"",
+        officialAddress: json["official_address"]??"",
+        panNo: json["pan_no"]??"",
+        aadharNo: json["aadhar_no"]??"",
+        bio: json["bio"]??"",
+        pincode: json["pincode"]??"",
+        city: json["city"]??"",
+        state: json["state"]??"",
+        status: json["status"]??"",
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );

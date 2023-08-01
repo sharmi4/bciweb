@@ -46,7 +46,7 @@ class PlansData {
   String amcImage;
   String cardImg;
   String amcDescription;
-  String status;
+  dynamic status;
   DateTime createdAt;
   DateTime updatedAt;
 

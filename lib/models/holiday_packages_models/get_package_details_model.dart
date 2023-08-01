@@ -30,20 +30,22 @@ class GetPackageDetails {
 
 class GetPackageDetailsData {
     int id;
-    String vendorId;
-    String categoryId;
+    int vendorId;
+    String location;
+    int categoryId;
     String title;
-    String description;
+    dynamic description;
     String image;
-    String inclusion;
-    String exclusion;
+    int isRecomended;
+    dynamic inclusion;
+    dynamic exclusion;
     String amount;
     String packageoverview;
     String duration;
     String placeToVisit;
     String packageInclude;
-    String dayWiseItinerary;
-    String status;
+    dynamic dayWiseItinerary;
+    int status;
     DateTime createdAt;
     DateTime updatedAt;
     List<String> images;
@@ -52,18 +54,20 @@ class GetPackageDetailsData {
     GetPackageDetailsData({
         required this.id,
         required this.vendorId,
+        required this.location,
         required this.categoryId,
         required this.title,
-        required this.description,
+        this.description,
         required this.image,
-        required this.inclusion,
-        required this.exclusion,
+        required this.isRecomended,
+        this.inclusion,
+        this.exclusion,
         required this.amount,
         required this.packageoverview,
         required this.duration,
         required this.placeToVisit,
         required this.packageInclude,
-        required this.dayWiseItinerary,
+        this.dayWiseItinerary,
         required this.status,
         required this.createdAt,
         required this.updatedAt,
@@ -72,34 +76,38 @@ class GetPackageDetailsData {
     });
 
     factory GetPackageDetailsData.fromJson(Map<String, dynamic> json) => GetPackageDetailsData(
-        id: json["id"],
-        vendorId: json["vendor_id"],
-        categoryId: json["category_id"],
-        title: json["title"],
-        description: json["description"],
-        image: json["image"],
-        inclusion: json["inclusion"],
-        exclusion: json["exclusion"],
-        amount: json["Amount"],
-        packageoverview: json["packageoverview"],
-        duration: json["Duration"],
-        placeToVisit: json["place_to_visit"],
-        packageInclude: json["package_include"],
-        dayWiseItinerary: json["day_wise_itinerary"],
-        status: json["status"],
+        id: json["id"]?? 0,
+        vendorId: json["vendor_id"]?? 0,
+        location: json["location"]?? "",
+        categoryId: json["category_id"]?? 0,
+        title: json["title"]?? "",
+        description: json["description"]?? "",
+        image: json["image"]?? "",
+        isRecomended: json["is_recomended"]?? 0,
+        inclusion: json["inclusion"]?? "",
+        exclusion: json["exclusion"]?? "",
+        amount: json["Amount"]?? "",
+        packageoverview: json["packageoverview"]?? "",
+        duration: json["Duration"]?? "",
+        placeToVisit: json["place_to_visit"]?? "",
+        packageInclude: json["package_include"]?? "",
+        dayWiseItinerary: json["day_wise_itinerary"]?? "",
+        status: json["status"]?? 0,
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         images: List<String>.from(json["images"].map((x) => x)),
-        categoryName: json["category_name"],
+        categoryName: json["category_name"]?? "",
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
         "vendor_id": vendorId,
+        "location": location,
         "category_id": categoryId,
         "title": title,
         "description": description,
         "image": image,
+        "is_recomended": isRecomended,
         "inclusion": inclusion,
         "exclusion": exclusion,
         "Amount": amount,

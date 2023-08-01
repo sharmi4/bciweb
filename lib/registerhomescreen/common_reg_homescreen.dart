@@ -318,32 +318,35 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   }),
                //   Icon(Icons.expand_more),
                   kwidth10,
-                  GestureDetector(onTap: () {
-                    Get.offAll(RegisterProfileScreen());
-                  }, child: GetBuilder<AuthProfileController>(builder: (_) {
+                  GetBuilder<AuthProfileController>(builder: (_) {
                     return authProfileController.profileData.isNotEmpty
                         ? authProfileController
                                     .profileData.first.profilePicture !=
                                 null
-                            ? CircleAvatar(
-                                radius: 22.0,
-                                backgroundImage: NetworkImage(
-                                  authProfileController
-                                      .profileData.first.profilePicture,
-                                ))
-                                :Text('')
-                            // : Image.asset(
-                            //     'assets/images/nick.png',
-                            //     height: 35,
-                            //     fit: BoxFit.fitHeight,
-                            //   )
-                            :Text('');
-                        // : Image.asset(
-                        //     'assets/images/nick.png',
-                        //     height: 35,
-                        //     fit: BoxFit.fitHeight,
-                        //   );
-                  }))
+                            ? InkWell(
+                              onTap: (){
+                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegisterProfileScreen()));
+                              },
+                              child: CircleAvatar(
+                                  radius: 22.0,
+                                  backgroundImage: NetworkImage(
+                                    authProfileController
+                                        .profileData.first.profilePicture,
+                                  )),
+                            )
+                                //:Text('')
+                            : Image.asset(
+                                'assets/images/nick.png',
+                                height: 35,
+                                fit: BoxFit.fitHeight,
+                              )
+                            //:Text('');
+                        : Image.asset(
+                            'assets/images/nick.png',
+                            height: 35,
+                            fit: BoxFit.fitHeight,
+                          );
+                  })
                 ]),
               ),
             
