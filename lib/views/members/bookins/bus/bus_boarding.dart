@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
+import '../../../../controller/bus_controllers.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
@@ -39,6 +40,7 @@ class _busBoardingState extends State<busBoarding> {
 
   int boardingIndex = 777;
   int dropingIndex = 777;
+  final busController = Get.find<BusController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -162,6 +164,11 @@ class _busBoardingState extends State<busBoarding> {
                                       setState(() {
                                         boardingId = widget.busData
                                             .boardingDetails[i].boardingId;
+                                        busController.boardingName(widget
+                                            .busData
+                                            .boardingDetails[i]
+                                            .boardingName);
+
                                         boardingIndex = i;
                                       });
                                     },
@@ -216,14 +223,14 @@ class _busBoardingState extends State<busBoarding> {
                                               .boardingTime,
                                           style: primaryFont.copyWith(
                                               color: Colors.black45),
-                                        )
+                                        ),
                                       ],
                                     ),
                                   ),
                                 ),
                               const SizedBox(
                                 height: 20,
-                              )
+                              ),
                             ],
                           )
                         : Column(
@@ -239,6 +246,10 @@ class _busBoardingState extends State<busBoarding> {
                                       setState(() {
                                         dropingId = widget.busData
                                             .droppingDetails[i].droppingId;
+                                            busController.droppingName(widget
+                                            .busData
+                                            .droppingDetails[i]
+                                            .droppingName);
                                         dropingIndex = i;
                                       });
                                     },

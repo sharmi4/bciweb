@@ -290,7 +290,8 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                         child: TypeAheadField<GetBusCityList>(
                                           getImmediateSuggestions: true,
                                           textFieldConfiguration:
-                                              TextFieldConfiguration(     onChanged: (value) async {
+                                              TextFieldConfiguration(
+                                            onChanged: (value) async {
                                               if (value.length > 1) {
                                                 await Future.delayed(
                                                     const Duration(

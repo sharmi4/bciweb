@@ -5,7 +5,10 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../constant/constans.dart';
+import '../../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../../controller/bus_controllers.dart';
+import '../../../../controller/profile_controller.dart';
+import '../../../../models/busbookingmodels/bus_contact_details_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
@@ -30,7 +33,7 @@ class BusSeats extends StatefulWidget {
 
 class _BusSeatsState extends State<BusSeats> {
   final busController = Get.find<BusController>();
-
+    
   @override
   void initState() {
     // TODO: implement initState
@@ -41,9 +44,8 @@ class _BusSeatsState extends State<BusSeats> {
         busData: widget.busData,
         searchKey: widget.searchkey);
   }
-
-  List<String> seatIds = [];
-
+    final profileController = Get.find<AuthProfileController>();
+List<BusContactDetailsModel> busContactDetailsModel = [];
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -57,6 +59,24 @@ class _BusSeatsState extends State<BusSeats> {
           RegisterCommonContainer(),
           ksizedbox10,
           Container(
+            width: size.width * 0.8,
+            // height: size.height * 0.9,
+            decoration: BoxDecoration(
+              color: kwhite,
+              boxShadow: [
+                BoxShadow(
+                  color: const Color.fromARGB(255, 198, 198, 198)
+                      .withOpacity(0.3), // Shadow color
+                  spreadRadius: 1, // The spread radius of the shadow
+                  blurRadius: 5, // The blur radius of the shadow
+                  offset: Offset(0, 3), // The offset of the shadow
+                ),
+              ],
+              border: Border.all(
+                color: Colors.grey, // Border color
+                width: 0.2, // Border width
+              ),
+            ),
             child: Column(
               children: [
                 ksizedbox20,
@@ -145,8 +165,19 @@ class _BusSeatsState extends State<BusSeats> {
                                         busController.seatMap[index].isSelect =
                                             false;
                                         setState(() {
-                                          seatIds.remove(busController
-                                              .seatMap[index].seatNumber);
+                                          busController.seatIds.remove(
+                                              busController
+                                                  .seatMap[index].seatNumber);
+
+ BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
+                                                  ageController: TextEditingController(),
+                                                  gender: "",
+                                                  nameController: TextEditingController(),
+                                                  seats: busController.seatMap[index].seatNumber
+                                                ); 
+
+                                                busContactDetailsModel.removeWhere((element) => element.seats == busController.seatMap[index].seatNumber);   
+
                                         });
 
                                         double tempAmount =
@@ -161,8 +192,19 @@ class _BusSeatsState extends State<BusSeats> {
                                         busController.seatMap[index].isSelect =
                                             true;
                                         setState(() {
-                                          seatIds.add(busController
-                                              .seatMap[index].seatNumber);
+                                          busController.seatIds.add(
+                                              busController
+                                                  .seatMap[index].seatNumber);
+
+
+                                                  BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
+                                                  ageController: TextEditingController(),
+                                                  gender: "",
+                                                  nameController: TextEditingController(),
+                                                  seats: busController.seatMap[index].seatNumber
+                                                );
+                               busContactDetailsModel.add(busContactDetailsModeldata);
+
                                         });
 
                                         double tempAmount =
@@ -255,8 +297,10 @@ class _BusSeatsState extends State<BusSeats> {
                                 width: 100,
                                 child: Wrap(
                                   children: [
-                                    for (int i = 0; i < seatIds.length; i++)
-                                      Text("${seatIds[i]},")
+                                    for (int i = 0;
+                                        i < busController.seatIds.length;
+                                        i++)
+                                      Text("${busController.seatIds[i]},")
                                           .text
                                           .xl
                                           .blue900
@@ -304,18 +348,17 @@ class _BusSeatsState extends State<BusSeats> {
                                 ksizedbox10,
                                 InkWell(
                                   onTap: () {
-                                    Get.to(
-                                      
-                                      PssengesDetails(
+                                    Get.to(PssengesDetails(
+                                       cusName:profileController.profileData.isEmpty ? "test" : profileController.profileData.first.name,
+                        busContactmodel: busContactDetailsModel,
                                       boardingId: widget.boardingId,
                                       busData: widget.busData,
                                       dropingId: widget.dropingId,
                                       searchkey: widget.searchkey,
-                                      seatIds: seatIds,
+                                      seatIds: busController.seatIds,
                                       amount: busController.totalAmount.value
                                           .toStringAsFixed(2),
                                     ));
-                                 
                                   },
                                   child: Container(
                                     height: 50,
@@ -346,24 +389,6 @@ class _BusSeatsState extends State<BusSeats> {
                 ),
                 ksizedbox40
               ],
-            ),
-            width: size.width * 0.8,
-            // height: size.height * 0.9,
-            decoration: BoxDecoration(
-              color: kwhite,
-              boxShadow: [
-                BoxShadow(
-                  color: const Color.fromARGB(255, 198, 198, 198)
-                      .withOpacity(0.3), // Shadow color
-                  spreadRadius: 1, // The spread radius of the shadow
-                  blurRadius: 5, // The blur radius of the shadow
-                  offset: Offset(0, 3), // The offset of the shadow
-                ),
-              ],
-              border: Border.all(
-                color: Colors.grey, // Border color
-                width: 0.2, // Border width
-              ),
             ),
           ),
           ksizedbox30,
