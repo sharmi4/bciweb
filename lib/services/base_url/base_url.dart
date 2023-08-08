@@ -148,7 +148,15 @@ abstract class BaseApiService {
   final String getWalletDetailsApiUrl = "https://bci.generation360tech.in/api/auth/getUserwallet";
 // final String testURL = "https://bci.batechnology.in.net/api/sub_category";
 
-//  //get wallet details
-//   final String getWalletDetailsApiUrl = "https://bci.generation360tech.in/api/auth/getUserwallet";
+   final String generateReferralCodeApiUrl =
+      "https://bci.generation360tech.in/api/auth/generateReferralCode";
 
+     final String recomendedListApiUrl =
+      "https://bci.generation360tech.in/api/auth/recomended_list";  
+       
+      final String ourPartnersApiUrl =
+      "https://bci.generation360tech.in/api/getpartners";  
+
+       final String createSupportApiUrl =
+      "https://bci.generation360tech.in/api/auth/create_ticket";
 }

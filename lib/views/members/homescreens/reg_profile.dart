@@ -23,6 +23,7 @@ import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../services/views/coupons.dart';
 import '../common_widget/common.dart';
+import 'package:share_plus/share_plus.dart';
 
 class RegisterProfileScreen extends StatefulWidget {
   const RegisterProfileScreen({super.key});
@@ -56,6 +57,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   var subMobileController = TextEditingController();
   var subEmailController = TextEditingController();
   var subDescriptionController = TextEditingController();
+  var subtitleController = TextEditingController();
 
   var officebnameController = TextEditingController();
   var officedoornoController = TextEditingController();
@@ -91,6 +93,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     subscripeController.getcouponsList();
     authprofileController.getProfile();
     apisettingController.getwalletList();
+    apisettingController.generateReferralCode();  
+    apisettingController.ourPartner();
     // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
 
   }
@@ -150,6 +154,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
 // }
   setDefauld() async {
     await authprofileController.getProfile();
+    subNameController.text = authprofileController.profileData.first.name;
+    subEmailController.text = authprofileController.profileData.first.email;
+    subMobileController.text = authprofileController.profileData.first.mobile;
+
     if (authprofileController.profileData.isNotEmpty) {
       nameController.text = authprofileController.profileData.first.name;
       numberController.text = authprofileController.profileData.first.mobile;
@@ -1858,7 +1866,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       fontSize: 22,
                                       color: kblue,
                                       fontWeight: FontWeight.w500),
-                                ):Text('Hello${authprofileController.profileData.first.name}'),
+                                ):Text('Hello ${authprofileController.profileData.first.name}'),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(right: 100),
@@ -1934,7 +1942,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                             fontSize: 17,
                                             color: kblue,
                                           ),
-                                        ):Text('₹'),
+                                        ):Text(''),
                                       ),
                                       Padding(
                                         padding: const EdgeInsets.only(left: 13),
@@ -1996,10 +2004,12 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 40, top: 25),
-                                            child:Container(
-                                              height: 110,
-                                              width: 110,
+                                                left: 40, top: 10),
+                                            child:Column(
+                                              children: [
+                                                Container(
+                                                  height: 110,
+                                                  width: 110,
                     child: SfCircularChart(
                         annotations: <CircularChartAnnotation>[
                          CircularChartAnnotation(
@@ -2015,7 +2025,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   Text('')
                                   :Text(apisettingController.getWalletData.first.coupon.totalCouponCodes.toString(),
                                  style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 25))))
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
                                    ],
                         series: <CircularSeries>[
                             DoughnutSeries<ChartData, String>(
@@ -2028,12 +2038,21 @@ AlertDialog mAlertItem2 = AlertDialog(
                         ]
                     )
                 ),
+                 Text(
+                                              'Total',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                              ],
+                                            ),
                                           ),
                                           Padding(
-                                            padding: const EdgeInsets.only(top: 25),
-                                            child: Container(
-                                              height: 110,
-                                              width: 110,
+                                            padding: const EdgeInsets.only(top: 10),
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 110,
+                                                  width: 110,
                     child: SfCircularChart(
                         annotations: <CircularChartAnnotation>[
                          CircularChartAnnotation(
@@ -2049,7 +2068,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   Text('')
                                   :Text(apisettingController.getWalletData.first.coupon.todayUsed.toString(),
                                  style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 25))))
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
                                    ],
                         series: <CircularSeries>[
                             DoughnutSeries<ChartData, String>(
@@ -2062,13 +2081,22 @@ AlertDialog mAlertItem2 = AlertDialog(
                         ]
                     )
                 ),
+                 Text(
+                                              'Used',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                              ],
+                                            ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                right: 60, top: 0),
-                                            child: Container(
-                                              height: 110,
-                                              width: 110,
+                                                right: 60, top: 10),
+                                            child: Column(
+                                              children: [
+                                                Container(
+                                                  height: 110,
+                                                  width: 110,
                     child: SfCircularChart(
                         annotations: <CircularChartAnnotation>[
                          CircularChartAnnotation(
@@ -2084,7 +2112,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   Text('')
                                   :Text(apisettingController.getWalletData.first.coupon.thisMonthUsed.toString(),
                                  style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 25))))
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
                                    ],
                         series: <CircularSeries>[
                             DoughnutSeries<ChartData, String>(
@@ -2097,43 +2125,19 @@ AlertDialog mAlertItem2 = AlertDialog(
                         ]
                     )
                 ),
+                 Text(
+                                              'Pending',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                              ],
+                                            ),
                                               ),
                                           
                                         
                                         ],
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 60, top: 0),
-                                            child: Text(
-                                              'Total',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 0),
-                                            child: Text(
-                                              'Used',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 65, top: 0),
-                                            child: Text(
-                                              'Pending',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                          )
-                                        ],
-                                      )
+                                    
                                     ],
                                   ),
                                 ),
@@ -2164,7 +2168,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                             child: Row(
                               children: [
                                 Container(
-                                  height: 140,
+                                  height: 160,
                                   width: MediaQuery.of(context).size.width * 0.68,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(5),
@@ -2183,92 +2187,153 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         children: [
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                left: 40, top: 25),
-                                            child: Container(
-                                              height: 70,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                  color: kwhite,
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(color: kblue)),
-                                              child: Center(
-                                                  child: Text(
-                                                '0',
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(fontSize: 22),
-                                              )),
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 25),
-                                            child: Container(
-                                              height: 70,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                color: kwhite,
-                                                shape: BoxShape.circle,
-                                                border: Border.all(color: kblue),
-                                              ),
-                                              child: Center(
-                                                  child: Text(
-                                                '0',
-                                                style: TextStyle(fontSize: 22),
-                                                textAlign: TextAlign.center,
-                                              )),
-                                            ),
-                                          ),
-                                          Padding(
+                                                left: 40, top: 10),
+                                            child:  Column(
+                                              children: [
+                                                Container(
+                                                  height: 110,
+                                                  width: 110,
+                    child: SfCircularChart(
+                        annotations: <CircularChartAnnotation>[
+                         CircularChartAnnotation(
+                           widget: Container(
+                            height: 100,
+                            width: 100,
+           
+)),
+                                CircularChartAnnotation(
+                                  widget: Container(
+                                    
+                                  child: apisettingController.getWalletData.isEmpty? 
+                                  Text('')
+                                  :Text(apisettingController.getWalletData.first.referrals.totalReferrals.toString(),
+                                 style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
+                                   ],
+                        series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '80%'
+                            )
+                        ]
+                    )
+                ),
+                 Padding(
                                             padding: const EdgeInsets.only(
-                                                right: 60, top: 25),
-                                            child: Container(
-                                              height: 70,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                  color: kwhite,
-                                                  shape: BoxShape.circle,
-                                                  border: Border.all(color: kblue)),
-                                              child: Center(
-                                                  child: Text(
-                                                '0',
-                                                style: TextStyle(fontSize: 22),
-                                                textAlign: TextAlign.center,
-                                              )),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 60, top: 5),
+                                                left: 0, top: 0),
                                             child: Text(
                                               'Total',
+                                              textAlign: TextAlign.center,
                                               style: TextStyle(
+
                                                   fontSize: 17, color: kblue),
                                             ),
                                           ),
+                                              ],
+                                            ),
+                                          ),
                                           Padding(
-                                            padding: const EdgeInsets.only(top: 5),
+                                            padding: const EdgeInsets.only(top: 10),
+                                            child:  Column(
+                                              children: [
+                                                Container(
+                                                  height: 110,
+                                                  width: 110,
+                    child: SfCircularChart(
+                        annotations: <CircularChartAnnotation>[
+                         CircularChartAnnotation(
+                           widget: Container(
+                            height: 100,
+                            width: 100,
+           
+)),
+                                CircularChartAnnotation(
+                                  widget: Container(
+                                    
+                                  child: apisettingController.getWalletData.isEmpty? 
+                                  Text('')
+                                  :Text(apisettingController.getWalletData.first.referrals.todayReferrals.toString(),
+                                 style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
+                                   ],
+                        series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '80%'
+                            )
+                        ]
+                    )
+                ),
+                           
+                             Padding(
+                                            padding: const EdgeInsets.only(top: 0),
                                             child: Text(
                                               'Used',
                                               style: TextStyle(
                                                   fontSize: 17, color: kblue),
                                             ),
+                                          ),                     ],
+                                            ),
                                           ),
                                           Padding(
                                             padding: const EdgeInsets.only(
-                                                right: 60, top: 5),
+                                                right: 60, top: 10),
+                                            child:  Column(
+                                              children: [
+                                                Container(
+                                                  height: 110,
+                                                  width: 110,
+                    child: SfCircularChart(
+                        annotations: <CircularChartAnnotation>[
+                         CircularChartAnnotation(
+                           widget: Container(
+                            height: 100,
+                            width: 100,
+           
+)),
+                                CircularChartAnnotation(
+                                  widget: Container(
+                                    
+                                  child: apisettingController.getWalletData.isEmpty? 
+                                  Text('')
+                                  :Text(apisettingController.getWalletData.first.referrals.thisMonthReferrals.toString(),
+                                 style: TextStyle(
+                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
+                                   ],
+                        series: <CircularSeries>[
+                            DoughnutSeries<ChartData, String>(
+                                dataSource: chartData,
+                                xValueMapper: (ChartData data, _) => data.x,
+                                yValueMapper: (ChartData data, _) => data.y,
+                                // Radius of doughnut
+                                radius: '80%'
+                            )
+                        ]
+                    )
+                ),
+                 
+                                         
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                right: 0, top: 0),
                                             child: Text(
                                               'Pending',
                                               style: TextStyle(
                                                   fontSize: 17, color: kblue),
                                             ),
                                           )
+                                                                    ],
+                                            ),
+                                          ),
                                         ],
-                                      )
+                                      ),
+                                     
                                     ],
                                   ),
                                 ),
@@ -3604,6 +3669,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   padding: const EdgeInsets.only(
                                       left: 20, right: 20, top: 15),
                                   child: Container(
+                                    height: 40,
                                     decoration: BoxDecoration(
                                         color: kwhite,
                                         boxShadow: <BoxShadow>[
@@ -3612,107 +3678,131 @@ AlertDialog mAlertItem2 = AlertDialog(
                                               blurRadius: 2,
                                               color: kgrey)
                                         ]),
-                                    child: TextField(
-                                         
-                                      controller: referalCOntroller,
-                                      decoration: InputDecoration(
-                                          hintText: 'ABCDEF',
-                                          hintStyle: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.w600,
-                                              color: kblue),
-                                          suffixIcon: Icon(Icons.file_copy,
-                                              color: kblue, size: 40),
-                                          border: OutlineInputBorder(
-                                              borderSide:
-                                                  BorderSide(color: kblue))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right:10),
+                                      child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                          children: [
+                                                            Text(apisettingController.referralCode.value,style: TextStyle(
+                                                               fontSize: 16, color: kblue, fontWeight: FontWeight.w500),),
+                                                            InkWell(
+                                                              onTap: (){
+                                                                FlutterClipboard.copy(apisettingController.referralCode.value).then(
+                                                    (value) =>
+                                                        Fluttertoast.showToast(
+                                                            msg:
+                                                                "Copy to clipboard",
+                                                            toastLength: Toast
+                                                                .LENGTH_SHORT,
+                                                            gravity: ToastGravity
+                                                                .CENTER,
+                                                            timeInSecForIosWeb: 1,
+                                                            backgroundColor:
+                                                                kblue,
+                                                            textColor:
+                                                                Colors.white,
+                                                            fontSize: 16.0),
+                                                    //print("code copied")
+                                                  );
+                                                              },
+                                                              child: Image.asset('assets/images/Icon awesome-copy.png',
+                                                              height: 30,fit: BoxFit.fitHeight,)),
+                                                          ],
+                                                        ),
                                     ),
                                   ),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 25, left: 40),
-                                  child: Row(
-                                    children: [
-                                      Text('Referral Count :',
-                                          style: TextStyle(
-                                              fontSize: 24, color: kblue)),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
-                                        child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                                color: kOrange,
-                                                borderRadius:
-                                                    BorderRadius.circular(3)),
-                                            child: Center(
-                                              child: Text(
-                                                '0',
-                                                style: TextStyle(
-                                                    fontSize: 20,
-                                                    color: kwhite),
-                                              ),
-                                            )),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(left: 20),
-                                        child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                                color: kOrange,
-                                                borderRadius:
-                                                    BorderRadius.circular(3)),
-                                            child: Center(
-                                              child: Text(
-                                                '0',
-                                                style: TextStyle(
-                                                    color: kwhite,
-                                                    fontSize: 20),
-                                              ),
-                                            )),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 8),
-                                        child: Container(
-                                            height: 30,
-                                            width: 30,
-                                            decoration: BoxDecoration(
-                                                color: kOrange,
-                                                borderRadius:
-                                                    BorderRadius.circular(3)),
-                                            child: Center(
-                                              child: Text(
-                                                '0',
-                                                style: TextStyle(color: kwhite),
-                                              ),
-                                            )),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                // Padding(
+                                //   padding:
+                                //       const EdgeInsets.only(top: 25, left: 40),
+                                //   child: Row(
+                                //     children: [
+                                //       Text('Referral Count :',
+                                //           style: TextStyle(
+                                //               fontSize: 24, color: kblue)),
+                                //       Padding(
+                                //         padding:
+                                //             const EdgeInsets.only(left: 20),
+                                //         child: Container(
+                                //             height: 30,
+                                //             width: 30,
+                                //             decoration: BoxDecoration(
+                                //                 color: kOrange,
+                                //                 borderRadius:
+                                //                     BorderRadius.circular(3)),
+                                //             child: Center(
+                                //               child: Text(
+                                //                 '0',
+                                //                 style: TextStyle(
+                                //                     fontSize: 20,
+                                //                     color: kwhite),
+                                //               ),
+                                //             )),
+                                //       ),
+                                //       Padding(
+                                //         padding:
+                                //             const EdgeInsets.only(left: 20),
+                                //         child: Container(
+                                //             height: 30,
+                                //             width: 30,
+                                //             decoration: BoxDecoration(
+                                //                 color: kOrange,
+                                //                 borderRadius:
+                                //                     BorderRadius.circular(3)),
+                                //             child: Center(
+                                //               child: Text(
+                                //                 '0',
+                                //                 style: TextStyle(
+                                //                     color: kwhite,
+                                //                     fontSize: 20),
+                                //               ),
+                                //             )),
+                                //       ),
+                                //       Padding(
+                                //         padding: const EdgeInsets.only(left: 8),
+                                //         child: Container(
+                                //             height: 30,
+                                //             width: 30,
+                                //             decoration: BoxDecoration(
+                                //                 color: kOrange,
+                                //                 borderRadius:
+                                //                     BorderRadius.circular(3)),
+                                //             child: Center(
+                                //               child: Text(
+                                //                 '0',
+                                //                 style: TextStyle(color: kwhite),
+                                //               ),
+                                //             )),
+                                //       )
+                                //     ],
+                                //   ),
+                                // ),
                                 ksizedbox40,
-                                Container(
-                                    height: 45,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.25,
-                                    decoration: BoxDecoration(
-                                        color: korange,
-                                        boxShadow: <BoxShadow>[
-                                          BoxShadow(
-                                              offset: Offset(0.0, 0.75),
-                                              blurRadius: 5,
-                                              color: kyellow)
-                                        ],
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Center(
-                                        child: Text('Share Now',
-                                            style: TextStyle(
-                                                color: kwhite, fontSize: 20))))
+                                GestureDetector(
+                                  onTap: (){
+                                     String referralmsg = "Use my referral code ${apisettingController.referralCode.value} when you sign up, and we'll both receive fantastic rewards. Don't forget to click on the link below to download the app and start enjoying the perks right away!\n\n";
+                                      
+                 Share.share('$referralmsg');
+                                  },
+                                  child: Container(
+                                      height: 45,
+                                      width: MediaQuery.of(context).size.width *
+                                          0.25,
+                                      decoration: BoxDecoration(
+                                          color: korange,
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                                offset: Offset(0.0, 0.75),
+                                                blurRadius: 5,
+                                                color: kyellow)
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Text('Share Now',
+                                              style: TextStyle(
+                                                  color: kwhite, fontSize: 20)))),
+                                )
                               ]),
                             )),
                       ),
@@ -3723,26 +3813,36 @@ AlertDialog mAlertItem2 = AlertDialog(
             if (reghomeController.proindex.value == 6)
               Padding(
                 padding: const EdgeInsets.only(top: 50),
-                child: Container(
-                    width: MediaQuery.of(context).size.width - 195,
-                    child: GridView.builder(
-                        itemCount: partnerimage.length,
-                        shrinkWrap: true,
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 40,
-                            crossAxisSpacing: 50,
-                            childAspectRatio: 2),
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.only(left: 70, right: 70),
-                            child: Container(
-                                height: 10,
-                                width: 10,
-                                decoration: BoxDecoration(),
-                                child: Image.asset(partnerimage[index])),
-                          );
-                        })),
+                child: GetBuilder<ApiSettingController>(
+                  builder: (_) {
+                    return Container(
+                        width: MediaQuery.of(context).size.width - 195,
+                        child: GridView.builder(
+                            itemCount:apisettingController.ourPartnersData.length,
+                            shrinkWrap: true,
+                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 40,
+                                crossAxisSpacing: 50,
+                                childAspectRatio: 2),
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.only(left: 70, right: 70),
+                                child:Container(
+                                     height: 150,
+                                     width: 150,
+                                     decoration: BoxDecoration(
+                                      border: Border.all(color: kblue),
+                                      image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                      image: NetworkImage(
+                                      apisettingController.ourPartnersData[index].image)),
+                                     ),
+                              ),
+                              );
+                            }));
+                  }
+                ),
               ),
             if (reghomeController.proindex.value == 8)
               Padding(
@@ -3798,10 +3898,10 @@ AlertDialog mAlertItem2 = AlertDialog(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 50, top: 35),
+                              padding: const EdgeInsets.only(left:50, top: 35),
                               child: Container(
                                 height: 40,
-                                width: MediaQuery.of(context).size.width * 0.69,
+                                width: MediaQuery.of(context).size.width * 0.3,
                                 decoration: BoxDecoration(
                                   color: kgrey.withOpacity(0.3),
                                 ),
@@ -3815,7 +3915,26 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           borderSide: BorderSide.none)),
                                 ),
                               ),
-                            )
+                            ),
+                              Padding(
+                              padding: const EdgeInsets.only(right: 150, top: 35),
+                              child: Container(
+                                height: 40,
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                decoration: BoxDecoration(
+                                  color: kgrey.withOpacity(0.3),
+                                ),
+                                child: TextField(
+                                     textInputAction: TextInputAction.next,
+                                  controller: subtitleController,
+                                  decoration: InputDecoration(
+                                      hintText: 'Title',
+                                      hintStyle: TextStyle(fontSize: 14.5),
+                                      border: OutlineInputBorder(
+                                          borderSide: BorderSide.none)),
+                                ),
+                              ),
+                            ),
                           ]),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -3876,27 +3995,31 @@ AlertDialog mAlertItem2 = AlertDialog(
                                                 45),
                                             backgroundColor: kblue),
                                         onPressed: () {
-                                          AddressModel addressModel =
-                                              AddressModel(
-                                                  aadhrId:
-                                                      resiadaridController.text,
-                                                  address: resiaddressController
-                                                      .text,
-                                                  buildingName:
-                                                      resibnameController.text,
-                                                  city:
-                                                      resibcityController.text,
-                                                  doorNo:
-                                                      residoornumberController
-                                                          .text,
-                                                  personalId:
-                                                      resiperidController.text,
-                                                  state:
-                                                      resistateController.text);
-                                          authprofileController
-                                              .updateRecidencyAddress(
-                                                  residentialAddress:
-                                                      addressModel);
+                                          // AddressModel addressModel =
+                                          //     AddressModel(
+                                          //         aadhrId:
+                                          //             resiadaridController.text,
+                                          //         address: resiaddressController
+                                          //             .text,
+                                          //         buildingName:
+                                          //             resibnameController.text,
+                                          //         city:
+                                          //             resibcityController.text,
+                                          //         doorNo:
+                                          //             residoornumberController
+                                          //                 .text,
+                                          //         personalId:
+                                          //             resiperidController.text,
+                                          //         state:
+                                          //             resistateController.text);
+                                          // authprofileController
+                                          //     .updateRecidencyAddress(
+                                          //         residentialAddress:
+                                          //             addressModel);
+                                             apisettingController.createSupport(
+                                              title: subtitleController.text, 
+                                              message: subDescriptionController.text
+                                              );         
                                         },
                                         child: Text(
                                           'Submit',

@@ -34,7 +34,7 @@ class _BookingTripState extends State<BookingTrip> {
     holidayPackageController.getPackageCategory();
     holidayPackageController.getPackage();
     searchController.addListener(searchUsers);
-  }
+    holidayPackageController.recomended();  }
 
   searchUsers() {
     if (searchController.text.trim().isNotEmpty) {
@@ -380,6 +380,7 @@ class _BookingTripState extends State<BookingTrip> {
                                     color: kwhite,
                                     borderRadius: BorderRadius.circular(19)),
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(19),
@@ -394,7 +395,7 @@ class _BookingTripState extends State<BookingTrip> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(8.0),
+                                      padding: const EdgeInsets.only(top: 10),
                                       child: Row(
                                         children: [
                                           Container(
@@ -411,19 +412,22 @@ class _BookingTripState extends State<BookingTrip> {
                                         ],
                                       ),
                                     ),
-                                    Row(
-                                      children: [
-                                        Image.asset(
-                                          'assets/images/location-svgrepo-com (1).png',
-                                          height: 30,
-                                        ),
-                                        kwidth5,
-                                        Text(
-                                          'Jordan',
-                                          style: TextStyle(
-                                              fontSize: 13, color: kgrey),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 5),
+                                      child: Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/location-svgrepo-com (1).png',
+                                            height: 30,
+                                          ),
+                                          kwidth5,
+                                          Text(
+                                            'Jordan',
+                                            style: TextStyle(
+                                                fontSize: 13, color: kgrey),
+                                          ),
+                                        ],
+                                      ),
                                     )
                                   ],
                                 ),
@@ -433,7 +437,103 @@ class _BookingTripState extends State<BookingTrip> {
                         }),
               );
             }),
-
+                 ksizedbox20,
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: [
+                    Text(
+                      'Recommended',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+              ksizedbox20,
+                Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: GetBuilder<HolidayPackageController>(
+                    builder: (_) {
+                      return Container(
+                        height: 150,
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: holidayPackageController.recomendedListData.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: (){
+                                  Get.to(HolidaysScreen(packageId: holidayPackageController.recomendedListData[index].id.toString(),));
+                                },
+                                child: Container(
+                                height: 110,
+                                width: 250,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5),
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      offset: Offset(0.0, 0.75),
+                                      blurRadius: 5,
+                                      color: kgrey
+                                    )
+                                  ]
+                                ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    holidayPackageController.recomendedListData[index].images!.isEmpty ? Container(width: 75,) :
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(7),
+                                        child: Image.network(holidayPackageController.recomendedListData[index].images!.first,
+                                        height: 110,
+                                        width: 110,
+                                                fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                       padding: const EdgeInsets.all(5.0),
+                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                 children: [ 
+                                   Container(
+                                    width: 100,
+                                    child: Text(
+                                      holidayPackageController.recomendedListData[index].title,
+                                      maxLines: 2,
+                                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                                    ),
+                                     ),
+                                     Row(
+                                      children: [
+                                      Image.asset('assets/images/location-svgrepo-com (1).png',
+                                      height: 30,fit:BoxFit.fitHeight,),kwidth5,
+                                      // Text(
+                                      // holidayPackageController.recomendedListData[index].location,
+                                      // style: TextStyle(fontSize: 13.sp, color: kgrey),
+                                      // ),  
+                                      ],
+                                    ),
+                                 ],
+                                 ),
+                               ),
+                                  ],
+                                ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      );
+                    }
+                  ),
+                ),
             // ksizedbox30,
             // Padding(
             //   padding: const EdgeInsets.all(10.0),
@@ -450,6 +550,7 @@ class _BookingTripState extends State<BookingTrip> {
             //         return tripcontainer();
             //       })),
             // ),
+            ksizedbox30,
             'Happy Customers'.text.bold.xl3.make(),
             ksizedbox30,
             Row(

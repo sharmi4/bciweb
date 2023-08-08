@@ -9,8 +9,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../constant/constans.dart';
 import '../models/holiday_packages_models/get_package_category_model.dart';
+import '../models/holiday_packages_models/recommentedlist_model.dart';
 import '../services/networks/services/holiday_packages_api_services/get_package_category_api_service.dart';
 import 'package:dio/dio.dart' as dio;
+
+import '../services/networks/services/holiday_packages_api_services/recommentedlist_api_service.dart';
+import '../services/networks/services/holiday_packages_api_services/recommentedlist_api_service.dart';
+
 class HolidayPackageController extends GetxController{
    
   RxInt child = 0.obs;
@@ -134,6 +139,8 @@ class HolidayPackageController extends GetxController{
       }
   }
 
+
+
   //search package list api
   SearchPackageListApiService searchPackageListApiService = SearchPackageListApiService();
 
@@ -157,12 +164,28 @@ class HolidayPackageController extends GetxController{
     update();
   }
 
-
-
-
-
-
-
   
+  //recomended list
+  RecommentedListApiService recomendedListApiServices = RecommentedListApiService();
+  List<RecomendedListData> recomendedListData = [];
+
+  recomended() async {
+
+    dio.Response<dynamic> response = await recomendedListApiServices.recommentedListApiService();
+    if(response.statusCode == 200){
+      RecomendedList recomendedList = RecomendedList.fromJson(response.data);
+      recomendedListData = recomendedList.data;
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+ 
+  }
+
   
   }
