@@ -190,11 +190,12 @@ class _OfficeAddressState extends State<OfficeAddress> {
                                   aadhrId: ""
                                   );
                                   print("sharmi");
-                              authController.memberRegister(
-                                isMobile: false,
-                                  memberRegisterModel: widget.tempMemberRegisterModel,
-                                  officialAddress: oficeaddressModel,
-                                  residentialAddress: widget.addresModel,);
+                              // authController.memberRegister(
+                              //   isMobile: false,
+                              //     memberRegisterModel: widget.tempMemberRegisterModel,
+                              //     // officialAddress: oficeaddressModel,
+                              //     // residentialAddress: widget.addresModel,
+                              //     );
                             }
                     },
                     child: Container(

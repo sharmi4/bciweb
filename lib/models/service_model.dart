@@ -26,20 +26,20 @@ class ServiceModel {
 
 class ServiceData {
     int id;
-    String categoryId;
-    String vendorId;
+    dynamic categoryId;
+    dynamic vendorId;
     String title;
-    String actualAmount;
-    String bvcAmount;
-    String saleAmount;
-    String isOffer;
+    dynamic actualAmount;
+    dynamic bvcAmount;
+    dynamic saleAmount;
+    dynamic isOffer;
     String? offerPercentage;
     String? offerUptoAmount;
-    String isCoupon;
+    dynamic isCoupon;
     dynamic couponAmount;
     String description;
-    String isBooking;
-    String status;
+    dynamic isBooking;
+    dynamic status;
     List<Amenty>? amenties;
     String image;
     DateTime createdAt;
@@ -68,21 +68,21 @@ class ServiceData {
     });
 
     factory ServiceData.fromJson(Map<String, dynamic> json) => ServiceData(
-        id: json["id"],
-        categoryId: json["category_id"],
-        vendorId: json["vendor_id"],
-        title: json["title"],
-        actualAmount: json["actual_amount"],
-        bvcAmount: json["bvc_amount"],
-        saleAmount: json["sale_amount"],
-        isOffer: json["isOffer"],
-        offerPercentage: json["offerPercentage"],
-        offerUptoAmount: json["offerUpto_amount"],
-        isCoupon: json["isCoupon"],
-        couponAmount: json["coupon_amount"],
-        description: json["description"],
-        isBooking: json["is_booking"],
-        status: json["status"],
+        id: json["id"]??0,
+        categoryId: json["category_id"]??'',
+        vendorId: json["vendor_id"]??'',
+        title: json["title"]??"",
+        actualAmount: json["actual_amount"]??"",
+        bvcAmount: json["bvc_amount"]??"",
+        saleAmount: json["sale_amount"]??"",
+        isOffer: json["isOffer"]??"",
+        offerPercentage: json["offerPercentage"]??"",
+        offerUptoAmount: json["offerUpto_amount"]??"",
+        isCoupon: json["isCoupon"]??"",
+        couponAmount: json["coupon_amount"]??"",
+        description: json["description"]??"",
+        isBooking: json["is_booking"]??"",
+        status: json["status"]??"",
         amenties: json["amenties"] == null ? [] :
          List<Amenty>.from(json["amenties"]!.map((x) => Amenty.fromJson(x))),
         image: json["image"],

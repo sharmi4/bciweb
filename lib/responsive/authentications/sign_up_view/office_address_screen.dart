@@ -284,11 +284,13 @@ class _OfficeAddressScreenState extends State<OfficeAddressScreen> {
                                     aadhrId: ""
                                     );
                                     print("sharmi");
-                                authController.memberRegister(
-                                    isMobile: true,
-                                    memberRegisterModel: widget.tempMemberRegisterModel,
-                                    officialAddress: oficeaddressModel,
-                                    residentialAddress: widget.addresModel,);
+                                // authController.memberRegister(
+                                //     isMobile: true,
+                                //     memberRegisterModel: widget.tempMemberRegisterModel,
+                                //     referalcode: 
+                                //     // officialAddress: oficeaddressModel,
+                                //     // residentialAddress: widget.addresModel,
+                                //     );
                               }
                       },
                       child: Container(

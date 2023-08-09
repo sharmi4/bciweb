@@ -157,7 +157,7 @@ int button=0;
               
                 InkWell(
                     onTap: () {
-                      Get.to(Payment(image:cardimgae , 
+                      Get.to(Payment(image: subscriptionapiController.plansdataList[temindex].cardImg, 
                       htext: subscriptionapiController.plansdataList[temindex].title, 
                       text:subscriptionapiController.plansdataList[temindex].planDescription,
                       id: subscriptionapiController.plansdataList[temindex].id));

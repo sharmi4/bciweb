@@ -12,42 +12,17 @@ import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/controller/seat_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
 // import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
-import 'package:bciweb/responsive/authentications/contact%20us/respo_contact.dart';
+
 import 'package:bciweb/responsive/holiday/controllers/holidaycontroller.dart';
 import 'package:bciweb/responsive/res_controller/yours_coupon_controller.dart';
-import 'package:bciweb/responsive/respo%20gallery/respo_gallery.dart';
-import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
-import 'package:bciweb/responsive/respo_services/respo_offers.dart';
-import 'package:bciweb/responsive/respo_services/widgets/resprofile/mobile_profile_screen.dart';
-import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
-import 'package:bciweb/responsive/specialized/respo_specialized.dart';
-import 'package:bciweb/routes/app_pages.dart';
-import 'package:bciweb/routes/route_generator.dart';
-import 'package:bciweb/splash_screen/Splash_screen.dart';
-import 'package:bciweb/views/members/bookins/bus/bus_boarding.dart';
-import 'package:bciweb/views/members/bookins/bus/buslist.dart';
-import 'package:bciweb/views/members/bookins/bus/passengers_details.dart';
-import 'package:bciweb/views/members/bookins/flight/options_booking.dart';
-import 'package:bciweb/views/members/bookins/flight/payment_screen.dart';
-import 'package:bciweb/views/members/bookins/history/views/history.dart';
-import 'package:bciweb/views/members/bookins/trip/hollidays.dart';
 
-import 'package:bciweb/views/members/subscribe/views/subscribe.dart';
-import 'package:bciweb/views/members/home_screen.dart';
-import 'package:bciweb/views/members/homescreens/reg_profile.dart';
-import 'package:bciweb/views/register_home_screen.dart';
+import 'package:bciweb/routes/route_generator.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:bciweb/views/authentication/Verification_done.dart';
-import 'package:bciweb/views/authentication/landing_screen.dart';
-import 'package:bciweb/views/authentication/generate_otp_screen.dart';
-import 'package:bciweb/views/authentication/office_address.dart';
-import 'package:bciweb/views/authentication/otp_verification.dart';
-import 'package:bciweb/views/authentication/residential_Address.dart';
-import 'package:bciweb/views/authentication/signup.dart';
+
 //import 'package:bciweb/views/business/home_screen.dart';
 
-import 'package:bciweb/views/members/subscribe/views/add_wallet.dart';
 import 'package:url_strategy/url_strategy.dart';
 // import 'package:bciweb/views/business/subscribe/views/payment.dart';
 // import 'package:bciweb/views/business/subscribe/views/subscribe.dart';
@@ -62,6 +37,7 @@ import 'controller/flaightdate_controller.dart';
 
 import 'controller/historycontroller.dart';
 import 'controller/profile_controller.dart';
+
 import 'controller/setting_controller/setting_controller.dart';
 import 'controller/specialized_controller.dart';
 import 'controller/service_controller/home_controller.dart';

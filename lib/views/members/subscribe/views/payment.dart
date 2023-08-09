@@ -111,18 +111,8 @@ void initState() {
                           borderSide: BorderSide(color: kblue),
                           borderRadius: BorderRadius.circular(4.0),
                         ),
-                        suffixIcon: Container(
-                          child: Center(
-                              child: Text(
-                            'Verify',
-                            style: TextStyle(color: kwhite, fontSize: 17),
-                          )),
-                          width: 120,
-                          height: 40,
-                          decoration: BoxDecoration(
-                              color: kblue,
-                              borderRadius: BorderRadius.circular(10)),
-                        )),
+                        
+                        ),
                   ),
               
                   ksizedbox40,

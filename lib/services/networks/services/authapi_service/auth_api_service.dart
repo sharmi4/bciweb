@@ -11,8 +11,8 @@ class MemberRegisterApiservices extends BaseApiService{
   
   Future memberRegister({
     required CreateAccountModel? memberRegisterModel,
-    required AddressModel? residentialAddress,
-     required AddressModel? officialAddress,
+    // required AddressModel? residentialAddress,
+    //  required AddressModel? officialAddress,
   }) async {
     dynamic responseJson;
     try{
@@ -31,18 +31,18 @@ class MemberRegisterApiservices extends BaseApiService{
         'name':memberRegisterModel!.name,
         'mobile':memberRegisterModel.mobilenumber,
         'email':memberRegisterModel.email,
-            "official_address": jsonEncode({
-              "door_no": officialAddress!.doorNo,
-              "address": officialAddress.address,
-              "building_name": officialAddress.buildingName,
-              "state": officialAddress.state,
-              "city": officialAddress.city,
-            }),
-            "pan_no": memberRegisterModel.panNo,
-            "aadhar_no": residentialAddress!.aadhrId,
-            "role_id": "3",
-            "password": "1234567",
-            "password_confirmation": "1234567"
+            // "official_address": jsonEncode({
+            //   "door_no": officialAddress!.doorNo,
+            //   "address": officialAddress.address,
+            //   "building_name": officialAddress.buildingName,
+            //   "state": officialAddress.state,
+            //   "city": officialAddress.city,
+            // }),
+            // "pan_no": memberRegisterModel.panNo,
+            // "aadhar_no": residentialAddress!.aadhrId,
+             "role_id": "3",
+            // "password": "1234567",
+            // "password_confirmation": "1234567"
           });
 
           print("::::::::<Register URL>::::::::status code::::::::::${memberRegisterModel.mobilenumber} ${memberRegisterModel.email}");

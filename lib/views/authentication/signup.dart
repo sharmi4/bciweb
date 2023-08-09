@@ -1,18 +1,22 @@
 import 'package:bciweb/responsive/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/authentication/residential_Address.dart';
 import 'package:bciweb/views/authentication/widgets/formfield.dart';
+import 'package:bciweb/views/members/home_screen.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 
 import '../../constant/constans.dart';
+import '../../controller/auth_controller/auth_controller.dart';
 import '../../models/create_account_model.dart';
 import 'landing_screen.dart';
 import 'otp_verification.dart';
 
 class SignUpView extends StatefulWidget {
-  const SignUpView({super.key});
+   CreateAccountModel? memberRegisterModel;
+  
+   SignUpView({super.key, this.memberRegisterModel,required String isMobile});
 
   @override
   State<SignUpView> createState() => _SignUpViewState();
@@ -26,12 +30,11 @@ class _SignUpViewState extends State<SignUpView> {
   var occupationController=TextEditingController();
   var fathernameController=TextEditingController();
   var mothernameController=TextEditingController();
+  var referalcodeController = TextEditingController();
     var _formKey = GlobalKey<FormState>();
 
        bool ismarried= false;
     bool isunmarried=false;
-
-   
 
      DateTime date = DateTime.now().subtract(const Duration(days: 6570));
 
@@ -69,11 +72,16 @@ class _SignUpViewState extends State<SignUpView> {
         dobController.text = formatDate(date, [dd, "/", mm, "/", yyyy]);
       });
   }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   authcontroller.memberRegister(memberRegisterModel:widget.memberRegisterModel, isMobile:false,
+  //   referalcode: referalcodeController.text );
+  // }
 
   var dateOfBirthController = TextEditingController();
-
-
-
+   final authcontroller = Get.find<AuthController>();
+   bool checkvalue = false;
   @override
   Widget build(BuildContext context) {
  
@@ -119,48 +127,48 @@ class _SignUpViewState extends State<SignUpView> {
                                   controller: usernameController,
                                   
                                 ),
-                                ksizedbox20,
-                                Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: TextFormField(
-               controller: dobController,
-               readOnly: true,
-               onTap: () {
-                    _selectDate(context);
-                  },
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "DOB can't be empty";
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      isCollapsed: false,
-                      isDense: true,
-                      contentPadding:
-                          const EdgeInsets.only(top: 12, bottom: 12, left: 15),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      hintText: "Date Of Birth",
-                      hintStyle: TextStyle(
-                        color: kblue,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ),
-              ),
+                                
+              //                   Padding(
+              //   padding: const EdgeInsets.only(top: 15),
+              //   child: TextFormField(
+              //  controller: dobController,
+              //  readOnly: true,
+              //  onTap: () {
+              //       _selectDate(context);
+              //     },
+              //     autovalidateMode: AutovalidateMode.onUserInteraction,
+              //     validator: (value) {
+              //       if (value!.isEmpty) {
+              //         return "DOB can't be empty";
+              //       }
+              //       return null;
+              //     },
+              //     decoration: InputDecoration(
+              //         fillColor: Colors.white,
+              //         filled: true,
+              //         enabledBorder: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(5),
+              //             borderSide:
+              //                 const BorderSide(color: const Color(0xff707070))),
+              //         focusedBorder: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(5),
+              //             borderSide:
+              //                 const BorderSide(color: const Color(0xff707070))),
+              //         isCollapsed: false,
+              //         isDense: true,
+              //         contentPadding:
+              //             const EdgeInsets.only(top: 12, bottom: 12, left: 15),
+              //         border: OutlineInputBorder(
+              //             borderRadius: BorderRadius.circular(5),
+              //             borderSide:
+              //                 const BorderSide(color: const Color(0xff707070))),
+              //         hintText: "Date Of Birth",
+              //         hintStyle: TextStyle(
+              //           color: kblue,
+              //           fontWeight: FontWeight.w400,
+              //         )),
+              //   ),
+              // ),
                                
                                 ksizedbox20,
                                 Formfield(
@@ -172,90 +180,102 @@ class _SignUpViewState extends State<SignUpView> {
                                   text: 'Mobile Number',
                                   controller: mobilenumberController,
                                 ),
+                                ksizedbox10,
+                               checkvalue==true? Formfield(
+                                  text: 'Referal Code',
+                                  controller: referalcodeController,
+                                ):Text(''),
                                 ksizedbox20,
-                                Formfield(
-                                  text: 'Occupation',
-                                  controller: occupationController,
-                                ),
-                                ksizedbox20,
-                                Formfield(
-                                  text: 'Father Name',
-                                  controller: fathernameController,
-                                ),
-                                ksizedbox20,
-                                Formfield(
-                                  text: 'Mother Name',
-                                  controller: mothernameController,
-                                ),
-                                ksizedbox20,
+                                Row(
+                                  children: [
+                                    Checkbox(value: checkvalue, 
+                                    onChanged: (value){
+                                      setState(() {
+                                        checkvalue = value!;
+                                      });
+                                    }),
+                                    Text('Referal Code')
+                                  ],
+                                )
+                                // ksizedbox20,
+                                // Formfield(
+                                //   text: 'Father Name',
+                                //   controller: fathernameController,
+                                // ),
+                                // ksizedbox20,
+                                // Formfield(
+                                //   text: 'Mother Name',
+                                //   controller: mothernameController,
+                                // ),
+      //                           ksizedbox20,
     
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Container(
+      //                           Padding(
+      //                             padding: const EdgeInsets.only(top: 10),
+      //                             child: Container(
                                    
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Color(0xff707070))),
-                                         child: Row(
-                                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,                            
-                                                children: [
-                                                   Padding(
-                                                     padding: const EdgeInsets.only(left: 15),
-                                                     child: Row(
-                                                      mainAxisAlignment: MainAxisAlignment.start,
-                                                       children: [
-                                                         Text('Married',
-                                                         style: TextStyle(
-                                                          color: kblue
-                                                         ),),
-                                                         Checkbox(
-                                                      activeColor: Colors.white,
-                                                         checkColor: kblue,
+      //                               height: 40,
+      //                               decoration: BoxDecoration(
+      //                                   borderRadius: BorderRadius.circular(5),
+      //                                   border: Border.all(color: Color(0xff707070))),
+      //                                    child: Row(
+      //                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,                            
+      //                                           children: [
+      //                                              Padding(
+      //                                                padding: const EdgeInsets.only(left: 15),
+      //                                                child: Row(
+      //                                                 mainAxisAlignment: MainAxisAlignment.start,
+      //                                                  children: [
+      //                                                    Text('Married',
+      //                                                    style: TextStyle(
+      //                                                     color: kblue
+      //                                                    ),),
+      //                                                    Checkbox(
+      //                                                 activeColor: Colors.white,
+      //                                                    checkColor: kblue,
                                                          
-                                                         value: ismarried,
-                                                         onChanged: (bool? value) {
-                                                           setState(() {
-                                                             ismarried = value!;
-                                                           });
+      //                                                    value: ismarried,
+      //                                                    onChanged: (bool? value) {
+      //                                                      setState(() {
+      //                                                        ismarried = value!;
+      //                                                      });
                                                          
-                                                         },
-                                                       ),
-                                                       ],
-                                                     ),
-                                                   ),
+      //                                                    },
+      //                                                  ),
+      //                                                  ],
+      //                                                ),
+      //                                              ),
                                                   
-      Padding(
-        padding: const EdgeInsets.only(right: 10),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            Text('Unmarried',
-            style: TextStyle(
-                                                          color: kblue
-                                                         ),),
-             Padding(
-                                                      padding: const EdgeInsets.only(left: 10),
-                                                      child: Checkbox(
-                                                         activeColor: Colors.white,
-                                                         checkColor: kblue,
-                                                        value: isunmarried, 
-                                                      onChanged: (value){
-                                                        setState(() {
-                                                          isunmarried=value!;
-                                                        });
-                                                      }),
-                                                    ),
-          ],
-        ),
-      ),
+      // Padding(
+      //   padding: const EdgeInsets.only(right: 10),
+      //   child: Row(
+      //     mainAxisAlignment: MainAxisAlignment.end,
+      //     children: [
+      //       Text('Unmarried',
+      //       style: TextStyle(
+      //                                                     color: kblue
+      //                                                    ),),
+      //        Padding(
+      //                                                 padding: const EdgeInsets.only(left: 10),
+      //                                                 child: Checkbox(
+      //                                                    activeColor: Colors.white,
+      //                                                    checkColor: kblue,
+      //                                                   value: isunmarried, 
+      //                                                 onChanged: (value){
+      //                                                   setState(() {
+      //                                                     isunmarried=value!;
+      //                                                   });
+      //                                                 }),
+      //                                               ),
+      //     ],
+      //   ),
+      // ),
                                                  
                                                  
                                                 
-                                                ],
-                                              ),
-                                  ),
-                                ),
+      //                                           ],
+      //                                         ),
+      //                             ),
+      //                           ),
                               ],
                             ),
                           )),
@@ -283,7 +303,11 @@ class _SignUpViewState extends State<SignUpView> {
                              isMarried: '',
                              unmarried: '',
                              );
-                            Get.to(ResidentialAddress(memberRegisterModel: memberRegisterModel,));
+                             authcontroller.memberRegister(memberRegisterModel: memberRegisterModel,
+                              isMobile: false,referalcode:referalcodeController.text );
+
+                              // Get.to(MemberHomeScreen());
+                            //Get.to(ResidentialAddress(memberRegisterModel: memberRegisterModel,));
                         }
                       },
                       child: Container(
@@ -311,7 +335,7 @@ class _SignUpViewState extends State<SignUpView> {
                           ),
                         ),
                         child: Text(
-                          'Next',
+                          'Register',
                           style: TextStyle(
                               fontSize: 22,
                               color: Colors.white,

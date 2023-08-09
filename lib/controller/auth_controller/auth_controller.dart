@@ -12,6 +12,8 @@ import '../../responsive/authentications/otp_verification/otp_verification.dart'
 import '../../responsive/authentications/verified_screen/verified_screen.dart';
 import '../../services/networks/services/authapi_service/login_api_service.dart';
 import '../../services/networks/services/catogory_api_service/service_list_apiservice.dart';
+import '../../services/networks/services/register_referal_api_service.dart';
+import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../views/authentication/Verification_done.dart';
 import '../../views/authentication/otp_verification.dart';
 
@@ -21,6 +23,7 @@ class AuthController extends GetxController {
 
   MemberRegisterApiservices memberRegisterApiservices =
       MemberRegisterApiservices();
+      GenerateReferralCodeApiService generateReferralCodeApiService = GenerateReferralCodeApiService();
 //this api calling
 
   GetOtpApiService getOTPApiServices = GetOtpApiService();
@@ -40,7 +43,7 @@ class AuthController extends GetxController {
     dio.Response<dynamic> response =
         await getOTPApiServices.getOtpApi(mobileNumber: mobileNumber);
     isOTPLoading(false);
-
+    
     if (response.statusCode == 200) {
       otpCode = response.data["otp"].toString();
     }
@@ -50,20 +53,23 @@ class AuthController extends GetxController {
 
   memberRegister({
     required CreateAccountModel? memberRegisterModel,
-    required AddressModel? residentialAddress,
-    required AddressModel? officialAddress,
+    // required AddressModel? residentialAddress,
+    // required AddressModel? officialAddress,
     required bool isMobile,
+    required String referalcode,
   }) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await memberRegisterApiservices.memberRegister(
             memberRegisterModel: memberRegisterModel,
-            residentialAddress: residentialAddress,
-            officialAddress: officialAddress);
+            // residentialAddress: residentialAddress,
+            // officialAddress: officialAddress
+            );
     isLoading(false);
     if (response.statusCode == 201) {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setString("auth_token", response.data["token"]);
+        registerReferalcode(referalcode:referalcode );
       if (isMobile == true) {
         Get.to(otp_varification(
           phoneNumber: memberRegisterModel!.mobilenumber,
@@ -202,6 +208,29 @@ class AuthController extends GetxController {
             "User not found",
             style: primaryFont.copyWith(color: Colors.white),
           ));
+    }
+  }
+RegisterReferalCodeApiService registerReferalCodeApiService = RegisterReferalCodeApiService();
+  registerReferalcode({required String referalcode})async{
+    print('Register referal code');
+    dio.Response<dynamic>response = await registerReferalCodeApiService.registerreferalcodeApiservice(referalcode: referalcode);
+    if(response.data['success']==true){
+    Get.rawSnackbar(
+        backgroundColor: Colors.green,
+        messageText: Text(
+          response.data['message'],
+            style: primaryFont.copyWith(color: Colors.white),
+        )
+      );
+    }
+    else{
+        Get.rawSnackbar(
+         backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          )
+      );
     }
   }
 }

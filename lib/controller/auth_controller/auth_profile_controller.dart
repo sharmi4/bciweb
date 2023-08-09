@@ -11,13 +11,14 @@ import '../../services/networks/profile_api_service/profile_pick.dart';
 import '../../services/networks/profile_api_service/profile_update.dart';
 import '../../services/networks/profile_api_service/update_officialaddress.dart';
 import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
+import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import 'auth_controller.dart';
 
 
 
 class AuthProfileController extends GetxController {
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
-
+    GenerateReferralCodeApiService generateReferralCodeApiService = GenerateReferralCodeApiService();
   ProfileUpdateApiServices profileUpdateApi = ProfileUpdateApiServices();
 
   UpdateResidencialAddressApiServices updateResidencialAddressApiServices =

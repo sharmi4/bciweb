@@ -159,4 +159,7 @@ abstract class BaseApiService {
 
        final String createSupportApiUrl =
       "https://bci.generation360tech.in/api/auth/create_ticket";
+
+        final String registerreferalURL =
+      "https://bci.generation360tech.in/api/auth/generateReferralregister";
 }

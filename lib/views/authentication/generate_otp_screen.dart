@@ -197,7 +197,7 @@ class _MobileVerificationState extends State<MobileVerification> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.to(SignUpView());
+                                Get.to(SignUpView(isMobile: '',));
                               },
                               child: Text(
                                 'Sign up',

@@ -44,7 +44,8 @@ var mobilereferalCOntroller=TextEditingController();
     var mobileofficeaddress=TextEditingController();
      var mobileofficecity=TextEditingController();
       var mobileofficestate=TextEditingController();
-
+      var mobilebranchController = TextEditingController();
+   var mobileadharno = TextEditingController();
        var mobileresibnameController=TextEditingController();
        var mobileresidoornumberController=TextEditingController();
        var mobileresibcityController=TextEditingController();
@@ -52,6 +53,9 @@ var mobilereferalCOntroller=TextEditingController();
        var mobileresiperidController=TextEditingController();
        var mobileresiadaridController=TextEditingController();
        var mobileresiaddressController=TextEditingController();
+       var mobilegestnoController = TextEditingController();
+       var mobilepannoController = TextEditingController();
+       var mobilequalificationController = TextEditingController();
    File? image;
   // Future pickerimage() async {
   //   try {
@@ -138,7 +142,11 @@ void initState() {
     mobileoccupationController.text= authprofileController.profileData.first.occupation;
     mobilefathernameController.text=authprofileController.profileData.first.fatherName;
     mobilemothernameController.text=authprofileController.profileData.first.motherName;
-    
+    mobileadharno.text = authprofileController.profileData.first.aadharNo;
+    mobilebranchController.text =authprofileController.profileData.first.branch;
+    mobilegestnoController.text =authprofileController.profileData.first.gstNo;
+    mobilepannoController.text = authprofileController.profileData.first.panNo;
+    mobilequalificationController.text = authprofileController.profileData.first.qualification;
      mobileofficedoornumber.text =
           authprofileController.profileData.first.officialAddress.doorNo;
       mobileresibnameController.text =
@@ -824,7 +832,15 @@ bool isUnmarried =false;
                                           isMarried == true ? "1" : "0",
                                       mobile: mobilenumberController.text,
                                       motherName: mobilemothernameController.text,
-                                      occupation: mobileoccupationController.text,
+                                      occupation: mobileoccupationController.text, 
+                                      aadharno: mobileadharno.text, 
+                                      branch: mobilebranchController.text, 
+                                      children: mobilechildrensController.text,
+                                       gstno: mobilegestnoController.text, 
+                                       marrigedate: mobilewedingnameController.text,
+                                        panNo: mobilepannoController.text, 
+                                        qulification: mobilequalificationController.text, 
+                                        spouse: mobilespousenameController.text,
                                     );
                                 
                                     authprofileController.updateProfile(
@@ -860,7 +876,14 @@ bool isUnmarried =false;
                                           isMarried == true ? "1" : "0",
                                       mobile: mobilenumberController.text,
                                       motherName: mobilemothernameController.text,
-                                      occupation: mobileoccupationController.text,
+                                      occupation: mobileoccupationController.text, 
+                                      aadharno: mobileadharno.text, 
+                                      branch: mobilebranchController.text, 
+                                      children: mobilechildrensController.text,
+                                       gstno: mobilegestnoController.text, 
+                                       panNo: mobilepannoController.text, 
+                                       marrigedate: mobilewedingnameController.text,
+                                        qulification: mobilequalificationController.text, spouse: mobilespousenameController.text,
                                     );
                                 
                                     authprofileController.updateProfile(

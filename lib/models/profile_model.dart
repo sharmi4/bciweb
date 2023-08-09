@@ -62,7 +62,7 @@ class User {
     dynamic clientSecret;
     dynamic clientId;
     dynamic keyName;
-    String keyStatus;
+    dynamic keyStatus;
     dynamic emailVerifiedAt;
     dynamic address;
     dynamic dob;

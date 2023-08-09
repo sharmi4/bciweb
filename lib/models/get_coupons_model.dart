@@ -30,12 +30,12 @@ class GetCouponsModel {
 
 class CouponsData {
     int id;
-    String userId;
-    String cId;
-    String planId;
-    String couponcode;
-    String amount;
-    String isRedeemed;
+    dynamic userId;
+    dynamic cId;
+    dynamic planId;
+    dynamic couponcode;
+    dynamic amount;
+    dynamic isRedeemed;
     DateTime expiryAt;
     DateTime createdAt;
     DateTime updatedAt;
@@ -56,7 +56,7 @@ class CouponsData {
     });
 
     factory CouponsData.fromJson(Map<String, dynamic> json) => CouponsData(
-        id: json["id"],
+        id: json["id"]??0,
         userId: json["user_id"]?? "",
         cId: json["c_id"]?? "",
         planId: json["plan_id"]?? "",

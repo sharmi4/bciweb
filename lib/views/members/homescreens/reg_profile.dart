@@ -1,12 +1,10 @@
-import 'dart:io';
-import 'dart:math';
+
+import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:bciweb/constant/constans.dart';
-import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:clipboard/clipboard.dart';
-import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -21,9 +19,10 @@ import '../../../models/create_account_model.dart';
 import '../../../models/member profileupdate.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
-import '../services/views/coupons.dart';
 import '../common_widget/common.dart';
 import 'package:share_plus/share_plus.dart';
+
+import '../subscribe/views/payment.dart';
 
 class RegisterProfileScreen extends StatefulWidget {
   const RegisterProfileScreen({super.key});
@@ -58,7 +57,11 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   var subEmailController = TextEditingController();
   var subDescriptionController = TextEditingController();
   var subtitleController = TextEditingController();
-
+  var adharController = TextEditingController();
+  var gstnoController = TextEditingController();
+  var pannoController = TextEditingController();
+  var branchController = TextEditingController();
+  var qualificationController = TextEditingController();
   var officebnameController = TextEditingController();
   var officedoornoController = TextEditingController();
   var officeaddressController = TextEditingController();
@@ -86,6 +89,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     const Color(0xff396DB4),
     const Color(0xffD9908A),
   ];
+  String cardimgae='';
+  int temindex=0;
   @override
   void initState() {
     super.initState();
@@ -134,8 +139,6 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
 
   bool isMarried = false;
   bool isUnmarried = false;
-  bool _value3 = false;
-  bool _value4 = false;
   int offersindex = 0;
   bool isLoading = false;
   List partnerimage = [
@@ -164,11 +167,15 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
       emailController.text = authprofileController.profileData.first.email;
       occupationController.text =
           authprofileController.profileData.first.occupation;
+          qualificationController.text = authprofileController.profileData.first.qualification;
       fathernameController.text =
           authprofileController.profileData.first.fatherName;
+          gstnoController.text = authprofileController.profileData.first.gstNo;
+          pannoController.text = authprofileController.profileData.first.panNo;
       mothernameController.text =
           authprofileController.profileData.first.motherName;
-
+          spousenameController.text =authprofileController.profileData.first.spouse;
+            dateofbirthController.text = authprofileController.profileData.first.dob;
       officedoornoController.text =
           authprofileController.profileData.first.officialAddress.doorNo;
       officebnameController.text =
@@ -189,7 +196,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             ? false
             : true;
       });
-      // dateofbirthController.text = authprofileController.profileData.first.dob;
+      
     }
   }
   
@@ -221,7 +228,8 @@ AlertDialog mAlertItem2 = AlertDialog(
         ),
       ],
     );
-    final apisettingController =Get.find <ApiSettingController>();
+    final apisettingController = Get.find <ApiSettingController>(); 
+    
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -837,37 +845,37 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       ),
                                     ),
                                   ),
-                                  // Expanded(
-                                  //   child: Padding(
-                                  //     padding: const EdgeInsets.only(
-                                  //         left: 70,
-                                  //         right: 50,
-                                  //         top: 30,
-                                  //         bottom: 30),
-                                  //     child: Container(
-                                  //       child: Column(
-                                  //         children: [
-                                  //           TextField(
-                                  //               controller:
-                                  //                   dateofbirthController,
-                                  //               decoration: InputDecoration(
-                                  //                   hintText:
-                                  //                       'Enter Date Of Birth',
-                                  //                   suffixIcon: IconButton(
-                                  //                     onPressed: () {
-                                  //                       _selectDate(context);
-                                  //                     },
-                                  //                     icon: Icon(Icons.edit),
-                                  //                   ),
-                                  //                   fillColor:
-                                  //                       Color(0xffF9F8FD),
-                                  //                   border:
-                                  //                       OutlineInputBorder())),
-                                  //         ],
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // )
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 70,
+                                          right: 50,
+                                          top: 30,
+                                          bottom: 30),
+                                      child: Container(
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                                controller:
+                                                    dateofbirthController,
+                                                decoration: InputDecoration(
+                                                    hintText:
+                                                        'Enter Date Of Birth',
+                                                    suffixIcon: IconButton(
+                                                      onPressed: () {
+                                                        _selectDate(context);
+                                                      },
+                                                      icon: Icon(Icons.edit),
+                                                    ),
+                                                    fillColor:
+                                                        Color(0xffF9F8FD),
+                                                    border:
+                                                        OutlineInputBorder())),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                               Row(
@@ -1055,58 +1063,58 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   )
                                 ],
                               ),
-                              // Row(
-                              //   mainAxisAlignment:
-                              //       MainAxisAlignment.spaceAround,
-                              //   children: [
-                              //     Expanded(
-                              //       child: Padding(
-                              //         padding: const EdgeInsets.only(
-                              //             left: 40,
-                              //             right: 70,
-                              //             top: 0,
-                              //             bottom: 30),
-                              //         child: TextField(
-                              //              textInputAction: TextInputAction.next,
-                              //             controller: wedingnameController,
-                              //             decoration: InputDecoration(
-                              //                 hintText: 'Wedding Date',
-                              //                 suffixIcon: IconButton(
-                              //                   onPressed: () {
-                              //                     // _selectDate2(context);
-                              //                   },
-                              //                   icon: Icon(Icons.edit),
-                              //                 ),
-                              //                 fillColor: Color(0xffF9F8FD),
-                              //                 border: OutlineInputBorder())),
-                              //       ),
-                              //     ),
-                              //     Expanded(
-                              //       child: Padding(
-                              //         padding: const EdgeInsets.only(
-                              //             left: 70,
-                              //             right: 50,
-                              //             top: 0,
-                              //             bottom: 30),
-                              //         child: Container(
-                              //           child: Column(
-                              //             children: [
-                              //               TextField(
-                              //                    textInputAction: TextInputAction.next,
-                              //                 controller: spousenameController,
-                              //                 decoration: InputDecoration(
-                              //                     hintText: 'Spouse Name',
-                              //                     suffixIcon: Icon(Icons.edit),
-                              //                     fillColor: Color(0xffF9F8FD),
-                              //                     border: OutlineInputBorder()),
-                              //               ),
-                              //             ],
-                              //           ),
-                              //         ),
-                              //       ),
-                              //     )
-                              //   ],
-                              // ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 40,
+                                          right: 70,
+                                          top: 0,
+                                          bottom: 30),
+                                      child: TextField(
+                                           textInputAction: TextInputAction.next,
+                                          controller: wedingnameController,
+                                          decoration: InputDecoration(
+                                              hintText: 'Wedding Date',
+                                              suffixIcon: IconButton(
+                                                onPressed: () {
+                                                  // _selectDate2(context);
+                                                },
+                                                icon: Icon(Icons.edit),
+                                              ),
+                                              fillColor: Color(0xffF9F8FD),
+                                              border: OutlineInputBorder())),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 70,
+                                          right: 50,
+                                          top: 0,
+                                          bottom: 30),
+                                      child: Container(
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                                 textInputAction: TextInputAction.next,
+                                              controller: spousenameController,
+                                              decoration: InputDecoration(
+                                                  hintText: 'Spouse Name',
+                                                  suffixIcon: Icon(Icons.edit),
+                                                  fillColor: Color(0xffF9F8FD),
+                                                  border: OutlineInputBorder()),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                               Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
@@ -1133,30 +1141,30 @@ AlertDialog mAlertItem2 = AlertDialog(
                                               border: OutlineInputBorder())),
                                     ),
                                   ),
-                                  // Expanded(
-                                  //   child: Padding(
-                                  //     padding: const EdgeInsets.only(
-                                  //         left: 70,
-                                  //         right: 50,
-                                  //         top: 0,
-                                  //         bottom: 30),
-                                  //     child: Container(
-                                  //       child: Column(
-                                  //         children: [
-                                  //           TextField(
-                                  //                textInputAction: TextInputAction.next,
-                                  //             controller: childrensController,
-                                  //             decoration: InputDecoration(
-                                  //                 hintText: 'No.Of.Children',
-                                  //                 suffixIcon: Icon(Icons.edit),
-                                  //                 fillColor: Color(0xffF9F8FD),
-                                  //                 border: OutlineInputBorder()),
-                                  //           ),
-                                  //         ],
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // )
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 70,
+                                          right: 50,
+                                          top: 0,
+                                          bottom: 30),
+                                      child: Container(
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                                 textInputAction: TextInputAction.next,
+                                              controller: childrensController,
+                                              decoration: InputDecoration(
+                                                  hintText: 'No.Of.Children',
+                                                  suffixIcon: Icon(Icons.edit),
+                                                  fillColor: Color(0xffF9F8FD),
+                                                  border: OutlineInputBorder()),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                               // Padding(
@@ -1249,6 +1257,15 @@ AlertDialog mAlertItem2 = AlertDialog(
                                                     occupation:
                                                         occupationController
                                                             .text,
+                                                             aadharno:adharController.text , 
+                                                            branch: branchController.text , 
+                                                            children: childrensController.text, 
+                                                            gstno: gstnoController.text, 
+                                                            marrigedate: wedingnameController.text, 
+                                                            panNo: pannoController.text, 
+                                                            qulification:qualificationController.text , 
+                                                            spouse: spousenameController
+                                                            .text,
                                                   );
 
                                                   authprofileController.updateProfile(
@@ -1298,7 +1315,14 @@ AlertDialog mAlertItem2 = AlertDialog(
                                                             .text,
                                                     occupation:
                                                         occupationController
-                                                            .text,
+                                                            .text, aadharno: null,
+                                                             branch: null, 
+                                                             children: null, 
+                                                             gstno: null, 
+                                                             marrigedate: null, 
+                                                             panNo: null, 
+                                                             qulification: null, 
+                                                             spouse: null,
                                                   );
 
                                                   authprofileController.updateProfile(
@@ -3844,6 +3868,145 @@ AlertDialog mAlertItem2 = AlertDialog(
                   }
                 ),
               ),
+              if(reghomeController.proindex.value==7)
+              Padding(padding: EdgeInsets.only(top:50),
+              child: GetBuilder<SubscriptionApiController>(
+          builder: (_){
+            
+            return Container(
+              height:500 ,
+                width: MediaQuery.of(context).size.width - 195,
+              child: ListView(
+              //  crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+               // RegisterCommonContainer(),
+                Container(
+                  child: Stack(
+                    children: [
+                      Image.asset('assets/images/Group 39757.png'),
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        bottom: 0,
+                        right: 0,
+                        child: Center(
+                          child: Text(
+                            'Subscribe',
+                            style: GoogleFonts.lato(
+                                fontSize: 80,
+                                fontWeight: FontWeight.bold,
+                                color: kwhite),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                ksizedbox30,
+                Text(
+                  'Select Membership',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Color(0xff003366),
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold),
+                ),
+                ksizedbox10,
+                const Text(
+                  "All Select Membership Cards Choose Anything",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 17,
+                      fontWeight: FontWeight.w500,
+                      height: 1.4,
+                      color: Color(0xff003366)),
+                ),
+                const SizedBox(
+                  height: 100,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 40),
+                      child: Container(
+                       height: 500,
+                       width:600,
+                        child: GridView.builder(
+                         shrinkWrap: true,
+                         itemCount: subscriptionapiController.plansdataList.length,
+                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          mainAxisSpacing: 40,
+                          crossAxisSpacing: 40,
+                          childAspectRatio: 6,
+                          crossAxisCount: 2), 
+                        itemBuilder: (context,index){
+                         return GestureDetector(
+                          onTap: (){
+                            print("------------------------------------------------${subscriptionapiController.plansdataList[index].cardImg}");
+                            setState(() {
+                              temindex= index;
+                              cardimgae= subscriptionapiController.plansdataList[index].cardImg;
+                            });
+                          },
+                           child: Container(
+                            height: 30,
+                             alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                               color:temindex==index ?kOrange:kwhite,
+                               borderRadius: BorderRadius.circular(10),
+                               border: Border.all(
+                                color:temindex== index?kwhite:kblue
+                               )
+                            ),
+                             child: Text(
+                              subscriptionapiController.plansdataList[index].title,
+                              style: TextStyle(
+                                fontSize: 18,
+                                color:temindex==index? kwhite:kblue
+                              ),
+                              
+                             ),
+                                                     ),
+                         );
+                        }),
+                      ),
+                    ),
+                    Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                
+                  InkWell(
+                      onTap: () {
+                        Get.to(
+                          Payment(image: subscriptionapiController.plansdataList[temindex].cardImg, 
+                        htext: subscriptionapiController.plansdataList[temindex].title, 
+                        text:subscriptionapiController.plansdataList[temindex].planDescription,
+                        id: subscriptionapiController.plansdataList[temindex].id));
+                      },
+                      child: subscriptionapiController.plansdataList.isEmpty ? Container(
+            
+                      ): Image(
+                        image: cardimgae == "" ? NetworkImage(subscriptionapiController.plansdataList.first.cardImg): NetworkImage(cardimgae),
+                        height: 234,
+                        
+                      ),
+                      
+                      ),
+                       
+                  ],
+                ),
+                  ],
+                ),
+              
+              ]
+              
+              ),
+            );
+            
+          }
+        ),),
             if (reghomeController.proindex.value == 8)
               Padding(
                 padding: const EdgeInsets.only(top: 50),
