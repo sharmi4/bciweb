@@ -950,7 +950,60 @@ AlertDialog mAlertItem2 = AlertDialog(
                                            textInputAction: TextInputAction.next,
                                         controller: occupationController,
                                         decoration: InputDecoration(
-                                            hintText: 'Occupation',
+                                            hintText: 'Alternative Number',
+                                            suffixIcon: Icon(Icons.edit),
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder()),
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 70,
+                                          right: 50,
+                                          top: 0,
+                                          bottom: 30),
+                                      child: Container(
+                                        child: Column(
+                                          children: [
+                                            TextField(
+                                                 textInputAction: TextInputAction.next,
+                                                controller:
+                                                    fathernameController,
+                                                decoration: InputDecoration(
+                                                    hintText: 'Occupation',
+                                                    suffixIcon: IconButton(
+                                                      onPressed: () {},
+                                                      icon: Icon(Icons.edit),
+                                                    ),
+                                                    fillColor:
+                                                        Color(0xffF9F8FD),
+                                                    border:
+                                                        OutlineInputBorder())),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 40,
+                                          right: 70,
+                                          top: 0,
+                                          bottom: 30),
+                                      child: TextField(
+                                           textInputAction: TextInputAction.next,
+                                        controller: occupationController,
+                                        decoration: InputDecoration(
+                                            hintText: 'Qualification',
                                             suffixIcon: Icon(Icons.edit),
                                             fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder()),
