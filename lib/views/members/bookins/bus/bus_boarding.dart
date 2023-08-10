@@ -246,7 +246,7 @@ class _busBoardingState extends State<busBoarding> {
                                       setState(() {
                                         dropingId = widget.busData
                                             .droppingDetails[i].droppingId;
-                                            busController.droppingName(widget
+                                        busController.droppingName(widget
                                             .busData
                                             .droppingDetails[i]
                                             .droppingName);
@@ -278,12 +278,13 @@ class _busBoardingState extends State<busBoarding> {
                                                   height: 10,
                                                   width: 10,
                                                   decoration: BoxDecoration(
-                                                      color: dropingIndex == i
-                                                          ? kOrange
-                                                          : Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              10)),
+                                                    color: dropingIndex == i
+                                                        ? kOrange
+                                                        : Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
                                                 ),
                                               ),
                                             ),
@@ -291,11 +292,14 @@ class _busBoardingState extends State<busBoarding> {
                                               width: 10,
                                             ),
                                             Container(
+
                                               width: size.width * 0.4,
+
                                               child: Text(widget
                                                   .busData
                                                   .droppingDetails[i]
                                                   .droppingName),
+                                                  
                                             ),
                                           ],
                                         ),

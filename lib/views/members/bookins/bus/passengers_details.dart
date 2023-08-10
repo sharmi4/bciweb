@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/views/members/bookins/bus/paysuccesful_screen.dart';
 import 'package:bciweb/views/members/bookins/bus/wigets/bus_details_wiget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,6 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
 import '../../../../controller/bus_controllers.dart';
 import '../../../../models/busbookingmodels/bus_contact_details_model.dart';
+import '../../../../models/busbookingmodels/pax_list_model.dart';
 import '../../../../models/busbookingmodels/search_bus_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -266,44 +268,50 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                           ),
                         ),
                         ksizedbox10,
-                        for (int i = 0; i < widget.busContactmodel.length; i++)
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Enter Passenger Details Please review Passenger details before making the booking')
-                                        .text
-                                        .semiBold
-                                        .blue900
-                                        .xl2
-                                        .make(),
+
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 10),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('Enter Passenger Details Please review Passenger details before making the booking')
+                                      .text
+                                      .semiBold
+                                      .blue900
+                                      .xl2
+                                      .make(),
+                                  for (int i = 0;
+                                      i < widget.busContactmodel.length;
+                                      i++)
                                     Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
                                       children: [
                                         Row(
                                           children: [
                                             Container(
                                               child: TextField(
-                                                controller: nameController,
+                                                controller: widget
+                                                    .busContactmodel[i]
+                                                    .nameController,
                                                 decoration: InputDecoration(
                                                   border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5)),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
+                                                  ),
                                                   hintText:
                                                       'Enter Your Full Name',
                                                 ),
                                               ),
                                               decoration: BoxDecoration(
+
                                                   //  color: Colors.grey[200],
+
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           15)),
@@ -313,7 +321,9 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                                             kwidth10,
                                             Container(
                                               child: TextField(
-                                                controller: ageController,
+                                                controller: widget
+                                                    .busContactmodel[i]
+                                                    .ageController,
                                                 decoration: InputDecoration(
                                                   border: OutlineInputBorder(
                                                       borderRadius:
@@ -330,54 +340,164 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                                               height: size.height * 0.06,
                                               width: 60,
                                             ),
+                                            kwidth10,
                                             Icon(Icons.person),
                                             const Text('GENDER')
                                                 .text
                                                 .gray500
                                                 .semiBold
                                                 .make(),
-                                            RadioListTile(
-                                              title: const Text('Male'),
-                                              value: 'Male',
-                                             groupValue: widget
-                                                 .busContactmodel[i].gender,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  widget.busContactmodel[i]
-                                                      .gender = value!;
-                                                });
-                                              },
+                                            kwidth10,
+                                            Text('Seat No : ${widget.busContactmodel[i].seats}')
+                                                .text
+                                                .gray500
+                                                .semiBold
+                                                .make(),
+
+                                            Container(
+                                              width: 150,
+                                              child: RadioListTile(
+                                                title: const Text('Male'),
+                                                value: 'Male',
+                                                groupValue: widget
+                                                    .busContactmodel[i].gender,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    widget.busContactmodel[i]
+                                                        .gender = value!;
+                                                  });
+                                                },
+                                              ),
                                             ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                const Text('Passenger Details')
-                                                    .text
-                                                    .xl
-                                                    .semiBold
-                                                    .make(),
-                                               Text('Seat No : ${widget.busContactmodel[i].seats}')
-                                                   .text
-                                                   .semiBold
-                                                   .make(),
-                                              ],
+
+                                            Container(
+                                              width: 150,
+                                              child: RadioListTile(
+                                                title: const Text('female'),
+                                                value: 'female',
+                                                groupValue: widget
+                                                    .busContactmodel[i].gender,
+                                                onChanged: (value) {
+                                                  setState(() {
+                                                    widget.busContactmodel[i]
+                                                        .gender = value!;
+                                                  });
+                                                },
+                                              ),
                                             ),
+
+                                            // RadioListTile(
+                                            //   title: const Text('Male'),
+                                            //   value: 'Male',
+                                            //  groupValue: widget
+                                            //      .busContactmodel[i].gender,
+                                            //   onChanged: (value) {
+                                            //     setState(() {
+                                            //       widget.busContactmodel[i]
+                                            //           .gender = value!;
+                                            //     });
+                                            //   },
+                                            // ),
                                           ],
                                         ),
                                         ksizedbox10,
-                                   
                                       ],
                                     ),
-                                  ],
-                                ),
+
+                                  // Column(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.start,
+                                  //   children: [
+                                  //     Row(
+                                  //       children: [
+                                  //         Container(
+                                  //           child: TextField(
+                                  //             controller: nameController,
+                                  //             decoration: InputDecoration(
+                                  //               border: OutlineInputBorder(
+                                  //                   borderRadius:
+                                  //                       BorderRadius.circular(
+                                  //                           5)),
+                                  //               hintText:
+                                  //                   'Enter Your Full Name',
+                                  //             ),
+                                  //           ),
+                                  //           decoration: BoxDecoration(
+                                  //               //  color: Colors.grey[200],
+                                  //               borderRadius:
+                                  //                   BorderRadius.circular(
+                                  //                       15)),
+                                  //           height: size.height * 0.06,
+                                  //           width: size.width * 0.3,
+                                  //         ),
+                                  //         kwidth10,
+                                  //         Container(
+                                  //           child: TextField(
+                                  //             controller: ageController,
+                                  //             decoration: InputDecoration(
+                                  //               border: OutlineInputBorder(
+                                  //                   borderRadius:
+                                  //                       BorderRadius.circular(
+                                  //                           5)),
+                                  //               hintText: 'Age',
+                                  //             ),
+                                  //           ),
+                                  //           decoration: BoxDecoration(
+                                  //               //  color: Colors.grey[200],
+                                  //               borderRadius:
+                                  //                   BorderRadius.circular(
+                                  //                       15)),
+                                  //           height: size.height * 0.06,
+                                  //           width: 60,
+                                  //         ),
+                                  //         Icon(Icons.person),
+                                  //         const Text('GENDER')
+                                  //             .text
+                                  //             .gray500
+                                  //             .semiBold
+                                  //             .make(),
+                                  //         RadioListTile(
+                                  //           title: const Text('Male'),
+                                  //           value: 'Male',
+                                  //          groupValue: widget
+                                  //              .busContactmodel[i].gender,
+                                  //           onChanged: (value) {
+                                  //             setState(() {
+                                  //               widget.busContactmodel[i]
+                                  //                   .gender = value!;
+                                  //             });
+                                  //           },
+                                  //         ),
+                                  //         Row(
+                                  //           mainAxisAlignment:
+                                  //               MainAxisAlignment
+                                  //                   .spaceBetween,
+                                  //           children: [
+                                  //             const Text('Passenger Details')
+                                  //                 .text
+                                  //                 .xl
+                                  //                 .semiBold
+                                  //                 .make(),
+                                  //            Text('Seat No : ${widget.busContactmodel[i].seats}')
+                                  //                .text
+                                  //                .semiBold
+                                  //                .make(),
+                                  //           ],
+                                  //         ),
+                                  //       ],
+                                  //     ),
+                                  //     ksizedbox10,
+
+                                  //   ],
+                                  // ),
+                                ],
                               ),
-                              decoration: kcontainer,
-                              // height: size.height * 0.3,
-                              width: size.width,
                             ),
+                            decoration: kcontainer,
+                            // height: size.height * 0.3,
+                            width: size.width,
                           ),
+                        ),
                         ksizedbox10,
                         // Padding(
                         //   padding: const EdgeInsets.all(8.0),
@@ -519,18 +639,58 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              Container(
-                                child: Center(
-                                    child: Text(
-                                            'PAY ₹ ${busController.totalAmount.value}')
-                                        .text
-                                        .semiBold
-                                        .xl2
-                                        .white
-                                        .make()),
-                                height: size.height * 0.06,
-                                width: 190,
-                                color: korange,
+                              InkWell(
+                                onTap: () {
+                                  List<PaxDetailslist> paxDetailslists = [];
+
+                                  for (int a = 0;
+                                      a < widget.busContactmodel.length;
+                                      a++) {
+                                    PaxDetailslist paxDetailslistdata =
+                                        PaxDetailslist(
+                                            age: widget.busContactmodel[a]
+                                                .ageController.text,
+                                            gender: widget.busContactmodel[a]
+                                                        .gender ==
+                                                    "Male"
+                                                ? 0
+                                                : 1,
+                                            isLadies: false,
+                                            paxName: widget.busContactmodel[a]
+                                                .nameController.text,
+                                            seatNumber: widget
+                                                .busContactmodel[a].seats);
+
+                                    paxDetailslists.add(paxDetailslistdata);
+                                  }
+                                  busController.tempBookBusTicket(
+                                      boardingId: widget.boardingId,
+                                      droppingId: widget.dropingId,
+                                      busData: widget.busData,
+                                      searcKey: widget.searchkey,
+                                      mobileNumber: phoneNumberContoller.text,
+                                      customerEmail: emailController.text,
+                                      paxDetailslist: paxDetailslists,
+                                      amount: widget.amount,
+                                      customerName: widget.cusName,
+                                      
+                                      seatMapKey:
+                                          busController.seatMapKey.value);
+                                 // Get.to(BusbookingSuccesfullScreen());
+                                },
+                                child: Container(
+                                  child: Center(
+                                      child: Text(
+                                              'PAY ₹ ${busController.totalAmount.value}')
+                                          .text
+                                          .semiBold
+                                          .xl2
+                                          .white
+                                          .make()),
+                                  height: size.height * 0.06,
+                                  width: 190,
+                                  color: korange,
+                                ),
                               ),
                             ],
                           ),

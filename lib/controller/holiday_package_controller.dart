@@ -12,9 +12,8 @@ import '../models/holiday_packages_models/get_package_category_model.dart';
 import '../models/holiday_packages_models/recommentedlist_model.dart';
 import '../services/networks/services/holiday_packages_api_services/get_package_category_api_service.dart';
 import 'package:dio/dio.dart' as dio;
+import '../services/networks/services/holiday_packages_api_services/recommentedlist_api_service.dart';
 
-import '../services/networks/services/holiday_packages_api_services/recommentedlist_api_service.dart';
-import '../services/networks/services/holiday_packages_api_services/recommentedlist_api_service.dart';
 
 class HolidayPackageController extends GetxController{
    

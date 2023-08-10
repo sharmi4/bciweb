@@ -21,13 +21,19 @@ class MemberHomeScreen extends StatefulWidget {
 }
 
 class _MemberHomeScreenState extends State<MemberHomeScreen> {
+
+
   final _homeController = Get.find<HomeController>();
   final authProfileController=Get.find<AuthProfileController>();
+
+
   @override
   void initState() {
     super.initState();
     authProfileController.getProfile();
   }
+
+  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;

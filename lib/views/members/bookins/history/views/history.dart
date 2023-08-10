@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../../../controller/bus_controllers.dart';
 import '../../../../../controller/historycontroller.dart';
 import '../../../../../controller/reg_home_controller.dart';
 //import '../../../../../registerhomescreen/common_reg_appbar';
@@ -331,30 +332,125 @@ class bookingbutton extends StatelessWidget {
   }
 }
 
-class BussHistory extends StatelessWidget {
-  const BussHistory({
+class BussHistory extends StatefulWidget {
+   BussHistory({
     super.key,
   });
+
+  @override
+  State<BussHistory> createState() => _BussHistoryState();
+}
+
+class _BussHistoryState extends State<BussHistory> {
+  final busController = Get.find<BusController>();
+
+    @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    busController.getBusBookingHistory();
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Column(
-      children: [
-        ksizedbox30,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [Buswigit(), Buswigit()],
-        ),
-          ksizedbox30,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [Buswigit(), Buswigit()],
-        ),    ksizedbox30,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [Buswigit(), Buswigit()],
-        ),],
+      children: [  GetBuilder<BusController>(
+        builder: (_) {
+          return GridView.builder(
+                        itemCount: busController.bookingHistoryList.length,
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: 2.5, crossAxisCount: 2),
+                        itemBuilder: ((context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(10.0),
+                           child:  Container(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  //  kwidth10,
+                  CircleAvatar(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset(
+                          'assets/images/bus-1.png',
+                          height: 30,
+                        ),
+                        Text(busController.bookingHistoryList[index].bookingDate).text.sm.green500.make()
+                      ],
+                    ),
+                    backgroundColor: Colors.green.withOpacity(0.2),
+                    radius: 45,
+                  ),
+                  Container(
+                    width: size.width * 0.18,
+                    height: size.height * 0.15,
+                    //   color: kblue,
+                    child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Status').text.gray500.semiBold.make(),
+                            Text('Conformed').text.gray500.semiBold.make(),
+                          ],
+                        ),   Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Text(busController.bookingHistoryList[index].fromCityname).text.semiBold.xl2.make(), Text('-').text.semiBold.xl2.make(),
+                            Text(busController.bookingHistoryList[index].toCityname).text.semiBold.xl2.make(),
+                          ],
+                        ),
+                     Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(busController.bookingHistoryList[index].busName).text.gray500.semiBold.make(),
+                           
+                          ],
+                        ), 
+                        Divider(height: 1,)  ,
+                           Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(busController.bookingHistoryList[index].bookingRefno).text.gray500.semiBold.make(),
+                            Text('Rebook').text.green400.semiBold.make(),
+                          ],
+                        ),     ],
+                    ),
+                  ),
+                  //    kwidth10
+                  kwidth5,
+                ],
+              ),
+            ),
+            height: size.height * 0.17,
+            width: size.width * 0.35,
+            decoration: BoxDecoration(
+              color: kwhite,
+              boxShadow: [
+                BoxShadow(
+                  color: Color.fromARGB(255, 190, 190, 190)
+                      .withOpacity(0.5), // Shadow color
+                  spreadRadius: 1, // The spread radius of the shadow
+                  blurRadius: 5, // The blur radius of the shadow
+                  //  offset: Offset(0, 3), // The offset of the shadow
+                ),
+              ],
+            )) ,
+                          );
+                        }),
+                      );
+        }
+      )
+      //  ksizedbox30,
+     
+         
+       ],
     );
   }
 }

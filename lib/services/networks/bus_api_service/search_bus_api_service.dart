@@ -1,12 +1,15 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../base_url/base_url.dart';
 
-import '../../../base_url/base_url.dart';
 
-class GetBusCityListApiService extends BaseApiService {
-  Future getBusCityListApiService({required String searchCity}) async {
+class SearchBusListApiService extends BaseApiService {
+  Future searchBusListApiService({
+    required String fromCityId,
+    required String toCityId,
+    required String travelDate
+    }) async {
     dynamic responseJson;
     try {
       var dio = Dio();
@@ -14,9 +17,10 @@ class GetBusCityListApiService extends BaseApiService {
       String? authtoken = prefs.getString("auth_token");
 
       var response = await dio.post(
-        getCityListApiUrl,
+        searchBusApiUrl,
         options: Options(
             headers: {
+              'Content-Type' : 'application/json',
               'Authorization': 'Bearer $authtoken'
             },
             followRedirects: false,
@@ -24,10 +28,13 @@ class GetBusCityListApiService extends BaseApiService {
               return status! <= 500;
             }),
             data: {
-                   "search_city": searchCity
+                    "imei_Number":"123345",
+                    "from_city": fromCityId,
+                    "to_city": toCityId,
+                    "travel_date": travelDate
                  }
       );
-      print("::::::::<get bus city-list Api>::::::::status code::::::::::");
+      print("::::::::<search bus-list Api>::::::::status code:::$fromCityId::::$toCityId::$travelDate:");
       print(response.statusCode);
       print(response.data);
       responseJson = response;
