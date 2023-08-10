@@ -30,9 +30,9 @@ class OtherbookingModel {
 
 class Datum {
     int id;
-    String paymentId;
-    String quantity;
-    String purchasePrice;
+    dynamic paymentId;
+    dynamic quantity;
+    dynamic purchasePrice;
     String status;
     String service;
     String image;

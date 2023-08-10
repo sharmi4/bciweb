@@ -1,35 +1,19 @@
 import 'dart:io';
-
-import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../base_url/base_url.dart';
 
-import '../../../../models/busbookingmodels/search_bus_model.dart';
-
-class BusSeatMapApiService extends BaseApiService {
-  Future busSeatMapApiService(
-      {required String boardingId,
-      required String droppingId,
-      required Bus busData,
-      required String searcKey}) async {
+class BusTicketingApiServices extends BaseApiService {
+  Future busTicketingApi({
+    required String refrenceNo,
+  }) async {
     dynamic responseJson;
     try {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      // var sendingData = {
-      //   "imei_Number": "726736735476234",
-      //   "boarding_id": boardingId,
-      //   "dropping_id": droppingId,
-      //   "bus_key": busData.busKey,
-      //   "search_key": searcKey
-      // };
-
-      // print(sendingData);
-      // print(searcKey);
-
-      var response = await dio.post(busSeatMapApiUrl,
+      var response = await dio.post(busTicketing,
           options: Options(
               headers: {
                 'Content-Type': 'application/json',
@@ -39,14 +23,9 @@ class BusSeatMapApiService extends BaseApiService {
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {
-            "imei_Number": "726736735476234",
-            "boarding_id": boardingId,
-            "dropping_id": droppingId,
-            "bus_key": busData.busKey,
-            "search_key": searcKey
-          });
-      print("::::::::<bus-seat map list Api>::::::::status code::::::::::");
+          data: {"booking_ref_no": refrenceNo, "imei_number": "5676757577567"});
+      print(
+          "::::::::<--Bus ticketing-->::::::::status code::::::$refrenceNo::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

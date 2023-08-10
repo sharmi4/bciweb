@@ -1,11 +1,11 @@
-import 'dart:math';
 
-import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+
+
 import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 import '../../../../constant/constans.dart';
 //import '../../../../registerhomescreen/common_reg_appbar';

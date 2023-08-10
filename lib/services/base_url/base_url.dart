@@ -125,7 +125,7 @@ abstract class BaseApiService {
   final String searchPackageListApiUrl =
       "https://bci.generation360tech.in/api/auth/search_packages";
 
-
+//busbooking 
 
   final String getCityListApiUrl =
       "https://bci.generation360tech.in/api/auth/Bus_CityList";
@@ -143,6 +143,14 @@ abstract class BaseApiService {
       "https://bci.generation360tech.in/api/auth/bus_ticketing";
 
    final String busRequiryURL = "https://bci.generation360tech.in/api/auth/bus_requery";
+
+  final String addBusBookingHistoryURL =
+      "https://bci.generation360tech.in/api/auth/add_bus_booking_history";
+        final String airAddPayment =
+      "https://bci.batechnology.in/api/auth/add_payment";
+
+  final String getBusBookingHistoryURL =
+      "https://bci.generation360tech.in/api/auth/get_bus_booking_history";
 
     //get wallet details
   final String getWalletDetailsApiUrl = "https://bci.generation360tech.in/api/auth/getUserwallet";
@@ -165,4 +173,5 @@ abstract class BaseApiService {
 
 
       //updated 10-8-23
+     
 }

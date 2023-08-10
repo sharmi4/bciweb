@@ -3,6 +3,7 @@ import 'package:bciweb/views/members/bookins/bus/buslist.dart';
 import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
 import 'package:bciweb/views/members/bookins/history/views/history.dart';
 import 'package:date_format/date_format.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
@@ -374,33 +375,61 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                       ),
                                     ),
                                   ),
-                                  InkWell(
-                                    onTap: () {
-                                      busController.searchBus(
-                                          fromCityId: busController
-                                              .fromcityId.value
-                                              .toString(),
-                                          toCityId: busController.tocityId.value
-                                              .toString(),
-                                          travelDate: formatDate(
-                                              busController.travelDatess,
-                                              [mm, "/", dd, "/", yyyy]));
-                                    },
-                                    child: Container(
-                                      child: Center(
-                                          child: Text(
-                                        'Search',
-                                        style: TextStyle(
-                                            fontSize: 20, color: kwhite),
-                                      )),
-                                      height: 40,
-                                      width: size.width * 0.1,
-                                      decoration: BoxDecoration(
-                                          color: kyellow,
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                    ),
-                                  ),
+                                  Obx(() => busController.isLoading.isTrue
+                                      ? InkWell(
+                                          onTap: () {
+                                            busController.searchBus(
+                                                fromCityId: busController
+                                                    .fromcityId.value
+                                                    .toString(),
+                                                toCityId: busController
+                                                    .tocityId.value
+                                                    .toString(),
+                                                travelDate: formatDate(
+                                                    busController.travelDatess,
+                                                    [mm, "/", dd, "/", yyyy]));
+                                          },
+                                          child: Container(
+                                            child: Center(
+                                                child: const CupertinoActivityIndicator(
+                          color: Colors.white,
+                        ),),
+                                            height: 40,
+                                            width: size.width * 0.1,
+                                            decoration: BoxDecoration(
+                                                color: kyellow,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                        )
+                                      : InkWell(
+                                          onTap: () {
+                                            busController.searchBus(
+                                                fromCityId: busController
+                                                    .fromcityId.value
+                                                    .toString(),
+                                                toCityId: busController
+                                                    .tocityId.value
+                                                    .toString(),
+                                                travelDate: formatDate(
+                                                    busController.travelDatess,
+                                                    [mm, "/", dd, "/", yyyy]));
+                                          },
+                                          child: Container(
+                                            child: Center(
+                                                child: Text(
+                                              'Search',
+                                              style: TextStyle(
+                                                  fontSize: 20, color: kwhite),
+                                            )),
+                                            height: 40,
+                                            width: size.width * 0.1,
+                                            decoration: BoxDecoration(
+                                                color: kyellow,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                          ),
+                                        )),
                                 ],
                               );
                             }),

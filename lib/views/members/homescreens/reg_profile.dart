@@ -32,8 +32,7 @@ class RegisterProfileScreen extends StatefulWidget {
 }
 
 class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
-
-   final subscriptionapiController = Get.find<SubscriptionApiController>();
+  final subscriptionapiController = Get.find<SubscriptionApiController>();
   final reghomeController = Get.find<RegisterProfileController>();
   final regshowController = Get.find<ProfileShowController>();
   final authprofileController = Get.find<AuthProfileController>();
@@ -98,13 +97,13 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     subscripeController.getcouponsList();
     authprofileController.getProfile();
     apisettingController.getwalletList();
-    apisettingController.generateReferralCode();  
+    apisettingController.generateReferralCode();
     apisettingController.ourPartner();
     // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
-
   }
- final plansController=Get.find<SubscriptionApiController>();
- 
+
+  final plansController = Get.find<SubscriptionApiController>();
+
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -199,46 +198,43 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
       
     }
   }
-  
-AlertDialog mAlertItem2 = AlertDialog(
-      backgroundColor: Colors.white,
-      title: Text("Confirmation", style:TextStyle(
-        color: Colors.black,
-        fontWeight: FontWeight.bold
-      )),
-      content: Text(
-        "Are you sure you want to logout?",
-        style: TextStyle(color: Colors.black),
+
+  AlertDialog mAlertItem2 = AlertDialog(
+    backgroundColor: Colors.white,
+    title: Text("Confirmation",
+        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+    content: Text(
+      "Are you sure you want to logout?",
+      style: TextStyle(color: Colors.black),
+    ),
+    actions: [
+      TextButton(
+        child: Text(
+          "Yes",
+          style: TextStyle(color: kblue),
+        ),
+        onPressed: () {
+          Get.offAll(LandingScreen());
+        },
       ),
-      actions: [
-        TextButton(
-          child: Text(
-            "Yes",
-            style: TextStyle(color: kblue),
-          ),
-          onPressed: () {
-           Get.offAll(LandingScreen());
-          },
-        ),
-        TextButton(
-          child: Text("No", style: TextStyle(color: kblue)),
-          onPressed: () {
-            Get.back();
-          },
-        ),
-      ],
-    );
-    final apisettingController = Get.find <ApiSettingController>(); 
-    
+      TextButton(
+        child: Text("No", style: TextStyle(color: kblue)),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+    ],
+  );
+  final apisettingController = Get.find<ApiSettingController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-            final List<ChartData> chartData = [
-            ChartData('David', 25, Color.fromRGBO(9,0,136,1)),
-            ChartData('Steve', 38, Color.fromRGBO(147,0,119,1)),
-            ChartData('Jack', 34, Color.fromRGBO(228,0,124,1)),
-            ChartData('Others', 52, Color.fromRGBO(255,189,57,1))
-        ];
+    final List<ChartData> chartData = [
+      ChartData('David', 25, Color.fromRGBO(9, 0, 136, 1)),
+      ChartData('Steve', 38, Color.fromRGBO(147, 0, 119, 1)),
+      ChartData('Jack', 34, Color.fromRGBO(228, 0, 124, 1)),
+      ChartData('Others', 52, Color.fromRGBO(255, 189, 57, 1))
+    ];
 
     return Scaffold(
       appBar: PreferredSize(
@@ -649,11 +645,11 @@ AlertDialog mAlertItem2 = AlertDialog(
                           onTap: () {
                             reghomeController.proindex(9);
                             reghomeController.update();
-                          showDialog(
-                context: context,
-                builder: (BuildContext context) {
-                  return mAlertItem2;
-                });
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return mAlertItem2;
+                                });
                             //Get.offAll(LandingScreen());
                           },
                           child: Container(
@@ -689,8 +685,6 @@ AlertDialog mAlertItem2 = AlertDialog(
                       ],
                     ),
                   ),
-
-                  
                 ],
               ),
             ),
@@ -835,7 +829,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           top: 30,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: nameController,
                                         decoration: InputDecoration(
                                             hintText: 'User Name',
@@ -890,7 +884,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         controller: emailController,
@@ -913,7 +907,8 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         child: Column(
                                           children: [
                                             TextField(
-                                                 textInputAction: TextInputAction.next,
+                                                textInputAction:
+                                                    TextInputAction.next,
                                                 keyboardType:
                                                     TextInputType.number,
                                                 controller: numberController,
@@ -947,7 +942,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: occupationController,
                                         decoration: InputDecoration(
                                             hintText: 'Alternative Number',
@@ -1021,7 +1016,8 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         child: Column(
                                           children: [
                                             TextField(
-                                                 textInputAction: TextInputAction.next,
+                                                textInputAction:
+                                                    TextInputAction.next,
                                                 controller:
                                                     fathernameController,
                                                 decoration: InputDecoration(
@@ -1053,7 +1049,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: mothernameController,
                                         decoration: InputDecoration(
                                             hintText: 'Mother Name',
@@ -1180,7 +1176,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           controller: dobController,
                                           decoration: InputDecoration(
                                               hintText: 'Date of Birth',
@@ -1477,7 +1473,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: officedoornoController,
                                         decoration: InputDecoration(
                                             hintText: 'Door Number',
@@ -1493,7 +1489,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                     padding: const EdgeInsets.only(
                                         left: 50, right: 50, top: 50),
                                     child: TextField(
-                                         textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.next,
                                       controller: officebnameController,
                                       decoration: InputDecoration(
                                           hintText: 'Building Number',
@@ -1515,7 +1511,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: officeaddresController,
                                         decoration: InputDecoration(
                                             hintText: 'Address',
@@ -1531,7 +1527,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                     padding: const EdgeInsets.only(
                                         left: 50, right: 50, top: 50),
                                     child: TextField(
-                                         textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.next,
                                       controller: officecityController,
                                       decoration: InputDecoration(
                                           hintText: 'City',
@@ -1551,7 +1547,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                     width: MediaQuery.of(context).size.width *
                                         0.35,
                                     child: TextField(
-                                         textInputAction: TextInputAction.next,
+                                      textInputAction: TextInputAction.next,
                                       controller: officestateController,
                                       decoration: InputDecoration(
                                           hintText: 'State',
@@ -1672,7 +1668,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         padding: const EdgeInsets.only(
                                             left: 50, right: 50, top: 50),
                                         child: TextField(
-                                             textInputAction: TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           controller: residoornumberController,
                                           decoration: InputDecoration(
                                               hintText: 'Door Number',
@@ -1688,7 +1684,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: resibnameController,
                                         decoration: InputDecoration(
                                             hintText: 'Building Number',
@@ -1711,7 +1707,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         padding: const EdgeInsets.only(
                                             left: 50, right: 50, top: 50),
                                         child: TextField(
-                                             textInputAction: TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           controller: resiaddressController,
                                           decoration: InputDecoration(
                                               hintText: 'Address',
@@ -1727,7 +1723,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: resibcityController,
                                         decoration: InputDecoration(
                                             hintText: 'City',
@@ -1750,7 +1746,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                         padding: const EdgeInsets.only(
                                             left: 50, right: 50, top: 50),
                                         child: TextField(
-                                             textInputAction: TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           controller: resistateController,
                                           decoration: InputDecoration(
                                               hintText: 'State',
@@ -1766,7 +1762,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       padding: const EdgeInsets.only(
                                           left: 50, right: 50, top: 50),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: resiperidController,
                                         decoration: InputDecoration(
                                             hintText: 'Personal Id',
@@ -1787,7 +1783,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       width: MediaQuery.of(context).size.width *
                                           0.35,
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: resiadaridController,
                                         decoration: InputDecoration(
                                             hintText: 'Adhaar Id',
@@ -1928,499 +1924,617 @@ AlertDialog mAlertItem2 = AlertDialog(
                 padding: const EdgeInsets.only(top: 50),
                 child: Container(
                   width: MediaQuery.of(context).size.width - 195,
-                  child: GetBuilder<ApiSettingController>(
-                    builder: (_) {
-                      return Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: GetBuilder<ApiSettingController>(builder: (_) {
+                    return Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 100),
+                              child: authprofileController.profileData.isEmpty
+                                  ? Text(
+                                      'Hello, Benze',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          color: kblue,
+                                          fontWeight: FontWeight.w500),
+                                    )
+                                  : Text(
+                                      'Hello ${authprofileController.profileData.first.name}'),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 100),
+                              child: authprofileController.profileData.isEmpty
+                                  ? Image.asset(
+                                      'assets/images/profileimage.png',
+                                      height: 75,
+                                      fit: BoxFit.fitHeight,
+                                    )
+                                  : Image.network(authprofileController
+                                      .profileData.first.profilePicture),
+                            ),
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 100),
+                          child: Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 100),
-                                child:authprofileController.profileData.isEmpty?Text(
-                                  'Hello, Benze',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      color: kblue,
-                                      fontWeight: FontWeight.w500),
-                                ):Text('Hello ${authprofileController.profileData.first.name}'),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 100),
-                                child:authprofileController.profileData.isEmpty? Image.asset(
-                                  'assets/images/profileimage.png',
-                                  height: 75,
-                                  fit: BoxFit.fitHeight,
-                                ):Image.network(authprofileController.profileData.first.profilePicture),
+                              GestureDetector(
+                                onTap: () {
+                                  Get.offAll(RegisterProfileController());
+                                },
+                                child: Text(
+                                  'View Profile',
+                                  style: TextStyle(color: kblue),
+                                ),
                               ),
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100),
-                            child: Row(
-                              children: [
-                                GestureDetector(
-                                  onTap: (){
-                                    Get.offAll(RegisterProfileController());
-                                  },
-                                  child: Text(
-                                    'View Profile',
-                                    style: TextStyle(color: kblue),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 1,
-                                  width: 80,
-                                  color: kgrey,
-                                )
-                              ],
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100, top: 30),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 50,
-                                  width: MediaQuery.of(context).size.width * 0.68,
-                                  decoration: BoxDecoration(
-                                      color: kwhite,
-                                      border: Border.all(color: kblue),
-                                      borderRadius: BorderRadius.circular(5),
-                                      boxShadow: <BoxShadow>[
-                                        BoxShadow(
-                                            offset: Offset(0.0, 0.75),
-                                            blurRadius: 5,
-                                            color: kgrey)
-                                      ]),
-                                  child: Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 30),
-                                        child: Text(
-                                          'Wallet Amount',
-                                          style:
-                                              TextStyle(fontSize: 17, color: kblue),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 580),
-                                        child:apisettingController.getWalletData.isEmpty? Text(
-                                          '',
-                                          textAlign: TextAlign.end,
-                                          style: TextStyle(
-                                            fontSize: 17,
-                                            color: kblue,
-                                          ),
-                                        ):Text(''),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 13),
-                                        child: CircleAvatar(
-                                          radius: 15,
-                                          backgroundColor: kblue,
-                                          child: Icon(
-                                            Icons.chevron_right,
-                                            color: kwhite,
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 100),
+                          child: Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 100, top: 45),
-                                child: Text(
-                                  'Your Coupons',
-                                  style: TextStyle(fontSize: 22, color: kblue),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 110, top: 45),
-                                child: Text(
-                                  'View',
-                                  style: TextStyle(fontSize: 22, color: kyellow),
-                                ),
+                              Container(
+                                height: 1,
+                                width: 80,
+                                color: kgrey,
                               )
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100, top: 35),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 160,
-                                  width: MediaQuery.of(context).size.width * 0.68,
-                                  decoration: BoxDecoration(
-                                      color: kwhite,
-                                      boxShadow: <BoxShadow>[
-                                        BoxShadow(
-                                            color: kgrey,
-                                            blurRadius: 5,
-                                            offset: Offset(0.0, 0.75))
-                                      ],
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 40, top: 10),
-                                            child:Column(
-                                              children: [
-                                                Container(
-                                                  height: 110,
-                                                  width: 110,
-                    child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                         CircularChartAnnotation(
-                           widget: Container(
-                            height: 100,
-                            width: 100,
-           
-)),
-                                CircularChartAnnotation(
-                                  widget: Container(
-                                    
-                                  child: apisettingController.getWalletData.isEmpty? 
-                                  Text('')
-                                  :Text(apisettingController.getWalletData.first.coupon.totalCouponCodes.toString(),
-                                 style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
-                                   ],
-                        series: <CircularSeries>[
-                            DoughnutSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                // Radius of doughnut
-                                radius: '80%'
-                            )
-                        ]
-                    )
-                ),
-                 Text(
-                                              'Total',
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 100, top: 30),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 50,
+                                width: MediaQuery.of(context).size.width * 0.68,
+                                decoration: BoxDecoration(
+                                    color: kwhite,
+                                    border: Border.all(color: kblue),
+                                    borderRadius: BorderRadius.circular(5),
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                          offset: Offset(0.0, 0.75),
+                                          blurRadius: 5,
+                                          color: kgrey)
+                                    ]),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 30),
+                                      child: Text(
+                                        'Wallet Amount',
+                                        style: TextStyle(
+                                            fontSize: 17, color: kblue),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 580),
+                                      child: apisettingController
+                                              .getWalletData.isEmpty
+                                          ? Text(
+                                              '',
+                                              textAlign: TextAlign.end,
                                               style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 10),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  height: 110,
-                                                  width: 110,
-                    child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                         CircularChartAnnotation(
-                           widget: Container(
-                            height: 100,
-                            width: 100,
-           
-)),
-                                CircularChartAnnotation(
-                                  widget: Container(
-                                    
-                                  child: apisettingController.getWalletData.isEmpty? 
-                                  Text('')
-                                  :Text(apisettingController.getWalletData.first.coupon.todayUsed.toString(),
-                                 style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
-                                   ],
-                        series: <CircularSeries>[
-                            DoughnutSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                // Radius of doughnut
-                                radius: '80%'
-                            )
-                        ]
-                    )
-                ),
-                 Text(
-                                              'Used',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 60, top: 10),
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  height: 110,
-                                                  width: 110,
-                    child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                         CircularChartAnnotation(
-                           widget: Container(
-                            height: 100,
-                            width: 100,
-           
-)),
-                                CircularChartAnnotation(
-                                  widget: Container(
-                                    
-                                  child: apisettingController.getWalletData.isEmpty? 
-                                  Text('')
-                                  :Text(apisettingController.getWalletData.first.coupon.thisMonthUsed.toString(),
-                                 style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
-                                   ],
-                        series: <CircularSeries>[
-                            DoughnutSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                // Radius of doughnut
-                                radius: '80%'
-                            )
-                        ]
-                    )
-                ),
-                 Text(
-                                              'Pending',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                              ],
-                                            ),
+                                                fontSize: 17,
+                                                color: kblue,
                                               ),
-                                          
-                                        
-                                        ],
+                                            )
+                                          : Text(''),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 13),
+                                      child: CircleAvatar(
+                                        radius: 15,
+                                        backgroundColor: kblue,
+                                        child: Icon(
+                                          Icons.chevron_right,
+                                          color: kwhite,
+                                        ),
                                       ),
-                                    
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 100, top: 45),
-                                child: Text(
-                                  'Your Referrals',
-                                  style: TextStyle(fontSize: 22, color: kblue),
+                                    )
+                                  ],
                                 ),
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 110, top: 45),
-                                child: Text(
-                                  'Invite',
-                                  style: TextStyle(fontSize: 22, color: kyellow),
-                                ),
-                              )
                             ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 100, top: 35),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 160,
-                                  width: MediaQuery.of(context).size.width * 0.68,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(5),
-                                      color: kwhite,
-                                      boxShadow: <BoxShadow>[
-                                        BoxShadow(
-                                            offset: Offset(0.0, 0.75),
-                                            blurRadius: 5,
-                                            color: kgrey)
-                                      ]),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 40, top: 10),
-                                            child:  Column(
-                                              children: [
-                                                Container(
-                                                  height: 110,
-                                                  width: 110,
-                    child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                         CircularChartAnnotation(
-                           widget: Container(
-                            height: 100,
-                            width: 100,
-           
-)),
-                                CircularChartAnnotation(
-                                  widget: Container(
-                                    
-                                  child: apisettingController.getWalletData.isEmpty? 
-                                  Text('')
-                                  :Text(apisettingController.getWalletData.first.referrals.totalReferrals.toString(),
-                                 style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
-                                   ],
-                        series: <CircularSeries>[
-                            DoughnutSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                // Radius of doughnut
-                                radius: '80%'
-                            )
-                        ]
-                    )
-                ),
-                 Padding(
-                                            padding: const EdgeInsets.only(
-                                                left: 0, top: 0),
-                                            child: Text(
-                                              'Total',
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                          ),
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 10),
-                                            child:  Column(
-                                              children: [
-                                                Container(
-                                                  height: 110,
-                                                  width: 110,
-                    child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                         CircularChartAnnotation(
-                           widget: Container(
-                            height: 100,
-                            width: 100,
-           
-)),
-                                CircularChartAnnotation(
-                                  widget: Container(
-                                    
-                                  child: apisettingController.getWalletData.isEmpty? 
-                                  Text('')
-                                  :Text(apisettingController.getWalletData.first.referrals.todayReferrals.toString(),
-                                 style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
-                                   ],
-                        series: <CircularSeries>[
-                            DoughnutSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                // Radius of doughnut
-                                radius: '80%'
-                            )
-                        ]
-                    )
-                ),
-                           
-                             Padding(
-                                            padding: const EdgeInsets.only(top: 0),
-                                            child: Text(
-                                              'Used',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                          ),                     ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 60, top: 10),
-                                            child:  Column(
-                                              children: [
-                                                Container(
-                                                  height: 110,
-                                                  width: 110,
-                    child: SfCircularChart(
-                        annotations: <CircularChartAnnotation>[
-                         CircularChartAnnotation(
-                           widget: Container(
-                            height: 100,
-                            width: 100,
-           
-)),
-                                CircularChartAnnotation(
-                                  widget: Container(
-                                    
-                                  child: apisettingController.getWalletData.isEmpty? 
-                                  Text('')
-                                  :Text(apisettingController.getWalletData.first.referrals.thisMonthReferrals.toString(),
-                                 style: TextStyle(
-                                color: Color.fromRGBO(0, 0, 0, 0.5), fontSize: 17))))
-                                   ],
-                        series: <CircularSeries>[
-                            DoughnutSeries<ChartData, String>(
-                                dataSource: chartData,
-                                xValueMapper: (ChartData data, _) => data.x,
-                                yValueMapper: (ChartData data, _) => data.y,
-                                // Radius of doughnut
-                                radius: '80%'
-                            )
-                        ]
-                    )
-                ),
-                 
-                                         
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 0, top: 0),
-                                            child: Text(
-                                              'Pending',
-                                              style: TextStyle(
-                                                  fontSize: 17, color: kblue),
-                                            ),
-                                          )
-                                                                    ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                     
-                                    ],
-                                  ),
-                                ),
-                              ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 100, top: 45),
+                              child: Text(
+                                'Your Coupons',
+                                style: TextStyle(fontSize: 22, color: kblue),
+                              ),
                             ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 110, top: 45),
+                              child: Text(
+                                'View',
+                                style: TextStyle(fontSize: 22, color: kyellow),
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 100, top: 35),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 160,
+                                width: MediaQuery.of(context).size.width * 0.68,
+                                decoration: BoxDecoration(
+                                    color: kwhite,
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                          color: kgrey,
+                                          blurRadius: 5,
+                                          offset: Offset(0.0, 0.75))
+                                    ],
+                                    borderRadius: BorderRadius.circular(5)),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 40, top: 10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 110,
+                                                  width: 110,
+                                                  child: SfCircularChart(
+                                                      annotations: <CircularChartAnnotation>[
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                        )),
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                                child: apisettingController
+                                                                        .getWalletData
+                                                                        .isEmpty
+                                                                    ? Text('')
+                                                                    : Text(
+                                                                        apisettingController
+                                                                            .getWalletData
+                                                                            .first
+                                                                            .coupon
+                                                                            .totalCouponCodes
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0.5),
+                                                                            fontSize:
+                                                                                17))))
+                                                      ],
+                                                      series: <CircularSeries>[
+                                                        DoughnutSeries<
+                                                                ChartData,
+                                                                String>(
+                                                            dataSource:
+                                                                chartData,
+                                                            xValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.x,
+                                                            yValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.y,
+                                                            // Radius of doughnut
+                                                            radius: '80%')
+                                                      ])),
+                                              Text(
+                                                'Total',
+                                                style: TextStyle(
+                                                    fontSize: 17, color: kblue),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 110,
+                                                  width: 110,
+                                                  child: SfCircularChart(
+                                                      annotations: <CircularChartAnnotation>[
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                        )),
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                                child: apisettingController
+                                                                        .getWalletData
+                                                                        .isEmpty
+                                                                    ? Text('')
+                                                                    : Text(
+                                                                        apisettingController
+                                                                            .getWalletData
+                                                                            .first
+                                                                            .coupon
+                                                                            .todayUsed
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0.5),
+                                                                            fontSize:
+                                                                                17))))
+                                                      ],
+                                                      series: <CircularSeries>[
+                                                        DoughnutSeries<
+                                                                ChartData,
+                                                                String>(
+                                                            dataSource:
+                                                                chartData,
+                                                            xValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.x,
+                                                            yValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.y,
+                                                            // Radius of doughnut
+                                                            radius: '80%')
+                                                      ])),
+                                              Text(
+                                                'Used',
+                                                style: TextStyle(
+                                                    fontSize: 17, color: kblue),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 60, top: 10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 110,
+                                                  width: 110,
+                                                  child: SfCircularChart(
+                                                      annotations: <CircularChartAnnotation>[
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                        )),
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                                child: apisettingController
+                                                                        .getWalletData
+                                                                        .isEmpty
+                                                                    ? Text('')
+                                                                    : Text(
+                                                                        apisettingController
+                                                                            .getWalletData
+                                                                            .first
+                                                                            .coupon
+                                                                            .thisMonthUsed
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0.5),
+                                                                            fontSize:
+                                                                                17))))
+                                                      ],
+                                                      series: <CircularSeries>[
+                                                        DoughnutSeries<
+                                                                ChartData,
+                                                                String>(
+                                                            dataSource:
+                                                                chartData,
+                                                            xValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.x,
+                                                            yValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.y,
+                                                            // Radius of doughnut
+                                                            radius: '80%')
+                                                      ])),
+                                              Text(
+                                                'Pending',
+                                                style: TextStyle(
+                                                    fontSize: 17, color: kblue),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      );
-                    }
-                  ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 100, top: 45),
+                              child: Text(
+                                'Your Referrals',
+                                style: TextStyle(fontSize: 22, color: kblue),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 110, top: 45),
+                              child: Text(
+                                'Invite',
+                                style: TextStyle(fontSize: 22, color: kyellow),
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 100, top: 35),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 160,
+                                width: MediaQuery.of(context).size.width * 0.68,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    color: kwhite,
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                          offset: Offset(0.0, 0.75),
+                                          blurRadius: 5,
+                                          color: kgrey)
+                                    ]),
+                                child: Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 40, top: 10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 110,
+                                                  width: 110,
+                                                  child: SfCircularChart(
+                                                      annotations: <CircularChartAnnotation>[
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                        )),
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                                child: apisettingController
+                                                                        .getWalletData
+                                                                        .isEmpty
+                                                                    ? Text('')
+                                                                    : Text(
+                                                                        apisettingController
+                                                                            .getWalletData
+                                                                            .first
+                                                                            .referrals
+                                                                            .totalReferrals
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0.5),
+                                                                            fontSize:
+                                                                                17))))
+                                                      ],
+                                                      series: <CircularSeries>[
+                                                        DoughnutSeries<
+                                                                ChartData,
+                                                                String>(
+                                                            dataSource:
+                                                                chartData,
+                                                            xValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.x,
+                                                            yValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.y,
+                                                            // Radius of doughnut
+                                                            radius: '80%')
+                                                      ])),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 0, top: 0),
+                                                child: Text(
+                                                  'Total',
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 110,
+                                                  width: 110,
+                                                  child: SfCircularChart(
+                                                      annotations: <CircularChartAnnotation>[
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                        )),
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                                child: apisettingController
+                                                                        .getWalletData
+                                                                        .isEmpty
+                                                                    ? Text('')
+                                                                    : Text(
+                                                                        apisettingController
+                                                                            .getWalletData
+                                                                            .first
+                                                                            .referrals
+                                                                            .todayReferrals
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0.5),
+                                                                            fontSize:
+                                                                                17))))
+                                                      ],
+                                                      series: <CircularSeries>[
+                                                        DoughnutSeries<
+                                                                ChartData,
+                                                                String>(
+                                                            dataSource:
+                                                                chartData,
+                                                            xValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.x,
+                                                            yValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.y,
+                                                            // Radius of doughnut
+                                                            radius: '80%')
+                                                      ])),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 0),
+                                                child: Text(
+                                                  'Used',
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              right: 60, top: 10),
+                                          child: Column(
+                                            children: [
+                                              Container(
+                                                  height: 110,
+                                                  width: 110,
+                                                  child: SfCircularChart(
+                                                      annotations: <CircularChartAnnotation>[
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                          height: 100,
+                                                          width: 100,
+                                                        )),
+                                                        CircularChartAnnotation(
+                                                            widget: Container(
+                                                                child: apisettingController
+                                                                        .getWalletData
+                                                                        .isEmpty
+                                                                    ? Text('')
+                                                                    : Text(
+                                                                        apisettingController
+                                                                            .getWalletData
+                                                                            .first
+                                                                            .referrals
+                                                                            .thisMonthReferrals
+                                                                            .toString(),
+                                                                        style: TextStyle(
+                                                                            color: Color.fromRGBO(
+                                                                                0,
+                                                                                0,
+                                                                                0,
+                                                                                0.5),
+                                                                            fontSize:
+                                                                                17))))
+                                                      ],
+                                                      series: <CircularSeries>[
+                                                        DoughnutSeries<
+                                                                ChartData,
+                                                                String>(
+                                                            dataSource:
+                                                                chartData,
+                                                            xValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.x,
+                                                            yValueMapper:
+                                                                (ChartData data,
+                                                                        _) =>
+                                                                    data.y,
+                                                            // Radius of doughnut
+                                                            radius: '80%')
+                                                      ])),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    right: 0, top: 0),
+                                                child: Text(
+                                                  'Pending',
+                                                  style: TextStyle(
+                                                      fontSize: 17,
+                                                      color: kblue),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
                 ),
               ),
             if (reghomeController.proindex.value == 2)
@@ -3459,253 +3573,260 @@ AlertDialog mAlertItem2 = AlertDialog(
                 ),
               ),
             if (reghomeController.proindex.value == 4)
-                               Container(
-                               
-                                             child: Column(
-                                               crossAxisAlignment: CrossAxisAlignment.start,
-                                               children: [
-                                                 Container(
-                                                   height: 180,
-                                                   decoration: BoxDecoration(
-                                                    image: DecorationImage(image: AssetImage('assets/images/subscriptionbackimage.png',
-                                                  ), fit: BoxFit.cover,)
-                                                   ),
-                                                   width: MediaQuery.of(context).size.width*0.8471,
-                                                   child:     Center(
-                                                   child: Text(
-                                                     'SUBSCRIBE',
-                                                     style: TextStyle(
-                                letterSpacing:1,
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold,
-                                  color: kwhite),
-                                                   ),
-                                                 ),
-                                                 ),
-                                                 // Image.asset('assets/images/Group 39757.png'),
-                                             
-                                                   Padding(
-                                                     padding: const EdgeInsets.only(left:30,right:30,top:40),
-                                                     child: GetBuilder<SubscriptionApiController>(
-                                                      builder: (_){
-                                                       return Row(
-                                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                       crossAxisAlignment: CrossAxisAlignment.start,
-                                                         children: [
-                                                           plansController.subscriptionplan.isEmpty?Image.asset('assets/images/si1.png',
-                                                           height: 200,fit:BoxFit.fitHeight):Image.network(plansController.subscriptionplan.first.cardImg,
-                                                            height: 200,fit:BoxFit.fitHeight),
-                                                                                                        
-                                                           Padding(
-                                                             padding: const EdgeInsets.only(left:90),
-                                                             child: Column(
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                               children: [
-                                                               plansController.subscriptionplan.isEmpty?Container():Text(plansController.subscriptionplan.first.title,
-                                                                style:TextStyle(
-                                                                  letterSpacing: 1,
-                                                                 color: kblue,
-                                                                 fontSize: 25,
-                                                                  fontWeight: FontWeight.w700
-                                                                 )),
-                                                                 ksizedbox10,
-                                                                 Text('Subscribe Details :',
-                                                                 style:TextStyle(
-                                                                  fontSize: 17,
-                                                                  color:kblue,
-                                                                  fontWeight: FontWeight.w500
-                                                                 )),
-                                                                 ksizedbox20,
-                                                                 plansController.subscriptionplan.isEmpty?Container():Container(
-                                                                  width: 420,
-                                                                   child: Text(plansController.subscriptionplan.first.planDescription,
-                                                                   style: TextStyle(
-                                                                    
-                                                                    fontSize: 18,
-                                                                                                                                 
-                                                                   ),),
-                                                                 ),
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 180,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage(
+                          'assets/images/subscriptionbackimage.png',
+                        ),
+                        fit: BoxFit.cover,
+                      )),
+                      width: MediaQuery.of(context).size.width * 0.8471,
+                      child: Center(
+                        child: Text(
+                          'SUBSCRIBE',
+                          style: TextStyle(
+                              letterSpacing: 1,
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                              color: kwhite),
+                        ),
+                      ),
+                    ),
+                    // Image.asset('assets/images/Group 39757.png'),
 
-                                                               ],
-                                                             ),
-                                                           ),
-                                                           Padding(
-                                                             padding: const EdgeInsets.only(left:30),
-                                                             child: Container(
-                                                              height: 40,
-                                                              width: 120,
-                                                              decoration: BoxDecoration(
-                                                                color: kblue,
-                                                             borderRadius: BorderRadius.circular(5)
-                                                              ),
-                                                              child:Center(
-                                                                child:plansController.subscriptionplan.isEmpty?Container():Text(plansController.subscriptionplan.first.saleAmount,
-                                                                style: TextStyle(
-                                                                  fontSize: 17,
-                                                                  color:kwhite,
-                                                                  
-                                                                ),)
-                                                              )
-                                                                                     
-                                                             ),
-                                                           )
-                                                         ],
-                                                       );
-                                                      }
-                                                     ),
-                                                   )
-                                                 
-                                               ],
-                                             ),
-                                             
-                                           ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 30, right: 30, top: 40),
+                      child:
+                          GetBuilder<SubscriptionApiController>(builder: (_) {
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            plansController.subscriptionplan.isEmpty
+                                ? Image.asset('assets/images/si1.png',
+                                    height: 200, fit: BoxFit.fitHeight)
+                                : Image.network(
+                                    plansController
+                                        .subscriptionplan.first.cardImg,
+                                    height: 200,
+                                    fit: BoxFit.fitHeight),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 90),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  plansController.subscriptionplan.isEmpty
+                                      ? Container()
+                                      : Text(
+                                          plansController
+                                              .subscriptionplan.first.title,
+                                          style: TextStyle(
+                                              letterSpacing: 1,
+                                              color: kblue,
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.w700)),
+                                  ksizedbox10,
+                                  Text('Subscribe Details :',
+                                      style: TextStyle(
+                                          fontSize: 17,
+                                          color: kblue,
+                                          fontWeight: FontWeight.w500)),
+                                  ksizedbox20,
+                                  plansController.subscriptionplan.isEmpty
+                                      ? Container()
+                                      : Container(
+                                          width: 420,
+                                          child: Text(
+                                            plansController.subscriptionplan
+                                                .first.planDescription,
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                            ),
+                                          ),
+                                        ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30),
+                              child: Container(
+                                  height: 40,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                      color: kblue,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                      child: plansController
+                                              .subscriptionplan.isEmpty
+                                          ? Container()
+                                          : Text(
+                                              plansController.subscriptionplan
+                                                  .first.saleAmount,
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                color: kwhite,
+                                              ),
+                                            ))),
+                            )
+                          ],
+                        );
+                      }),
+                    )
+                  ],
+                ),
+              ),
 
-           
-
-              //coupons here
-              //   Coupones(
-              // Padding(
-              //   padding: const EdgeInsets.only(top: 50),
-              //   child: Container(
-              //     width: MediaQuery.of(context).size.width - 195,
-              //     child: Column(
-              //       children: [
-              //         Padding(
-              //           padding: const EdgeInsets.only(left: 55),
-              //           child: Row(
-              //             children: [
-              //               Text(
-              //                 'Additional Coupons',
-              //                 style: TextStyle(
-              //                     fontSize: 20,
-              //                     color: kblue,
-              //                     fontWeight: FontWeight.bold),
-              //               )
-              //             ],
-              //           ),
-              //         ),
-              //         ksizedbox40,
-              //         ksizedbox30,
-              //         GetBuilder<SubscriptionApiController>(builder: (_) {
-              //           return Column(
-              //             children: [
-              //               //    RegisterCommonContainer(),
-              //               ksizedbox30,
-              //               Container(
-              //                 width: 1000,
-              //                 child: GridView.builder(
-              //                     shrinkWrap: true,
-              //                     itemCount: subscripeController
-              //                         .couponsdatalist.length,
-              //                     gridDelegate:
-              //                         SliverGridDelegateWithFixedCrossAxisCount(
-              //                             childAspectRatio: 3.5,
-              //                             crossAxisSpacing: 20,
-              //                             mainAxisSpacing: 7,
-              //                             crossAxisCount: 2),
-              //                     itemBuilder: (context, index) {
-              //                       return Padding(
-              //                         padding: const EdgeInsets.only(
-              //                             top: 30, left: 20, right: 20),
-              //                         child: ClipPath(
-              //                           clipper: TicketPassClipper(),
-              //                           child: Container(
-              //                             color: colors[Random().nextInt(9)],
-              //                             child: Column(
-              //                               children: [
-              //                                 ksizedbox10,
-              //                                 Padding(
-              //                                   padding: const EdgeInsets.only(
-              //                                       left: 10,
-              //                                       right: 10,
-              //                                       top: 5),
-              //                                   child: Row(
-              //                                     children: [
-              //                                       Text(subscripeController
-              //                                           .couponsdatalist[index]
-              //                                           .createdAt
-              //                                           .toString()),
-              //                                       Padding(
-              //                                         padding:
-              //                                             const EdgeInsets.only(
-              //                                                 left: 50),
-              //                                         child: Text(
-              //                                             subscripeController
-              //                                                 .couponsdatalist[
-              //                                                     index]
-              //                                                 .name),
-              //                                       ),
-              //                                     ],
-              //                                   ),
-              //                                 ),
-              //                                 ksizedbox10,
-              //                                 Padding(
-              //                                   padding: const EdgeInsets.only(
-              //                                       top: 10,
-              //                                       left: 10,
-              //                                       right: 80),
-              //                                   child: Row(
-              //                                     mainAxisAlignment:
-              //                                         MainAxisAlignment
-              //                                             .spaceBetween,
-              //                                     children: [
-              //                                       Text(subscripeController
-              //                                           .couponsdatalist[index]
-              //                                           .couponcode),
-              //                                       Padding(
-              //                                         padding:
-              //                                             const EdgeInsets.only(
-              //                                                 top: 0, left: 10),
-              //                                         child: InkWell(
-              //                                           onTap: () {
-              //                                             FlutterClipboard.copy(
-              //                                                     subscripeController
-              //                                                         .couponsdatalist[
-              //                                                             index]
-              //                                                         .couponcode)
-              //                                                 .then(
-              //                                               (value) => Fluttertoast.showToast(
-              //                                                   msg:
-              //                                                       "Copy to clipboard",
-              //                                                   toastLength: Toast
-              //                                                       .LENGTH_SHORT,
-              //                                                   gravity:
-              //                                                       ToastGravity
-              //                                                           .CENTER,
-              //                                                   timeInSecForIosWeb:
-              //                                                       1,
-              //                                                   backgroundColor:
-              //                                                       Colors
-              //                                                           .white,
-              //                                                   textColor:
-              //                                                       Colors
-              //                                                           .black,
-              //                                                   fontSize: 16.0),
-              //                                               //print("code copied")
-              //                                             );
-              //                                           },
-              //                                           child: Icon(Icons.copy),
-              //                                         ),
-              //                                       )
-              //                                     ],
-              //                                   ),
-              //                                 ),
-              //                               ],
-              //                             ),
-              //                           ),
-              //                         ),
-              //                       );
-              //                     }),
-              //               ),
-              //               ksizedbox30,
-              //               //   RegisterCommonBottom()
-              //             ],
-              //           );
-              //         }),
-              //       ],
-              //     ),
-              //   ),
-              // ),
+            //coupons here
+            //   Coupones(
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 50),
+            //   child: Container(
+            //     width: MediaQuery.of(context).size.width - 195,
+            //     child: Column(
+            //       children: [
+            //         Padding(
+            //           padding: const EdgeInsets.only(left: 55),
+            //           child: Row(
+            //             children: [
+            //               Text(
+            //                 'Additional Coupons',
+            //                 style: TextStyle(
+            //                     fontSize: 20,
+            //                     color: kblue,
+            //                     fontWeight: FontWeight.bold),
+            //               )
+            //             ],
+            //           ),
+            //         ),
+            //         ksizedbox40,
+            //         ksizedbox30,
+            //         GetBuilder<SubscriptionApiController>(builder: (_) {
+            //           return Column(
+            //             children: [
+            //               //    RegisterCommonContainer(),
+            //               ksizedbox30,
+            //               Container(
+            //                 width: 1000,
+            //                 child: GridView.builder(
+            //                     shrinkWrap: true,
+            //                     itemCount: subscripeController
+            //                         .couponsdatalist.length,
+            //                     gridDelegate:
+            //                         SliverGridDelegateWithFixedCrossAxisCount(
+            //                             childAspectRatio: 3.5,
+            //                             crossAxisSpacing: 20,
+            //                             mainAxisSpacing: 7,
+            //                             crossAxisCount: 2),
+            //                     itemBuilder: (context, index) {
+            //                       return Padding(
+            //                         padding: const EdgeInsets.only(
+            //                             top: 30, left: 20, right: 20),
+            //                         child: ClipPath(
+            //                           clipper: TicketPassClipper(),
+            //                           child: Container(
+            //                             color: colors[Random().nextInt(9)],
+            //                             child: Column(
+            //                               children: [
+            //                                 ksizedbox10,
+            //                                 Padding(
+            //                                   padding: const EdgeInsets.only(
+            //                                       left: 10,
+            //                                       right: 10,
+            //                                       top: 5),
+            //                                   child: Row(
+            //                                     children: [
+            //                                       Text(subscripeController
+            //                                           .couponsdatalist[index]
+            //                                           .createdAt
+            //                                           .toString()),
+            //                                       Padding(
+            //                                         padding:
+            //                                             const EdgeInsets.only(
+            //                                                 left: 50),
+            //                                         child: Text(
+            //                                             subscripeController
+            //                                                 .couponsdatalist[
+            //                                                     index]
+            //                                                 .name),
+            //                                       ),
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                                 ksizedbox10,
+            //                                 Padding(
+            //                                   padding: const EdgeInsets.only(
+            //                                       top: 10,
+            //                                       left: 10,
+            //                                       right: 80),
+            //                                   child: Row(
+            //                                     mainAxisAlignment:
+            //                                         MainAxisAlignment
+            //                                             .spaceBetween,
+            //                                     children: [
+            //                                       Text(subscripeController
+            //                                           .couponsdatalist[index]
+            //                                           .couponcode),
+            //                                       Padding(
+            //                                         padding:
+            //                                             const EdgeInsets.only(
+            //                                                 top: 0, left: 10),
+            //                                         child: InkWell(
+            //                                           onTap: () {
+            //                                             FlutterClipboard.copy(
+            //                                                     subscripeController
+            //                                                         .couponsdatalist[
+            //                                                             index]
+            //                                                         .couponcode)
+            //                                                 .then(
+            //                                               (value) => Fluttertoast.showToast(
+            //                                                   msg:
+            //                                                       "Copy to clipboard",
+            //                                                   toastLength: Toast
+            //                                                       .LENGTH_SHORT,
+            //                                                   gravity:
+            //                                                       ToastGravity
+            //                                                           .CENTER,
+            //                                                   timeInSecForIosWeb:
+            //                                                       1,
+            //                                                   backgroundColor:
+            //                                                       Colors
+            //                                                           .white,
+            //                                                   textColor:
+            //                                                       Colors
+            //                                                           .black,
+            //                                                   fontSize: 16.0),
+            //                                               //print("code copied")
+            //                                             );
+            //                                           },
+            //                                           child: Icon(Icons.copy),
+            //                                         ),
+            //                                       )
+            //                                     ],
+            //                                   ),
+            //                                 ),
+            //                               ],
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       );
+            //                     }),
+            //               ),
+            //               ksizedbox30,
+            //               //   RegisterCommonBottom()
+            //             ],
+            //           );
+            //         }),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             if (reghomeController.proindex.value == 5)
               Container(
                 width: MediaQuery.of(context).size.width - 195,
@@ -3756,36 +3877,50 @@ AlertDialog mAlertItem2 = AlertDialog(
                                               color: kgrey)
                                         ]),
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 10,right:10),
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
                                       child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                          children: [
-                                                            Text(apisettingController.referralCode.value,style: TextStyle(
-                                                               fontSize: 16, color: kblue, fontWeight: FontWeight.w500),),
-                                                            InkWell(
-                                                              onTap: (){
-                                                                FlutterClipboard.copy(apisettingController.referralCode.value).then(
-                                                    (value) =>
-                                                        Fluttertoast.showToast(
-                                                            msg:
-                                                                "Copy to clipboard",
-                                                            toastLength: Toast
-                                                                .LENGTH_SHORT,
-                                                            gravity: ToastGravity
-                                                                .CENTER,
-                                                            timeInSecForIosWeb: 1,
-                                                            backgroundColor:
-                                                                kblue,
-                                                            textColor:
-                                                                Colors.white,
-                                                            fontSize: 16.0),
-                                                    //print("code copied")
-                                                  );
-                                                              },
-                                                              child: Image.asset('assets/images/Icon awesome-copy.png',
-                                                              height: 30,fit: BoxFit.fitHeight,)),
-                                                          ],
-                                                        ),
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            apisettingController
+                                                .referralCode.value,
+                                            style: TextStyle(
+                                                fontSize: 16,
+                                                color: kblue,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                          InkWell(
+                                              onTap: () {
+                                                FlutterClipboard.copy(
+                                                        apisettingController
+                                                            .referralCode.value)
+                                                    .then(
+                                                  (value) =>
+                                                      Fluttertoast.showToast(
+                                                          msg:
+                                                              "Copy to clipboard",
+                                                          toastLength: Toast
+                                                              .LENGTH_SHORT,
+                                                          gravity: ToastGravity
+                                                              .CENTER,
+                                                          timeInSecForIosWeb: 1,
+                                                          backgroundColor:
+                                                              kblue,
+                                                          textColor:
+                                                              Colors.white,
+                                                          fontSize: 16.0),
+                                                  //print("code copied")
+                                                );
+                                              },
+                                              child: Image.asset(
+                                                'assets/images/Icon awesome-copy.png',
+                                                height: 30,
+                                                fit: BoxFit.fitHeight,
+                                              )),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -3856,10 +3991,11 @@ AlertDialog mAlertItem2 = AlertDialog(
                                 // ),
                                 ksizedbox40,
                                 GestureDetector(
-                                  onTap: (){
-                                     String referralmsg = "Use my referral code ${apisettingController.referralCode.value} when you sign up, and we'll both receive fantastic rewards. Don't forget to click on the link below to download the app and start enjoying the perks right away!\n\n";
-                                      
-                 Share.share('$referralmsg');
+                                  onTap: () {
+                                    String referralmsg =
+                                        "Use my referral code ${apisettingController.referralCode.value} when you sign up, and we'll both receive fantastic rewards. Don't forget to click on the link below to download the app and start enjoying the perks right away!\n\n";
+
+                                    Share.share('$referralmsg');
                                   },
                                   child: Container(
                                       height: 45,
@@ -3878,7 +4014,8 @@ AlertDialog mAlertItem2 = AlertDialog(
                                       child: Center(
                                           child: Text('Share Now',
                                               style: TextStyle(
-                                                  color: kwhite, fontSize: 20)))),
+                                                  color: kwhite,
+                                                  fontSize: 20)))),
                                 )
                               ]),
                             )),
@@ -3890,36 +4027,37 @@ AlertDialog mAlertItem2 = AlertDialog(
             if (reghomeController.proindex.value == 6)
               Padding(
                 padding: const EdgeInsets.only(top: 50),
-                child: GetBuilder<ApiSettingController>(
-                  builder: (_) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width - 195,
-                        child: GridView.builder(
-                            itemCount:apisettingController.ourPartnersData.length,
-                            shrinkWrap: true,
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                mainAxisSpacing: 40,
-                                crossAxisSpacing: 50,
-                                childAspectRatio: 2),
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.only(left: 70, right: 70),
-                                child:Container(
-                                     height: 150,
-                                     width: 150,
-                                     decoration: BoxDecoration(
-                                      border: Border.all(color: kblue),
-                                      image: DecorationImage(
-                                        fit: BoxFit.fill,
-                                      image: NetworkImage(
-                                      apisettingController.ourPartnersData[index].image)),
-                                     ),
+                child: GetBuilder<ApiSettingController>(builder: (_) {
+                  return Container(
+                      width: MediaQuery.of(context).size.width - 195,
+                      child: GridView.builder(
+                          itemCount:
+                              apisettingController.ourPartnersData.length,
+                          shrinkWrap: true,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3,
+                                  mainAxisSpacing: 40,
+                                  crossAxisSpacing: 50,
+                                  childAspectRatio: 2),
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 70, right: 70),
+                              child: Container(
+                                height: 150,
+                                width: 150,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: kblue),
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: NetworkImage(apisettingController
+                                          .ourPartnersData[index].image)),
+                                ),
                               ),
-                              );
-                            }));
-                  }
-                ),
+                            );
+                          }));
+                }),
               ),
               if(reghomeController.proindex.value==7)
               Padding(padding: EdgeInsets.only(top:50),
@@ -4079,7 +4217,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                 color: kgrey.withOpacity(0.3),
                               ),
                               child: TextField(
-                                   textInputAction: TextInputAction.next,
+                                textInputAction: TextInputAction.next,
                                 controller: subNameController,
                                 decoration: InputDecoration(
                                     hintText: 'Your Name',
@@ -4098,7 +4236,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                 color: kgrey.withOpacity(0.3),
                               ),
                               child: TextField(
-                                   textInputAction: TextInputAction.next,
+                                textInputAction: TextInputAction.next,
                                 controller: subMobileController,
                                 decoration: InputDecoration(
                                     hintText: 'Mobile',
@@ -4114,7 +4252,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left:50, top: 35),
+                              padding: const EdgeInsets.only(left: 50, top: 35),
                               child: Container(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width * 0.3,
@@ -4122,7 +4260,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   color: kgrey.withOpacity(0.3),
                                 ),
                                 child: TextField(
-                                     textInputAction: TextInputAction.next,
+                                  textInputAction: TextInputAction.next,
                                   controller: subEmailController,
                                   decoration: InputDecoration(
                                       hintText: 'Email',
@@ -4132,8 +4270,9 @@ AlertDialog mAlertItem2 = AlertDialog(
                                 ),
                               ),
                             ),
-                              Padding(
-                              padding: const EdgeInsets.only(right: 150, top: 35),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(right: 150, top: 35),
                               child: Container(
                                 height: 40,
                                 width: MediaQuery.of(context).size.width * 0.3,
@@ -4141,7 +4280,7 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   color: kgrey.withOpacity(0.3),
                                 ),
                                 child: TextField(
-                                     textInputAction: TextInputAction.next,
+                                  textInputAction: TextInputAction.next,
                                   controller: subtitleController,
                                   decoration: InputDecoration(
                                       hintText: 'Title',
@@ -4163,7 +4302,6 @@ AlertDialog mAlertItem2 = AlertDialog(
                                   color: kgrey.withOpacity(0.3),
                                 ),
                                 child: TextField(
-                                    
                                   maxLines: 4,
                                   controller: subDescriptionController,
                                   decoration: InputDecoration(
@@ -4232,10 +4370,10 @@ AlertDialog mAlertItem2 = AlertDialog(
                                           //     .updateRecidencyAddress(
                                           //         residentialAddress:
                                           //             addressModel);
-                                             apisettingController.createSupport(
-                                              title: subtitleController.text, 
-                                              message: subDescriptionController.text
-                                              );         
+                                          apisettingController.createSupport(
+                                              title: subtitleController.text,
+                                              message: subDescriptionController
+                                                  .text);
                                         },
                                         child: Text(
                                           'Submit',
@@ -4363,16 +4501,11 @@ AlertDialog mAlertItem2 = AlertDialog(
       ),
     );
   }
-   
-
 }
-  class ChartData {
-        ChartData(this.x, this.y, this.color);
-            final String x;
-            final double y;
-            final Color color;
-    }
 
- 
-
-
+class ChartData {
+  ChartData(this.x, this.y, this.color);
+  final String x;
+  final double y;
+  final Color color;
+}

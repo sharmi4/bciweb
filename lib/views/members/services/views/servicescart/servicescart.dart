@@ -47,8 +47,9 @@ class _ServicesCartState extends State<ServicesCart> {
                       child: Center(
                           child: Text(' item not  fount').text.xl2.thin.make()))
                   : Padding(
-                    padding: const EdgeInsets.only(top: 30,left: 30,right: 30),
-                    child: Container(
+                      padding:
+                          const EdgeInsets.only(top: 30, left: 30, right: 30),
+                      child: Container(
                         height: size.height * 0.8,
                         width: 10,
                         child: ListView.builder(
@@ -83,7 +84,8 @@ class _ServicesCartState extends State<ServicesCart> {
                                               children: [
                                                 Image.network(
                                                   homeController
-                                                      .cartListData[index].image,
+                                                      .cartListData[index]
+                                                      .image,
                                                   height: 80,
                                                   width: 90,
                                                   fit: BoxFit.cover,
@@ -107,7 +109,8 @@ class _ServicesCartState extends State<ServicesCart> {
                                                         width: 230,
                                                         child: Text(
                                                           homeController
-                                                              .cartListData[index]
+                                                              .cartListData[
+                                                                  index]
                                                               .description,
                                                           maxLines: 3,
                                                         )),
@@ -137,82 +140,112 @@ class _ServicesCartState extends State<ServicesCart> {
                                             // ),
                                             //       ],
                                             //     ),
-                  
+
                                             //   ],
                                             // ),
-                                           Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 10,top: 10),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            InkWell(
-                                                onTap: () {
-                                                  showDialog(
-                                                    context: context,
-                                                    builder: (BuildContext context) {
-                                                    return AlertDialog(
-      backgroundColor: Colors.white,
-      title: Text("Remove Item", style: TextStyle(color: Colors.black)),
-      content: Text(
-        "Are you sure do you want to remove this item?",
-        style: TextStyle(color: Colors.black),
-      ),
-      actions: [
-        TextButton(
-          child: Text(
-            "cancel",
-            style: TextStyle(color: Colors.grey),
-          ),
-          onPressed: () {
-            Get.back();
-           //Get.find<AuthController>().logout();
-          },
-        ),
-        TextButton(
-          child: Text("Remove", style: TextStyle(color: Colors.grey)),
-          onPressed: () {
-             homeController.deleteToCart(
-             serviceid: homeController.cartListData[index].serviceId.toString());
-            Get.back();
-          },
-        ),
-      ],
-    );
-                                                    });
-                                                  // homeController.deleteToCart(
-                                                  //     serviceid: homeController
-                                                  //         .cartListData[index]
-                                                  //         .serviceId
-                                                  //         .toString());
-                                                },
-                                                child: Row(
-                                                  children: [
-                                                     Icon(
-                                                      CupertinoIcons.delete,
-                                                      color: Colors.grey,
-                                                      size: 15,
-                                                    ),
-                                                    SizedBox(width: 5,),
-                                                    Text("Remove",style: TextStyle(color: Colors.grey),)
-                                                  ],
-                                                )),
-
-                                            ksizedbox10,
-                                            Text(
-                                              '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
-                                              style: TextStyle(
-                                                  fontSize: 17,
-                                                  fontWeight: FontWeight.w600,
-                                                  color: kyellow),
+                                            Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          right: 10, top: 10),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment.end,
+                                                    children: [
+                                                      InkWell(
+                                                          onTap: () {
+                                                            showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (BuildContext
+                                                                        context) {
+                                                                  return AlertDialog(
+                                                                    backgroundColor:
+                                                                        Colors
+                                                                            .white,
+                                                                    title: Text(
+                                                                        "Remove Item",
+                                                                        style: TextStyle(
+                                                                            color:
+                                                                                Colors.black)),
+                                                                    content:
+                                                                        Text(
+                                                                      "Are you sure do you want to remove this item?",
+                                                                      style: TextStyle(
+                                                                          color:
+                                                                              Colors.black),
+                                                                    ),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        child:
+                                                                            Text(
+                                                                          "cancel",
+                                                                          style:
+                                                                              TextStyle(color: Colors.grey),
+                                                                        ),
+                                                                        onPressed:
+                                                                            () {
+                                                                          Get.back();
+                                                                          //Get.find<AuthController>().logout();
+                                                                        },
+                                                                      ),
+                                                                      TextButton(
+                                                                        child: Text(
+                                                                            "Remove",
+                                                                            style:
+                                                                                TextStyle(color: Colors.grey)),
+                                                                        onPressed:
+                                                                            () {
+                                                                          homeController.deleteToCart(
+                                                                              serviceid: homeController.cartListData[index].serviceId.toString());
+                                                                          Get.back();
+                                                                        },
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                });
+                                                            // homeController.deleteToCart(
+                                                            //     serviceid: homeController
+                                                            //         .cartListData[index]
+                                                            //         .serviceId
+                                                            //         .toString());
+                                                          },
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(
+                                                                CupertinoIcons
+                                                                    .delete,
+                                                                color:
+                                                                    Colors.grey,
+                                                                size: 15,
+                                                              ),
+                                                              SizedBox(
+                                                                width: 5,
+                                                              ),
+                                                              Text(
+                                                                "Remove",
+                                                                style: TextStyle(
+                                                                    color: Colors
+                                                                        .grey),
+                                                              )
+                                                            ],
+                                                          )),
+                                                      ksizedbox10,
+                                                      Text(
+                                                        '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
+                                                        style: TextStyle(
+                                                            fontSize: 17,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            color: kyellow),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                           ],
                                         ),
                                       )
@@ -222,12 +255,12 @@ class _ServicesCartState extends State<ServicesCart> {
                           },
                         ),
                       ),
-                  );
+                    );
             },
           ),
           ksizedbox40,
           ksizedbox40,
-        
+
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
