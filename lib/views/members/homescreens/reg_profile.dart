@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../controller/profile_controller.dart';
 import '../../../controller/profile_show_controller.dart';
@@ -76,6 +77,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   var resiadaridController = TextEditingController();
   var resiaddressController = TextEditingController();
   dynamic imageprofile;
+  dynamic aadharimage;
+  dynamic panimage;
 
   List colors = [
     const Color(0xffFCE2E2),
@@ -171,6 +174,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
           authprofileController.profileData.first.fatherName;
           gstnoController.text = authprofileController.profileData.first.gstNo;
           pannoController.text = authprofileController.profileData.first.panNo;
+
       mothernameController.text =
           authprofileController.profileData.first.motherName;
           spousenameController.text =authprofileController.profileData.first.spouse;
@@ -194,6 +198,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
         isUnmarried = authprofileController.profileData.first.isMarried == "0"
             ? false
             : true;
+            aadharimage =authprofileController.profileData.first.adharProof;
       });
       
     }
@@ -1216,53 +1221,82 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   )
                                 ],
                               ),
+                               Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                   Container(
+                          height: 100, 
+                          width: 100, 
+                          child: authprofileController.profileData.first.panProof.isEmpty ?
+                          panimage != null? Image.memory(panimage): Container(
+                            height: 150,
+                            width: 150,
+                             child:GestureDetector(onTap: ()async{
+                                       PickedFile? pickedFile =
+                                              await ImagePicker()
+                                                  .getImage(
+                                            source: ImageSource.gallery,
+                                          );
+                                  
+                                          var tempCont = await pickedFile!.readAsBytes();
+                                          setState(() {
+                                            panimage = tempCont;
+                                          });
+                                    
+                                      }, child: Text('Upload Pan Card'),),
+                                
+                          ) : Image.network(authprofileController.profileData.first.panProof)),
+
+                                   Container(
+                          height: 100, 
+                          width: 100, 
+                          child: authprofileController.profileData.first.adharProof.isEmpty ?
+                          aadharimage != null? Image.memory(aadharimage!): Container(
+                            height: 150,
+                            width: 150,
+                             child:GestureDetector(onTap: ()async{
+                                       PickedFile? pickedFile =
+                                              await ImagePicker()
+                                                  .getImage(
+                                            source: ImageSource.gallery,
+                                          );
+                                  
+                                          var tempCont = await pickedFile!.readAsBytes();
+                                          setState(() {
+                                            aadharimage = tempCont;
+                                          });
+                                    
+                                      }, child: Text('Upload Aadhar Card'),),
+                                
+                          ) : Image.network(authprofileController.profileData.first.adharProof)),
+                                   
+                                 
+                                ],
+                              ),
                               // Padding(
                               //   padding: const EdgeInsets.only(left: 40),
                               //   child: Row(
                               //     children: [
-                              //       Container(
-                              //         height: 49,
-                              //         width: MediaQuery.of(context).size.width *
-                              //             0.34,
-                              //         decoration: BoxDecoration(
-                              //             color: kwhite,
-                              //             border: Border.all(color: kgrey)),
-                              //         child: Column(
-                              //           crossAxisAlignment:
-                              //               CrossAxisAlignment.center,
-                              //           children: [
-                              //             Padding(
-                              //               padding: const EdgeInsets.only(
-                              //                   top: 5, left: 10),
-                              //               child: Row(
-                              //                 children: [
-                              //                   Text('18 Yrs'),
-                              //                   Checkbox(
-                              //                       value: _value3,
-                              //                       onChanged: (value) {
-                              //                         setState(() {
-                              //                           _value3 = value!;
-                              //                         });
-                              //                       }),
-                              //                   Text('Above'),
-                              //                   Padding(
-                              //                     padding:
-                              //                         const EdgeInsets.only(
-                              //                             left: 40),
-                              //                     child: Checkbox(
-                              //                         value: _value4,
-                              //                         onChanged: (value) {
-                              //                           setState(() {
-                              //                             _value4 = value!;
-                              //                           });
-                              //                         }),
-                              //                   ),
-                              //                   Text('Blow')
-                              //                 ],
-                              //               ),
-                              //             )
-                              //           ],
-                              //         ),
+                              //       TextField(
+                              //         textInputAction: TextInputAction.next,
+                              //         controller: resiperidController,
+                              //         decoration: InputDecoration(
+                              //             hintText: 'Personal Id',
+                              //             suffixIcon: Icon(Icons.upload),
+                              //             fillColor: Color(0xffF9F8FD),
+                              //             border: OutlineInputBorder()),
+                              //       ),
+                              //       Expanded(
+                              //         child: TextField(
+                              //             textInputAction: TextInputAction.next,
+                              //             controller: resiadaridController,
+                              //             decoration: InputDecoration(
+                              //                 hintText: 'Adhaar Id',
+                              //                 suffixIcon: Icon(Icons.upload),
+                              //                 fillColor: Color(0xffF9F8FD),
+                              //                 border: OutlineInputBorder()),
+                              //           ),
                               //       ),
                               //     ],
                               //   ),
@@ -1766,7 +1800,33 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         controller: resiperidController,
                                         decoration: InputDecoration(
                                             hintText: 'Personal Id',
-                                            suffixIcon: Icon(Icons.upload),
+                                            suffixIcon:
+                           
+                                               IconButton(onPressed: (){
+                                                setState(() {
+                                                   imageprofile != null
+                                                     ? Image.memory(imageprofile!)
+                                                     : authprofileController
+                                                                 .profileData
+                                                                 .first
+                                                                 .profilePicture ==
+                                                             null
+                                                         ? Image.asset(
+                                                             '')
+                                                         : CircleAvatar(
+                                                             radius: 60.0,
+                                                             backgroundImage: NetworkImage(
+                                                                 authprofileController
+                                                                     .profileData
+                                                                     .first
+                                                                     .profilePicture),
+                                                             backgroundColor:
+                                                                 Colors
+                                                                     .transparent,
+                                                           );
+                                                });
+                                                }, 
+                                              icon: Icon(Icons.upload)),
                                             fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder()),
                                       ),
