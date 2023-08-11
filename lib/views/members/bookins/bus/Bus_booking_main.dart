@@ -391,9 +391,11 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                           },
                                           child: Container(
                                             child: Center(
-                                                child: const CupertinoActivityIndicator(
-                          color: Colors.white,
-                        ),),
+                                              child:
+                                                  const CupertinoActivityIndicator(
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                             height: 40,
                                             width: size.width * 0.1,
                                             decoration: BoxDecoration(

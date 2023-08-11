@@ -17,6 +17,8 @@ import 'auth_controller.dart';
 
 
 class AuthProfileController extends GetxController {
+
+  
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
     GenerateReferralCodeApiService generateReferralCodeApiService = GenerateReferralCodeApiService();
   ProfileUpdateApiServices profileUpdateApi = ProfileUpdateApiServices();

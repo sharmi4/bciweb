@@ -1,29 +1,32 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../base_url/base_url.dart';
 
-class LoginApiServices extends BaseApiService {
-  Future loginApi({
-    required String mobile,
-    required String otp,
-  }) async {
+class GetFlightBookingHistoryAPIServices extends BaseApiService {
+  Future getFlightBookingAPIServices() async {
     dynamic responseJson;
     try {
       var dio = Dio();
-      var response = await dio.post(loginURL,
-          options: Options(
-              headers: {
-                'Accept': 'application/json',
-                "Access-Control-Allow-Origin": "*"
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          data: {"mobile": mobile, "otp": otp});
-      print("::::::::<otp verify URL>::::::::status code::::::::::");
+      final prefs = await SharedPreferences.getInstance();
+      String? authtoken = prefs.getString("auth_token");
+
+      var response = await dio.get(
+        getFlightBookingHistoryURL,
+        options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $authtoken'
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            }),
+      );
+      print(
+          "::::::::<-- GET flight History requiry-->::::::::status code:::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/views/members/bookins/bus/paysuccesful_screen.dart';
 import 'package:bciweb/views/members/bookins/bus/wigets/bus_details_wiget.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -639,58 +640,130 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
-                              InkWell(
-                                onTap: () {
-                                  List<PaxDetailslist> paxDetailslists = [];
+                              Obx(
+                                () => busController.isLoading.isTrue
+                                    ? InkWell(
+                                        onTap: () {
+                                          List<PaxDetailslist> paxDetailslists =
+                                              [];
 
-                                  for (int a = 0;
-                                      a < widget.busContactmodel.length;
-                                      a++) {
-                                    PaxDetailslist paxDetailslistdata =
-                                        PaxDetailslist(
-                                            age: widget.busContactmodel[a]
-                                                .ageController.text,
-                                            gender: widget.busContactmodel[a]
-                                                        .gender ==
-                                                    "Male"
-                                                ? 0
-                                                : 1,
-                                            isLadies: false,
-                                            paxName: widget.busContactmodel[a]
-                                                .nameController.text,
-                                            seatNumber: widget
-                                                .busContactmodel[a].seats);
+                                          for (int a = 0;
+                                              a < widget.busContactmodel.length;
+                                              a++) {
+                                            PaxDetailslist paxDetailslistdata =
+                                                PaxDetailslist(
+                                                    age: widget
+                                                        .busContactmodel[a]
+                                                        .ageController
+                                                        .text,
+                                                    gender: widget
+                                                                .busContactmodel[
+                                                                    a]
+                                                                .gender ==
+                                                            "Male"
+                                                        ? 0
+                                                        : 1,
+                                                    isLadies: false,
+                                                    paxName: widget
+                                                        .busContactmodel[a]
+                                                        .nameController
+                                                        .text,
+                                                    seatNumber: widget
+                                                        .busContactmodel[a]
+                                                        .seats);
 
-                                    paxDetailslists.add(paxDetailslistdata);
-                                  }
-                                  busController.tempBookBusTicket(
-                                      boardingId: widget.boardingId,
-                                      droppingId: widget.dropingId,
-                                      busData: widget.busData,
-                                      searcKey: widget.searchkey,
-                                      mobileNumber: phoneNumberContoller.text,
-                                      customerEmail: emailController.text,
-                                      paxDetailslist: paxDetailslists,
-                                      amount: widget.amount,
-                                      customerName: widget.cusName,
-                                      
-                                      seatMapKey:
-                                          busController.seatMapKey.value);
-                                 // Get.to(BusbookingSuccesfullScreen());
-                                },
-                                child: Container(
-                                  child: Center(
-                                      child: Text(
-                                              'PAY ₹ ${busController.totalAmount.value}')
-                                          .text
-                                          .semiBold
-                                          .xl2
-                                          .white
-                                          .make()),
-                                  height: size.height * 0.06,
-                                  width: 190,
-                                  color: korange,
-                                ),
+                                            paxDetailslists
+                                                .add(paxDetailslistdata);
+                                          }
+                                          busController.tempBookBusTicket(
+                                              boardingId: widget.boardingId,
+                                              droppingId: widget.dropingId,
+                                              busData: widget.busData,
+                                              searcKey: widget.searchkey,
+                                              mobileNumber:
+                                                  phoneNumberContoller.text,
+                                              customerEmail:
+                                                  emailController.text,
+                                              paxDetailslist: paxDetailslists,
+                                              amount: widget.amount,
+                                              customerName: widget.cusName,
+                                              seatMapKey: busController
+                                                  .seatMapKey.value);
+                                          // Get.to(BusbookingSuccesfullScreen());
+                                        },
+                                        child: Container(
+                                          child: Center(
+                                          child: const CupertinoActivityIndicator(
+                                      color: Colors.white,
+                                    ),),
+                                          height: size.height * 0.06,
+                                          width: 190,
+                                          color: korange,
+                                        ),
+                                      )
+                                    : InkWell(
+                                        onTap: () {
+                                          List<PaxDetailslist> paxDetailslists =
+                                              [];
+
+                                          for (int a = 0;
+                                              a < widget.busContactmodel.length;
+                                              a++) {
+                                            PaxDetailslist paxDetailslistdata =
+                                                PaxDetailslist(
+                                                    age: widget
+                                                        .busContactmodel[a]
+                                                        .ageController
+                                                        .text,
+                                                    gender: widget
+                                                                .busContactmodel[
+                                                                    a]
+                                                                .gender ==
+                                                            "Male"
+                                                        ? 0
+                                                        : 1,
+                                                    isLadies: false,
+                                                    paxName: widget
+                                                        .busContactmodel[a]
+                                                        .nameController
+                                                        .text,
+                                                    seatNumber: widget
+                                                        .busContactmodel[a]
+                                                        .seats);
+
+                                            paxDetailslists
+                                                .add(paxDetailslistdata);
+                                          }
+                                          busController.tempBookBusTicket(
+                                              boardingId: widget.boardingId,
+                                              droppingId: widget.dropingId,
+                                              busData: widget.busData,
+                                              searcKey: widget.searchkey,
+                                              mobileNumber:
+                                                  phoneNumberContoller.text,
+                                              customerEmail:
+                                                  emailController.text,
+                                              paxDetailslist: paxDetailslists,
+                                              amount: widget.amount,
+                                              customerName: widget.cusName,
+                                              seatMapKey: busController
+                                                  .seatMapKey.value);
+                                          // Get.to(BusbookingSuccesfullScreen());
+                                        },
+                                        child: Container(
+                                          child: Center(
+                                              child: Text(
+                                                      'PAY ₹ ${busController.totalAmount.value}')
+                                                  .text
+                                                  .semiBold
+                                                  .xl2
+                                                  .white
+                                                  .make()),
+                                          height: size.height * 0.06,
+                                          width: 190,
+                                          color: korange,
+                                        ),
+                                      ),
                               ),
                             ],
                           ),

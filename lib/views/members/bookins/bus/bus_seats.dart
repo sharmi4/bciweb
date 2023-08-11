@@ -1,5 +1,6 @@
 import 'package:bciweb/models/busbookingmodels/search_bus_model.dart';
 import 'package:bciweb/views/members/bookins/bus/passengers_details.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -33,7 +34,7 @@ class BusSeats extends StatefulWidget {
 
 class _BusSeatsState extends State<BusSeats> {
   final busController = Get.find<BusController>();
-    
+
   @override
   void initState() {
     // TODO: implement initState
@@ -44,8 +45,9 @@ class _BusSeatsState extends State<BusSeats> {
         busData: widget.busData,
         searchKey: widget.searchkey);
   }
-    final profileController = Get.find<AuthProfileController>();
-List<BusContactDetailsModel> busContactDetailsModel = [];
+
+  final profileController = Get.find<AuthProfileController>();
+  List<BusContactDetailsModel> busContactDetailsModel = [];
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -169,15 +171,23 @@ List<BusContactDetailsModel> busContactDetailsModel = [];
                                               busController
                                                   .seatMap[index].seatNumber);
 
- BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
-                                                  ageController: TextEditingController(),
+                                          BusContactDetailsModel
+                                              busContactDetailsModeldata =
+                                              BusContactDetailsModel(
+                                                  ageController:
+                                                      TextEditingController(),
                                                   gender: "",
-                                                  nameController: TextEditingController(),
-                                                  seats: busController.seatMap[index].seatNumber
-                                                ); 
+                                                  nameController:
+                                                      TextEditingController(),
+                                                  seats: busController
+                                                      .seatMap[index]
+                                                      .seatNumber);
 
-                                                busContactDetailsModel.removeWhere((element) => element.seats == busController.seatMap[index].seatNumber);   
-
+                                          busContactDetailsModel.removeWhere(
+                                              (element) =>
+                                                  element.seats ==
+                                                  busController.seatMap[index]
+                                                      .seatNumber);
                                         });
 
                                         double tempAmount =
@@ -196,15 +206,19 @@ List<BusContactDetailsModel> busContactDetailsModel = [];
                                               busController
                                                   .seatMap[index].seatNumber);
 
-
-                                                  BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
-                                                  ageController: TextEditingController(),
+                                          BusContactDetailsModel
+                                              busContactDetailsModeldata =
+                                              BusContactDetailsModel(
+                                                  ageController:
+                                                      TextEditingController(),
                                                   gender: "",
-                                                  nameController: TextEditingController(),
-                                                  seats: busController.seatMap[index].seatNumber
-                                                );
-                               busContactDetailsModel.add(busContactDetailsModeldata);
-
+                                                  nameController:
+                                                      TextEditingController(),
+                                                  seats: busController
+                                                      .seatMap[index]
+                                                      .seatNumber);
+                                          busContactDetailsModel
+                                              .add(busContactDetailsModeldata);
                                         });
 
                                         double tempAmount =
@@ -346,38 +360,85 @@ List<BusContactDetailsModel> busContactDetailsModel = [];
                                     .semiBold
                                     .make(),
                                 ksizedbox10,
-                                InkWell(
-                                  onTap: () {
-                                    Get.to(PssengesDetails(
-                                       cusName:profileController.profileData.isEmpty ? "test" : profileController.profileData.first.name,
-                        busContactmodel: busContactDetailsModel,
-                                      boardingId: widget.boardingId,
-                                      busData: widget.busData,
-                                      dropingId: widget.dropingId,
-                                      searchkey: widget.searchkey,
-                                      seatIds: busController.seatIds,
-                                      amount: busController.totalAmount.value
-                                          .toStringAsFixed(2),
-                                    ));
-                                  },
-                                  child: Container(
-                                    height: 50,
-                                    width: 200,
-                                    decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            colors: [korange, kyellow]),
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: Center(
-                                      child: Text(
-                                        'Proceed To Book ',
-                                        style: TextStyle(
-                                            fontSize: 17,
-                                            fontWeight: FontWeight.w700,
-                                            color: kwhite),
-                                      ),
-                                    ),
-                                  ),
+                                Obx(
+                                  () => busController.isLoading.isTrue
+                                      ? InkWell(
+                                          onTap: () {
+                                            Get.to(PssengesDetails(
+                                              cusName: profileController
+                                                      .profileData.isEmpty
+                                                  ? "test"
+                                                  : profileController
+                                                      .profileData.first.name,
+                                              busContactmodel:
+                                                  busContactDetailsModel,
+                                              boardingId: widget.boardingId,
+                                              busData: widget.busData,
+                                              dropingId: widget.dropingId,
+                                              searchkey: widget.searchkey,
+                                              seatIds: busController.seatIds,
+                                              amount: busController
+                                                  .totalAmount.value
+                                                  .toStringAsFixed(2),
+                                            ));
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            width: 200,
+                                            decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    colors: [korange, kyellow]),
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: Center(
+                                              child:
+                                                  const CupertinoActivityIndicator(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : InkWell(
+                                          onTap: () {
+                                            Get.to(
+                                              PssengesDetails(
+                                                cusName: profileController
+                                                        .profileData.isEmpty
+                                                    ? "test"
+                                                    : profileController
+                                                        .profileData.first.name,
+                                                busContactmodel:
+                                                    busContactDetailsModel,
+                                                boardingId: widget.boardingId,
+                                                busData: widget.busData,
+                                                dropingId: widget.dropingId,
+                                                searchkey: widget.searchkey,
+                                                seatIds: busController.seatIds,
+                                                amount: busController
+                                                    .totalAmount.value
+                                                    .toStringAsFixed(2),
+                                              ),
+                                            );
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            width: 200,
+                                            decoration: BoxDecoration(
+                                                gradient: LinearGradient(
+                                                    colors: [korange, kyellow]),
+                                                borderRadius:
+                                                    BorderRadius.circular(15)),
+                                            child: Center(
+                                              child: Text(
+                                                'Proceed To Book ',
+                                                style: TextStyle(
+                                                    fontSize: 17,
+                                                    fontWeight: FontWeight.w700,
+                                                    color: kwhite),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                 ),
                               ],
                             ),

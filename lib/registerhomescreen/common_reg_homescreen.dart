@@ -223,13 +223,14 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                   color: kgrey)
                             ]),
                         child: InkWell(
-                            onTap: () {
-                              //
-                            },
-                            child: Icon(
-                              Icons.notifications,
-                              color: kblue,
-                            )),
+                          onTap: () {
+                            //
+                          },
+                          child: Icon(
+                            Icons.notifications,
+                            color: kblue,
+                          ),
+                        ),
                       ),
                     ),
                     authController.isLogedin == false
@@ -308,7 +309,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 ),
               ),
             ),
-           Padding(
+            Obx(
+              () => authController.isLogedin == true ? Padding(
                 padding: const EdgeInsets.only(left: 20),
                 child: Row(children: [
                   GetBuilder<AuthProfileController>(builder: (_) {
@@ -316,7 +318,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         ? Text(authProfileController.profileData.first.name)
                         : Text('');
                   }),
-               //   Icon(Icons.expand_more),
+                  //   Icon(Icons.expand_more),
                   kwidth10,
                   GetBuilder<AuthProfileController>(builder: (_) {
                     return authProfileController.profileData.isNotEmpty
@@ -324,23 +326,25 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                     .profileData.first.profilePicture !=
                                 null
                             ? InkWell(
-                              onTap: (){
-                                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>RegisterProfileScreen()));
-                              },
-                              child: CircleAvatar(
-                                  radius: 22.0,
-                                  backgroundImage: NetworkImage(
-                                    authProfileController
-                                        .profileData.first.profilePicture,
-                                  )),
-                            )
-                                //:Text('')
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (context) =>
+                                          RegisterProfileScreen()));
+                                },
+                                child: CircleAvatar(
+                                    radius: 22.0,
+                                    backgroundImage: NetworkImage(
+                                      authProfileController
+                                          .profileData.first.profilePicture,
+                                    )),
+                              )
+                            //:Text('')
                             : Image.asset(
                                 'assets/images/nick.png',
                                 height: 35,
                                 fit: BoxFit.fitHeight,
                               )
-                            //:Text('');
+                        //:Text('');
                         : Image.asset(
                             'assets/images/nick.png',
                             height: 35,
@@ -348,8 +352,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           );
                   })
                 ]),
-              ),
-            
+              ):Text('')
+            ),
           ],
         ),
       ),

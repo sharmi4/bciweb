@@ -4,12 +4,19 @@ import 'package:dio/dio.dart' as dio;
 import '../../models/air_search_model.dart';
 import '../../models/airport_search_model.dart';
 import '../../models/flight_searchdatamodel.dart';
+import '../../models/get_flight_booking_history.dart';
 import '../../models/pasenger_mode.dart';
 import '../../responsive/booking_view/flight/par_nyc_screen.dart';
 import '../../services/networks/services/flight_api_searcive/airflight_api_searvice.dart';
 import '../../services/networks/services/flight_api_searcive/airport_search_apiservice.dart';
+import '../../services/networks/services/flight_api_searcive/get_flight_booking_list.dart';
 
 class ApiflightsController extends GetxController {
+
+
+GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
+      GetFlightBookingHistoryAPIServices();
+
   RxInt wayIndex = 0.obs;
   RxInt cabinClassIndex = 0.obs;
    RxInt flighttypeindex=0.obs;
@@ -137,5 +144,23 @@ if(ismobilorweb){
   DateTime parsedDate = DateTime(tempYear,monthTemp,tempDay);
   
   return parsedDate;
+  }
+
+
+
+
+    //flights booking list
+
+  List<FlightBookedData> flightBookingHistoyrList = [];
+
+  getFlightBookingHistory() async {
+    dio.Response<dynamic> response =
+        await getFlightBookingHistoryAPIServices.getFlightBookingAPIServices();
+
+    if (response.statusCode == 200) {
+      GetFlightsModel flightsModel = GetFlightsModel.fromJson(response.data);
+      flightBookingHistoyrList = flightsModel.data;
+      update();
+    }
   }
 }

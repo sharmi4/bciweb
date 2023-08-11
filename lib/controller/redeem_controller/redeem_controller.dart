@@ -1,24 +1,17 @@
-import 'dart:io';
+
 
 
 import 'package:bciweb/services/networks/services/catogory_api_service/unreddem_coupons_Api_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 
-import '../../constant/constans.dart';
-import '../../models/create_account_model.dart';
-import '../../models/member profileupdate.dart';
+
 import '../../models/member_profile.dart';
-import '../../services/networks/profile_api_service/profile_api_service.dart';
-import '../../services/networks/profile_api_service/profile_pick.dart';
-import '../../services/networks/profile_api_service/profile_update.dart';
-import '../../services/networks/profile_api_service/update_officialaddress.dart';
-import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
+
 import '../../services/networks/services/catogory_api_service/redeem_coupons_api_services.dart';
-import '../auth_controller/auth_controller.dart';
-import '../home_controller.dart';
+
 //import '../services/network/profile_api_services/update_residencial_address_api_services.dart';
 
 class RedeemController extends GetxController {

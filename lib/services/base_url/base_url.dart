@@ -110,6 +110,10 @@ abstract class BaseApiService {
 
   //----------- holidays bookings ---------------//
 
+
+    final String getEnquiryListApiUrl =
+      "https://bci.generation360tech.in/api/auth/get_enquiry";
+
   final String getPackageCategoryApiUrl =
       "https://bci.generation360tech.in/api/auth/get_package_category";
 
@@ -172,6 +176,13 @@ abstract class BaseApiService {
       "https://bci.generation360tech.in/api/auth/generateReferralregister";
 
  
+
+
+
+//flight history
+  final String getFlightBookingHistoryURL =
+      "https://bci.generation360tech.in/api/auth/get_flight_booking_history";
+
       //updated 10-8-23
      
 }
