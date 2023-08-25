@@ -36,6 +36,7 @@ import 'controller/flaight_show_controller.dart';
 import 'controller/flaightdate_controller.dart';
 
 import 'controller/historycontroller.dart';
+import 'controller/hotel_controller/hotel_destinationcontroller.dart';
 import 'controller/profile_controller.dart';
 
 import 'controller/setting_controller/setting_controller.dart';
@@ -81,6 +82,7 @@ void main() {
    Get.put(HolidayPackageController());
    Get.put(BusController());
    Get.put(ApiSettingController());
+   Get.put(HotelDestinationController());
   runApp(const MyApp());
 }
 

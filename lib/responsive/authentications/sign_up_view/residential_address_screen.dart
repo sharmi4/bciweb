@@ -24,6 +24,7 @@ class _ResidentialAddressScreenState extends State<ResidentialAddressScreen> {
   var stateController = TextEditingController();
   var personalIDController = TextEditingController();
   var aadharController = TextEditingController();
+  var referalcodeController = TextEditingController();
 
   var _formKey = GlobalKey<FormState>();
 
@@ -340,6 +341,7 @@ class _ResidentialAddressScreenState extends State<ResidentialAddressScreen> {
 
                     CreateAccountModel tempcreateaccountModel=
                             CreateAccountModel(
+                              referalcode:widget.memberRegisterModel!.referalcode ,
                            name:widget.memberRegisterModel!.name , 
                                email: widget.memberRegisterModel!.email, 
                                mobilenumber: widget.memberRegisterModel!.mobilenumber,

@@ -19,6 +19,13 @@ class _MobileVerificationState extends State<MobileVerification> {
    var phoneNumberController = TextEditingController();
 
   final authController = Get.find<AuthController>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    authController.getCategoryList();
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -76,6 +83,53 @@ class _MobileVerificationState extends State<MobileVerification> {
                             style: TextStyle(fontSize: 18, color: kblue),
                           ),
                         ),
+                           // GetBuilder<AuthController>(builder: (_) {
+              //   return Padding(
+              //     padding: const EdgeInsets.only(top: 15),
+              //     child: Container(
+              //       height: 44,
+              //       width: 330,
+              //       decoration: BoxDecoration(
+              //           borderRadius: BorderRadius.circular(3),
+              //           border: Border.all(
+              //               color: const Color.fromARGB(255, 5, 5, 5)
+              //                   .withOpacity(0.8))),
+              //       child: Padding(
+              //         padding:
+              //             const EdgeInsets.only(left: 10, right: 10, top: 10),
+              //         child: DropdownButton<SubCategoryModelListR>(
+              //           value: merchantSubCategory,
+              //           isExpanded: true,
+              //           icon: const Icon(Icons.keyboard_arrow_down_outlined),
+              //           elevation: 0,
+              //           itemHeight: 55,
+              //           isDense: true,
+              //           dropdownColor: Colors.grey[250],
+              //           style: const TextStyle(color: Colors.black54),
+              //           hint: Text(
+              //             "Sub Category",
+              //             style: TextStyle(fontSize: 16, color: kblue),
+              //           ),
+              //           onChanged: (SubCategoryModelList? value) {
+              //             // This is called when the user selects an item.
+              //             setState(() {
+              //               // authController.isDesignationSelected(false);
+              //               merchantSubCategory = value!;
+              //             });
+              //           },
+              //           items: authController.subCategoryList
+              //               .map<DropdownMenuItem<SubCategoryModelList>>(
+              //                   (SubCategoryModelList value) {
+              //             return DropdownMenuItem<SubCategoryModelList>(
+              //               value: value,
+              //               child: Text(value.title),
+              //             );
+              //           }).toList(),
+              //         ),
+              //       ),
+              //     ),
+              //   );
+              // }),
                         Padding(
                           padding: const EdgeInsets.only(top: 30),
                           child: Container(

@@ -2,108 +2,110 @@ abstract class BaseApiService {
 
 
   final String registerURl =
-      'https://bci.generation360tech.in/api/register_user';
+      'https://bci.batechnology.in/api/register_user';
 
-
-
-  //login url
-  final String getOtpUrl = "https://bci.generation360tech.in/api/get_otp";
-
-
+  //category
+  final String categoryApiUrl = "https://bci.batechnology.in/api/category";
 
   //login url
-  final String loginURL = "https://bci.generation360tech.in/api/login";
+  // final String getOtpUrl = "https://bci.batechnology.in/api/category";
+  final String getOtpUrl = "https://bci.batechnology.in/api/get_otp";
+
+
+
+  //login url[i]
+  final String loginURL = "https://bci.batechnology.in/api/login";
 
 
   //get profile api
   final String getProfileURL =
-      "https://bci.generation360tech.in/api/auth/profile";
+      "https://bci.batechnology.in/api/profile";
 
 
 
   //profile update API URL
   final String profileUpdateURL =
-      "https://bci.generation360tech.in/api/auth/profile_update";
+      "https://bci.batechnology.in/api/profile_update";
 
 
 
   final String serviceListurl =
-      'https://bci.generation360tech.in/api/auth/service_list';
+      'https://bci.batechnology.in/api/service_list';
 
 
 
   //Get plan list
   final String getPlanList =
-      "https://bci.generation360tech.in/api/auth/get_plan_list";
+      "https://bci.batechnology.in/api/get_plan_list";
 
 
 
   //Get payment
   final String addSubscriptionPlan =
-      'https://bci.generation360tech.in/api/auth/add_subscription_plan';
+      'https://bci.batechnology.in/api/add_subscription_plan';
 
 
 
   //Get Coupons
   final String getCoupons =
-      'https://bci.generation360tech.in/api/auth/getUserCoupons';
+      'https://bci.batechnology.in/api/getUserCoupons';
 
 
 
   //Get  OtherBooking
   final String getothersBooking =
-      'https://bci.generation360tech.in/api/auth/booking_list';
+      'https://bci.batechnology.in/api/booking_list';
 
 
 
   final String addToCartApiUrl =
-      'https://bci.generation360tech.in/api/auth/addtocart';
+      'https://bci.batechnology.in/api/addtocart';
 
 
 
   final String CartListApiUrl =
-      'https://bci.generation360tech.in/api/auth/cartlists';
+      'https://bci.batechnology.in/api/cartlists';
 
 
 
   //delete cart
   final String deleteCartApiUrl =
-      "https://bci.generation360tech.in/api/auth/deletecart";
+      "https://bci.batechnology.in/api/deletecart";
 
 
 
   //add booking api
   final String addBookingApiUrl =
-      "https://bci.generation360tech.in/api/auth/addbooking";
+      "https://bci.batechnology.in/api/addbooking";
 
 
 
   //offers api
   final String todayoffersApiUrl =
-      "https://bci.generation360tech.in/api/auth/today_offers_list";
+      "https://bci.batechnology.in/api/today_offers_list";
 
 
 
   //coupons redeem api
   final String redeemCouponsApiUrl =
-      "https://bci.generation360tech.in/api/auth/redeemCoupon";
+      "https://bci.batechnology.in/api/redeemCoupon";
 
 
 
   //get plan detsila
   final String getPlanDetailsURL =
-      "https://bci.generation360tech.in/api/auth/get_plan_details";
+      "https://bci.batechnology.in/api/get_plan_details";
 
       
 
   // un reddem coupon api
   final String unRedeemCouponsApiUrl =
-      "https://bci.generation360tech.in/api/auth/redeemCoupon";
+      "https://bci.batechnology.in/api/redeemCoupon";
 
   // ----------- Flight bookings  ----------- //
 
   final String airSearchUrl =
-      "https://bci.generation360tech.in/api/auth/flight_search";
+      "https://bci.batechnology.in/api/flight_search";
 
   final String airportSearch =
    "https://openflights.org/php/apsearch.php";
@@ -112,77 +114,81 @@ abstract class BaseApiService {
 
 
     final String getEnquiryListApiUrl =
-      "https://bci.generation360tech.in/api/auth/get_enquiry";
+      "https://bci.batechnology.in/api/get_enquiry";
 
   final String getPackageCategoryApiUrl =
-      "https://bci.generation360tech.in/api/auth/get_package_category";
+      "https://bci.batechnology.in/api/get_package_category";
 
   final String getPackageListApiUrl =
-      "https://bci.generation360tech.in/api/auth/get_package_list";
+      "https://bci.batechnology.in/api/get_package_list";
 
   final String getPackageDetailsApiUrl =
-      "https://bci.generation360tech.in/api/auth/get_package_details";
+      "https://bci.batechnology.in/api/get_package_details";
 
   final String createEnquiryApiUrl =
-      "https://bci.generation360tech.in/api/auth/create_enquiry";
+      "https://bci.batechnology.in/api/create_enquiry";
 
   final String searchPackageListApiUrl =
-      "https://bci.generation360tech.in/api/auth/search_packages";
+      "https://bci.batechnology.in/api/search_packages";
 
 //busbooking 
 
   final String getCityListApiUrl =
-      "https://bci.generation360tech.in/api/auth/Bus_CityList";
+      "https://bci.batechnology.in/api/Bus_CityList";
 
    final String searchBusApiUrl =
-      "https://bci.generation360tech.in/api/auth/Bus_Search";
+      "https://bci.batechnology.in/api/Bus_Search";
 
    final String busSeatMapApiUrl =
-      "https://bci.generation360tech.in/api/auth/bus_seat_map";
+      "https://bci.batechnology.in/api/bus_seat_map";
 
    final String busTempBooking =
-      "https://bci.generation360tech.in/api/auth/bus_temp_booking";
+      "https://bci.batechnology.in/api/bus_temp_booking";
 
    final String busTicketing =
-      "https://bci.generation360tech.in/api/auth/bus_ticketing";
+      "https://bci.batechnology.in/api/bus_ticketing";
 
-   final String busRequiryURL = "https://bci.generation360tech.in/api/auth/bus_requery";
+   final String busRequiryURL = "https://bci.batechnology.in/api/bus_requery";
 
   final String addBusBookingHistoryURL =
-      "https://bci.generation360tech.in/api/auth/add_bus_booking_history";
+      "https://bci.batechnology.in/api/add_bus_booking_history";
         final String airAddPayment =
-      "https://bci.batechnology.in/api/auth/add_payment";
+      "https://bci.batechnology.in/api/add_payment";
 
   final String getBusBookingHistoryURL =
-      "https://bci.generation360tech.in/api/auth/get_bus_booking_history";
+      "https://bci.batechnology.in/api/get_bus_booking_history";
 
     //get wallet details
-  final String getWalletDetailsApiUrl = "https://bci.generation360tech.in/api/auth/getUserwallet";
+  final String getWalletDetailsApiUrl = "https://bci.batechnology.in/api/getUserwallet";
 // final String testURL = "https://bci.batechnology.in.net/api/sub_category";
 
+
+  //https://bci.batechnology.in/api
    final String generateReferralCodeApiUrl =
-      "https://bci.generation360tech.in/api/auth/generateReferralCode";
+      "https://bci.batechnology.in/api/generateReferralCode";
 
      final String recomendedListApiUrl =
-      "https://bci.generation360tech.in/api/auth/recomended_list";  
+      "https://bci.batechnology.in/api/recomended_list";  
        
       final String ourPartnersApiUrl =
-      "https://bci.generation360tech.in/api/getpartners";  
+      "https://bci.batechnology.in/api/getpartners";  
 
        final String createSupportApiUrl =
-      "https://bci.generation360tech.in/api/auth/create_ticket";
+      "https://bci.batechnology.in/api/create_ticket";
 
         final String registerreferalURL =
-      "https://bci.generation360tech.in/api/auth/generateReferralregister";
-
- 
-
+      "https://bci.batechnology.in/api/generateReferralregister";
 
 
 //flight history
   final String getFlightBookingHistoryURL =
-      "https://bci.generation360tech.in/api/auth/get_flight_booking_history";
+      "https://bci.batechnology.in/api/get_flight_booking_history";
 
       //updated 10-8-23
      
+   //hotelbooking
+   final String hoteldestinationURL = 'https://bci.batechnology.in/api/destination_list';  
+
+     //fcmtoken
+   final String fcmtokenURL = 'https://bci.batechnology.in/api/fcm-token';  
 }

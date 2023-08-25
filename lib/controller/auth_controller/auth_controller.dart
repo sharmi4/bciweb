@@ -1,5 +1,7 @@
+import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/get_otp_api_service.dart';
+import 'package:bciweb/services/networks/services/catogory_api_service/category_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
@@ -91,7 +93,18 @@ class AuthController extends GetxController {
     }
   }
 
+GetCategoryApiServices getCategoryApiServices = GetCategoryApiServices();
+List<CategoryData> categoryData = [];
 
+ getCategoryList() async {
+    dio.Response<dynamic> response = await getCategoryApiServices.getCategory();
+
+    if (response.statusCode == 201) {
+      CategoryModel categoryModel = CategoryModel.fromJson(response.data);
+      categoryData = categoryModel.data;
+    }
+    update();
+  }
 
 
   

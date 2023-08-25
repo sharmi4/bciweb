@@ -1,6 +1,3 @@
-
-
-
 import 'package:bciweb/responsive/authentications/sign_up_view/residential_address_screen.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +18,9 @@ class MemberSignUpScreen extends StatefulWidget {
 
 class _MemberSignUpScreenState extends State<MemberSignUpScreen> {
   bool isChecked = false;
+  bool isvalue = false;
+  bool showreferal = false;
+  bool ischecvalue = false;
 
   var usernamecontroller = TextEditingController();
   var dateOfBirthController = TextEditingController();
@@ -29,6 +29,7 @@ class _MemberSignUpScreenState extends State<MemberSignUpScreen> {
   var occupationController = TextEditingController();
   var fatherNameController = TextEditingController();
   var motherNameController = TextEditingController();
+  var referalcodeController = TextEditingController();
 
   DateTime date = DateTime.now().subtract(const Duration(days: 6570));
 
@@ -84,7 +85,7 @@ class _MemberSignUpScreenState extends State<MemberSignUpScreen> {
                 "Sign Up Now",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: 32, fontWeight: FontWeight.w600, color: kblue),
+                    fontSize: 15, fontWeight: FontWeight.w600, color: kblue),
               ),
               ksizedbox10,
               Text(
@@ -129,47 +130,6 @@ class _MemberSignUpScreenState extends State<MemberSignUpScreen> {
                           borderSide:
                               const BorderSide(color: const Color(0xff707070))),
                       hintText: "User Name",
-                      hintStyle: TextStyle(
-                        color: kblue,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: TextFormField(
-                  controller: dateOfBirthController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Date of Birth can't be empty";
-                    }
-                    return null;
-                  },
-                  onTap: () {
-                    _selectDate(context);
-                  },
-                  readOnly: true,
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      isCollapsed: false,
-                      isDense: true,
-                      contentPadding:
-                          const EdgeInsets.only(top: 12, bottom: 12, left: 15),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      hintText: "Date of Birth",
                       hintStyle: TextStyle(
                         color: kblue,
                         fontWeight: FontWeight.w400,
@@ -256,164 +216,91 @@ class _MemberSignUpScreenState extends State<MemberSignUpScreen> {
                       )),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: TextFormField(
-                  controller: occupationController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Occupation can't be empty";
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      isCollapsed: false,
-                      isDense: true,
-                      contentPadding:
-                          const EdgeInsets.only(top: 12, bottom: 12, left: 15),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      hintText: "Occupation",
-                      hintStyle: TextStyle(
-                        color: kblue,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: TextFormField(
-                  controller: fatherNameController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      isCollapsed: false,
-                      isDense: true,
-                      contentPadding:
-                          const EdgeInsets.only(top: 12, bottom: 12, left: 15),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      hintText: "Father Name",
-                      hintStyle: TextStyle(
-                        color: kblue,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15),
-                child: TextFormField(
-                  controller: motherNameController,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: InputDecoration(
-                      fillColor: Colors.white,
-                      filled: true,
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      isCollapsed: false,
-                      isDense: true,
-                      contentPadding:
-                          const EdgeInsets.only(top: 12, bottom: 12, left: 15),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide:
-                              const BorderSide(color: const Color(0xff707070))),
-                      hintText: "Mother Name",
-                      hintStyle: TextStyle(
-                        color: kblue,
-                        fontWeight: FontWeight.w400,
-                      )),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10, left: 10),
-                child: Row(
-                  children: [
-                    Text(
-                      "Married :",
-                      style: primaryFont.copyWith(color: kblue, fontSize: 16),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Checkbox(
-                      checkColor: Colors.white,
-                      fillColor: MaterialStateProperty.all(kblue),
-                      value: isChecked,
-                      onChanged: (bool? value) {
-                        setState(() {
-                          isChecked = value!;
-                        });
-                      },
+              ischecvalue == true
+                  ? Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: TextFormField(
+                        controller: referalcodeController,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Occupation can't be empty";
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                  color: const Color(0xff707070))),
+                          focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                  color: const Color(0xff707070))),
+                          isCollapsed: false,
+                          isDense: true,
+                          contentPadding: const EdgeInsets.only(
+                              top: 12, bottom: 12, left: 15),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                  color: const Color(0xff707070))),
+                          hintText: "Referal Code",
+                          hintStyle: TextStyle(
+                            color: kblue,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                     )
-                  ],
-                ),
+                  : ksizedbox10,
+              Row(
+                children: [
+                  Checkbox(
+                      value: ischecvalue,
+                      onChanged: (value) {
+                        setState(() {
+                          ischecvalue = value!;
+                        });
+                      }),
+                ],
               ),
               ksizedbox20,
               InkWell(
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
-                     CreateAccountModel memberRegisterModel =
-                         CreateAccountModel(
+                    CreateAccountModel memberRegisterModel = CreateAccountModel(
+                      referalcode: referalcodeController.text,
+                      name: emailController.text,
+                      email: emailController.text,
+                      mobilenumber: mobileController.text,
+                      aadharNo: '123',
+                      panNo: '1233',
+                      password: '2333',
+                      passwordConfirmation: '4567',
+                      dateofbirth: '09867',
+                      roleId: '123',
+                      fatherName: 'riyas',
+                      motherName: '',
+                      occupation: '',
+                      isMarried: '',
+                      unmarried: '',
 
-  name: emailController.text, 
-                              email: emailController.text, 
-                              mobilenumber: mobileController.text,
-                               aadharNo: '123',
-                               panNo: '1233',
-                               password: '2333',
-                               passwordConfirmation: '4567',
-                               dateofbirth: '09867',
-                               roleId: '123',
-                               fatherName: 'riyas',
-                               motherName: '',
-                               occupation: '',
-                               isMarried: '',
-                               unmarried: '',
-
-                            // aadharNo: "",
-                            // email: emailController.text,
-                            // fatherName: fatherNameController.text,
-                            // isMarried: isChecked ? "1" : "0",
-                            // mobile: mobileController.text,
-                            // motherName: motherNameController.text,
-                            // name: usernamecontroller.text,
-                            // occupation: occupationController.text,
-                            // panNo: "",
-                            // password: "12345678",
-                            // passwordConfirmation: "12345678",
-                            // roleId: "3"
-                            );
+                      // aadharNo: "",
+                      // email: emailController.text,
+                      // fatherName: fatherNameController.text,
+                      // isMarried: isChecked ? "1" : "0",
+                      // mobile: mobileController.text,
+                      // motherName: motherNameController.text,
+                      // name: usernamecontroller.text,
+                      // occupation: occupationController.text,
+                      // panNo: "",
+                      // password: "12345678",
+                      // passwordConfirmation: "12345678",
+                      // roleId: "3"
+                    );
                     Get.to(ResidentialAddressScreen(
                       memberRegisterModel: memberRegisterModel,
                     ));

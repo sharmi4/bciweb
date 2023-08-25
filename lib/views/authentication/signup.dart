@@ -35,6 +35,7 @@ class _SignUpViewState extends State<SignUpView> {
 
        bool ismarried= false;
     bool isunmarried=false;
+    bool isvalue = false;
 
      DateTime date = DateTime.now().subtract(const Duration(days: 6570));
 
@@ -82,10 +83,12 @@ class _SignUpViewState extends State<SignUpView> {
   var dateOfBirthController = TextEditingController();
    final authcontroller = Get.find<AuthController>();
    bool checkvalue = false;
+   
   @override
   Widget build(BuildContext context) {
  
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: ListView(
         children: [
@@ -288,6 +291,7 @@ class _SignUpViewState extends State<SignUpView> {
                         if(_formKey.currentState!.validate()){
                           CreateAccountModel memberRegisterModel=
                           CreateAccountModel(
+                            referalcode: referalcodeController.text,
                             name: usernameController.text, 
                             email: emailController.text, 
                             mobilenumber: mobilenumberController.text,
@@ -343,6 +347,7 @@ class _SignUpViewState extends State<SignUpView> {
                         ),
                       ),
                     ),
+                   
                     ksizedbox20,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

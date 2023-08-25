@@ -845,6 +845,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.5.1"
+  type_ahead_text_field:
+    dependency: "direct main"
+    description:
+      name: type_ahead_text_field
+      sha256: d995f59518160a2256e99a8748b5dc6eb710a93205b951d22e98324222e3481d
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.2"
   typed_data:
     dependency: transitive
     description:

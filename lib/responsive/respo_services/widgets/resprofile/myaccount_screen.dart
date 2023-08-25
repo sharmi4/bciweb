@@ -12,6 +12,7 @@ import '../../../../controller/reg_profile_controller.dart';
 import '../../../../models/create_account_model.dart';
 import '../../../../models/member profileupdate.dart';
 import '../../../mobile_wdgets/comomappbar.dart';
+import '../../../mobile_wdgets/drawer.dart';
 
 class MyAccountScreen extends StatefulWidget {
   const MyAccountScreen({super.key});
@@ -56,6 +57,8 @@ var mobilereferalCOntroller=TextEditingController();
        var mobileresiaddressController=TextEditingController();
        var mobilegestnoController = TextEditingController();
        var mobilepannoController = TextEditingController();
+       var mobileproofidController = TextEditingController();
+       var mobilepincodeController = TextEditingController();
        var mobilequalificationController = TextEditingController();
   // Future pickerimage() async {
   //   try {
@@ -155,10 +158,6 @@ var mobilereferalCOntroller=TextEditingController();
     }
   }
   int tempCont=0;
-bool _value=false;
-bool _value2=false;
-bool _value3=false;
-bool _value4=false;
 int offersindex=0;
 List partnerimage=[
   'assets/images/partnerimage1.png',
@@ -195,6 +194,8 @@ void initState() {
           authprofileController.profileData.first.officialAddress.doorNo;
       mobileresibnameController.text =
           authprofileController.profileData.first.officialAddress.buildingName;
+          mobilepincodeController.text = authprofileController.profileData.first.pincode;
+          mobileproofidController.text = authprofileController.profileData.first.id.toString();
       mobileofficeaddress.text =
           authprofileController.profileData.first.officialAddress.address;
        alternativeController.text = authprofileController.profileData.first.alternateMobile;
@@ -221,7 +222,9 @@ dynamic panimage;
      var size = MediaQuery.of(context).size;
     return Scaffold(
        appBar: PreferredSize(
-          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
+          child: AppBarMob(), preferredSize: Size(double.infinity, 40),
+          ),
+           drawer: MobileDrawer(),
        body:Obx(() =>
           ListView(
             children:[ Column(
@@ -425,29 +428,25 @@ dynamic panimage;
                                     ),
                                     Expanded(
                                       child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top:30),
+                                        padding: const EdgeInsets.only(left:10,right:20,top:30),
                                         child: TextField(
+                                          
                                             textInputAction: TextInputAction.next,
+                                          keyboardType: TextInputType.number,
                                           controller: mobileemailController,
-                                          keyboardType: TextInputType.emailAddress,
                                            decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                            contentPadding: EdgeInsets.only(bottom: 1,top:1),
                                             hintText: 'Email Id',
                                             hintStyle: TextStyle(
-                                              fontSize: 12,
-                                              color: Colors.black
+                                              fontSize: 12
                                             ),
-                                            // suffix: IconButton(onPressed: (){
-                                            //   _selectDate(context);
-                                            // }, 
-                                            // icon: Icon(Icons.date_range,size: 14,),),
                                             fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder(
                                             )
                                             )
                                         ),
+                                        ),
                                       ),
-                                    )
                                   ],
                                  ),
                                  ksizedbox10,
@@ -530,7 +529,11 @@ dynamic panimage;
                                                   hintText: 'Date Of Birth',
                                                   hintStyle: TextStyle(
                                                     fontSize: 12
-                                                  ),
+                                                  ),suffixIcon: IconButton(onPressed: (){
+                                                           _selectDate2(context);
+                                                        }, 
+                                                        icon: Icon(Icons.date_range,
+                                                        size: 14,),),
                                                   fillColor: Color(0xffF9F8FD),
                                                   border: OutlineInputBorder(
                                                                                
@@ -1169,36 +1172,40 @@ dynamic panimage;
                                       padding: const EdgeInsets.only(),
                                       child: Padding(
                                         padding: const EdgeInsets.only(left: 50,right:50,top:50),
-                                        child: TextField( 
-                                             textInputAction: TextInputAction.next,
-                                          controller: mobileofficedoornumber,
-                                          decoration: InputDecoration(
-                                            hintText: 'Door Number',
-                                            suffixIcon: Icon(Icons.edit),
-                                            fillColor: Color(0xffF9F8FD),
-                                            border: OutlineInputBorder(
+                                        child: Container(
+                                          height: 35,
+                                          child: TextField( 
+                                               textInputAction: TextInputAction.next,
+                                            controller: mobileofficedoornumber,
+                                            decoration: InputDecoration(
+                                              hintText: 'Door Number',
+                                              fillColor: Color(0xffF9F8FD),
+                                              border: OutlineInputBorder(
+                                                                       
+                                              )
+                                            ),
                                                                      
-                                            )
                                           ),
-                                                                   
                                         ),
                                       ),
                                     ),
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
-                                  child: TextField( 
-                                       textInputAction: TextInputAction.next,
-                                     controller: mobileofficebnumber,
-                                     decoration: InputDecoration(
-                                       hintText: 'Building Number',
-                                       suffixIcon: Icon(Icons.edit),
-                                       fillColor: Color(0xffF9F8FD),
-                                       border: OutlineInputBorder(
-                                   
-                                       )
-                                     ),
-                                                              
-                                      ),
+                                  child: Container(
+                                    height: 35,
+                                    child: TextField( 
+                                         textInputAction: TextInputAction.next,
+                                       controller: mobileofficebnumber,
+                                       decoration: InputDecoration(
+                                         hintText: 'Building Number',
+                                         fillColor: Color(0xffF9F8FD),
+                                         border: OutlineInputBorder(
+                                     
+                                         )
+                                       ),
+                                                                
+                                        ),
+                                  ),
                                 ),
                                      Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -1207,60 +1214,95 @@ dynamic panimage;
                                          padding: const EdgeInsets.only(),
                                          child: Padding(
                                            padding: const EdgeInsets.only(left: 50,right:50,top:50),
-                                           child: TextField( 
-                                               textInputAction: TextInputAction.next,
-                                             controller: mobileofficeaddress,
-                                             decoration: InputDecoration(
-                                               hintText: 'Address',
-                                               suffixIcon: Icon(Icons.edit),
-                                               fillColor: Color(0xffF9F8FD),
-                                               border: OutlineInputBorder(
+                                           child: Container(
+                                            height: 35,
+                                             child: TextField( 
+                                                 textInputAction: TextInputAction.next,
+                                               controller: mobileofficeaddress,
+                                               decoration: InputDecoration(
+                                                 hintText: 'Address',
+                                                 fillColor: Color(0xffF9F8FD),
+                                                 border: OutlineInputBorder(
+                                                                          
+                                                 )
+                                               ),
                                                                         
-                                               )
                                              ),
-                                                                      
                                            ),
                                          ),
                                        ),
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
-                                  child: TextField( 
-                                       textInputAction: TextInputAction.next,
-                                        controller: mobileofficecity,
-                                        decoration: InputDecoration(
-                                          hintText: 'City',
-                                          suffixIcon: Icon(Icons.edit),
-                                          fillColor: Color(0xffF9F8FD),
-                                          border: OutlineInputBorder(
-                                   
-                                          )
+                                  child: Container(
+                                    height: 35,
+                                    child: TextField( 
+                                         textInputAction: TextInputAction.next,
+                                          controller: mobileofficecity,
+                                          decoration: InputDecoration(
+                                            hintText: 'City',
+                                            fillColor: Color(0xffF9F8FD),
+                                            border: OutlineInputBorder(
+                                     
+                                            )
+                                          ),
+                                                                   
                                         ),
-                                                                 
-                                      ),
+                                  ),
                                 ),
                                     ],),
                                       Padding(
-                                        padding: const EdgeInsets.only(left:50,top:50),
-                                        child: Column(
-                                          
-                                          children: [
-                                            Container(
-                                              width:MediaQuery.of(context).size.width*0.75,
-                                              child: TextField(
-                                                 
-                                                    controller: mobileofficestate,
-                                                    decoration: InputDecoration(
-                                                      hintText: 'State',
-                                                      suffixIcon: Icon(Icons.edit),
-                                                      fillColor: Color(0xffF9F8FD),
-                                                      border: OutlineInputBorder(
-                                               
-                                                      )
-                                                    ),
-                                                                             
-                                                  ),
-                                            ),
-                                          ],
+                                        padding: const EdgeInsets.only(left:50,top:50,right: 50),
+                                        child: Container(
+                                          height: 35,
+                                          child: TextField(
+                                             
+                                                controller: mobileofficestate,
+                                                decoration: InputDecoration(
+                                                  hintText: 'State',
+  
+                                                  fillColor: Color(0xffF9F8FD),
+                                                  border: OutlineInputBorder(
+                                           
+                                                  )
+                                                ),
+                                                                         
+                                              ),
+                                        ),
+                                      ),
+                                                                            Padding(
+                                        padding: const EdgeInsets.only(left:50,top:50,right: 50),
+                                        child: Container(
+                                          height: 35,
+                                          child: TextField(
+                                             
+                                                controller: mobileproofidController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Proof Id',
+                                                  fillColor: Color(0xffF9F8FD),
+                                                  border: OutlineInputBorder(
+                                           
+                                                  )
+                                                ),
+                                                                         
+                                              ),
+                                        ),
+                                      ),
+                                                                             Padding(
+                                        padding: const EdgeInsets.only(left:50,top:50,right: 50),
+                                        child: Container(
+                                          height: 35,
+                                          child: TextField(
+                                             
+                                                controller: mobilepincodeController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Pincode',
+                                                  fillColor: Color(0xffF9F8FD),
+                                                  border: OutlineInputBorder(
+                                           
+                                                  )
+                                                ),
+                                                                         
+                                              ),
                                         ),
                                       ),
                                                                          Obx(
@@ -1341,48 +1383,51 @@ dynamic panimage;
                                      padding: const EdgeInsets.only(),
                                      child: Padding(
                                        padding: const EdgeInsets.only(left: 50,right:50,top:50),
-                                       child: TextField( 
-                                         textInputAction: TextInputAction.next,
-                                         controller: mobileresidoornumberController,
-                                         decoration: InputDecoration(
-                                            
-                                           hintText: 'Door Number',
-                                           suffixIcon: Icon(Icons.edit),
-                                           fillColor: Color(0xffF9F8FD),
-                                           border: OutlineInputBorder(
+                                       child: Container(
+                                        height: 35,
+                                         child: TextField( 
+                                           textInputAction: TextInputAction.next,
+                                           controller: mobileresidoornumberController,
+                                           decoration: InputDecoration(
+                                              
+                                             hintText: 'Door Number',
+                                             fillColor: Color(0xffF9F8FD),
+                                             border: OutlineInputBorder(
+                                                                      
+                                             )
+                                           ),
                                                                     
-                                           )
                                          ),
-                                                                  
                                        ),
                                      ),
                                    ),
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
-                                  child: TextField( 
-                                     textInputAction: TextInputAction.next,
-                                    controller: mobileresibnameController,
-                                    decoration: InputDecoration(
-                                      hintText: 'Building Number',
-                                      suffixIcon: Icon(Icons.edit),
-                                      fillColor: Color(0xffF9F8FD),
-                                      border: OutlineInputBorder(
-                                   
-                                      )
+                                  child: Container(
+                                    height: 35,
+                                    child: TextField( 
+                                       textInputAction: TextInputAction.next,
+                                      controller: mobileresibnameController,
+                                      decoration: InputDecoration(
+                                        hintText: 'Building Number',
+                                        fillColor: Color(0xffF9F8FD),
+                                        border: OutlineInputBorder(
+                                     
+                                        )
+                                      ),
+                                                               
                                     ),
-                                                             
                                   ),
                                 ),
                                      Padding(
-                                       padding: const EdgeInsets.only(),
-                                       child: Padding(
-                                         padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                       padding: const EdgeInsets.only(left: 50,right:50,top:50),
+                                       child: Container(
+                                        height: 35,
                                          child: TextField( 
                                            textInputAction: TextInputAction.next,
                                            controller: mobileresiaddressController,
                                            decoration: InputDecoration(
                                              hintText: 'Address',
-                                             suffixIcon: Icon(Icons.edit),
                                              fillColor: Color(0xffF9F8FD),
                                              border: OutlineInputBorder(
                                                                       
@@ -1394,73 +1439,73 @@ dynamic panimage;
                                      ),
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
-                                  child: TextField( 
-                                     textInputAction: TextInputAction.next,
-                                      controller: mobileresibcityController,
-                                      decoration: InputDecoration(
-                                        hintText: 'City',
-                                        suffixIcon: Icon(Icons.edit),
-                                        fillColor: Color(0xffF9F8FD),
-                                        border: OutlineInputBorder(
-                                   
-                                        )
+                                  child: Container(
+                                    height: 35,
+                                    child: TextField( 
+                                       textInputAction: TextInputAction.next,
+                                        controller: mobileresibcityController,
+                                        decoration: InputDecoration(
+                                          hintText: 'City',
+                                          fillColor: Color(0xffF9F8FD),
+                                          border: OutlineInputBorder(
+                                     
+                                          )
+                                        ),
+                                                                 
                                       ),
-                                                               
-                                    ),
+                                  ),
                                 ),
                                      Padding(
                                        padding: const EdgeInsets.only(left: 50,right:50,top:50),
-                                       child: TextField( 
-                                         textInputAction: TextInputAction.next,
-                                         controller: mobileresistateController,
-                                         decoration: InputDecoration(
-                                           hintText: 'State',
-                                           suffixIcon: Icon(Icons.edit),
-                                           fillColor: Color(0xffF9F8FD),
-                                           border: OutlineInputBorder(
+                                       child: Container(
+                                        height: 35,
+                                         child: TextField( 
+                                           textInputAction: TextInputAction.next,
+                                           controller: mobileresistateController,
+                                           decoration: InputDecoration(
+                                             hintText: 'State',
+                                             fillColor: Color(0xffF9F8FD),
+                                             border: OutlineInputBorder(
+                                                                      
+                                             )
+                                           ),
                                                                     
-                                           )
                                          ),
-                                                                  
                                        ),
                                      ),
                                 Padding(
                                   padding: const EdgeInsets.only(left:50,right:50,top:50),
-                                  child: TextField( 
-                                     textInputAction: TextInputAction.next,
-                                      controller: mobileresiperidController,
-                                      decoration: InputDecoration(
-                                        hintText: 'Personal Id',
-                                        suffixIcon: Icon(Icons.upload),
-                                        fillColor: Color(0xffF9F8FD),
-                                        border: OutlineInputBorder(
-                                   
-                                        )
+                                  child: Container(
+                                    height: 35,
+                                    child: TextField( 
+                                       textInputAction: TextInputAction.next,
+                                        controller: mobileresiperidController,
+                                        decoration: InputDecoration(
+                                          hintText: 'Proof Id No',
+                                          fillColor: Color(0xffF9F8FD),
+                                          border: OutlineInputBorder(
+                                     
+                                          )
+                                        ),
+                                                                 
                                       ),
-                                                               
-                                    ),
+                                  ),
                                 ),
                                      Padding(
-                                        padding: const EdgeInsets.only(left:50,top:50),
-                                        child: Column(
-                                          
-                                          children: [
-                                            Container(
-                                              width:MediaQuery.of(context).size.width*0.75,
-                                              child: TextField( 
-                                                    controller: mobileresiadaridController,
-                                                    decoration: InputDecoration(
-                                                      hintText: 'Adhaar Id',
-                                                      suffixIcon: Icon(Icons.upload),
-                                                      fillColor: Color(0xffF9F8FD),
-                                                      border: OutlineInputBorder(
-                                               
-                                                      )
-                                                    ),
-                                                                             
-                                                  ),
-                                            ),
-                                          ],
+                                        padding: const EdgeInsets.only(left:50,top:50,right: 50),
+                                        child: Container(
+                                             height: 35,
+                                          child: TextField( 
+                                                controller: mobileresiadaridController,
+                                                decoration: InputDecoration(
+                                                  hintText: 'Pincode',
+                                                  fillColor: Color(0xffF9F8FD),
+                                                  border: OutlineInputBorder(
+                                           
+                                                  )
+                                                ),
+                                                                         
+                                              ),
                                         ),
                                       ),
                                            Obx(

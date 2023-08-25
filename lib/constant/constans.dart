@@ -34,7 +34,7 @@ var primarysmallFont = TextStyle(color: kblue, fontSize: 10);
 var primarymediumFont =
     TextStyle(color: kblue, fontSize: 17, fontWeight: FontWeight.w900);
 var displayfont =
-    GoogleFonts.lato(fontSize: 80, fontWeight: FontWeight.bold, color: kwhite);
+    GoogleFonts.lato(fontSize: 40, fontWeight: FontWeight.bold, color: kwhite);
 
 var kcontainer = BoxDecoration(
   color: kwhite,

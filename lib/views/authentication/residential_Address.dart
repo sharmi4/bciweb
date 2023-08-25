@@ -204,6 +204,7 @@ class _ResidentialAddressState extends State<ResidentialAddress> {
                           aadhrId: '5678907645');
                           CreateAccountModel tempcreateaccountModel=
                           CreateAccountModel(
+                            referalcode:  widget.memberRegisterModel!.referalcode,
                             name:widget.memberRegisterModel!.name , 
                             email: widget.memberRegisterModel!.email, 
                             mobilenumber: widget.memberRegisterModel!.mobilenumber,

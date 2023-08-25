@@ -1,4 +1,5 @@
 
+import 'package:bciweb/views/members/homescreens/wallet_deposit_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:bciweb/constant/constans.dart';
@@ -641,6 +642,51 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
+                    Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            reghomeController.proindex(9);
+                            reghomeController.update();
+                           
+                            //Get.offAll(LandingScreen());
+                          },
+                          child: Container(
+                            width: 195,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: BorderDirectional(
+                                    bottom: BorderSide(color: kwhite)),
+                                color: reghomeController.proindex == 9
+                                    ? kblue
+                                    : kyellow),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/cirlewallet.png',
+                                    height: 20,
+                                    fit: BoxFit.fitHeight,
+                                    color: kwhite,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 11),
+                                    child: Text(
+                                      'Wallet',
+                                      style: TextStyle(color: kwhite),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
 
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
@@ -648,7 +694,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       children: [
                         InkWell(
                           onTap: () {
-                            reghomeController.proindex(9);
+                            reghomeController.proindex(10);
                             reghomeController.update();
                             showDialog(
                                 context: context,
@@ -663,7 +709,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             decoration: BoxDecoration(
                                 border: BorderDirectional(
                                     bottom: BorderSide(color: kwhite)),
-                                color: reghomeController.proindex == 9
+                                color: reghomeController.proindex == 10
                                     ? kblue
                                     : kyellow),
                             child: Padding(
@@ -1221,59 +1267,59 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   )
                                 ],
                               ),
-                               Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                   Container(
-                          height: 100, 
-                          width: 100, 
-                          child: authprofileController.profileData.first.panProof.isEmpty ?
-                          panimage != null? Image.memory(panimage): Container(
-                            height: 150,
-                            width: 150,
-                             child:GestureDetector(onTap: ()async{
-                                       PickedFile? pickedFile =
-                                              await ImagePicker()
-                                                  .getImage(
-                                            source: ImageSource.gallery,
-                                          );
+                          //      Row(
+                          //       mainAxisAlignment:
+                          //           MainAxisAlignment.spaceAround,
+                          //       children: [
+                          //          Container(
+                          // height: 100, 
+                          // width: 100, 
+                          // child: authprofileController.profileData.first.panProof.isEmpty ?
+                          // panimage != null? Image.memory(panimage): Container(
+                          //   height: 150,
+                          //   width: 150,
+                          //    child:GestureDetector(onTap: ()async{
+                          //              PickedFile? pickedFile =
+                          //                     await ImagePicker()
+                          //                         .getImage(
+                          //                   source: ImageSource.gallery,
+                          //                 );
                                   
-                                          var tempCont = await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            panimage = tempCont;
-                                          });
+                          //                 var tempCont = await pickedFile!.readAsBytes();
+                          //                 setState(() {
+                          //                   panimage = tempCont;
+                          //                 });
                                     
-                                      }, child: Text('Upload Pan Card'),),
+                          //             }, child: Text('Upload Pan Card'),),
                                 
-                          ) : Image.network(authprofileController.profileData.first.panProof)),
+                          // ) : Image.network(authprofileController.profileData.first.panProof)),
 
-                                   Container(
-                          height: 100, 
-                          width: 100, 
-                          child: authprofileController.profileData.first.adharProof.isEmpty ?
-                          aadharimage != null? Image.memory(aadharimage!): Container(
-                            height: 150,
-                            width: 150,
-                             child:GestureDetector(onTap: ()async{
-                                       PickedFile? pickedFile =
-                                              await ImagePicker()
-                                                  .getImage(
-                                            source: ImageSource.gallery,
-                                          );
+                          //          Container(
+                          // height: 100, 
+                          // width: 100, 
+                          // child: authprofileController.profileData.first.adharProof.isEmpty ?
+                          // aadharimage != null? Image.memory(aadharimage!): Container(
+                          //   height: 150,
+                          //   width: 150,
+                          //    child:GestureDetector(onTap: ()async{
+                          //              PickedFile? pickedFile =
+                          //                     await ImagePicker()
+                          //                         .getImage(
+                          //                   source: ImageSource.gallery,
+                          //                 );
                                   
-                                          var tempCont = await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            aadharimage = tempCont;
-                                          });
+                          //                 var tempCont = await pickedFile!.readAsBytes();
+                          //                 setState(() {
+                          //                   aadharimage = tempCont;
+                          //                 });
                                     
-                                      }, child: Text('Upload Aadhar Card'),),
+                          //             }, child: Text('Upload Aadhar Card'),),
                                 
-                          ) : Image.network(authprofileController.profileData.first.adharProof)),
+                          // ) : Image.network(authprofileController.profileData.first.adharProof)),
                                    
                                  
-                                ],
-                              ),
+                          //       ],
+                          //     ),
                               // Padding(
                               //   padding: const EdgeInsets.only(left: 40),
                               //   child: Row(
@@ -2061,42 +2107,52 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           blurRadius: 5,
                                           color: kgrey)
                                     ]),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 30),
-                                      child: Text(
-                                        'Wallet Amount',
-                                        style: TextStyle(
-                                            fontSize: 17, color: kblue),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 580),
-                                      child: apisettingController
-                                              .getWalletData.isEmpty
-                                          ? Text(
-                                              '',
-                                              textAlign: TextAlign.end,
-                                              style: TextStyle(
-                                                fontSize: 17,
-                                                color: kblue,
-                                              ),
-                                            )
-                                          : Text(''),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 13),
-                                      child: CircleAvatar(
-                                        radius: 15,
-                                        backgroundColor: kblue,
-                                        child: Icon(
-                                          Icons.chevron_right,
-                                          color: kwhite,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left:10),
+                                  child: Row(
+                                    children: [
+                                      Image(
+                                                            image: AssetImage(
+                                                              'assets/images/cirlewallet.png',
+                                                            ),
+                                                            fit: BoxFit.fitHeight,
+                                                            height: 30,
+                                                          ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 30),
+                                        child: Text(
+                                          'Wallet Amount',
+                                          style: TextStyle(
+                                              fontSize: 17, color: kblue),
                                         ),
                                       ),
-                                    )
-                                  ],
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 580),
+                                        child: apisettingController
+                                                .getWalletData.isEmpty
+                                            ? Text(
+                                                '',
+                                                textAlign: TextAlign.end,
+                                                style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: kblue,
+                                                ),
+                                              )
+                                            : Text(''),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 13),
+                                        child: CircleAvatar(
+                                          radius: 15,
+                                          backgroundColor: kblue,
+                                          child: Icon(
+                                            Icons.chevron_right,
+                                            color: kwhite,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -4554,8 +4610,443 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                   ),
                 ),
               ),
-          ]),
+              if(reghomeController.proindex.value==9)
+              Padding(
+                padding: const EdgeInsets.only(top:0),
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 195,
+                  child: Column(
+                    children: [
+                      Container(
+                        child: Stack(
+                          children: [
+                            Image.asset('assets/images/walletbackgroundimage.png'),
+                            Positioned(
+                              top:0,
+                              left:0,
+                              right:0,
+                              bottom:0,
+                              child: Center(
+                                child: Text('Wallet Us',
+                                   style: displayfont,
+                                                          
+                                ),
+                              ))
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:40,left:50),
+                        child: Row(
+                          children: [
+                            Text('Total Wallet',
+                            style: TextStyle(
+                              fontSize: 22,
+                              fontWeight: FontWeight.bold,
+                              color:kblue
+                            ),),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top:30,left:50),
+                        child: Row(
+                          children: [
+                            Container(
+                              height: MediaQuery.of(context).size.height*0.29,
+                              width: MediaQuery.of(context).size.width*0.65,
+                              decoration: BoxDecoration(
+                               color:korange,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  blurRadius: 3,
+                                  offset: Offset(0.0,0.75),
+                                  color:kyellow,
 
+                                )
+                              ]
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.only(left:20),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Total Wallet Amounts',
+                                    style:TextStyle(
+                                      color: Colors.white.withOpacity(0.91),
+                                    fontSize: 23
+                                    )
+                                    ),
+                                    Text('₹1990.00',
+                                    style:TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color:Colors.white
+                                    )),
+                                    Text('Last Transaction Amount ₹1.00',
+                                    style:TextStyle(
+                                      fontSize: 23,
+                                      color: Colors.white.withOpacity(0.91)
+                                    ))
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left:20),
+                              child: Container(
+                                height: MediaQuery.of(context).size.height*0.29,
+                                width:MediaQuery.of(context).size.width*0.11,
+                                decoration: BoxDecoration(
+                                  color:kyellow,
+                                  border: Border.all(
+                                    color:korange
+                                  )
+                                ),
+                                child:Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children:[
+                                    InkWell(
+                                      onTap: (){
+                                        Get.to(WalletDepositScreen());
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 29,
+                                        backgroundColor: kwhite.withOpacity(0.8),
+                                        child: Image.asset('assets/icons/depositwalleticon.png',
+                                        height: 30,fit:BoxFit.fitHeight,)),
+                                    ),
+                                    Text('Deposit \nCash',
+                                    style: TextStyle(
+                                      color:kwhite,
+                                      fontSize: 20
+                                    ),)
+                                  ]
+                                )
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left:50,right:42,top:50),
+                        child: Container(
+                          height:550,
+                          
+                          decoration:BoxDecoration(
+                            color:kwhite,
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                offset: Offset(0.0, 0.75),
+                                blurRadius: 3,
+                                color:kgrey
+                              )
+                            ]
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children:[
+                              Padding(
+                                padding: const EdgeInsets.only(left:20,right:20,top:0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Transaction History',
+                                    style:TextStyle(
+                                      fontSize: 20,
+                                      color:kblue
+                                    )),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top:30),
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        decoration: BoxDecoration(
+                                          color:kwhite.withOpacity(0.6),
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              offset: Offset(0.0,0.5),
+                                               blurRadius: 1,
+                                               color:kgrey
+                                            )
+                                          ],
+                                          borderRadius: BorderRadius.circular(4)
+                                        ),
+                                        child: Center(
+                                          child: Image.asset('assets/icons/historywalleticon.png',
+                                          height: 30,fit:BoxFit.fitHeight,),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:20),
+                                child: Row(
+                                  children:[
+                                    Text('Today Transaction',)
+                                  ]
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:2),
+                                child: Divider(
+                                  color: kblue,
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Luck Draw registration...',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('-₹4500',
+                                        style:TextStyle(
+                                          color:Colors.red,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Divider(),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Wallet Using Withdraw Atm',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('₹5000',
+                                        style:TextStyle(
+                                          color:kblue,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
+                                ),
+                              ),
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,top:10),
+                                 child: Row(
+                                  children: [
+                                    Text('Yesterday Transaction')
+                                  ],
+                                 ),
+                               ),
+                                Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Money sent to Ankit',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('-₹4500',
+                                        style:TextStyle(
+                                           color:Colors.red,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Money Received from Tom',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('+₹500',
+                                        style:TextStyle(
+                                           color:kblue,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ]
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              )
+          ]),
+          ksizedbox20,
           RegisterCommonBottom()
         ]),
       ),

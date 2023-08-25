@@ -24,6 +24,7 @@ class CreateAccountModel {
   String roleId;
   String password;
   String passwordConfirmation;
+  dynamic referalcode;
 
   CreateAccountModel({
     required this.name,
@@ -40,6 +41,7 @@ class CreateAccountModel {
     required this.password,
     required this.passwordConfirmation,
     required this.roleId,
+    required this.referalcode,
   });
 
 //   factory  CreateAccountModel.fromJson(Map<String,dynamic>json)=>

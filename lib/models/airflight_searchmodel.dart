@@ -12,7 +12,7 @@ class AirflightSearchModel {
     ResponseHeader responseHeader;
     String searchKey;
     List<TripDetail> tripDetails;
-
+ 
     AirflightSearchModel({
         required this.responseHeader,
         required this.searchKey,

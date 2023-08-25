@@ -104,9 +104,9 @@ class HottelbookingContainer extends StatelessWidget {
                     Text('Saving ₹ 1,009').text.white.make(),
                   
                      Padding(
-                       padding: const EdgeInsets.only(top: 1),
+                       padding: const EdgeInsets.only(top: 3.5),
                        child: Container(
-                        height: 22,
+                        height: 18,
                         width: 90,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(5),
