@@ -648,73 +648,249 @@ class _HolidayHistoryState extends State<HolidayHistory> {
     super.initState();
     holidayPackageController.enquiryList();
   }
+   // ignore: avoid_types_as_parameter_names
+   Future<void> tripdialogeBuilder(BuildContext context, List<String>img, String tit, String date,
+    String amt,String adult,
+    String vistpalce) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context, ) {
+        return AlertDialog(
+          title: Container(
+            height: 500,
+            width: 500,
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                       Row(
+                         children: [
+                          Icon(Icons.arrow_back_ios,color: kblue,size: 15,),
+                          const SizedBox(width: 10,),
+                           Text(
+                            'Tourist Details',
+                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      ),
+                         ],
+                       ),
+                       Row(
+                         children: [
+                          Image.network(img.last,height: 100,width: 150, fit: BoxFit.cover,),
+                        
+                         ],
+                       ),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         Text(
+                            'Place',
+                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      ),
+                           Text(
+                            tit,
+                            style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
+                      ),
+                         ],
+                       ),
+                        Divider(thickness: 1,),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                        Text('Date',
+                        style:TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold)
 
+                        ),
+
+                         holidayPackageController.enquiryData.isNotEmpty?Text(
+                            ' ${formatDate(holidayPackageController.enquiryData.first.createdAt,[dd,'-',mm,'-',yyyy])}',
+                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      ):Text(''),
+                     
+                          
+                         ],
+                       ),
+                       const Divider(thickness: 1,),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         Text(
+                            'Trip',
+                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      ),
+                              holidayPackageController.enquiryData.isNotEmpty?Container(
+                            
+                                child: Text(
+                                holidayPackageController.enquiryData.first.packageDetails.placeToVisit,
+                              
+                                style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500,
+                                
+                                                      
+                                                   ),
+                                                         ),
+                              ):Text(''),
+                         ],
+                       ),
+                       const Divider(thickness: 1,),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         Text(
+                            'Country',
+                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      ),
+                           Text(
+                            'India',
+                            style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
+                      ),
+                         ],
+                       ),
+                       const Divider(thickness: 1,),
+                       Row(
+                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         Text(
+                            'Adult',
+                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      ),
+                           Text(
+                            '10',
+                            style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
+                      ),
+                         ],
+                       ),
+                      //  const Divider(thickness: 1,),
+                      //  Row(
+                      //    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //    children: [
+                      //    Text(
+                      //       'Quantity',
+                      //       style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
+                      // ),
+                      //      Text(
+                      //       qty,
+                      //       style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
+                      // ),
+                      //    ],
+                      //  ),
+                       const Divider(thickness: 1,),
+                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                         children: [
+                         const Text(
+                            'Price',
+                            style: TextStyle(fontSize: 16, color: Colors.green,fontWeight: FontWeight.bold),
+                      ),
+                           Text(
+                            amt,
+                            style:const TextStyle(fontSize: 15, color: Colors.green,fontWeight: FontWeight.w500),
+                      ),
+                         ],
+                       ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GetBuilder<HolidayPackageController>(builder: (_) {
-          return GridView.builder(
-             itemCount: holidayPackageController.enquiryData.length,
-              shrinkWrap: true,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  childAspectRatio: 5,
-                  crossAxisCount: 2),
-              itemBuilder: ((context, index) {
-              return  Container(
-                  height: 127,
-                  width: 400,
-                  color: kwhite,
-                  child: Row(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Image.network(  holidayPackageController.enquiryData[index].packageDetails.image.first,),
+    return Padding(
+      padding: const EdgeInsets.only(left: 10,right:10),
+      child: Column(
+        children: [
+          GetBuilder<HolidayPackageController>(builder: (_) {
+            return GridView.builder(
+               itemCount: holidayPackageController.enquiryData.length,
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisSpacing: 20,
+                                        mainAxisSpacing: 20,
+                    childAspectRatio: 4,
+                    crossAxisCount: 2),
+                itemBuilder: ((context, index) {
+                return  InkWell(
+                  onTap: (){
+                  tripdialogeBuilder(context,
+                   holidayPackageController.enquiryData[index].packageDetails.image,
+                    holidayPackageController.enquiryData[index].packageDetails.title, 
+                    holidayPackageController.enquiryData[index].packageDetails.createdAt.toString(), 
+                    holidayPackageController.enquiryData[index].packageDetails.amount,
+                     holidayPackageController.enquiryData[index].adultCount,
+                     holidayPackageController.enquiryData[index].packageDetails.placeToVisit,
+                    );
+                  },
+                  child: Container(
+                      height:MediaQuery.of(context).size.height,
+                      width: 280,
+                      decoration: BoxDecoration(
+                       color: kwhite,
+                       borderRadius: BorderRadius.circular(10),
+                       boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          offset: Offset(0.0, 0.75),
+                          blurRadius: 5,
+                          color: kgrey
+                        )
+                       ]
                       ),
-                      kwidth10,
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      child: Row(
                         children: [
-                          ksizedbox10,
-                          Text(
-                          holidayPackageController.enquiryData[index].packageDetails.title,
-                            style: TextStyle(fontSize: 21),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(holidayPackageController.enquiryData[index].packageDetails.image.last,)),
                           ),
-                          Text(
-                           '${holidayPackageController.enquiryData[index].packageDetails.location}',
-                            style: TextStyle(color: kblue),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          kwidth10,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                           
+                              ksizedbox10,
                               Text(
-                                'Check in${ formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [dd,"-",mm,'-',yyyy])}',
+                              holidayPackageController.enquiryData[index].packageDetails.title,
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              Text(
+                               '${holidayPackageController.enquiryData[index].packageDetails.location}',
                                 style: TextStyle(color: kblue),
                               ),
-                              Text( 'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [dd,"-",mm,'-',yyyy])}'),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                               
+                                  Text(
+                                    'Check in${ formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [dd,"-",mm,'-',yyyy])}',
+                                    style: TextStyle(color: kblue),
+                                    
+                                  ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Text( 'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [dd,"-",mm,'-',yyyy])}',
+                                   style: TextStyle(color: kblue),),
+                                ],
+                              ),
+                              Text(
+                                'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
+                                style: TextStyle(color: kblue),
+                              ),
+                              Text(
+                                'Ac Rooms',
+                                style: TextStyle(color: kblue),
+                              ),
+                              ksizedbox20
                             ],
-                          ),
-                          Text(
-                            'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
-                            style: TextStyle(color: kblue),
-                          ),
-                          Text(
-                            'Ac Rooms',
-                            style: TextStyle(color: kblue),
-                          ),
-                          ksizedbox10
+                          )
                         ],
-                      )
-                    ],
-                  ),
+                      ),
+                    ),
                 );
-              }));
-        })
-      ],
+                }));
+          })
+        ],
+      ),
     );
   }
 }
@@ -1086,4 +1262,5 @@ class _index4State extends State<index4> {
       ksizedbox30,
     ]);
   }
+ 
 }
