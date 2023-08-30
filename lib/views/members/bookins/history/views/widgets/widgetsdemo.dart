@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:date_format/date_format.dart';
 import '../../../../../../constant/constans.dart';
 import '../../../../../../controller/api_flightcontroller/api_flight_Controller.dart';
 import '../../../../../../controller/holiday_package_controller.dart';
@@ -663,7 +663,7 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                   childAspectRatio: 5,
                   crossAxisCount: 2),
               itemBuilder: ((context, index) {
-                Container(
+              return  Container(
                   height: 127,
                   width: 400,
                   color: kwhite,
@@ -687,12 +687,19 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                            '${holidayPackageController.enquiryData[index].packageDetails.location}',
                             style: TextStyle(color: kblue),
                           ),
-                          Text(
-                            'Check in : 03:44PM Check Out 03:43 PM',
-                            style: TextStyle(color: kblue),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                           
+                              Text(
+                                'Check in${ formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [dd,"-",mm,'-',yyyy])}',
+                                style: TextStyle(color: kblue),
+                              ),
+                              Text( 'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [dd,"-",mm,'-',yyyy])}'),
+                            ],
                           ),
                           Text(
-                            'Total Person : 5 Members',
+                            'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
                             style: TextStyle(color: kblue),
                           ),
                           Text(
