@@ -17,7 +17,7 @@ class HottelbookingContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Row(
+      child: Row( 
         children: [
           kwidth10,
           ClipRRect(

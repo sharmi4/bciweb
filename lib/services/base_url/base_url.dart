@@ -191,4 +191,10 @@ abstract class BaseApiService {
 
      //fcmtoken
    final String fcmtokenURL = 'https://bci.batechnology.in/api/auth/fcm-token';  
+
+
+   //hotel search
+  final String searchHotelApiUrl =
+      "https://bci.batechnology.in/api/auth/search_hotels";
+
 }

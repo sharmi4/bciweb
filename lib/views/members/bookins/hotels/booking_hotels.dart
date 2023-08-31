@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../constant/constans.dart';
-import '../../../../controller/hotel_controller/hotel_destinationcontroller.dart';
+import '../../../../controller/hotel_controller/hotel_controller.dart';
 import '../../../../models/hotel_model/hoteldestination_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -16,7 +16,8 @@ import '../bus/Bus_booking_main.dart';
 import '../flight/booking_flight.dart';
 import '../history/views/history.dart';
 import '../trip/trip_booking.dart';
-
+import 'package:date_format/date_format.dart';
+import 'package:intl/intl.dart';
 class BookingHotels extends StatefulWidget {
   const BookingHotels({super.key});
 
@@ -25,12 +26,30 @@ class BookingHotels extends StatefulWidget {
 }
 
 class _BookingHotelsState extends State<BookingHotels> {
+    Future pickDateRange() async {
+    DateTimeRange? newDateRange = await showDateRangePicker(
+      context: context,
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2030),
+      initialDateRange: daterange,
+    );
+
+    if (newDateRange == null) return;
+
+    setState(() => daterange = newDateRange);
+  }
   
-  get isChecked => null;
+   DateTimeRange daterange = DateTimeRange(
+      start: DateTime.now(),
+      end: DateTime.now().add(Duration(days: 1)));
+
 var destinationController = TextEditingController();
-final hotelcityController = Get.find<HotelDestinationController>();
+final hotelcityController = Get.find<HotelController>();
   @override
   Widget build(BuildContext context) {
+     final start = daterange.start;
+    final end = daterange.end;
+    final diffrence = daterange.duration;
     bool isChecked = false;
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -127,9 +146,18 @@ final hotelcityController = Get.find<HotelDestinationController>();
                               color: kblue,
                               borderRadius: BorderRadius.circular(10)),
                         ),
-                        GetBuilder<HotelDestinationController>(
-                          builder: (context) {
+                        GetBuilder<HotelController>(
+                          builder: (_) {
                             return Container(
+                              height: 140,
+                              width: size.width * 0.8,
+                              decoration: BoxDecoration(
+                                  color: kwhite,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.zero,
+                                      bottomLeft: Radius.circular(15),
+                                      topRight: Radius.circular(15),
+                                      bottomRight: Radius.circular(15))),
                               child: Row(
                                 children: [
                                   const Spacer(),
@@ -149,7 +177,8 @@ final hotelcityController = Get.find<HotelDestinationController>();
                                                     await Future.delayed(
                                                         const Duration(
                                                             milliseconds: 200));
-                                                            hotelcityController.hoteldestination(city: hotelcityController.destinationlist.isNotEmpty?hotelcityController.destinationlist.first.destination:'');
+                                                            hotelcityController.hoteldestination(
+                                                              city: value.toString());
 
                                                   }
 
@@ -158,12 +187,16 @@ final hotelcityController = Get.find<HotelDestinationController>();
                                                 controller: destinationController,
                                                 decoration: const InputDecoration(
                                                     border: OutlineInputBorder(),
-                                                    hintText: 'Enter Destination'),
+                                                    hintText: 'Enter Destination',
+                                                    hintStyle: TextStyle(
+                                                      fontSize: 14
+                                                    )),
+                                                    
                                               ),
                                               suggestionsCallback:
                                                   (String pattern) async {
                                                 return hotelcityController.destinationlist
-                                                    .where((item) => item.cityid
+                                                    .where((item) => item.destination
                                                         .toLowerCase()
                                                         .startsWith(
                                                             pattern.toLowerCase()))
@@ -172,7 +205,7 @@ final hotelcityController = Get.find<HotelDestinationController>();
                                               itemBuilder: (context,
                                                   HotelDestinationModel citymodel) {
                                                 return ListTile(
-                                                  title: Text(citymodel.cityid),
+                                                  title: Text(citymodel.destination),
                                                 );
                                               },
                                               itemSeparatorBuilder:
@@ -183,39 +216,51 @@ final hotelcityController = Get.find<HotelDestinationController>();
                                                   (HotelDestinationModel citymodel) {
                                                 print("destination selected");
                                                 destinationController.text =
-                                                    citymodel.cityid;
+                                                    citymodel.destination;
                                                 hotelcityController
-                                                    .cityid(citymodel.cityid);
+                                                    .cityid(citymodel.destination);
                                                 hotelcityController
-                                                    .cityid(citymodel.cityid);
+                                                    .cityid(citymodel.destination);
                                               },
                                             ),
                                           ),
                                   Spacer(),
-                                  Container(
-                                    height: size.height * 0.14,
-                                    width: size.width * 0.09,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text('CHECK-IN', style: TextStyle(
-                                            fontSize: 13
-                                          )),
-                                          Spacer(),
-                                          Text('6 May23', style: primarymediumFont),
-                                          Spacer(),
-                                          //       Text('Saturday', style: primarysmallFont),
-                                        ],
+                                  InkWell(
+                                    onTap: () {
+                                      pickDateRange();
+                                    },
+                                    child: Container(
+                                      height: size.height * 0.14,
+                                      width: size.width * 0.09,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text('CHECK-IN', style: TextStyle(
+                                              fontSize: 13
+                                            )),
+                                            Spacer(),
+                                              Text(
+                                                            DateFormat('dd-MM-yyyy').format(start),
+                                                            style: TextStyle(color: kblue, fontSize: 14),
+                                                          ),
+                                                           Spacer(),
+                                                       
+                                  
+                                            //Text('6 May23', style: primarymediumFont),
+                                            Spacer(),
+                                            //       Text('Saturday', style: primarysmallFont),
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(7),
-                                      border: Border.all(
-                                        color: kblue,
-                                        width: 1.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        border: Border.all(
+                                          color: kblue,
+                                          width: 1.0,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -234,7 +279,10 @@ final hotelcityController = Get.find<HotelDestinationController>();
                                                 fontSize: 13
                                               )),
                                           Spacer(),
-                                          Text('6 May23', style: primarymediumFont),
+                                              Text(
+                                                            DateFormat('dd-MM-yyyy').format(end),
+                                                            style: TextStyle(color: kblue, fontSize: 14),
+                                                          ),
                                           Spacer(),
                                           //     Text('Saturday', style: primarysmallFont),
                                         ],
@@ -248,76 +296,177 @@ final hotelcityController = Get.find<HotelDestinationController>();
                                       ),
                                     ),
                                   ),
+
                                   Spacer(),
-                                  Container(
-                                    height: size.height * 0.15,
-                                    width: size.width * 0.15,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text('ROOMS & GUESTS',
-                                              style: TextStyle(
-                                                fontSize: 13
-                                              )),
-                                          Spacer(),
-                                          Text('1 Room 2 Adults',
-                                              style: primarymediumFont),
-                                          Spacer(),
-                                        ],
+                                  Obx(()=>
+                                   Container(
+                                      height: size.height * 0.15,
+                                      width: size.width * 0.15,
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(15.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          children: [
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text('ROOMS ',
+                                                    style: TextStyle(
+                                                      fontSize: 13
+                                                    )),
+                                                       Row(
+                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                         children: [
+                                                           InkWell(
+                                                             onTap: () {
+                                                               hotelcityController.roomno--;
+                                                                                },
+                                                                                child: const Icon(
+                                                                                             Icons.remove_circle_outline_outlined,
+                                                                                             size: 20,
+                                                                                                 )),
+                                                                                                 SizedBox(
+                                                                                                  width: 2,
+                                                                                                 ),
+                                                            Text(hotelcityController.roomno.value.toString(),
+                                                style:TextStyle(
+                                                  fontSize: 13
+                                                )),
+                                                SizedBox(
+                                                  width: 2,
+                                                ),
+                                                       InkWell(
+                                onTap: () {
+                                  hotelcityController.roomno++;
+                                },
+                                child: const Icon(
+                                  Icons.add_circle_outline_outlined,
+                                  size: 20,
+                                )),
+                                                         ],
+                                                       ),
+                                              ],
+                                            ),
+                                       Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text(' GUESTS',
+                                                    style: TextStyle(
+                                                      fontSize: 13
+                                                    )),
+                                                       Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                               children: [
+                                                 InkWell(
+                                                       onTap: () {
+                                                  hotelcityController.adult--;
+                                                                      },
+                                                                      child: const Icon(
+                                                                                   Icons.remove_circle_outline_outlined,
+                                                                                   size: 20,
+                                                                                       )),
+                                                                                       SizedBox(
+                                                                                        width: 2,
+                                                                                       ),
+                                                         Text(hotelcityController.adult.value.toString(),
+                                                style: TextStyle(
+                                                  fontSize: 14
+                                                )),
+                                                  SizedBox(
+                                                   width: 2,
+                                                   ),
+                                                 InkWell(
+                                onTap: () {
+                                  hotelcityController.adult++;
+                                },
+                                child: const Icon(
+                                  Icons.add_circle_outline_outlined,
+                                  size: 20,
+                                )),
+                                 
+                                               ],
+                                             ),
+                                              ],
+                                            ),
+                                          
+                                            
+                                        
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(7),
-                                      border: Border.all(
-                                        color: kblue,
-                                        width: 1.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        border: Border.all(
+                                          color: kblue,
+                                          width: 1.0,
+                                        ),
                                       ),
                                     ),
                                   ),
+                                  
                                   Spacer(),
-                                  Container(
-                                    height: size.height * 0.11,
-                                    width: size.width * 0.09,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(15.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Text('PRICE PER NIGHT',
-                                              style: primarysmallFont),
-                                          Spacer(),
-                                          Text('₹0-₹1500, ₹1500-',
-                                              style: primarysmallFont),
-                                          Spacer(),
-                                          //    Text('₹2500,...',
-                                          //       style: primarysmallFont),
-                                        ],
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(7),
-                                      border: Border.all(
-                                        color: kblue,
-                                        width: 1.0,
-                                      ),
-                                    ),
+                                  Obx(()=>
+                                     InkWell(
+                                    
+                                            onTap: () {
+                hotelcityController.searchHotel(
+                  child: hotelcityController.child.value.toString(),
+                  adult: hotelcityController.adult.value.toString(),
+                  checkindate: DateFormat('dd/MM/yyyy').format(start),
+                  checkoutdate: DateFormat('dd/MM/yyyy').format(end),
+                  destination: hotelcityController.hotelSearchKey.value,
+                  //  childage: hotelController.roomno.value,
+                  roomsno: hotelcityController.roomno.string,
+                  countryCode: hotelcityController.hotelsearchkeycode.value
+                );
+                                            },
+                                       child: hotelcityController.isLoading.isTrue? Container(
+                                        height: size.height * 0.11,
+                                        width: size.width * 0.09,
+                                        child:Center(
+                                          child: Text('Search',
+                                          style: TextStyle(
+                                            color: kblue,
+                                            fontSize: 14
+                                          ),),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(7),
+                                          border: Border.all(
+                                            color: kblue,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                                                         ):
+                                                                         Container(
+                                        height: size.height * 0.11,
+                                        width: size.width * 0.09,
+                                        child:Center(
+                                          child: Text('Search',
+                                          style: TextStyle(
+                                            color: kblue,
+                                            fontSize: 14
+                                          ),),
+                                        ),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(7),
+                                          border: Border.all(
+                                            color: kblue,
+                                            width: 1.0,
+                                          ),
+                                        ),
+                                                                         )
+
+                                     ),
                                   ),
+                                   ksizedbox20,
+         
                                   Spacer()
                                 ],
                               ),
-                              height: 140,
-                              width: size.width * 0.8,
-                              decoration: BoxDecoration(
-                                  color: kwhite,
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.zero,
-                                      bottomLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                      bottomRight: Radius.circular(15))),
                             );
                           }
                         ),

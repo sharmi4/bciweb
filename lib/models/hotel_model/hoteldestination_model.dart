@@ -26,12 +26,12 @@ class HotelDestinationModel {
     });
 
     factory HotelDestinationModel.fromJson(Map<String, dynamic> json) => HotelDestinationModel(
-        cityid: json["cityid"],
-        destination: json["Destination"],
-        stateprovince: json["stateprovince"],
-        stateProvinceCode: json["StateProvinceCode"],
-        country: json["country"],
-        countrycode: json["countrycode"],
+        cityid: json["cityid"]??"",
+        destination: json["Destination"]??"",
+        stateprovince: json["stateprovince"]??"",
+        stateProvinceCode: json["StateProvinceCode"]??"",
+        country:json['country']??"",
+        countrycode:json['countrycode']??"",
     );
 
     Map<String, dynamic> toJson() => {
@@ -40,6 +40,10 @@ class HotelDestinationModel {
         "stateprovince": stateprovince,
         "StateProvinceCode": stateProvinceCode,
         "country": country,
-        "countrycode": countrycode,
+        "countrycode":countrycode,
     };
 }
+
+
+
+

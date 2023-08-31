@@ -1,31 +1,31 @@
 // To parse this JSON data, do
 //
-//     final hotelsearchModel = hotelsearchModelFromJson(jsonString);
+//     final searchHotelModel = searchHotelModelFromJson(jsonString);
 
 import 'dart:convert';
 
-HotelsearchModel hotelsearchModelFromJson(String str) => HotelsearchModel.fromJson(json.decode(str));
+SearchHotelModel searchHotelModelFromJson(String str) => SearchHotelModel.fromJson(json.decode(str));
 
-String hotelsearchModelToJson(HotelsearchModel data) => json.encode(data.toJson());
+String searchHotelModelToJson(SearchHotelModel data) => json.encode(data.toJson());
 
-class HotelsearchModel {
+class SearchHotelModel {
     String userIp;
     String searchToken;
     Error error;
-    List<Result> result;
+    List<SearchHotelData> result;
 
-    HotelsearchModel({
+    SearchHotelModel({
         required this.userIp,
         required this.searchToken,
         required this.error,
         required this.result,
     });
 
-    factory HotelsearchModel.fromJson(Map<String, dynamic> json) => HotelsearchModel(
+    factory SearchHotelModel.fromJson(Map<String, dynamic> json) => SearchHotelModel(
         userIp: json["UserIp"],
         searchToken: json["Search_Token"],
         error: Error.fromJson(json["Error"]),
-        result: List<Result>.from(json["Result"].map((x) => Result.fromJson(x))),
+        result: List<SearchHotelData>.from(json["Result"].map((x) => SearchHotelData.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -56,7 +56,7 @@ class Error {
     };
 }
 
-class Result {
+class SearchHotelData {
     bool isHotDeal;
     int resultIndex;
     String hotelCode;
@@ -64,7 +64,7 @@ class Result {
     String hotelCategory;
     int starRating;
     String hotelDescription;
-    HotelPromotion hotelPromotion;
+    String hotelPromotion;
     String hotelPolicy;
     Price price;
     String hotelPicture;
@@ -77,7 +77,7 @@ class Result {
     dynamic supplierPrice;
     List<dynamic> roomDetails;
 
-    Result({
+    SearchHotelData({
         required this.isHotDeal,
         required this.resultIndex,
         required this.hotelCode,
@@ -99,7 +99,7 @@ class Result {
         required this.roomDetails,
     });
 
-    factory Result.fromJson(Map<String, dynamic> json) => Result(
+    factory SearchHotelData.fromJson(Map<String, dynamic> json) => SearchHotelData(
         isHotDeal: json["IsHotDeal"],
         resultIndex: json["ResultIndex"],
         hotelCode: json["HotelCode"],
@@ -107,7 +107,7 @@ class Result {
         hotelCategory: json["HotelCategory"],
         starRating: json["StarRating"],
         hotelDescription: json["HotelDescription"],
-        hotelPromotion: hotelPromotionValues.map[json["HotelPromotion"]]!,
+        hotelPromotion: json["HotelPromotion"],
         hotelPolicy: json["HotelPolicy"],
         price: Price.fromJson(json["Price"]),
         hotelPicture: json["HotelPicture"],
@@ -129,7 +129,7 @@ class Result {
         "HotelCategory": hotelCategory,
         "StarRating": starRating,
         "HotelDescription": hotelDescription,
-        "HotelPromotion": hotelPromotionValues.reverse[hotelPromotion],
+        "HotelPromotion": hotelPromotion,
         "HotelPolicy": hotelPolicy,
         "Price": price.toJson(),
         "HotelPicture": hotelPicture,
@@ -144,20 +144,8 @@ class Result {
     };
 }
 
-enum HotelPromotion {
-    EMPTY,
-    EXCLUSIVE_DISCOUNT_BR,
-    SPECIAL_DISCOUNT_BR
-}
-
-final hotelPromotionValues = EnumValues({
-    "": HotelPromotion.EMPTY,
-    "Exclusive discount<br/>": HotelPromotion.EXCLUSIVE_DISCOUNT_BR,
-    "Special discount<br/>": HotelPromotion.SPECIAL_DISCOUNT_BR
-});
-
 class Price {
-    CurrencyCode currencyCode;
+    String currencyCode;
     double roomPrice;
     double tax;
     int extraGuestCharge;
@@ -165,9 +153,9 @@ class Price {
     double otherCharges;
     int discount;
     double publishedPrice;
-    int publishedPriceRoundedOff;
+    double publishedPriceRoundedOff;
     double offeredPrice;
-    int offeredPriceRoundedOff;
+    double offeredPriceRoundedOff;
     double agentCommission;
     int agentMarkUp;
     double serviceTax;
@@ -200,7 +188,7 @@ class Price {
     });
 
     factory Price.fromJson(Map<String, dynamic> json) => Price(
-        currencyCode: currencyCodeValues.map[json["CurrencyCode"]]!,
+        currencyCode: json["CurrencyCode"],
         roomPrice: json["RoomPrice"]?.toDouble(),
         tax: json["Tax"]?.toDouble(),
         extraGuestCharge: json["ExtraGuestCharge"],
@@ -208,9 +196,9 @@ class Price {
         otherCharges: json["OtherCharges"]?.toDouble(),
         discount: json["Discount"],
         publishedPrice: json["PublishedPrice"]?.toDouble(),
-        publishedPriceRoundedOff: json["PublishedPriceRoundedOff"],
+        publishedPriceRoundedOff: json["PublishedPriceRoundedOff"]?.toDouble(),
         offeredPrice: json["OfferedPrice"]?.toDouble(),
-        offeredPriceRoundedOff: json["OfferedPriceRoundedOff"],
+        offeredPriceRoundedOff: json["OfferedPriceRoundedOff"]?.toDouble(),
         agentCommission: json["AgentCommission"]?.toDouble(),
         agentMarkUp: json["AgentMarkUp"],
         serviceTax: json["ServiceTax"]?.toDouble(),
@@ -222,7 +210,7 @@ class Price {
     );
 
     Map<String, dynamic> toJson() => {
-        "CurrencyCode": currencyCodeValues.reverse[currencyCode],
+        "CurrencyCode": currencyCode,
         "RoomPrice": roomPrice,
         "Tax": tax,
         "ExtraGuestCharge": extraGuestCharge,
@@ -243,14 +231,6 @@ class Price {
         "GST": gst.toJson(),
     };
 }
-
-enum CurrencyCode {
-    INR
-}
-
-final currencyCodeValues = EnumValues({
-    "INR": CurrencyCode.INR
-});
 
 class Gst {
     int cgstAmount;
@@ -298,16 +278,4 @@ class Gst {
         "SGSTRate": sgstRate,
         "TaxableAmount": taxableAmount,
     };
-}
-
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        reverseMap = map.map((k, v) => MapEntry(v, k));
-        return reverseMap;
-    }
 }

@@ -739,7 +739,7 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                             style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
                       ),
                            Text(
-                            'India',
+                            '',
                             style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
                       ),
                          ],
@@ -752,10 +752,13 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                             'Adult',
                             style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
                       ),
-                           Text(
-                            '10',
+                          holidayPackageController.enquiryData.isNotEmpty? Text(
+                            holidayPackageController.enquiryData.first.adultCount,
                             style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
-                      ),
+                      ):Text('0',
+                      style: TextStyle(
+                        fontSize: 15
+                      ),),
                          ],
                        ),
                       //  const Divider(thickness: 1,),
