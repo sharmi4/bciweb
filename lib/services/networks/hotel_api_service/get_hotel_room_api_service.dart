@@ -1,34 +1,42 @@
 import 'dart:io';
 
-
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../base_url/base_url.dart';
 
-class BusRequieyApiServices extends BaseApiService {
-  Future busRequiryApi({
-    required String refrenceNo,
-  }) async {
+class GetHotelRoomApiServices extends BaseApiService {
+  Future getHotelRoomApiServices({
+    required String userIp,
+    required String resultIndex,
+    required String hotelCode,
+    required String searchToken,
+    }) async {
     dynamic responseJson;
     try {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(busRequiryURL,
-          options: Options(
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer $authtoken'
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          data: {"booking_ref_no": refrenceNo, "imei_number": "5676757577567"});
-      print(
-          "::::::::<--Bus requiry-->::::::::status code::::::$refrenceNo::::");
+      var response = await dio.post(
+        getHotelRoomApiUrl,
+        options: Options(
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $authtoken'
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            }),
+            data: {
+              "UserIp": "122.160.83.78",
+              "ResultIndex":resultIndex,
+              "HotelCode":hotelCode,
+              "Search_Token":searchToken,    
+                    }
+      );
+      print("::::::::<get hotel room Api>::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

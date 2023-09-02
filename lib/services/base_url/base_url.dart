@@ -2,7 +2,7 @@ abstract class BaseApiService {
 
 
   final String registerURl =
-      'https://bci.batechnology.in/api/auth/register_user';
+      'https://bci.batechnology.in/api/register_user';
 
   //category
   final String categoryApiUrl = "https://bci.batechnology.in/api/category";
@@ -196,5 +196,14 @@ abstract class BaseApiService {
    //hotel search
   final String searchHotelApiUrl =
       "https://bci.batechnology.in/api/auth/search_hotels";
+
+
+        //hotel info
+  final String hotelInfoApiUrl =
+      "https://bci.batechnology.in/api/auth/hotelinfo";
+
+        //hotel get hotel room
+  final String getHotelRoomApiUrl =
+      "https://bci.batechnology.in/api/auth/get_hotel_room";
 
 }

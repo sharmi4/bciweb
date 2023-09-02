@@ -425,7 +425,7 @@ class _ResortBookingState extends State<ResortBooking> {
                           children: [
                             InkWell(
                               onTap: (){
-                                Get.to(ResortDetailsScreen());
+                                Get.to(ResortDetailsScreen(hotelCode: '', resultIndex: '', userIp: '', searchToken: '',));
                               },
                               child: Container(
                                 height: 30,
