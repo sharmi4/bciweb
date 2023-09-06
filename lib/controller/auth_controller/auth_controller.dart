@@ -9,7 +9,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../constant/constans.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
-import '../../responsive/authentications/generate_otp/generate_otp.dart';
 import '../../responsive/authentications/otp_verification/otp_verification.dart';
 import '../../responsive/authentications/verified_screen/verified_screen.dart';
 import '../../services/networks/services/authapi_service/login_api_service.dart';

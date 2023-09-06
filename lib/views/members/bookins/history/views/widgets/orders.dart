@@ -1,10 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/src/widgets/framework.dart';
-//import 'package:flutter/src/widgets/placeholder.dart';
-//import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../../../constant/constans.dart';
-//import '../../../../constands/constands.dart';
+
 
 class Orders extends StatelessWidget {
   const Orders({super.key, required this.bottleimg});

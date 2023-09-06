@@ -11,119 +11,143 @@ String recomendedListToJson(RecomendedList data) => json.encode(data.toJson());
 class RecomendedList {
     String message;
     List<RecomendedListData> data;
-    List<RecomendedListData> recommendedPackages;
 
     RecomendedList({
         required this.message,
         required this.data,
-        required this.recommendedPackages,
     });
 
     factory RecomendedList.fromJson(Map<String, dynamic> json) => RecomendedList(
         message: json["message"],
         data: List<RecomendedListData>.from(json["data"].map((x) => RecomendedListData.fromJson(x))),
-        recommendedPackages: List<RecomendedListData>.from(json["recommended_packages"].map((x) => RecomendedListData.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
         "message": message,
         "data": List<dynamic>.from(data.map((x) => x.toJson())),
-        "recommended_packages": List<dynamic>.from(recommendedPackages.map((x) => x.toJson())),
     };
 }
 
 class RecomendedListData {
     int id;
-    int vendorId;
-    String? location;
-    int categoryId;
+    dynamic categoryId;
+    dynamic vendorId;
     String title;
-    dynamic description;
+    dynamic location;
+    String actualAmount;
+    String saleAmount;
+    String isOffer;
+    dynamic offerPercentage;
+    dynamic offerUptoAmount;
+    String isCoupon;
+    dynamic couponAmount;
+    String description;
+    String? quantity;
+    String? unit;
+    dynamic isRecomended;
+    dynamic status;
+    List<Amenty> amenties;
     String image;
-    int isRecomended;
-    String? inclusion;
-    String? exclusion;
-    String amount;
-    String packageoverview;
-    String duration;
-    String placeToVisit;
-    String packageInclude;
-    dynamic dayWiseItinerary;
-    int status;
     DateTime createdAt;
     DateTime updatedAt;
+    dynamic shareOption;
+    dynamic bvcAmount;
     List<String>? images;
-    String? categoryName;
 
     RecomendedListData({
         required this.id,
-        required this.vendorId,
-        this.location,
         required this.categoryId,
+        required this.vendorId,
         required this.title,
-        this.description,
-        required this.image,
+        this.location,
+        required this.actualAmount,
+        required this.saleAmount,
+        required this.isOffer,
+        this.offerPercentage,
+        this.offerUptoAmount,
+        required this.isCoupon,
+        this.couponAmount,
+        required this.description,
+        this.quantity,
+        this.unit,
         required this.isRecomended,
-        this.inclusion,
-        this.exclusion,
-        required this.amount,
-        required this.packageoverview,
-        required this.duration,
-        required this.placeToVisit,
-        required this.packageInclude,
-        this.dayWiseItinerary,
         required this.status,
+        required this.amenties,
+        required this.image,
         required this.createdAt,
         required this.updatedAt,
+        this.shareOption,
+        this.bvcAmount,
         this.images,
-        this.categoryName,
     });
 
     factory RecomendedListData.fromJson(Map<String, dynamic> json) => RecomendedListData(
-        id: json["id"],
-        vendorId: json["vendor_id"],
-        location: json["location"],
-        categoryId: json["category_id"],
-        title: json["title"],
-        description: json["description"],
-        image: json["image"],
-        isRecomended: json["is_recomended"],
-        inclusion: json["inclusion"],
-        exclusion: json["exclusion"],
-        amount: json["Amount"],
-        packageoverview: json["packageoverview"],
-        duration: json["Duration"],
-        placeToVisit: json["place_to_visit"],
-        packageInclude: json["package_include"],
-        dayWiseItinerary: json["day_wise_itinerary"],
-        status: json["status"],
+        id: json["id"]?? 0,
+        categoryId: json["category_id"]?? "",
+        vendorId: json["vendor_id"]?? "",
+        title: json["title"]?? "",
+        location: json["location"]?? "",
+        actualAmount: json["actual_amount"]?? "",
+        saleAmount: json["sale_amount"]?? "",
+        isOffer: json["isOffer"]?? "",
+        offerPercentage: json["offerPercentage"]?? "",
+        offerUptoAmount: json["offerUpto_amount"]?? "",
+        isCoupon: json["isCoupon"]?? "",
+        couponAmount: json["coupon_amount"]?? "",
+        description: json["description"]?? "",
+        quantity: json["quantity"]?? "",
+        unit: json["unit"]?? "",
+        isRecomended: json["is_recomended"]?? "",
+        status: json["status"]?? "",
+        amenties:json["amenties"] == null ? [] : List<Amenty>.from(json["amenties"].map((x) => Amenty.fromJson(x))),
+        image: json["image"]?? "",
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        shareOption: json["share_option"]?? "",
+        bvcAmount: json["bvc_amount"]?? "",
         images: json["images"] == null ? [] : List<String>.from(json["images"]!.map((x) => x)),
-        categoryName: json["category_name"],
     );
 
     Map<String, dynamic> toJson() => {
         "id": id,
-        "vendor_id": vendorId,
-        "location": location,
         "category_id": categoryId,
+        "vendor_id": vendorId,
         "title": title,
+        "location": location,
+        "actual_amount": actualAmount,
+        "sale_amount": saleAmount,
+        "isOffer": isOffer,
+        "offerPercentage": offerPercentage,
+        "offerUpto_amount": offerUptoAmount,
+        "isCoupon": isCoupon,
+        "coupon_amount": couponAmount,
         "description": description,
-        "image": image,
+        "quantity": quantity,
+        "unit": unit,
         "is_recomended": isRecomended,
-        "inclusion": inclusion,
-        "exclusion": exclusion,
-        "Amount": amount,
-        "packageoverview": packageoverview,
-        "Duration": duration,
-        "place_to_visit": placeToVisit,
-        "package_include": packageInclude,
-        "day_wise_itinerary": dayWiseItinerary,
         "status": status,
+        "amenties": List<dynamic>.from(amenties.map((x) => x.toJson())),
+        "image": image,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
+        "share_option": shareOption,
+        "bvc_amount": bvcAmount,
         "images": images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
-        "category_name": categoryName,
+    };
+}
+
+class Amenty {
+    String value;
+
+    Amenty({
+        required this.value,
+    });
+
+    factory Amenty.fromJson(Map<String, dynamic> json) => Amenty(
+        value: json["value"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "value": value,
     };
 }

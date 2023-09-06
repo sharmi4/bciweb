@@ -1,17 +1,16 @@
 import 'package:bciweb/views/members/bookins/hotels/resort.dart';
 import 'package:bciweb/views/members/bookins/hotels/resort_details_screen.dart';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/hotel_controller/hotel_controller.dart';
 import '../../../../models/hotel_model/hoteldestination_model.dart';
+import '../../../../models/hotel_model/store_temp_search_data.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
@@ -19,7 +18,6 @@ import '../bus/Bus_booking_main.dart';
 import '../flight/booking_flight.dart';
 import '../history/views/history.dart';
 import '../trip/trip_booking.dart';
-
 import 'package:intl/intl.dart';
 import 'dart:math' as math;
 
@@ -49,6 +47,7 @@ class _BookingHotelsState extends State<BookingHotels> {
 
   var destinationController = TextEditingController();
   final hotelController = Get.find<HotelController>();
+  final Destinationcontrolr = TextEditingController();
 
   ///finalhotelController = Get.find<HotelController>();
   @override
@@ -344,15 +343,15 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                     width: 2,
                                                   ),
                                                   InkWell(
-                                                      onTap: () {
-                                                        hotelController
-                                                            .roomno++;
-                                                      },
-                                                      child: const Icon(
-                                                        Icons
-                                                            .add_circle_outline_outlined,
-                                                        size: 20,
-                                                      )),
+                                                    onTap: () {
+                                                      hotelController.roomno++;
+                                                    },
+                                                    child: const Icon(
+                                                      Icons
+                                                          .add_circle_outline_outlined,
+                                                      size: 20,
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ],
@@ -372,14 +371,15 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                         .spaceAround,
                                                 children: [
                                                   InkWell(
-                                                      onTap: () {
-                                                        hotelController.adult--;
-                                                      },
-                                                      child: const Icon(
-                                                        Icons
-                                                            .remove_circle_outline_outlined,
-                                                        size: 20,
-                                                      )),
+                                                    onTap: () {
+                                                      hotelController.adult--;
+                                                    },
+                                                    child: const Icon(
+                                                      Icons
+                                                          .remove_circle_outline_outlined,
+                                                      size: 20,
+                                                    ),
+                                                  ),
                                                   SizedBox(
                                                     width: 2,
                                                   ),
@@ -393,14 +393,15 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                     width: 2,
                                                   ),
                                                   InkWell(
-                                                      onTap: () {
-                                                        hotelController.adult++;
-                                                      },
-                                                      child: const Icon(
-                                                        Icons
-                                                            .add_circle_outline_outlined,
-                                                        size: 20,
-                                                      )),
+                                                    onTap: () {
+                                                      hotelController.adult++;
+                                                    },
+                                                    child: const Icon(
+                                                      Icons
+                                                          .add_circle_outline_outlined,
+                                                      size: 20,
+                                                    ),
+                                                  ),
                                                 ],
                                               ),
                                             ],
@@ -421,6 +422,17 @@ class _BookingHotelsState extends State<BookingHotels> {
                                 Obx(
                                   () => InkWell(
                                     onTap: () {
+                                      hotelController.tempBookingModel =
+                                          TempBookingModel(
+                                              bookingDate:
+                                                  DateFormat('dd/MM/yyyy')
+                                                      .format(start),
+                                              noOfDays:
+                                                  diffrence.inDays.toString(),
+                                              noOfPeople: hotelController
+                                                  .adult.value
+                                                  .toString(),
+                                              place: Destinationcontrolr.text);
                                       hotelController.searchHotel(
                                           child: hotelController.child.value,
                                           adult: hotelController.adult.value,
@@ -435,6 +447,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                               hotelController.roomno.string,
                                           countryCode: hotelController
                                               .hotelSearchKeyCode.value);
+                                      hotelController.update();
                                     },
                                     child: hotelController.isLoading.isTrue
                                         ? Container(
@@ -492,194 +505,213 @@ class _BookingHotelsState extends State<BookingHotels> {
             ),
             ksizedbox40,
             GetBuilder<HotelController>(builder: (_) {
-              return Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Container(
-                  width: size.width * 0.6,
-                  // color: kblue,
-                  //  height: 500,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: hotelController.searchHotelData.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(15.0),
-                        child: Container(
-                          child: Row(
-                            children: [
-                              kwidth10,
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  hotelController
-                                      .searchHotelData[index].hotelPicture,
-                                  fit: BoxFit.cover,
-                                  height: 170,
-                                  width: 180,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 10),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Text('3.8')
-                                            .text
-                                            .white
-                                            .semiBold
-                                            .make()
-                                            .box
-                                            .blue900
-                                            .roundedLg
-                                            .p8
-                                            .make(),
-                                        kwidth5,
-                                        Text('Very Good Raiting')
-                                            .text
-                                            .semiBold
-                                            .blue900
-                                            .make()
-                                      ],
-                                    ),
-                                    ksizedbox10,
-                                    Text(
-                                      hotelController
-                                          .searchHotelData[index].hotelName,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: kOrange),
-                                    ),
-                                    ksizedbox10,
-                                    Container(
-                                      width: 420,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            hotelController
-                                                .searchHotelData[index]
-                                                .hotelAddress,
-                                            style: TextStyle(
-                                                fontSize: 15, color: kblue),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    ksizedbox10,
-                                    InkWell(
-                                      onTap: () {
-                                        Get.to(ResortBooking());
-                                      },
-                                      child: Container(
-                                        height: 30,
-                                        width: 120,
-                                        decoration: BoxDecoration(
-                                            color: kOrange,
-                                            borderRadius:
-                                                BorderRadius.circular(5)),
-                                        child: Center(
-                                          child: Text(
-                                            'Couple  Friendly',
-                                            style: TextStyle(color: kwhite),
-                                          ),
+              return Obx(
+                ()=> Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: hotelController.isLoading.isTrue
+                      ? Container(
+                          child: const CircularProgressIndicator(
+                            color: Colors.yellow,
+                          ),
+                        )
+                      : Container(
+                          width: size.width * 0.6,
+                          // color: kblue,
+                          //  height: 500,
+                          child: ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: hotelController.searchHotelData.length,
+                            itemBuilder: (context, index) {
+                              return Padding(
+                                padding: const EdgeInsets.all(15.0),
+                                child: Container(
+                                  child: Row(
+                                    children: [
+                                      kwidth10,
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.network(
+                                          hotelController.searchHotelData[index]
+                                              .hotelPicture,
+                                          fit: BoxFit.cover,
+                                          height: 170,
+                                          width: 180,
                                         ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Spacer(),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(15.0),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceAround,
-                                      children: [
-                                        Text('Per Night').text.white.make(),
-                                        Text('₹ 3,499').text.white.make(),
-                                        Text('₹ 2,490').text.white.make(),
-                                        Text(
-                                          '₹ ${hotelController.searchHotelData[index].price.publishedPrice}',
-                                        ).text.white.make(),
-                                        Text('Saving ₹ 1,009')
-                                            .text
-                                            .white
-                                            .make(),
-                                        InkWell(
-                                          onTap: () async {
-                                            final prefs =
-                                                await SharedPreferences
-                                                    .getInstance();
-                                            var searchtocken =
-                                                prefs.getString("searchtoken");
-                                            Get.to(ResortDetailsScreen(
-                                              hotelCode: hotelController
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 10),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Row(
+                                              children: [
+                                                Text('3.8')
+                                                    .text
+                                                    .white
+                                                    .semiBold
+                                                    .make()
+                                                    .box
+                                                    .blue900
+                                                    .roundedLg
+                                                    .p8
+                                                    .make(),
+                                                kwidth5,
+                                                Text('Very Good Raiting')
+                                                    .text
+                                                    .semiBold
+                                                    .blue900
+                                                    .make()
+                                              ],
+                                            ),
+                                            ksizedbox10,
+                                            Text(
+                                              hotelController
                                                   .searchHotelData[index]
-                                                  .hotelCode,
-                                              resultIndex:
-                                                  hotelController
-                                                      .searchHotelData[index]
-                                                      .resultIndex
-                                                      .toString(),
-                                              searchToken: searchtocken ?? "",
-                                              userIp: '122.160.83.78',
-                                            ));
-                                          },
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 3.5),
-                                            child: Container(
-                                              height: 18,
-                                              width: 90,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(5),
+                                                  .hotelName,
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
                                                   color: kOrange),
-                                              child: Center(
-                                                child: Text(
-                                                  'Book Now',
-                                                  style:
-                                                      TextStyle(color: kwhite),
-                                                ),
+                                            ),
+                                            ksizedbox10,
+                                            Container(
+                                              width: 420,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    hotelController
+                                                        .searchHotelData[index]
+                                                        .hotelAddress,
+                                                    style: TextStyle(
+                                                        fontSize: 15,
+                                                        color: kblue),
+                                                  ),
+                                                ],
                                               ),
                                             ),
+                                            ksizedbox10,
+                                            InkWell(
+                                              // onTap: () {
+                                              //   Get.to(ResortBooking());
+                                              // },
+                                              child: Container(
+                                                height: 30,
+                                                width: 120,
+                                                decoration: BoxDecoration(
+                                                    color: kOrange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(5)),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Couple  Friendly',
+                                                    style:
+                                                        TextStyle(color: kwhite),
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      Spacer(),
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Container(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(15.0),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Text('Per Night')
+                                                    .text
+                                                    .white
+                                                    .make(),
+                                                Text('₹ 3,499').text.white.make(),
+                                                Text('₹ 2,490').text.white.make(),
+                                                Text(
+                                                  '₹ ${hotelController.searchHotelData[index].price.publishedPrice}',
+                                                ).text.white.make(),
+                                                Text('Saving ₹ 1,009')
+                                                    .text
+                                                    .white
+                                                    .make(),
+                                                InkWell(
+                                                  onTap: () async {
+                                                    final prefs =
+                                                        await SharedPreferences
+                                                            .getInstance();
+                                                    var searchtocken = prefs
+                                                        .getString("searchtoken");
+                                                    Get.to(ResortDetailsScreen(
+                                                      hotelCode: hotelController
+                                                          .searchHotelData[index]
+                                                          .hotelCode,
+                                                      resultIndex: hotelController
+                                                          .searchHotelData[index]
+                                                          .resultIndex
+                                                          .toString(),
+                                                      searchToken:
+                                                          searchtocken ?? "",
+                                                      userIp: '122.160.83.78',
+                                                    ));
+                                                  },
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 3.5),
+                                                    child: Container(
+                                                      height: 18,
+                                                      width: 90,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(5),
+                                                          color: kOrange),
+                                                      child: Center(
+                                                        child: Text(
+                                                          'Book Now',
+                                                          style: TextStyle(
+                                                              color: kwhite),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
                                           ),
-                                        )
-                                      ],
-                                    ),
+                                          color: kblue,
+                                          width: size.width * 0.1,
+                                          height: size.height,
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  color: kblue,
-                                  width: size.width * 0.1,
-                                  height: size.height,
+                                  decoration: new BoxDecoration(
+                                      borderRadius: BorderRadius.circular(14),
+                                      color: kwhite,
+                                      boxShadow: [
+                                        new BoxShadow(
+                                          color:
+                                              Color.fromARGB(255, 186, 182, 182),
+                                          blurRadius: 20.0,
+                                        ),
+                                      ]),
+                                  width: size.width * 0.6,
+                                  height: size.height * 0.3,
                                 ),
-                              )
-                            ],
+                              );
+                            },
                           ),
-                          decoration: new BoxDecoration(
-                              borderRadius: BorderRadius.circular(14),
-                              color: kwhite,
-                              boxShadow: [
-                                new BoxShadow(
-                                  color: Color.fromARGB(255, 186, 182, 182),
-                                  blurRadius: 20.0,
-                                ),
-                              ]),
-                          width: size.width * 0.6,
-                          height: size.height * 0.3,
                         ),
-                      );
-                    },
-                  ),
                 ),
               );
             }),

@@ -309,51 +309,52 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 ),
               ),
             ),
-            Obx(
-              () => authController.isLogedin == true ? Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Row(children: [
-                  GetBuilder<AuthProfileController>(builder: (_) {
-                    return authProfileController.profileData.isNotEmpty
-                        ? Text(authProfileController.profileData.first.name)
-                        : Text('');
-                  }),
-                  //   Icon(Icons.expand_more),
-                  kwidth10,
-                  GetBuilder<AuthProfileController>(builder: (_) {
-                    return authProfileController.profileData.isNotEmpty
-                        ? authProfileController
-                                    .profileData.first.profilePicture !=
-                                null
-                            ? InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) =>
-                                          RegisterProfileScreen()));
-                                },
-                                child: CircleAvatar(
-                                    radius: 22.0,
-                                    backgroundImage: NetworkImage(
-                                      authProfileController
-                                          .profileData.first.profilePicture,
-                                    )),
-                              )
-                            //:Text('')
+            Obx(() => authController.isLogedin == true
+                ? Padding(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: Row(children: [
+                      GetBuilder<AuthProfileController>(builder: (_) {
+                        return authProfileController.profileData.isNotEmpty
+                            ? Text(authProfileController.profileData.first.name)
+                            : Text('');
+                      }),
+                      //   Icon(Icons.expand_more),
+                      kwidth10,
+                      GetBuilder<AuthProfileController>(builder: (_) {
+                        return authProfileController.profileData.isNotEmpty
+                            ? authProfileController
+                                        .profileData.first.profilePicture !=
+                                    null
+                                ? InkWell(
+                                    onTap: () {
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  RegisterProfileScreen()));
+                                    },
+                                    child: CircleAvatar(
+                                        radius: 22.0,
+                                        backgroundImage: NetworkImage(
+                                          authProfileController
+                                              .profileData.first.profilePicture,
+                                        )),
+                                  )
+                                //:Text('')
+                                : Image.asset(
+                                    'assets/images/nick.png',
+                                    height: 35,
+                                    fit: BoxFit.fitHeight,
+                                  )
+                            //:Text('');
                             : Image.asset(
                                 'assets/images/nick.png',
                                 height: 35,
                                 fit: BoxFit.fitHeight,
-                              )
-                        //:Text('');
-                        : Image.asset(
-                            'assets/images/nick.png',
-                            height: 35,
-                            fit: BoxFit.fitHeight,
-                          );
-                  })
-                ]),
-              ):Text('')
-            ),
+                              );
+                      })
+                    ]),
+                  )
+                : Text('')),
           ],
         ),
       ),

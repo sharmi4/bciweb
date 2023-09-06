@@ -1,5 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/views/members/bookins/history/views/widgets/buswigit.dart';
+import 'package:bciweb/views/members/bookins/history/views/widgets/hotel_history.dart';
 
 import 'package:bciweb/views/members/bookins/history/views/widgets/orders.dart';
 import 'package:bciweb/views/members/bookins/history/views/widgets/widgetsdemo.dart';
@@ -224,13 +225,14 @@ class _HistoryState extends State<History> {
                                   },
                                   child: Container(
                                     child: Center(
-                                        child: Text(
-                                      'Bus',
-                                      style: TextStyle(
-                                          color: kwhite,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w700),
-                                    )),
+                                      child: Text(
+                                        'Bus',
+                                        style: TextStyle(
+                                            color: kwhite,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w700),
+                                      ),
+                                    ),
                                     decoration: BoxDecoration(
                                         color: historyController.hisindex == 3
                                             ? kyellow
@@ -290,7 +292,7 @@ class _HistoryState extends State<History> {
                   children: [
                     if (historyController.hisindex.value == 0)
                       FlightBookingHistory(),
-                    if (historyController.hisindex.value == 1) index2(),
+                    if (historyController.hisindex.value == 1) HotelHistory(),
                     if (historyController.hisindex.value == 2) HolidayHistory(),
                     if (historyController.hisindex.value == 3) BussHistory(),
                     if (historyController.hisindex.value == 4) index4(),

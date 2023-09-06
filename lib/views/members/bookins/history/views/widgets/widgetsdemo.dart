@@ -30,13 +30,15 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
       children: [
         GetBuilder<ApiflightsController>(builder: (_) {
           return Container(
-            height: 500,
-            width: size.width * 0.5,
+            //  height: 500,
+            // width: size.width * 0.5,
             child: ListView.builder(
+              shrinkWrap: true,
               itemCount: flightController.flightBookingHistoyrList.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 50),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
                   child: Container(
                     child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,447 +193,6 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
   }
 }
 
-class index2 extends StatelessWidget {
-  const index2({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        ksizedbox40,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        ksizedbox40,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Image.asset('assets/images/Rectangle 1877.png'),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        ksizedbox40,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-            Container(
-              height: 127,
-              width: 400,
-              color: kwhite,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Image.asset('assets/images/Rectangle 1877.png'),
-                  ),
-                  kwidth10,
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ksizedbox10,
-                      Row(
-                        children: [
-                          Text(
-                            'Rich Hotels, Chennai',
-                            style: TextStyle(fontSize: 21),
-                          ),
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Image.asset(
-                              'assets/images/Icon material-location-on.png')
-                        ],
-                      ),
-                      Text(
-                        'Date : 15/04/2023 to 16/04/2023',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Check in : 03:44PM Check Out 03:43 PM',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Total Person : 5 Members',
-                        style: TextStyle(color: kblue),
-                      ),
-                      Text(
-                        'Ac Rooms',
-                        style: TextStyle(color: kblue),
-                      ),
-                      ksizedbox10
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        ksizedbox40
-      ],
-    );
-  }
-}
-
 class HolidayHistory extends StatefulWidget {
   const HolidayHistory({super.key});
 
@@ -644,17 +205,21 @@ class _HolidayHistoryState extends State<HolidayHistory> {
 
   @override
   void initState() {
+
     // TODO: implement initState
     super.initState();
     holidayPackageController.enquiryList();
+
   }
-   // ignore: avoid_types_as_parameter_names
-   Future<void> tripdialogeBuilder(BuildContext context, List<String>img, String tit, String date,
-    String amt,String adult,
-    String vistpalce) {
+
+  // ignore: avoid_types_as_parameter_names
+  Future<void> tripdialogeBuilder(BuildContext context, List<String> img,
+      String tit, String date, String amt, String adult, String vistpalce) {
     return showDialog<void>(
       context: context,
-      builder: (BuildContext context, ) {
+      builder: (
+        BuildContext context,
+      ) {
         return AlertDialog(
           title: Container(
             height: 500,
@@ -663,132 +228,181 @@ class _HolidayHistoryState extends State<HolidayHistory> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                       Row(
-                         children: [
-                          Icon(Icons.arrow_back_ios,color: kblue,size: 15,),
-                          const SizedBox(width: 10,),
-                           Text(
-                            'Tourist Details',
-                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      ),
-                         ],
-                       ),
-                       Row(
-                         children: [
-                          Image.network(img.last,height: 100,width: 150, fit: BoxFit.cover,),
-                        
-                         ],
-                       ),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                         Text(
-                            'Place',
-                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      ),
-                           Text(
-                            tit,
-                            style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
-                      ),
-                         ],
-                       ),
-                        Divider(thickness: 1,),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                        Text('Date',
-                        style:TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold)
-
-                        ),
-
-                         holidayPackageController.enquiryData.isNotEmpty?Text(
-                            ' ${formatDate(holidayPackageController.enquiryData.first.createdAt,[dd,'-',mm,'-',yyyy])}',
-                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      ):Text(''),
-                     
-                          
-                         ],
-                       ),
-                       const Divider(thickness: 1,),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                         Text(
-                            'Trip',
-                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      ),
-                              holidayPackageController.enquiryData.isNotEmpty?Container(
-                            
-                                child: Text(
-                                holidayPackageController.enquiryData.first.packageDetails.placeToVisit,
-                              
-                                style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500,
-                                
-                                                      
-                                                   ),
-                                                         ),
-                              ):Text(''),
-                         ],
-                       ),
-                       const Divider(thickness: 1,),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                         Text(
-                            'Country',
-                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      ),
-                           Text(
-                            '',
-                            style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
-                      ),
-                         ],
-                       ),
-                       const Divider(thickness: 1,),
-                       Row(
-                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                         Text(
-                            'Adult',
-                            style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      ),
-                          holidayPackageController.enquiryData.isNotEmpty? Text(
-                            holidayPackageController.enquiryData.first.adultCount,
-                            style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
-                      ):Text('0',
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: kblue,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Tourist Details',
                       style: TextStyle(
-                        fontSize: 15
-                      ),),
-                         ],
-                       ),
-                      //  const Divider(thickness: 1,),
-                      //  Row(
-                      //    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      //    children: [
-                      //    Text(
-                      //       'Quantity',
-                      //       style: TextStyle(fontSize: 16, color: kblue,fontWeight: FontWeight.bold),
-                      // ),
-                      //      Text(
-                      //       qty,
-                      //       style: TextStyle(fontSize: 15, color: kblue,fontWeight: FontWeight.w500),
-                      // ),
-                      //    ],
-                      //  ),
-                       const Divider(thickness: 1,),
-                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                         children: [
-                         const Text(
-                            'Price',
-                            style: TextStyle(fontSize: 16, color: Colors.green,fontWeight: FontWeight.bold),
-                      ),
-                           Text(
-                            amt,
-                            style:const TextStyle(fontSize: 15, color: Colors.green,fontWeight: FontWeight.w500),
-                      ),
-                         ],
-                       ),
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Image.network(
+                      img.last,
+                      height: 100,
+                      width: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Place',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      tit,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text('Date',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: kblue,
+                            fontWeight: FontWeight.bold)),
+                    holidayPackageController.enquiryData.isNotEmpty
+                        ? Text(
+                            ' ${formatDate(holidayPackageController.enquiryData.first.createdAt, [
+                                  dd,
+                                  '-',
+                                  mm,
+                                  '-',
+                                  yyyy
+                                ])}',
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: kblue,
+                                fontWeight: FontWeight.bold),
+                          )
+                        : Text(''),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Trip',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    holidayPackageController.enquiryData.isNotEmpty
+                        ? Container(
+                            child: Text(
+                              holidayPackageController.enquiryData.first
+                                  .packageDetails.placeToVisit,
+                              style: TextStyle(
+                                fontSize: 15,
+                                color: kblue,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                          )
+                        : Text(''),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Country',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '',
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Adult',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    holidayPackageController.enquiryData.isNotEmpty
+                        ? Text(
+                            holidayPackageController
+                                .enquiryData.first.adultCount,
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: kblue,
+                                fontWeight: FontWeight.w500),
+                          )
+                        : Text(
+                            '0',
+                            style: TextStyle(fontSize: 15),
+                          ),
+                  ],
+                ),   const Divider(
+                  thickness: 1,
+                ),   
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Price',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      amt,
+                      style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.green,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
@@ -796,54 +410,63 @@ class _HolidayHistoryState extends State<HolidayHistory> {
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,right:10),
+      padding: const EdgeInsets.only(left: 10, right: 10),
       child: Column(
         children: [
           GetBuilder<HolidayPackageController>(builder: (_) {
             return GridView.builder(
-               itemCount: holidayPackageController.enquiryData.length,
+                itemCount: holidayPackageController.enquiryData.length,
                 shrinkWrap: true,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisSpacing: 20,
-                                        mainAxisSpacing: 20,
+                    mainAxisSpacing: 20,
                     childAspectRatio: 4,
                     crossAxisCount: 2),
                 itemBuilder: ((context, index) {
-                return  InkWell(
-                  onTap: (){
-                  tripdialogeBuilder(context,
-                   holidayPackageController.enquiryData[index].packageDetails.image,
-                    holidayPackageController.enquiryData[index].packageDetails.title, 
-                    holidayPackageController.enquiryData[index].packageDetails.createdAt.toString(), 
-                    holidayPackageController.enquiryData[index].packageDetails.amount,
-                     holidayPackageController.enquiryData[index].adultCount,
-                     holidayPackageController.enquiryData[index].packageDetails.placeToVisit,
-                    );
-                  },
-                  child: Container(
-                      height:MediaQuery.of(context).size.height,
+                  return InkWell(
+                    onTap: () {
+                      tripdialogeBuilder(
+                        context,
+                        holidayPackageController
+                            .enquiryData[index].packageDetails.image,
+                        holidayPackageController
+                            .enquiryData[index].packageDetails.title,
+                        holidayPackageController
+                            .enquiryData[index].packageDetails.createdAt
+                            .toString(),
+                        holidayPackageController
+                            .enquiryData[index].packageDetails.amount,
+                        holidayPackageController.enquiryData[index].adultCount,
+                        holidayPackageController
+                            .enquiryData[index].packageDetails.placeToVisit,
+                      );
+                    },
+                    child: Container(
+                      height: MediaQuery.of(context).size.height,
                       width: 280,
                       decoration: BoxDecoration(
-                       color: kwhite,
-                       borderRadius: BorderRadius.circular(10),
-                       boxShadow: <BoxShadow>[
-                        BoxShadow(
-                          offset: Offset(0.0, 0.75),
-                          blurRadius: 5,
-                          color: kgrey
-                        )
-                       ]
-                      ),
+                          color: kwhite,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                offset: Offset(0.0, 0.75),
+                                blurRadius: 5,
+                                color: kgrey)
+                          ]),
                       child: Row(
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: ClipRRect(
-                              borderRadius: BorderRadius.circular(10),
-                              child: Image.network(holidayPackageController.enquiryData[index].packageDetails.image.last,)),
+                                borderRadius: BorderRadius.circular(10),
+                                child: Image.network(
+                                  holidayPackageController.enquiryData[index]
+                                      .packageDetails.image.last,
+                                )),
                           ),
                           kwidth10,
                           Column(
@@ -852,27 +475,41 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                             children: [
                               ksizedbox10,
                               Text(
-                              holidayPackageController.enquiryData[index].packageDetails.title,
+                                holidayPackageController
+                                    .enquiryData[index].packageDetails.title,
                                 style: TextStyle(fontSize: 18),
                               ),
                               Text(
-                               '${holidayPackageController.enquiryData[index].packageDetails.location}',
+                                '${holidayPackageController.enquiryData[index].packageDetails.location}',
                                 style: TextStyle(color: kblue),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
-                               
                                   Text(
-                                    'Check in${ formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [dd,"-",mm,'-',yyyy])}',
+                                    'Check in${formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [
+                                          dd,
+                                          "-",
+                                          mm,
+                                          '-',
+                                          yyyy
+                                        ])}',
                                     style: TextStyle(color: kblue),
-                                    
                                   ),
                                   SizedBox(
                                     width: 20,
                                   ),
-                                  Text( 'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [dd,"-",mm,'-',yyyy])}',
-                                   style: TextStyle(color: kblue),),
+                                  Text(
+                                    'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [
+                                          dd,
+                                          "-",
+                                          mm,
+                                          '-',
+                                          yyyy
+                                        ])}',
+                                    style: TextStyle(color: kblue),
+                                  ),
                                 ],
                               ),
                               Text(
@@ -889,7 +526,7 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                         ],
                       ),
                     ),
-                );
+                  );
                 }));
           })
         ],
@@ -1265,5 +902,4 @@ class _index4State extends State<index4> {
       ksizedbox30,
     ]);
   }
- 
 }

@@ -5,7 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../constant/constans.dart';
-import '../../models/get_plansmodel.dart';
+
 import '../../models/todayoffers_model.dart';
 import '../../responsive/mobile_body/cart_divertion.dart';
 import '../../services/networks/services/add_to_cart_api_service.dart';
@@ -153,5 +153,21 @@ class HomeServiceController extends GetxController {
    
     update();
   }
+
+
+
+  //   double getGrandTotal() {
+  //   double grandTotal = 0.0;
+
+  //   for (var i = 0; i < cartListData.length; i++) {
+  //     double amount = double.parse(cartListData[i].amount);
+  //     int qty = int.parse(cartListData[i].quantity.toString());
+  //     double tempTotalAmount = amount * qty;
+
+  //     grandTotal = grandTotal + tempTotalAmount;
+  //   }
+
+  //   return grandTotal;
+  // }
 
 }

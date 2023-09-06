@@ -1,3 +1,4 @@
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../../constant/constans.dart';
-import '../../../../../controller/home_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -27,7 +27,7 @@ class _ServicesCartState extends State<ServicesCart> {
 
   // final profileController = Get.find<ProfileController>();
   final homeController = Get.find<HomeServiceController>();
-
+final profileController = Get.find<AuthProfileController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -303,21 +303,25 @@ class _ServicesCartState extends State<ServicesCart> {
                       padding: const EdgeInsets.all(8),
                       child: InkWell(
                         onTap: () {
-                          for (int i = 0;
-                              i < homeController.cartListData.length;
-                              i++) {
-                            homeController.addBooking(
-                                serviceid:
-                                    homeController.cartListData[i].serviceId,
-                                cartid: homeController.cartListData[i].id
-                                    .toString(),
-                                qty: homeController.cartListData[i].quantity,
-                                offerOrCoupon: "",
-                                couponcode: "",
-                                amount: homeController.cartListData[i].amount);
-                          }
+//  var tempAmount = homeController.getGrandTotal(tcartListData: []);
+                            profileController.payFromCart(100);
 
-                          Get.toNamed(Routes.MEMBHOME);
+
+                          // for (int i = 0;
+                          //     i < homeController.cartListData.length;
+                          //     i++) {
+                          //   homeController.addBooking(
+                          //       serviceid:
+                          //           homeController.cartListData[i].serviceId,
+                          //       cartid: homeController.cartListData[i].id
+                          //           .toString(),
+                          //       qty: homeController.cartListData[i].quantity,
+                          //       offerOrCoupon: "",
+                          //       couponcode: "",
+                          //       amount: homeController.cartListData[i].amount);
+                          // }
+
+                         // Get.toNamed(Routes.MEMBHOME);
                         },
                         //  onTap: () {
                         //  homeController.addToCart(
