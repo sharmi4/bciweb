@@ -29,14 +29,14 @@ class GetPackageDetails {
 }
 
 class GetPackageDetailsData {
-    int id;
-    int vendorId;
+    dynamic id;
+    dynamic vendorId;
     String location;
-    int categoryId;
+    dynamic categoryId;
     String title;
     dynamic description;
     String image;
-    int isRecomended;
+    dynamic isRecomended;
     dynamic inclusion;
     dynamic exclusion;
     String amount;
@@ -45,7 +45,7 @@ class GetPackageDetailsData {
     String placeToVisit;
     String packageInclude;
     dynamic dayWiseItinerary;
-    int status;
+    dynamic status;
     DateTime createdAt;
     DateTime updatedAt;
     List<String> images;

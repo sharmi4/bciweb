@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "bciweb",
+			"path": "../../../../.."
+		},
+		{
+			"name": "Flutter_Plugin",
+			"path": "../../../../../../../../BCI MOB/Bci member/bci/plugin/Flutter_Plugin"
+		}
+	],
+	"settings": {}
+}

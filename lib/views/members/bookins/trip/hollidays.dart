@@ -2,13 +2,11 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/holiday_package_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
+
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../../controller/holiday_controller.dart';
-import '../../../../controller/profile_controller.dart';
-import '../../../../models/holiday_packages_models/get_package_details_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
@@ -317,8 +315,8 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 )
                               ],
                             ),
-                            if (holidayPackageController.getPackageDetailsData
-                                .first.packageoverview.isNotEmpty)
+                            // if (holidayPackageController.getPackageDetailsData
+                            //     .first.packageoverview.isNotEmpty)
                               holidayPackageController
                                       .getPackageDetailsData.isEmpty
                                   ? Text('')
@@ -708,8 +706,8 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                            if (holidayPackageController.getPackageDetailsData
-                                .first.packageoverview.isNotEmpty)
+                            // if (holidayPackageController.getPackageDetailsData
+                            //     .first.packageoverview.isNotEmpty)
                               holidayPackageController
                                       .getPackageDetailsData.isEmpty
                                   ? Text('')
@@ -970,8 +968,8 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                            if (holidayPackageController.getPackageDetailsData
-                                .first.packageoverview.isNotEmpty)
+                            // if (holidayPackageController.getPackageDetailsData
+                            //     .first.packageoverview.isNotEmpty)
                               holidayPackageController
                                       .getPackageDetailsData.isEmpty
                                   ? Text('')

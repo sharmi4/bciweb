@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,7 @@ import '../bus/Bus_booking_main.dart';
 import '../flight/booking_flight.dart';
 import '../history/views/history.dart';
 import '../hotels/booking_hotels.dart';
-import '../liquer/Liquer_booking.dart';
+
 import 'hollidays.dart';
 
 class BookingTrip extends StatefulWidget {

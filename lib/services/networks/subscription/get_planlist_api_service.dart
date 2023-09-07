@@ -1,14 +1,20 @@
 import 'dart:io';
+
 import 'package:bciweb/services/base_url/base_url.dart';
+
 import 'package:dio/dio.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 class GetPlansApiServices extends BaseApiService {
   Future getPlans() async {
     dynamic responseJson;
+
     try {
       var dio = Dio();
+
       final prefs = await SharedPreferences.getInstance();
+
       String? authtoken = prefs.getString("auth_token");
 
       var response = await dio.get(
