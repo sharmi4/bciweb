@@ -18,7 +18,7 @@ class OurPartnersApiService extends BaseApiService {
             }),
            
       );
-      print("::::::::<our Partners Api>::::::::status code::::::::::");
+      print("::::::::<our Partners Api>::::::::status code:::${response.statusCode}:::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;
