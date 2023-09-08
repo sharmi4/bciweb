@@ -280,562 +280,570 @@ class BusController extends GetxController {
 
   Future<html.Blob> createPDF(BusRequeryModel busRequeryModel) async {
     final pdf = pw.Document();
-    pdf.addPage(pw.Page(
+    pdf.addPage(
+      pw.Page(
         pageFormat: PdfPageFormat.a4,
         build: (context) {
-          return pw.ListView(children: [
-            pw.Padding(
-              padding: pw.EdgeInsets.only(left: 20, right: 20, top: 20),
-              child: pw.Container(
-                height: 420,
-                decoration: pw.BoxDecoration(
-                    border: pw.Border.all(color: PdfColors.black)),
-                child: pw.Padding(
-                  padding:
-                      pw.EdgeInsets.only(left: 1, right: 1, top: 1, bottom: 1),
-                  child: pw.Container(
-                    height: 420,
-                    decoration: pw.BoxDecoration(
-                        border: pw.Border.all(color: PdfColors.black)),
-                    child: pw.Column(
-                      children: [
-                        pw.Padding(
-                          padding: pw.EdgeInsets.only(top: 15, left: 20),
-                          child: pw.Row(
-                            children: [
-                              pw.Text(
-                                'Itinerary',
-                                style: pw.TextStyle(color: PdfColors.grey400),
-                              ),
-                            ],
+          return pw.ListView(
+            children: [
+              pw.Padding(
+                padding: pw.EdgeInsets.only(left: 20, right: 20, top: 20),
+                child: pw.Container(
+                  height: 420,
+                  decoration: pw.BoxDecoration(
+                      border: pw.Border.all(color: PdfColors.black)),
+                  child: pw.Padding(
+                    padding: pw.EdgeInsets.only(
+                        left: 1, right: 1, top: 1, bottom: 1),
+                    child: pw.Container(
+                      height: 420,
+                      decoration: pw.BoxDecoration(
+                          border: pw.Border.all(color: PdfColors.black)),
+                      child: pw.Column(
+                        children: [
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(top: 15, left: 20),
+                            child: pw.Row(
+                              children: [
+                                pw.Text(
+                                  'Itinerary',
+                                  style: pw.TextStyle(color: PdfColors.grey400),
+                                ),
+                              ],
+                            ),
                           ),
-                        ),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(left: 20, top: 20, right: 20),
-                          child: pw.Container(
-                            height: 50,
-                            decoration: pw.BoxDecoration(
-                                color: PdfColors.yellow200,
-                                border: pw.Border(
-                                    bottom:
-                                        pw.BorderSide(color: PdfColors.orange),
-                                    top: pw.BorderSide(
-                                        color: PdfColors.orange))),
-                            child: pw.Padding(
-                              padding: pw.EdgeInsets.only(left: 10, right: 10),
-                              child: pw.Row(
-                                mainAxisAlignment:
-                                    pw.MainAxisAlignment.spaceBetween,
-                                children: [
-                                  pw.Text(
-                                    '${busRequeryModel.busDetail.fromCity} to ${busRequeryModel.busDetail.toCity}',
-                                    style: pw.TextStyle(
-                                        //[] fontWeight: pw.FontWeight.bold
-                                        ),
-                                  ),
-                                  pw.Text('Wednesday, June 05, 2013'),
-                                  pw.Text(
-                                    'Jabbar Travels',
-                                    style: pw.TextStyle(
-                                        //fontWeight: pw.FontWeight.bold
-                                        ),
-                                  )
-                                ],
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(
+                                left: 20, top: 20, right: 20),
+                            child: pw.Container(
+                              height: 50,
+                              decoration: pw.BoxDecoration(
+                                  color: PdfColors.yellow200,
+                                  border: pw.Border(
+                                      bottom: pw.BorderSide(
+                                          color: PdfColors.orange),
+                                      top: pw.BorderSide(
+                                          color: PdfColors.orange))),
+                              child: pw.Padding(
+                                padding:
+                                    pw.EdgeInsets.only(left: 10, right: 10),
+                                child: pw.Row(
+                                  mainAxisAlignment:
+                                      pw.MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    pw.Text(
+                                      '${busRequeryModel.busDetail.fromCity} to ${busRequeryModel.busDetail.toCity}',
+                                      style: pw.TextStyle(
+                                          //[] fontWeight: pw.FontWeight.bold
+                                          ),
+                                    ),
+                                    pw.Text('Wednesday, June 05, 2013'),
+                                    pw.Text(
+                                      'Jabbar Travels',
+                                      style: pw.TextStyle(
+                                          //fontWeight: pw.FontWeight.bold
+                                          ),
+                                    )
+                                  ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(top: 50, left: 20, right: 20),
-                          child: pw.Container(
-                            height: 1,
-                            width: double.infinity,
-                            color: PdfColors.black,
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(
+                                top: 50, left: 20, right: 20),
+                            child: pw.Container(
+                              height: 1,
+                              width: double.infinity,
+                              color: PdfColors.black,
+                            ),
                           ),
-                        ),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(top: 2, left: 20, right: 20),
-                          child: pw.Container(
-                            height: 1,
-                            width: double.infinity,
-                            color: PdfColors.black,
+                          pw.Padding(
+                            padding:
+                                pw.EdgeInsets.only(top: 2, left: 20, right: 20),
+                            child: pw.Container(
+                              height: 1,
+                              width: double.infinity,
+                              color: PdfColors.black,
+                            ),
                           ),
-                        ),
-                        pw.Padding(
-                          padding: pw.EdgeInsets.only(left: 20, right: 20),
-                          child: pw.Container(
-                            height: 100,
-                            decoration:
-                                pw.BoxDecoration(color: PdfColors.grey100),
-                            child: pw.Padding(
-                              padding: pw.EdgeInsets.only(left: 12, right: 12),
-                              child: pw.Row(
-                                mainAxisAlignment:
-                                    pw.MainAxisAlignment.spaceBetween,
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                children: [
-                                  pw.Column(
-                                      crossAxisAlignment:
-                                          pw.CrossAxisAlignment.start,
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(left: 20, right: 20),
+                            child: pw.Container(
+                              height: 100,
+                              decoration:
+                                  pw.BoxDecoration(color: PdfColors.grey100),
+                              child: pw.Padding(
+                                padding:
+                                    pw.EdgeInsets.only(left: 12, right: 12),
+                                child: pw.Row(
+                                  mainAxisAlignment:
+                                      pw.MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  children: [
+                                    pw.Column(
+                                        crossAxisAlignment:
+                                            pw.CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            pw.MainAxisAlignment.spaceAround,
+                                        children: [
+                                          pw.Text(
+                                            'Passenger name',
+                                            style: pw.TextStyle(
+                                              color: PdfColors.blueAccent,
+                                              //fontWeight: pw.FontWeight.bold
+                                            ),
+                                          ),
+                                          pw.Padding(
+                                            padding: pw.EdgeInsets.only(top: 2),
+                                            child: pw.Text(
+                                              'Mr Devanshu \nTiwari',
+                                              style: pw.TextStyle(
+                                                fontSize: 11,
+                                                //fontWeight: pw.FontWeight.bold
+                                              ),
+                                            ),
+                                          ),
+                                          pw.Text(
+                                            'redBus ticket #',
+                                            style: pw.TextStyle(
+                                              color: PdfColors.blueAccent,
+                                              //fontWeight: pw.FontWeight.bold
+                                            ),
+                                          ),
+                                          pw.Padding(
+                                            padding: pw.EdgeInsets.only(top: 2),
+                                            child: pw.Text(
+                                              'TF6Z98757372',
+                                              style: pw.TextStyle(
+                                                fontSize: 11,
+                                                //fontWeight: pw.FontWeight.bold
+                                              ),
+                                            ),
+                                          ),
+                                        ]),
+                                    pw.Column(
                                       mainAxisAlignment:
                                           pw.MainAxisAlignment.spaceAround,
-                                      children: [
-                                        pw.Text(
-                                          'Passenger name',
-                                          style: pw.TextStyle(
-                                            color: PdfColors.blueAccent,
-                                            //fontWeight: pw.FontWeight.bold
-                                          ),
-                                        ),
-                                        pw.Padding(
-                                          padding: pw.EdgeInsets.only(top: 2),
-                                          child: pw.Text(
-                                            'Mr Devanshu \nTiwari',
-                                            style: pw.TextStyle(
-                                              fontSize: 11,
-                                              //fontWeight: pw.FontWeight.bold
-                                            ),
-                                          ),
-                                        ),
-                                        pw.Text(
-                                          'redBus ticket #',
-                                          style: pw.TextStyle(
-                                            color: PdfColors.blueAccent,
-                                            //fontWeight: pw.FontWeight.bold
-                                          ),
-                                        ),
-                                        pw.Padding(
-                                          padding: pw.EdgeInsets.only(top: 2),
-                                          child: pw.Text(
-                                            'TF6Z98757372',
-                                            style: pw.TextStyle(
-                                              fontSize: 11,
-                                              //fontWeight: pw.FontWeight.bold
-                                            ),
-                                          ),
-                                        ),
-                                      ]),
-                                  pw.Column(
-                                    mainAxisAlignment:
-                                        pw.MainAxisAlignment.spaceAround,
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: [
-                                      pw.Text(
-                                        'Seat number(s)',
-                                        style: pw.TextStyle(
-                                          color: PdfColors.blueAccent,
-                                          // fontWeight: pw.FontWeight.bold
-                                        ),
-                                      ),
-                                      pw.Padding(
-                                        padding: pw.EdgeInsets.only(top: 2),
-                                        child: pw.Text(
-                                          'SU4',
-                                          style: pw.TextStyle(
-                                            fontSize: 11,
-                                            //fontWeight: pw.FontWeight.bold
-                                          ),
-                                        ),
-                                      ),
-                                      pw.Padding(
-                                        padding: pw.EdgeInsets.only(top: 14),
-                                        child: pw.Text(
-                                          'PNR #',
-                                          style: pw.TextStyle(
-                                            color: PdfColors.blueAccent,
-                                            //fontWeight: pw.FontWeight.bold
-                                          ),
-                                        ),
-                                      ),
-                                      pw.Padding(
-                                        padding: pw.EdgeInsets.only(top: 2),
-                                        child: pw.Text(
-                                          'JBR190223-\n(Luxura A/C Sleeper)',
-                                          style: pw.TextStyle(
-                                            fontSize: 11,
-                                            //fontWeight: pw.FontWeight.bold
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  pw.Column(
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: [
-                                      pw.Text(
-                                        'Trip #',
-                                        style: pw.TextStyle(
-                                          color: PdfColors.blueAccent,
-                                          //fontWeight: pw.FontWeight.bold
-                                        ),
-                                      ),
-                                      pw.Padding(
-                                        padding: pw.EdgeInsets.only(top: 5.5),
-                                        child: pw.Text(
-                                          '24241791',
-                                          style: pw.TextStyle(
-                                            fontSize: 11,
-                                            //fontWeight: pw.FontWeight.bold
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(top: 0, left: 20, right: 20),
-                          child: pw.Container(
-                            height: 1,
-                            color: PdfColors.black,
-                          ),
-                        ),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(top: 2, left: 20, right: 20),
-                          child: pw.Container(
-                            height: 1,
-                            color: PdfColors.black,
-                          ),
-                        ),
-                        pw.Padding(
-                          padding:
-                              pw.EdgeInsets.only(left: 30, right: 30, top: 30),
-                          child: pw.Column(
-                            crossAxisAlignment: pw.CrossAxisAlignment.start,
-                            children: [
-                              pw.Row(
-                                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                                mainAxisAlignment:
-                                    pw.MainAxisAlignment.spaceBetween,
-                                children: [
-                                  pw.Column(
                                       crossAxisAlignment:
                                           pw.CrossAxisAlignment.start,
                                       children: [
                                         pw.Text(
-                                          'Bus type',
+                                          'Seat number(s)',
                                           style: pw.TextStyle(
                                             color: PdfColors.blueAccent,
                                             // fontWeight: pw.FontWeight.bold
                                           ),
                                         ),
                                         pw.Padding(
-                                          padding: pw.EdgeInsets.only(top: 5),
+                                          padding: pw.EdgeInsets.only(top: 2),
                                           child: pw.Text(
-                                            'A/C Sleeper (2+1)',
+                                            'SU4',
                                             style: pw.TextStyle(
                                               fontSize: 11,
                                               //fontWeight: pw.FontWeight.bold
                                             ),
                                           ),
                                         ),
-                                      ]),
-                                  pw.Column(
+                                        pw.Padding(
+                                          padding: pw.EdgeInsets.only(top: 14),
+                                          child: pw.Text(
+                                            'PNR #',
+                                            style: pw.TextStyle(
+                                              color: PdfColors.blueAccent,
+                                              //fontWeight: pw.FontWeight.bold
+                                            ),
+                                          ),
+                                        ),
+                                        pw.Padding(
+                                          padding: pw.EdgeInsets.only(top: 2),
+                                          child: pw.Text(
+                                            'JBR190223-\n(Luxura A/C Sleeper)',
+                                            style: pw.TextStyle(
+                                              fontSize: 11,
+                                              //fontWeight: pw.FontWeight.bold
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    pw.Column(
                                       crossAxisAlignment:
                                           pw.CrossAxisAlignment.start,
                                       children: [
                                         pw.Text(
-                                          'Reporting time',
+                                          'Trip #',
                                           style: pw.TextStyle(
                                             color: PdfColors.blueAccent,
                                             //fontWeight: pw.FontWeight.bold
                                           ),
                                         ),
                                         pw.Padding(
-                                          padding: pw.EdgeInsets.only(top: 5),
+                                          padding: pw.EdgeInsets.only(top: 5.5),
                                           child: pw.Text(
-                                            '08:15 PM',
+                                            '24241791',
                                             style: pw.TextStyle(
                                               fontSize: 11,
                                               //fontWeight: pw.FontWeight.bold
                                             ),
                                           ),
                                         ),
-                                      ]),
-                                ],
+                                      ],
+                                    )
+                                  ],
+                                ),
                               ),
-                              pw.Padding(
-                                  padding: pw.EdgeInsets.only(top: 15),
-                                  child: pw.Row(
-                                    mainAxisAlignment:
-                                        pw.MainAxisAlignment.spaceBetween,
-                                    crossAxisAlignment:
-                                        pw.CrossAxisAlignment.start,
-                                    children: [
-                                      pw.Container(
-                                        width: 150,
-                                        child: pw.Column(
-                                          crossAxisAlignment:
-                                              pw.CrossAxisAlignment.start,
-                                          children: [
-                                            pw.Text(
-                                              'Boarding point address',
+                            ),
+                          ),
+                          pw.Padding(
+                            padding:
+                                pw.EdgeInsets.only(top: 0, left: 20, right: 20),
+                            child: pw.Container(
+                              height: 1,
+                              color: PdfColors.black,
+                            ),
+                          ),
+                          pw.Padding(
+                            padding:
+                                pw.EdgeInsets.only(top: 2, left: 20, right: 20),
+                            child: pw.Container(
+                              height: 1,
+                              color: PdfColors.black,
+                            ),
+                          ),
+                          pw.Padding(
+                            padding: pw.EdgeInsets.only(
+                                left: 30, right: 30, top: 30),
+                            child: pw.Column(
+                              crossAxisAlignment: pw.CrossAxisAlignment.start,
+                              children: [
+                                pw.Row(
+                                  crossAxisAlignment:
+                                      pw.CrossAxisAlignment.start,
+                                  mainAxisAlignment:
+                                      pw.MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    pw.Column(
+                                        crossAxisAlignment:
+                                            pw.CrossAxisAlignment.start,
+                                        children: [
+                                          pw.Text(
+                                            'Bus type',
+                                            style: pw.TextStyle(
+                                              color: PdfColors.blueAccent,
+                                              // fontWeight: pw.FontWeight.bold
+                                            ),
+                                          ),
+                                          pw.Padding(
+                                            padding: pw.EdgeInsets.only(top: 5),
+                                            child: pw.Text(
+                                              'A/C Sleeper (2+1)',
                                               style: pw.TextStyle(
-                                                  color: PdfColors.blueAccent,
-                                                  fontWeight:
-                                                      pw.FontWeight.bold),
-                                            ),
-                                            pw.Padding(
-                                              padding:
-                                                  pw.EdgeInsets.only(top: 5),
-                                              child: pw.Row(
-                                                children: [
-                                                  pw.Text(
-                                                    'Location:',
-                                                    style: pw.TextStyle(
-                                                        fontWeight:
-                                                            pw.FontWeight.bold),
-                                                  ),
-                                                  pw.Text(
-                                                    '   Sholinganallur',
-                                                    style: pw.TextStyle(
-                                                      height: 2,
-                                                      fontSize: 13,
-                                                      // fontWeight: pw.FontWeight.bold
-                                                    ),
-                                                  ),
-                                                ],
+                                                fontSize: 11,
+                                                //fontWeight: pw.FontWeight.bold
                                               ),
                                             ),
-                                            pw.Padding(
-                                              padding:
-                                                  pw.EdgeInsets.only(top: 5.5),
-                                              child: pw.Row(
-                                                children: [
-                                                  pw.Text(
-                                                    'Landmark:',
-                                                    style: pw.TextStyle(
-                                                        fontWeight:
-                                                            pw.FontWeight.bold),
-                                                  ),
-                                                  pw.Text(
-                                                    ' Sholinganallur',
-                                                    style: pw.TextStyle(
-                                                      height: 2,
-                                                      fontSize: 11,
-                                                      //fontWeight: pw.FontWeight.bold
-                                                    ),
-                                                  ),
-                                                ],
+                                          ),
+                                        ]),
+                                    pw.Column(
+                                        crossAxisAlignment:
+                                            pw.CrossAxisAlignment.start,
+                                        children: [
+                                          pw.Text(
+                                            'Reporting time',
+                                            style: pw.TextStyle(
+                                              color: PdfColors.blueAccent,
+                                              //fontWeight: pw.FontWeight.bold
+                                            ),
+                                          ),
+                                          pw.Padding(
+                                            padding: pw.EdgeInsets.only(top: 5),
+                                            child: pw.Text(
+                                              '08:15 PM',
+                                              style: pw.TextStyle(
+                                                fontSize: 11,
+                                                //fontWeight: pw.FontWeight.bold
                                               ),
                                             ),
-                                            pw.Padding(
-                                              padding:
-                                                  pw.EdgeInsets.only(top: 5),
-                                              child: pw.Text(
-                                                'Address:',
+                                          ),
+                                        ]),
+                                  ],
+                                ),
+                                pw.Padding(
+                                    padding: pw.EdgeInsets.only(top: 15),
+                                    child: pw.Row(
+                                      mainAxisAlignment:
+                                          pw.MainAxisAlignment.spaceBetween,
+                                      crossAxisAlignment:
+                                          pw.CrossAxisAlignment.start,
+                                      children: [
+                                        pw.Container(
+                                          width: 150,
+                                          child: pw.Column(
+                                            crossAxisAlignment:
+                                                pw.CrossAxisAlignment.start,
+                                            children: [
+                                              pw.Text(
+                                                'Boarding point address',
                                                 style: pw.TextStyle(
+                                                    color: PdfColors.blueAccent,
                                                     fontWeight:
                                                         pw.FontWeight.bold),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      pw.Padding(
-                                          padding: pw.EdgeInsets.only(
-                                            top: 0,
-                                          ),
-                                          child: pw.Container(
-                                            width: 79,
-                                            child: pw.Column(
-                                              crossAxisAlignment:
-                                                  pw.CrossAxisAlignment.start,
-                                              children: [
-                                                pw.Text(
-                                                  'Total fare',
+                                              pw.Padding(
+                                                padding:
+                                                    pw.EdgeInsets.only(top: 5),
+                                                child: pw.Row(
+                                                  children: [
+                                                    pw.Text(
+                                                      'Location:',
+                                                      style: pw.TextStyle(
+                                                          fontWeight: pw
+                                                              .FontWeight.bold),
+                                                    ),
+                                                    pw.Text(
+                                                      '   Sholinganallur',
+                                                      style: pw.TextStyle(
+                                                        height: 2,
+                                                        fontSize: 13,
+                                                        // fontWeight: pw.FontWeight.bold
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              pw.Padding(
+                                                padding: pw.EdgeInsets.only(
+                                                    top: 5.5),
+                                                child: pw.Row(
+                                                  children: [
+                                                    pw.Text(
+                                                      'Landmark:',
+                                                      style: pw.TextStyle(
+                                                          fontWeight: pw
+                                                              .FontWeight.bold),
+                                                    ),
+                                                    pw.Text(
+                                                      ' Sholinganallur',
+                                                      style: pw.TextStyle(
+                                                        height: 2,
+                                                        fontSize: 11,
+                                                        //fontWeight: pw.FontWeight.bold
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              pw.Padding(
+                                                padding:
+                                                    pw.EdgeInsets.only(top: 5),
+                                                child: pw.Text(
+                                                  'Address:',
                                                   style: pw.TextStyle(
-                                                      color:
-                                                          PdfColors.blueAccent,
                                                       fontWeight:
                                                           pw.FontWeight.bold),
                                                 ),
-                                                pw.Padding(
-                                                  padding: pw.EdgeInsets.only(
-                                                      top: 8),
-                                                  child: pw.Text(
-                                                    'Rs. 600',
-                                                    style: pw.TextStyle(
-                                                      fontSize: 11,
-                                                      //fontWeight: pw.FontWeight.bold
-                                                    ),
-                                                  ),
-                                                )
-                                              ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        pw.Padding(
+                                            padding: pw.EdgeInsets.only(
+                                              top: 0,
                                             ),
-                                          )),
-                                    ],
-                                  ))
-                            ],
+                                            child: pw.Container(
+                                              width: 79,
+                                              child: pw.Column(
+                                                crossAxisAlignment:
+                                                    pw.CrossAxisAlignment.start,
+                                                children: [
+                                                  pw.Text(
+                                                    'Total fare',
+                                                    style: pw.TextStyle(
+                                                        color: PdfColors
+                                                            .blueAccent,
+                                                        fontWeight:
+                                                            pw.FontWeight.bold),
+                                                  ),
+                                                  pw.Padding(
+                                                    padding: pw.EdgeInsets.only(
+                                                        top: 8),
+                                                    child: pw.Text(
+                                                      'Rs. 600',
+                                                      style: pw.TextStyle(
+                                                        fontSize: 11,
+                                                        //fontWeight: pw.FontWeight.bold
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            )),
+                                      ],
+                                    ))
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(left: 20, top: 10),
-              child: pw.Row(
-                children: [
-                  pw.Text(
-                    'Terms and conditions',
-                    style: pw.TextStyle(
-                        fontSize: 12, fontWeight: pw.FontWeight.bold),
-                  ),
-                ],
+              pw.Padding(
+                padding: pw.EdgeInsets.only(left: 20, top: 10),
+                child: pw.Row(
+                  children: [
+                    pw.Text(
+                      'Terms and conditions',
+                      style: pw.TextStyle(
+                          fontSize: 12, fontWeight: pw.FontWeight.bold),
+                    ),
+                  ],
+                ),
               ),
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(top: 10, left: 20),
-              child: pw.Row(
+              pw.Padding(
+                padding: pw.EdgeInsets.only(top: 10, left: 20),
+                child: pw.Row(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text('1.'),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(left: 10),
+                      child: pw.Text(
+                        'redBus* is ONLY a bus ticket agent. It does not operate bus services of its \nown. In order to provide a comprehensive choice of bus operators, departure \ntimes and prices to customers, it has tied up with many bus operators. redBus" \nadvice to customers is to choose bus operators they are aware of and whose \nservice they are comfortable with.',
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              pw.Padding(
+                padding: pw.EdgeInsets.only(top: 10, left: 20),
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text(
+                      'redBus" responsibilities include: ',
+                      style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
+                    ),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(top: 6, left: 45),
+                      child: pw.Text(
+                        '(1) Issuing a valid ticket (a ticket that will be accepted by the bus \noperator) for its" network of bus operators',
+                        style: pw.TextStyle(height: 5),
+                      ),
+                    ),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(left: 45),
+                      child: pw.Text(
+                          '(2) Providing refund and support in the event of cancellation'),
+                    ),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(left: 45),
+                      child: pw.Text(
+                          '(3) Providing customer support and information in case of any delays /\ninconvenience'),
+                    ),
+                  ],
+                ),
+              ),
+              pw.Padding(
+                padding: pw.EdgeInsets.only(top: 10, left: 20),
+                child: pw.Column(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text(
+                      'redBus" responsibilities do NOT include: ',
+                      style: pw.TextStyle(
+                          // fontWeight: pw.FontWeight.bold
+                          ),
+                    ),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(top: 6, left: 45),
+                      child: pw.Text(
+                        '(1) The bus operator"s bus not departing / reaching on time\n(2) The bus operator"s employees being rude\n(3) The bus operator"s bus seats etc not being up to the customer"s \nexpectation\n(4) The bus operator canceling the trip due to unavoidable reasons\n(5) The baggage of the customer getting lost / stolen / damaged\n(6) The bus operator changing a customer"s seat at the last minute to \naccommodate a lady / child\n(7) The customer waiting at the wrong boarding point (please call the \nbus operator to find out the exact boarding point if you are not a \nregular travele" on that particular bus)\n(8) The bus operator changing the boarding point and/or using a \npickup vehicle at the b',
+                        style: pw.TextStyle(height: 2),
+                      ),
+                    ),
+                    pw.Row(
+                      children: [
+                        pw.Text('2.'),
+                        pw.Padding(
+                          padding: pw.EdgeInsets.only(left: 20),
+                          child: pw.Text(
+                              'The departure time mentioned on the ticket are only tentative timings.\nHowever the bus will not leave the source before the time that is \nmentioned on the ticket.'),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              pw.Row(
                 crossAxisAlignment: pw.CrossAxisAlignment.start,
                 children: [
-                  pw.Text('1.'),
+                  pw.Text('3.'),
                   pw.Padding(
                     padding: pw.EdgeInsets.only(left: 10),
                     child: pw.Text(
-                      'redBus* is ONLY a bus ticket agent. It does not operate bus services of its \nown. In order to provide a comprehensive choice of bus operators, departure \ntimes and prices to customers, it has tied up with many bus operators. redBus" \nadvice to customers is to choose bus operators they are aware of and whose \nservice they are comfortable with.',
-                    ),
-                  )
-                ],
-              ),
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(top: 10, left: 20),
-              child: pw.Column(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Text(
-                    'redBus" responsibilities include: ',
-                    style: pw.TextStyle(fontWeight: pw.FontWeight.bold),
-                  ),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(top: 6, left: 45),
-                    child: pw.Text(
-                      '(1) Issuing a valid ticket (a ticket that will be accepted by the bus \noperator) for its" network of bus operators',
-                      style: pw.TextStyle(height: 5),
-                    ),
-                  ),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(left: 45),
-                    child: pw.Text(
-                        '(2) Providing refund and support in the event of cancellation'),
-                  ),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(left: 45),
-                    child: pw.Text(
-                        '(3) Providing customer support and information in case of any delays /\ninconvenience'),
-                  ),
-                ],
-              ),
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(top: 10, left: 20),
-              child: pw.Column(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Text(
-                    'redBus" responsibilities do NOT include: ',
-                    style: pw.TextStyle(
-                        // fontWeight: pw.FontWeight.bold
-                        ),
-                  ),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(top: 6, left: 45),
-                    child: pw.Text(
-                      '(1) The bus operator"s bus not departing / reaching on time\n(2) The bus operator"s employees being rude\n(3) The bus operator"s bus seats etc not being up to the customer"s \nexpectation\n(4) The bus operator canceling the trip due to unavoidable reasons\n(5) The baggage of the customer getting lost / stolen / damaged\n(6) The bus operator changing a customer"s seat at the last minute to \naccommodate a lady / child\n(7) The customer waiting at the wrong boarding point (please call the \nbus operator to find out the exact boarding point if you are not a \nregular travele" on that particular bus)\n(8) The bus operator changing the boarding point and/or using a \npickup vehicle at the b',
-                      style: pw.TextStyle(height: 2),
-                    ),
-                  ),
-                  pw.Row(
-                    children: [
-                      pw.Text('2.'),
-                      pw.Padding(
-                        padding: pw.EdgeInsets.only(left: 20),
-                        child: pw.Text(
-                            'The departure time mentioned on the ticket are only tentative timings.\nHowever the bus will not leave the source before the time that is \nmentioned on the ticket.'),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            pw.Row(
-              crossAxisAlignment: pw.CrossAxisAlignment.start,
-              children: [
-                pw.Text('3.'),
-                pw.Padding(
-                  padding: pw.EdgeInsets.only(left: 10),
-                  child: pw.Text(
-                    ' Passengers are required to furnish the following at the time of boarding the bus:\n(1) A copy of the ticket (A print out of the ticket or the print out of the ticket e-mail).\n(2) A valid identity proof \nFailing to do so, they may not be allowed to board the bus',
-                    style: pw.TextStyle(height: 1.8),
-                  ),
-                )
-              ],
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(top: 5),
-              child: pw.Row(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Text('4.'),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(left: 10),
-                    child: pw.Text(
-                      'Change of bus: In case the bus operator changes the type of bus due to some reason, \nredBus will refund the differential amount to the customer upon being intimated by \nthe customers in 24 hours of the journey',
+                      ' Passengers are required to furnish the following at the time of boarding the bus:\n(1) A copy of the ticket (A print out of the ticket or the print out of the ticket e-mail).\n(2) A valid identity proof \nFailing to do so, they may not be allowed to board the bus',
                       style: pw.TextStyle(height: 1.8),
                     ),
                   )
                 ],
               ),
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(top: 5),
-              child: pw.Row(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Text('5.'),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(left: 10),
-                    child: pw.Text(
-                      'Amenities for this bus as shown on redBus have been configured and provided by \nthe bus provider (bus operator). These amenities will be provided unless there are \nsome exceptions on certain days. Please note that redBus provides this information \nin good faith to help passengers to make an informed decision. The liability of the amenity \nnot being made available lies with the operator and not with redBus',
-                      style: pw.TextStyle(height: 1.8),
-                    ),
-                  )
-                ],
+              pw.Padding(
+                padding: pw.EdgeInsets.only(top: 5),
+                child: pw.Row(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text('4.'),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(left: 10),
+                      child: pw.Text(
+                        'Change of bus: In case the bus operator changes the type of bus due to some reason, \nredBus will refund the differential amount to the customer upon being intimated by \nthe customers in 24 hours of the journey',
+                        style: pw.TextStyle(height: 1.8),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-            pw.Padding(
-              padding: pw.EdgeInsets.only(top: 5),
-              child: pw.Row(
-                crossAxisAlignment: pw.CrossAxisAlignment.start,
-                children: [
-                  pw.Text('6.'),
-                  pw.Padding(
-                    padding: pw.EdgeInsets.only(left: 10),
-                    child: pw.Text(
-                      'nfigured and provided by \nthe bus provider (bus operator). These amenities will be provided unless there are \nsome exceptions on certain days. Please note that redBus provides this information \nin good faith to help passengers to make an informed decision. The liability of the amenity \nnot being made available lies with the operator and not with redBus',
-                      style: pw.TextStyle(height: 1.8),
-                    ),
-                  )
-                ],
+              pw.Padding(
+                padding: pw.EdgeInsets.only(top: 5),
+                child: pw.Row(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text('5.'),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(left: 10),
+                      child: pw.Text(
+                        'Amenities for this bus as shown on redBus have been configured and provided by \nthe bus provider (bus operator). These amenities will be provided unless there are \nsome exceptions on certain days. Please note that redBus provides this information \nin good faith to help passengers to make an informed decision. The liability of the amenity \nnot being made available lies with the operator and not with redBus',
+                        style: pw.TextStyle(height: 1.8),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          ]);
-        }));
-
+              pw.Padding(
+                padding: pw.EdgeInsets.only(top: 5),
+                child: pw.Row(
+                  crossAxisAlignment: pw.CrossAxisAlignment.start,
+                  children: [
+                    pw.Text('6.'),
+                    pw.Padding(
+                      padding: pw.EdgeInsets.only(left: 10),
+                      child: pw.Text(
+                        'nfigured and provided by \nthe bus provider (bus operator). These amenities will be provided unless there are \nsome exceptions on certain days. Please note that redBus provides this information \nin good faith to help passengers to make an informed decision. The liability of the amenity \nnot being made available lies with the operator and not with redBus',
+                        style: pw.TextStyle(height: 1.8),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          );
+        },
+      ),
+    );
 
     // AnchorElement(
     //     href:
@@ -843,11 +851,9 @@ class BusController extends GetxController {
     //   ..setAttribute("download", "report.pdf")
     //   ..click();
 
-
-
     final bytes = await pdf.save();
     html.Blob blob = html.Blob([bytes], 'application/pdf');
-     AnchorElement(
+    AnchorElement(
         href:
             "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
       ..setAttribute("download", "report.pdf")

@@ -3,10 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../../../../constant/constans.dart';
 import '../../../../../../controller/hotel_controller/hotel_controller.dart';
-
 import '../../../../../../models/hotel_model/hotel_booking_list_model.dart';
 import '../../../../../../models/hotel_model/hotel_detials_model.dart';
 
@@ -26,7 +24,7 @@ class _HotelHistoryState extends State<HotelHistory> {
     hotelBookingController.hotelBookingList();
   }
 
-    void launchGoogleMaps(String latitude, String longitude) async {
+  void launchGoogleMaps(String latitude, String longitude) async {
     final url =
         // 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
 
@@ -343,123 +341,128 @@ class _HotelHistoryState extends State<HotelHistory> {
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<HotelController>(builder: (_) {
-      return Column(
-        children: [
-          hotelBookingController.bookingList.isEmpty
-              ? const Center(
-                  child: Text("No bookings found"),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    //height: 500,
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      itemCount: hotelBookingController.bookingList.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                          childAspectRatio: 5,
-                          crossAxisCount: 2),
-                      itemBuilder: ((context, index) {
-                        return InkWell(
-                          onTap: () async {
-                            Result result = await hotelBookingController
-                                .getHotelDetails(hotelBookingController
-                                    .bookingList[index].bookingId);
-                            dialogBuilder(
-                                context,
-                                hotelBookingController.bookingList[index],
-                                result);
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: kwhite,
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                      offset: Offset(0.0, 0.75),
-                                      blurRadius: 5,
-                                      color: kgrey),
-                                ],
-                                borderRadius: BorderRadius.circular(5)),
-                            height: 150,
-                            width: 259,
-                            //color: kwhite,
-                            child: Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: hotelBookingController
-                                              .bookingList[index].hotelImage ==
-                                          "null"
-                                      ? Image.asset(
-                                          'assets/images/Rectangle 1877.png')
-                                      : ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                          child: Image.network(
-                                            hotelBookingController
-                                                .bookingList[index].hotelImage,
-                                            height: 130,
-                                            width: 150,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                ),
-                                kwidth10,
-                                Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ksizedbox10,
-                                    Row(
-                                      children: [
-                                        Text(
-                                          hotelBookingController
-                                              .bookingList[index].hotelName
-                                              .toString(),
-                                          maxLines: 2,
-                                          style: TextStyle(fontSize: 21),
-                                        ),
-                                        SizedBox(
-                                          width: 30,
-                                        ),
-                                        // Image.asset(
-                                        //     'assets/images/Icon material-location-on.png')
-                                      ],
-                                    ),
-                                    Text(
-                                      'Booking Date : ${hotelBookingController.bookingList[index].bookingDate}',
-                                      style: TextStyle(color: kblue),
-                                    ),
-                                    // Text(
-                                    //   'Check in : 03:44PM Check Out 03:43 PM',
-                                    //   style: TextStyle(color: kblue),
-                                    // ),
-                                    Text(
-                                      'Price :${hotelBookingController.bookingList[index].price}',
-                                      style: TextStyle(color: kblue),
-                                    ),
-                                    Text(
-                                      'Total Person :${hotelBookingController.bookingList[index].noOfPeople}',
-                                      style: TextStyle(color: kblue),
-                                    ),
-                                    ksizedbox10
+    return GetBuilder<HotelController>(
+      builder: (_) {
+        return Column(
+          children: [
+            hotelBookingController.bookingList.isEmpty
+                ? const Center(
+                    child: Text("No bookings found"),
+                  )
+                : Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      //height: 500,
+                      child: GridView.builder(
+                        shrinkWrap: true,
+                        itemCount: hotelBookingController.bookingList.length,
+                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 10,
+                            mainAxisSpacing: 10,
+                            childAspectRatio: 5,
+                            crossAxisCount: 2),
+                        itemBuilder: ((context, index) {
+                          return InkWell(
+                            onTap: () async {
+                              Result result = await hotelBookingController
+                                  .getHotelDetails(hotelBookingController
+                                      .bookingList[index].bookingId);
+                              dialogBuilder(
+                                  context,
+                                  hotelBookingController.bookingList[index],
+                                  result);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: kwhite,
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                        offset: Offset(0.0, 0.75),
+                                        blurRadius: 5,
+                                        color: kgrey),
                                   ],
-                                )
-                              ],
+                                  borderRadius: BorderRadius.circular(5)),
+                              height: 150,
+                              width: 259,
+                              //color: kwhite,
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: hotelBookingController
+                                                .bookingList[index]
+                                                .hotelImage ==
+                                            "null"
+                                        ? Image.asset(
+                                            'assets/images/Rectangle 1877.png')
+                                        : ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            child: Image.network(
+                                              hotelBookingController
+                                                  .bookingList[index]
+                                                  .hotelImage,
+                                              height: 130,
+                                              width: 150,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                  ),
+                                  kwidth10,
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      ksizedbox10,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            hotelBookingController
+                                                .bookingList[index].hotelName
+                                                .toString(),
+                                            maxLines: 2,
+                                            style: TextStyle(fontSize: 21),
+                                          ),
+                                          SizedBox(
+                                            width: 30,
+                                          ),
+                                          // Image.asset(
+                                          //     'assets/images/Icon material-location-on.png')
+                                        ],
+                                      ),
+                                      Text(
+                                        'Booking Date : ${hotelBookingController.bookingList[index].bookingDate}',
+                                        style: TextStyle(color: kblue),
+                                      ),
+                                      // Text(
+                                      //   'Check in : 03:44PM Check Out 03:43 PM',
+                                      //   style: TextStyle(color: kblue),
+                                      // ),
+                                      Text(
+                                        'Price :${hotelBookingController.bookingList[index].price}',
+                                        style: TextStyle(color: kblue),
+                                      ),
+                                      Text(
+                                        'Total Person :${hotelBookingController.bookingList[index].noOfPeople}',
+                                        style: TextStyle(color: kblue),
+                                      ),
+                                      ksizedbox10
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                      ),
                     ),
                   ),
-                ),
-          ksizedbox40
-        ],
-      );
-    });
+            ksizedbox40
+          ],
+        );
+      },
+    );
   }
 }

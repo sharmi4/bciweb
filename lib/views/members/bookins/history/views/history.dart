@@ -1,5 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
-import 'package:bciweb/views/members/bookins/history/views/widgets/buswigit.dart';
+
 import 'package:bciweb/views/members/bookins/history/views/widgets/hotel_history.dart';
 
 import 'package:bciweb/views/members/bookins/history/views/widgets/orders.dart';
@@ -12,8 +12,7 @@ import 'package:velocity_x/velocity_x.dart';
 
 import '../../../../../controller/bus_controllers.dart';
 import '../../../../../controller/historycontroller.dart';
-import '../../../../../controller/reg_home_controller.dart';
-//import '../../../../../registerhomescreen/common_reg_appbar';
+
 import '../../../../../models/busbookingmodels/bus_booking_history_model.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -21,9 +20,8 @@ import '../../../../members/common_widget/common.dart';
 import '../../bus/Bus_booking_main.dart';
 import '../../flight/booking_flight.dart';
 import '../../hotels/booking_hotels.dart';
-import '../../liquer/Liquer_booking.dart';
+
 import '../../trip/trip_booking.dart';
-import '../others/others_booking_list.dart';
 
 class History extends StatefulWidget {
   const History({super.key});
@@ -363,7 +361,7 @@ class _BussHistoryState extends State<BussHistory> {
         GetBuilder<BusController>(builder: (_) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: GridView.builder(
+            child: busController.bookingHistoryList.isEmpty?Text('No data found') :GridView.builder(
               itemCount: busController.bookingHistoryList.length,
               shrinkWrap: true,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -376,11 +374,12 @@ class _BussHistoryState extends State<BussHistory> {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 30,
                   ),
-                  child: InkWell(  onTap: () {
-                        dialogBuilderbus(context,
-                            busBookingData:
-                                busController.bookingHistoryList[index]);
-                      },
+                  child: InkWell(
+                    onTap: () {
+                      dialogBuilderbus(context,
+                          busBookingData:
+                              busController.bookingHistoryList[index]);
+                    },
                     child: Container(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -391,7 +390,8 @@ class _BussHistoryState extends State<BussHistory> {
                               CircleAvatar(
                                 child: Center(
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -514,7 +514,8 @@ class _BussHistoryState extends State<BussHistory> {
                             BoxShadow(
                               color: Color.fromARGB(255, 190, 190, 190)
                                   .withOpacity(0.5), // Shadow color
-                              spreadRadius: 1, // The spread radius of the shadow
+                              spreadRadius:
+                                  1, // The spread radius of the shadow
                               blurRadius: 5, // The blur radius of the shadow
                               //  offset: Offset(0, 3), // The offset of the shadow
                             ),
@@ -530,6 +531,7 @@ class _BussHistoryState extends State<BussHistory> {
       ],
     );
   }
+
   Future<void> dialogBuilderbus(
     BuildContext context, {
     required BookingHistoryData busBookingData,
@@ -757,7 +759,6 @@ class _BussHistoryState extends State<BussHistory> {
       },
     );
   }
-
 }
 
 class bottle_container extends StatelessWidget {

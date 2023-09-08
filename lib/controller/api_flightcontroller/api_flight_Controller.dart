@@ -17,19 +17,18 @@ import '../../services/networks/services/flight_api_searcive/airflight_api_searv
 import '../../services/networks/services/flight_api_searcive/airport_search_apiservice.dart';
 import '../../services/networks/services/flight_api_searcive/get_flight_booking_list.dart';
 import 'package:pdf/widgets.dart' as pw;
+
 class ApiflightsController extends GetxController {
-
-
-GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
+  GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
       GetFlightBookingHistoryAPIServices();
 
   RxInt wayIndex = 0.obs;
   RxInt cabinClassIndex = 0.obs;
-   RxInt flighttypeindex=0.obs;
+  RxInt flighttypeindex = 0.obs;
 
   RxInt adultsCount = 1.obs;
   RxInt childsCount = 0.obs;
-  RxInt onwayOrTwoWay=0.obs;
+  RxInt onwayOrTwoWay = 0.obs;
 
   RxInt domesticORInternational = 0.obs;
 
@@ -57,9 +56,6 @@ GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
 
   List<PassengerDetail> passengersDetailsList = [];
 
-
-  
-
   seachAirport({required String keyWord}) async {
     dio.Response<dynamic> response = await airportSearchApiServices
         .airportSearchApiServices(keyWord: keyWord);
@@ -83,7 +79,9 @@ GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
   //air search flight list
   List<Flight> flightList = [];
 
-  airSearch({required FlightSearchDataModel flightSearchModel, required bool ismobilorweb }) async {
+  airSearch(
+      {required FlightSearchDataModel flightSearchModel,
+      required bool ismobilorweb}) async {
     isLoading(true);
     flightList.clear();
     String seachKey = "";
@@ -96,16 +94,12 @@ GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
       seachKey = airSearchModel.searchKey;
     }
 
-
-if(ismobilorweb){
-    Get.to(ParNycSCreen(
-      flightSearchDataModel: flightSearchModel,
-      searchKey: seachKey,
-    ));
-}else{
-  
-}
-   
+    if (ismobilorweb) {
+      Get.to(ParNycSCreen(
+        flightSearchDataModel: flightSearchModel,
+        searchKey: seachKey,
+      ));
+    } else {}
 
     update();
   }
@@ -136,26 +130,23 @@ if(ismobilorweb){
     }
   }
 
-  splitdate(String tempDate){
+  splitdate(String tempDate) {
     //  String tempDate = "07/22/2023";
-  
-  var splittedString = tempDate.split("/");
-  
-  print(splittedString);
-  
-  int tempYear = int.parse(splittedString.last);
-  int tempDay = int.parse(splittedString[1]);
-  int monthTemp = int.parse(splittedString.first);
-  
-  DateTime parsedDate = DateTime(tempYear,monthTemp,tempDay);
-  
-  return parsedDate;
+
+    var splittedString = tempDate.split("/");
+
+    print(splittedString);
+
+    int tempYear = int.parse(splittedString.last);
+    int tempDay = int.parse(splittedString[1]);
+    int monthTemp = int.parse(splittedString.first);
+
+    DateTime parsedDate = DateTime(tempYear, monthTemp, tempDay);
+
+    return parsedDate;
   }
 
-
-
-
-    //flights booking list
+  //flights booking list
 
   List<FlightBookedData> flightBookingHistoyrList = [];
 
@@ -172,8 +163,7 @@ if(ismobilorweb){
 
   AirRePrintingServices airRePrintingServices = AirRePrintingServices();
 
-
-    downloadTicketHistory({required String refernceNo}) async {
+  downloadTicketHistory({required String refernceNo}) async {
     dio.Response<dynamic> response = await airRePrintingServices
         .airRePrintingApi(clientReferneNo: "", refrenceNo: refernceNo);
 
@@ -184,10 +174,7 @@ if(ismobilorweb){
     } else {}
   }
 
-
-
-
-    //flight ticket pdf
+  //flight ticket pdf
   Future<void> downloadFlightTicketInvoice(
       AirReprintModel airReprintModel) async {
     final pdf = pw.Document();
@@ -769,10 +756,17 @@ if(ismobilorweb){
     ));
 
     var bytes = await pdf.save();
+
+    AnchorElement(
+        href:
+            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+      ..setAttribute("download", "report.pdf")
+      ..click(
+        
+      );
+
     //downloadFile(bytes, airReprintModel.airPnrDetails.first.airlinePnr);
   }
-
-
 
   //   downloadFile(var bytes, String txId) async {
   //   await Permission.storage.request();

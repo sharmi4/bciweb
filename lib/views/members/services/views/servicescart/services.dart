@@ -1,41 +1,49 @@
+
+
+
+
+
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/views/members/services/views/coupons.dart';
 import 'package:bciweb/views/members/services/views/servicescart/service_list.dart';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../../../../constant/constans.dart';
-
 import '../../../../../controller/auth_controller/auth_controller.dart';
-
 import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
-
 import '../../../common_widget/common.dart';
-
 import '../offerce.dart';
 
+
+
 class Services extends StatefulWidget {
+
   const Services({super.key});
+
 
   @override
   State<Services> createState() => _ServicesState();
+
 }
 
+
 final homeController = Get.find<HomeServiceController>();
+
 
 CarouselController curouselController = CarouselController();
 
 class _ServicesState extends State<Services> {
+
   @override
   void initState() {
+
     super.initState();
     authController.getservice();
      serviceofferController.GettodayoffersList();
+
   }
  
   int pageIndex = 0;
@@ -43,6 +51,7 @@ class _ServicesState extends State<Services> {
   final authController = Get.find<AuthController>();
 
   final serviceofferController=Get.find<HomeServiceController>();
+  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -102,8 +111,8 @@ class _ServicesState extends State<Services> {
             GetBuilder<AuthController>(builder: (_) {
               print(authController.dataList);
               return Column(
-                children: [
-                  GridView.builder(
+                children: [authController.dataList.isEmpty?
+Text('No Service Found'):                  GridView.builder(
                     itemCount: authController.dataList.length,
                     shrinkWrap: true,
                     gridDelegate:

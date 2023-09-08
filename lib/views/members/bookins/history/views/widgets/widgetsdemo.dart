@@ -24,6 +24,7 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
   }
 
   final flightController = Get.find<ApiflightsController>();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -33,102 +34,109 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
           return Container(
             //  height: 500,
             // width: size.width * 0.5,
-            child: ListView.builder(
-              shrinkWrap: true,
-              itemCount: flightController.flightBookingHistoyrList.length,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    dialogBuilderflight(context,
-                        flightBookedData:
-                            flightController.flightBookingHistoyrList[index]);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 50),
-                    child: Container(
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+            child: flightController.flightBookingHistoyrList.isEmpty
+                ? const Center(
+                    child: Text("No bookings found"),
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: flightController.flightBookingHistoyrList.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          dialogBuilderflight(context,
+                              flightBookedData: flightController
+                                  .flightBookingHistoyrList[index]);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 50),
+                          child: Container(
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
-                                    'TO',
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: kblue),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'TO',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: kblue),
+                                        ),
+                                        ksizedbox10,
+                                        Text(
+                                          flightController
+                                              .flightBookingHistoyrList[index]
+                                              .fromCityname,
+                                          style: TextStyle(
+                                              color: kblue, fontSize: 19),
+                                        ),
+                                        ksizedbox10,
+                                        Text(
+                                          'John F. Kennedy Airport',
+                                          style: TextStyle(
+                                              fontSize: 15, color: kblue),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  ksizedbox10,
-                                  Text(
-                                    flightController
-                                        .flightBookingHistoyrList[index]
-                                        .fromCityname,
-                                    style:
-                                        TextStyle(color: kblue, fontSize: 19),
+                                  Image.asset(
+                                    'assets/images/Group 39716.png',
+                                    height: 55,
                                   ),
-                                  ksizedbox10,
-                                  Text(
-                                    'John F. Kennedy Airport',
-                                    style:
-                                        TextStyle(fontSize: 15, color: kblue),
+                                  Padding(
+                                    padding: const EdgeInsets.all(15.0),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          'FROM',
+                                          style: TextStyle(
+                                              fontSize: 22,
+                                              fontWeight: FontWeight.bold,
+                                              color: kblue),
+                                        ),
+                                        ksizedbox10,
+                                        Text(
+                                          flightController
+                                              .flightBookingHistoyrList[index]
+                                              .toCityname,
+                                          style: TextStyle(
+                                              fontSize: 19, color: kblue),
+                                        ),
+                                        ksizedbox10,
+                                        Text(
+                                          'Abbotsford National Airport',
+                                          style: TextStyle(
+                                              color: kblue, fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
                                   ),
+                                ]),
+                            height: 150,
+                            width: 700,
+                            decoration: BoxDecoration(
+                                color: kwhite,
+                                boxShadow: <BoxShadow>[
+                                  BoxShadow(
+                                      offset: Offset(0.0, 0.75),
+                                      blurRadius: 5,
+                                      color: kgrey),
                                 ],
-                              ),
-                            ),
-                            Image.asset(
-                              'assets/images/Group 39716.png',
-                              height: 55,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(15.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    'FROM',
-                                    style: TextStyle(
-                                        fontSize: 22,
-                                        fontWeight: FontWeight.bold,
-                                        color: kblue),
-                                  ),
-                                  ksizedbox10,
-                                  Text(
-                                    flightController
-                                        .flightBookingHistoyrList[index]
-                                        .toCityname,
-                                    style:
-                                        TextStyle(fontSize: 19, color: kblue),
-                                  ),
-                                  ksizedbox10,
-                                  Text(
-                                    'Abbotsford National Airport',
-                                    style:
-                                        TextStyle(color: kblue, fontSize: 15),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ]),
-                      height: 150,
-                      width: 700,
-                      decoration: BoxDecoration(
-                          color: kwhite,
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                offset: Offset(0.0, 0.75),
-                                blurRadius: 5,
-                                color: kgrey),
-                          ],
-                          borderRadius: BorderRadius.circular(5)),
-                    ),
+                                borderRadius: BorderRadius.circular(5)),
+                          ),
+                        ),
+                      );
+                    },
                   ),
-                );
-              },
-            ),
           );
         }),
         // ksizedbox30,
@@ -245,7 +253,7 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
                 ),
                 Row(
                   children: [
-                   // Image.asset('assets/images/Group 291.png'),
+                    // Image.asset('assets/images/Group 291.png'),
                     const SizedBox(
                       width: 10,
                     ),
@@ -423,7 +431,7 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.find< ApiflightsController>().downloadTicketHistory(
+                        Get.find<ApiflightsController>().downloadTicketHistory(
                             refernceNo: flightBookedData.bookingRefNo);
                       },
                       child: Container(
@@ -432,7 +440,10 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
                         decoration: BoxDecoration(
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(10)),
-                        child: const Icon(Icons.download,color: Colors.white,),
+                        child: const Icon(
+                          Icons.download,
+                          color: Colors.white,
+                        ),
                       ),
                     )
                   ],
@@ -444,9 +455,6 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
       },
     );
   }
-
-
-
 }
 
 class HolidayHistory extends StatefulWidget {
@@ -673,116 +681,124 @@ class _HolidayHistoryState extends State<HolidayHistory> {
       child: Column(
         children: [
           GetBuilder<HolidayPackageController>(builder: (_) {
-            return GridView.builder(
-                itemCount: holidayPackageController.enquiryData.length,
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                    childAspectRatio: 4,
-                    crossAxisCount: 2),
-                itemBuilder: ((context, index) {
-                  return InkWell(
-                    onTap: () {
-                      tripdialogeBuilder(
-                        context,
-                        holidayPackageController
-                            .enquiryData[index].packageDetails.image,
-                        holidayPackageController
-                            .enquiryData[index].packageDetails.title,
-                        holidayPackageController
-                            .enquiryData[index].packageDetails.createdAt
-                            .toString(),
-                        holidayPackageController
-                            .enquiryData[index].packageDetails.amount,
-                        holidayPackageController.enquiryData[index].adultCount,
-                        holidayPackageController
-                            .enquiryData[index].packageDetails.placeToVisit,
-                      );
-                    },
-                    child: Container(
-                      height: MediaQuery.of(context).size.height,
-                      width: 280,
-                      decoration: BoxDecoration(
-                          color: kwhite,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                offset: Offset(0.0, 0.75),
-                                blurRadius: 5,
-                                color: kgrey)
-                          ]),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(10),
-                                child: Image.network(
-                                  holidayPackageController.enquiryData[index]
-                                      .packageDetails.image.last,
-                                )),
-                          ),
-                          kwidth10,
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+            return holidayPackageController.enquiryData.isEmpty
+                ? Text('No Bookings Found')
+                : GridView.builder(
+                    itemCount: holidayPackageController.enquiryData.length,
+                    shrinkWrap: true,
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisSpacing: 20,
+                            mainAxisSpacing: 20,
+                            childAspectRatio: 4,
+                            crossAxisCount: 2),
+                    itemBuilder: ((context, index) {
+                      return InkWell(
+                        onTap: () {
+                          tripdialogeBuilder(
+                            context,
+                            holidayPackageController
+                                .enquiryData[index].packageDetails.image,
+                            holidayPackageController
+                                .enquiryData[index].packageDetails.title,
+                            holidayPackageController
+                                .enquiryData[index].packageDetails.createdAt
+                                .toString(),
+                            holidayPackageController
+                                .enquiryData[index].packageDetails.amount,
+                            holidayPackageController
+                                .enquiryData[index].adultCount,
+                            holidayPackageController
+                                .enquiryData[index].packageDetails.placeToVisit,
+                          );
+                        },
+                        child: Container(
+                          height: MediaQuery.of(context).size.height,
+                          width: 280,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    offset: Offset(0.0, 0.75),
+                                    blurRadius: 5,
+                                    color: kgrey)
+                              ]),
+                          child: Row(
                             children: [
-                              ksizedbox10,
-                              Text(
-                                holidayPackageController
-                                    .enquiryData[index].packageDetails.title,
-                                style: TextStyle(fontSize: 18),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+                                    child: Image.network(
+                                      holidayPackageController
+                                          .enquiryData[index]
+                                          .packageDetails
+                                          .image
+                                          .last,
+                                    )),
                               ),
-                              Text(
-                                '${holidayPackageController.enquiryData[index].packageDetails.location}',
-                                style: TextStyle(color: kblue),
-                              ),
-                              Row(
+                              kwidth10,
+                              Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  ksizedbox10,
                                   Text(
-                                    'Check in${formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [
-                                          dd,
-                                          "-",
-                                          mm,
-                                          '-',
-                                          yyyy
-                                        ])}',
-                                    style: TextStyle(color: kblue),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
+                                    holidayPackageController.enquiryData[index]
+                                        .packageDetails.title,
+                                    style: TextStyle(fontSize: 18),
                                   ),
                                   Text(
-                                    'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [
-                                          dd,
-                                          "-",
-                                          mm,
-                                          '-',
-                                          yyyy
-                                        ])}',
+                                    '${holidayPackageController.enquiryData[index].packageDetails.location}',
                                     style: TextStyle(color: kblue),
                                   ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      Text(
+                                        'Check in${formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [
+                                              dd,
+                                              "-",
+                                              mm,
+                                              '-',
+                                              yyyy
+                                            ])}',
+                                        style: TextStyle(color: kblue),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text(
+                                        'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [
+                                              dd,
+                                              "-",
+                                              mm,
+                                              '-',
+                                              yyyy
+                                            ])}',
+                                        style: TextStyle(color: kblue),
+                                      ),
+                                    ],
+                                  ),
+                                  Text(
+                                    'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
+                                    style: TextStyle(color: kblue),
+                                  ),
+                                  Text(
+                                    'Ac Rooms',
+                                    style: TextStyle(color: kblue),
+                                  ),
+                                  ksizedbox20
                                 ],
-                              ),
-                              Text(
-                                'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
-                                style: TextStyle(color: kblue),
-                              ),
-                              Text(
-                                'Ac Rooms',
-                                style: TextStyle(color: kblue),
-                              ),
-                              ksizedbox20
+                              )
                             ],
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                }));
+                          ),
+                        ),
+                      );
+                    }));
           })
         ],
       ),
@@ -1051,112 +1067,114 @@ class _index4State extends State<index4> {
     return Column(children: [
       GetBuilder<SubscriptionApiController>(builder: (_) {
         return Container(
-          width: 1000,
-          child: GridView.builder(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: subscriptionapiController.othersbookinglist.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                crossAxisCount: 2,
-                childAspectRatio: 2.5,
-              ),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 30, left: 40, right: 40),
-                  child: GestureDetector(
-                    onTap: () {
-                      dialogBuilder(
-                          context,
-                          subscriptionapiController
-                              .othersbookinglist[index].image,
-                          subscriptionapiController
-                              .othersbookinglist[index].service,
-                          subscriptionapiController
-                              .othersbookinglist[index].description,
-                          subscriptionapiController
-                              .othersbookinglist[index].purchasePrice,
-                          subscriptionapiController
-                              .othersbookinglist[index].quantity);
-                    },
-                    child: Container(
-                      height: 40,
-                      width: 60,
-                      decoration: BoxDecoration(
-                          color: kwhite,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                offset: Offset(0.0, 0.75),
-                                blurRadius: 5,
-                                color: kgrey)
-                          ]),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Column(
+         // width: 1000,
+          child: subscriptionapiController.othersbookinglist.isEmpty
+              ? Text('No data found')
+              : GridView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: subscriptionapiController.othersbookinglist.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 2,
+                    childAspectRatio: 2.5,
+                  ),
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding:
+                          const EdgeInsets.only(top: 30, left: 40, right: 40),
+                      child: GestureDetector(
+                        onTap: () {
+                          dialogBuilder(
+                              context,
+                              subscriptionapiController
+                                  .othersbookinglist[index].image,
+                              subscriptionapiController
+                                  .othersbookinglist[index].service,
+                              subscriptionapiController
+                                  .othersbookinglist[index].description,
+                              subscriptionapiController
+                                  .othersbookinglist[index].purchasePrice,
+                              subscriptionapiController
+                                  .othersbookinglist[index].quantity);
+                        },
+                        child: Container(
+                          height: 40,
+                          width: 60,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    offset: Offset(0.0, 0.75),
+                                    blurRadius: 5,
+                                    color: kgrey)
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
-                                  child: Container(
-                                    height: 168,
-                                    width: 168,
-                                    child: Image.network(
-                                      subscriptionapiController
-                                          .othersbookinglist[index].image,
-                                      fit: BoxFit.cover,
+                              Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Container(
+                                        height: 168,
+                                        width: 168,
+                                        child: Image.network(
+                                          subscriptionapiController
+                                              .othersbookinglist[index].image,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          ksizedbox20,
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 15, left: 40),
-                                child: Text(
-                                  subscriptionapiController
-                                      .othersbookinglist[index].service,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: kblue),
-                                ),
+                                  )
+                                ],
                               ),
                               ksizedbox20,
-                              Padding(
-                                padding: const EdgeInsets.only(left: 40),
-                                child: Container(
-                                  width: 200,
-                                  child: Text(
-                                    subscriptionapiController
-                                        .othersbookinglist[index].description,
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 4,
-                                    style: TextStyle(fontSize: 18),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 15, left: 40),
+                                    child: Text(
+                                      subscriptionapiController
+                                          .othersbookinglist[index].service,
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold,
+                                          color: kblue),
+                                    ),
                                   ),
-                                ),
+                                  ksizedbox20,
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 40),
+                                    child: Container(
+                                      width: 200,
+                                      child: Text(
+                                        subscriptionapiController
+                                            .othersbookinglist[index]
+                                            .description,
+                                        overflow: TextOverflow.ellipsis,
+                                        maxLines: 4,
+                                        style: TextStyle(fontSize: 18),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                );
-              }),
+                    );
+                  }),
         );
       }),
       ksizedbox30,
     ]);
   }
-
-
 }
