@@ -93,19 +93,32 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   ];
   String cardimgae = '';
   int temindex = 0;
+
+  final plansController = Get.find<SubscriptionApiController>();
+
   @override
   void initState() {
     super.initState();
     setDefauld();
     subscripeController.getcouponsList();
+    subscripeController.getplansList();
     authprofileController.getProfile();
     apisettingController.getwalletList();
     apisettingController.generateReferralCode();
     apisettingController.ourPartner();
-    // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
+    plan();
+    //plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
   }
 
-  final plansController = Get.find<SubscriptionApiController>();
+  plan(){
+    if(authprofileController.planid != ""){
+      plansController.getPlanDetails(id: authprofileController.planid.value);
+    }else{
+
+    }
+  }
+
+  
 
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
@@ -776,9 +789,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           )
                         ],
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 1, left: 10, right: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 1, left: 10, right: 10),
                         child: Divider(
                           thickness: 1,
                         ),
@@ -967,7 +979,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
                                         controller: nameController,
-                                        decoration: InputDecoration(
+                                        decoration:const InputDecoration(
                                             hintText: 'User Name',
                                             suffixIcon: Icon(Icons.edit),
                                             fillColor: Color(0xffF9F8FD),
@@ -995,12 +1007,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                       onPressed: () {
                                                         _selectDate(context);
                                                       },
-                                                      icon: Icon(Icons.edit),
+                                                      icon:const Icon(Icons.edit),
                                                     ),
-                                                    fillColor:
-                                                        Color(0xffF9F8FD),
-                                                    border:
-                                                        OutlineInputBorder())),
+                                                    fillColor:const Color(0xffF9F8FD),
+                                                    border:const OutlineInputBorder())),
                                           ],
                                         ),
                                       ),
@@ -1024,7 +1034,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         keyboardType:
                                             TextInputType.emailAddress,
                                         controller: emailController,
-                                        decoration: InputDecoration(
+                                        decoration:const InputDecoration(
                                             hintText: 'Enter Email',
                                             suffixIcon: Icon(Icons.edit),
                                             fillColor: Color(0xffF9F8FD),
@@ -1053,12 +1063,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                         'Enter Phone Number',
                                                     suffixIcon: IconButton(
                                                       onPressed: () {},
-                                                      icon: Icon(Icons.edit),
+                                                      icon:const Icon(Icons.edit),
                                                     ),
-                                                    fillColor:
-                                                        Color(0xffF9F8FD),
-                                                    border:
-                                                        OutlineInputBorder())),
+                                                    fillColor:const Color(0xffF9F8FD),
+                                                    border:const OutlineInputBorder())),
                                           ],
                                         ),
                                       ),
@@ -1080,7 +1088,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
                                         controller: occupationController,
-                                        decoration: InputDecoration(
+                                        decoration:const InputDecoration(
                                             hintText: 'Alternative Number',
                                             suffixIcon: Icon(Icons.edit),
                                             fillColor: Color(0xffF9F8FD),
@@ -1107,12 +1115,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                     hintText: 'Occupation',
                                                     suffixIcon: IconButton(
                                                       onPressed: () {},
-                                                      icon: Icon(Icons.edit),
+                                                      icon:const Icon(Icons.edit),
                                                     ),
-                                                    fillColor:
-                                                        Color(0xffF9F8FD),
-                                                    border:
-                                                        OutlineInputBorder())),
+                                                    fillColor:const Color(0xffF9F8FD),
+                                                    border:const OutlineInputBorder())),
                                           ],
                                         ),
                                       ),
@@ -1134,7 +1140,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
                                         controller: occupationController,
-                                        decoration: InputDecoration(
+                                        decoration:const InputDecoration(
                                             hintText: 'Qualification',
                                             suffixIcon: Icon(Icons.edit),
                                             fillColor: Color(0xffF9F8FD),
@@ -1161,12 +1167,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                     hintText: 'Father Name',
                                                     suffixIcon: IconButton(
                                                       onPressed: () {},
-                                                      icon: Icon(Icons.edit),
+                                                      icon:const Icon(Icons.edit),
                                                     ),
-                                                    fillColor:
-                                                        Color(0xffF9F8FD),
-                                                    border:
-                                                        OutlineInputBorder())),
+                                                    fillColor:const Color(0xffF9F8FD),
+                                                    border:const OutlineInputBorder())),
                                           ],
                                         ),
                                       ),
@@ -1188,7 +1192,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
                                         controller: mothernameController,
-                                        decoration: InputDecoration(
+                                        decoration:const InputDecoration(
                                             hintText: 'Mother Name',
                                             fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder()),
@@ -1224,7 +1228,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                           isMarried = value!;
                                                         });
                                                       }),
-                                                  Text('Married'),
+                                                  const Text('Married'),
                                                   Padding(
                                                     padding:
                                                         const EdgeInsets.only(
@@ -1238,7 +1242,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                           });
                                                         }),
                                                   ),
-                                                  Text('Unmarried')
+                                                  const Text('Unmarried')
                                                 ],
                                               ),
                                             )
@@ -1269,10 +1273,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                 onPressed: () {
                                                   // _selectDate2(context);
                                                 },
-                                                icon: Icon(Icons.edit),
+                                                icon:const Icon(Icons.edit),
                                               ),
-                                              fillColor: Color(0xffF9F8FD),
-                                              border: OutlineInputBorder())),
+                                              fillColor:const Color(0xffF9F8FD),
+                                              border:const OutlineInputBorder())),
                                     ),
                                   ),
                                   Expanded(
@@ -1289,7 +1293,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                               textInputAction:
                                                   TextInputAction.next,
                                               controller: spousenameController,
-                                              decoration: InputDecoration(
+                                              decoration:const InputDecoration(
                                                   hintText: 'Spouse Name',
                                                   suffixIcon: Icon(Icons.edit),
                                                   fillColor: Color(0xffF9F8FD),
@@ -1322,10 +1326,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                 onPressed: () {
                                                   _selectDate2(context);
                                                 },
-                                                icon: Icon(Icons.edit),
+                                                icon:const Icon(Icons.edit),
                                               ),
-                                              fillColor: Color(0xffF9F8FD),
-                                              border: OutlineInputBorder())),
+                                              fillColor:const Color(0xffF9F8FD),
+                                              border:const OutlineInputBorder())),
                                     ),
                                   ),
                                   Expanded(
@@ -1342,7 +1346,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                               textInputAction:
                                                   TextInputAction.next,
                                               controller: childrensController,
-                                              decoration: InputDecoration(
+                                              decoration:const InputDecoration(
                                                   hintText: 'No.Of.Children',
                                                   suffixIcon: Icon(Icons.edit),
                                                   fillColor: Color(0xffF9F8FD),
@@ -3793,7 +3797,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                   children: [
                     Container(
                       height: 180,
-                      decoration: BoxDecoration(
+                      decoration:const BoxDecoration(
                           image: DecorationImage(
                         image: AssetImage(
                           'assets/images/subscriptionbackimage.png',
@@ -3819,77 +3823,116 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           const EdgeInsets.only(left: 30, right: 30, top: 40),
                       child:
                           GetBuilder<SubscriptionApiController>(builder: (_) {
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            plansController.subscriptionplan.isEmpty
-                                ? Image.asset('assets/images/si1.png',
-                                    height: 200, fit: BoxFit.fitHeight)
-                                : Image.network(
-                                    plansController
-                                        .subscriptionplan.first.cardImg,
+                        return GetBuilder<AuthProfileController>(
+                          builder: (_) {
+                            return Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                plansController.subscriptionplan.isEmpty
+                                    ? Image.asset('assets/images/si1.png',
+                                        height: 200, fit: BoxFit.fitHeight)
+                                    : Stack(
+                                  children: [
+                                    Image.network(plansController.subscriptionplan.first.cardImg,
                                     height: 200,
-                                    fit: BoxFit.fitHeight),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 90),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  plansController.subscriptionplan.isEmpty
-                                      ? Container()
-                                      : Text(
-                                          plansController
-                                              .subscriptionplan.first.title,
-                                          style: TextStyle(
-                                              letterSpacing: 1,
-                                              color: kblue,
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.w700)),
-                                  ksizedbox10,
-                                  Text('Subscribe Details :',
-                                      style: TextStyle(
-                                          fontSize: 17,
-                                          color: kblue,
-                                          fontWeight: FontWeight.w500)),
-                                  ksizedbox20,
-                                  plansController.subscriptionplan.isEmpty
-                                      ? Container()
-                                      : Container(
-                                          width: 420,
-                                          child: Text(
-                                            plansController.subscriptionplan
-                                                .first.planDescription,
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                            ),
-                                          ),
-                                        ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 30),
-                              child: Container(
-                                  height: 40,
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                      color: kblue,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Center(
-                                      child: plansController
-                                              .subscriptionplan.isEmpty
-                                          ? Container()
-                                          : Text(
-                                              plansController.subscriptionplan
-                                                  .first.saleAmount,
-                                              style: TextStyle(
-                                                fontSize: 17,
-                                                color: kwhite,
-                                              ),
-                                            ))),
-                            )
-                          ],
+                                    width: 400,
+                                    fit: BoxFit.fill,),
+                                                Positioned(
+                                                          left: 15,
+                                                          top: 130,
+                                                          child:authprofileController.profileData.first
+                                                            .profilePicture.isEmpty
+                                                    ? Image.asset('assets/icons/prfl.png',height: 50,width: 50,)
+                                                    : Container(
+                                                            height: 55,
+                                                            width: 55,
+                                                            decoration: BoxDecoration(
+                                                              color: Colors.blue,
+                                                              borderRadius: BorderRadius.circular(30),
+                                                              image: DecorationImage(
+                                                                fit: BoxFit.cover,
+                                                                  image: NetworkImage(
+                                                                      authprofileController.profileData.first.profilePicture,
+                                                                      ))
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Positioned(
+                                                          top: 155,
+                                                          left: 80,
+                                                          child: Text(authprofileController.profileData.first.name,
+                                                          style:const TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 15),),
+                                                        ),
+                                                        
+                                  ],
+                                ),
+                                const SizedBox(width: 10,),
+                                plansController.subscriptionplan.isEmpty ? const Text("") : 
+                                Text(plansController.subscriptionplan.first.planDescription),
+
+
+                                // Padding(
+                                //   padding: const EdgeInsets.only(left: 90),
+                                //   child: Column(
+                                //     crossAxisAlignment: CrossAxisAlignment.start,
+                                //     children: [
+                                //       plansController.subscriptionplan.isEmpty
+                                //           ? Container()
+                                //           : Text(
+                                //               plansController
+                                //                   .subscriptionplan.first.title,
+                                //               style: TextStyle(
+                                //                   letterSpacing: 1,
+                                //                   color: kblue,
+                                //                   fontSize: 25,
+                                //                   fontWeight: FontWeight.w700)),
+                                //       ksizedbox10,
+                                //       Text('Subscribe Details :',
+                                //           style: TextStyle(
+                                //               fontSize: 17,
+                                //               color: kblue,
+                                //               fontWeight: FontWeight.w500)),
+                                //       ksizedbox20,
+                                //       plansController.subscriptionplan.isEmpty
+                                //           ? Container()
+                                //           : Container(
+                                //               width: 420,
+                                //               child: Text(
+                                //                 plansController.subscriptionplan
+                                //                     .first.planDescription,
+                                //                 style: TextStyle(
+                                //                   fontSize: 18,
+                                //                 ),
+                                //               ),
+                                //             ),
+                                //     ],
+                                //   ),
+                                // ),
+                                // Padding(
+                                //   padding: const EdgeInsets.only(left: 30),
+                                //   child: Container(
+                                //       height: 40,
+                                //       width: 120,
+                                //       decoration: BoxDecoration(
+                                //           color: kblue,
+                                //           borderRadius: BorderRadius.circular(5)),
+                                //       child: Center(
+                                //           child: plansController
+                                //                   .subscriptionplan.isEmpty
+                                //               ? Container()
+                                //               : Text(
+                                //                   plansController.subscriptionplan
+                                //                       .first.saleAmount,
+                                //                   style: TextStyle(
+                                //                     fontSize: 17,
+                                //                     color: kwhite,
+                                //                   ),
+                                //                 ))),
+                                // )
+                              ],
+                            );
+                          }
                         );
                       }),
                     )

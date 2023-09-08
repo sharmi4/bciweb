@@ -85,7 +85,7 @@ class SubscriptionApiController extends GetxController{
     }
     update();
   }
-   getPlanDetails({required int id}) async {
+   getPlanDetails({required dynamic id}) async {
     subscriptionplan.clear();
     dio.Response<dynamic> response =
         await getPlansdetailsApiService.getPlansDetails(planId: id);

@@ -13,7 +13,7 @@ class MemberProfileModel {
     bool subscription;
     dynamic remainingDays;
     dynamic percentage;
-    dynamic planId;
+    String planId;
     MemberUser user;
 
     MemberProfileModel({

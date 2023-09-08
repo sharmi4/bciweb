@@ -63,7 +63,7 @@ class _MobileProfileScreenState extends State< MobileProfileScreen> {
                                 ),
                                 
                               onPressed: (){
-                                Get.offAll(MyAccountScreen());
+                                Get.offAll(const MyAccountScreen());
                               },
                               
                               child: Row(

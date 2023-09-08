@@ -221,10 +221,11 @@ dynamic panimage;
   Widget build(BuildContext context) {
      var size = MediaQuery.of(context).size;
     return Scaffold(
-       appBar: PreferredSize(
-          child: AppBarMob(), preferredSize: Size(double.infinity, 40),
+       appBar:const PreferredSize(
+          child: AppBarMob(), 
+          preferredSize: Size(double.infinity, 40),
           ),
-           drawer: MobileDrawer(),
+           drawer:const MobileDrawer(),
        body:Obx(() =>
           ListView(
             children:[ Column(
@@ -241,7 +242,7 @@ dynamic panimage;
                                  children: [
                                    Padding(
                                      padding: const EdgeInsets.only(left: 20,top: 20),
-                                     child: Text('Profile Settting',
+                                     child: Text('Profile Setting',
                                      style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
@@ -336,22 +337,20 @@ dynamic panimage;
                           ),
                         ),
                             if(regshowController.showindex.value==0)
-                            Padding(
-                              padding: const EdgeInsets.only(top:40),
-                              child: Column(
-                                children: [
-                                  Stack(
-                                    children:[ 
-                                      GetBuilder<AuthProfileController>(
-                                  builder:(_){
-                                  return Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Column(
                               children: [
-                                const Text(""),
-                                if (authprofileController.profileData.isNotEmpty)
-                                  InkWell(
-                                      onTap: ()async {
-                                       
+                                Stack(
+                                  children:[ 
+                                    GetBuilder<AuthProfileController>(
+                                builder:(_){
+                                return Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const Text(""),
+                              if (authprofileController.profileData.isNotEmpty)
+                                InkWell(
+                                    onTap: ()async {
+                                     
                           PickedFile? pickedFile = await ImagePicker().getImage(
                             source: ImageSource.gallery,
                           );
@@ -363,492 +362,492 @@ dynamic panimage;
                           });
                           authprofileController.updateProfilePic(imageprofile);
 
-                                      },
-                                      child:imageprofile != null ? Image.memory(
-                                              imageprofile!) :   authprofileController.profileData.first
-                                                  .profilePicture ==
-                                              null
-                                          ?  Image.asset(
-                                              'assets/images/profileimage.png')
-                                          : Container(
-                                              height: 60,
-                                              width: 60,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(50),
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(
-                                                          authprofileController
-                                                              .profileData
-                                                              .first
-                                                              .profilePicture))),
-                                            )),
-                                const Padding(
-                                  padding: EdgeInsets.only(bottom: 40),
-                                  child: Text(
-                                    "",
-                                    style: TextStyle(
-                                        color: Color(0xffFF5003),
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500),
-                                  ),
+                                    },
+                                    child:imageprofile != null ? Image.memory(
+                                            imageprofile!) :   authprofileController.profileData.first
+                                                .profilePicture ==
+                                            null
+                                        ?  Image.asset(
+                                            'assets/images/profileimage.png')
+                                        : Container(
+                                            height: 60,
+                                            width: 60,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                image: DecorationImage(
+                                                    image: NetworkImage(
+                                                        authprofileController
+                                                            .profileData
+                                                            .first
+                                                            .profilePicture))),
+                                          )),
+                              const Padding(
+                                padding: EdgeInsets.only(bottom: 40),
+                                child: Text(
+                                  "",
+                                  style: TextStyle(
+                                      color: Color(0xffFF5003),
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500),
                                 ),
-                              ],
+                              ),
+                            ],
                             );
-                                  }
-                                ), 
-                                    
-                                    ]
-                                  ),
-                                  ksizedbox10,
-                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top:30),
-                                        child: Container(
-                                          height: 35,
-                                          child: TextField( 
-                                              textInputAction: TextInputAction.next,
-                                            controller: mobilenameController,
-                                            decoration: InputDecoration(
-                                              hintText: 'User Name',
-                                              hintStyle: TextStyle(
-                                                fontSize: 12
-                                              ),
-                                              border: OutlineInputBorder(
-                                                                           
-                                              )
-                                            ),
-                                                                     
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left:10,right:20,top:30),
-                                        child: TextField(
-                                          
+                                }
+                              ), 
+                                  
+                                  ]
+                                ),
+                                ksizedbox10,
+                               Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right:20,top:30),
+                                      child: Container(
+                                        height: 35,
+                                        child: TextField( 
                                             textInputAction: TextInputAction.next,
-                                          keyboardType: TextInputType.number,
-                                          controller: mobileemailController,
-                                           decoration: InputDecoration(
-                                            contentPadding: EdgeInsets.only(bottom: 1,top:1),
-                                            hintText: 'Email Id',
+                                          controller: mobilenameController,
+                                          decoration: InputDecoration(
+                                            hintText: 'User Name',
                                             hintStyle: TextStyle(
                                               fontSize: 12
                                             ),
-                                            fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder(
+                                                                         
                                             )
-                                            )
-                                        ),
+                                          ),
+                                                                   
                                         ),
                                       ),
-                                  ],
-                                 ),
-                                 ksizedbox10,
-                                                             Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
-                                        child: Column(
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left:10,right:20,top:30),
+                                      child: TextField(
+                                        
+                                          textInputAction: TextInputAction.next,
+                                        keyboardType: TextInputType.number,
+                                        controller: mobileemailController,
+                                         decoration: InputDecoration(
+                                          contentPadding: EdgeInsets.only(bottom: 1,top:1),
+                                          hintText: 'Email Id',
+                                          hintStyle: TextStyle(
+                                            fontSize: 12
+                                          ),
+                                          fillColor: Color(0xffF9F8FD),
+                                          border: OutlineInputBorder(
+                                          )
+                                          )
+                                      ),
+                                      ),
+                                    ),
+                                ],
+                               ),
+                               ksizedbox10,
+                                                           Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top:30),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 35,
+                                            child: TextField( 
+                                                textInputAction: TextInputAction.next,
+                                              keyboardType: TextInputType.number,
+                                              controller: mobilenumberController,
+                                              decoration: InputDecoration(
+                                                hintText: 'Mobile Number',
+                                                hintStyle: TextStyle(
+                                                  fontSize: 12
+                                                ),
+                                                fillColor: Color(0xffF9F8FD),
+                                                border: OutlineInputBorder(
+                                                                             
+                                                )
+                                              ),
+                                                                       
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left:10,right:20,top:30),
+                                      child: Column(
                                           children: [
                                             Container(
                                               height: 35,
-                                              child: TextField( 
+                                              child: TextField(
                                                   textInputAction: TextInputAction.next,
                                                 keyboardType: TextInputType.number,
-                                                controller: mobilenumberController,
-                                                decoration: InputDecoration(
-                                                  hintText: 'Mobile Number',
-                                                  hintStyle: TextStyle(
-                                                    fontSize: 12
-                                                  ),
-                                                  fillColor: Color(0xffF9F8FD),
-                                                  border: OutlineInputBorder(
-                                                                               
-                                                  )
-                                                ),
-                                                                         
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left:10,right:20,top:30),
-                                        child: Column(
-                                            children: [
-                                              Container(
-                                                height: 35,
-                                                child: TextField(
-                                                    textInputAction: TextInputAction.next,
-                                                  keyboardType: TextInputType.number,
-                                                  controller: alternativeController,
-                                                   decoration: InputDecoration(
-                                                    hintText: 'AlerterNative Number',
-                                                    hintStyle: TextStyle(
-                                                      fontSize: 12
-                                                    ),
-                                                    fillColor: Color(0xffF9F8FD),
-                                                    border: OutlineInputBorder(
-                                                    )
-                                                    )
-                                                ),
-                                              ),
-                                   
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    
-                                  ],
-                                 ),
-                                  ksizedbox10,
-                                                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top:30),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 35,
-                                              child: TextField( 
-                                                  textInputAction: TextInputAction.next,
-                                                controller: mobiledobController,
-                                                decoration: InputDecoration(
-                                                  hintText: 'Date Of Birth',
-                                                  hintStyle: TextStyle(
-                                                    fontSize: 12
-                                                  ),suffixIcon: IconButton(onPressed: (){
-                                                           _selectDate2(context);
-                                                        }, 
-                                                        icon: Icon(Icons.date_range,
-                                                        size: 14,),),
-                                                  fillColor: Color(0xffF9F8FD),
-                                                  border: OutlineInputBorder(
-                                                                               
-                                                  )
-                                                ),
-                                                                         
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                   
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                        child: Container(
-                                       height:35,
-                                          child:    TextField(
-                                                  textInputAction: TextInputAction.next,
-                                                controller: mobileoccupationController,
+                                                controller: alternativeController,
                                                  decoration: InputDecoration(
-                                                  hintText: 'Occupation',
+                                                  hintText: 'AlerterNative Number',
                                                   hintStyle: TextStyle(
                                                     fontSize: 12
                                                   ),
-                                                 
                                                   fillColor: Color(0xffF9F8FD),
                                                   border: OutlineInputBorder(
                                                   )
                                                   )
                                               ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                 ),
-                                 ksizedbox10,
-                                   Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 35,
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.circular(8)
-                                              ),
-                                              child: TextField(
-                                                        textInputAction: TextInputAction.next,
-                                                      controller: mobilequalificationController,
-                                                       decoration: InputDecoration(
-                                                        hintText: 'Qualification',
-                                                        hintStyle: TextStyle(
-                                                          fontSize: 12
-                                                        ),
-                                                        fillColor: Color(0xffF9F8FD),
-                                                        border: OutlineInputBorder(
-                                                        )
-                                                        )
-                                                    ),
                                             ),
+                                 
                                           ],
                                         ),
+                                      ),
+                                    ),
+                                  
+                                ],
+                               ),
+                                ksizedbox10,
+                                                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right:20,top:30),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 35,
+                                            child: TextField( 
+                                                textInputAction: TextInputAction.next,
+                                              controller: mobiledobController,
+                                              decoration: InputDecoration(
+                                                hintText: 'Date Of Birth',
+                                                hintStyle: TextStyle(
+                                                  fontSize: 12
+                                                ),suffixIcon: IconButton(onPressed: (){
+                                                         _selectDate2(context);
+                                                      }, 
+                                                      icon: Icon(Icons.date_range,
+                                                      size: 14,),),
+                                                fillColor: Color(0xffF9F8FD),
+                                                border: OutlineInputBorder(
+                                                                             
+                                                )
+                                              ),
+                                                                       
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                 
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                      child: Container(
+                                     height:35,
+                                        child:    TextField(
+                                                textInputAction: TextInputAction.next,
+                                              controller: mobileoccupationController,
+                                               decoration: InputDecoration(
+                                                hintText: 'Occupation',
+                                                hintStyle: TextStyle(
+                                                  fontSize: 12
+                                                ),
+                                               
+                                                fillColor: Color(0xffF9F8FD),
+                                                border: OutlineInputBorder(
+                                                )
+                                                )
+                                            ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                               ),
+                               ksizedbox10,
+                                 Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 35,
+                                            decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(8)
+                                            ),
+                                            child: TextField(
+                                                      textInputAction: TextInputAction.next,
+                                                    controller: mobilequalificationController,
+                                                     decoration: InputDecoration(
+                                                      hintText: 'Qualification',
+                                                      hintStyle: TextStyle(
+                                                        fontSize: 12
+                                                      ),
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                                      )
+                                                      )
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                      
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right:20,top: 30),
+                                      child: Container(
+                                        height: 35,
+                                        child: TextField( 
+                                             textInputAction: TextInputAction.next,
+                                        controller: mobilefathernameController,
+                                        decoration: InputDecoration(
+                                          hintText: 'Father Name',
+                                          hintStyle: TextStyle(
+                                            fontSize: 12
+                                          ),
+                                          fillColor: Color(0xffF9F8FD),
+                                          border: OutlineInputBorder(
+                                   
+                                          )
+                                        ),
+                                                        
+                                      ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                               ),
+                               ksizedbox10,
+                                 Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top:30),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 35,
+                                            child: TextField(
+                                                       textInputAction: TextInputAction.next,
+                                                    controller: mobilemothernameController,
+                                                     decoration: InputDecoration(
+                                                      hintText: 'Mother Name',
+                                                      hintStyle: TextStyle(
+                                                        fontSize: 12
+                                                      ),
+                                                     
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                                      )
+                                                      )
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                      
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                
+                                        child:  Column(
+                                        children: [
+                                          Container(
+                                            height: 35,
+                                            child: TextField(
+                                                       textInputAction: TextInputAction.next,
+                                                    controller: mobiledateofbirthController,
+                                                     decoration: InputDecoration(
+                                                      hintText: 'Wedding Date',
+                                                      hintStyle: TextStyle(
+                                                        fontSize: 12
+                                                      ),
+                                                      suffixIcon: IconButton(onPressed: (){
+                                                         _selectDate2(context);
+                                                      }, 
+                                                      icon: Icon(Icons.date_range,
+                                                      size: 14,),),
+                                                      fillColor: Color(0xffF9F8FD),
+                                                      border: OutlineInputBorder(
+                                                      )
+                                                      )
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
                                         
                                       ),
                                     ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right:20,top: 30),
-                                        child: Container(
-                                          height: 35,
-                                          child: TextField( 
-                                               textInputAction: TextInputAction.next,
-                                          controller: mobilefathernameController,
+                                
+                                ],
+                               ),
+                               ksizedbox10,
+                                 Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                 
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                      child: Container(
+                                        height: 35,
+                                        decoration: BoxDecoration(
+                                          color: kwhite,
+                                        border: Border.all(
+                                          color: kgrey
+                                        ),
+                                        borderRadius: BorderRadius.circular(5)
+                                        ),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(),
+                                                child: Row(
+                                                                                        
+                                                  children: [
+                                                    Checkbox(value: isMarried, 
+                                                    onChanged: (value){
+                                                       setState(() {
+                                                           isMarried=value!;
+                                                       });
+                                                    }),
+                                                    Text('Married',
+                                                    style: TextStyle(
+                                                      fontSize: 12
+                                                    ),),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(),
+                                                      child: Checkbox(value: isUnmarried, 
+                                                      onChanged: (value){
+                                                        setState(() {
+                                                          isUnmarried=value!;
+                                                        });
+                                                      }),
+                                                    ),
+                                                    Text('Unmarried',
+                                                    style: TextStyle(
+                                                      fontSize: 12
+                                                    ),)
+                                                  ],
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        
+                                      ),
+                                    ),
+                                  ),
+                                   Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top:30),
+                                      child: Container(
+                                        height: 35,
+                                        child: TextField( 
+                                            textInputAction: TextInputAction.next,
+                                          controller: mobilespousenameController,
                                           decoration: InputDecoration(
-                                            hintText: 'Father Name',
+                                            hintText: 'Spouse Name',
                                             hintStyle: TextStyle(
                                               fontSize: 12
                                             ),
                                             fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder(
-                                     
+                                                                         
                                             )
                                           ),
-                                                          
-                                        ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                 ),
-                                 ksizedbox10,
-                                   Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 35,
-                                              child: TextField(
-                                                         textInputAction: TextInputAction.next,
-                                                      controller: mobilemothernameController,
-                                                       decoration: InputDecoration(
-                                                        hintText: 'Mother Name',
-                                                        hintStyle: TextStyle(
-                                                          fontSize: 12
-                                                        ),
-                                                       
-                                                        fillColor: Color(0xffF9F8FD),
-                                                        border: OutlineInputBorder(
-                                                        )
-                                                        )
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
-                                        
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                  
-                                          child:  Column(
-                                          children: [
-                                            Container(
-                                              height: 35,
-                                              child: TextField(
-                                                         textInputAction: TextInputAction.next,
-                                                      controller: mobiledateofbirthController,
-                                                       decoration: InputDecoration(
-                                                        hintText: 'Wedding Date',
-                                                        hintStyle: TextStyle(
-                                                          fontSize: 12
-                                                        ),
-                                                        suffixIcon: IconButton(onPressed: (){
-                                                           _selectDate2(context);
-                                                        }, 
-                                                        icon: Icon(Icons.date_range,
-                                                        size: 14,),),
-                                                        fillColor: Color(0xffF9F8FD),
-                                                        border: OutlineInputBorder(
-                                                        )
-                                                        )
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
-                                          
-                                        ),
-                                      ),
-                                  
-                                  ],
-                                 ),
-                                 ksizedbox10,
-                                   Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                   
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                        child: Container(
-                                          height: 35,
-                                          decoration: BoxDecoration(
-                                            color: kwhite,
-                                          border: Border.all(
-                                            color: kgrey
-                                          ),
-                                          borderRadius: BorderRadius.circular(5)
-                                          ),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              children: [
-                                                Padding(
-                                                  padding: const EdgeInsets.only(),
-                                                  child: Row(
-                                                                                          
-                                                    children: [
-                                                      Checkbox(value: isMarried, 
-                                                      onChanged: (value){
-                                                         setState(() {
-                                                             isMarried=value!;
-                                                         });
-                                                      }),
-                                                      Text('Married',
-                                                      style: TextStyle(
-                                                        fontSize: 12
-                                                      ),),
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(),
-                                                        child: Checkbox(value: isUnmarried, 
-                                                        onChanged: (value){
-                                                          setState(() {
-                                                            isUnmarried=value!;
-                                                          });
-                                                        }),
-                                                      ),
-                                                      Text('Unmarried',
-                                                      style: TextStyle(
-                                                        fontSize: 12
-                                                      ),)
-                                                    ],
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          
+                                                                   
                                         ),
                                       ),
                                     ),
-                                     Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
-                                        child: Container(
-                                          height: 35,
-                                          child: TextField( 
-                                              textInputAction: TextInputAction.next,
-                                            controller: mobilespousenameController,
-                                            decoration: InputDecoration(
-                                              hintText: 'Spouse Name',
-                                              hintStyle: TextStyle(
-                                                fontSize: 12
-                                              ),
-                                              fillColor: Color(0xffF9F8FD),
-                                              border: OutlineInputBorder(
-                                                                           
-                                              )
-                                            ),
-                                                                     
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                 ),
-                                   ksizedbox10,
-                                  Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top:30),
-                                        child: Column(
-                                          children: [
-                                            Container(
-                                              height: 35, 
-                                              child: TextField(
-                                                         textInputAction: TextInputAction.next,
-                                                      controller: mobileadharno,
-                                                       decoration: InputDecoration(
-                                                        hintText: 'Aadhar Number',
-                                                         hintStyle: TextStyle(
-                                                        fontSize:12
-                                                      ),
-                                                        border: OutlineInputBorder()
-                                                        ),
-                                                        
-                                                    ),
-                                            ),
-                                          ],
-                                        ),
-                                        
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                  
-                                          child: Column(
-                                            children: [
-                                              
-                                                   Container(
-                                                    height: 35,
-                                                     child: TextField( 
-                                                      
-                                                     controller: mobilepannoController,
-                                                      decoration: InputDecoration(
-                                                      hintText: 'Pan Number',
-                                                      hintStyle: TextStyle(
-                                                        fontSize:12
-                                                      ),
-                                                      
-                                                       fillColor: Color(0xffF9F8FD),
-                                                       border: OutlineInputBorder(
-                                                                                      
-                                                         )
-                                                        ),
-                                                                     
-                                                        ),
-                                                   ),      
-                 
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                  
-                                  ],
-                                 ),
-                                 
-                                  
-                                 ksizedbox40,
+                                  ),
+                                ],
+                               ),
                                  ksizedbox10,
                                 Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                   Container(
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top:30),
+                                      child: Column(
+                                        children: [
+                                          Container(
+                                            height: 35, 
+                                            child: TextField(
+                                                       textInputAction: TextInputAction.next,
+                                                    controller: mobileadharno,
+                                                     decoration: InputDecoration(
+                                                      hintText: 'Aadhar Number',
+                                                       hintStyle: TextStyle(
+                                                      fontSize:12
+                                                    ),
+                                                      border: OutlineInputBorder()
+                                                      ),
+                                                      
+                                                  ),
+                                          ),
+                                        ],
+                                      ),
+                                      
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                
+                                        child: Column(
+                                          children: [
+                                            
+                                                 Container(
+                                                  height: 35,
+                                                   child: TextField( 
+                                                    
+                                                   controller: mobilepannoController,
+                                                    decoration: InputDecoration(
+                                                    hintText: 'Pan Number',
+                                                    hintStyle: TextStyle(
+                                                      fontSize:12
+                                                    ),
+                                                    
+                                                     fillColor: Color(0xffF9F8FD),
+                                                     border: OutlineInputBorder(
+                                                                                    
+                                                       )
+                                                      ),
+                                                                   
+                                                      ),
+                                                 ),      
+                 
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                
+                                ],
+                               ),
+                               
+                                
+                               ksizedbox40,
+                               ksizedbox10,
+                              Row(
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceAround,
+                              children: [
+                                 Container(
                           height: 100, 
                           width: 100, 
                           child: authprofileController.profileData.first.panProof.isEmpty ?
@@ -856,25 +855,25 @@ dynamic panimage;
                             height: 150,
                             width: 150,
                              child:GestureDetector(onTap: ()async{
-                                       PickedFile? pickedFile =
-                                              await ImagePicker()
-                                                  .getImage(
-                                            source: ImageSource.gallery,
-                                          );
-                                  
-                                          var tempCont = await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            panimage = tempCont;
-                                          });
-                                    
-                                      }, child: Text('Upload Pan Card',
-                                      style: TextStyle(
-                                        fontSize: 12
-                                      ),),),
+                                     PickedFile? pickedFile =
+                                            await ImagePicker()
+                                                .getImage(
+                                          source: ImageSource.gallery,
+                                        );
                                 
+                                        var tempCont = await pickedFile!.readAsBytes();
+                                        setState(() {
+                                          panimage = tempCont;
+                                        });
+                                  
+                                    }, child: Text('Upload Pan Card',
+                                    style: TextStyle(
+                                      fontSize: 12
+                                    ),),),
+                              
                           ) : Image.network(authprofileController.profileData.first.panProof)),
 
-                                   Container(
+                                 Container(
                           height: 100, 
                           width: 100, 
                           child: authprofileController.profileData.first.adharProof.isEmpty ?
@@ -882,285 +881,284 @@ dynamic panimage;
                             height: 150,
                             width: 150,
                              child:GestureDetector(onTap: ()async{
-                                       PickedFile? pickedFile =
-                                              await ImagePicker()
-                                                  .getImage(
-                                            source: ImageSource.gallery,
-                                          );
-                                  
-                                          var tempCont = await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            aadharimage = tempCont;
-                                          });
-                                    
-                                      }, child: Text('Upload Aadhar Card',
-                                      style: TextStyle(
-                                        fontSize: 12
-                                      )),),
+                                     PickedFile? pickedFile =
+                                            await ImagePicker()
+                                                .getImage(
+                                          source: ImageSource.gallery,
+                                        );
                                 
+                                        var tempCont = await pickedFile!.readAsBytes();
+                                        setState(() {
+                                          aadharimage = tempCont;
+                                        });
+                                  
+                                    }, child: Text('Upload Aadhar Card',
+                                    style: TextStyle(
+                                      fontSize: 12
+                                    )),),
+                              
                           ) : Image.network(authprofileController.profileData.first.adharProof)),
-                                   
                                  
+                               
+                              ],
+                            ),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                   Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                
+                                        child: Column(
+                                          children: [
+                                            
+                                                 Container(
+                                                  height: 35,
+                                                   child: TextField( 
+                                                    
+                                                   controller: mobilegestnoController,
+                                                    decoration: InputDecoration(
+                                                    hintText: 'GST Number',
+                                                    hintStyle: TextStyle(
+                                                      fontSize:12
+                                                    ),
+                                                     
+                                                     fillColor: Color(0xffF9F8FD),
+                                                     border: OutlineInputBorder(
+                                                                                    
+                                                       )
+                                                      ),
+                                                                   
+                                                      ),
+                                                 ),      
+                 
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                
+                                        child: Column(
+                                          children: [
+                                            
+                                                 Container(
+                                                  height: 35,
+                                                   child: TextField( 
+                                                    
+                                                   controller: mobilebranchController,
+                                                    decoration: InputDecoration(
+                                                    hintText: 'No Of Children',
+                                                    hintStyle: TextStyle(
+                                                      fontSize:12
+                                                    ),
+                                                     
+                                                     fillColor: Color(0xffF9F8FD),
+                                                     border: OutlineInputBorder(
+                                                                                    
+                                                       )
+                                                      ),
+                                                                   
+                                                      ),
+                                                 ),      
+                 
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                
                                 ],
-                              ),
-                              Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                     Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                  
-                                          child: Column(
-                                            children: [
-                                              
-                                                   Container(
-                                                    height: 35,
-                                                     child: TextField( 
-                                                      
-                                                     controller: mobilegestnoController,
-                                                      decoration: InputDecoration(
-                                                      hintText: 'GST Number',
-                                                      hintStyle: TextStyle(
-                                                        fontSize:12
+                               ),
+                               ksizedbox10,
+                                Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
+                                
+                                        child: Column(
+                                          children: [
+                                            
+                                                 Container(
+                                                  height: 35,
+                                                   child: TextField( 
+                                                    
+                                                   controller: mobilebranchController,
+                                                    decoration: InputDecoration(
+                                                    hintText: 'Branch',
+                                                    hintStyle: TextStyle(
+                                                      fontSize:12
+                                                    ),
+                                                     
+                                                     fillColor: Color(0xffF9F8FD),
+                                                     border: OutlineInputBorder(
+                                                                                    
+                                                       )
                                                       ),
-                                                       
-                                                       fillColor: Color(0xffF9F8FD),
-                                                       border: OutlineInputBorder(
-                                                                                      
-                                                         )
-                                                        ),
-                                                                     
-                                                        ),
-                                                   ),      
+                                                                   
+                                                      ),
+                                                 ),      
                  
-                                            ],
-                                          ),
+                                          ],
                                         ),
                                       ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                  
-                                          child: Column(
-                                            children: [
+                                    ),
+                                
+                                ],
+                               ),
+                                //  Padding(
+                                //    padding: const EdgeInsets.only(left: 10,top: 30),
+                                //    child: Row(
+                                //      children: [
+                                //        Container(
+                                //               height: 35,
+                                //               width: MediaQuery.of(context).size.width*0.42,
+                                //               decoration: BoxDecoration(
+                                //                 color: kwhite,
+                                //               border: Border.all(
+                                //                 color: kgrey
+                                //               ),
+                                //               borderRadius: BorderRadius.circular(5)
+                                //               ),
+                                //                 child: Column(
+                                //                   crossAxisAlignment: CrossAxisAlignment.center,
+                                //                   children: [
+                                //                     Padding(
+                                //                       padding: const EdgeInsets.only( ),
+                                //                       child: Row(
+                                                                                         
+                                //                         children: [
+                                //                           Text('18 Yrs',
+                                //                           style: TextStyle(
+                                //                             fontSize: 12
+                                //                           ),),
+                                //                           Padding(
+                                //                             padding: const EdgeInsets.only(),
+                                //                             child: Checkbox(value: _value3, 
+                                //                             onChanged: (value){
+                                //                                setState(() {
+                                //                                    _value3=value!;
+                                //                                });
+                                //                             }),
+                                //                           ),
+                                //                           Text('Above',
+                                //                           style: TextStyle(
+                                //                             fontSize: 12
+                                //                           ),),
+                                //                           Padding(
+                                //                             padding: const EdgeInsets.only(),
+                                //                             child: Checkbox(value: _value4, 
+                                //                             onChanged: (value){
+                                //                               setState(() {
+                                //                                 _value4=value!;
+                                //                               });
+                                //                             }),
+                                //                           ),
+                                //                           Text('Blove',style: TextStyle(
+                                //                             fontSize: 12
+                                //                           ),)
+                                //                         ],
+                                //                       ),
+                                //                     )
+                                //                   ],
+                                //                 ),
                                               
-                                                   Container(
-                                                    height: 35,
-                                                     child: TextField( 
-                                                      
-                                                     controller: mobilebranchController,
-                                                      decoration: InputDecoration(
-                                                      hintText: 'No Of Children',
-                                                      hintStyle: TextStyle(
-                                                        fontSize:12
-                                                      ),
-                                                       
-                                                       fillColor: Color(0xffF9F8FD),
-                                                       border: OutlineInputBorder(
-                                                                                      
-                                                         )
-                                                        ),
-                                                                     
-                                                        ),
-                                                   ),      
-                 
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                  
-                                  ],
-                                 ),
-                                 ksizedbox10,
-                                  Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(left: 10,right: 20,top: 30),
-                                  
-                                          child: Column(
-                                            children: [
-                                              
-                                                   Container(
-                                                    height: 35,
-                                                     child: TextField( 
-                                                      
-                                                     controller: mobilebranchController,
-                                                      decoration: InputDecoration(
-                                                      hintText: 'Branch',
-                                                      hintStyle: TextStyle(
-                                                        fontSize:12
-                                                      ),
-                                                       
-                                                       fillColor: Color(0xffF9F8FD),
-                                                       border: OutlineInputBorder(
-                                                                                      
-                                                         )
-                                                        ),
-                                                                     
-                                                        ),
-                                                   ),      
-                 
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                  
-                                  ],
-                                 ),
-                                  //  Padding(
-                                  //    padding: const EdgeInsets.only(left: 10,top: 30),
-                                  //    child: Row(
-                                  //      children: [
-                                  //        Container(
-                                  //               height: 35,
-                                  //               width: MediaQuery.of(context).size.width*0.42,
-                                  //               decoration: BoxDecoration(
-                                  //                 color: kwhite,
-                                  //               border: Border.all(
-                                  //                 color: kgrey
-                                  //               ),
-                                  //               borderRadius: BorderRadius.circular(5)
-                                  //               ),
-                                  //                 child: Column(
-                                  //                   crossAxisAlignment: CrossAxisAlignment.center,
-                                  //                   children: [
-                                  //                     Padding(
-                                  //                       padding: const EdgeInsets.only( ),
-                                  //                       child: Row(
-                                                                                           
-                                  //                         children: [
-                                  //                           Text('18 Yrs',
-                                  //                           style: TextStyle(
-                                  //                             fontSize: 12
-                                  //                           ),),
-                                  //                           Padding(
-                                  //                             padding: const EdgeInsets.only(),
-                                  //                             child: Checkbox(value: _value3, 
-                                  //                             onChanged: (value){
-                                  //                                setState(() {
-                                  //                                    _value3=value!;
-                                  //                                });
-                                  //                             }),
-                                  //                           ),
-                                  //                           Text('Above',
-                                  //                           style: TextStyle(
-                                  //                             fontSize: 12
-                                  //                           ),),
-                                  //                           Padding(
-                                  //                             padding: const EdgeInsets.only(),
-                                  //                             child: Checkbox(value: _value4, 
-                                  //                             onChanged: (value){
-                                  //                               setState(() {
-                                  //                                 _value4=value!;
-                                  //                               });
-                                  //                             }),
-                                  //                           ),
-                                  //                           Text('Blove',style: TextStyle(
-                                  //                             fontSize: 12
-                                  //                           ),)
-                                  //                         ],
-                                  //                       ),
-                                  //                     )
-                                  //                   ],
-                                  //                 ),
-                                                
-                                  //             ),
-                                  //      ],
-                                  //    ),
-                                  //  ),
-                                  Obx(
+                                //             ),
+                                //      ],
+                                //    ),
+                                //  ),
+                                Obx(
                             () => authprofileController.isLoading.isTrue
-                                ? Padding(
-                                  padding: const EdgeInsets.only(top:50,left:60),
-                                  child: Row(
-                                                              
-                                   children: [
-                                    ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                     backgroundColor: korange,
-                                     minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
-                                  ),
-                                     onPressed: (){
-                                      MemberProfileUpdateModel
-                                        memberProfileUpdateModel =
-                                        MemberProfileUpdateModel(
-                                      name: mobilenameController.text,
-                                      email: mobileemailController.text,
-                                      dateOfBirth:
-                                          mobiledateofbirthController.text,
-                                      fatherName: mobilefathernameController.text,
-                                      isMarried:
-                                          isMarried == true ? "1" : "0",
-                                      mobile: mobilenumberController.text,
-                                      motherName: mobilemothernameController.text,
-                                      occupation: mobileoccupationController.text, 
-                                      aadharno: mobileadharno.text, 
-                                      branch: mobilebranchController.text, 
-                                      children: mobilechildrensController.text,
-                                       gstno: mobilegestnoController.text, 
-                                       marrigedate: mobilewedingnameController.text,
-                                        panNo: mobilepannoController.text, 
-                                        qulification: mobilequalificationController.text, 
-                                        spouse: mobilespousenameController.text,
-                                    );
-                                
-                                    authprofileController.updateProfile(
-                                        memberProfileUpdateModel:
-                                            memberProfileUpdateModel);
-                                   }, 
-                                     child: CircularProgressIndicator(
-                                      color: kwhite,
-                                     ))
-                                   ],
-                                  ),
-                                )
-                                : Padding(
-                                  padding: const EdgeInsets.only(top:50,left:60),
-                                  child: Row(
-                                                              
-                                   children: [
-                                    ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                     backgroundColor: korange,
-                                     minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
-                                  ),
-                                     onPressed: (){
-                                      MemberProfileUpdateModel
-                                        memberProfileUpdateModel =
-                                        MemberProfileUpdateModel(
-                                      name: mobilenameController.text,
-                                      email: mobileemailController.text,
-                                      dateOfBirth:
-                                          mobiledateofbirthController.text,
-                                      fatherName: mobilefathernameController.text,
-                                      isMarried:
-                                          isMarried == true ? "1" : "0",
-                                      mobile: mobilenumberController.text,
-                                      motherName: mobilemothernameController.text,
-                                      occupation: mobileoccupationController.text, 
-                                      aadharno: mobileadharno.text, 
-                                      branch: mobilebranchController.text, 
-                                      children: mobilechildrensController.text,
-                                       gstno: mobilegestnoController.text, 
-                                       panNo: mobilepannoController.text, 
-                                       marrigedate: mobilewedingnameController.text,
-                                        qulification: mobilequalificationController.text, spouse: mobilespousenameController.text,
-                                    );
-                                
-                                    authprofileController.updateProfile(
-                                        memberProfileUpdateModel:
-                                            memberProfileUpdateModel);
-                                   }, 
-                                     child: Text('Update'))
-                                   ],
-                                  ),
+                              ? Padding(
+                                padding: const EdgeInsets.only(top:50,left:60),
+                                child: Row(
+                                                            
+                                 children: [
+                                  ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                   backgroundColor: korange,
+                                   minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
                                 ),
-                          ),
-                              ksizedbox20,              
-                                ],
+                                   onPressed: (){
+                                    MemberProfileUpdateModel
+                                      memberProfileUpdateModel =
+                                      MemberProfileUpdateModel(
+                                    name: mobilenameController.text,
+                                    email: mobileemailController.text,
+                                    dateOfBirth:
+                                        mobiledateofbirthController.text,
+                                    fatherName: mobilefathernameController.text,
+                                    isMarried:
+                                        isMarried == true ? "1" : "0",
+                                    mobile: mobilenumberController.text,
+                                    motherName: mobilemothernameController.text,
+                                    occupation: mobileoccupationController.text, 
+                                    aadharno: mobileadharno.text, 
+                                    branch: mobilebranchController.text, 
+                                    children: mobilechildrensController.text,
+                                     gstno: mobilegestnoController.text, 
+                                     marrigedate: mobilewedingnameController.text,
+                                      panNo: mobilepannoController.text, 
+                                      qulification: mobilequalificationController.text, 
+                                      spouse: mobilespousenameController.text,
+                                  );
+                              
+                                  authprofileController.updateProfile(
+                                      memberProfileUpdateModel:
+                                          memberProfileUpdateModel);
+                                 }, 
+                                   child: CircularProgressIndicator(
+                                    color: kwhite,
+                                   ))
+                                 ],
+                                ),
+                              )
+                              : Padding(
+                                padding: const EdgeInsets.only(top:50,left:60),
+                                child: Row(
+                                                            
+                                 children: [
+                                  ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                   backgroundColor: korange,
+                                   minimumSize: Size(MediaQuery.of(context).size.width*0.42, 40)
+                                ),
+                                   onPressed: (){
+                                    MemberProfileUpdateModel
+                                      memberProfileUpdateModel =
+                                      MemberProfileUpdateModel(
+                                    name: mobilenameController.text,
+                                    email: mobileemailController.text,
+                                    dateOfBirth:
+                                        mobiledateofbirthController.text,
+                                    fatherName: mobilefathernameController.text,
+                                    isMarried:
+                                        isMarried == true ? "1" : "0",
+                                    mobile: mobilenumberController.text,
+                                    motherName: mobilemothernameController.text,
+                                    occupation: mobileoccupationController.text, 
+                                    aadharno: mobileadharno.text, 
+                                    branch: mobilebranchController.text, 
+                                    children: mobilechildrensController.text,
+                                     gstno: mobilegestnoController.text, 
+                                     panNo: mobilepannoController.text, 
+                                     marrigedate: mobilewedingnameController.text,
+                                      qulification: mobilequalificationController.text, spouse: mobilespousenameController.text,
+                                  );
+                              
+                                  authprofileController.updateProfile(
+                                      memberProfileUpdateModel:
+                                          memberProfileUpdateModel);
+                                 }, 
+                                   child: Text('Update'))
+                                 ],
+                                ),
                               ),
+                          ),
+                            ksizedbox20,              
+                              ],
                             ),
                            if (regshowController.showindex.value==1)
                            Container(

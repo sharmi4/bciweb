@@ -41,7 +41,7 @@ class AuthProfileController extends GetxController {
   
   RxBool isSubscribed = false.obs;
 
-  RxString planId = "".obs;
+   RxString planid = "".obs;
 
   getProfile() async {
     profileData.clear();
@@ -52,16 +52,13 @@ class AuthProfileController extends GetxController {
       MemberProfileModel profileModel =
           MemberProfileModel.fromJson(response.data);
       isSubscribed(profileModel.subscription);
-      
+      planid(profileModel.planId.toString());
       profileData.add(profileModel.user);
-      planId(profileModel.planId.toString());
       update();
-} else if (response.statusCode == 401) {
+  } else if (response.statusCode == 401) {
       Get.find<AuthController>().logout();
   }
-
-  return planId.value;
-
+  update();
   }
 
   updateProfile(

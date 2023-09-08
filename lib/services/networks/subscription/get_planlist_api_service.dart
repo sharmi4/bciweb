@@ -29,7 +29,7 @@ class GetPlansApiServices extends BaseApiService {
               return status! <= 500;
             }),
       );
-      print("::::::::<Plans Api>::::::::status code::::::::::");
+      print("::::::::<................get Plans Api>::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

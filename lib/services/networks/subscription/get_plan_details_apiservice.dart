@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../base_url/base_url.dart';
 
 class GetPlansDetailsApiServices extends BaseApiService {
-  Future getPlansDetails({required int planId}) async {
+  Future getPlansDetails({required dynamic planId}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
@@ -24,7 +24,7 @@ class GetPlansDetailsApiServices extends BaseApiService {
                 return status! <= 500;
               }),
           data: {"id": planId});
-      print("::::::::<Get plan details Api>::::::::status code::::::::::");
+      print("::::::::<Get plan details Api>::::::::status code:::$planId:::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;
