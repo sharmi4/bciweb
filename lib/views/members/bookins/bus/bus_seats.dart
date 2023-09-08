@@ -8,7 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../../controller/bus_controllers.dart';
-import '../../../../controller/profile_controller.dart';
+
 import '../../../../models/busbookingmodels/bus_contact_details_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';

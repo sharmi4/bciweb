@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:html';
+
 import 'package:bciweb/models/busbookingmodels/bus_requery_model.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
@@ -49,7 +52,7 @@ class BusController extends GetxController {
   BusTempTicketBookingApiService busTempTicketBookingApiService =
       BusTempTicketBookingApiService();
 
-        GetBusBookingHistoyApiServices getBusBookingHistoyApiServices =
+  GetBusBookingHistoyApiServices getBusBookingHistoyApiServices =
       GetBusBookingHistoyApiServices();
 
 //buss city list
@@ -227,8 +230,9 @@ class BusController extends GetxController {
           fromCityCode: busRequeryModel.busDetail.fromCity,
           fromCityName: busRequeryModel.busDetail.fromCity,
           toCityCode: busRequeryModel.busDetail.toCity,
-          toCityName: busRequeryModel.busDetail.toCity, price:busRequeryModel.price );
-          print('add booking history and avigation 4');
+          toCityName: busRequeryModel.busDetail.toCity,
+          price: busRequeryModel.price);
+      print('add booking history and avigation 4');
 
       Get.off(
         () => WebpdfCreationScreen(
@@ -238,7 +242,7 @@ class BusController extends GetxController {
     } else {}
   }
 
- busTicketDownload({required String refernceNo}) async {
+  busTicketDownload({required String refernceNo}) async {
     dio.Response<dynamic> response =
         await busRequieyApiServices.busRequiryApi(refrenceNo: refernceNo);
 
@@ -248,8 +252,6 @@ class BusController extends GetxController {
       createPDF(busRequeryModel);
     }
   }
-
-  
 
   addBusBookingHistoy({
     required String fromCityCode,
@@ -263,19 +265,20 @@ class BusController extends GetxController {
   }) async {
     dio.Response<dynamic> response =
         await addBusBookingHistoryAPIServices.addBusBookingAPIServices(
-            fromCityCode: fromCityCode,
-            toCityCode: toCityCode,
-            fromCityName: fromCityName,
-            toCityName: toCityName,
-            bookingRefNo: bookingRefNo,
-            busName: busName,
-            date: date, price: price,);
+      fromCityCode: fromCityCode,
+      toCityCode: toCityCode,
+      fromCityName: fromCityName,
+      toCityName: toCityName,
+      bookingRefNo: bookingRefNo,
+      busName: busName,
+      date: date,
+      price: price,
+    );
 
     if (response.statusCode == 201) {}
   }
 
-  Future<html.Blob> createPDF(
-       BusRequeryModel busRequeryModel) async {
+  Future<html.Blob> createPDF(BusRequeryModel busRequeryModel) async {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
@@ -461,27 +464,28 @@ class BusController extends GetxController {
                                     ],
                                   ),
                                   pw.Column(
-                                      crossAxisAlignment:
-                                          pw.CrossAxisAlignment.start,
-                                      children: [
-                                        pw.Text(
-                                          'Trip #',
+                                    crossAxisAlignment:
+                                        pw.CrossAxisAlignment.start,
+                                    children: [
+                                      pw.Text(
+                                        'Trip #',
+                                        style: pw.TextStyle(
+                                          color: PdfColors.blueAccent,
+                                          //fontWeight: pw.FontWeight.bold
+                                        ),
+                                      ),
+                                      pw.Padding(
+                                        padding: pw.EdgeInsets.only(top: 5.5),
+                                        child: pw.Text(
+                                          '24241791',
                                           style: pw.TextStyle(
-                                            color: PdfColors.blueAccent,
+                                            fontSize: 11,
                                             //fontWeight: pw.FontWeight.bold
                                           ),
                                         ),
-                                        pw.Padding(
-                                          padding: pw.EdgeInsets.only(top: 5.5),
-                                          child: pw.Text(
-                                            '24241791',
-                                            style: pw.TextStyle(
-                                              fontSize: 11,
-                                              //fontWeight: pw.FontWeight.bold
-                                            ),
-                                          ),
-                                        )
-                                      ])
+                                      ),
+                                    ],
+                                  )
                                 ],
                               ),
                             ),
@@ -831,16 +835,27 @@ class BusController extends GetxController {
             ),
           ]);
         }));
+
+
+    // AnchorElement(
+    //     href:
+    //         "data:application/octet-stream;charset=utf-16le;base64,${html.Blob([bytes], 'application/pdf')}")
+    //   ..setAttribute("download", "report.pdf")
+    //   ..click();
+
+
+
     final bytes = await pdf.save();
     html.Blob blob = html.Blob([bytes], 'application/pdf');
+     AnchorElement(
+        href:
+            "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
+      ..setAttribute("download", "report.pdf")
+      ..click();
     return blob;
   }
 
-
-
-
-
-   //bus booking list
+  //bus booking list
 
   List<BookingHistoryData> bookingHistoryList = [];
 
@@ -855,8 +870,4 @@ class BusController extends GetxController {
     }
     update();
   }
-
-
-
-  
 }

@@ -1,4 +1,3 @@
-
 import 'package:bciweb/views/members/homescreens/wallet_deposit_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -92,8 +91,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     const Color(0xff396DB4),
     const Color(0xffD9908A),
   ];
-  String cardimgae='';
-  int temindex=0;
+  String cardimgae = '';
+  int temindex = 0;
   @override
   void initState() {
     super.initState();
@@ -170,16 +169,18 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
       emailController.text = authprofileController.profileData.first.email;
       occupationController.text =
           authprofileController.profileData.first.occupation;
-          qualificationController.text = authprofileController.profileData.first.qualification;
+      qualificationController.text =
+          authprofileController.profileData.first.qualification;
       fathernameController.text =
           authprofileController.profileData.first.fatherName;
-          gstnoController.text = authprofileController.profileData.first.gstNo;
-          pannoController.text = authprofileController.profileData.first.panNo;
+      gstnoController.text = authprofileController.profileData.first.gstNo;
+      pannoController.text = authprofileController.profileData.first.panNo;
 
       mothernameController.text =
           authprofileController.profileData.first.motherName;
-          spousenameController.text =authprofileController.profileData.first.spouse;
-            dateofbirthController.text = authprofileController.profileData.first.dob;
+      spousenameController.text =
+          authprofileController.profileData.first.spouse;
+      dateofbirthController.text = authprofileController.profileData.first.dob;
       officedoornoController.text =
           authprofileController.profileData.first.officialAddress.doorNo;
       officebnameController.text =
@@ -199,9 +200,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
         isUnmarried = authprofileController.profileData.first.isMarried == "0"
             ? false
             : true;
-            aadharimage =authprofileController.profileData.first.adharProof;
+        aadharimage = authprofileController.profileData.first.adharProof;
       });
-      
     }
   }
 
@@ -319,7 +319,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             width: 195,
                             decoration: BoxDecoration(
                                 border: BorderDirectional(
-                                    bottom: BorderSide(color: kwhite)),
+                                  bottom: BorderSide(color: kwhite),
+                                ),
                                 color: reghomeController.proindex == 1
                                     ? kblue
                                     : kyellow),
@@ -642,7 +643,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
-                    Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
                       children: [
@@ -650,7 +651,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           onTap: () {
                             reghomeController.proindex(9);
                             reghomeController.update();
-                           
+
                             //Get.offAll(LandingScreen());
                           },
                           child: Container(
@@ -752,7 +753,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              'Profile Settting',
+                              'Profile Setting',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
@@ -818,24 +819,108 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                         imageprofile);
                                               },
                                               child: imageprofile != null
-                                                  ? Image.memory(imageprofile!)
+                                                  ? ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              100),
+                                                      child: Container(
+                                                        height: 80,
+                                                        width: 80,
+                                                        child: Image.memory(
+                                                          imageprofile!,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
+                                                    )
                                                   : authprofileController
                                                               .profileData
                                                               .first
                                                               .profilePicture ==
                                                           null
-                                                      ? Image.asset(
-                                                          'assets/images/profileimage.png')
-                                                      : CircleAvatar(
-                                                          radius: 60.0,
-                                                          backgroundImage: NetworkImage(
-                                                              authprofileController
-                                                                  .profileData
-                                                                  .first
-                                                                  .profilePicture),
-                                                          backgroundColor:
-                                                              Colors
-                                                                  .transparent,
+                                                      ? Stack(
+                                                          children: [
+                                                            Image.asset(
+                                                                'assets/images/prfl.png'),
+                                                            Positioned(
+                                                              left: 55,
+                                                              top: 55,
+                                                              child: Container(
+                                                                height: 25,
+                                                                width: 25,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: kblue,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              15),
+                                                                ),
+                                                                child:
+                                                                    const Center(
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .camera_alt,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 17,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        )
+                                                      : Stack(
+                                                          children: [
+                                                            Container(
+                                                              height: 80,
+                                                              width: 80,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            50),
+                                                                image:
+                                                                    DecorationImage(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  image:
+                                                                      NetworkImage(
+                                                                    authprofileController
+                                                                        .profileData
+                                                                        .first
+                                                                        .profilePicture,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            Positioned(
+                                                              left: 85,
+                                                              top: 75,
+                                                              child: Container(
+                                                                height: 40,
+                                                                width: 40,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: kblue,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25),
+                                                                ),
+                                                                child:
+                                                                    const Center(
+                                                                  child: Icon(
+                                                                    Icons
+                                                                        .camera_alt,
+                                                                    color: Colors
+                                                                        .white,
+                                                                    size: 22,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
                                                         )
                                               //  Container(
                                               //     height: 60,
@@ -1014,7 +1099,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
-                                                 textInputAction: TextInputAction.next,
+                                                textInputAction:
+                                                    TextInputAction.next,
                                                 controller:
                                                     fathernameController,
                                                 decoration: InputDecoration(
@@ -1034,7 +1120,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   )
                                 ],
                               ),
-                               Row(
+                              Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
@@ -1046,7 +1132,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                        textInputAction: TextInputAction.next,
                                         controller: occupationController,
                                         decoration: InputDecoration(
                                             hintText: 'Qualification',
@@ -1175,7 +1261,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           top: 0,
                                           bottom: 30),
                                       child: TextField(
-                                           textInputAction: TextInputAction.next,
+                                          textInputAction: TextInputAction.next,
                                           controller: wedingnameController,
                                           decoration: InputDecoration(
                                               hintText: 'Wedding Date',
@@ -1200,7 +1286,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
-                                                 textInputAction: TextInputAction.next,
+                                              textInputAction:
+                                                  TextInputAction.next,
                                               controller: spousenameController,
                                               decoration: InputDecoration(
                                                   hintText: 'Spouse Name',
@@ -1252,7 +1339,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
-                                                 textInputAction: TextInputAction.next,
+                                              textInputAction:
+                                                  TextInputAction.next,
                                               controller: childrensController,
                                               decoration: InputDecoration(
                                                   hintText: 'No.Of.Children',
@@ -1267,59 +1355,58 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   )
                                 ],
                               ),
-                          //      Row(
-                          //       mainAxisAlignment:
-                          //           MainAxisAlignment.spaceAround,
-                          //       children: [
-                          //          Container(
-                          // height: 100, 
-                          // width: 100, 
-                          // child: authprofileController.profileData.first.panProof.isEmpty ?
-                          // panimage != null? Image.memory(panimage): Container(
-                          //   height: 150,
-                          //   width: 150,
-                          //    child:GestureDetector(onTap: ()async{
-                          //              PickedFile? pickedFile =
-                          //                     await ImagePicker()
-                          //                         .getImage(
-                          //                   source: ImageSource.gallery,
-                          //                 );
-                                  
-                          //                 var tempCont = await pickedFile!.readAsBytes();
-                          //                 setState(() {
-                          //                   panimage = tempCont;
-                          //                 });
-                                    
-                          //             }, child: Text('Upload Pan Card'),),
-                                
-                          // ) : Image.network(authprofileController.profileData.first.panProof)),
+                              //      Row(
+                              //       mainAxisAlignment:
+                              //           MainAxisAlignment.spaceAround,
+                              //       children: [
+                              //          Container(
+                              // height: 100,
+                              // width: 100,
+                              // child: authprofileController.profileData.first.panProof.isEmpty ?
+                              // panimage != null? Image.memory(panimage): Container(
+                              //   height: 150,
+                              //   width: 150,
+                              //    child:GestureDetector(onTap: ()async{
+                              //              PickedFile? pickedFile =
+                              //                     await ImagePicker()
+                              //                         .getImage(
+                              //                   source: ImageSource.gallery,
+                              //                 );
 
-                          //          Container(
-                          // height: 100, 
-                          // width: 100, 
-                          // child: authprofileController.profileData.first.adharProof.isEmpty ?
-                          // aadharimage != null? Image.memory(aadharimage!): Container(
-                          //   height: 150,
-                          //   width: 150,
-                          //    child:GestureDetector(onTap: ()async{
-                          //              PickedFile? pickedFile =
-                          //                     await ImagePicker()
-                          //                         .getImage(
-                          //                   source: ImageSource.gallery,
-                          //                 );
-                                  
-                          //                 var tempCont = await pickedFile!.readAsBytes();
-                          //                 setState(() {
-                          //                   aadharimage = tempCont;
-                          //                 });
-                                    
-                          //             }, child: Text('Upload Aadhar Card'),),
-                                
-                          // ) : Image.network(authprofileController.profileData.first.adharProof)),
-                                   
-                                 
-                          //       ],
-                          //     ),
+                              //                 var tempCont = await pickedFile!.readAsBytes();
+                              //                 setState(() {
+                              //                   panimage = tempCont;
+                              //                 });
+
+                              //             }, child: Text('Upload Pan Card'),),
+
+                              // ) : Image.network(authprofileController.profileData.first.panProof)),
+
+                              //          Container(
+                              // height: 100,
+                              // width: 100,
+                              // child: authprofileController.profileData.first.adharProof.isEmpty ?
+                              // aadharimage != null? Image.memory(aadharimage!): Container(
+                              //   height: 150,
+                              //   width: 150,
+                              //    child:GestureDetector(onTap: ()async{
+                              //              PickedFile? pickedFile =
+                              //                     await ImagePicker()
+                              //                         .getImage(
+                              //                   source: ImageSource.gallery,
+                              //                 );
+
+                              //                 var tempCont = await pickedFile!.readAsBytes();
+                              //                 setState(() {
+                              //                   aadharimage = tempCont;
+                              //                 });
+
+                              //             }, child: Text('Upload Aadhar Card'),),
+
+                              // ) : Image.network(authprofileController.profileData.first.adharProof)),
+
+                              //       ],
+                              //     ),
                               // Padding(
                               //   padding: const EdgeInsets.only(left: 40),
                               //   child: Row(
@@ -1386,15 +1473,23 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                     occupation:
                                                         occupationController
                                                             .text,
-                                                             aadharno:adharController.text , 
-                                                            branch: branchController.text , 
-                                                            children: childrensController.text, 
-                                                            gstno: gstnoController.text, 
-                                                            marrigedate: wedingnameController.text, 
-                                                            panNo: pannoController.text, 
-                                                            qulification:qualificationController.text , 
-                                                            spouse: spousenameController
+                                                    aadharno:
+                                                        adharController.text,
+                                                    branch:
+                                                        branchController.text,
+                                                    children:
+                                                        childrensController
                                                             .text,
+                                                    gstno: gstnoController.text,
+                                                    marrigedate:
+                                                        wedingnameController
+                                                            .text,
+                                                    panNo: pannoController.text,
+                                                    qulification:
+                                                        qualificationController
+                                                            .text,
+                                                    spouse: spousenameController
+                                                        .text,
                                                   );
 
                                                   authprofileController.updateProfile(
@@ -1444,14 +1539,15 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                             .text,
                                                     occupation:
                                                         occupationController
-                                                            .text, aadharno: null,
-                                                             branch: null, 
-                                                             children: null, 
-                                                             gstno: null, 
-                                                             marrigedate: null, 
-                                                             panNo: null, 
-                                                             qulification: null, 
-                                                             spouse: null,
+                                                            .text,
+                                                    aadharno: null,
+                                                    branch: null,
+                                                    children: null,
+                                                    gstno: null,
+                                                    marrigedate: null,
+                                                    panNo: null,
+                                                    qulification: null,
+                                                    spouse: null,
                                                   );
 
                                                   authprofileController.updateProfile(
@@ -1846,33 +1942,32 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         controller: resiperidController,
                                         decoration: InputDecoration(
                                             hintText: 'Personal Id',
-                                            suffixIcon:
-                           
-                                               IconButton(onPressed: (){
-                                                setState(() {
-                                                   imageprofile != null
-                                                     ? Image.memory(imageprofile!)
-                                                     : authprofileController
-                                                                 .profileData
-                                                                 .first
-                                                                 .profilePicture ==
-                                                             null
-                                                         ? Image.asset(
-                                                             '')
-                                                         : CircleAvatar(
-                                                             radius: 60.0,
-                                                             backgroundImage: NetworkImage(
-                                                                 authprofileController
-                                                                     .profileData
-                                                                     .first
-                                                                     .profilePicture),
-                                                             backgroundColor:
-                                                                 Colors
-                                                                     .transparent,
-                                                           );
-                                                });
-                                                }, 
-                                              icon: Icon(Icons.upload)),
+                                            suffixIcon: IconButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    imageprofile != null
+                                                        ? Image.memory(
+                                                            imageprofile!)
+                                                        : authprofileController
+                                                                    .profileData
+                                                                    .first
+                                                                    .profilePicture ==
+                                                                null
+                                                            ? Image.asset('')
+                                                            : CircleAvatar(
+                                                                radius: 60.0,
+                                                                backgroundImage:
+                                                                    NetworkImage(authprofileController
+                                                                        .profileData
+                                                                        .first
+                                                                        .profilePicture),
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                              );
+                                                  });
+                                                },
+                                                icon: Icon(Icons.upload)),
                                             fillColor: Color(0xffF9F8FD),
                                             border: OutlineInputBorder()),
                                       ),
@@ -2108,18 +2203,19 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           color: kgrey)
                                     ]),
                                 child: Padding(
-                                  padding: const EdgeInsets.only(left:10),
+                                  padding: const EdgeInsets.only(left: 10),
                                   child: Row(
                                     children: [
                                       Image(
-                                                            image: AssetImage(
-                                                              'assets/images/cirlewallet.png',
-                                                            ),
-                                                            fit: BoxFit.fitHeight,
-                                                            height: 30,
-                                                          ),
+                                        image: AssetImage(
+                                          'assets/images/cirlewallet.png',
+                                        ),
+                                        fit: BoxFit.fitHeight,
+                                        height: 30,
+                                      ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 30),
+                                        padding:
+                                            const EdgeInsets.only(left: 30),
                                         child: Text(
                                           'Wallet Amount',
                                           style: TextStyle(
@@ -2127,7 +2223,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 580),
+                                        padding:
+                                            const EdgeInsets.only(left: 580),
                                         child: apisettingController
                                                 .getWalletData.isEmpty
                                             ? Text(
@@ -2141,7 +2238,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                             : Text(''),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 13),
+                                        padding:
+                                            const EdgeInsets.only(left: 13),
                                         child: CircleAvatar(
                                           radius: 15,
                                           backgroundColor: kblue,
@@ -4175,145 +4273,158 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           }));
                 }),
               ),
-              if(reghomeController.proindex.value==7)
-              Padding(padding: EdgeInsets.only(top:50),
-              child: GetBuilder<SubscriptionApiController>(
-          builder: (_){
-            
-            return Container(
-              height:500 ,
-                width: MediaQuery.of(context).size.width - 195,
-              child: ListView(
-              //  crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-               // RegisterCommonContainer(),
-                Container(
-                  child: Stack(
-                    children: [
-                      Image.asset('assets/images/Group 39757.png'),
-                      Positioned(
-                        top: 0,
-                        left: 0,
-                        bottom: 0,
-                        right: 0,
-                        child: Center(
-                          child: Text(
-                            'Subscribe',
-                            style: GoogleFonts.lato(
-                                fontSize: 80,
-                                fontWeight: FontWeight.bold,
-                                color: kwhite),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                ksizedbox30,
-                Text(
-                  'Select Membership',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      color: Color(0xff003366),
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold),
-                ),
-                ksizedbox10,
-                const Text(
-                  "All Select Membership Cards Choose Anything",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w500,
-                      height: 1.4,
-                      color: Color(0xff003366)),
-                ),
-                const SizedBox(
-                  height: 100,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Container(
-                       height: 500,
-                       width:600,
-                        child: GridView.builder(
-                         shrinkWrap: true,
-                         itemCount: subscriptionapiController.plansdataList.length,
-                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisSpacing: 40,
-                          crossAxisSpacing: 40,
-                          childAspectRatio: 6,
-                          crossAxisCount: 2), 
-                        itemBuilder: (context,index){
-                         return GestureDetector(
-                          onTap: (){
-                            print("------------------------------------------------${subscriptionapiController.plansdataList[index].cardImg}");
-                            setState(() {
-                              temindex= index;
-                              cardimgae= subscriptionapiController.plansdataList[index].cardImg;
-                            });
-                          },
-                           child: Container(
-                            height: 30,
-                             alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                               color:temindex==index ?kOrange:kwhite,
-                               borderRadius: BorderRadius.circular(10),
-                               border: Border.all(
-                                color:temindex== index?kwhite:kblue
-                               )
+            if (reghomeController.proindex.value == 7)
+              Padding(
+                padding: EdgeInsets.only(top: 50),
+                child: GetBuilder<SubscriptionApiController>(builder: (_) {
+                  return Container(
+                    height: 500,
+                    width: MediaQuery.of(context).size.width - 195,
+                    child: ListView(
+                        //  crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // RegisterCommonContainer(),
+                          Container(
+                            child: Stack(
+                              children: [
+                                Image.asset('assets/images/Group 39757.png'),
+                                Positioned(
+                                  top: 0,
+                                  left: 0,
+                                  bottom: 0,
+                                  right: 0,
+                                  child: Center(
+                                    child: Text(
+                                      'Subscribe',
+                                      style: GoogleFonts.lato(
+                                          fontSize: 80,
+                                          fontWeight: FontWeight.bold,
+                                          color: kwhite),
+                                    ),
+                                  ),
+                                )
+                              ],
                             ),
-                             child: Text(
-                              subscriptionapiController.plansdataList[index].title,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color:temindex==index? kwhite:kblue
+                          ),
+                          ksizedbox30,
+                          Text(
+                            'Select Membership',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Color(0xff003366),
+                                fontSize: 35,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          ksizedbox10,
+                          const Text(
+                            "All Select Membership Cards Choose Anything",
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.w500,
+                                height: 1.4,
+                                color: Color(0xff003366)),
+                          ),
+                          const SizedBox(
+                            height: 100,
+                          ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 40),
+                                child: Container(
+                                  height: 500,
+                                  width: 600,
+                                  child: GridView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: subscriptionapiController
+                                          .plansdataList.length,
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              mainAxisSpacing: 40,
+                                              crossAxisSpacing: 40,
+                                              childAspectRatio: 6,
+                                              crossAxisCount: 2),
+                                      itemBuilder: (context, index) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            print(
+                                                "------------------------------------------------${subscriptionapiController.plansdataList[index].cardImg}");
+                                            setState(() {
+                                              temindex = index;
+                                              cardimgae =
+                                                  subscriptionapiController
+                                                      .plansdataList[index]
+                                                      .cardImg;
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 30,
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: temindex == index
+                                                    ? kOrange
+                                                    : kwhite,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                border: Border.all(
+                                                    color: temindex == index
+                                                        ? kwhite
+                                                        : kblue)),
+                                            child: Text(
+                                              subscriptionapiController
+                                                  .plansdataList[index].title,
+                                              style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: temindex == index
+                                                      ? kwhite
+                                                      : kblue),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                ),
                               ),
-                              
-                             ),
-                                                     ),
-                         );
-                        }),
-                      ),
-                    ),
-                    Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                
-                  InkWell(
-                      onTap: () {
-                        Get.to(
-                          Payment(image: subscriptionapiController.plansdataList[temindex].cardImg, 
-                        htext: subscriptionapiController.plansdataList[temindex].title, 
-                        text:subscriptionapiController.plansdataList[temindex].planDescription,
-                        id: subscriptionapiController.plansdataList[temindex].id));
-                      },
-                      child: subscriptionapiController.plansdataList.isEmpty ? Container(
-            
-                      ): Image(
-                        image: cardimgae == "" ? NetworkImage(subscriptionapiController.plansdataList.first.cardImg): NetworkImage(cardimgae),
-                        height: 234,
-                        
-                      ),
-                      
-                      ),
-                       
-                  ],
-                ),
-                  ],
-                ),
-              
-              ]
-              
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      Get.to(Payment(
+                                          image: subscriptionapiController
+                                              .plansdataList[temindex].cardImg,
+                                          htext: subscriptionapiController
+                                              .plansdataList[temindex].title,
+                                          text: subscriptionapiController
+                                              .plansdataList[temindex]
+                                              .planDescription,
+                                          id: subscriptionapiController
+                                              .plansdataList[temindex].id));
+                                    },
+                                    child: subscriptionapiController
+                                            .plansdataList.isEmpty
+                                        ? Container()
+                                        : Image(
+                                            image: cardimgae == ""
+                                                ? NetworkImage(
+                                                    subscriptionapiController
+                                                        .plansdataList
+                                                        .first
+                                                        .cardImg)
+                                                : NetworkImage(cardimgae),
+                                            height: 234,
+                                          ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ]),
+                  );
+                }),
               ),
-            );
-            
-          }
-        ),),
             if (reghomeController.proindex.value == 8)
               Padding(
                 padding: const EdgeInsets.only(top: 50),
@@ -4610,9 +4721,9 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                   ),
                 ),
               ),
-              if(reghomeController.proindex.value==9)
+            if (reghomeController.proindex.value == 9)
               Padding(
-                padding: const EdgeInsets.only(top:0),
+                padding: const EdgeInsets.only(top: 0),
                 child: Container(
                   width: MediaQuery.of(context).size.width - 195,
                   child: Column(
@@ -4620,425 +4731,464 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       Container(
                         child: Stack(
                           children: [
-                            Image.asset('assets/images/walletbackgroundimage.png'),
+                            Image.asset(
+                                'assets/images/walletbackgroundimage.png'),
                             Positioned(
-                              top:0,
-                              left:0,
-                              right:0,
-                              bottom:0,
-                              child: Center(
-                                child: Text('Wallet Us',
-                                   style: displayfont,
-                                                          
-                                ),
-                              ))
+                                top: 0,
+                                left: 0,
+                                right: 0,
+                                bottom: 0,
+                                child: Center(
+                                  child: Text(
+                                    'Wallet Us',
+                                    style: displayfont,
+                                  ),
+                                ))
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top:40,left:50),
+                        padding: const EdgeInsets.only(top: 40, left: 50),
                         child: Row(
                           children: [
-                            Text('Total Wallet',
-                            style: TextStyle(
-                              fontSize: 22,
-                              fontWeight: FontWeight.bold,
-                              color:kblue
-                            ),),
+                            Text(
+                              'Total Wallet',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                  color: kblue),
+                            ),
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top:30,left:50),
+                        padding: const EdgeInsets.only(top: 30, left: 50),
                         child: Row(
                           children: [
                             Container(
-                              height: MediaQuery.of(context).size.height*0.29,
-                              width: MediaQuery.of(context).size.width*0.65,
+                              height: MediaQuery.of(context).size.height * 0.29,
+                              width: MediaQuery.of(context).size.width * 0.65,
                               decoration: BoxDecoration(
-                               color:korange,
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  offset: Offset(0.0,0.75),
-                                  color:kyellow,
-
-                                )
-                              ]
-                              ),
+                                  color: korange,
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      blurRadius: 3,
+                                      offset: Offset(0.0, 0.75),
+                                      color: kyellow,
+                                    )
+                                  ]),
                               child: Padding(
-                                padding: const EdgeInsets.only(left:20),
+                                padding: const EdgeInsets.only(left: 20),
                                 child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Total Wallet Amounts',
-                                    style:TextStyle(
-                                      color: Colors.white.withOpacity(0.91),
-                                    fontSize: 23
-                                    )
-                                    ),
+                                        style: TextStyle(
+                                            color:
+                                                Colors.white.withOpacity(0.91),
+                                            fontSize: 23)),
                                     Text('₹1990.00',
-                                    style:TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
-                                      color:Colors.white
-                                    )),
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white)),
                                     Text('Last Transaction Amount ₹1.00',
-                                    style:TextStyle(
-                                      fontSize: 23,
-                                      color: Colors.white.withOpacity(0.91)
-                                    ))
+                                        style: TextStyle(
+                                            fontSize: 23,
+                                            color:
+                                                Colors.white.withOpacity(0.91)))
                                   ],
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left:20),
+                              padding: const EdgeInsets.only(left: 20),
                               child: Container(
-                                height: MediaQuery.of(context).size.height*0.29,
-                                width:MediaQuery.of(context).size.width*0.11,
-                                decoration: BoxDecoration(
-                                  color:kyellow,
-                                  border: Border.all(
-                                    color:korange
-                                  )
-                                ),
-                                child:Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  children:[
-                                    InkWell(
-                                      onTap: (){
-                                        Get.to(WalletDepositScreen());
-                                      },
-                                      child: CircleAvatar(
-                                        radius: 29,
-                                        backgroundColor: kwhite.withOpacity(0.8),
-                                        child: Image.asset('assets/icons/depositwalleticon.png',
-                                        height: 30,fit:BoxFit.fitHeight,)),
-                                    ),
-                                    Text('Deposit \nCash',
-                                    style: TextStyle(
-                                      color:kwhite,
-                                      fontSize: 20
-                                    ),)
-                                  ]
-                                )
-                              ),
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.29,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.11,
+                                  decoration: BoxDecoration(
+                                      color: kyellow,
+                                      border: Border.all(color: korange)),
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Get.to(WalletDepositScreen());
+                                          },
+                                          child: CircleAvatar(
+                                              radius: 29,
+                                              backgroundColor:
+                                                  kwhite.withOpacity(0.8),
+                                              child: Image.asset(
+                                                'assets/icons/depositwalleticon.png',
+                                                height: 30,
+                                                fit: BoxFit.fitHeight,
+                                              )),
+                                        ),
+                                        Text(
+                                          'Deposit \nCash',
+                                          style: TextStyle(
+                                              color: kwhite, fontSize: 20),
+                                        )
+                                      ])),
                             )
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left:50,right:42,top:50),
+                        padding:
+                            const EdgeInsets.only(left: 50, right: 42, top: 50),
                         child: Container(
-                          height:550,
-                          
-                          decoration:BoxDecoration(
-                            color:kwhite,
+                          height: 550,
+                          decoration: BoxDecoration(
+                            color: kwhite,
                             boxShadow: <BoxShadow>[
                               BoxShadow(
-                                offset: Offset(0.0, 0.75),
-                                blurRadius: 3,
-                                color:kgrey
-                              )
-                            ]
+                                  offset: Offset(0.0, 0.75),
+                                  blurRadius: 3,
+                                  color: kgrey)
+                            ],
                           ),
                           child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children:[
-                              Padding(
-                                padding: const EdgeInsets.only(left:20,right:20,top:0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Transaction History',
-                                    style:TextStyle(
-                                      fontSize: 20,
-                                      color:kblue
-                                    )),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top:30),
-                                      child: Container(
-                                        height: 60,
-                                        width: 60,
-                                        decoration: BoxDecoration(
-                                          color:kwhite.withOpacity(0.6),
-                                          boxShadow: <BoxShadow>[
-                                            BoxShadow(
-                                              offset: Offset(0.0,0.5),
-                                               blurRadius: 1,
-                                               color:kgrey
-                                            )
-                                          ],
-                                          borderRadius: BorderRadius.circular(4)
-                                        ),
-                                        child: Center(
-                                          child: Image.asset('assets/icons/historywalleticon.png',
-                                          height: 30,fit:BoxFit.fitHeight,),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left:20),
-                                child: Row(
-                                  children:[
-                                    Text('Today Transaction',)
-                                  ]
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top:2),
-                                child: Divider(
-                                  color: kblue,
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left:10,right:20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         
-                                          children: [
-                                            Image.asset('assets/icons/amounticon.png',
-                                            height: 90,fit:BoxFit.fitHeight,),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left:20),
-                                              child: Column(
-                                             
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Luck Draw registration...',
-                                                  style:TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold
-                                                  )),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:7),
-                                                    child: Row(
-                                                      children: [
-                                                        Text('20/04/2023'),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(left:30),
-                                                           child: Text('Ref.no:654'),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            
-                                          ],
-                                        ),
-                                        
-                                      ],
-                                    ),
-                                    Column(
-                                      children:[
-                                        Text('-₹4500',
-                                        style:TextStyle(
-                                          color:Colors.red,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        ))
-                                      ]
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Divider(),
-                              Padding(
-                                padding: const EdgeInsets.only(left:10,right:20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         
-                                          children: [
-                                            Image.asset('assets/icons/amounticon.png',
-                                            height: 90,fit:BoxFit.fitHeight,),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left:20),
-                                              child: Column(
-                                             
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Wallet Using Withdraw Atm',
-                                                  style:TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold
-                                                  )),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:7),
-                                                    child: Row(
-                                                      children: [
-                                                        Text('20/04/2023'),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(left:30),
-                                                           child: Text('Ref.no:654'),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
-                                            ),
-                                            
-                                          ],
-                                        ),
-                                        
-                                      ],
-                                    ),
-                                    Column(
-                                      children:[
-                                        Text('₹5000',
-                                        style:TextStyle(
-                                          color:kblue,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        ))
-                                      ]
-                                    )
-                                  ],
-                                ),
-                              ),
-                               Padding(
-                                 padding: const EdgeInsets.only(left: 20,top:10),
-                                 child: Row(
-                                  children: [
-                                    Text('Yesterday Transaction')
-                                  ],
-                                 ),
-                               ),
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Padding(
-                                padding: const EdgeInsets.only(left:10,right:20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         
-                                          children: [
-                                            Image.asset('assets/icons/amounticon.png',
-                                            height: 90,fit:BoxFit.fitHeight,),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left:20),
-                                              child: Column(
-                                             
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Money sent to Ankit',
-                                                  style:TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold
-                                                  )),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:7),
-                                                    child: Row(
-                                                      children: [
-                                                        Text('20/04/2023'),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(left:30),
-                                                           child: Text('Ref.no:654'),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
-                                              ),
+                                  padding: const EdgeInsets.only(
+                                      left: 20, right: 20, top: 0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('Transaction History',
+                                          style: TextStyle(
+                                              fontSize: 20, color: kblue)),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 30),
+                                        child: Container(
+                                          height: 60,
+                                          width: 60,
+                                          decoration: BoxDecoration(
+                                              color: kwhite.withOpacity(0.6),
+                                              boxShadow: <BoxShadow>[
+                                                BoxShadow(
+                                                    offset: Offset(0.0, 0.5),
+                                                    blurRadius: 1,
+                                                    color: kgrey)
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          child: Center(
+                                            child: Image.asset(
+                                              'assets/icons/historywalleticon.png',
+                                              height: 30,
+                                              fit: BoxFit.fitHeight,
                                             ),
-                                            
-                                          ],
+                                          ),
                                         ),
-                                        
-                                      ],
-                                    ),
-                                    Column(
-                                      children:[
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20),
+                                  child: Row(children: [
+                                    Text(
+                                      'Today Transaction',
+                                    )
+                                  ]),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 2),
+                                  child: Divider(
+                                    color: kblue,
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Image.asset(
+                                                'assets/icons/amounticon.png',
+                                                height: 90,
+                                                fit: BoxFit.fitHeight,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        'Luck Draw registration...',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 7),
+                                                      child: Row(
+                                                        children: [
+                                                          Text('20/04/2023'),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 30),
+                                                            child: Text(
+                                                                'Ref.no:654'),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Column(
+                                        children: [
+                                          Text(
+                                            '-₹4500',
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                                Divider(),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Image.asset(
+                                                'assets/icons/amounticon.png',
+                                                height: 90,
+                                                fit: BoxFit.fitHeight,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        'Wallet Using Withdraw Atm',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 7),
+                                                      child: Row(
+                                                        children: [
+                                                          Text('20/04/2023'),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 30),
+                                                            child: Text(
+                                                                'Ref.no:654'),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Column(children: [
+                                        Text('₹5000',
+                                            style: TextStyle(
+                                                color: kblue,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold))
+                                      ])
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(left: 20, top: 10),
+                                  child: Row(
+                                    children: [Text('Yesterday Transaction')],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Image.asset(
+                                                'assets/icons/amounticon.png',
+                                                height: 90,
+                                                fit: BoxFit.fitHeight,
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text('Money sent to Ankit',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 7),
+                                                      child: Row(
+                                                        children: [
+                                                          Text('20/04/2023'),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 30),
+                                                            child: Text(
+                                                                'Ref.no:654'),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Column(children: [
                                         Text('-₹4500',
-                                        style:TextStyle(
-                                           color:Colors.red,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        ))
-                                      ]
-                                    )
-                                  ],
+                                            style: TextStyle(
+                                                color: Colors.red,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold))
+                                      ])
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left:10,right:20),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment: MainAxisAlignment.start,
-                                         
-                                          children: [
-                                            Image.asset('assets/icons/amounticon.png',
-                                            height: 90,fit:BoxFit.fitHeight,),
-                                            Padding(
-                                              padding: const EdgeInsets.only(left:20),
-                                              child: Column(
-                                             
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text('Money Received from Tom',
-                                                  style:TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight: FontWeight.bold
-                                                  )),
-                                                  Padding(
-                                                    padding: const EdgeInsets.only(top:7),
-                                                    child: Row(
-                                                      children: [
-                                                        Text('20/04/2023'),
-                                                         Padding(
-                                                           padding: const EdgeInsets.only(left:30),
-                                                           child: Text('Ref.no:654'),
-                                                         )
-                                                      ],
-                                                    ),
-                                                  )
-                                                ],
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, right: 20),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Image.asset(
+                                                'assets/icons/amounticon.png',
+                                                height: 90,
+                                                fit: BoxFit.fitHeight,
                                               ),
-                                            ),
-                                            
-                                          ],
-                                        ),
-                                        
-                                      ],
-                                    ),
-                                    Column(
-                                      children:[
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 20),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                        'Money Received from Tom',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 7),
+                                                      child: Row(
+                                                        children: [
+                                                          Text('20/04/2023'),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 30),
+                                                            child: Text(
+                                                                'Ref.no:654'),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      Column(children: [
                                         Text('+₹500',
-                                        style:TextStyle(
-                                           color:kblue,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold
-                                        ))
-                                      ]
-                                    )
-                                  ],
+                                            style: TextStyle(
+                                                color: kblue,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.bold))
+                                      ])
+                                    ],
+                                  ),
                                 ),
-                              ),
-                            ]
-                          ),
+                              ]),
                         ),
                       )
                     ],

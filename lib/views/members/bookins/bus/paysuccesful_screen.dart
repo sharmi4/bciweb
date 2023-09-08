@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'dart:io';
 import 'dart:html' as html;
-import 'package:flutter/services.dart';
-import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:pdf/pdf.dart';
+
 import 'package:pdf/widgets.dart' as pw;
 import 'package:velocity_x/velocity_x.dart';
 

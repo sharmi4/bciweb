@@ -769,7 +769,7 @@ if(ismobilorweb){
     ));
 
     var bytes = await pdf.save();
- //   downloadFile(bytes, airReprintModel.airPnrDetails.first.airlinePnr);
+    //downloadFile(bytes, airReprintModel.airPnrDetails.first.airlinePnr);
   }
 
 

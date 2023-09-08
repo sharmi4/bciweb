@@ -77,7 +77,8 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                       ].map((i) {
                         return Builder(
                           builder: (BuildContext context) {
-                            return Stack(children: [
+                            return Stack(
+                              children: [
                               Container(
                                   width: size.width,
                                   height: 600,

@@ -74,6 +74,8 @@ dependencies:
   open_filex: ^4.3.2
   path_provider: ^2.0.15
   type_ahead_text_field: ^0.0.2
+  syncfusion_flutter_pdf: ^21.2.4
+
   # flutter_super_html_viewer: ^0.1.0
 
 dev_dependencies:
