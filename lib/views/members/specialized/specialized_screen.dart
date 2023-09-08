@@ -13,7 +13,6 @@ import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
 import '../common_widget/commoncontainer.dart';
 import '../common_widget/common_buttom.dart';
-import '../reg_wallet_screen.dart';
 
 class SpecializedScreen extends StatefulWidget {
   // ignore: constant_identifier_names
@@ -363,7 +362,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                   ),
                   InkWell(
                     onTap: () {
-                      Get.to(RegisterWalletScreen());
+                    
                     },
                     child: Container(
                       height: 220,

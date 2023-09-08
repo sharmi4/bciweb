@@ -1,13 +1,22 @@
+import 'dart:convert';
+
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/models/setting_model/getwallet_details_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:isgpayui_plugin/isgpayui_plugin.dart';
 import '../../models/setting_model/ourpartnerlist_model.dart';
+import '../../models/setting_model/transation_history_model.dart';
+import '../../services/networks/setting_api_service.dart/addtransaction_api_service.dart';
 import '../../services/networks/setting_api_service.dart/createsupport_api_service.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../services/networks/setting_api_service.dart/get_wallet_details_api_service.dart';
 import '../../services/networks/setting_api_service.dart/ourpartner_api_service.dart';
+import '../../services/networks/setting_api_service.dart/transactionhistory_api_service.dart';
+import '../auth_controller/auth_controller.dart';
+import '../auth_controller/auth_profile_controller.dart';
 
 class ApiSettingController extends GetxController{
 
@@ -103,4 +112,49 @@ async{
       );
     }
 }
+  AddTransactionApiService addTransactionApiServices = AddTransactionApiService();
+
+  addTransaction({required String amount}) async {
+      
+      dio.Response<dynamic> response = await addTransactionApiServices.
+       addTransactionApi(amount: amount);
+       print('add transaction');
+       print(response.data);
+       if(response.statusCode == 200){
+                   
+       } else {
+          Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+          print('add transaction api');
+          print(response.data);
+       }
+       update();
+  }
+    //transactionhistory api
+    TransactionHistoryApiService transactionhistoryapiservice = TransactionHistoryApiService();
+
+    List<TransactionHistory>transactionhistorydata=[];
+
+    transactionHistoryDetails()async{
+      dio.Response<dynamic> response = await transactionhistoryapiservice.transactionHistory();
+      if(response.statusCode==200){
+        TransactionHistoryModel transactionHistoryModel = TransactionHistoryModel.fromJson(response.data);
+        transactionhistorydata=transactionHistoryModel.transactionHistory;
+      }
+      else{
+        Get.rawSnackbar(
+           backgroundColor: Colors.red,
+          messageText: Text(
+            "something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          )
+        );
+      }
+      update();
+    
+  }
    }

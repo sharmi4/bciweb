@@ -12,7 +12,7 @@ class  GetTodayOffersApiService extends BaseApiService {
       String? authtoken = prefs.getString("auth_token");
 
       var response = await dio.post(
-        todayoffersApiUrl,
+        todayOffersListApiUrl,
         options: Options(
             headers: {
               'Accept': 'application/json',

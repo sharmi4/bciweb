@@ -1,5 +1,8 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/views/members/homescreens/reg_profile.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
@@ -13,6 +16,8 @@ class WalletDepositScreen extends StatefulWidget {
 }
 
 class _WalletDepositScreenState extends State<WalletDepositScreen> {
+  var amountController = TextEditingController();
+  final authprofileController = Get.find<AuthProfileController>();
   
    Future<void> _showAlertDialog() async {
   return showDialog(
@@ -20,7 +25,7 @@ class _WalletDepositScreenState extends State<WalletDepositScreen> {
     barrierDismissible: false, // user must tap button!
     builder: (BuildContext context) {
       return Padding(
-        padding: const EdgeInsets.only(top: 120,bottom: 120),
+        padding:  EdgeInsets.only(top: 120,bottom: 120),
         child: AlertDialog( // <-- SEE HERE
          title: Image.asset('assets/images/paymentsuccess.png',height: 140,fit: BoxFit.fitHeight,),
          content: Center(child: Column(
@@ -36,7 +41,7 @@ class _WalletDepositScreenState extends State<WalletDepositScreen> {
              ksizedbox30,
              GestureDetector(
               onTap: (){
-                Navigator.of(context).pop();
+              Get.to(RegisterProfileScreen());
               },
                child: Container(
                 height: 30,
@@ -180,15 +185,22 @@ Future<void> _showAlertDialogcancel() async {
                               height: 42,
                               width: 180,
                               decoration: BoxDecoration(
-                                color: kblue,
+                              border: Border.all(
+                                color: kblue
+                              ),
                                 borderRadius: BorderRadius.circular(8)
                               ),
                               child: Center(
-                              child: Text('Enter Amount',
-                              style: TextStyle(
-                                fontSize: 17,
-                                color: kwhite
-                              ),),
+                              child: TextField(
+                                controller: amountController,
+                                decoration: InputDecoration(
+                                  hintText: "Enter Amount",
+                                  border: OutlineInputBorder(
+                                    borderSide:BorderSide.none,
+                                     borderRadius: BorderRadius.circular(8)
+                                  )
+                                ),
+                              )
                               ),
                             )
                           ],
@@ -208,65 +220,85 @@ Future<void> _showAlertDialogcancel() async {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Container(
-                          height: 35,
-                          width: 130,
-                          decoration: BoxDecoration(
-                            color: kwhite,
-                            border: Border.all(
-                              color: kblue
+                        InkWell(
+                          onTap: (){
+                            amountController.text ="2000";
+                          },
+                          child: Container(
+                            height: 35,
+                            width: 130,
+                            decoration: BoxDecoration(
+                              color: kwhite,
+                              border: Border.all(
+                                color: kblue
+                              ),
+                                borderRadius: BorderRadius.circular(7)
                             ),
-                              borderRadius: BorderRadius.circular(7)
+                            child: Center(child: Text('+2000')),
                           ),
-                          child: Center(child: Text('+2000')),
                         ),
                         
                        
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: Container(
-                            height: 35,
-                            width: 130,
-                            decoration: BoxDecoration(
-                              color: kwhite,
-                              border: Border.all(
-                                color: kblue
+                          child: InkWell(
+                            onTap: (){
+                              amountController.text = '4000';
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                color: kwhite,
+                                border: Border.all(
+                                  color: kblue
+                                ),
+                                  borderRadius: BorderRadius.circular(7)
                               ),
-                                borderRadius: BorderRadius.circular(7)
-                            ),
-                            child: Center(child: Text('+4000')),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: Container(
-                            height: 35,
-                            width: 130,
-                            decoration: BoxDecoration(
-                              color: kwhite,
-                              border: Border.all(
-                                color: kblue
-                              ),
-                                borderRadius: BorderRadius.circular(7)
-                            ),
-                            child: Center(
-                              child: Text('+8000'),
+                              child: Center(child: Text('+4000')),
                             ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 20),
-                          child: Container(
-                            height: 35,
-                            width: 130,
-                            decoration: BoxDecoration(
-                              color: kwhite,
-                              border: Border.all(
-                                color: kblue
+                          child: InkWell(
+                            onTap: (){
+                              amountController.text="8000";
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                color: kwhite,
+                                border: Border.all(
+                                  color: kblue
+                                ),
+                                  borderRadius: BorderRadius.circular(7)
                               ),
-                               borderRadius: BorderRadius.circular(7)
+                              child: Center(
+                                child: Text('+8000'),
+                              ),
                             ),
-                            child: Center(child: Text('+10000')),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: InkWell(
+                            onTap: (){
+                              amountController.text="10000";
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                color: kwhite,
+                                border: Border.all(
+                                  color: kblue
+                                ),
+                                 borderRadius: BorderRadius.circular(7)
+                              ),
+                              child: Center(child: Text('+10000')),
+                            ),
                           ),
                         ),
                       ],
@@ -280,7 +312,10 @@ Future<void> _showAlertDialogcancel() async {
                     children: [
                       GestureDetector(
                         onTap: (){
-                         _showAlertDialog();
+                          print('add transaction');
+                          
+                          //authprofileController.payforWallet(amount: double.parse(amountController.text));
+                          _showAlertDialog();
                         },
                         child: Container(
                           height: 40,

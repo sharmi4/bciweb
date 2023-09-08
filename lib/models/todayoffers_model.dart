@@ -9,14 +9,14 @@ Todayoffersmodel todayoffersmodelFromJson(String str) => Todayoffersmodel.fromJs
 String todayoffersmodelToJson(Todayoffersmodel data) => json.encode(data.toJson());
 
 class Todayoffersmodel {
-    List<Message> message;
+    List<OffersListModel> message;
 
     Todayoffersmodel({
         required this.message,
     });
 
     factory Todayoffersmodel.fromJson(Map<String, dynamic> json) => Todayoffersmodel(
-        message: List<Message>.from(json["message"].map((x) => Message.fromJson(x))),
+        message: List<OffersListModel>.from(json["message"].map((x) => OffersListModel.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -24,7 +24,7 @@ class Todayoffersmodel {
     };
 }
 
-class Message {
+class OffersListModel {
     int id;
     dynamic vendorId;
     dynamic categoryId;
@@ -40,7 +40,7 @@ class Message {
     DateTime createdAt;
     DateTime updatedAt;
 
-    Message({
+    OffersListModel({
         required this.id,
         required this.vendorId,
         required this.categoryId,
@@ -57,7 +57,7 @@ class Message {
         required this.updatedAt,
     });
 
-    factory Message.fromJson(Map<String, dynamic> json) => Message(
+    factory OffersListModel.fromJson(Map<String, dynamic> json) => OffersListModel(
         id: json["id"]??0,
         vendorId: json["vendor_id"]??"",
         categoryId: json["category_id"]??"",

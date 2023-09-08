@@ -42,8 +42,9 @@ class _ServicesState extends State<Services> {
 
     super.initState();
     authController.getservice();
-     serviceofferController.GettodayoffersList();
+     //serviceofferController.GettodayoffersList();
 
+     serviceofferController.gettodayoffersList();
   }
  
   int pageIndex = 0;

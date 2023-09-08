@@ -1,5 +1,6 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/views/members/homescreens/wallet_deposit_screen.dart';
+import 'package:date_format/date_format.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
@@ -11,6 +12,8 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import '../../../controller/profile_controller.dart';
 import '../../../controller/profile_show_controller.dart';
+//import '../../../registerhomescreen/common_reg_appbar';
+import '../../../controller/service_controller/home_controller.dart';
 import '../../../controller/setting_controller/setting_controller.dart';
 import '../../../controller/subscription_controller/subscription_controller.dart';
 import '../../../models/create_account_model.dart';
@@ -35,6 +38,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   final authprofileController = Get.find<AuthProfileController>();
   final profileController = Get.find<ProfileController>();
   final subscripeController = Get.find<SubscriptionApiController>();
+   final seriveoffersController=Get.find<HomeServiceController>();
 
   var nameController = TextEditingController();
   var dobController = TextEditingController();
@@ -96,15 +100,14 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   @override
   void initState() {
     super.initState();
-    setDefauld();
-    subscripeController.getcouponsList();
-    subscripeController.getplansList();
-    authprofileController.getProfile();
-    apisettingController.getwalletList();
-    apisettingController.generateReferralCode();
-    apisettingController.ourPartner();
-    plan();
-    //plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
+    // setDefauld();
+    // subscripeController.getcouponsList();
+    // authprofileController.getProfile();
+    // apisettingController.getwalletList();
+    // apisettingController.generateReferralCode();
+    // apisettingController.ourPartner();
+    callApis();
+    // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
   }
 
   plan(){
@@ -167,6 +170,25 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
 //   super.initState();
 //     setDefauld();
 // }
+
+
+callApis(){
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    setDefauld();
+    subscripeController.getcouponsList();
+    authprofileController.getProfile();
+    apisettingController.getwalletList();
+    apisettingController.generateReferralCode();
+     apisettingController.transactionHistoryDetails();
+    apisettingController.ourPartner();
+    seriveoffersController.gettodayoffersList();
+   
+  });
+}
+
+
+
+
   setDefauld() async {
     await authprofileController.getProfile();
     subNameController.text = authprofileController.profileData.first.name;
@@ -2741,152 +2763,124 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           ],
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 50, top: 30),
+                      GetBuilder<HomeServiceController>(
+                        builder: (_) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top:20,left: 30,right:30),
                             child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              decoration: BoxDecoration(
-                                  color: Color(0xff594A99),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      'Best Deals \nof Today',
-                                      style: TextStyle(
-                                          height: 1.7,
-                                          fontSize: 19,
-                                          color: kwhite),
-                                    ),
+                              height: MediaQuery.of(context).size.height,
+                              child: GridView.builder(
+                                shrinkWrap: true,
+                                itemCount: seriveoffersController.todayOfferListData.length,
+                                gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2,
+                                  childAspectRatio:6/2,
+                                  mainAxisSpacing: 20,
+                                  crossAxisSpacing: 20
+                                  ), 
+                                itemBuilder: (context,index){
+                                  return seriveoffersController.todayOfferListData.isNotEmpty? Container(
+                                  height: 50,
+                                  width: MediaQuery.of(context).size.width * 0.3,
+                                  decoration: BoxDecoration(
+                                      color: kwhite,
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          offset: Offset(0.0, 0.75),
+                                          blurRadius: 5,
+                                          color:kgrey
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Row(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          
+                                          children: [
+                                            Padding(
+                                              padding: const EdgeInsets.only(top:30),
+                                              child: Container(
+                                                height: 40,
+                                                child: Text(
+                                                  seriveoffersController.todayOfferListData[index].title,
+                                                  style: TextStyle(
+                                                      height: 1.7,
+                                                      fontSize: 19,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top:0),
+                                              child: Container(
+                                                height: 40,
+                                                child: Text(
+                                                  "Discount value : %${seriveoffersController.todayOfferListData[index].discountValue}",
+                                                  style: TextStyle(
+                                                      height: 1.7,
+                                                      fontSize: 16,
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(top:0),
+                                                child: Container(
+                                                  height: 40,
+                                                  child: Row(
+                                                    children: [
+                                                      Text('Ends on : ',
+                                                       style: TextStyle(
+                                                          height: 1.7,
+                                                          fontSize: 16,
+                                                      ),),
+                                                      Padding(
+                                                        padding: const EdgeInsets.only(left:4),
+                                                        child: Text(
+                                                                                      
+                                                        formatDate(seriveoffersController.todayOfferListData[index].endsAt, [dd,"-",mm,"-",yyyy]),
+                                                        style: TextStyle(
+                                                            height: 1.7,
+                                                            fontSize: 16,
+                                                        ),
+                                                                                              ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                                          ],
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 15),
+                                        child: Image.network(
+                                          seriveoffersController.todayOfferListData[index].image,
+                                          fit: BoxFit.fitHeight,
+                                          height: 110,
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 15),
-                                    child: Image.asset(
-                                      'assets/images/offersimage.png',
-                                      fit: BoxFit.fitHeight,
-                                      height: 110,
-                                    ),
+                                ):Center(
+                                 child:Text(
+                                  'No Offers',
+                                  style:TextStyle(
+                                    fontSize: 18
                                   )
-                                ],
-                              ),
+                                 )
+                                );
+                                }),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 120, top: 30),
-                            child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              decoration: BoxDecoration(
-                                  color: kyellow,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      'Best Deals \nof Today',
-                                      style: TextStyle(
-                                          height: 1.7,
-                                          fontSize: 19,
-                                          color: kwhite),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 15),
-                                    child: Image.asset(
-                                      'assets/images/offersimage.png',
-                                      fit: BoxFit.fitHeight,
-                                      height: 110,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
+                          );
+                        }
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 50, top: 30),
-                            child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              decoration: BoxDecoration(
-                                  color: Color(0xff0A7A0D),
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      'Best Deals \nof Today',
-                                      style: TextStyle(
-                                          height: 1.7,
-                                          fontSize: 19,
-                                          color: kwhite),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 15),
-                                    child: Image.asset(
-                                      'assets/images/offersimage.png',
-                                      fit: BoxFit.fitHeight,
-                                      height: 110,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 120, top: 30),
-                            child: Container(
-                              height: 130,
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              decoration: BoxDecoration(
-                                  color: kblue,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Text(
-                                      'Best Deals \nof Today',
-                                      style: TextStyle(
-                                          height: 1.7,
-                                          fontSize: 19,
-                                          color: kwhite),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 15),
-                                    child: Image.asset(
-                                      'assets/images/offersimage.png',
-                                      fit: BoxFit.fitHeight,
-                                      height: 110,
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          )
-                        ],
-                      )
                     ],
                   ),
                 ),
@@ -4734,10 +4728,12 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 0),
                 child: Container(
+                  
                   width: MediaQuery.of(context).size.width - 195,
                   child: Column(
                     children: [
                       Container(
+                
                         child: Stack(
                           children: [
                             Image.asset(
@@ -4794,58 +4790,58 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text('Total Wallet Amounts',
-                                        style: TextStyle(
-                                            color:
-                                                Colors.white.withOpacity(0.91),
-                                            fontSize: 23)),
+                                    style:TextStyle(
+                                      color: Colors.white.withOpacity(0.91),
+                                    fontSize: 23
+                                    )
+                                    ),
                                     Text('₹1990.00',
-                                        style: TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white)),
+                                    style:TextStyle(
+                                      fontSize: 25,
+                                      fontWeight: FontWeight.bold,
+                                      color:Colors.white
+                                    )),
                                     Text('Last Transaction Amount ₹1.00',
-                                        style: TextStyle(
-                                            fontSize: 23,
-                                            color:
-                                                Colors.white.withOpacity(0.91)))
+                                    style:TextStyle(
+                                      fontSize: 23,
+                                      color: Colors.white.withOpacity(0.91)
+                                    ))
                                   ],
                                 ),
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 20),
+                              padding: const EdgeInsets.only(left:20),
                               child: Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.29,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.11,
-                                  decoration: BoxDecoration(
-                                      color: kyellow,
-                                      border: Border.all(color: korange)),
-                                  child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(WalletDepositScreen());
-                                          },
-                                          child: CircleAvatar(
-                                              radius: 29,
-                                              backgroundColor:
-                                                  kwhite.withOpacity(0.8),
-                                              child: Image.asset(
-                                                'assets/icons/depositwalleticon.png',
-                                                height: 30,
-                                                fit: BoxFit.fitHeight,
-                                              )),
-                                        ),
-                                        Text(
-                                          'Deposit \nCash',
-                                          style: TextStyle(
-                                              color: kwhite, fontSize: 20),
-                                        )
-                                      ])),
+                                height: MediaQuery.of(context).size.height*0.29,
+                                width:MediaQuery.of(context).size.width*0.11,
+                                decoration: BoxDecoration(
+                                  color:kyellow,
+                                  border: Border.all(
+                                    color:korange
+                                  )
+                                ),
+                                child:Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children:[
+                                    InkWell(
+                                      onTap: (){
+                                        Get.to(WalletDepositScreen());
+                                      },
+                                      child: CircleAvatar(
+                                        radius: 29,
+                                        backgroundColor: kwhite.withOpacity(0.8),
+                                        child: Image.asset('assets/icons/depositwalleticon.png',
+                                        height: 30,fit:BoxFit.fitHeight,)),
+                                    ),
+                                    Text('Deposit \nCash',
+                                    style: TextStyle(
+                                      color:kwhite,
+                                      fontSize: 20
+                                    ),)
+                                  ]
+                                )
+                              ),
                             )
                           ],
                         ),
@@ -4854,9 +4850,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                         padding:
                             const EdgeInsets.only(left: 50, right: 42, top: 50),
                         child: Container(
-                          height: 550,
-                          decoration: BoxDecoration(
-                            color: kwhite,
+                          height:550,
+                          
+                          decoration:BoxDecoration(
+                            color:kwhite,
                             boxShadow: <BoxShadow>[
                               BoxShadow(
                                   offset: Offset(0.0, 0.75),
@@ -4865,339 +4862,300 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             ],
                           ),
                           child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 20, right: 20, top: 0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Transaction History',
-                                          style: TextStyle(
-                                              fontSize: 20, color: kblue)),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 30),
-                                        child: Container(
-                                          height: 60,
-                                          width: 60,
-                                          decoration: BoxDecoration(
-                                              color: kwhite.withOpacity(0.6),
-                                              boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                    offset: Offset(0.0, 0.5),
-                                                    blurRadius: 1,
-                                                    color: kgrey)
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(4)),
-                                          child: Center(
-                                            child: Image.asset(
-                                              'assets/icons/historywalleticon.png',
-                                              height: 30,
-                                              fit: BoxFit.fitHeight,
-                                            ),
-                                          ),
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children:[
+                              Padding(
+                                padding: const EdgeInsets.only(left:20,right:20,top:0),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text('Transaction History',
+                                    style:TextStyle(
+                                      fontSize: 20,
+                                      color:kblue
+                                    )),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top:30),
+                                      child: Container(
+                                        height: 60,
+                                        width: 60,
+                                        decoration: BoxDecoration(
+                                          color:kwhite.withOpacity(0.6),
+                                          boxShadow: <BoxShadow>[
+                                            BoxShadow(
+                                              offset: Offset(0.0,0.5),
+                                               blurRadius: 1,
+                                               color:kgrey
+                                            )
+                                          ],
+                                          borderRadius: BorderRadius.circular(4)
                                         ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 20),
-                                  child: Row(children: [
-                                    Text(
-                                      'Today Transaction',
+                                        child: Center(
+                                          child: Image.asset('assets/icons/historywalleticon.png',
+                                          height: 30,fit:BoxFit.fitHeight,),
+                                        ),
+                                      ),
                                     )
-                                  ]),
+                                  ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 2),
-                                  child: Divider(
-                                    color: kblue,
-                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:20),
+                                child: Row(
+                                  children:[
+                                    Text('Today Transaction',)
+                                  ]
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/amounticon.png',
-                                                height: 90,
-                                                fit: BoxFit.fitHeight,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        'Luck Draw registration...',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 7),
-                                                      child: Row(
-                                                        children: [
-                                                          Text('20/04/2023'),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 30),
-                                                            child: Text(
-                                                                'Ref.no:654'),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(
-                                        children: [
-                                          Text(
-                                            '-₹4500',
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:2),
+                                child: Divider(
+                                  color: kblue,
                                 ),
-                                Divider(),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/amounticon.png',
-                                                height: 90,
-                                                fit: BoxFit.fitHeight,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Luck Draw registration...',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        'Wallet Using Withdraw Atm',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 7),
-                                                      child: Row(
-                                                        children: [
-                                                          Text('20/04/2023'),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 30),
-                                                            child: Text(
-                                                                'Ref.no:654'),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(children: [
-                                        Text('₹5000',
-                                            style: TextStyle(
-                                                color: kblue,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold))
-                                      ])
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 20, top: 10),
-                                  child: Row(
-                                    children: [Text('Yesterday Transaction')],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/amounticon.png',
-                                                height: 90,
-                                                fit: BoxFit.fitHeight,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text('Money sent to Ankit',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 7),
-                                                      child: Row(
-                                                        children: [
-                                                          Text('20/04/2023'),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 30),
-                                                            child: Text(
-                                                                'Ref.no:654'),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(children: [
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
                                         Text('-₹4500',
-                                            style: TextStyle(
-                                                color: Colors.red,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold))
-                                      ])
-                                    ],
-                                  ),
+                                        style:TextStyle(
+                                          color:Colors.red,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
                                 ),
+                              ),
+                              Divider(),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Wallet Using Withdraw Atm',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('₹5000',
+                                        style:TextStyle(
+                                          color:kblue,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
+                                ),
+                              ),
+                               Padding(
+                                 padding: const EdgeInsets.only(left: 20,top:10),
+                                 child: Row(
+                                  children: [
+                                    Text('Yesterday Transaction')
+                                  ],
+                                 ),
+                               ),
                                 Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, right: 20),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Image.asset(
-                                                'assets/icons/amounticon.png',
-                                                height: 90,
-                                                fit: BoxFit.fitHeight,
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Money sent to Ankit',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 20),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                        'Money Received from Tom',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                    Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              top: 7),
-                                                      child: Row(
-                                                        children: [
-                                                          Text('20/04/2023'),
-                                                          Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                        .only(
-                                                                    left: 30),
-                                                            child: Text(
-                                                                'Ref.no:654'),
-                                                          )
-                                                        ],
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                      Column(children: [
-                                        Text('+₹500',
-                                            style: TextStyle(
-                                                color: kblue,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold))
-                                      ])
-                                    ],
-                                  ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('-₹4500',
+                                        style:TextStyle(
+                                           color:Colors.red,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
                                 ),
-                              ]),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left:10,right:20),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                         
+                                          children: [
+                                            Image.asset('assets/icons/amounticon.png',
+                                            height: 90,fit:BoxFit.fitHeight,),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left:20),
+                                              child: Column(
+                                             
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text('Money Received from Tom',
+                                                  style:TextStyle(
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold
+                                                  )),
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top:7),
+                                                    child: Row(
+                                                      children: [
+                                                        Text('20/04/2023'),
+                                                         Padding(
+                                                           padding: const EdgeInsets.only(left:30),
+                                                           child: Text('Ref.no:654'),
+                                                         )
+                                                      ],
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                            ),
+                                            
+                                          ],
+                                        ),
+                                        
+                                      ],
+                                    ),
+                                    Column(
+                                      children:[
+                                        Text('+₹500',
+                                        style:TextStyle(
+                                           color:kblue,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.bold
+                                        ))
+                                      ]
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ]
+                          ),
                         ),
                       )
                     ],

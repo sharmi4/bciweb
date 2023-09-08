@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,10 @@ import '../../services/networks/profile_api_service/profile_update.dart';
 import '../../services/networks/profile_api_service/update_officialaddress.dart';
 import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
-import '../home_controller.dart';
+import '../../views/members/homescreens/reg_profile.dart';
+import 
+'../home_controller.dart';
+import '../setting_controller/setting_controller.dart';
 import 'auth_controller.dart';
 
 
@@ -185,11 +190,11 @@ class AuthProfileController extends GetxController {
     // }
   }
 
-    Map<String, String> getArguments(var amount) {
+       Map<String, String> getArguments(var amount) {
     var randomStr = DateTime.now().microsecondsSinceEpoch.toString();
     Map<String, String> map = {
       'version': "1",
-      'txnRefNo': "ORD00011", // Should change on every request
+      'txnRefNo': "ORD$randomStr", // Should change on every request
       'amount': "$amount",
       'passCode': 'SVPL4257',
       'bankId': '000004',
@@ -209,4 +214,53 @@ class AuthProfileController extends GetxController {
     };
     return map;
   }
+     void payforWallet(
+      {required double amount}) async {
+    String? result;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      result =
+          await _isgpayuiPlugin.initiateISGPayUI(getArguments(amount * 100)) ??
+              'Unknown platform version';
+    } on PlatformException catch (e) {
+      result = e.message;
+    }
+    debugPrint('Result ::: $result');
+
+    var responseData = jsonDecode(result!);
+    var data = jsonDecode(responseData);
+    print("<<----response-data---->>${data.runtimeType}");
+    print(responseData);
+    print(data);
+    if (data["ResponseCode"] == "00") {
+      Get.find<ApiSettingController>().addTransaction(amount: amount.toStringAsFixed(2));
+
+      Get.to(RegisterProfileScreen());
+
+      //need to give id
+      Get.snackbar(
+        "Payment Successfully Paid",
+        "",
+        icon: const Icon(Icons.check_circle_outline_outlined,
+            color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        borderRadius: 20,
+        margin: const EdgeInsets.all(15),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3),
+        isDismissible: true,
+        dismissDirection: DismissDirection.horizontal,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
+
+    } else {
+      Get.closeAllSnackbars();
+      Get.snackbar(
+          "The last transaction has been cancelled!", "Please try again!",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+}
 }

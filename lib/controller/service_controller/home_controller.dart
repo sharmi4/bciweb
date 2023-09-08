@@ -23,7 +23,7 @@ class HomeServiceController extends GetxController {
   GetTodayOffersApiService getTodayOffersApiService=GetTodayOffersApiService();
 
   List<Datum> cartListData = [];
-  List<Message> todayofferslist=[];
+  List<OffersListModel> todayofferslist=[];
 
   double getGrandTotal({required List<Datum> tcartListData}) {
     double grandTotal = 0.0;
@@ -144,12 +144,32 @@ class HomeServiceController extends GetxController {
           ));
     }
   }
-  GettodayoffersList() async {
+ List<OffersListModel> todayOfferListData = [];
+  gettodayoffersList() async {
     dio.Response<dynamic> response = await getTodayOffersApiService.getTodayoffers();
     if (response.statusCode == 200) {
-       Todayoffersmodel todayoffersmodel = Todayoffersmodel.fromJson(response.data); 
-      todayofferslist = todayoffersmodel.message;
+       List<OffersListModel> getTodayOffersList = List<OffersListModel>.from(
+          response.data.map((x) => OffersListModel.fromJson(x)));
+      
+      todayOfferListData = getTodayOffersList;
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
+    print(response.data);
+    }else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
     }
+  
    
     update();
   }

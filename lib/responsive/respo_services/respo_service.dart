@@ -39,7 +39,7 @@ class _ServicesState extends State<RespoServices> {
   void initState() {
     super.initState();
     authController.getservice();
-    serviceController.GettodayoffersList();
+    serviceController.gettodayoffersList();
    // authController.update();
   }
 

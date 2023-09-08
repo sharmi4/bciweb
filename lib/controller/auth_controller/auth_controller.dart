@@ -144,6 +144,9 @@ List<CategoryData> categoryData = [];
     isLoading(true);
     dio.Response<dynamic> response =
         await loginApiServices.loginApi(mobile: mobile, otp: otp);
+
+        print("login data");
+        print(response.data);
     isLoading(false);
     if (response.statusCode == 200) {
       if (response.data["user"]["role_id"].toString() == "3") {

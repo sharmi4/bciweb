@@ -40,11 +40,11 @@ int _start = 60; // Timer duration in seconds
       });
     });
   }
- @override
-  void dispose() {
-    _timer.cancel(); // Cancel the timer to avoid memory leaks
-    super.dispose();
-  }
+//  @override
+//   void dispose() {
+//     _timer.cancel(); // Cancel the timer to avoid memory leaks
+//     super.dispose();
+//   }
   final authController = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {

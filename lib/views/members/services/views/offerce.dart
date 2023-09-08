@@ -13,9 +13,14 @@ import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
 
-class OfferScreen extends StatelessWidget {
+class OfferScreen extends StatefulWidget {
    OfferScreen({super.key});
- 
+
+  @override
+  State<OfferScreen> createState() => _OfferScreenState();
+}
+
+class _OfferScreenState extends State<OfferScreen> {
   final seriveoffersController=Get.find<HomeServiceController>();
 
   @override
