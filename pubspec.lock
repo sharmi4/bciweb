@@ -631,6 +631,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.10.4"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      sha256: c37099ad833a883c9d71782321cb65c3a848c21b6939b6185f0ff6640d05814c
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.3"
   permission_handler:
     dependency: "direct main"
     description:
@@ -860,30 +868,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  syncfusion_flutter_charts:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_charts
-      sha256: c876df9020b125e21820c545d0d006e4e393e63c9019399ce6b8da297bca131e
-      url: "https://pub.dev"
-    source: hosted
-    version: "22.2.5"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "3fe847b9bbf6814b5324e43b1afbf6121e81960e3e0474c9f4ea627678fd4305"
+      sha256: "8db8f55c77f56968681447d3837c10f27a9e861e238a898fda116c7531def979"
       url: "https://pub.dev"
     source: hosted
-    version: "22.2.5"
+    version: "21.2.10"
   syncfusion_flutter_datepicker:
     dependency: "direct main"
     description:
       name: syncfusion_flutter_datepicker
-      sha256: "18d244086890be36957a3a15fb3e9b2ac83556e7fb31fa9ff90837dd4fca8fd2"
+      sha256: "6b0dacfe2f968de2b9107e2dc24fcaa2499415ae655df8f0d3ad0356eb090213"
       url: "https://pub.dev"
     source: hosted
-    version: "22.1.36"
+    version: "21.2.10"
+  syncfusion_flutter_pdf:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_pdf
+      sha256: e97daea47f9ac4cf25cc8fc11a0475580ad9c592056d9c2bdc809c73e276decf
+      url: "https://pub.dev"
+    source: hosted
+    version: "21.2.10"
   term_glyph:
     dependency: transitive
     description:
