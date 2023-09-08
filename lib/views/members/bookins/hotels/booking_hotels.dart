@@ -1,4 +1,3 @@
-import 'package:bciweb/views/members/bookins/hotels/resort.dart';
 import 'package:bciweb/views/members/bookins/hotels/resort_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:velocity_x/velocity_x.dart';
+import 'package:websafe_svg/websafe_svg.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/hotel_controller/hotel_controller.dart';
 import '../../../../models/hotel_model/hoteldestination_model.dart';
@@ -156,12 +156,13 @@ class _BookingHotelsState extends State<BookingHotels> {
                             height: 140,
                             width: size.width * 0.8,
                             decoration: BoxDecoration(
-                                color: kwhite,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.zero,
-                                    bottomLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15),
-                                    bottomRight: Radius.circular(15))),
+                              color: kwhite,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.zero,
+                                  bottomLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                  bottomRight: Radius.circular(15)),
+                            ),
                             child: Row(
                               children: [
                                 const Spacer(),
@@ -321,24 +322,24 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                         .spaceBetween,
                                                 children: [
                                                   InkWell(
-                                                      onTap: () {
-                                                        hotelController
-                                                            .roomno--;
-                                                      },
-                                                      child: const Icon(
-                                                        Icons
-                                                            .remove_circle_outline_outlined,
-                                                        size: 20,
-                                                      )),
+                                                    onTap: () {
+                                                      hotelController.roomno--;
+                                                    },
+                                                    child: const Icon(
+                                                      Icons
+                                                          .remove_circle_outline_outlined,
+                                                      size: 20,
+                                                    ),
+                                                  ),
                                                   SizedBox(
                                                     width: 2,
                                                   ),
                                                   Text(
-                                                      hotelController
-                                                          .roomno.value
-                                                          .toString(),
-                                                      style: TextStyle(
-                                                          fontSize: 13)),
+                                                    hotelController.roomno.value
+                                                        .toString(),
+                                                    style:
+                                                        TextStyle(fontSize: 13),
+                                                  ),
                                                   SizedBox(
                                                     width: 2,
                                                   ),
@@ -362,9 +363,10 @@ class _BookingHotelsState extends State<BookingHotels> {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              Text(' GUESTS',
-                                                  style:
-                                                      TextStyle(fontSize: 13)),
+                                              Text(
+                                                ' GUESTS',
+                                                style: TextStyle(fontSize: 13),
+                                              ),
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
@@ -506,7 +508,7 @@ class _BookingHotelsState extends State<BookingHotels> {
             ksizedbox40,
             GetBuilder<HotelController>(builder: (_) {
               return Obx(
-                ()=> Padding(
+                () => Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: hotelController.isLoading.isTrue
                       ? Container(
@@ -530,16 +532,27 @@ class _BookingHotelsState extends State<BookingHotels> {
                                       kwidth10,
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                          hotelController.searchHotelData[index]
-                                              .hotelPicture,
-                                          fit: BoxFit.cover,
-                                          height: 170,
-                                          width: 180,
-                                        ),
+                                        child: hotelController
+                                                    .searchHotelData[index]
+                                                    .hotelPicture ==
+                                                "null"
+                                            ? WebsafeSvg.asset(
+                                                'assets/images/No_image_available.svg',
+                                                height: 100,
+                                                fit: BoxFit.fitHeight,
+                                              )
+                                            : Image.network(
+                                                hotelController
+                                                    .searchHotelData[index]
+                                                    .hotelPicture,
+                                                fit: BoxFit.cover,
+                                                height: 170,
+                                                width: 180,
+                                              ),
                                       ),
                                       Padding(
-                                        padding: const EdgeInsets.only(left: 10),
+                                        padding:
+                                            const EdgeInsets.only(left: 10),
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -605,12 +618,13 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                 decoration: BoxDecoration(
                                                     color: kOrange,
                                                     borderRadius:
-                                                        BorderRadius.circular(5)),
+                                                        BorderRadius.circular(
+                                                            5)),
                                                 child: Center(
                                                   child: Text(
                                                     'Couple  Friendly',
-                                                    style:
-                                                        TextStyle(color: kwhite),
+                                                    style: TextStyle(
+                                                        color: kwhite),
                                                   ),
                                                 ),
                                               ),
@@ -634,8 +648,14 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                     .text
                                                     .white
                                                     .make(),
-                                                Text('₹ 3,499').text.white.make(),
-                                                Text('₹ 2,490').text.white.make(),
+                                                Text('₹ 3,499')
+                                                    .text
+                                                    .white
+                                                    .make(),
+                                                Text('₹ 2,490')
+                                                    .text
+                                                    .white
+                                                    .make(),
                                                 Text(
                                                   '₹ ${hotelController.searchHotelData[index].price.publishedPrice}',
                                                 ).text.white.make(),
@@ -648,16 +668,20 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                     final prefs =
                                                         await SharedPreferences
                                                             .getInstance();
-                                                    var searchtocken = prefs
-                                                        .getString("searchtoken");
+                                                    var searchtocken =
+                                                        prefs.getString(
+                                                            "searchtoken");
                                                     Get.to(ResortDetailsScreen(
                                                       hotelCode: hotelController
-                                                          .searchHotelData[index]
+                                                          .searchHotelData[
+                                                              index]
                                                           .hotelCode,
-                                                      resultIndex: hotelController
-                                                          .searchHotelData[index]
-                                                          .resultIndex
-                                                          .toString(),
+                                                      resultIndex:
+                                                          hotelController
+                                                              .searchHotelData[
+                                                                  index]
+                                                              .resultIndex
+                                                              .toString(),
                                                       searchToken:
                                                           searchtocken ?? "",
                                                       userIp: '122.160.83.78',
@@ -700,8 +724,8 @@ class _BookingHotelsState extends State<BookingHotels> {
                                       color: kwhite,
                                       boxShadow: [
                                         new BoxShadow(
-                                          color:
-                                              Color.fromARGB(255, 186, 182, 182),
+                                          color: Color.fromARGB(
+                                              255, 186, 182, 182),
                                           blurRadius: 20.0,
                                         ),
                                       ]),

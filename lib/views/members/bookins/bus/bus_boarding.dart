@@ -1,18 +1,16 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/models/busbookingmodels/search_bus_model.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
 import '../../../../controller/bus_controllers.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
-import '../hotels/booking_hotels.dart';
+
 import 'dart:math' as math;
-import '../trip/trip_booking.dart';
+
 import 'bus_seats.dart';
 
 class busBoarding extends StatefulWidget {

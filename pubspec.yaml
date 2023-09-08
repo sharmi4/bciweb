@@ -69,7 +69,8 @@ dependencies:
   syncfusion_flutter_charts: ^22.2.5
   share_plus: ^7.0.2
   pdf: ^3.10.4
- 
+  permission_handler: ^10.2.0
+  open_file: ^3.3.2
   open_filex: ^4.3.2
   path_provider: ^2.0.15
   type_ahead_text_field: ^0.0.2

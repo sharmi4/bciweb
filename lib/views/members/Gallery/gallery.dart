@@ -1,14 +1,13 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
-import 'package:bciweb/views/members/Gallery/widgets/photo_img_view.dart';
-import 'package:bciweb/views/members/Gallery/widgets/stagerdgridview.dart';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:photo_view/photo_view.dart';
 
-//import '../../../registerhomescreen/common_reg_appbar';
+
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';

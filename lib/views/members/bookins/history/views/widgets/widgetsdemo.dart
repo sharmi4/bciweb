@@ -6,6 +6,7 @@ import '../../../../../../constant/constans.dart';
 import '../../../../../../controller/api_flightcontroller/api_flight_Controller.dart';
 import '../../../../../../controller/holiday_package_controller.dart';
 import '../../../../../../controller/subscription_controller/subscription_controller.dart';
+import '../../../../../../models/get_flight_booking_history.dart';
 
 class FlightBookingHistory extends StatefulWidget {
   const FlightBookingHistory({super.key});
@@ -36,83 +37,94 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
               shrinkWrap: true,
               itemCount: flightController.flightBookingHistoyrList.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 20, horizontal: 50),
-                  child: Container(
-                    child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'TO',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: kblue),
-                                ),
-                                ksizedbox10,
-                                Text(
-                                  flightController
-                                      .flightBookingHistoyrList[index]
-                                      .fromCityname,
-                                  style: TextStyle(color: kblue, fontSize: 19),
-                                ),
-                                ksizedbox10,
-                                Text(
-                                  'John F. Kennedy Airport',
-                                  style: TextStyle(fontSize: 15, color: kblue),
-                                ),
-                              ],
+                return GestureDetector(
+                  onTap: () {
+                    dialogBuilderflight(context,
+                        flightBookedData:
+                            flightController.flightBookingHistoyrList[index]);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 50),
+                    child: Container(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'TO',
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: kblue),
+                                  ),
+                                  ksizedbox10,
+                                  Text(
+                                    flightController
+                                        .flightBookingHistoyrList[index]
+                                        .fromCityname,
+                                    style:
+                                        TextStyle(color: kblue, fontSize: 19),
+                                  ),
+                                  ksizedbox10,
+                                  Text(
+                                    'John F. Kennedy Airport',
+                                    style:
+                                        TextStyle(fontSize: 15, color: kblue),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                          Image.asset(
-                            'assets/images/Group 39716.png',
-                            height: 55,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Text(
-                                  'FROM',
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: kblue),
-                                ),
-                                ksizedbox10,
-                                Text(
-                                  flightController
-                                      .flightBookingHistoyrList[index]
-                                      .toCityname,
-                                  style: TextStyle(fontSize: 19, color: kblue),
-                                ),
-                                ksizedbox10,
-                                Text(
-                                  'Abbotsford National Airport',
-                                  style: TextStyle(color: kblue, fontSize: 15),
-                                ),
-                              ],
+                            Image.asset(
+                              'assets/images/Group 39716.png',
+                              height: 55,
                             ),
-                          ),
-                        ]),
-                    height: 150,
-                    width: 700,
-                    decoration: BoxDecoration(
-                        color: kwhite,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              offset: Offset(0.0, 0.75),
-                              blurRadius: 5,
-                              color: kgrey),
-                        ],
-                        borderRadius: BorderRadius.circular(5)),
+                            Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    'FROM',
+                                    style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: kblue),
+                                  ),
+                                  ksizedbox10,
+                                  Text(
+                                    flightController
+                                        .flightBookingHistoyrList[index]
+                                        .toCityname,
+                                    style:
+                                        TextStyle(fontSize: 19, color: kblue),
+                                  ),
+                                  ksizedbox10,
+                                  Text(
+                                    'Abbotsford National Airport',
+                                    style:
+                                        TextStyle(color: kblue, fontSize: 15),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ]),
+                      height: 150,
+                      width: 700,
+                      decoration: BoxDecoration(
+                          color: kwhite,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                offset: Offset(0.0, 0.75),
+                                blurRadius: 5,
+                                color: kgrey),
+                          ],
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
                   ),
                 );
               },
@@ -191,6 +203,250 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
       ],
     );
   }
+
+  Future<void> dialogBuilderflight(
+    BuildContext context, {
+    required FlightBookedData flightBookedData,
+  }) {
+    return showDialog<void>(
+      context: context,
+      builder: (
+        BuildContext context,
+      ) {
+        return AlertDialog(
+          title: Container(
+            height: 400,
+            width: 300,
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: kblue,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Details',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                   // Image.asset('assets/images/Group 291.png'),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 150,
+                          child: Text(
+                            flightBookedData.remark,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: kblue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Date : ${flightBookedData.bookingDate.split(" ").first}',
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: kblue,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'From city',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      flightBookedData.fromCityname,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'To City',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      flightBookedData.toCityname,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Booking Ref.no',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      flightBookedData.bookingRefNo,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Airline code',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      flightBookedData.airlineCode,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Invoice number',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      flightBookedData.invoiceNumber,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                // const Divider(
+                //   thickness: 1,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'Quantity',
+                //       style: TextStyle(
+                //           fontSize: 16,
+                //           color: kblue,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     Text(
+                //       qty,
+                //       style: TextStyle(
+                //           fontSize: 15,
+                //           color: kblue,
+                //           fontWeight: FontWeight.w500),
+                //     ),
+                //   ],
+                // ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Download',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.find< ApiflightsController>().downloadTicketHistory(
+                            refernceNo: flightBookedData.bookingRefNo);
+                      },
+                      child: Container(
+                        height: 45,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Icon(Icons.download,color: Colors.white,),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+
+
 }
 
 class HolidayHistory extends StatefulWidget {
@@ -205,11 +461,9 @@ class _HolidayHistoryState extends State<HolidayHistory> {
 
   @override
   void initState() {
-
     // TODO: implement initState
     super.initState();
     holidayPackageController.enquiryList();
-
   }
 
   // ignore: avoid_types_as_parameter_names
@@ -381,9 +635,10 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                             style: TextStyle(fontSize: 15),
                           ),
                   ],
-                ),   const Divider(
+                ),
+                const Divider(
                   thickness: 1,
-                ),   
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -902,4 +1157,6 @@ class _index4State extends State<index4> {
       ksizedbox30,
     ]);
   }
+
+
 }

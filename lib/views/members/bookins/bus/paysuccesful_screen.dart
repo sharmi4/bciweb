@@ -61,7 +61,7 @@ class _WebpdfCreationScreenState extends State<WebpdfCreationScreen> {
                 InkWell(
                   onTap: () {
                     Get.find<BusController>()
-                        .createPDF(context, widget.busRequeryModel);
+                        .createPDF( widget.busRequeryModel);
                   },
                   child: Container(
                     height: 55,

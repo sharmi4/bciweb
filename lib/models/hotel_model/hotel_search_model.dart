@@ -110,7 +110,7 @@ class SearchHotelData {
         hotelPromotion: json["HotelPromotion"],
         hotelPolicy: json["HotelPolicy"],
         price: Price.fromJson(json["Price"]),
-        hotelPicture: json["HotelPicture"],
+        hotelPicture: json["HotelPicture"] ?? "null",
         hotelAddress: json["HotelAddress"],
         hotelContactNo: json["HotelContactNo"],
         hotelMap: json["HotelMap"],

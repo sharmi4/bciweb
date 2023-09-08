@@ -27,6 +27,7 @@ class BusRequeryModel {
   String ticketStatusDesc;
   String ticketStatusId;
   String transportPnr;
+  dynamic price;
 
   BusRequeryModel({
     required this.bookingChangeRequests,
@@ -45,6 +46,7 @@ class BusRequeryModel {
     required this.ticketStatusDesc,
     required this.ticketStatusId,
     required this.transportPnr,
+    required this.price,
   });
 
   factory BusRequeryModel.fromJson(Map<String, dynamic> json) =>
@@ -69,7 +71,7 @@ class BusRequeryModel {
         retailerDetail: RetailerDetail.fromJson(json["RetailerDetail"]),
         ticketStatusDesc: json["Ticket_Status_Desc"],
         ticketStatusId: json["Ticket_Status_Id"],
-        transportPnr: json["Transport_PNR"],
+        transportPnr: json["Transport_PNR"], price: json['price']??"",
       );
 
   Map<String, dynamic> toJson() => {
@@ -92,6 +94,7 @@ class BusRequeryModel {
         "Ticket_Status_Desc": ticketStatusDesc,
         "Ticket_Status_Id": ticketStatusId,
         "Transport_PNR": transportPnr,
+        "price":price
       };
 }
 

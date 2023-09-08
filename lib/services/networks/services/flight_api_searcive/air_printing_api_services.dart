@@ -1,21 +1,14 @@
 import 'dart:io';
-// import 'package:bci/services/base_urls/base_urls.dart';
-import 'package:bciweb/models/hotel_model/block_room_api_model.dart';
+import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../base_url/base_url.dart';
+import '../../../base_url/base_url.dart';
 
-class AddBusBookingHistoryAPIServices extends BaseApiService {
-  Future addBusBookingAPIServices({
-    required String fromCityCode,
-    required String toCityCode,
-    required String fromCityName,
-    required String toCityName,
-    required String bookingRefNo,
-    required String busName,
-    required String date,
-    required String price,
+class AirRePrintingServices extends BaseApiService {
+  Future airRePrintingApi({
+    required String refrenceNo,
+    required String clientReferneNo,
   }) async {
     dynamic responseJson;
     try {
@@ -23,7 +16,7 @@ class AddBusBookingHistoryAPIServices extends BaseApiService {
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(addBusBookingHistoryURL,
+      var response = await dio.post(airRePrinting,
           options: Options(
               headers: {
                 'Content-Type': 'application/json',
@@ -32,21 +25,14 @@ class AddBusBookingHistoryAPIServices extends BaseApiService {
               followRedirects: false,
               validateStatus: (status) {
                 return status! <= 500;
-              },)
-              ,
+              }),
           data: {
-            "FromCityCode": fromCityCode,
-            "ToCityCode": toCityCode,
-            "FromCityName": fromCityName,
-            "ToCityName": toCityName,
-            "Booking_RefNo": bookingRefNo,
-            "BusName": busName,
-            "Date": date,
-            "price":price,
-          },);
-      print(
-          "::::::::<--add Bus History requiry-->::::::::status code:::::::::"
+            "IMEI_Number": "64654546546546",
+            "Booking_RefNo": refrenceNo,
+            "Airline_PNR": clientReferneNo,
+          }
           );
+      print("::::::::<-- Air Ticket printing -->::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

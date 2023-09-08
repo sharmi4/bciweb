@@ -184,4 +184,9 @@ abstract class BaseApiService {
 
   final String hotelBookingDetailsURL =
       "https://bci.batechnology.in/api/auth/get_booking_detail";
+
+
+        final String airRePrinting =
+      "https://bci.batechnology.in/api/auth/air_reprint";
+
 }

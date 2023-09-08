@@ -14,6 +14,7 @@ import '../../../../../controller/bus_controllers.dart';
 import '../../../../../controller/historycontroller.dart';
 import '../../../../../controller/reg_home_controller.dart';
 //import '../../../../../registerhomescreen/common_reg_appbar';
+import '../../../../../models/busbookingmodels/bus_booking_history_model.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../../members/common_widget/common.dart';
@@ -375,145 +376,151 @@ class _BussHistoryState extends State<BussHistory> {
                   padding: const EdgeInsets.symmetric(
                     horizontal: 30,
                   ),
-                  child: Container(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            //  kwidth10,
-                            CircleAvatar(
-                              child: Center(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceEvenly,
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/bus-1.png',
-                                      height: 30,
-                                    ),
-                                    Container(
-                                      width: 50,
-                                      child: Column(
-                                        children: [
-                                          Text(busController
-                                                  .bookingHistoryList[index]
-                                                  .bookingDate)
-                                              .text
-                                              .sm
-                                              .green500
-                                              .make(),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              backgroundColor: Colors.green.withOpacity(0.2),
-                              radius: 55,
-                            ),
-                            Container(
-                              width: size.width * 0.18,
-                              height: size.height * 0.15,
-                              //   color: kblue,
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text('Status')
-                                          .text
-                                          .gray500
-                                          .semiBold
-                                          .make(),
-                                      Text('Conformed')
-                                          .text
-                                          .gray500
-                                          .semiBold
-                                          .make(),
-                                    ],
-                                  ),
-                                  Row(
+                  child: InkWell(  onTap: () {
+                        dialogBuilderbus(context,
+                            busBookingData:
+                                busController.bookingHistoryList[index]);
+                      },
+                    child: Container(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              //  kwidth10,
+                              CircleAvatar(
+                                child: Center(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text(busController
-                                              .bookingHistoryList[index]
-                                              .fromCityname)
-                                          .text
-                                          .semiBold
-                                          .xl2
-                                          .make(),
-                                      Text('-').text.semiBold.xl2.make(),
-                                      Text(busController
-                                              .bookingHistoryList[index]
-                                              .toCityname)
-                                          .text
-                                          .semiBold
-                                          .xl2
-                                          .make(),
+                                      Image.asset(
+                                        'assets/images/bus-1.png',
+                                        height: 30,
+                                      ),
+                                      Container(
+                                        width: 50,
+                                        child: Column(
+                                          children: [
+                                            Text(busController
+                                                    .bookingHistoryList[index]
+                                                    .bookingDate)
+                                                .text
+                                                .sm
+                                                .green500
+                                                .make(),
+                                          ],
+                                        ),
+                                      )
                                     ],
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(busController
-                                              .bookingHistoryList[index]
-                                              .busName)
-                                          .text
-                                          .gray500
-                                          .semiBold
-                                          .make(),
-                                    ],
-                                  ),
-                                  Divider(
-                                    height: 1,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(busController
-                                              .bookingHistoryList[index]
-                                              .bookingRefno)
-                                          .text
-                                          .gray500
-                                          .semiBold
-                                          .make(),
-                                      Text('Rebook')
-                                          .text
-                                          .green400
-                                          .semiBold
-                                          .make(),
-                                    ],
-                                  ),
-                                ],
+                                ),
+                                backgroundColor: Colors.green.withOpacity(0.2),
+                                radius: 55,
                               ),
-                            ),
-                            //    kwidth10
-                            kwidth5,
-                          ],
-                        ),
-                      ),
-                      height: size.height * 0.17,
-                      width: size.width * 0.35,
-                      decoration: BoxDecoration(
-                        color: kwhite,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color.fromARGB(255, 190, 190, 190)
-                                .withOpacity(0.5), // Shadow color
-                            spreadRadius: 1, // The spread radius of the shadow
-                            blurRadius: 5, // The blur radius of the shadow
-                            //  offset: Offset(0, 3), // The offset of the shadow
+                              Container(
+                                width: size.width * 0.18,
+                                height: size.height * 0.15,
+                                //   color: kblue,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text('Status')
+                                            .text
+                                            .gray500
+                                            .semiBold
+                                            .make(),
+                                        Text('Conformed')
+                                            .text
+                                            .gray500
+                                            .semiBold
+                                            .make(),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Text(busController
+                                                .bookingHistoryList[index]
+                                                .fromCityname)
+                                            .text
+                                            .semiBold
+                                            .xl2
+                                            .make(),
+                                        Text('-').text.semiBold.xl2.make(),
+                                        Text(busController
+                                                .bookingHistoryList[index]
+                                                .toCityname)
+                                            .text
+                                            .semiBold
+                                            .xl2
+                                            .make(),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(busController
+                                                .bookingHistoryList[index]
+                                                .busName)
+                                            .text
+                                            .gray500
+                                            .semiBold
+                                            .make(),
+                                      ],
+                                    ),
+                                    Divider(
+                                      height: 1,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(busController
+                                                .bookingHistoryList[index]
+                                                .bookingRefno)
+                                            .text
+                                            .gray500
+                                            .semiBold
+                                            .make(),
+                                        Text('Rebook')
+                                            .text
+                                            .green400
+                                            .semiBold
+                                            .make(),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              //    kwidth10
+                              kwidth5,
+                            ],
                           ),
-                        ],
-                      )),
+                        ),
+                        height: size.height * 0.17,
+                        width: size.width * 0.35,
+                        decoration: BoxDecoration(
+                          color: kwhite,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 190, 190, 190)
+                                  .withOpacity(0.5), // Shadow color
+                              spreadRadius: 1, // The spread radius of the shadow
+                              blurRadius: 5, // The blur radius of the shadow
+                              //  offset: Offset(0, 3), // The offset of the shadow
+                            ),
+                          ],
+                        )),
+                  ),
                 );
               }),
             ),
@@ -523,6 +530,234 @@ class _BussHistoryState extends State<BussHistory> {
       ],
     );
   }
+  Future<void> dialogBuilderbus(
+    BuildContext context, {
+    required BookingHistoryData busBookingData,
+  }) {
+    return showDialog<void>(
+      context: context,
+      builder: (
+        BuildContext context,
+      ) {
+        return AlertDialog(
+          title: Container(
+            height: 400,
+            width: 300,
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: kblue,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Details',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    const Icon(Icons.bus_alert),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 150,
+                          child: Text(
+                            busBookingData.remarks == ""
+                                ? "Bus Booking"
+                                : busBookingData.remarks,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: kblue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                          'Date : ${busBookingData.bookingDate.split(" ").first}',
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: kblue,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'From city',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      busBookingData.fromCityname,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'To City',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      busBookingData.toCityname,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Booking Ref.no',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      busBookingData.bookingRefno,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kblue,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Bus Name',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Container(
+                      width: 120,
+                      child: Text(
+                        busBookingData.busName,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: kblue,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ],
+                ),
+
+                // const Divider(
+                //   thickness: 1,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'Quantity',
+                //       style: TextStyle(
+                //           fontSize: 16,
+                //           color: kblue,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     Text(
+                //       qty,
+                //       style: TextStyle(
+                //           fontSize: 15,
+                //           color: kblue,
+                //           fontWeight: FontWeight.w500),
+                //     ),
+                //   ],
+                // ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Download',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.find<BusController>().busTicketDownload(
+                            refernceNo: busBookingData.bookingRefno);
+                      },
+                      child: Container(
+                        height: 45,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Icon(
+                          Icons.download,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
 }
 
 class bottle_container extends StatelessWidget {

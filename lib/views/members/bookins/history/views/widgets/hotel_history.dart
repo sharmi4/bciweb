@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../../constant/constans.dart';
 import '../../../../../../controller/hotel_controller/hotel_controller.dart';
-// import '../../../../../../models/hotel_model/block_room_api_model.dart';
+
 import '../../../../../../models/hotel_model/hotel_booking_list_model.dart';
 import '../../../../../../models/hotel_model/hotel_detials_model.dart';
 
@@ -23,6 +24,19 @@ class _HotelHistoryState extends State<HotelHistory> {
     // TODO: implement initState
     super.initState();
     hotelBookingController.hotelBookingList();
+  }
+
+    void launchGoogleMaps(String latitude, String longitude) async {
+    final url =
+        // 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+
+        "google.navigation:q=$latitude,$longitude&mode=d";
+
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch Google Maps';
+    }
   }
 
   Future<void> dialogBuilder(
@@ -189,21 +203,21 @@ class _HotelHistoryState extends State<HotelHistory> {
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
-                    // InkWell(
-                    //   onTap: () {
-                    //     launchGoogleMaps(result.latitude, result.longitude);
-                    //   },
-                    //   child: Container(
-                    //     height: 50,
-                    //     width: 70,
-                    //     alignment: Alignment.center,
-                    //     child: Icon(
-                    //       Icons.directions,
-                    //       color: Colors.blue,
-                    //       size: 26,
-                    //     ),
-                    //   ),
-                    // )
+                    InkWell(
+                      onTap: () {
+                        launchGoogleMaps(result.latitude, result.longitude);
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 70,
+                        alignment: Alignment.center,
+                        child: Icon(
+                          Icons.directions,
+                          color: Colors.blue,
+                          size: 26,
+                        ),
+                      ),
+                    )
                   ],
                 ),
                 const Divider(
@@ -412,8 +426,8 @@ class _HotelHistoryState extends State<HotelHistory> {
                                         SizedBox(
                                           width: 30,
                                         ),
-                                        Image.asset(
-                                            'assets/images/Icon material-location-on.png')
+                                        // Image.asset(
+                                        //     'assets/images/Icon material-location-on.png')
                                       ],
                                     ),
                                     Text(

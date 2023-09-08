@@ -227,7 +227,7 @@ class BusController extends GetxController {
           fromCityCode: busRequeryModel.busDetail.fromCity,
           fromCityName: busRequeryModel.busDetail.fromCity,
           toCityCode: busRequeryModel.busDetail.toCity,
-          toCityName: busRequeryModel.busDetail.toCity);
+          toCityName: busRequeryModel.busDetail.toCity, price:busRequeryModel.price );
           print('add booking history and avigation 4');
 
       Get.off(
@@ -238,6 +238,19 @@ class BusController extends GetxController {
     } else {}
   }
 
+ busTicketDownload({required String refernceNo}) async {
+    dio.Response<dynamic> response =
+        await busRequieyApiServices.busRequiryApi(refrenceNo: refernceNo);
+
+    if (response.statusCode == 200) {
+      BusRequeryModel busRequeryModel = BusRequeryModel.fromJson(response.data);
+
+      createPDF(busRequeryModel);
+    }
+  }
+
+  
+
   addBusBookingHistoy({
     required String fromCityCode,
     required String toCityCode,
@@ -246,6 +259,7 @@ class BusController extends GetxController {
     required String bookingRefNo,
     required String busName,
     required String date,
+    required String price,
   }) async {
     dio.Response<dynamic> response =
         await addBusBookingHistoryAPIServices.addBusBookingAPIServices(
@@ -255,13 +269,13 @@ class BusController extends GetxController {
             toCityName: toCityName,
             bookingRefNo: bookingRefNo,
             busName: busName,
-            date: date);
+            date: date, price: price,);
 
     if (response.statusCode == 201) {}
   }
 
   Future<html.Blob> createPDF(
-      BuildContext, BusRequeryModel busRequeryModel) async {
+       BusRequeryModel busRequeryModel) async {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
@@ -841,4 +855,8 @@ class BusController extends GetxController {
     }
     update();
   }
+
+
+
+  
 }
