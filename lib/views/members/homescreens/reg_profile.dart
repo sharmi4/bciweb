@@ -40,6 +40,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   var dobController = TextEditingController();
   var emailController = TextEditingController();
   var numberController = TextEditingController();
+   var alternumberController = TextEditingController();
   var occupationController = TextEditingController();
   var fathernameController = TextEditingController();
   var mothernameController = TextEditingController();
@@ -175,6 +176,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     if (authprofileController.profileData.isNotEmpty) {
       nameController.text = authprofileController.profileData.first.name;
       numberController.text = authprofileController.profileData.first.mobile;
+      alternumberController.text = authprofileController.profileData.first.alternateMobile;
       emailController.text = authprofileController.profileData.first.email;
       occupationController.text =
           authprofileController.profileData.first.occupation;
@@ -975,6 +977,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
                                         controller: nameController,
+                                        keyboardType: TextInputType.name,
                                         decoration:const InputDecoration(
                                             hintText: 'User Name',
                                             suffixIcon: Icon(Icons.edit),
@@ -994,11 +997,11 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
-                                                controller:
-                                                    dateofbirthController,
+                                                controller: dateofbirthController,
+                                                keyboardType: TextInputType.datetime,
                                                 decoration: InputDecoration(
                                                     hintText:
-                                                        'Enter Date Of Birth',
+                                                        'Wedding Date',
                                                     suffixIcon: IconButton(
                                                       onPressed: () {
                                                         _selectDate(context);
@@ -1052,7 +1055,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                 textInputAction:
                                                     TextInputAction.next,
                                                 keyboardType:
-                                                    TextInputType.number,
+                                                    TextInputType.phone,
                                                 controller: numberController,
                                                 decoration: InputDecoration(
                                                     hintText:
@@ -1083,7 +1086,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           bottom: 30),
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
-                                        controller: occupationController,
+                                        keyboardType: TextInputType.phone,
+                                        controller: alternumberController,
                                         decoration:const InputDecoration(
                                             hintText: 'Alternative Number',
                                             suffixIcon: Icon(Icons.edit),
@@ -1103,10 +1107,9 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                         child: Column(
                                           children: [
                                             TextField(
-                                                textInputAction:
-                                                    TextInputAction.next,
-                                                controller:
-                                                    fathernameController,
+                                                textInputAction: TextInputAction.next,
+                                                keyboardType: TextInputType.text,
+                                                controller: occupationController,
                                                 decoration: InputDecoration(
                                                     hintText: 'Occupation',
                                                     suffixIcon: IconButton(
@@ -1135,7 +1138,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           bottom: 30),
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
-                                        controller: occupationController,
+                                        keyboardType: TextInputType.text,
+                                        controller: qualificationController,
                                         decoration:const InputDecoration(
                                             hintText: 'Qualification',
                                             suffixIcon: Icon(Icons.edit),
@@ -1157,8 +1161,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                             TextField(
                                                 textInputAction:
                                                     TextInputAction.next,
-                                                controller:
-                                                    fathernameController,
+                                                controller: fathernameController,
+                                                keyboardType: TextInputType.name,
                                                 decoration: InputDecoration(
                                                     hintText: 'Father Name',
                                                     suffixIcon: IconButton(
@@ -1187,6 +1191,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                           bottom: 30),
                                       child: TextField(
                                         textInputAction: TextInputAction.next,
+                                        keyboardType: TextInputType.name,
                                         controller: mothernameController,
                                         decoration:const InputDecoration(
                                             hintText: 'Mother Name',
@@ -1225,20 +1230,20 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                                         });
                                                       }),
                                                   const Text('Married'),
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 40),
-                                                    child: Checkbox(
-                                                        value: isUnmarried,
-                                                        onChanged: (value) {
-                                                          setState(() {
-                                                            isUnmarried =
-                                                                value!;
-                                                          });
-                                                        }),
-                                                  ),
-                                                  const Text('Unmarried')
+                                                  // Padding(
+                                                  //   padding:
+                                                  //       const EdgeInsets.only(
+                                                  //           left: 40),
+                                                  //   child: Checkbox(
+                                                  //       value: isUnmarried,
+                                                  //       onChanged: (value) {
+                                                  //         setState(() {
+                                                  //           isUnmarried =
+                                                  //               value!;
+                                                  //         });
+                                                  //       }),
+                                                  // ),
+                                                  // const Text('Unmarried')
                                                 ],
                                               ),
                                             )
@@ -1263,6 +1268,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                           textInputAction: TextInputAction.next,
                                           controller: wedingnameController,
+                                          keyboardType: TextInputType.datetime,
                                           decoration: InputDecoration(
                                               hintText: 'Wedding Date',
                                               suffixIcon: IconButton(
@@ -1316,8 +1322,9 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                                       child: TextField(
                                           textInputAction: TextInputAction.next,
                                           controller: dobController,
+                                          keyboardType: TextInputType.text,
                                           decoration: InputDecoration(
-                                              hintText: 'Date of Birth',
+                                              hintText: 'Date Of Birth',
                                               suffixIcon: IconButton(
                                                 onPressed: () {
                                                   _selectDate2(context);
