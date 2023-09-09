@@ -97,58 +97,62 @@ void initState() {
             child: Container(
               child: Column(
                 children: [
-                  TextField(
-                    // controller: _controller,
+                  // TextField(
+                  //   // controller: _controller,
 
-                    decoration: InputDecoration(
-                        hintText: 'Enter Coupon',
-                        hintStyle: TextStyle(fontSize: 17, color: kgrey),
-                        fillColor: kwhite,
-                        focusColor: kwhite,
-                        isDense: true,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: kblue),
-                          borderRadius: BorderRadius.circular(4.0),
-                        ),
+                  //   decoration: InputDecoration(
+                  //       hintText: 'Enter Coupon',
+                  //       hintStyle: TextStyle(fontSize: 17, color: kgrey),
+                  //       fillColor: kwhite,
+                  //       focusColor: kwhite,
+                  //       isDense: true,
+                  //       filled: true,
+                  //       border: OutlineInputBorder(
+                  //         borderSide: BorderSide(color: kblue),
+                  //         borderRadius: BorderRadius.circular(4.0),
+                  //       ),
                         
-                        ),
-                  ),
+                  //       ),
+                  // ),
               
                   ksizedbox40,
-                  InkWell(
-                    onTap: () {
-                     
-                      subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
-                      showpayment: true);
-                      
-                     // Get.toNamed('/add-wallet');
-                    },
-                    child: Container(
-                      width: double.infinity,
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(
-                          4,
-                        ),
-                        gradient: const LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Color(0xFFFF5C29),
-                            Color(0xFFFFCD38),
-                          ],
+                  Row(mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                         
+                          subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
+                          showpayment: true);
+                          
+                         // Get.toNamed('/add-wallet');
+                        },
+                        child: Container(
+                          width: 500,
+                          height: 50,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(
+                              16,
+                            ),
+                            gradient: const LinearGradient(
+                              begin: Alignment.centerLeft,
+                              end: Alignment.centerRight,
+                              colors: [
+                                Color(0xFFFF5C29),
+                                Color(0xFFFFCD38),
+                              ],
+                            ),
+                          ),
+                          child: Text(
+                            'Proceed To Payment',
+                            style: TextStyle(
+                                fontSize: 28,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w700),
+                          ),
                         ),
                       ),
-                      child: Text(
-                        'Proceed To Payment',
-                        style: TextStyle(
-                            fontSize: 28,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w700),
-                      ),
-                    ),
+                    ],
                   ),
                 ],
               ),
