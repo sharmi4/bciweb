@@ -3,8 +3,8 @@ import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class  GetTodayOffersApiService extends BaseApiService {
-  Future  getTodayoffers() async {
+class GetTodayOffersApiService extends BaseApiService {
+  Future getTodayoffers() async {
     dynamic responseJson;
     try {
       var dio = Dio();
@@ -14,16 +14,15 @@ class  GetTodayOffersApiService extends BaseApiService {
       var response = await dio.post(
         todayOffersListApiUrl,
         options: Options(
-            headers: {
-              'Accept': 'application/json',
-              'Authorization': 'Bearer $authtoken'
-            },
-            followRedirects: false,
-            validateStatus: (status) {
-              return status! <= 500;
-              
-            }),
-           
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $authtoken'
+          },
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! <= 500;
+          },
+        ),
       );
       print("::::::::<Todays Api>::::::::status code::::::::::");
       print(response.statusCode);

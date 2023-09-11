@@ -13,14 +13,26 @@ class ProfileUpdateApiServices extends BaseApiService {
     try {
       var dio = Dio();
       FormData formData = FormData.fromMap({
-        "name": memberProfileUpdateModel.name,
+      "name": memberProfileUpdateModel.name,
         "mobile": memberProfileUpdateModel.mobile,
         "email": memberProfileUpdateModel.email,
         "occupation": memberProfileUpdateModel.occupation,
         "father_name": memberProfileUpdateModel.fatherName,
         "mother_name": memberProfileUpdateModel.motherName,
         "is_married": memberProfileUpdateModel.isMarried,
-        "dob": memberProfileUpdateModel.dateOfBirth
+        "dob": memberProfileUpdateModel.dateOfBirth,
+        "qualification": memberProfileUpdateModel.qualification,
+        "alternate_mobile": memberProfileUpdateModel.alternateMob,
+        "pan_no": memberProfileUpdateModel.panNo,
+        "aadhar_no": memberProfileUpdateModel.adharNo,
+        "gst_no": memberProfileUpdateModel.gstNo,
+        "gender": memberProfileUpdateModel.gender,
+        "branch": memberProfileUpdateModel.branch,
+        "spouse": memberProfileUpdateModel.spouse,
+        "child_name": memberProfileUpdateModel.children,
+        "wedding_date": memberProfileUpdateModel.weddingDate,
+      // if(memberProfileUpdateModel.adharproofimg != "null") "adhar_proof": await MultipartFile.fromFile(memberProfileUpdateModel.adharproofimg, filename: "adhar_proof"),
+      // if(memberProfileUpdateModel.panproofimg != "null") "pan_proof": await MultipartFile.fromFile(memberProfileUpdateModel.panproofimg, filename: "pan_proof"),
       });
 
       final prefs = await SharedPreferences.getInstance();

@@ -1,9 +1,13 @@
+// import 'package:bciweb/views/profile_register_page/my_account/wigits.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:textfield_tags/textfield_tags.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 import '../../../constant/constans.dart';
@@ -20,32 +24,76 @@ class ProfileSettings extends StatefulWidget {
 class _ProfileSettingsState extends State<ProfileSettings> {
   DateTime selectedDate = DateTime.now();
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime(1910),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+    if (picked != null) {
       setState(() {
         selectedDate = picked;
-        dobController.text =
-            '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
+        dateofbirthController.text =
+            formatDate(selectedDate, [dd, "/", mm, "/", yyyy]);
       });
     }
   }
 
+  TextfieldTagsController? _controller;
   DateTime selectedDate2 = DateTime.now();
   Future<void> _selectDate2(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: selectedDate,
-        firstDate: DateTime(2015, 8),
-        lastDate: DateTime(2101));
-    if (picked != null && picked != selectedDate) {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate2,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime(1910),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null && picked != selectedDate2) {
       setState(() {
-        selectedDate = picked;
-        dobController.text =
-            '${selectedDate.day}-${selectedDate.month}-${selectedDate.year}';
+        selectedDate2 = picked;
+        wedingnameController.text =
+            formatDate(selectedDate2, [dd, "/", mm, "/", yyyy]);
       });
     }
   }
@@ -90,9 +138,13 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   var resiperidController = TextEditingController();
   var resiadaridController = TextEditingController();
   var resiaddressController = TextEditingController();
-  var  subNameController=TextEditingController();
-var  subEmailController=TextEditingController();
-var  subMobileController=TextEditingController();
+  var subNameController = TextEditingController();
+  var subEmailController = TextEditingController();
+  var subMobileController = TextEditingController();
+  var panController = TextEditingController();
+  var aadhaarController = TextEditingController();
+  var gstController = TextEditingController();
+
   String selectedGender = '';
   dynamic imageprofile;
   dynamic aadharimage;
@@ -107,7 +159,8 @@ var  subMobileController=TextEditingController();
     if (authprofileController.profileData.isNotEmpty) {
       nameController.text = authprofileController.profileData.first.name;
       numberController.text = authprofileController.profileData.first.mobile;
-      alternumberController.text = authprofileController.profileData.first.alternateMobile;
+      alternumberController.text =
+          authprofileController.profileData.first.alternateMobile;
       emailController.text = authprofileController.profileData.first.email;
       occupationController.text =
           authprofileController.profileData.first.occupation;
@@ -115,13 +168,14 @@ var  subMobileController=TextEditingController();
           authprofileController.profileData.first.qualification;
       fathernameController.text =
           authprofileController.profileData.first.fatherName;
-      gstnoController.text = authprofileController.profileData.first.gstNo;
-      pannoController.text = authprofileController.profileData.first.panNo;
-
+      gstController.text = authprofileController.profileData.first.gstNo;
+      panController.text = authprofileController.profileData.first.panNo;
+      aadhaarController.text = authprofileController.profileData.first.aadharNo;
       mothernameController.text =
           authprofileController.profileData.first.motherName;
       spousenameController.text =
           authprofileController.profileData.first.spouse;
+
       dateofbirthController.text = authprofileController.profileData.first.dob;
       officedoornoController.text =
           authprofileController.profileData.first.officialAddress.doorNo;
@@ -129,11 +183,14 @@ var  subMobileController=TextEditingController();
           authprofileController.profileData.first.officialAddress.buildingName;
       officeaddresController.text =
           authprofileController.profileData.first.officialAddress.address;
-
+      wedingnameController.text =
+          authprofileController.profileData.first.weddingDate;
       officeaddresController.text =
           authprofileController.profileData.first.officialAddress.city;
       officestateController.text =
           authprofileController.profileData.first.officialAddress.state;
+
+      branchController.text = authprofileController.profileData.first.branch;
 
       setState(() {
         isMarried = authprofileController.profileData.first.isMarried == "0"
@@ -142,18 +199,33 @@ var  subMobileController=TextEditingController();
         isUnmarried = authprofileController.profileData.first.isMarried == "0"
             ? false
             : true;
-        aadharimage = authprofileController.profileData.first.adharProof;
+        // aadharimage = authprofileController.profileData.first.adharProof;
       });
     }
   }
 
   @override
-void initState() {
-
-  super.initState();
+  void initState() {
+    super.initState();
     setDefauld();
-}
 
+    _controller = TextfieldTagsController();
+  }
+
+  double? _distanceToField;
+  // TextfieldTagsController? _controller;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _distanceToField = MediaQuery.of(context).size.width;
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller!.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -178,9 +250,11 @@ void initState() {
                             );
 
                             var tempCont = await pickedFile!.readAsBytes();
-                            setState(() {
-                              imageprofile = tempCont;
-                            });
+                            setState(
+                              () {
+                                imageprofile = tempCont;
+                              },
+                            );
                             authprofileController
                                 .updateProfilePic(imageprofile);
                           },
@@ -326,7 +400,7 @@ void initState() {
                             controller: dateofbirthController,
                             keyboardType: TextInputType.datetime,
                             decoration: InputDecoration(
-                                hintText: 'Wedding Date',
+                                hintText: 'Date of Birth',
                                 suffixIcon: IconButton(
                                   onPressed: () {
                                     _selectDate(context);
@@ -370,8 +444,13 @@ void initState() {
                       children: [
                         TextField(
                             textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.phone,
                             controller: numberController,
+                            keyboardType: TextInputType.phone,
+                            inputFormatters: [
+                              LengthLimitingTextInputFormatter(10),
+                              FilteringTextInputFormatter.digitsOnly,
+                              FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                            ],
                             decoration: InputDecoration(
                                 hintText: 'Enter Phone Number',
                                 suffixIcon: IconButton(
@@ -396,8 +475,13 @@ void initState() {
                       left: 40, right: 70, top: 0, bottom: 30),
                   child: TextField(
                     textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.phone,
                     controller: alternumberController,
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(10),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
                     decoration: const InputDecoration(
                         hintText: 'Alternative Number',
                         suffixIcon: Icon(Icons.edit),
@@ -553,12 +637,13 @@ void initState() {
                   child: TextField(
                       textInputAction: TextInputAction.next,
                       controller: wedingnameController,
-                      keyboardType: TextInputType.datetime,
+                      // keyboardType: TextInputType.datetime,
+                      readOnly: true,
                       decoration: InputDecoration(
                           hintText: 'Wedding Date',
                           suffixIcon: IconButton(
                             onPressed: () {
-                              // _selectDate2(context);
+                              _selectDate2(context);
                             },
                             icon: const Icon(Icons.edit),
                           ),
@@ -586,9 +671,63 @@ void initState() {
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
+          ///////////////////////////
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 40, right: 70, top: 0, bottom: 30),
+                  child: TextField(
+                    textInputAction: TextInputAction.next,
+                    controller: panController,
+                    textCapitalization: TextCapitalization.characters,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(10),
+                    ],
+                    decoration: InputDecoration(
+                      hintText: 'Pan No',
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          // _selectDate2(context);
+                        },
+                        icon: const Icon(Icons.edit),
+                      ),
+                      fillColor: const Color(0xffF9F8FD),
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                      left: 70, right: 50, top: 0, bottom: 30),
+                  child: Container(
+                    child: Column(
+                      children: [
+                        TextField(
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.phone,
+                          controller: gstController,
+                          decoration: const InputDecoration(
+                              hintText: 'Gst No',
+                              suffixIcon: Icon(Icons.edit),
+                              fillColor: Color(0xffF9F8FD),
+                              border: OutlineInputBorder()),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -598,10 +737,10 @@ void initState() {
                       left: 40, right: 70, top: 0, bottom: 30),
                   child: TextField(
                       textInputAction: TextInputAction.next,
-                      controller: dobController,
+                      controller: branchController,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                          hintText: 'Date Of Birth',
+                          hintText: 'Branch',
                           suffixIcon: IconButton(
                             onPressed: () {
                               _selectDate2(context);
@@ -619,101 +758,268 @@ void initState() {
                   child: Container(
                     child: Column(
                       children: [
-                        TextField(
-                          textInputAction: TextInputAction.next,
-                          controller: childrensController,
-                          decoration: const InputDecoration(
-                              hintText: 'No.Of.Children',
-                              suffixIcon: Icon(Icons.edit),
-                              fillColor: Color(0xffF9F8FD),
-                              border: OutlineInputBorder()),
-                        ),
+                        if (isMarried == true)
+                          TextFieldTags(
+                            textfieldTagsController: _controller,
+                            initialTags: const [],
+                            textSeparators: const [','],
+                            // letterCase: LetterCase.normal,
+                            validator: (String tag) {
+                              if (tag == 'php') {
+                                return 'No, please just no';
+                              } else if (_controller!.getTags!.contains(tag)) {
+                                return 'you already entered that';
+                              }
+                              return null;
+                            },
+                            inputfieldBuilder: (context, tec, fn, error,
+                                onChanged, onSubmitted) {
+                              return ((context, sc, tags, onTagDelete) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(top: 10.0),
+                                  child: TextField(
+                                    controller: tec,
+                                    focusNode: fn,
+                                    decoration: InputDecoration(
+                                      isDense: true,
+                                      border: const OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color:
+                                              Color.fromARGB(255, 74, 137, 92),
+                                          width: 3.0,
+                                        ),
+                                      ),
+                                      // focusedBorder: const OutlineInputBorder(
+                                      //   borderSide: BorderSide(
+                                      //     color: Color.fromARGB(255, 74, 137, 92),
+                                      //     width: 3.0,
+                                      //   ),
+                                      // ),
+                                      //helperText: 'No Of Children',
+                                      // helperStyle: TextStyle(
+                                      //   color: kblue,
+                                      // ),
+                                      hintText: _controller!.hasTags
+                                          ? ''
+                                          : "Children Name",
+                                      errorText: error,
+                                      prefixIconConstraints: BoxConstraints(
+                                          maxWidth: _distanceToField! * 0.74),
+                                      prefixIcon: tags.isNotEmpty
+                                          ? SingleChildScrollView(
+                                              controller: sc,
+                                              scrollDirection: Axis.horizontal,
+                                              child: Row(
+                                                  children:
+                                                      tags.map((String tag) {
+                                                return Container(
+                                                  decoration:
+                                                      const BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                      Radius.circular(20.0),
+                                                    ),
+                                                    color: Color.fromARGB(
+                                                        255, 74, 80, 137),
+                                                  ),
+                                                  margin: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 5.0),
+                                                  padding: const EdgeInsets
+                                                          .symmetric(
+                                                      horizontal: 10.0,
+                                                      vertical: 5.0),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      InkWell(
+                                                        child: Text(
+                                                          '$tag',
+                                                          style:
+                                                              const TextStyle(
+                                                                  color: Colors
+                                                                      .white),
+                                                        ),
+                                                        onTap: () {
+                                                          print(
+                                                              "$tag selected");
+                                                        },
+                                                      ),
+                                                      const SizedBox(
+                                                          width: 4.0),
+                                                      InkWell(
+                                                        child: const Icon(
+                                                          Icons.cancel,
+                                                          size: 14.0,
+                                                          color: Color.fromARGB(
+                                                              255,
+                                                              233,
+                                                              233,
+                                                              233),
+                                                        ),
+                                                        onTap: () {
+                                                          onTagDelete(tag);
+                                                        },
+                                                      )
+                                                    ],
+                                                  ),
+                                                );
+                                              }).toList()),
+                                            )
+                                          : null,
+                                    ),
+                                    onChanged: onChanged,
+                                    onSubmitted: onSubmitted,
+                                  ),
+                                );
+                              });
+                            },
+                          ),
                       ],
                     ),
                   ),
                 ),
-              )
+              ),
             ],
           ),
-           ksizedbox10,
-                                    Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Text('GENDER').text.gray500.semiBold.make(),
+          ksizedbox10,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 40, bottom: 30),
+                child: Container(
+                  width: 560,
+                  child: Column(
+                    children: [
+                      TextField(
+                        //textInputAction: TextInputAction.next,
+                        controller: aadhaarController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(12),
+                          FilteringTextInputFormatter.digitsOnly,
+                          FilteringTextInputFormatter.deny(RegExp(r'\s')),
                         ],
+                        decoration: const InputDecoration(
+                          hintText: 'Aadhaar No',
+                          suffixIcon: Icon(Icons.edit),
+                          fillColor: Color(0xffF9F8FD),
+                          border: OutlineInputBorder(),
+                        ),
                       ),
-                      RadioListTile(
-              title:const Text('Male'),
-              value: 'Male',
-              groupValue: selectedGender,
-              onChanged: (value) {
-                setState(() {
-                  selectedGender = value!;
-                });
-              },
-            ),
-            RadioListTile(
-              title:const Text('Female'),
-              value: 'Female',
-              groupValue: selectedGender,
-              onChanged: (value) {
-                setState(() {
-                  selectedGender = value!;
-                });
-              },
-            ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Text('GENDER').text.gray500.semiBold.make(),
+            ],
+          ),
+          RadioListTile(
+            title: const Text('Male'),
+            value: 'Male',
+            groupValue: selectedGender,
+            onChanged: (value) {
+              setState(() {
+                selectedGender = value!;
+              });
+            },
+          ),
+          RadioListTile(
+            title: const Text('Female'),
+            value: 'Female',
+            groupValue: selectedGender,
+            onChanged: (value) {
+              setState(() {
+                selectedGender = value!;
+              });
+            },
+          ),
           //      Row(
           //       mainAxisAlignment:
           //           MainAxisAlignment.spaceAround,
           //       children: [
-          //          Container(
-          // height: 100,
-          // width: 100,
-          // child: authprofileController.profileData.first.panProof.isEmpty ?
-          // panimage != null? Image.memory(panimage): Container(
-          //   height: 150,
-          //   width: 150,
-          //    child:GestureDetector(onTap: ()async{
-          //              PickedFile? pickedFile =
-          //                     await ImagePicker()
-          //                         .getImage(
-          //                   source: ImageSource.gallery,
-          //                 );
+          Row(
+            children: [
+              Container(
+                height: 100,
+                width: 100,
+                child: authprofileController.profileData.first.panProof.isEmpty
+                    ? panimage != null
+                        ? Image.memory(panimage)
+                        : Container(
+                            height: 150,
+                            width: 150,
+                            child: GestureDetector(
+                              onTap: () async {
+                                PickedFile? pickedFile =
+                                    await ImagePicker().getImage(
+                                  source: ImageSource.gallery,
+                                );
 
-          //                 var tempCont = await pickedFile!.readAsBytes();
-          //                 setState(() {
-          //                   panimage = tempCont;
-          //                 });
+                                var tempCont = await pickedFile!.readAsBytes();
+                                setState(() {
+                                  panimage = tempCont;
+                                });
+                              },
+                              child: const Text('Upload Pan Card'),
+                            ),
+                          )
+                    : Image.network(
+                        authprofileController.profileData.first.panProof),
+              ),
 
-          //             }, child: Text('Upload Pan Card'),),
+              Container(
+                height: 100,
+                width: 100,
+                child: aadharimage != null
+                    ? Image.memory(aadharimage)
+                    : authprofileController.profileData.first.adharProof != null
+                        ? Container(
+                            height: 150,
+                            width: 150,
+                            child: GestureDetector(
+                              onTap: () async {
+                                PickedFile? pickedFile =
+                                    await ImagePicker().getImage(
+                                  source: ImageSource.gallery,
+                                );
 
-          // ) : Image.network(authprofileController.profileData.first.panProof)),
+                                var tempCont = await pickedFile!.readAsBytes();
+                                setState(() {
+                                  aadharimage = tempCont;
+                                });
+                              },
+                              child: const Text('Upload Aadhar Card'),
+                            ),
+                          )
+                        : InkWell(
+                            onTap: () async {
+                              PickedFile? pickedFile = await ImagePicker().getImage(
+                                source: ImageSource.gallery,
+                              );
 
-          //          Container(
-          // height: 100,
-          // width: 100,
-          // child: authprofileController.profileData.first.adharProof == null ?
-          // aadharimage != null? Image.memory(aadharimage!): Container(
-          //   height: 150,
-          //   width: 150,
-          //    child:GestureDetector(onTap: ()async{
-          //              PickedFile? pickedFile =
-          //                     await ImagePicker()
-          //                         .getImage(
-          //                   source: ImageSource.gallery,
-          //                 );
+                              var tempCont = await pickedFile!.readAsBytes();
+                              setState(() {
+                                aadharimage = tempCont;
+                              });
+                            },
+                            child: Image.network(
+                                authprofileController.profileData.first.adharProof),
+                          ),
+              ),
+            ],
+          ),
 
-          //                 var tempCont = await pickedFile!.readAsBytes();
-          //                 setState(() {
-          //                   aadharimage = tempCont;
-          //                 });
-
-          //             }, child: Text('Upload Aadhar Card'),),
-
-          // ) : Image.network(authprofileController.profileData.first.adharProof)),
-
-          //       ],
-          //     ),
+          //   ],
+          // ),
           // Padding(
           //   padding: const EdgeInsets.only(left: 40),
           //   child: Row(
@@ -727,17 +1033,15 @@ void initState() {
           //             fillColor: Color(0xffF9F8FD),
           //             border: OutlineInputBorder()),
           //       ),
-          //       Expanded(
-          //         child: TextField(
-          //             textInputAction: TextInputAction.next,
-          //             controller: resiadaridController,
-          //             decoration: InputDecoration(
-          //                 hintText: 'Adhaar Id',
-          //                 suffixIcon: Icon(Icons.upload),
-          //                 fillColor: Color(0xffF9F8FD),
-          //                 border: OutlineInputBorder()),
-          //           ),
-          //       ),
+          //       TextField(
+          //           textInputAction: TextInputAction.next,
+          //           controller: resiadaridController,
+          //           decoration: InputDecoration(
+          //               hintText: 'Adhaar Id',
+          //               suffixIcon: Icon(Icons.upload),
+          //               fillColor: Color(0xffF9F8FD),
+          //               border: OutlineInputBorder()),
+          //         ),
           //     ],
           //   ),
           // ),
@@ -748,40 +1052,45 @@ void initState() {
                     child: Row(
                       children: [
                         ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: korange,
-                                minimumSize: Size(
-                                    MediaQuery.of(context).size.width * 0.35,
-                                    45)),
-                            onPressed: () {
-                              MemberProfileUpdateModel
-                                  memberProfileUpdateModel =
-                                  MemberProfileUpdateModel(
-                                name: nameController.text,
-                                email: emailController.text,
-                                dateOfBirth: dateofbirthController.text,
-                                fatherName: fathernameController.text,
-                                isMarried: isMarried == true ? "1" : "0",
-                                mobile: numberController.text,
-                                motherName: mothernameController.text,
-                                occupation: occupationController.text,
-                                aadharno: adharController.text,
-                                branch: branchController.text,
-                                children: childrensController.text,
-                                gstno: gstnoController.text,
-                                marrigedate: wedingnameController.text,
-                                panNo: pannoController.text,
-                                qulification: qualificationController.text,
-                                spouse: spousenameController.text,
-                              );
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: korange,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.width * 0.35, 45),
+                          ),
+                          onPressed: () {
+                            MemberProfileUpdateModel memberProfileUpdateModel =
+                                MemberProfileUpdateModel(
+                              name: nameController.text,
+                              email: emailController.text,
+                              dateOfBirth: dateofbirthController.text,
+                              fatherName: fathernameController.text,
+                              isMarried: isMarried == true ? "1" : "0",
+                              mobile: numberController.text,
+                              motherName: mothernameController.text,
+                              occupation: occupationController.text,
+                              branch: branchController.text,
+                              children: _controller!.getTags,
+                              panNo: panController.text,
+                              spouse: spousenameController.text,
+                              gender:
+                                  selectedGender == "Male" ? "Male" : "Female",
+                              adharNo: aadhaarController.text,
+                              adharproofimg: '',
+                              alternateMob: alternumberController.text,
+                              gstNo: gstController.text,
+                              panproofimg: '',
+                              qualification: qualificationController.text,
+                              weddingDate: wedingnameController.text,
+                            );
 
-                              authprofileController.updateProfile(
-                                  memberProfileUpdateModel:
-                                      memberProfileUpdateModel);
-                            },
-                            child: CircularProgressIndicator(
-                              color: kwhite,
-                            ))
+                            authprofileController.updateProfile(
+                                memberProfileUpdateModel:
+                                    memberProfileUpdateModel);
+                          },
+                          child: CircularProgressIndicator(
+                            color: kwhite,
+                          ),
+                        ),
                       ],
                     ),
                   )
@@ -791,10 +1100,10 @@ void initState() {
                       children: [
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: korange,
-                                minimumSize: Size(
-                                    MediaQuery.of(context).size.width * 0.35,
-                                    45)),
+                              backgroundColor: korange,
+                              minimumSize: Size(
+                                  MediaQuery.of(context).size.width * 0.35, 45),
+                            ),
                             onPressed: () {
                               MemberProfileUpdateModel
                                   memberProfileUpdateModel =
@@ -807,14 +1116,20 @@ void initState() {
                                 mobile: numberController.text,
                                 motherName: mothernameController.text,
                                 occupation: occupationController.text,
-                                aadharno: null,
-                                branch: null,
-                                children: null,
-                                gstno: null,
-                                marrigedate: null,
-                                panNo: null,
-                                qulification: null,
-                                spouse: null,
+                                adharNo: aadhaarController.text,
+                                branch: branchController.text,
+                                children: _controller!.getTags,
+                                gstNo: gstController.text,
+                                weddingDate: wedingnameController.text,
+                                panNo: panController.text,
+                                qualification: qualificationController.text,
+                                spouse: spousenameController.text,
+                                adharproofimg: '',
+                                alternateMob: alternumberController.text,
+                                gender: selectedGender == "Male"
+                                    ? "Male"
+                                    : "Female",
+                                panproofimg: '',
                               );
 
                               authprofileController.updateProfile(

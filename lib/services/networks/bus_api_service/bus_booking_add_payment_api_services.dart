@@ -1,6 +1,5 @@
 import 'dart:io';
 
-
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -19,14 +18,15 @@ class BusAddPaymentApiServices extends BaseApiService {
 
       var response = await dio.post(airAddPayment,
           options: Options(
-              headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer $authtoken'
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $authtoken'
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status! <= 500;
+            },
+          ),
           data: {
             "IMEI_Number": "64654546546546",
             "RefNo": refrenceNo,

@@ -199,14 +199,15 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                       height: 160,
                       width: MediaQuery.of(context).size.width * 0.68,
                       decoration: BoxDecoration(
-                          color: kwhite,
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                                color: kgrey,
-                                blurRadius: 5,
-                                offset: Offset(0.0, 0.75))
-                          ],
-                          borderRadius: BorderRadius.circular(5)),
+                        color: kwhite,
+                        boxShadow: <BoxShadow>[
+                          BoxShadow(
+                              color: kgrey,
+                              blurRadius: 5,
+                              offset: Offset(0.0, 0.75))
+                        ],
+                        borderRadius: BorderRadius.circular(5),
+                      ),
                       child: Column(
                         children: [
                           Row(

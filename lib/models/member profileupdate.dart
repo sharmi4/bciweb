@@ -2,19 +2,24 @@ class MemberProfileUpdateModel {
   String name;
   String email;
   String mobile;
-  dynamic occupation;
-  dynamic fatherName;
-  dynamic motherName;
-  dynamic dateOfBirth;
- dynamic isMarried;
- dynamic marrigedate;
- dynamic qulification;
- dynamic gstno;
- dynamic panNo;
- dynamic aadharno;
- dynamic branch;
- dynamic spouse;
- dynamic children;
+  String occupation;
+  String fatherName;
+  String motherName;
+  String dateOfBirth;
+  dynamic isMarried;
+  String qualification;
+  String gender;
+  String weddingDate;
+  String gstNo;
+  String panNo;
+  String adharNo;
+  String branch;
+  String spouse;
+  String alternateMob;
+  String adharproofimg;
+  String panproofimg;
+  List<String>? children;
+
 
   MemberProfileUpdateModel(
       {required this.name,
@@ -25,12 +30,17 @@ class MemberProfileUpdateModel {
       required this.mobile,
       required this.dateOfBirth,
       required this.isMarried,
-      required this.aadharno,
+      required this.qualification,
+      required this.adharNo,
       required this.branch,
-      required this.children,
-      required this.gstno,
-      required this.marrigedate,
+      required this.gender,
+      required this.gstNo,
       required this.panNo,
-      required this.qulification,
-       required this.spouse});
+      required this.spouse,
+      required this.weddingDate,
+      required this.alternateMob,
+      required this.adharproofimg,
+      required this.panproofimg,
+      required this.children
+      });
 }

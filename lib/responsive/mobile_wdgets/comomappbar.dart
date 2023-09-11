@@ -1,9 +1,5 @@
-import 'package:bciweb/responsive/responsive_subscription/responsive_subscription.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
-
 import '../../constant/constans.dart';
 
 class AppBarMob extends StatelessWidget {
@@ -47,7 +43,7 @@ class AppBarMob extends StatelessWidget {
                       ]),
                   child: InkWell(
                       onTap: () {
-                 //       Get.offAll(Subscribe1());
+                        //       Get.offAll(Subscribe1());
                       },
                       child: Icon(
                         Icons.search,
