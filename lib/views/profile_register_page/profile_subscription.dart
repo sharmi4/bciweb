@@ -18,6 +18,20 @@ class ProfileSubscription extends StatefulWidget {
 class _ProfileSubscriptionState extends State<ProfileSubscription> {
   final authprofileController = Get.find<AuthProfileController>();
    final plansController = Get.find<SubscriptionApiController>();
+
+   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    plan();
+  }
+
+  plan() {
+    if (authprofileController.planid != "") {
+      plansController.getPlanDetails(id: authprofileController.planid.value);
+    } else {}
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(

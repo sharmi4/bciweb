@@ -1,7 +1,7 @@
 abstract class BaseApiService {
 
   
-  final String registerURl = 'https://bci.batechnology.in/api/register_user';
+  final String registerURl = 'https://www.portal.bcipvtltd.com/api/register_user';
  // final String registerURl = 'https://www.portal.bcipvtltd.com/api/register_user';
 
   //category
@@ -56,7 +56,7 @@ abstract class BaseApiService {
 
   //offers api
   final String  todayOffersListApiUrl =
-      "https://bci.batechnology.in/api/auth/today_offers_list";
+      "https://www.portal.bcipvtltd.com/api/auth/today_offers_list";
 
   //coupons redeem api
   final String redeemCouponsApiUrl =
@@ -138,7 +138,7 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/recomended_list";
 
   final String ourPartnersApiUrl =
-      "https://bci.batechnology.in/api/getpartners";
+      "https://www.portal.bcipvtltd.com/api/getpartners";
      // "https://www.portal.bcipvtltd.com/api/auth/getpartners";
 
   final String createSupportApiUrl =
@@ -187,12 +187,12 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/list_hotel_booking";
 
   final String hotelBookingDetailsURL =
-      "https://bci.batechnology.in/api/auth/get_booking_detail";
+      "https://www.portal.bcipvtltd.com/api/auth/get_booking_detail";
 
       //"https://www.portal.bcipvtltd.com/api/auth/get_booking_detail";
 
         final String airRePrinting =
-      "https://bci.batechnology.in/api/auth/air_reprint";
+      "https://www.portal.bcipvtltd.com/api/auth/air_reprint";
 
       
        //add transaction
@@ -202,4 +202,7 @@ abstract class BaseApiService {
   //get transaction history
   final String transactionHistoryApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/transaction_history";
+
+      //vendor list
+      final String vendorListURL = "https://www.portal.bcipvtltd.com/api/auth/vendor_list";
 }

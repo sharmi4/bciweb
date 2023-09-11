@@ -1,4 +1,8 @@
 import 'package:bciweb/models/getCartlistmodel.dart';
+import 'package:bciweb/models/get_vendor_service_list_model.dart';
+import 'package:bciweb/models/vendor_list_model.dart';
+import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
+import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -20,7 +24,6 @@ class HomeServiceController extends GetxController {
 
   RxBool isLoading = false.obs;
   GetCartListApiServices getCartListApiServices = GetCartListApiServices();
-  GetTodayOffersApiService getTodayOffersApiService=GetTodayOffersApiService();
 
   List<Datum> cartListData = [];
   List<OffersListModel> todayofferslist=[];
@@ -144,23 +147,17 @@ class HomeServiceController extends GetxController {
           ));
     }
   }
+
+ //get today offer
+
+ GetTodayOffersApiService getTodayOffersApiService=GetTodayOffersApiService();
  List<OffersListModel> todayOfferListData = [];
   gettodayoffersList() async {
     dio.Response<dynamic> response = await getTodayOffersApiService.getTodayoffers();
     if (response.statusCode == 200) {
        List<OffersListModel> getTodayOffersList = List<OffersListModel>.from(
           response.data.map((x) => OffersListModel.fromJson(x)));
-      
       todayOfferListData = getTodayOffersList;
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-        print('-----------------------------------------------------::::offers api::::::-----------------------------------------------------');
-    print(response.data);
     }else {
       // Get.rawSnackbar(
       //     backgroundColor: Colors.red,
@@ -169,8 +166,45 @@ class HomeServiceController extends GetxController {
       //       style: primaryFont.copyWith(color: Colors.white),
       //     ));
     }
-  
-   
+    update();
+  }
+
+  //vendor list
+
+  VendorListApiServices vendorListApiServices = VendorListApiServices();
+  List<VendorListModelData> vendorList = [];
+  getVendorsList() async {
+    dio.Response<dynamic> response =
+        await vendorListApiServices.vendorListApiServices();
+
+    if (response.statusCode == 200) {
+      VendorListModel vendorListModel = VendorListModel.fromJson(response.data);
+      vendorList = vendorListModel.data;
+    }
+    update();
+  }
+
+  //vendor service
+
+  VendorServiceListApiServices vendorServiceListApiServices =
+      VendorServiceListApiServices();
+  List<GetServiceListData> vendorServiceListData = [];
+
+  vendorServiceList(String vendorId) async {
+    dio.Response<dynamic> response = await vendorServiceListApiServices
+        .vendorServiceListApiServices(vendorId: vendorId);
+
+    if (response.statusCode == 200) {
+      GetServiceList getServiceList = GetServiceList.fromJson(response.data);
+      vendorServiceListData = getServiceList.data;
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
     update();
   }
 

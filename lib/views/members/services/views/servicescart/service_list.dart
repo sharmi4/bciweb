@@ -1,10 +1,8 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
-import 'package:bciweb/models/service_model.dart';
+import 'package:bciweb/models/get_vendor_service_list_model.dart';
 import 'package:bciweb/views/members/services/views/servicescart/servicescart.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../../../../constant/constans.dart';
 import '../../../../../controller/redeem_controller/redeem_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
@@ -13,7 +11,7 @@ import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../common_widget/common.dart';
 
 class ListCart extends StatefulWidget {
-  ServiceData servicedata;
+  GetServiceListData servicedata;
   ListCart({super.key, required this.servicedata});
 
   @override
