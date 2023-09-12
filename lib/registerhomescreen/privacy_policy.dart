@@ -24,10 +24,16 @@ class _CanslationState extends State<Canslation> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
-          RegisterCommonContainer(),
+          
           ksizedbox40,
           Padding(
             padding: const EdgeInsets.all(80.0),
@@ -87,11 +93,17 @@ class _PrivacyPolicyState extends State<PrivacyPolicy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+       appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
-          RegisterCommonContainer(),
+       
           ksizedbox40,
           Padding(
             padding: const EdgeInsets.all(80.0),
@@ -145,12 +157,16 @@ class Disclimer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+     appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
-          RegisterCommonContainer(),
-          ksizedbox40,
           Padding(
             padding: const EdgeInsets.all(100),
             child: Column(
@@ -191,14 +207,20 @@ class Representation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+        appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
           ksizedbox40,
           Column(
             children: [
-              RegisterCommonContainer(),
+              
               Text(
                 'BCI REPRESENTATION AGREEMEND',
                 style: TextStyle(
@@ -250,11 +272,17 @@ class About extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+        appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
-          RegisterCommonContainer(),
+         
           ksizedbox40,
           Padding(
             padding: const EdgeInsets.all(30),
@@ -328,11 +356,17 @@ class Service extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+         appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
-          RegisterCommonContainer(),
+          
           ksizedbox40,
           Padding(
             padding: const EdgeInsets.all(100),
@@ -508,11 +542,15 @@ class Tc extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: ListView(
         children: [
-          RegisterCommonContainer(),
-          ksizedbox40,
           Padding(
             padding: const EdgeInsets.all(100),
             child: Column(
@@ -970,10 +1008,16 @@ class _FaqState extends State<Faq> {
     
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
       body: Obx(()=>
          ListView(
-          children: [  RegisterCommonContainer(),ksizedbox30, Text(
+          children: [  Text(
                   'FREQUENTLY ASKED QUESTIONS',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 35, color: kblue,fontWeight: FontWeight.w900),

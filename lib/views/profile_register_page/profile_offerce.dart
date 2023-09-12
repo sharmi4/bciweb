@@ -97,6 +97,8 @@ class _ProfileOfferceScreenState extends State<ProfileOfferceScreen> {
                                                                   index]
                                                               .title,
                                                           style: TextStyle(
+                                                            color: kblue,
+                                                            fontWeight: FontWeight.bold,
                                                             height: 1.7,
                                                             fontSize: 19,
                                                           ),
@@ -166,13 +168,16 @@ class _ProfileOfferceScreenState extends State<ProfileOfferceScreen> {
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    right: 15),
-                                                child: Image.network(
-                                                  seriveoffersController
-                                                      .todayOfferListData[index]
-                                                      .image,
-                                                  fit: BoxFit.fitHeight,
-                                                  height: 110,
+                                                    right: 15,top: 30),
+                                                child: ClipRRect (
+                                                  borderRadius: BorderRadius.circular(8),
+                                                  child: Image.network(
+                                                    seriveoffersController
+                                                        .todayOfferListData[index]
+                                                        .image,
+                                                    fit: BoxFit.fitHeight,
+                                                    height: 110,
+                                                  ),
                                                 ),
                                               )
                                             ],
