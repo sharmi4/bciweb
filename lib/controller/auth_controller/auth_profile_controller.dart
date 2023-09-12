@@ -17,18 +17,14 @@ import '../../services/networks/profile_api_service/update_officialaddress.dart'
 import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../views/members/homescreens/reg_profile.dart';
-import 
-'../home_controller.dart';
+import '../home_controller.dart';
 import '../setting_controller/setting_controller.dart';
 import 'auth_controller.dart';
 
-
-
 class AuthProfileController extends GetxController {
-
-  
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
-    GenerateReferralCodeApiService generateReferralCodeApiService = GenerateReferralCodeApiService();
+  GenerateReferralCodeApiService generateReferralCodeApiService =
+      GenerateReferralCodeApiService();
   ProfileUpdateApiServices profileUpdateApi = ProfileUpdateApiServices();
 
   UpdateResidencialAddressApiServices updateResidencialAddressApiServices =
@@ -43,10 +39,10 @@ class AuthProfileController extends GetxController {
   List<MemberUser> profileData = [];
 
   RxBool isLoading = false.obs;
-  
+
   RxBool isSubscribed = false.obs;
 
-   RxString planid = "".obs;
+  RxString planid = "".obs;
 
   getProfile() async {
     profileData.clear();
@@ -60,10 +56,10 @@ class AuthProfileController extends GetxController {
       planid(profileModel.planId.toString());
       profileData.add(profileModel.user);
       update();
-  } else if (response.statusCode == 401) {
+    } else if (response.statusCode == 401) {
       Get.find<AuthController>().logout();
-  }
-  update();
+    }
+    update();
   }
 
   updateProfile(
@@ -119,8 +115,6 @@ class AuthProfileController extends GetxController {
     getProfile();
   }
 
-
-
   //payment gateway isgPay
 
   // String responseData = "Nothing";
@@ -130,8 +124,9 @@ class AuthProfileController extends GetxController {
     String? result;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      result = await _isgpayuiPlugin.initiateISGPayUI(getArguments(amount * 100)) ??
-          'Unknown platform version';
+      result =
+          await _isgpayuiPlugin.initiateISGPayUI(getArguments(amount * 100)) ??
+              'Unknown platform version';
     } on PlatformException catch (e) {
       result = e.message;
     }
@@ -190,7 +185,7 @@ class AuthProfileController extends GetxController {
     // }
   }
 
-       Map<String, String> getArguments(var amount) {
+  Map<String, String> getArguments(var amount) {
     var randomStr = DateTime.now().microsecondsSinceEpoch.toString();
     Map<String, String> map = {
       'version': "1",
@@ -214,8 +209,8 @@ class AuthProfileController extends GetxController {
     };
     return map;
   }
-     void payforWallet(
-      {required double amount}) async {
+
+  void payforWallet({required double amount}) async {
     String? result;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
@@ -233,7 +228,8 @@ class AuthProfileController extends GetxController {
     print(responseData);
     print(data);
     if (data["ResponseCode"] == "00") {
-      Get.find<ApiSettingController>().addTransaction(amount: amount.toStringAsFixed(2));
+      Get.find<ApiSettingController>()
+          .addTransaction(amount: amount.toStringAsFixed(2));
 
       Get.to(RegisterProfileScreen());
 
@@ -253,7 +249,6 @@ class AuthProfileController extends GetxController {
         dismissDirection: DismissDirection.horizontal,
         forwardAnimationCurve: Curves.easeOutBack,
       );
-
     } else {
       Get.closeAllSnackbars();
       Get.snackbar(
@@ -262,5 +257,5 @@ class AuthProfileController extends GetxController {
           backgroundColor: Colors.red,
           snackPosition: SnackPosition.BOTTOM);
     }
-}
+  }
 }

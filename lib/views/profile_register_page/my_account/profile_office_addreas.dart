@@ -53,6 +53,10 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
   var subNameController = TextEditingController();
   var subEmailController = TextEditingController();
   var subMobileController = TextEditingController();
+
+  var pincodeController = TextEditingController();
+  var idproofController = TextEditingController();
+
   setDefauld() async {
     await authprofileController.getProfile();
     subNameController.text = authprofileController.profileData.first.name;
@@ -85,6 +89,12 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
           authprofileController.profileData.first.officialAddress.buildingName;
       officeaddresController.text =
           authprofileController.profileData.first.officialAddress.address;
+
+      officecityController.text =
+          authprofileController.profileData.first.officialAddress.city;
+
+      idproofController.text =
+          authprofileController.profileData.first.officialAddress.proofIdNo;
 
       officeaddresController.text =
           authprofileController.profileData.first.officialAddress.city;
@@ -159,6 +169,47 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
             ),
           ],
         ),
+//////////////////
+
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
+                  child: TextField(
+                    textInputAction: TextInputAction.next,
+                    controller: idproofController,
+                    decoration: InputDecoration(
+                        hintText: 'Proof Id No',
+                        suffixIcon: Icon(Icons.edit),
+                        fillColor: Color(0xffF9F8FD),
+                        border: OutlineInputBorder()),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
+                child: TextField(
+                  textInputAction: TextInputAction.next,
+                  controller: pincodeController,
+                  decoration: InputDecoration(
+                    hintText: 'Pincode',
+                    suffixIcon: Icon(Icons.edit),
+                    fillColor: Color(0xffF9F8FD),
+                    border: OutlineInputBorder(),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+
+///////////////////
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -171,10 +222,11 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                     textInputAction: TextInputAction.next,
                     controller: officeaddresController,
                     decoration: InputDecoration(
-                        hintText: 'Address',
-                        suffixIcon: Icon(Icons.edit),
-                        fillColor: Color(0xffF9F8FD),
-                        border: OutlineInputBorder()),
+                      hintText: 'Address',
+                      suffixIcon: Icon(Icons.edit),
+                      fillColor: Color(0xffF9F8FD),
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
               ),
@@ -222,26 +274,27 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                   child: Row(
                     children: [
                       ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: korange,
-                              minimumSize: Size(
-                                  MediaQuery.of(context).size.width * 0.36,
-                                  45)),
-                          onPressed: () {
-                            AddressModel addressModel = AddressModel(
-                              aadhrId: "",
-                              address: officeaddresController.text,
-                              buildingName: officebnameController.text,
-                              city: officecityController.text,
-                              doorNo: officedoornoController.text,
-                              personalId: "",
-                              state: officestateController.text,
-                            );
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: korange,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.width * 0.36, 45)),
+                        onPressed: () {
+                          AddressModel addressModel = AddressModel(
+                            aadhrId: "",
+                            address: officeaddresController.text,
+                            buildingName: officebnameController.text,
+                            city: officecityController.text,
+                            doorNo: officedoornoController.text,
+                            personalId: idproofController.text,
+                            state: officestateController.text,
+                            //  pincode: pincodeController.text,
+                          );
 
-                            authprofileController.updateOfficalAddress(
-                                officialAddress: addressModel);
-                          },
-                          child: CircularProgressIndicator(color: kwhite))
+                          authprofileController.updateOfficalAddress(
+                              officialAddress: addressModel);
+                        },
+                        child: CircularProgressIndicator(color: kwhite),
+                      )
                     ],
                   ),
                 )
@@ -255,14 +308,16 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                             minimumSize: Size(
                                 MediaQuery.of(context).size.width * 0.36, 45)),
                         onPressed: () {
+                          print('-----------------------id---------------------------------------');
                           AddressModel addressModel = AddressModel(
                             aadhrId: "",
                             address: officeaddresController.text,
                             buildingName: officebnameController.text,
                             city: officecityController.text,
                             doorNo: officedoornoController.text,
-                            personalId: "",
+                            personalId: idproofController.text,
                             state: officestateController.text,
+                            //  pincode: pincodeController.text,
                           );
 
                           authprofileController.updateOfficalAddress(

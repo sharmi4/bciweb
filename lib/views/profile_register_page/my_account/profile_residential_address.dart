@@ -58,6 +58,9 @@ class _ProfileResidentialAddressScreenState
   var subNameController = TextEditingController();
   var subEmailController = TextEditingController();
   var subMobileController = TextEditingController();
+   var pincodeController = TextEditingController();
+  var idproofController = TextEditingController();
+
   dynamic imageprofile;
   dynamic aadharimage;
   dynamic panimage;
@@ -203,82 +206,63 @@ class _ProfileResidentialAddressScreenState
               ),
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(),
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(left: 50, right: 50, top: 50),
-                    child: TextField(
-                      textInputAction: TextInputAction.next,
-                      controller: resistateController,
-                      decoration: InputDecoration(
-                          hintText: 'State',
-                          suffixIcon: Icon(Icons.edit),
-                          fillColor: Color(0xffF9F8FD),
-                          border: OutlineInputBorder()),
-                    ),
-                  ),
-                ),
-              ),
-              Expanded(
+             Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
                   child: TextField(
                     textInputAction: TextInputAction.next,
-                    controller: resiperidController,
+                    controller: idproofController,
                     decoration: InputDecoration(
-                        hintText: 'Personal Id',
-                        suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                imageprofile != null
-                                    ? Image.memory(imageprofile!)
-                                    : authprofileController.profileData.first
-                                                .profilePicture ==
-                                            null
-                                        ? Image.asset('')
-                                        : CircleAvatar(
-                                            radius: 60.0,
-                                            backgroundImage: NetworkImage(
-                                                authprofileController
-                                                    .profileData
-                                                    .first
-                                                    .profilePicture),
-                                            backgroundColor: Colors.transparent,
-                                          );
-                              });
-                            },
-                            icon: Icon(Icons.upload)),
+                        hintText: 'Proof Id No',
+                        suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
                         border: OutlineInputBorder()),
                   ),
                 ),
               ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 50, top: 50),
-            child: Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.35,
-                  child: TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: resiadaridController,
-                    decoration: InputDecoration(
-                        hintText: 'Adhaar Id',
-                        suffixIcon: Icon(Icons.upload),
-                        fillColor: Color(0xffF9F8FD),
-                        border: OutlineInputBorder()),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
+                child: TextField(
+                  textInputAction: TextInputAction.next,
+                  controller: pincodeController,
+                  decoration: InputDecoration(
+                    hintText: 'Pincode',
+                    suffixIcon: Icon(Icons.edit),
+                    fillColor: Color(0xffF9F8FD),
+                    border: OutlineInputBorder(),
                   ),
                 ),
-              ],
+              ),
             ),
+          ],
+        ),
+          Padding(
+          padding: const EdgeInsets.only(left: 50, top: 50),
+          child: Column(
+            children: [
+              Container(
+                width: MediaQuery.of(context).size.width * 0.35,
+                child: TextField(
+                  textInputAction: TextInputAction.next,
+                  controller: officestateController,
+                  decoration: InputDecoration(
+                      hintText: 'State',
+                      suffixIcon: Icon(Icons.edit),
+                      fillColor: Color(0xffF9F8FD),
+                      border: OutlineInputBorder()),
+                ),
+              ),
+            ],
           ),
+        ),
+        
           Obx(
             () => Padding(
               padding: const EdgeInsets.only(top: 20, left: 40),
@@ -292,7 +276,9 @@ class _ProfileResidentialAddressScreenState
                             city: resibcityController.text,
                             doorNo: residoornumberController.text,
                             personalId: resiperidController.text,
-                            state: resistateController.text);
+                            state: resistateController.text,
+                             //pincode: ''
+                             );
                         authprofileController.updateRecidencyAddress(
                             residentialAddress: addressModel);
                       },
@@ -323,7 +309,9 @@ class _ProfileResidentialAddressScreenState
                             city: resibcityController.text,
                             doorNo: residoornumberController.text,
                             personalId: resiperidController.text,
-                            state: resistateController.text);
+                            state: resistateController.text,
+                           //  pincode: ''
+                             );
                         authprofileController.updateRecidencyAddress(
                             residentialAddress: addressModel);
                       },

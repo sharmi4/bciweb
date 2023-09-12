@@ -1,4 +1,4 @@
-// import 'package:bciweb/views/profile_register_page/my_account/wigits.dart';
+import 'dart:html';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +9,6 @@ import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../models/member profileupdate.dart';
@@ -58,6 +57,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       });
     }
   }
+
+  File? image;
+  File? image2;
 
   TextfieldTagsController? _controller;
   DateTime selectedDate2 = DateTime.now();
@@ -917,106 +919,151 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             ],
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              const Text('GENDER').text.gray500.semiBold.make(),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: authprofileController
+                                .profileData.first.panProof.isEmpty
+                            ? panimage != null
+                                ? Image.memory(panimage)
+                                : Container(
+                                    height: 150,
+                                    width: 150,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        PickedFile? pickedFile =
+                                            await ImagePicker().getImage(
+                                          source: ImageSource.gallery,
+                                        );
+
+                                        var tempCont =
+                                            await pickedFile!.readAsBytes();
+                                        setState(() {
+                                          panimage = tempCont;
+                                        });
+                                      },
+                                      child: const Text('Upload Pan Card'),
+                                    ),
+                                  )
+                            : InkWell(
+                                onTap: () async {
+                                  PickedFile? pickedFile =
+                                      await ImagePicker().getImage(
+                                    source: ImageSource.gallery,
+                                  );
+
+                                  var tempCont =
+                                      await pickedFile!.readAsBytes();
+                                  setState(() {
+                                    aadharimage = tempCont;
+                                  });
+                                },
+                                child: Image.network(authprofileController
+                                    .profileData.first.panProof),
+                              ),
+                      ),
+                      Icon(Icons.upload_file),
+                    ],
+                  ),
+                  kwidth10,
+                  Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        width: 100,
+                        child: authprofileController
+                                .profileData.first.adharProof.isEmpty
+                            ? aadharimage != null
+                                ? Image.memory(aadharimage)
+                                // : authprofileController.profileData.first.adharProof !=
+                                //         null
+                                : Container(
+                                    height: 150,
+                                    width: 150,
+                                    child: GestureDetector(
+                                      onTap: () async {
+                                        PickedFile? pickedFile =
+                                            await ImagePicker().getImage(
+                                          source: ImageSource.gallery,
+                                        );
+
+                                        var tempCont =
+                                            await pickedFile!.readAsBytes();
+                                        setState(() {
+                                          aadharimage = tempCont;
+                                        });
+                                      },
+                                      child: const Text('Upload Aadhar Card'),
+                                    ),
+                                  )
+                            : InkWell(
+                                onTap: () async {
+                                  PickedFile? pickedFile =
+                                      await ImagePicker().getImage(
+                                    source: ImageSource.gallery,
+                                  );
+
+                                  var tempCont =
+                                      await pickedFile!.readAsBytes();
+                                  setState(() {
+                                    aadharimage = tempCont;
+                                  });
+                                },
+                                child: Image.network(authprofileController
+                                    .profileData.first.adharProof),
+                              ),
+                      ),
+                      Icon(Icons.upload_file)
+                    ],
+                  ),
+                ],
+              ),
+              Container(
+                width: 500,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text('GENDER').text.gray500.semiBold.make(),
+                      ],
+                    ),
+                    RadioListTile(
+                      title: const Text('Male'),
+                      value: 'Male',
+                      groupValue: selectedGender,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedGender = value!;
+                        });
+                      },
+                    ),
+                    RadioListTile(
+                      title: const Text('Female'),
+                      value: 'Female',
+                      groupValue: selectedGender,
+                      onChanged: (value) {
+                        setState(() {
+                          selectedGender = value!;
+                        });
+                      },
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-          RadioListTile(
-            title: const Text('Male'),
-            value: 'Male',
-            groupValue: selectedGender,
-            onChanged: (value) {
-              setState(() {
-                selectedGender = value!;
-              });
-            },
-          ),
-          RadioListTile(
-            title: const Text('Female'),
-            value: 'Female',
-            groupValue: selectedGender,
-            onChanged: (value) {
-              setState(() {
-                selectedGender = value!;
-              });
-            },
-          ),
+          ksizedbox30,
           //      Row(
           //       mainAxisAlignment:
           //           MainAxisAlignment.spaceAround,
           //       children: [
-          Row(
-            children: [
-              Container(
-                height: 100,
-                width: 100,
-                child: authprofileController.profileData.first.panProof.isEmpty
-                    ? panimage != null
-                        ? Image.memory(panimage)
-                        : Container(
-                            height: 150,
-                            width: 150,
-                            child: GestureDetector(
-                              onTap: () async {
-                                PickedFile? pickedFile =
-                                    await ImagePicker().getImage(
-                                  source: ImageSource.gallery,
-                                );
-
-                                var tempCont = await pickedFile!.readAsBytes();
-                                setState(() {
-                                  panimage = tempCont;
-                                });
-                              },
-                              child: const Text('Upload Pan Card'),
-                            ),
-                          )
-                    : Image.network(
-                        authprofileController.profileData.first.panProof),
-              ),
-
-              Container(
-                height: 100,
-                width: 100,
-                child: aadharimage != null
-                    ? Image.memory(aadharimage)
-                    : authprofileController.profileData.first.adharProof != null
-                        ? Container(
-                            height: 150,
-                            width: 150,
-                            child: GestureDetector(
-                              onTap: () async {
-                                PickedFile? pickedFile =
-                                    await ImagePicker().getImage(
-                                  source: ImageSource.gallery,
-                                );
-
-                                var tempCont = await pickedFile!.readAsBytes();
-                                setState(() {
-                                  aadharimage = tempCont;
-                                });
-                              },
-                              child: const Text('Upload Aadhar Card'),
-                            ),
-                          )
-                        : InkWell(
-                            onTap: () async {
-                              PickedFile? pickedFile = await ImagePicker().getImage(
-                                source: ImageSource.gallery,
-                              );
-
-                              var tempCont = await pickedFile!.readAsBytes();
-                              setState(() {
-                                aadharimage = tempCont;
-                              });
-                            },
-                            child: Image.network(
-                                authprofileController.profileData.first.adharProof),
-                          ),
-              ),
-            ],
-          ),
 
           //   ],
           // ),
@@ -1058,6 +1105,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                 MediaQuery.of(context).size.width * 0.35, 45),
                           ),
                           onPressed: () {
+                            print(panimage);
                             MemberProfileUpdateModel memberProfileUpdateModel =
                                 MemberProfileUpdateModel(
                               name: nameController.text,
@@ -1075,10 +1123,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               gender:
                                   selectedGender == "Male" ? "Male" : "Female",
                               adharNo: aadhaarController.text,
-                              adharproofimg: '',
                               alternateMob: alternumberController.text,
                               gstNo: gstController.text,
-                              panproofimg: '',
+                              adharproofimg: aadharimage,
+                              panproofimg: panimage,
                               qualification: qualificationController.text,
                               weddingDate: wedingnameController.text,
                             );
@@ -1099,44 +1147,43 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     child: Row(
                       children: [
                         ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: korange,
-                              minimumSize: Size(
-                                  MediaQuery.of(context).size.width * 0.35, 45),
-                            ),
-                            onPressed: () {
-                              MemberProfileUpdateModel
-                                  memberProfileUpdateModel =
-                                  MemberProfileUpdateModel(
-                                name: nameController.text,
-                                email: emailController.text,
-                                dateOfBirth: dateofbirthController.text,
-                                fatherName: fathernameController.text,
-                                isMarried: isMarried == true ? "1" : "0",
-                                mobile: numberController.text,
-                                motherName: mothernameController.text,
-                                occupation: occupationController.text,
-                                adharNo: aadhaarController.text,
-                                branch: branchController.text,
-                                children: _controller!.getTags,
-                                gstNo: gstController.text,
-                                weddingDate: wedingnameController.text,
-                                panNo: panController.text,
-                                qualification: qualificationController.text,
-                                spouse: spousenameController.text,
-                                adharproofimg: '',
-                                alternateMob: alternumberController.text,
-                                gender: selectedGender == "Male"
-                                    ? "Male"
-                                    : "Female",
-                                panproofimg: '',
-                              );
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: korange,
+                            minimumSize: Size(
+                                MediaQuery.of(context).size.width * 0.35, 45),
+                          ),
+                          onPressed: () {
+                            MemberProfileUpdateModel memberProfileUpdateModel =
+                                MemberProfileUpdateModel(
+                              name: nameController.text,
+                              email: emailController.text,
+                              dateOfBirth: dateofbirthController.text,
+                              fatherName: fathernameController.text,
+                              isMarried: isMarried == true ? "1" : "0",
+                              mobile: numberController.text,
+                              motherName: mothernameController.text,
+                              occupation: occupationController.text,
+                              adharNo: aadhaarController.text,
+                              branch: branchController.text,
+                              children: _controller!.getTags,
+                              gstNo: gstController.text,
+                              weddingDate: wedingnameController.text,
+                              panNo: panController.text,
+                              qualification: qualificationController.text,
+                              spouse: spousenameController.text,
+                              alternateMob: alternumberController.text,
+                              gender:
+                                  selectedGender == "Male" ? "Male" : "Female",
+                              adharproofimg: aadharimage,
+                              panproofimg: panimage,
+                            );
 
-                              authprofileController.updateProfile(
-                                  memberProfileUpdateModel:
-                                      memberProfileUpdateModel);
-                            },
-                            child: Text('Update'))
+                            authprofileController.updateProfile(
+                                memberProfileUpdateModel:
+                                    memberProfileUpdateModel);
+                          },
+                          child: Text('Update'),
+                        )
                       ],
                     ),
                   ),
