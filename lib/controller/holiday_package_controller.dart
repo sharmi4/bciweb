@@ -19,8 +19,9 @@ class HolidayPackageController extends GetxController {
   RxInt child = 0.obs;
   RxInt adult = 0.obs;
   RxInt infant = 0.obs;
-  RxInt index = 0.obs;
+  RxInt catindex = 0.obs;
   RxInt tripindex = 0.obs;
+  RxInt searchInt = 0.obs;
 
   //get package category
   GetPackageCategoryApiServices getPackageCategoryApiServices =
@@ -50,12 +51,13 @@ class HolidayPackageController extends GetxController {
       GetPackageListApiServices();
   List<PackageListData> packageListData = [];
 
-  getPackage() async {
+  getPackage({required String categoryId}) async {
     dio.Response<dynamic> response =
-        await getPackageListApiServices.getPackageListApiServices();
+        await getPackageListApiServices.getPackageListApiServices(categoryId: categoryId);
     if (response.statusCode == 200) {
       GetPackageList getPackageList = GetPackageList.fromJson(response.data);
       packageListData = getPackageList.data;
+      update();
     } else {
       Get.rawSnackbar(
           backgroundColor: Colors.red,
@@ -142,9 +144,12 @@ class HolidayPackageController extends GetxController {
   SearchPackageListApiService searchPackageListApiService =
       SearchPackageListApiService();
 
-  searchPackageList({required String name}) async {
+  searchPackageList({
+    required String name,
+    required String categoryid
+    }) async {
     dio.Response<dynamic> response = await searchPackageListApiService
-        .searchPackageListApiService(name: name);
+        .searchPackageListApiService(name: name,categoryid: categoryid);
     if (response.statusCode == 200) {
       GetPackageList getPackageList = GetPackageList.fromJson(response.data);
       packageListData = getPackageList.data;

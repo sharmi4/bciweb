@@ -76,6 +76,7 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
                               child: Row(
                                 children: [
                                   Container(
+                                      height: 10,
                                       width: size.width * 0.12,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(

@@ -30,16 +30,28 @@ class _BookingTripState extends State<BookingTrip> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    holidayPackageController.getPackageCategory();
-    holidayPackageController.getPackage();
+    getPackageList();
     searchController.addListener(searchUsers);
-    holidayPackageController.recomended();  }
+    holidayPackageController.recomended(); 
+     }
+
+     getPackageList() async {
+    await holidayPackageController.getPackageCategory();
+    holidayPackageController.getPackage(
+        categoryId: holidayPackageController.packageCategoryData.first.id.toString());
+    holidayPackageController
+        .searchInt(holidayPackageController.packageCategoryData.first.id);
+  }
 
   searchUsers() {
     if (searchController.text.trim().isNotEmpty) {
-      holidayPackageController.searchPackageList(name: searchController.text);
+      holidayPackageController.searchPackageList(
+        name: searchController.text,
+        categoryid: holidayPackageController.searchInt.value.toString()
+        );
     } else {
-      holidayPackageController.getPackage();
+      holidayPackageController.getPackage(
+        categoryId: holidayPackageController.packageCategoryData.first.id.toString());
       holidayPackageController.update();
     }
   }
@@ -68,7 +80,7 @@ class _BookingTripState extends State<BookingTrip> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Spacer(),
+                        const Spacer(),
                         Container(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -260,7 +272,7 @@ class _BookingTripState extends State<BookingTrip> {
               ],
             ),
             Container(
-              height: 120,
+              height: 80,
               child: GetBuilder<HolidayPackageController>(builder: (_) {
                 return ListView.separated(
                   scrollDirection: Axis.horizontal,
@@ -272,17 +284,24 @@ class _BookingTripState extends State<BookingTrip> {
                       padding: const EdgeInsets.all(8.0),
                       child: InkWell(
                         onTap: () {
-                          holidayPackageController.index(index);
+                          holidayPackageController.catindex(index);
+                          holidayPackageController.getPackage(
+                              categoryId: holidayPackageController
+                                  .packageCategoryData[index].id
+                                  .toString());
+                          holidayPackageController.searchInt(
+                              holidayPackageController
+                                  .getPackageDetailsData[index].id);
                           holidayPackageController.update();
                         },
                         child: Container(
                           decoration: BoxDecoration(
                               color:
-                                  holidayPackageController.index.value == index
+                                  holidayPackageController.catindex.value == index
                                       ? kyellow
                                       : kwhite,
                               borderRadius: BorderRadius.circular(15)),
-                          height: 110,
+                          height: 80,
                           width: 150,
                           // Replace with your desired color
                           child: Center(
@@ -292,7 +311,7 @@ class _BookingTripState extends State<BookingTrip> {
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
-                                color: holidayPackageController.index.value ==
+                                color: holidayPackageController.catindex.value ==
                                         index
                                     ? kwhite
                                     : kyellow,
@@ -304,49 +323,28 @@ class _BookingTripState extends State<BookingTrip> {
                     );
                   },
                   separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
+                    return const Divider(
                       height: 2,
                     );
                   },
                 );
               }),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text('Popular Places for Vacation')
-                    .text
-                    .xl3
-                    .color(Color.fromARGB(255, 5, 67, 143))
-                    .semiBold
-                    .make()
-                    .px16()
-                    .objectCenterLeft(),
-                HStack(
-                  [
-                    Text('Sort By')
-                        .text
-                        .semiBold
-                        .make()
-                        .box
-                        .border(color: kblue, width: 2)
-                        .p12
-                        .make()
-                        .objectCenterRight(),
-                    kwidth10,
-                    Text('Filter')
-                        .text
-                        .semiBold
-                        .make()
-                        .box
-                        .border(color: kblue, width: 2)
-                        .p12
-                        .make()
-                        .objectCenterRight(),
-                  ],
-                ).p64()
-              ],
-            ),
+             Padding(
+               padding: const EdgeInsets.only(left: 20,bottom: 15),
+               child: Row(
+                 children: [
+                   Text('Popular Places for Vacation',
+                   textAlign: TextAlign.left,
+                   style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontSize: 25,
+                         color: kblue
+                         ),
+                         ),
+                 ],
+               ),
+             ),
 
             GetBuilder<HolidayPackageController>(builder: (_) {
               return Container(
@@ -403,7 +401,7 @@ class _BookingTripState extends State<BookingTrip> {
                                               holidayPackageController
                                                   .packageListData[index].title,
                                               maxLines: 2,
-                                              style: TextStyle(
+                                              style:const TextStyle(
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.w700),
                                             ),
@@ -436,14 +434,13 @@ class _BookingTripState extends State<BookingTrip> {
                         }),
               );
             }),
-                 ksizedbox20,
-              Padding(
-                padding: const EdgeInsets.only(left: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 20,top: 20),
                 child: Row(
                   children: [
                     Text(
                       'Recommended',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                      style: TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
                     ),
                   ],
                 ),

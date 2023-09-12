@@ -18,23 +18,36 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
 
   final searchController = TextEditingController();
 
-  @override
+ @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    holidayPackageController.getPackageCategory();
-    holidayPackageController.getPackage();
+    getPackageList();
     searchController.addListener(searchUsers);
+    holidayPackageController.recomended(); 
+     }
+
+     getPackageList() async {
+    await holidayPackageController.getPackageCategory();
+    holidayPackageController.getPackage(
+        categoryId: holidayPackageController.packageCategoryData.first.id.toString());
+    holidayPackageController
+        .searchInt(holidayPackageController.packageCategoryData.first.id);
   }
 
   searchUsers() {
     if (searchController.text.trim().isNotEmpty) {
-      holidayPackageController.searchPackageList(name: searchController.text);
+      holidayPackageController.searchPackageList(
+        name: searchController.text,
+        categoryid: holidayPackageController.searchInt.value.toString()
+        );
     } else {
-      holidayPackageController.getPackage();
+      holidayPackageController.getPackage(
+        categoryId: holidayPackageController.packageCategoryData.first.id.toString());
       holidayPackageController.update();
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,6 +120,13 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                           child: InkWell(
                             onTap: () {
                               holidayPackageController.tripindex(index);
+                               holidayPackageController.getPackage(
+                              categoryId: holidayPackageController
+                                  .packageCategoryData[index].id
+                                  .toString());
+                             holidayPackageController.searchInt(
+                              holidayPackageController
+                                  .getPackageDetailsData[index].id);
                               holidayPackageController.update();
                             },
                             child: Container(
