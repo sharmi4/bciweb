@@ -1,8 +1,7 @@
 abstract class BaseApiService {
-
-  
-  final String registerURl = 'https://www.portal.bcipvtltd.com/api/register_user';
- // final String registerURl = 'https://www.portal.bcipvtltd.com/api/register_user';
+  final String registerURl =
+      'https://www.portal.bcipvtltd.com/api/register_user';
+  // final String registerURl = 'https://www.portal.bcipvtltd.com/api/register_user';
 
   //category
   final String categoryApiUrl = "https://www.portal.bcipvtltd.com/api/category";
@@ -15,7 +14,8 @@ abstract class BaseApiService {
   final String loginURL = "https://www.portal.bcipvtltd.com/api/login";
 
   //get profile api
-  final String getProfileURL = "https://www.portal.bcipvtltd.com/api/auth/profile";
+  final String getProfileURL =
+      "https://www.portal.bcipvtltd.com/api/auth/profile";
 
   //profile update API URL
   final String profileUpdateURL =
@@ -55,7 +55,7 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/addbooking";
 
   //offers api
-  final String  todayOffersListApiUrl =
+  final String todayOffersListApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/today_offers_list";
 
   //coupons redeem api
@@ -139,7 +139,7 @@ abstract class BaseApiService {
 
   final String ourPartnersApiUrl =
       "https://www.portal.bcipvtltd.com/api/getpartners";
-     // "https://www.portal.bcipvtltd.com/api/auth/getpartners";
+  // "https://www.portal.bcipvtltd.com/api/auth/getpartners";
 
   final String createSupportApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/create_ticket";
@@ -158,7 +158,8 @@ abstract class BaseApiService {
       'https://www.portal.bcipvtltd.com/api/auth/destination_list';
 
   //fcmtoken
-  final String fcmtokenURL = 'https://www.portal.bcipvtltd.com/api/auth/fcm-token';
+  final String fcmtokenURL =
+      'https://www.portal.bcipvtltd.com/api/auth/fcm-token';
 
   //hotel search
   final String searchHotelApiUrl =
@@ -173,7 +174,8 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/get_hotel_room";
 
   //block room api
-  final blockRoomApiUrl = "https://www.portal.bcipvtltd.com/api/auth/block_room";
+  final blockRoomApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/block_room";
 
   final String storeHotelBookingURL =
       "https://www.portal.bcipvtltd.com/api/auth/store_hotel_booking";
@@ -189,13 +191,12 @@ abstract class BaseApiService {
   final String hotelBookingDetailsURL =
       "https://www.portal.bcipvtltd.com/api/auth/get_booking_detail";
 
-      //"https://www.portal.bcipvtltd.com/api/auth/get_booking_detail";
+  //"https://www.portal.bcipvtltd.com/api/auth/get_booking_detail";
 
-        final String airRePrinting =
+  final String airRePrinting =
       "https://www.portal.bcipvtltd.com/api/auth/air_reprint";
 
-      
-       //add transaction
+  //add transaction
   final String addTransactionApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/add_transaction";
 
@@ -203,6 +204,11 @@ abstract class BaseApiService {
   final String transactionHistoryApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/transaction_history";
 
-      //vendor list
-      final String vendorListURL = "https://www.portal.bcipvtltd.com/api/auth/vendor_list";
+  //vendor list
+  final String vendorListURL =
+      "https://www.portal.bcipvtltd.com/api/auth/vendor_list";
+
+  //get gallery
+  final String getGalleryURI =
+      "https://www.portal.bcipvtltd.com/api/auth/get_gallery";
 }

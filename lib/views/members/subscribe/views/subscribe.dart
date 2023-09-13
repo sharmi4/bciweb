@@ -5,12 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
-//import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../controller/subscribe_controllers.dart';
-//import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../controller/subscription_controller/subscription_controller.dart';
-import '../../../../models/get_plansmodel.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
 

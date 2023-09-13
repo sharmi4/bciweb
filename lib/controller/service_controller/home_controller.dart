@@ -10,6 +10,7 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../constant/constans.dart';
 
+import '../../models/get_gallery_model.dart';
 import '../../models/todayoffers_model.dart';
 import '../../responsive/mobile_body/cart_divertion.dart';
 import '../../services/networks/services/add_to_cart_api_service.dart';
@@ -17,6 +18,7 @@ import '../../services/networks/services/catogory_api_service/add_booking_api_se
 import '../../services/networks/services/catogory_api_service/delete_cart_api_services.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../services/networks/services/get_cart_service.dart';
+import '../../services/networks/services/get_gallery_apiservice.dart';
 import '../../services/networks/services/today_offers_apiservice.dart';
 
 class HomeServiceController extends GetxController {
@@ -26,7 +28,7 @@ class HomeServiceController extends GetxController {
   GetCartListApiServices getCartListApiServices = GetCartListApiServices();
 
   List<Datum> cartListData = [];
-  List<OffersListModel> todayofferslist=[];
+  List<OffersListModel> todayofferslist = [];
 
   double getGrandTotal({required List<Datum> tcartListData}) {
     double grandTotal = 0.0;
@@ -148,17 +150,41 @@ class HomeServiceController extends GetxController {
     }
   }
 
- //get today offer
+  //get today offer
 
- GetTodayOffersApiService getTodayOffersApiService=GetTodayOffersApiService();
- List<OffersListModel> todayOfferListData = [];
+  GetTodayOffersApiService getTodayOffersApiService =
+      GetTodayOffersApiService();
+  List<OffersListModel> todayOfferListData = [];
   gettodayoffersList() async {
-    dio.Response<dynamic> response = await getTodayOffersApiService.getTodayoffers();
+    dio.Response<dynamic> response =
+        await getTodayOffersApiService.getTodayoffers();
     if (response.statusCode == 200) {
-       List<OffersListModel> getTodayOffersList = List<OffersListModel>.from(
+      List<OffersListModel> getTodayOffersList = List<OffersListModel>.from(
           response.data.map((x) => OffersListModel.fromJson(x)));
       todayOfferListData = getTodayOffersList;
-    }else {
+    } else {
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       response.data["message"],
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
+    }
+    update();
+  }
+
+  //get GALLERY
+
+  GetGalleryApiServices getgalleryApiService = GetGalleryApiServices();
+  List<GalleryListModel> galleryListData = [];
+  getInstance({required String userid}) async {
+    dio.Response<dynamic> response =
+        await getgalleryApiService.getgalleryApiServices(userid: userid);
+    if (response.statusCode == 200) {
+      List<GalleryListModel> getGalleryList = List<GalleryListModel>.from(
+          response.data.map((x) => GalleryListModel.fromJson(x)));
+      galleryListData = getGalleryList;
+    } else {
       // Get.rawSnackbar(
       //     backgroundColor: Colors.red,
       //     messageText: Text(
@@ -208,8 +234,6 @@ class HomeServiceController extends GetxController {
     update();
   }
 
-
-
   //   double getGrandTotal() {
   //   double grandTotal = 0.0;
 
@@ -223,5 +247,4 @@ class HomeServiceController extends GetxController {
 
   //   return grandTotal;
   // }
-
 }

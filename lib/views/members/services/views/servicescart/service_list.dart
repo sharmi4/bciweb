@@ -20,6 +20,7 @@ class ListCart extends StatefulWidget {
 
 class _ListCartState extends State<ListCart> {
   final authController = Get.find<AuthController>();
+
   final homeController = Get.find<HomeServiceController>();
 
   final redeemCouponcontroller = TextEditingController();
@@ -31,7 +32,9 @@ class _ListCartState extends State<ListCart> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+        child: CommonScreen(),
+        preferredSize: Size(double.infinity, 40),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

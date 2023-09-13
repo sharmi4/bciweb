@@ -6,41 +6,41 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 import '../../constant/constans.dart';
 import '../../models/create_account_model.dart';
 
 class ResidentialAddress extends StatefulWidget {
-   CreateAccountModel?memberRegisterModel;
-   ResidentialAddress({super.key,  this.memberRegisterModel});
+  CreateAccountModel? memberRegisterModel;
+  ResidentialAddress({super.key, this.memberRegisterModel});
 
   @override
   State<ResidentialAddress> createState() => _ResidentialAddressState();
 }
 
 class _ResidentialAddressState extends State<ResidentialAddress> {
-  var doornumberController=TextEditingController();
-   var buildingnameController=TextEditingController();
-    var addresController=TextEditingController();
-    var cityController=TextEditingController();
-     var stateController=TextEditingController();
-      var _formKey = GlobalKey<FormState>();
-      dynamic imageprofile;
-      dynamic adharimage;
-     bool showimage=false;
+  var doornumberController = TextEditingController();
+  var buildingnameController = TextEditingController();
+  var addresController = TextEditingController();
+  var cityController = TextEditingController();
+  var stateController = TextEditingController();
+  var _formKey = GlobalKey<FormState>();
+  dynamic imageprofile;
+  dynamic adharimage;
+  bool showimage = false;
   Future profileimage() async {
     try {
       final ImagePicker _picker = ImagePicker();
-                    // Pick an image
-                    final XFile? timage =
-                        await _picker.pickImage(source: ImageSource.gallery);
-                    setState(() {
-                      imageprofile = File(timage!.path);
-                    });
+      // Pick an image
+      final XFile? timage =
+          await _picker.pickImage(source: ImageSource.gallery);
+      setState(() {
+        imageprofile = File(timage!.path);
+      });
     } catch (e) {
       print('Failed to pick image:$e');
     }
   }
+
   @override
   Widget build(BuildContext context) {
     //  bool isChecked = false;
@@ -60,12 +60,14 @@ class _ResidentialAddressState extends State<ResidentialAddress> {
                       child: Text(
                         'Residential Address',
                         style: TextStyle(
-                            fontSize: 30, color: kblue, fontWeight: FontWeight.w700),
+                            fontSize: 30,
+                            color: kblue,
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                     ksizedbox10,
                     Padding(
-                      padding: const EdgeInsets.only(top: 10,right: 50),
+                      padding: const EdgeInsets.only(top: 10, right: 50),
                       child: Text(
                         'Please fill the details Address',
                         style: TextStyle(
@@ -111,63 +113,74 @@ class _ResidentialAddressState extends State<ResidentialAddress> {
                                   padding: const EdgeInsets.only(top: 27),
                                   child: Container(
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10, left: 10),
+                                      padding: const EdgeInsets.only(
+                                          right: 10, left: 10),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          imageprofile != null? Image.memory(imageprofile):Text('Personal ID '),
+                                          imageprofile != null
+                                              ? Image.memory(imageprofile)
+                                              : Text('Personal ID '),
                                           GestureDetector(
-                                            onTap: ()async{
-                                             
-                          PickedFile? pickedFile = await ImagePicker().getImage(
-                            source: ImageSource.gallery,
-                          );
+                                              onTap: () async {
+                                                PickedFile? pickedFile =
+                                                    await ImagePicker()
+                                                        .getImage(
+                                                  source: ImageSource.gallery,
+                                                );
 
-                          var tempCont = await pickedFile!.readAsBytes();
-                          setState(() {
-                            imageprofile = tempCont;
-                          });
-                          
+                                                var tempCont = await pickedFile!
+                                                    .readAsBytes();
+                                                setState(() {
+                                                  imageprofile = tempCont;
+                                                });
 
-                          // profileController.updateProfilePic(media: imagePath);
-                        },
-                                          
-                                            child: Icon(Icons.upload_sharp,color: kgrey,))
+                                                // profileController.updateProfilePic(media: imagePath);
+                                              },
+                                              child: Icon(
+                                                Icons.upload_sharp,
+                                                color: kgrey,
+                                              ))
                                         ],
                                       ),
                                     ),
                                     height: 35,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Color(0xff707070))),
+                                        border: Border.all(
+                                            color: Color(0xff707070))),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 27),
                                   child: Container(
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 10, left: 10),
+                                      padding: const EdgeInsets.only(
+                                          right: 10, left: 10),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                          adharimage!=null?Image.memory(adharimage):Text('Adhaar ID'),
+                                          adharimage != null
+                                              ? Image.memory(adharimage)
+                                              : Text('Adhaar ID'),
                                           Padding(
-                                            padding: const EdgeInsets.only(left: 20),
+                                            padding:
+                                                const EdgeInsets.only(left: 20),
                                             child: IconButton(
-                                              onPressed: ()async{
-                                                 PickedFile? pickedFile = await ImagePicker().getImage(
-                                                                      source: ImageSource.gallery,
-                                                                    );
-                                          
-                                                                    var tempCont = await pickedFile!.readAsBytes();
-                                                                    setState(() {
-                                                                      adharimage = tempCont;
-                                                                    });
-                                                                    
+                                              onPressed: () async {
+                                                PickedFile? pickedFile =
+                                                    await ImagePicker()
+                                                        .getImage(
+                                                  source: ImageSource.gallery,
+                                                );
+
+                                                var tempCont = await pickedFile!
+                                                    .readAsBytes();
+                                                setState(() {
+                                                  adharimage = tempCont;
+                                                });
                                               },
                                               icon: Icon(
                                                 Icons.upload_sharp,
@@ -181,7 +194,8 @@ class _ResidentialAddressState extends State<ResidentialAddress> {
                                     height: 35,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(5),
-                                        border: Border.all(color: Color(0xff707070))),
+                                        border: Border.all(
+                                            color: Color(0xff707070))),
                                   ),
                                 )
                               ],
@@ -193,21 +207,24 @@ class _ResidentialAddressState extends State<ResidentialAddress> {
                     ksizedbox30,
                     InkWell(
                       onTap: () {
-                      if(_formKey.currentState!.validate()){
-                        AddressModel addresModel=AddressModel(
-                          doorNo: doornumberController.text, 
-                          buildingName: buildingnameController.text, 
-                          address: addresController.text, 
-                          city: cityController.text, 
-                          state: stateController.text, 
-                          personalId: '1234', 
-                          aadhrId: '5678907645', pincode: '');
-                          CreateAccountModel tempcreateaccountModel=
-                          CreateAccountModel(
-                            referalcode:  widget.memberRegisterModel!.referalcode,
-                            name:widget.memberRegisterModel!.name , 
-                            email: widget.memberRegisterModel!.email, 
-                            mobilenumber: widget.memberRegisterModel!.mobilenumber,
+                        if (_formKey.currentState!.validate()) {
+                          AddressModel addresModel = AddressModel(
+                              doorNo: doornumberController.text,
+                              buildingName: buildingnameController.text,
+                              address: addresController.text,
+                              city: cityController.text,
+                              state: stateController.text,
+                              personalId: '1234',
+                              aadhrId: '5678907645',
+                              pincode: '');
+                          CreateAccountModel tempcreateaccountModel =
+                              CreateAccountModel(
+                            referalcode:
+                                widget.memberRegisterModel!.referalcode,
+                            name: widget.memberRegisterModel!.name,
+                            email: widget.memberRegisterModel!.email,
+                            mobilenumber:
+                                widget.memberRegisterModel!.mobilenumber,
                             aadharNo: widget.memberRegisterModel!.aadharNo,
                             panNo: widget.memberRegisterModel!.panNo,
                             password: widget.memberRegisterModel!.password,
@@ -217,15 +234,15 @@ class _ResidentialAddressState extends State<ResidentialAddress> {
                             roleId: widget.memberRegisterModel!.roleId,
                             isMarried: widget.memberRegisterModel!.isMarried,
                             unmarried: widget.memberRegisterModel!.unmarried,
-                            passwordConfirmation: widget.memberRegisterModel!.passwordConfirmation,
-                             dateofbirth: widget.memberRegisterModel!.dateofbirth,
-                            
-                            );
-                            Get.to(OfficeAddress(
-                              addresModel:addresModel,
-                              tempMemberRegisterModel:tempcreateaccountModel
-                            ));
-                      }
+                            passwordConfirmation: widget
+                                .memberRegisterModel!.passwordConfirmation,
+                            dateofbirth:
+                                widget.memberRegisterModel!.dateofbirth,
+                          );
+                          Get.to(OfficeAddress(
+                              addresModel: addresModel,
+                              tempMemberRegisterModel: tempcreateaccountModel));
+                        }
                       },
                       child: Container(
                         width: size.width * 0.25,

@@ -1,14 +1,16 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
-
 import '../registerhomescreen/common_reg_bottom.dart';
 import '../registerhomescreen/common_reg_homescreen.dart';
-import '../responsive/mobile_wdgets/mobile_common_bottom/bottom.dart';
 import 'members/common_widget/common.dart';
+
+
 
 class ClubHouse extends StatelessWidget {
   const ClubHouse({super.key});
+
+  
 
   @override
   Widget build(BuildContext context) {

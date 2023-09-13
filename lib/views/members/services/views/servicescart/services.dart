@@ -18,16 +18,13 @@ class Services extends StatefulWidget {
 
   @override
   State<Services> createState() => _ServicesState();
-
 }
 
 final homeController = Get.find<HomeServiceController>();
 
-
 CarouselController curouselController = CarouselController();
 
 class _ServicesState extends State<Services> {
-
   @override
   void initState() {
     super.initState();
@@ -35,13 +32,13 @@ class _ServicesState extends State<Services> {
     authController.getservice();
     serviceofferController.gettodayoffersList();
   }
- 
+
   int pageIndex = 0;
 
   final authController = Get.find<AuthController>();
 
-  final serviceofferController=Get.find<HomeServiceController>();
-  
+  final serviceofferController = Get.find<HomeServiceController>();
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -101,101 +98,108 @@ class _ServicesState extends State<Services> {
             GetBuilder<HomeServiceController>(builder: (_) {
               return Column(
                 children: [
-                    homeController.vendorList.isEmpty ?
-                    const Text('No Service Found') :  
-                    GridView.builder(
-                    itemCount: homeController.vendorList.length,
-                    shrinkWrap: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 2.5, crossAxisCount: 3),
-                    itemBuilder: ((context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          height: 55,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 2.5,
-                                    color: Colors.grey.withOpacity(0.5))
-                              ]),
-                          child: Row(
-                            children: [
-                             ClipRRect(
-                              borderRadius: BorderRadius.circular(15),
-                              child:
-                                  homeController.vendorList[index].profilePicture != null
-                                      ? Image.network(
-                                          homeController.vendorList[index]
-                                              .profilePicture!,
-                                          //height: 125,
-                                          width: size.width * 0.12,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : Image.asset(
-                                          "assets/icons/no.jpg",
-                                          //height: 125,
-                                          width: size.width * 0.12,
-                                          fit: BoxFit.cover,
-                                        ),
-                            ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                  homeController.vendorList.isEmpty
+                      ? const Text('No Service Found')
+                      : GridView.builder(
+                          itemCount: homeController.vendorList.length,
+                          shrinkWrap: true,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 2.5, crossAxisCount: 3),
+                          itemBuilder: ((context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                height: 55,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(20),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          blurRadius: 2.5,
+                                          color: Colors.grey.withOpacity(0.5))
+                                    ]),
+                                child: Row(
                                   children: [
-                                    const SizedBox(
-                                      height: 10,
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(15),
+                                      child: homeController.vendorList[index]
+                                                  .profilePicture !=
+                                              null
+                                          ? Image.network(
+                                              homeController.vendorList[index]
+                                                  .profilePicture!,
+                                              //height: 125,
+                                              width: size.width * 0.12,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : Image.asset(
+                                              "assets/icons/no.jpg",
+                                              //height: 125,
+                                              width: size.width * 0.12,
+                                              fit: BoxFit.cover,
+                                            ),
                                     ),
-                                    Text(
-                                      homeController.vendorList[index].name,
-                                      style: primaryFont.copyWith(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 15,
-                                    ),
-                                   InkWell(
-                                      onTap: () {
-                                        Get.to(
-                                          VendorDetailsScreen(
-                                            vendorListModelData: homeController.vendorList[index]),
-                                        );
-                                      },
-                                      child: Container(
-                                        height: 35,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: kblue,
-                                        ),
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Text(
-                                            "Click now",
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Text(
+                                            homeController
+                                                .vendorList[index].name,
                                             style: primaryFont.copyWith(
-                                                color: Colors.white,
-                                                fontSize: 16,
+                                                fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                        ),
+                                          const SizedBox(
+                                            height: 15,
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              Get.to(
+                                                VendorDetailsScreen(
+                                                    vendorListModelData:
+                                                        homeController
+                                                            .vendorList[index], userid: homeController
+                                                            .vendorList[index].userId,),
+                                              );
+                                            },
+                                            child: Container(
+                                              height: 35,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                color: kblue,
+                                              ),
+                                              alignment: Alignment.center,
+                                              child: Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 10, right: 10),
+                                                child: Text(
+                                                  "Click now",
+                                                  style: primaryFont.copyWith(
+                                                      color: Colors.white,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                          )
+                                        ],
                                       ),
                                     )
                                   ],
                                 ),
-                              )
-                            ],
-                          ),
+                              ),
+                            );
+                          }),
                         ),
-                      );
-                    }),
-                  ),
 
                   //service list code..........
 
@@ -417,11 +421,11 @@ class _ServicesState extends State<Services> {
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: kblue,
-                                  minimumSize:const Size(200, 45),
+                                  minimumSize: const Size(200, 45),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15))),
                               onPressed: () {},
-                              child:const Text(
+                              child: const Text(
                                 'Click Now',
                                 style: TextStyle(fontSize: 20),
                               ))
@@ -441,20 +445,20 @@ class _ServicesState extends State<Services> {
                   fontSize: 70,
                   fontWeight: FontWeight.bold),
             ),
-           ksizedbox10,
+            ksizedbox10,
             Container(
               height: 20,
               width: 100,
               color: korange,
             ),
-           ksizedbox10,
+            ksizedbox10,
             Container(
                 width: 800,
                 child: Text(
                   'Special coupons are promotional discounts offered by businesses to encourage customers to make a purchase or use their services. These coupons may be available in various forms such as printed coupons, digital coupons, or promo codes.',
                   style: TextStyle(color: ktextblue),
                 )),
-           ksizedbox40,
+            ksizedbox40,
             GetBuilder<HomeServiceController>(builder: (_) {
               return Column(
                 children: [
@@ -482,8 +486,11 @@ class _ServicesState extends State<Services> {
                               Container(
                                   width: size.width * 0.12,
                                   decoration: BoxDecoration(
-                                      image:  DecorationImage(
-                                        image: NetworkImage(serviceofferController.todayOfferListData[index].image),
+                                      image: DecorationImage(
+                                        image: NetworkImage(
+                                            serviceofferController
+                                                .todayOfferListData[index]
+                                                .image),
                                         fit: BoxFit.fill,
                                       ),
                                       //     color: Colors.red,
@@ -502,7 +509,8 @@ class _ServicesState extends State<Services> {
                                       height: 10,
                                     ),
                                     Text(
-                                      serviceofferController.todayOfferListData[index].title,
+                                      serviceofferController
+                                          .todayOfferListData[index].title,
                                       style: primaryFont.copyWith(
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),
@@ -511,18 +519,18 @@ class _ServicesState extends State<Services> {
                                       height: 10,
                                     ),
                                     Container(
-                                      width: size.width * 0.16,
-                                      child: Text(
-                                        "Discount value : ₹${serviceofferController.todayOfferListData[index].discountValue}",
-                                        style: primaryFont.copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black54),
-                                      )),
-                                  const SizedBox(
-                                    height: 5,
-                                  ),
-                                  Container(
+                                        width: size.width * 0.16,
+                                        child: Text(
+                                          "Discount value : ₹${serviceofferController.todayOfferListData[index].discountValue}",
+                                          style: primaryFont.copyWith(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black54),
+                                        )),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Container(
                                       width: size.width * 0.16,
                                       child: Text(
                                         "Ends on : ${formatDate(serviceofferController.todayOfferListData[index].endsAt, [
@@ -536,13 +544,18 @@ class _ServicesState extends State<Services> {
                                             fontSize: 15,
                                             fontWeight: FontWeight.w500,
                                             color: Colors.black54),
-                                      )),
+                                      ),
+                                    ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Get.to(VendorServiceListScreen(vendorId:serviceofferController.todayOfferListData[index].vendorId,));
+                                        Get.to(VendorServiceListScreen(
+                                          vendorId: serviceofferController
+                                              .todayOfferListData[index]
+                                              .vendorId,
+                                        ));
                                       },
                                       child: Container(
                                         height: 35,
@@ -574,12 +587,11 @@ class _ServicesState extends State<Services> {
                       );
                     }),
                   )
-                 
                 ],
               );
-           }),
-             //offercontainer(),
-           ksizedbox30,
+            }),
+            //offercontainer(),
+            ksizedbox30,
             // InkWell(
             //   onTap: () {
             //     Get.to(OfferScreen()
@@ -599,8 +611,8 @@ class _ServicesState extends State<Services> {
             //     width: 180,
             //   ),
             // ),
-          // ksizedbox40,
-           const RegisterCommonBottom()
+            // ksizedbox40,
+            const RegisterCommonBottom()
           ],
         ),
       ),

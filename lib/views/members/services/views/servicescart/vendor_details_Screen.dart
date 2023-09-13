@@ -1,7 +1,5 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
-import 'package:bciweb/models/service_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
-import 'package:bciweb/views/members/services/views/servicescart/servicescart.dart';
 import 'package:bciweb/views/members/services/views/servicescart/vendor_service_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +13,8 @@ import '../../../common_widget/common.dart';
 
 class VendorDetailsScreen extends StatefulWidget {
   VendorListModelData vendorListModelData;
-  VendorDetailsScreen({super.key, required this.vendorListModelData});
+  final String userid;
+  VendorDetailsScreen({super.key, required this.vendorListModelData,required this.userid});
 
   @override
   State<VendorDetailsScreen> createState() => _VendorDetailsScreenState();
@@ -29,12 +28,24 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
 
   final profileControllerss = Get.find<RedeemController>();
 
+
+
+   @override
+  void initState() {
+    super.initState();
+    homeController.getInstance(userid: widget.userid);
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+        child: CommonScreen(),
+        preferredSize: Size(double.infinity, 40),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,21 +62,21 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       widget.vendorListModelData.profilePicture != null
-                   ? ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                     child: Image.network(
-                      widget.vendorListModelData.profilePicture!,
-                      height: 350,
-                      width: size.width * 0.2,
-                      fit: BoxFit.cover,
-                                     ),
-                   )
-                : Image.asset(
-                    "assets/icons/no-photo.png",
-                    height: 350,
-                    width: size.width * 0.2,
-                    fit: BoxFit.cover,
-                  ),
+                          ? ClipRRect(
+                              borderRadius: BorderRadius.circular(5),
+                              child: Image.network(
+                                widget.vendorListModelData.profilePicture!,
+                                height: 350,
+                                width: size.width * 0.2,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : Image.asset(
+                              "assets/icons/no-photo.png",
+                              height: 350,
+                              width: size.width * 0.2,
+                              fit: BoxFit.cover,
+                            ),
                       Container(
                         width: size.width * 0.3,
                         child: Column(
@@ -90,105 +101,118 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                             ),
                             ksizedbox20,
                             if (widget.vendorListModelData.address != null)
-                    Text(
-                      "${widget.vendorListModelData.address ?? ""}",
-                      style:const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                    ),
-                  if (widget.vendorListModelData.address != null)
-                    Text(
-                      "${widget.vendorListModelData.city}",
-                      style:const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                    ),
-                  if (widget.vendorListModelData.address != null)
-                    Text(
-                      "${widget.vendorListModelData.state}",
-                      style:const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.normal,
-                          color: Colors.black87),
-                         ),
-                          ksizedbox10,
-                          Text(
-                    "Mobile: ${widget.vendorListModelData.mobile}",
-                    style:const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        height: 1.5,
-                        color: Colors.black87),
-                  ),
-                  Text(
-                    "Email: ${widget.vendorListModelData.email}",
-                    style:const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.normal,
-                        height: 1.5,
-                        color: Colors.black87),
-                  ),
-                            ksizedbox20,
-                            if(widget.vendorListModelData.locationAddress != null) Row(
-                    children: [
-                      InkWell(
-                        onTap: (){
-                          launchUrl(Uri.parse(widget.vendorListModelData.locationAddress));
-                        },
-                        child: Container(
-                          height: 45,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 2,
-                                    color: Colors.grey.withOpacity(0.5))
-                              ],
-                              borderRadius: BorderRadius.circular(40)),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 15),
-                            child: Row(
-                              children: [
-                                Text(
-                                  "Location",
-                                  style: primaryFont.copyWith(
-                                    fontWeight: FontWeight.w500,
-                                      color: Colors.black, fontSize: 12),
-                                ),
-                                const SizedBox(
-                                  width: 7,
-                                ),
-                                const Icon(
-                                  Icons.location_on,
-                                  color: Colors.blue,
-                                ),
-                              ],
+                              Text(
+                                "${widget.vendorListModelData.address ?? ""}",
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black87),
+                              ),
+                            if (widget.vendorListModelData.address != null)
+                              Text(
+                                "${widget.vendorListModelData.city}",
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black87),
+                              ),
+                            if (widget.vendorListModelData.address != null)
+                              Text(
+                                "${widget.vendorListModelData.state}",
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.normal,
+                                    color: Colors.black87),
+                              ),
+                            ksizedbox10,
+                            Text(
+                              "Mobile: ${widget.vendorListModelData.mobile}",
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  height: 1.5,
+                                  color: Colors.black87),
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                        ksizedbox20,   
-                       InkWell(
-            onTap: () {
-              Get.to(() => VendorServiceListScreen(vendorId: widget.vendorListModelData.id.toString()), );
-            },
-            child: Container(
-              height: 55,
-              width: size.width,
-              decoration: BoxDecoration(
-                  color: korange, borderRadius: BorderRadius.circular(10)),
-              alignment: Alignment.center,
-              child: Text(
-                "View Services",
-                style: primaryFont.copyWith(fontSize: 16, color: Colors.white),
-              ),
-            ),
-          ),    
-                           
+                            Text(
+                              "Email: ${widget.vendorListModelData.email}",
+                              style: const TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.normal,
+                                  height: 1.5,
+                                  color: Colors.black87),
+                            ),
+                            ksizedbox20,
+                            if (widget.vendorListModelData.locationAddress !=
+                                null)
+                              Row(
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      launchUrl(Uri.parse(widget
+                                          .vendorListModelData
+                                          .locationAddress));
+                                    },
+                                    child: Container(
+                                      height: 45,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 2,
+                                                color: Colors.grey
+                                                    .withOpacity(0.5))
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(40)),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 15),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              "Location",
+                                              style: primaryFont.copyWith(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: Colors.black,
+                                                  fontSize: 12),
+                                            ),
+                                            const SizedBox(
+                                              width: 7,
+                                            ),
+                                            const Icon(
+                                              Icons.location_on,
+                                              color: Colors.blue,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ksizedbox20,
+                            InkWell(
+                              onTap: () {
+                                Get.to(
+                                  () => VendorServiceListScreen(
+                                      vendorId: widget.vendorListModelData.id
+                                          .toString()),
+                                );
+                              },
+                              child: Container(
+                                height: 55,
+                                width: size.width,
+                                decoration: BoxDecoration(
+                                    color: korange,
+                                    borderRadius: BorderRadius.circular(10)),
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "View Services",
+                                  style: primaryFont.copyWith(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -351,6 +375,22 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                   //       color: kOrange),
                   // ),
                   ksizedbox40,
+                  homeController.galleryListData.isEmpty
+                      ? Image.asset(
+                          "assets/icons/no-photo.png",
+                          height: 350,
+                          width: size.width * 0.2,
+                          fit: BoxFit.cover,
+                        )
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image.network(
+                            homeController.galleryListData.first.image,
+                            height: 350,
+                            width: size.width * 0.2,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
                 ],
               ),
             ),

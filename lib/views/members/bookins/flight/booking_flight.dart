@@ -18,8 +18,6 @@ import '../hotels/booking_hotels.dart';
 import '../trip/trip_booking.dart';
 import 'options_booking.dart';
 
-
-
 class BookingFlight extends StatefulWidget {
   const BookingFlight({super.key});
 
@@ -753,8 +751,7 @@ class _BookingFlightState extends State<BookingFlight> {
                     ),
                   ),
                   Positioned(
-                    top:8,
-                    bottom: 0,
+                    top: 300,
                     right: 0,
                     left: 0,
                     child: Row(
@@ -836,7 +833,7 @@ class _BookingFlightState extends State<BookingFlight> {
                               )
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
               if (flaightshowController.flaightshowindex.value == 1)
