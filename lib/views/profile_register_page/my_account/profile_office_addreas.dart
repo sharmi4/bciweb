@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -64,31 +65,8 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
     subMobileController.text = authprofileController.profileData.first.mobile;
 
     if (authprofileController.profileData.isNotEmpty) {
-      nameController.text = authprofileController.profileData.first.name;
-      numberController.text = authprofileController.profileData.first.mobile;
-      alternumberController.text =
-          authprofileController.profileData.first.alternateMobile;
-      emailController.text = authprofileController.profileData.first.email;
-      occupationController.text =
-          authprofileController.profileData.first.occupation;
-      qualificationController.text =
-          authprofileController.profileData.first.qualification;
-      fathernameController.text =
-          authprofileController.profileData.first.fatherName;
-      gstnoController.text = authprofileController.profileData.first.gstNo;
-      pannoController.text = authprofileController.profileData.first.panNo;
-
-      mothernameController.text =
-          authprofileController.profileData.first.motherName;
-      spousenameController.text =
-          authprofileController.profileData.first.spouse;
-      dateofbirthController.text = authprofileController.profileData.first.dob;
-      officedoornoController.text =
-          authprofileController.profileData.first.officialAddress.doorNo;
       officebnameController.text =
           authprofileController.profileData.first.officialAddress.buildingName;
-      officeaddresController.text =
-          authprofileController.profileData.first.officialAddress.address;
 
       officecityController.text =
           authprofileController.profileData.first.officialAddress.city;
@@ -96,22 +74,16 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
       idproofController.text =
           authprofileController.profileData.first.officialAddress.proofIdNo;
 
+      pincodeController.text =
+          authprofileController.profileData.first.officialAddress.pincode;
+
       officeaddresController.text =
-          authprofileController.profileData.first.officialAddress.city;
+          authprofileController.profileData.first.officialAddress.address;
+
       officestateController.text =
           authprofileController.profileData.first.officialAddress.state;
-
-      setState(
-        () {
-          isMarried = authprofileController.profileData.first.isMarried == "0"
-              ? false
-              : true;
-          isUnmarried = authprofileController.profileData.first.isMarried == "0"
-              ? false
-              : true;
-          aadharimage = authprofileController.profileData.first.adharProof;
-        },
-      );
+      officedoornoController.text =
+          authprofileController.profileData.first.officialAddress.doorNo;
     }
   }
 
@@ -157,7 +129,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
                 child: TextField(
-                  textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.number,
                   controller: officebnameController,
                   decoration: InputDecoration(
                       hintText: 'Building Number',
@@ -180,7 +152,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                 child: Padding(
                   padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
                   child: TextField(
-                    textInputAction: TextInputAction.next,
+                     keyboardType: TextInputType.number,
                     controller: idproofController,
                     decoration: InputDecoration(
                         hintText: 'Proof Id No',
@@ -195,7 +167,13 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
                 child: TextField(
-                  textInputAction: TextInputAction.next,
+                  keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(6),
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        FilteringTextInputFormatter.deny(
+                                            RegExp(r'\s')),
+                                      ],
                   controller: pincodeController,
                   decoration: InputDecoration(
                     hintText: 'Pincode',
@@ -287,7 +265,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                             doorNo: officedoornoController.text,
                             personalId: idproofController.text,
                             state: officestateController.text,
-                            //  pincode: pincodeController.text,
+                            pincode: pincodeController.text,
                           );
 
                           authprofileController.updateOfficalAddress(
@@ -308,7 +286,8 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                             minimumSize: Size(
                                 MediaQuery.of(context).size.width * 0.36, 45)),
                         onPressed: () {
-                          print('-----------------------id---------------------------------------');
+                          print(
+                              '-----------------------id---------------------------------------');
                           AddressModel addressModel = AddressModel(
                             aadhrId: "",
                             address: officeaddresController.text,
@@ -317,7 +296,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                             doorNo: officedoornoController.text,
                             personalId: idproofController.text,
                             state: officestateController.text,
-                            //  pincode: pincodeController.text,
+                            pincode: pincodeController.text,
                           );
 
                           authprofileController.updateOfficalAddress(

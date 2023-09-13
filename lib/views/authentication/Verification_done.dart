@@ -1,12 +1,7 @@
-import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
-import 'package:bciweb/views/register_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-//import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
-
 import '../../constant/constans.dart';
 import '../members/home_screen.dart';
 

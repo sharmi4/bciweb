@@ -187,7 +187,7 @@ class _OfficeAddressState extends State<OfficeAddress> {
                                   city: officecityController.text,
                                   state: officecityController.text,
                                   personalId: "",
-                                  aadhrId: ""
+                                  aadhrId: "", pincode: ''
                                   );
                                   print("sharmi");
                               // authController.memberRegister(

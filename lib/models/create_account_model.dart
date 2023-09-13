@@ -74,6 +74,8 @@ class AddressModel {
   String state;
   String personalId;
   String aadhrId;
+  String pincode;
+ 
 
   AddressModel({
     required this.doorNo,
@@ -83,5 +85,8 @@ class AddressModel {
     required this.state,
     required this.personalId,
     required this.aadhrId,
+    required this.pincode,
+   
+     
   });
 }

@@ -15,12 +15,14 @@ class UpdateOfficialApiServices extends BaseApiService {
     try {
       var dio = Dio();
       FormData formData = FormData.fromMap({
-        "official_address": jsonEncode({
+         "official_address": jsonEncode({
           "door_no": officialAddress.doorNo,
           "address": officialAddress.address,
           "building_name": officialAddress.buildingName,
           "state": officialAddress.state,
           "city": officialAddress.city,
+          "proof_id_no": officialAddress.personalId,
+          "pincode": officialAddress.pincode,
         }),
       });
 

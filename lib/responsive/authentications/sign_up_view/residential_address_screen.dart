@@ -337,7 +337,7 @@ class _ResidentialAddressScreenState extends State<ResidentialAddressScreen> {
                         city: cityController.text,
                         state: stateController.text,
                         personalId: personalIDController.text,
-                        aadhrId: aadharController.text);
+                        aadhrId: aadharController.text, pincode: '');
 
                     CreateAccountModel tempcreateaccountModel=
                             CreateAccountModel(

@@ -281,7 +281,7 @@ class _OfficeAddressScreenState extends State<OfficeAddressScreen> {
                                     city: officecityController.text,
                                     state: officecityController.text,
                                     personalId: "",
-                                    aadhrId: ""
+                                    aadhrId: "", pincode: ''
                                     );
                                     print("sharmi");
                                 // authController.memberRegister(

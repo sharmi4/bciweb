@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
@@ -58,8 +59,8 @@ class _ProfileResidentialAddressScreenState
   var subNameController = TextEditingController();
   var subEmailController = TextEditingController();
   var subMobileController = TextEditingController();
-   var pincodeController = TextEditingController();
-  var idproofController = TextEditingController();
+  var pincoderesidentialController = TextEditingController();
+  var idproofresidentialController = TextEditingController();
 
   dynamic imageprofile;
   dynamic aadharimage;
@@ -75,46 +76,29 @@ class _ProfileResidentialAddressScreenState
     subMobileController.text = authprofileController.profileData.first.mobile;
 
     if (authprofileController.profileData.isNotEmpty) {
-      nameController.text = authprofileController.profileData.first.name;
-      numberController.text = authprofileController.profileData.first.mobile;
-      alternumberController.text =
-          authprofileController.profileData.first.alternateMobile;
-      emailController.text = authprofileController.profileData.first.email;
-      occupationController.text =
-          authprofileController.profileData.first.occupation;
-      qualificationController.text =
-          authprofileController.profileData.first.qualification;
-      fathernameController.text =
-          authprofileController.profileData.first.fatherName;
-      gstnoController.text = authprofileController.profileData.first.gstNo;
-      pannoController.text = authprofileController.profileData.first.panNo;
 
-      mothernameController.text =
-          authprofileController.profileData.first.motherName;
-      spousenameController.text =
-          authprofileController.profileData.first.spouse;
-      dateofbirthController.text = authprofileController.profileData.first.dob;
-      officedoornoController.text =
-          authprofileController.profileData.first.officialAddress.doorNo;
-      officebnameController.text =
-          authprofileController.profileData.first.officialAddress.buildingName;
-      officeaddresController.text =
-          authprofileController.profileData.first.officialAddress.address;
+     resibnameController.text=
+     authprofileController.profileData.first.officialAddress.buildingName;
 
-      officeaddresController.text =
-          authprofileController.profileData.first.officialAddress.city;
-      officestateController.text =
-          authprofileController.profileData.first.officialAddress.state;
+      residoornumberController.text =
+      authprofileController.profileData.first.officialAddress.doorNo;
 
-      setState(() {
-        isMarried = authprofileController.profileData.first.isMarried == "0"
-            ? false
-            : true;
-        isUnmarried = authprofileController.profileData.first.isMarried == "0"
-            ? false
-            : true;
-        aadharimage = authprofileController.profileData.first.adharProof;
-      });
+      resibcityController.text =
+      authprofileController.profileData.first.officialAddress.city;
+
+      idproofresidentialController.text =
+      authprofileController.profileData.first.officialAddress.proofIdNo;
+
+      pincoderesidentialController.text =
+      authprofileController.profileData.first.officialAddress.pincode;
+
+      resiaddressController.text =
+      authprofileController.profileData.first.officialAddress.address;
+          
+      resistateController.text =
+      authprofileController.profileData.first.officialAddress.state;
+
+ 
     }
   }
 
@@ -160,7 +144,7 @@ class _ProfileResidentialAddressScreenState
                     textInputAction: TextInputAction.next,
                     controller: resibnameController,
                     decoration: InputDecoration(
-                        hintText: 'Building Number',
+                        hintText: 'Building Name',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
                         border: OutlineInputBorder()),
@@ -206,63 +190,69 @@ class _ProfileResidentialAddressScreenState
               ),
             ],
           ),
-             Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(left: 50, right: 50, top: 50),
+                    child: TextField(
+                        keyboardType: TextInputType.number,
+                      controller: idproofresidentialController,
+                      decoration: InputDecoration(
+                          hintText: 'Proof Id No',
+                          suffixIcon: Icon(Icons.edit),
+                          fillColor: Color(0xffF9F8FD),
+                          border: OutlineInputBorder()),
+                    ),
+                  ),
+                ),
+              ),
+              Expanded(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
                   child: TextField(
-                    textInputAction: TextInputAction.next,
-                    controller: idproofController,
+                       keyboardType: TextInputType.number,
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(6),
+                                        FilteringTextInputFormatter.digitsOnly,
+                                        FilteringTextInputFormatter.deny(
+                                            RegExp(r'\s')),
+                                      ],
+                    controller: pincoderesidentialController,
                     decoration: InputDecoration(
-                        hintText: 'Proof Id No',
+                      hintText: 'Pincode',
+                      suffixIcon: Icon(Icons.edit),
+                      fillColor: Color(0xffF9F8FD),
+                      border: OutlineInputBorder(),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.only(left: 50, top: 50),
+            child: Column(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  child: TextField(
+                    textInputAction: TextInputAction.next,
+                    controller: resistateController,
+                    decoration: InputDecoration(
+                        hintText: 'State',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
                         border: OutlineInputBorder()),
                   ),
                 ),
-              ),
+              ],
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 50, right: 50, top: 50),
-                child: TextField(
-                  textInputAction: TextInputAction.next,
-                  controller: pincodeController,
-                  decoration: InputDecoration(
-                    hintText: 'Pincode',
-                    suffixIcon: Icon(Icons.edit),
-                    fillColor: Color(0xffF9F8FD),
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-          Padding(
-          padding: const EdgeInsets.only(left: 50, top: 50),
-          child: Column(
-            children: [
-              Container(
-                width: MediaQuery.of(context).size.width * 0.35,
-                child: TextField(
-                  textInputAction: TextInputAction.next,
-                  controller: officestateController,
-                  decoration: InputDecoration(
-                      hintText: 'State',
-                      suffixIcon: Icon(Icons.edit),
-                      fillColor: Color(0xffF9F8FD),
-                      border: OutlineInputBorder()),
-                ),
-              ),
-            ],
           ),
-        ),
-        
           Obx(
             () => Padding(
               padding: const EdgeInsets.only(top: 20, left: 40),
@@ -270,15 +260,15 @@ class _ProfileResidentialAddressScreenState
                   ? InkWell(
                       onTap: () {
                         AddressModel addressModel = AddressModel(
-                            aadhrId: resiadaridController.text,
-                            address: resiaddressController.text,
-                            buildingName: resibnameController.text,
-                            city: resibcityController.text,
-                            doorNo: residoornumberController.text,
-                            personalId: resiperidController.text,
-                            state: resistateController.text,
-                             //pincode: ''
-                             );
+                          aadhrId: "",
+                          address: resiaddressController.text,
+                          buildingName: resibnameController.text,
+                          city: resibcityController.text,
+                          doorNo: residoornumberController.text,
+                          personalId: idproofresidentialController.text,
+                          state: resistateController.text,
+                          pincode: pincoderesidentialController.text,
+                        );
                         authprofileController.updateRecidencyAddress(
                             residentialAddress: addressModel);
                       },
@@ -303,15 +293,15 @@ class _ProfileResidentialAddressScreenState
                   : GestureDetector(
                       onTap: () {
                         AddressModel addressModel = AddressModel(
-                            aadhrId: resiadaridController.text,
-                            address: resiaddressController.text,
-                            buildingName: resibnameController.text,
-                            city: resibcityController.text,
-                            doorNo: residoornumberController.text,
-                            personalId: resiperidController.text,
-                            state: resistateController.text,
-                           //  pincode: ''
-                             );
+                          aadhrId: "",
+                          address: resiaddressController.text,
+                          buildingName: resibnameController.text,
+                          city: resibcityController.text,
+                          doorNo: residoornumberController.text,
+                          personalId: idproofresidentialController.text,
+                          state: resistateController.text,
+                          pincode: pincoderesidentialController.text,
+                        );
                         authprofileController.updateRecidencyAddress(
                             residentialAddress: addressModel);
                       },

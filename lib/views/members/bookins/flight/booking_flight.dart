@@ -753,7 +753,8 @@ class _BookingFlightState extends State<BookingFlight> {
                     ),
                   ),
                   Positioned(
-                    bottom: 90,
+                    top:8,
+                    bottom: 0,
                     right: 0,
                     left: 0,
                     child: Row(
