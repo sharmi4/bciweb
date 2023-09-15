@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/auth_controller/auth_profile_controller.dart';
 import '../../../../controller/holiday_controller.dart';
+import '../../../../models/holiday_packages_models/get_package_details_model.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
@@ -14,7 +15,8 @@ import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 
 class HolidaysScreen extends StatefulWidget {
   String packageId;
-  HolidaysScreen({super.key, required this.packageId});
+  GetPackageDetailsData getPackageDetailsData;
+  HolidaysScreen({super.key, required this.packageId,required this.getPackageDetailsData});
 
   @override
   State<HolidaysScreen> createState() => _HolidaysScreenState();
@@ -42,8 +44,19 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
     super.initState();
     profileController.getProfile();
     holidayPackageController.packageDetails(packageid: widget.packageId);
+    holidayPackageController.adult(1);
+    holidayPackageController.child(0);
+    holidayPackageController.infant(0);
+    setDefault();
   }
-
+    setDefault() async{
+    
+    packagenameController.text = widget.getPackageDetailsData.title;
+  //  await profileController.getProfile();
+  //   print("--------------------->>${profileController.profileData}");
+  //   nameController.text = profileController.profileData.first.name;
+    // emailController.text = profileController.profileData.first.email;
+  }
   int holidayindex = 0;
   @override
   Widget build(BuildContext context) {
@@ -317,19 +330,21 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                             ),
                             // if (holidayPackageController.getPackageDetailsData
                             //     .first.packageoverview.isNotEmpty)
-                              holidayPackageController
-                                      .getPackageDetailsData.isEmpty
-                                  ? Text('')
-                                  : HtmlContentViewer(
-                                      htmlContent: holidayPackageController
-                                          .getPackageDetailsData
-                                          .first
-                                          .packageoverview,
-                                      initialContentHeight:
-                                          MediaQuery.of(context).size.height,
-                                      initialContentWidth:
-                                          MediaQuery.of(context).size.width,
-                                    ),
+                             if(holidayPackageController.getPackageDetailsData.first.packageoverview.isNotEmpty)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  for(int i = 0; i< holidayPackageController.getPackageDetailsData.first.includes.length;i++)
+                                  Row(
+                                    children: [
+                                      Icon(Icons.arrow_right_rounded),
+                                      Text(holidayPackageController.getPackageDetailsData.first.includes[i].value,style: primaryFont.copyWith(
+                                         fontWeight: FontWeight.w500
+                                      ),),
+                                    ],
+                                  )
+                                ],
+                              ),
                             // Padding(
                             //   padding: const EdgeInsets.only(left: 10,top: 10,right: 10),
                             //   child: Column(
@@ -666,61 +681,14 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 10, right: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  holidayPackageController
-                                          .getPackageDetailsData.isEmpty
-                                      ? Text(
-                                          'VILLAS MON PLAISIR or similar',
-                                          style: TextStyle(
-                                              color: korange,
-                                              fontWeight: FontWeight.bold),
-                                        )
-                                      : Text(holidayPackageController
-                                          .getPackageDetailsData.first.title),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.star,
-                                        color: kyellow,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: kyellow,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: kyellow,
-                                      ),
-                                      Icon(
-                                        Icons.star,
-                                        color: kyellow,
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ),
-                            // if (holidayPackageController.getPackageDetailsData
-                            //     .first.packageoverview.isNotEmpty)
-                              holidayPackageController
-                                      .getPackageDetailsData.isEmpty
-                                  ? Text('')
-                                  : HtmlContentViewer(
-                                      htmlContent: holidayPackageController
-                                          .getPackageDetailsData
-                                          .first
-                                          .packageoverview,
-                                      initialContentHeight:
-                                          MediaQuery.of(context).size.height,
-                                      initialContentWidth:
-                                          MediaQuery.of(context).size.width,
-                                    ),
+                                   ksizedbox10,
+        holidayPackageController.getPackageDetailsData.isEmpty ? const Center(child: Text("No Data Found"),) :
+        HtmlContentViewer(
+                        htmlContent: holidayPackageController.getPackageDetailsData.first.description,
+                        initialContentHeight:
+                            MediaQuery.of(context).size.height,
+                        initialContentWidth: MediaQuery.of(context).size.width,
+                      ),
                             // Padding(
                             //   padding: const EdgeInsets.only(left: 10,top: 10),
                             //   child: Row(
@@ -883,37 +851,14 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 10, right: 10, top: 10),
-                              child: Column(
-                                children: [
-                                  if (holidayPackageController
-                                      .getPackageDetailsData
-                                      .first
-                                      .packageoverview
-                                      .isNotEmpty)
-                                    holidayPackageController
-                                            .getPackageDetailsData.isEmpty
-                                        ? Text('')
-                                        : HtmlContentViewer(
-                                            htmlContent:
-                                                holidayPackageController
-                                                    .getPackageDetailsData
-                                                    .first
-                                                    .packageoverview,
-                                            initialContentHeight:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .height,
-                                            initialContentWidth:
-                                                MediaQuery.of(context)
-                                                    .size
-                                                    .width,
-                                          ),
-                                ],
-                              ),
-                            ),
+                             ksizedbox20,
+           holidayPackageController.getPackageDetailsData.isEmpty ? const Center(child: Text("No Data Found"),) :
+        HtmlContentViewer(
+                        htmlContent: holidayPackageController.getPackageDetailsData.first.dayWiseItinerary,
+                        initialContentHeight:
+                            MediaQuery.of(context).size.height,
+                        initialContentWidth: MediaQuery.of(context).size.width,
+                      ),
                           ])),
                     if (holidayindex == 3)
                       Container(
@@ -955,34 +900,27 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 30, left: 10),
-                              child: Row(
-                                children: [
-                                  Text(
-                                    'Travel Validity ',
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
-                              ),
-                            ),
+                          
                             // if (holidayPackageController.getPackageDetailsData
                             //     .first.packageoverview.isNotEmpty)
-                              holidayPackageController
-                                      .getPackageDetailsData.isEmpty
-                                  ? Text('')
-                                  : HtmlContentViewer(
-                                      htmlContent: holidayPackageController
-                                          .getPackageDetailsData
-                                          .first
-                                          .packageoverview,
-                                      initialContentHeight:
-                                          MediaQuery.of(context).size.height,
-                                      initialContentWidth:
-                                          MediaQuery.of(context).size.width,
-                                    ),
+                               const SizedBox(
+                                height: 20,
+                               ),
+                      if(holidayPackageController.getPackageDetailsData.first.packageoverview.isNotEmpty)
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  for(int i = 0; i< holidayPackageController.getPackageDetailsData.first.includes.length;i++)
+                                  Row(
+                                    children: [
+                                      Icon(Icons.arrow_right_rounded),
+                                      Text(holidayPackageController.getPackageDetailsData.first.includes[i].value,style: primaryFont.copyWith(
+                                         fontWeight: FontWeight.w500
+                                      ),),
+                                    ],
+                                  )
+                                ],
+                              )
                           ]))
                   ],
                 ),
@@ -1340,33 +1278,37 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    print(
-                                        "---------testing enquiry--------------");
-                                    print(widget.packageId);
-                                    print(profileController.profileData);
-                                    print(cityOfDepController.text);
-                                    print(dateOfDepController.text);
-                                    print(nameController.text);
-                                    print(emailController.text);
-                                    print(mobileController.text);
-                                    holidayPackageController.createEnquiry(
-                                      packageid: widget.packageId,
-                                      cityofdeparture: cityOfDepController.text,
-                                      dateofdeparture: dateOfDepController.text,
-                                      adultcount: holidayPackageController
-                                          .adult.value
-                                          .toString(),
-                                      childcount: holidayPackageController
-                                          .child.value
-                                          .toString(),
-                                      infantcount: holidayPackageController
-                                          .infant.value
-                                          .toString(),
-                                      name: nameController.text,
-                                      email: emailController.text,
-                                      mobile: mobileController.text,
-                                      status: "pending",
-                                    );
+                                     print("---------testing enquiry--------------");
+                              print(widget.packageId);
+                              print(cityOfDepController.text);
+                              print(dateOfDepController.text);
+                              print(nameController.text);
+                              print(emailController.text);
+                              print(mobileController.text);
+                              if (emailController.text.isEmail) {
+                                holidayPackageController.createEnquiry(
+                                  packageid: widget.packageId,
+                                  cityofdeparture: cityOfDepController.text,
+                                  dateofdeparture: dateOfDepController.text,
+                                  adultcount: holidayPackageController
+                                      .adult.value
+                                      .toString(),
+                                  childcount: holidayPackageController
+                                      .child.value
+                                      .toString(),
+                                  infantcount: holidayPackageController
+                                      .infant.value
+                                      .toString(),
+                                  name: nameController.text,
+                                  email: emailController.text,
+                                  mobile: mobileController.text,
+                                  status: "pending",
+                                );
+                              } else {
+                                Get.rawSnackbar(
+                                    message: "Enter a valid email id",
+                                    backgroundColor: Colors.red);
+                              }
                                   },
                                   child: Container(
                                       height: 45,

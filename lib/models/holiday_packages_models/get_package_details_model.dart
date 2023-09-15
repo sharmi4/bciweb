@@ -29,7 +29,7 @@ class GetPackageDetails {
 }
 
 class GetPackageDetailsData {
-    dynamic id;
+    int id;
     dynamic vendorId;
     String location;
     dynamic categoryId;
@@ -43,12 +43,13 @@ class GetPackageDetailsData {
     String packageoverview;
     String duration;
     String placeToVisit;
-    String packageInclude;
+    dynamic packageInclude;
     dynamic dayWiseItinerary;
     dynamic status;
     DateTime createdAt;
     DateTime updatedAt;
     List<String> images;
+    List<Include> includes;
     String categoryName;
 
     GetPackageDetailsData({
@@ -72,18 +73,19 @@ class GetPackageDetailsData {
         required this.createdAt,
         required this.updatedAt,
         required this.images,
+        required this.includes,
         required this.categoryName,
     });
 
     factory GetPackageDetailsData.fromJson(Map<String, dynamic> json) => GetPackageDetailsData(
         id: json["id"]?? 0,
-        vendorId: json["vendor_id"]?? 0,
+        vendorId: json["vendor_id"]?? "",
         location: json["location"]?? "",
-        categoryId: json["category_id"]?? 0,
+        categoryId: json["category_id"]?? "",
         title: json["title"]?? "",
         description: json["description"]?? "",
         image: json["image"]?? "",
-        isRecomended: json["is_recomended"]?? 0,
+        isRecomended: json["is_recomended"]?? "",
         inclusion: json["inclusion"]?? "",
         exclusion: json["exclusion"]?? "",
         amount: json["Amount"]?? "",
@@ -92,10 +94,12 @@ class GetPackageDetailsData {
         placeToVisit: json["place_to_visit"]?? "",
         packageInclude: json["package_include"]?? "",
         dayWiseItinerary: json["day_wise_itinerary"]?? "",
-        status: json["status"]?? 0,
+        status: json["status"]?? "",
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
         images: List<String>.from(json["images"].map((x) => x)),
+        includes: List<Include>.from(
+            json["includes"].map((x) => Include.fromJson(x))),
         categoryName: json["category_name"]?? "",
     );
 
@@ -123,3 +127,21 @@ class GetPackageDetailsData {
         "category_name": categoryName,
     };
 }
+
+
+class Include {
+    String value;
+
+    Include({
+        required this.value,
+    });
+
+    factory Include.fromJson(Map<String, dynamic> json) => Include(
+        value: json["value"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "value": value,
+    };
+}
+

@@ -7,6 +7,7 @@ import '../../../../../../controller/api_flightcontroller/api_flight_Controller.
 import '../../../../../../controller/holiday_package_controller.dart';
 import '../../../../../../controller/subscription_controller/subscription_controller.dart';
 import '../../../../../../models/get_flight_booking_history.dart';
+import '../../../../../../models/holiday_packages_models/get_enquiry_list_model.dart';
 
 class FlightBookingHistory extends StatefulWidget {
   const FlightBookingHistory({super.key});
@@ -475,8 +476,7 @@ class _HolidayHistoryState extends State<HolidayHistory> {
   }
 
   // ignore: avoid_types_as_parameter_names
-  Future<void> tripdialogeBuilder(BuildContext context, List<String> img,
-      String tit, String date, String amt, String adult, String vistpalce) {
+   Future<void> dialogBuilder(BuildContext context, EnquiryData enquiryDatas) {
     return showDialog<void>(
       context: context,
       builder: (
@@ -484,8 +484,8 @@ class _HolidayHistoryState extends State<HolidayHistory> {
       ) {
         return AlertDialog(
           title: Container(
-            height: 500,
-            width: 500,
+            height: 400,
+            width: 300,
             color: Colors.white,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -501,69 +501,77 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                       width: 10,
                     ),
                     Text(
-                      'Tourist Details',
+                      'Details',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 5,
                 ),
                 Row(
                   children: [
                     Image.network(
-                      img.last,
-                      height: 100,
-                      width: 150,
+                      enquiryDatas.packageDetails.image.first,
+                      height: 50,
+                      width: 60,
                       fit: BoxFit.cover,
                     ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          enquiryDatas.packageDetails.title,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        // Text(
+                        //    'Date : ${formatDate(enquiryDatas.packageDetails.createdAt,
+                        //            [dd ,'-',mm,'-',yyyy])}',
+                        //   style: TextStyle(
+                        //       fontSize: 12,
+                        //       color: kblue,
+                        //       fontWeight: FontWeight.w500),
+                        // ),
+                      ],
+                    ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Place',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: kblue,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      tit,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: kblue,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
+                const SizedBox(
+                  height: 5,
                 ),
-                Divider(
+                const Divider(
                   thickness: 1,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Date',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold)),
-                    holidayPackageController.enquiryData.isNotEmpty
-                        ? Text(
-                            ' ${formatDate(holidayPackageController.enquiryData.first.createdAt, [
-                                  dd,
-                                  '-',
-                                  mm,
-                                  '-',
-                                  yyyy
-                                ])}',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: kblue,
-                                fontWeight: FontWeight.bold),
-                          )
-                        : Text(''),
+                    Text(
+                      'Date',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      formatDate(enquiryDatas.packageDetails.createdAt,
+                          [dd, '-', mm, '-', yyyy]),
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kgrey,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
                 const Divider(
@@ -579,19 +587,13 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
-                    holidayPackageController.enquiryData.isNotEmpty
-                        ? Container(
-                            child: Text(
-                              holidayPackageController.enquiryData.first
-                                  .packageDetails.placeToVisit,
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: kblue,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          )
-                        : Text(''),
+                    Text(
+                      enquiryDatas.packageDetails.duration,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kgrey,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
                 const Divider(
@@ -601,17 +603,17 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Country',
+                      'Places',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      '',
+                      enquiryDatas.packageDetails.location,
                       style: TextStyle(
                           fontSize: 15,
-                          color: kblue,
+                          color: kgrey,
                           fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -629,19 +631,35 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
-                    holidayPackageController.enquiryData.isNotEmpty
-                        ? Text(
-                            holidayPackageController
-                                .enquiryData.first.adultCount,
-                            style: TextStyle(
-                                fontSize: 15,
-                                color: kblue,
-                                fontWeight: FontWeight.w500),
-                          )
-                        : Text(
-                            '0',
-                            style: TextStyle(fontSize: 15),
-                          ),
+                    Text(
+                      enquiryDatas.adultCount,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kgrey,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Child',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      enquiryDatas.childCount,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kgrey,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
                 const Divider(
@@ -658,7 +676,7 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      amt,
+                      "₹ ${enquiryDatas.packageDetails.amount.toString()}",
                       style: const TextStyle(
                           fontSize: 15,
                           color: Colors.green,
@@ -695,22 +713,24 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                     itemBuilder: ((context, index) {
                       return InkWell(
                         onTap: () {
-                          tripdialogeBuilder(
-                            context,
-                            holidayPackageController
-                                .enquiryData[index].packageDetails.image,
-                            holidayPackageController
-                                .enquiryData[index].packageDetails.title,
-                            holidayPackageController
-                                .enquiryData[index].packageDetails.createdAt
-                                .toString(),
-                            holidayPackageController
-                                .enquiryData[index].packageDetails.amount,
-                            holidayPackageController
-                                .enquiryData[index].adultCount,
-                            holidayPackageController
-                                .enquiryData[index].packageDetails.placeToVisit,
-                          );
+                          dialogBuilder(context,
+                          holidayPackageController.enquiryData[index]);
+                          // tripdialogeBuilder(
+                          //   context,
+                          //   holidayPackageController
+                          //       .enquiryData[index].packageDetails.image,
+                          //   holidayPackageController
+                          //       .enquiryData[index].packageDetails.title,
+                          //   holidayPackageController
+                          //       .enquiryData[index].packageDetails.createdAt
+                          //       .toString(),
+                          //   holidayPackageController
+                          //       .enquiryData[index].packageDetails.amount,
+                          //   holidayPackageController
+                          //       .enquiryData[index].adultCount,
+                          //   holidayPackageController
+                          //       .enquiryData[index].packageDetails.placeToVisit,
+                          // );
                         },
                         child: Container(
                           height: MediaQuery.of(context).size.height,

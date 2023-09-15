@@ -45,7 +45,7 @@ class _ProfileWalletScreenState extends State<ProfileWalletScreen> {
                               right:0,
                               bottom:0,
                               child: Center(
-                                child: Text('Wallet Us',
+                                child: Text('Wallet',
                                    style: displayfont,
                                                           
                                 ),

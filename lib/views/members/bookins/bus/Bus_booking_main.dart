@@ -598,124 +598,124 @@ class _BusBookingMainState extends State<BusBookingMain> {
                   }),
             ),
             // if (flaightshowController.flaightshowindex.value == 0)
-            Padding(
-              padding: const EdgeInsets.only(top: 60),
-              child: Container(
-                height: 220,
-                width: MediaQuery.of(context).size.width * 0.8,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: kwhite.withOpacity(0.8),
-                    boxShadow: <BoxShadow>[
-                      BoxShadow(
-                          offset: Offset(0.0, 0.75),
-                          blurRadius: 5,
-                          color: kgrey)
-                    ]),
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 80),
-                      child: Container(
-                        height: 200,
-                        width: 300,
-                        alignment: Alignment.centerLeft,
-                        child: Image.asset(
-                          'assets/images/appdownimage.png',
-                          height: 300,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    ),
-                    //     if (flaightshowController.flaightshowindex.value == 2)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 50, bottom: 30),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            child: TextField(
-                              cursorColor: kblue,
-                              //   controller: mobilenumberController,
-                              decoration: InputDecoration(
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(color: kblue)),
-                                  prefixIcon: Padding(
-                                    padding: const EdgeInsets.only(left: 10),
-                                    child: Image.asset(
-                                      'assets/images/indiaflaimgae.png',
-                                      height: 10,
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                  ),
-                                  hintText: ' +91 - enter mobile number',
-                                  suffixIcon: Container(
-                                    height: 50,
-                                    width: 190,
-                                    decoration: BoxDecoration(
-                                        gradient: LinearGradient(
-                                            colors: [kyellow, kOrange])),
-                                    child: Center(
-                                      child: Text(
-                                        'Get App Link',
-                                        style: TextStyle(
-                                            fontSize: 20, color: kwhite),
-                                      ),
-                                    ),
-                                  ),
-                                  border: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                    color: kblue,
-                                  ))),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    //   if (flaightshowController.flaightshowindex.value == 0)
-                    Padding(
-                      padding: const EdgeInsets.only(),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Image.asset(
-                            'assets/images/appsimage.png',
-                          ),
-                          Image.asset(
-                            'assets/images/scanerimage.png',
-                            height: 200,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ],
-                      ),
-                    ),
-                    //   if (flaightshowController.flaightshowindex.value == 0)
-                    Positioned(
-                        left: 140,
-                        top: 50,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Download the App Now!',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 25, color: kblue),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Text(
-                                'Use code WELCOMEMMT and get up to first domestic Flight booking',
-                                style: TextStyle(fontSize: 15, color: kblue),
-                              ),
-                            )
-                          ],
-                        )),
-                  ],
-                ),
-              ),
-            ),
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 60),
+            //   child: Container(
+            //     height: 220,
+            //     width: MediaQuery.of(context).size.width * 0.8,
+            //     decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(12),
+            //         color: kwhite.withOpacity(0.8),
+            //         boxShadow: <BoxShadow>[
+            //           BoxShadow(
+            //               offset: Offset(0.0, 0.75),
+            //               blurRadius: 5,
+            //               color: kgrey)
+            //         ]),
+            //     child: Stack(
+            //       children: [
+            //         Padding(
+            //           padding: const EdgeInsets.only(bottom: 80),
+            //           child: Container(
+            //             height: 200,
+            //             width: 300,
+            //             alignment: Alignment.centerLeft,
+            //             child: Image.asset(
+            //               'assets/images/appdownimage.png',
+            //               height: 300,
+            //               fit: BoxFit.cover,
+            //             ),
+            //           ),
+            //         ),
+            //         //     if (flaightshowController.flaightshowindex.value == 2)
+            //         Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           mainAxisAlignment: MainAxisAlignment.end,
+            //           children: [
+            //             Padding(
+            //               padding: const EdgeInsets.only(left: 50, bottom: 30),
+            //               child: Container(
+            //                 width: MediaQuery.of(context).size.width * 0.4,
+            //                 child: TextField(
+            //                   cursorColor: kblue,
+            //                   //   controller: mobilenumberController,
+            //                   decoration: InputDecoration(
+            //                       focusedBorder: OutlineInputBorder(
+            //                           borderSide: BorderSide(color: kblue)),
+            //                       prefixIcon: Padding(
+            //                         padding: const EdgeInsets.only(left: 10),
+            //                         child: Image.asset(
+            //                           'assets/images/indiaflaimgae.png',
+            //                           height: 10,
+            //                           fit: BoxFit.fitHeight,
+            //                         ),
+            //                       ),
+            //                       hintText: ' +91 - enter mobile number',
+            //                       suffixIcon: Container(
+            //                         height: 50,
+            //                         width: 190,
+            //                         decoration: BoxDecoration(
+            //                             gradient: LinearGradient(
+            //                                 colors: [kyellow, kOrange])),
+            //                         child: Center(
+            //                           child: Text(
+            //                             'Get App Link',
+            //                             style: TextStyle(
+            //                                 fontSize: 20, color: kwhite),
+            //                           ),
+            //                         ),
+            //                       ),
+            //                       border: OutlineInputBorder(
+            //                           borderSide: BorderSide(
+            //                         color: kblue,
+            //                       ))),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //         //   if (flaightshowController.flaightshowindex.value == 0)
+            //         Padding(
+            //           padding: const EdgeInsets.only(),
+            //           child: Row(
+            //             mainAxisAlignment: MainAxisAlignment.end,
+            //             children: [
+            //               Image.asset(
+            //                 'assets/images/appsimage.png',
+            //               ),
+            //               Image.asset(
+            //                 'assets/images/scanerimage.png',
+            //                 height: 200,
+            //                 fit: BoxFit.fitHeight,
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //         //   if (flaightshowController.flaightshowindex.value == 0)
+            //         Positioned(
+            //             left: 140,
+            //             top: 50,
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 Text(
+            //                   'Download the App Now!',
+            //                   textAlign: TextAlign.center,
+            //                   style: TextStyle(fontSize: 25, color: kblue),
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.only(top: 5),
+            //                   child: Text(
+            //                     'Use code WELCOMEMMT and get up to first domestic Flight booking',
+            //                     style: TextStyle(fontSize: 15, color: kblue),
+            //                   ),
+            //                 )
+            //               ],
+            //             )),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             ksizedbox30,
             RegisterCommonBottom()
           ],

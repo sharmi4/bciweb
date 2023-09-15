@@ -70,20 +70,26 @@ class HolidayPackageController extends GetxController {
   }
 
   //get package details api
-  GetPackageDetailsApiServices getPackageDetailsApiServices =
-      GetPackageDetailsApiServices();
+  //get package details api
+  GetPackageDetailsApiServices getPackageDetailsApiServices = GetPackageDetailsApiServices();
   List<GetPackageDetailsData> getPackageDetailsData = [];
 
   packageDetails({required String packageid}) async {
     getPackageDetailsData.clear();
 
-    dio.Response<dynamic> response = await getPackageDetailsApiServices
-        .getPackageDetailsApiServices(packageid: packageid);
-    if (response.statusCode == 200) {
-      GetPackageDetails getPackageDetails =
-          GetPackageDetails.fromJson(response.data);
+    dio.Response<dynamic> response = await getPackageDetailsApiServices.
+    getPackageDetailsApiServices(packageid: packageid);
+    if(response.statusCode == 200){
+      GetPackageDetails getPackageDetails = GetPackageDetails.fromJson(response.data);
       getPackageDetailsData.add(getPackageDetails.data);
-    } else {
+    }else if(response.statusCode == 404){
+      Get.rawSnackbar(
+          backgroundColor: Colors.black,
+          messageText: Text(
+            "Package not found",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }else{
       Get.rawSnackbar(
           backgroundColor: Colors.red,
           messageText: Text(

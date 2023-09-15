@@ -1,3 +1,4 @@
+import 'package:bciweb/views/members/bookins/hotels/resort.dart';
 import 'package:bciweb/views/members/bookins/hotels/resort_details_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -517,7 +518,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                           ),
                         )
                       : Container(
-                          width: size.width * 0.6,
+                          width: size.width * 0.7,
                           // color: kblue,
                           //  height: 500,
                           child: ListView.builder(
@@ -609,9 +610,9 @@ class _BookingHotelsState extends State<BookingHotels> {
                                             ),
                                             ksizedbox10,
                                             InkWell(
-                                              // onTap: () {
-                                              //   Get.to(ResortBooking());
-                                              // },
+                                              onTap: () {
+                                                Get.to(ResortBooking());
+                                              },
                                               child: Container(
                                                 height: 30,
                                                 width: 120,

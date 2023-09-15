@@ -20,7 +20,7 @@ class GetEnquiryListApiServices extends BaseApiService {
               'Authorization': 'Bearer $authtoken'
             },
             followRedirects: false,
-            validateStatus: (status) {
+            validateStatus: (status) { 
               return status! <= 500;
             }),
       );

@@ -23,6 +23,22 @@ class BookingTrip extends StatefulWidget {
 }
 
 class _BookingTripState extends State<BookingTrip> {
+
+    DateTime selectedDate = DateTime.now();
+
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
+  }
   final holidayPackageController = Get.find<HolidayPackageController>();
   final searchController = TextEditingController();
 
@@ -154,63 +170,71 @@ class _BookingTripState extends State<BookingTrip> {
                               borderRadius: BorderRadius.circular(10)),
                         ),
                         Container(
-                          child: HStack([
-                            VStack([
-                              Text('WHERE YOU WANT TO GO').text.xl2.bold.make(),
-                              HStack([
-                                Icon(
-                                  Icons.search,
-                                  color: kgrey,
-                                ),
-                                Text('Search your Location')
-                                    .text
-                                    .semiBold
-                                    .gray400
-                                    .make()
-                              ])
-                            ]).px24(),
-                            Spacer(),
-                            VStack(
-                              [
-                                Text('Check-in').text.xl2.bold.make(),
-                                HStack(
-                                  [
-                                    Text('Add Date')
-                                        .text
-                                        .semiBold
-                                        .gray400
-                                        .make()
-                                  ],
-                                )
-                              ],
-                            ).px24(),
-                            Spacer(),
-                            VStack([
-                              Text('Check-OUT').text.xl2.bold.make(),
-                              HStack([
-                                Text('Add Date').text.semiBold.gray400.make()
-                              ])
-                            ]),
-                            Spacer(),
-                            InkWell(
-                              onTap: () {
-                                // Get.to(HolidaysScreen());
-                              },
-                              child: VxBox(
-                                      child: Text('Explore Now')
-                                          .text
-                                          .xl2
-                                          .semiBold
-                                          .white
-                                          .make()
-                                          .px12())
-                                  .color(Vx.orange500)
-                                  .roundedLg
-                                  .p24
-                                  .make()
-                                  .px20(),
-                            )
-                          ]),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GetBuilder<HolidayPackageController>(builder: (_) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Container(
+                        height: 55,
+                        width: size.width * 0.5,
+                        child: TextFormField(
+                            controller: searchController,
+                            decoration: InputDecoration(
+                              hintText: 'Search',
+                              fillColor: const Color(0xFFFFFFFF),
+                              focusColor: Colors.grey[200],
+                              isDense: true,
+                              filled: true,
+                              border: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    width: 0.5,
+                                    color: Colors.grey.withOpacity(0.2)),
+                                borderRadius: BorderRadius.circular(19.0),
+                              ),
+                              prefixIcon: const Icon(
+                                Icons.search,
+                                color: Colors.grey,
+                              ),
+                            )),
+                      ),
+                      InkWell(
+                        onTap: (){},
+                        child: Container(
+                          height: 45,
+                          width: 150,
+                          decoration: BoxDecoration(
+                            color: kOrange,
+                            borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: Center(child: Text('Search Now',
+                          style: TextStyle(
+                            fontSize: 17,
+                            color: kwhite
+                          ),)),
+                        ),
+                      )
+                    ],
+                  );
+                }),
+                // const Text('Search city , Country, Place for Travel advisory')
+                //     .text
+                //     .thin
+                //     .gray600
+                //     .make()
+                //     .box
+                //     .p12
+                //     .rounded
+                //     .pink300
+                //     .width(context.percentWidth * 70)
+                //     .make()
+                //     .pSymmetric(v: 40, h: 20),
+              ],
+            ),
                           height: 140,
                           width: size.width * 0.8,
                           decoration: BoxDecoration(
@@ -229,48 +253,7 @@ class _BookingTripState extends State<BookingTrip> {
               ],
             ),
             ksizedbox40,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                GetBuilder<HolidayPackageController>(builder: (_) {
-                  return Container(
-                    height: 55,
-                    width: size.width * 0.5,
-                    child: TextFormField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                          hintText: 'Search',
-                          fillColor: const Color(0xFFFFFFFF),
-                          focusColor: Colors.grey[200],
-                          isDense: true,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 0.5,
-                                color: Colors.grey.withOpacity(0.2)),
-                            borderRadius: BorderRadius.circular(19.0),
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.search,
-                            color: Colors.grey,
-                          ),
-                        )),
-                  );
-                }),
-                // const Text('Search city , Country, Place for Travel advisory')
-                //     .text
-                //     .thin
-                //     .gray600
-                //     .make()
-                //     .box
-                //     .p12
-                //     .rounded
-                //     .pink300
-                //     .width(context.percentWidth * 70)
-                //     .make()
-                //     .pSymmetric(v: 40, h: 20),
-              ],
-            ),
+           
             Container(
               height: 80,
               child: GetBuilder<HolidayPackageController>(builder: (_) {
@@ -365,7 +348,7 @@ class _BookingTripState extends State<BookingTrip> {
                                 Get.to(HolidaysScreen(
                                   packageId: holidayPackageController
                                       .packageListData[index].id
-                                      .toString(),
+                                      .toString(), getPackageDetailsData: holidayPackageController.getPackageDetailsData.first,
                                 ));
                               },
                               child: Container(
@@ -461,7 +444,8 @@ class _BookingTripState extends State<BookingTrip> {
                               padding: const EdgeInsets.all(8.0),
                               child: InkWell(
                                 onTap: (){
-                                  Get.to(HolidaysScreen(packageId: holidayPackageController.recomendedListData[index].id.toString(),));
+                                  Get.to(HolidaysScreen(packageId: holidayPackageController.recomendedListData[index].id.toString(), 
+                                  getPackageDetailsData: holidayPackageController.getPackageDetailsData.first,));
                                 },
                                 child: Container(
                                 height: 110,
