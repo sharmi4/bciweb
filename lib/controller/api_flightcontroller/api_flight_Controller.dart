@@ -1,9 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
-import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import '../../models/air_reprint_model.dart';
 import '../../models/air_search_model.dart';

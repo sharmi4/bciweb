@@ -36,7 +36,7 @@ class _HotelHistoryState extends State<HotelHistory> {
       throw 'Could not launch Google Maps';
     }
   }
-
+  bool isLoading = false;
   Future<void> dialogBuilder(
       BuildContext context, BookingList bookingData, Result result) {
     return showDialog<void>(
@@ -459,8 +459,17 @@ class _HotelHistoryState extends State<HotelHistory> {
                       ),
                     ),
                   ),
-            ksizedbox40
-          ],
+            ksizedbox40,
+         if(isLoading)  Container(
+                    height: 300,
+                    width: 300,
+                    decoration:
+                        const BoxDecoration(color: Color.fromARGB(22, 0, 0, 0)),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                      color: kOrange,
+                    ),),
+                  )  ],
         );
       },
     );

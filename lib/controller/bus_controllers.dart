@@ -119,6 +119,7 @@ class BusController extends GetxController {
   BusSeatMapApiService busSeatMapApiService = BusSeatMapApiService();
   List<SeatMap> seatMap = [];
   List<String> seatIds = [];
+  List<List<SeatMap>> seatMapList = [];
   RxDouble totalAmount = 0.0.obs;
 
   RxString seatMapKey = "".obs;
@@ -146,6 +147,39 @@ class BusController extends GetxController {
           style: primaryFont.copyWith(color: Colors.white),
         ),
       );
+    }
+    update();
+  }
+
+
+    generateBusSeats(List<SeatMap> seatMap) {
+    List<int> rowList = [];
+
+    for (int k = 0; k < seatMap.length; k++) {
+      rowList.add(int.parse(seatMap[k].row));
+    }
+
+    List<int> uniqueList = rowList.toSet().toList();
+
+    // Sort the unique list
+    uniqueList.sort();
+
+    for (int i = 0; i < uniqueList.length; i++) {
+      int rowNumber = uniqueList[i];
+
+      List<SeatMap> tempList = [];
+
+      for (int j = 0; j < seatMap.length; j++) {
+        int tempRowNum = int.parse(seatMap[j].row.toString());
+
+        print(rowNumber == tempRowNum);
+
+        if (rowNumber == tempRowNum) {
+          tempList.add(seatMap[j]);
+        }
+      }
+      print(tempList.length);
+      seatMapList.add(tempList);
     }
     update();
   }
