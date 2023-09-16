@@ -6,18 +6,43 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../../../controller/hotel_controller/hotel_controller.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../members/common_widget/common.dart';
 
 class ResortBooking extends StatefulWidget {
-  const ResortBooking({super.key});
+  final String userIp;
+  final String resultIndex;
+  final String hotelcode;
+  final String searchtoken;
+  const ResortBooking({super.key,
+   required this.userIp, 
+   required this.resultIndex, 
+   required this.hotelcode, 
+   required this.searchtoken});
+
 
   @override
   State<ResortBooking> createState() => _ResortBookingState();
 }
 
 class _ResortBookingState extends State<ResortBooking> {
+    @override
+  void initState() {
+    super.initState();
+    hotelController.hotelInfo(
+        userIp: widget.userIp,
+        resultIndex: widget.resultIndex,
+        hotelCode: widget.hotelcode,
+        searchToken: widget.searchtoken);
+    hotelController.getHotelRoomApiServices(
+        userIp: widget.userIp,
+        resultIndex: widget.resultIndex,
+        hotelCode: widget.hotelcode,
+        searchToken: widget.searchtoken);
+  }
+    final hotelController = Get.find<HotelController>();
   List hotelsimage = [
     'assets/images/hotelimage1.jpg',
     'assets/images/hotelimage2.jpg',
@@ -92,6 +117,29 @@ class _ResortBookingState extends State<ResortBooking> {
                     ],
                   ),
                 ),
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: hotelController.hotelRoomsData.isEmpty
+                        ? const Text('')
+                        : Container(
+                            height: 50,
+                            child: ListView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              itemCount: hotelController.hotelRoomsData.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return ListTile(
+                                  title: Text(hotelController
+                                      .hotelRoomsData
+                                      .first
+                                      .hotelRoomsDetails[index]
+                                      .amenity
+                                      .first
+                                      .toString()),
+                                );
+                              },
+                            ),
+                          ),
+                  ),
                 Padding(
                   padding: const EdgeInsets.only(left: 10),
                   child: Container(
@@ -99,61 +147,94 @@ class _ResortBookingState extends State<ResortBooking> {
                     //    width: size.width,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,                      
                       children: [
-                        Text(
-                          'Alagoa Resort',
+                       hotelController.hotelRoomsData.isEmpty?Text(''): Text(
+                          hotelController.hotelRoomsData.first.hotelRoomsDetails.first.roomDescription,
                           style: TextStyle(
                               fontSize: 22, fontWeight: FontWeight.bold),
                         ),
-                        Text('''Betalbatim, Goa  1.8 km from Betalbatim Beach''')
-                            .text
-                            .blue900
-                            .xl2
-                            .thin
-                            .make(),
-                        Text('Raiting').text.blue900.xl2.semiBold.make().p1(),
-                        Text('Per Night')
-                            .text
-                            .blue900
-                            .xl2
-                            .semiBold
-                            .thin
-                            .make()
-                            .p1(),
-                        Text('₹ 3,550 ').text.blue900.xl2.make().p1(),
-                        Text('₹ 2,806 ').text.orange500.xl2.make().p1(),
-                        Text(' + ₹ 573 taxes & fees ')
-                            .text
-                            .gray500
-                            .xl2
-                            .make()
-                            .p1(),
-                        Text(' Saving ₹ 744')
-                            .text
-                            .orange500
-                            .thin
-                            .xl2
-                            .make()
-                            .p1(),
-                        Container(
-                          height: 45,
-                          width: 160,
-                          child: Center(
-                              child: Text('Book Now')
-                                  .text
-                                  .semiBold
-                                  .xl2
-                                  .white
-                                  .make()),
-                          decoration: BoxDecoration(
-                              color: kblue,
-                              borderRadius: BorderRadius.circular(15)),
-                        )
+                               Padding(
+                    padding: const EdgeInsets.only(right: 10, top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        // Image.asset('assets/images/Group 5822(1).png'),
+                        Obx(
+                          () => SizedBox(
+                            height: 58,
+                            width: 200,
+                            child: hotelController.isLoading.isTrue
+                                ? ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: kblue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      // hotelController.blockroomapi(
+                                      //     userIp: widget.userIp,
+                                      //     resultIndex: widget.resultIndex,
+                                      //     hotelCode: widget.hotelCode,
+                                      //     hotelName: hotelController
+                                      //         .hotelInfoData.first.hotelName,
+                                      //     searchToken: widget.searchToken,
+                                      //     hotelRoomsDetail: hotelController
+                                      //         .hotelRoomsData
+                                      //         .first
+                                      //         .hotelRoomsDetails
+                                      //         .first);
+                                      // Get.to(Sucssesspage());
+                                      // Get.to(BusinessGenerate_otp
+                                      // ());
+                                    },
+                                    child: const CircularProgressIndicator(
+                                      color: Colors.white,
+                                    ),
+                                  )
+                                : ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: kblue,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      hotelController.blockroomapi(
+                                          userIp: widget.userIp,
+                                          hotelInfoData: hotelController
+                                              .hotelInfoData.first,
+                                          resultIndex: widget.resultIndex,
+                                          hotelCode: widget.hotelcode,
+                                          hotelName: hotelController
+                                              .hotelInfoData.first.hotelName,
+                                          searchToken: widget.searchtoken,
+                                          hotelRoomsDetail: hotelController
+                                              .hotelRoomsData
+                                              .first
+                                              .hotelRoomsDetails
+                                              .first);
+                                      // Get.to(Sucssesspage());
+                                      // Get.to(BusinessGenerate_otp
+                                      // ());
+                                    },
+                                    child: const Text(
+                                      'Book Now',
+                                      style: TextStyle(
+                                          fontSize: 22,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                          ),
+                        ),
                       ],
                     ),
-                  ),
-                ),
+                  ),]
+                    )
+                  )
+                    )
               ],
             ),
           ),

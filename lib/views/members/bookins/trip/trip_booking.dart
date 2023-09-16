@@ -203,7 +203,9 @@ class _BookingTripState extends State<BookingTrip> {
                             )),
                       ),
                       InkWell(
-                        onTap: (){},
+                        onTap: (){
+
+                        },
                         child: Container(
                           height: 45,
                           width: 150,
@@ -348,7 +350,7 @@ class _BookingTripState extends State<BookingTrip> {
                                 Get.to(HolidaysScreen(
                                   packageId: holidayPackageController
                                       .packageListData[index].id
-                                      .toString(), getPackageDetailsData: holidayPackageController.getPackageDetailsData.first,
+                                      .toString(),
                                 ));
                               },
                               child: Container(
@@ -444,8 +446,9 @@ class _BookingTripState extends State<BookingTrip> {
                               padding: const EdgeInsets.all(8.0),
                               child: InkWell(
                                 onTap: (){
-                                  Get.to(HolidaysScreen(packageId: holidayPackageController.recomendedListData[index].id.toString(), 
-                                  getPackageDetailsData: holidayPackageController.getPackageDetailsData.first,));
+                                  Get.to(HolidaysScreen(packageId: holidayPackageController.recomendedListData[index].id.toString()
+                                  )); 
+                                  //getPackageDetailsData: holidayPackageController.getPackageDetailsData.first,));
                                 },
                                 child: Container(
                                 height: 110,

@@ -472,9 +472,12 @@ class _HolidayHistoryState extends State<HolidayHistory> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    holidayPackageController.enquiryList();
+    setdefault();
+   
   }
-
+setdefault()async{
+ await holidayPackageController.enquiryList();
+}
   // ignore: avoid_types_as_parameter_names
    Future<void> dialogBuilder(BuildContext context, EnquiryData enquiryDatas) {
     return showDialog<void>(
@@ -749,14 +752,18 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-                                    child: Image.network(
-                                      holidayPackageController
-                                          .enquiryData[index]
-                                          .packageDetails
-                                          .image
-                                          .last,
-                                    )),
+                                  borderRadius: BorderRadius.circular(10),
+                                  child: Image.network(
+                                        holidayPackageController
+                                            .enquiryData[index]
+                                            .packageDetails
+                                            .image
+                                            .first,
+                                        height: 150,
+                                        width: 150,
+                                        fit: BoxFit.cover,
+                                      ),
+                                ),
                               ),
                               kwidth10,
                               Column(
@@ -768,48 +775,61 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                                   Text(
                                     holidayPackageController.enquiryData[index]
                                         .packageDetails.title,
-                                    style: TextStyle(fontSize: 18),
+                                        maxLines: 2,
+                                        
+                                    style: TextStyle(fontSize: 18,
+                                    fontWeight: FontWeight.bold),
                                   ),
-                                  Text(
-                                    '${holidayPackageController.enquiryData[index].packageDetails.location}',
-                                    style: TextStyle(color: kblue),
+                                  
+                                                                    Text(
+                                    '₹${holidayPackageController.enquiryData[index].packageDetails.amount}',
+                                    style: TextStyle(color: kblue,
+                                    fontSize: 15),
                                   ),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceAround,
-                                    children: [
-                                      Text(
-                                        'Check in${formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [
-                                              dd,
-                                              "-",
-                                              mm,
-                                              '-',
-                                              yyyy
-                                            ])}',
-                                        style: TextStyle(color: kblue),
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text(
-                                        'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [
-                                              dd,
-                                              "-",
-                                              mm,
-                                              '-',
-                                              yyyy
-                                            ])}',
-                                        style: TextStyle(color: kblue),
-                                      ),
-                                    ],
+
+                                  // Row(
+                                  //   mainAxisAlignment:
+                                  //       MainAxisAlignment.spaceAround,
+                                  //   children: [
+                                  //     Text(
+                                  //       'Check in${formatDate(holidayPackageController.enquiryData[index].packageDetails.createdAt, [
+                                  //             dd,
+                                  //             "-",
+                                  //             mm,
+                                  //             '-',
+                                  //             yyyy
+                                  //           ])}',
+                                  //       style: TextStyle(color: kblue),
+                                  //     ),
+                                  //     SizedBox(
+                                  //       width: 20,
+                                  //     ),
+                                  //     // Text(
+                                  //     //   'Check out ${formatDate(holidayPackageController.enquiryData[index].packageDetails.updatedAt, [
+                                  //     //         dd,
+                                  //     //         "-",
+                                  //     //         mm,
+                                  //     //         '-',
+                                  //     //         yyyy
+                                  //     //       ])}',
+                                  //     //   style: TextStyle(color: kblue),
+                                  //     // ),
+                                  //   ],
+                                  // ),
+                                                                    Text(
+                                    '${holidayPackageController.enquiryData[index].packageDetails.duration}',
+                                    style: TextStyle(color: kblue,
+                                    fontSize: 15),
                                   ),
                                   Text(
                                     'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
-                                    style: TextStyle(color: kblue),
+                                    style: TextStyle(color: kblue,
+                                    fontSize: 15),
                                   ),
-                                  Text(
-                                    'Ac Rooms',
-                                    style: TextStyle(color: kblue),
+                                   Text(
+                                    '${holidayPackageController.enquiryData[index].packageDetails.location}',
+                                    style: TextStyle(color: kblue,
+                                    fontSize: 15),
                                   ),
                                   ksizedbox20
                                 ],

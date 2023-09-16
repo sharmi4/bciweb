@@ -1,5 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/holiday_package_controller.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +16,8 @@ import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 
 class HolidaysScreen extends StatefulWidget {
   String packageId;
-  GetPackageDetailsData getPackageDetailsData;
-  HolidaysScreen({super.key, required this.packageId,required this.getPackageDetailsData});
+  //GetPackageDetailsData getPackageDetailsData;
+  HolidaysScreen({super.key, required this.packageId});
 
   @override
   State<HolidaysScreen> createState() => _HolidaysScreenState();
@@ -42,20 +43,57 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    profileController.getProfile();
-    holidayPackageController.packageDetails(packageid: widget.packageId);
-    holidayPackageController.adult(1);
-    holidayPackageController.child(0);
-    holidayPackageController.infant(0);
     setDefault();
+   
   }
     setDefault() async{
     
-    packagenameController.text = widget.getPackageDetailsData.title;
+  await profileController.getProfile();
+   await holidayPackageController.packageDetails(packageid: widget.packageId);
+    holidayPackageController.adult(1);
+    holidayPackageController.child(0);
+    holidayPackageController.infant(0);
+     packagenameController.text =  holidayPackageController.getPackageDetailsData.first.title;
   //  await profileController.getProfile();
   //   print("--------------------->>${profileController.profileData}");
   //   nameController.text = profileController.profileData.first.name;
     // emailController.text = profileController.profileData.first.email;
+  }
+    DateTime date = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: date,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime.now(),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now().add(const Duration(days: 6570)),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null)
+      setState(() {
+        date = picked;
+        dateOfDepController.text = formatDate(date, [dd, "/", mm, "/", yyyy]);
+      });
   }
   int holidayindex = 0;
   @override
@@ -67,7 +105,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: SingleChildScrollView(
           child: GetBuilder<HolidayPackageController>(builder: (_) {
-        return Column(children: [
+        return holidayPackageController.getPackageDetailsData.isEmpty?Text('No Data') :Column(children: [
           RegisterCommonContainer(),
           Container(
             height: 500,
@@ -112,7 +150,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                             Padding(
                               padding: const EdgeInsets.only(left: 20),
                               child: Text(
-                                'Incredible Mauritius (EX - Delhi)',
+                                holidayPackageController.getPackageDetailsData.first.title,
                                 style: TextStyle(
                                     fontSize: 24, fontWeight: FontWeight.bold),
                               ),
@@ -1002,10 +1040,12 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                             ksizedbox10,
                             Padding(
                               padding: const EdgeInsets.only(top: 10, left: 15),
-                              child: Text(
-                                'Date of Departure',
-                                style: TextStyle(
-                                    fontSize: 17, fontWeight: FontWeight.w500),
+                              child: InkWell(
+                                child: Text(
+                                  'Date of Departure',
+                                  style: TextStyle(
+                                      fontSize: 17, fontWeight: FontWeight.w500),
+                                ),
                               ),
                             ),
                             ksizedbox10,
@@ -1016,8 +1056,19 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 width: MediaQuery.of(context).size.width * 0.25,
                                 child: TextField(
                                   controller: dateOfDepController,
+                                  onTap: (){
+                                       _selectDate(context);
+                                  },
+                                   
                                   decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
+                                     isDense: true,
+                                    border:OutlineInputBorder(),
+                                    hintText:dateOfDepController.text,
+                                    hintStyle: TextStyle(
+                                      color: Color(0xff6E6D6E),
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                     ),
                                 ),
                               ),
                             ),
@@ -1278,7 +1329,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                               children: [
                                 InkWell(
                                   onTap: () {
-                                     print("---------testing enquiry--------------");
+                              print("---------testing enquiry--------------");
                               print(widget.packageId);
                               print(cityOfDepController.text);
                               print(dateOfDepController.text);

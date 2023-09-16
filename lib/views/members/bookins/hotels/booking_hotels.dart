@@ -562,7 +562,9 @@ class _BookingHotelsState extends State<BookingHotels> {
                                           children: [
                                             Row(
                                               children: [
-                                                Text('3.8')
+                                                 hotelController.searchHotelData.isEmpty?Text(""
+                                                 ):
+                                                Text( hotelController.searchHotelData.first.starRating.toString())
                                                     .text
                                                     .white
                                                     .semiBold
@@ -610,8 +612,15 @@ class _BookingHotelsState extends State<BookingHotels> {
                                             ),
                                             ksizedbox10,
                                             InkWell(
-                                              onTap: () {
-                                                Get.to(ResortBooking());
+                                              onTap: ()async {
+                                                final prefs=await SharedPreferences.getInstance();
+                                                var searchtocken = prefs.getString("searchtocken");
+                                                Get.to(ResortBooking(
+                                                  hotelcode: hotelController.searchHotelData[index].hotelCode, 
+                                                  resultIndex: hotelController.searchHotelData[index].resultIndex.toString(), 
+                                                  searchtoken: searchtocken??"", 
+                                                  userIp:'122.160.83.78'));
+                                                  hotelController.update();
                                               },
                                               child: Container(
                                                 height: 30,

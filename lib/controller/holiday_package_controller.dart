@@ -27,6 +27,7 @@ class HolidayPackageController extends GetxController {
   GetPackageCategoryApiServices getPackageCategoryApiServices =
       GetPackageCategoryApiServices();
   List<PackageCategoryData> packageCategoryData = [];
+  
 
   getPackageCategory() async {
     dio.Response<dynamic> response =
@@ -99,11 +100,9 @@ class HolidayPackageController extends GetxController {
     }
     update();
   }
-
-  //create enquiry
   CreateEnquiryApiService createEnquiryApiService = CreateEnquiryApiService();
-
-  createEnquiry({
+  //create enquiry
+createEnquiry({
     required String packageid,
     required String cityofdeparture,
     required String dateofdeparture,
@@ -115,35 +114,33 @@ class HolidayPackageController extends GetxController {
     required String mobile,
     required String status,
   }) async {
-    dio.Response<dynamic> response =
-        await createEnquiryApiService.createEnquiryApiService(
-            vendorid: "",
-            packageid: packageid,
-            cityofdeparture: cityofdeparture,
-            dateofdeparture: dateofdeparture,
-            adultcount: adultcount,
-            childcount: childcount,
-            infantcount: infantcount,
-            name: name,
-            email: email,
-            mobile: mobile,
-            status: status);
-    if (response.statusCode == 200) {
-      Get.back();
-      Get.rawSnackbar(
+     dio.Response<dynamic> response = await createEnquiryApiService.createEnquiryApiService(
+      packageid: packageid, 
+      cityofdeparture: cityofdeparture, 
+      dateofdeparture: dateofdeparture, 
+      adultcount: adultcount, 
+      childcount: childcount, 
+      infantcount: infantcount, 
+      name: name, email: email, 
+      mobile: mobile, 
+      status: status
+      );
+      if(response.statusCode == 200){
+          Get.back();
+          Get.rawSnackbar(
           backgroundColor: Colors.green,
           messageText: Text(
             "Enquiry created successfull",
             style: primaryFont.copyWith(color: Colors.white),
           ));
-    } else {
-      Get.rawSnackbar(
+      }else{
+        Get.rawSnackbar(
           backgroundColor: Colors.red,
           messageText: Text(
             "Something went wrong",
             style: primaryFont.copyWith(color: Colors.white),
           ));
-    }
+      }
   }
 
   //search package list api
