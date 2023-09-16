@@ -1,8 +1,9 @@
 import 'dart:io';
-
-import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../base_url/base_url.dart';
+
 
 class GetGalleryApiServices extends BaseApiService {
   Future getgalleryApiServices({required String userid}) async {
@@ -24,7 +25,7 @@ class GetGalleryApiServices extends BaseApiService {
               }),
           data: {"user_id": userid});
       print(
-          "::::::::<get gallery Services Api>::::::::status code::::::::::");
+          "::::::::<get gallery Services Api>::::::::status code:::::::::$userid:");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

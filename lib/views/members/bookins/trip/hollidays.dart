@@ -368,19 +368,33 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                             ),
                             // if (holidayPackageController.getPackageDetailsData
                             //     .first.packageoverview.isNotEmpty)
-                             if(holidayPackageController.getPackageDetailsData.first.packageoverview.isNotEmpty)
+                            if (holidayPackageController.getPackageDetailsData
+                                .first.packageoverview.isNotEmpty)
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  for(int i = 0; i< holidayPackageController.getPackageDetailsData.first.includes.length;i++)
-                                  Row(
-                                    children: [
-                                      Icon(Icons.arrow_right_rounded),
-                                      Text(holidayPackageController.getPackageDetailsData.first.includes[i].value,style: primaryFont.copyWith(
-                                         fontWeight: FontWeight.w500
-                                      ),),
-                                    ],
-                                  )
+                                  for (int i = 0;
+                                      i <
+                                          holidayPackageController
+                                              .getPackageDetailsData
+                                              .first
+                                              .includes
+                                              .length;
+                                      i++)
+                                    Row(
+                                      children: [
+                                        Icon(Icons.arrow_right_rounded),
+                                        Text(
+                                          holidayPackageController
+                                              .getPackageDetailsData
+                                              .first
+                                              .includes[i]
+                                              .value,
+                                          style: primaryFont.copyWith(
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    )
                                 ],
                               ),
                             // Padding(
@@ -719,14 +733,22 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                                   ksizedbox10,
-        holidayPackageController.getPackageDetailsData.isEmpty ? const Center(child: Text("No Data Found"),) :
-        HtmlContentViewer(
-                        htmlContent: holidayPackageController.getPackageDetailsData.first.description,
-                        initialContentHeight:
-                            MediaQuery.of(context).size.height,
-                        initialContentWidth: MediaQuery.of(context).size.width,
-                      ),
+                            ksizedbox10,
+                            holidayPackageController
+                                    .getPackageDetailsData.isEmpty
+                                ? const Center(
+                                    child: Text("No Data Found"),
+                                  )
+                                : HtmlContentViewer(
+                                    htmlContent: holidayPackageController
+                                        .getPackageDetailsData
+                                        .first
+                                        .description,
+                                    initialContentHeight:
+                                        MediaQuery.of(context).size.height,
+                                    initialContentWidth:
+                                        MediaQuery.of(context).size.width,
+                                  ),
                             // Padding(
                             //   padding: const EdgeInsets.only(left: 10,top: 10),
                             //   child: Row(
@@ -889,14 +911,22 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                             ksizedbox20,
-           holidayPackageController.getPackageDetailsData.isEmpty ? const Center(child: Text("No Data Found"),) :
-        HtmlContentViewer(
-                        htmlContent: holidayPackageController.getPackageDetailsData.first.dayWiseItinerary,
-                        initialContentHeight:
-                            MediaQuery.of(context).size.height,
-                        initialContentWidth: MediaQuery.of(context).size.width,
-                      ),
+                            ksizedbox20,
+                            holidayPackageController
+                                    .getPackageDetailsData.isEmpty
+                                ? const Center(
+                                    child: Text("No Data Found"),
+                                  )
+                                : HtmlContentViewer(
+                                    htmlContent: holidayPackageController
+                                        .getPackageDetailsData
+                                        .first
+                                        .dayWiseItinerary,
+                                    initialContentHeight:
+                                        MediaQuery.of(context).size.height,
+                                    initialContentWidth:
+                                        MediaQuery.of(context).size.width,
+                                  ),
                           ])),
                     if (holidayindex == 3)
                       Container(
@@ -938,25 +968,39 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 ],
                               ),
                             ),
-                          
+
                             // if (holidayPackageController.getPackageDetailsData
                             //     .first.packageoverview.isNotEmpty)
-                               const SizedBox(
-                                height: 20,
-                               ),
-                      if(holidayPackageController.getPackageDetailsData.first.packageoverview.isNotEmpty)
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            if (holidayPackageController.getPackageDetailsData
+                                .first.packageoverview.isNotEmpty)
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  for(int i = 0; i< holidayPackageController.getPackageDetailsData.first.includes.length;i++)
-                                  Row(
-                                    children: [
-                                      Icon(Icons.arrow_right_rounded),
-                                      Text(holidayPackageController.getPackageDetailsData.first.includes[i].value,style: primaryFont.copyWith(
-                                         fontWeight: FontWeight.w500
-                                      ),),
-                                    ],
-                                  )
+                                  for (int i = 0;
+                                      i <
+                                          holidayPackageController
+                                              .getPackageDetailsData
+                                              .first
+                                              .includes
+                                              .length;
+                                      i++)
+                                    Row(
+                                      children: [
+                                        Icon(Icons.arrow_right_rounded),
+                                        Text(
+                                          holidayPackageController
+                                              .getPackageDetailsData
+                                              .first
+                                              .includes[i]
+                                              .value,
+                                          style: primaryFont.copyWith(
+                                              fontWeight: FontWeight.w500),
+                                        ),
+                                      ],
+                                    )
                                 ],
                               )
                           ]))

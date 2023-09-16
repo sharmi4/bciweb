@@ -375,22 +375,58 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                   //       color: kOrange),
                   // ),
                   ksizedbox40,
-                  homeController.galleryListData.isEmpty
-                      ? Image.asset(
-                          "assets/icons/no-photo.png",
-                          height: 350,
-                          width: size.width * 0.2,
-                          fit: BoxFit.cover,
-                        )
-                      : ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
-                          child: Image.network(
-                            homeController.galleryListData.first.image,
-                            height: 350,
-                            width: size.width * 0.2,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+              GetBuilder<HomeServiceController>(builder: (_) {
+                    return homeController.galleryListData.isEmpty
+                        ? Container()
+                        : Container(
+                            height: 80,
+                            child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemCount:
+                                    homeController.galleryListData.length,
+                                itemBuilder: (context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10, right: 10),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: InkWell(
+                                        onTap: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                return AlertDialog(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  backgroundColor: Colors.white,
+                                                  title: Column(
+                                                    children: [
+                                                      Image.network(
+                                                          homeController
+                                                              .galleryListData[
+                                                                  index]
+                                                              .image),
+                                                    ],
+                                                  ),
+                                                );
+                                              });
+                                        },
+                                        child: Image.network(
+                                          homeController
+                                              .galleryListData[index].image,
+                                          height: 50,
+                                          width: 80,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }),
+                          );
+                  }),
                 ],
               ),
             ),

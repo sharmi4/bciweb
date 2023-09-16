@@ -165,8 +165,7 @@ class _ServicesState extends State<Services> {
                                                 VendorDetailsScreen(
                                                     vendorListModelData:
                                                         homeController
-                                                            .vendorList[index], userid: homeController
-                                                            .vendorList[index].userId,),
+                                                            .vendorList[index], userid: homeController.vendorList[index].id.toString(),),
                                               );
                                             },
                                             child: Container(

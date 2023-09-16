@@ -172,7 +172,6 @@ class HomeServiceController extends GetxController {
     }
     update();
   }
-
   //get GALLERY
 
   GetGalleryApiServices getgalleryApiService = GetGalleryApiServices();
@@ -181,9 +180,8 @@ class HomeServiceController extends GetxController {
     dio.Response<dynamic> response =
         await getgalleryApiService.getgalleryApiServices(userid: userid);
     if (response.statusCode == 200) {
-      List<GalleryListModel> getGalleryList = List<GalleryListModel>.from(
-          response.data.map((x) => GalleryListModel.fromJson(x)));
-      galleryListData = getGalleryList;
+    GetGalleryModel getGalleryList = GetGalleryModel.fromJson(response.data);
+      galleryListData = getGalleryList.data;
     } else {
       // Get.rawSnackbar(
       //     backgroundColor: Colors.red,
