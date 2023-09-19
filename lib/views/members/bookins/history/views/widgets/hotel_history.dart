@@ -346,8 +346,8 @@ class _HotelHistoryState extends State<HotelHistory> {
         return Column(
           children: [
             hotelBookingController.bookingList.isEmpty
-                ? const Center(
-                    child: Text("No bookings found"),
+                ?  Center(
+                    child: Image.asset('assets/icons/Group 39781.png',height: 500,),
                   )
                 : Padding(
                     padding: const EdgeInsets.all(8.0),

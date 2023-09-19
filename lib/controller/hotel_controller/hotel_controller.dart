@@ -122,7 +122,6 @@ class HotelController extends GetxController {
     required String hotelCode,
     required String searchToken,
   }) async {
-    
     hotelRoomsData.clear();
     dio.Response<dynamic> response =
         await hotelroomsApiServices.getHotelRoomApiServices(
@@ -130,7 +129,7 @@ class HotelController extends GetxController {
             resultIndex: resultIndex,
             hotelCode: hotelCode,
             searchToken: searchToken);
-  
+
     if (response.statusCode == 200) {
       GetHotelRoomModel hotelRoomsModel =
           GetHotelRoomModel.fromJson(response.data);
@@ -157,14 +156,14 @@ class HotelController extends GetxController {
     required String searchToken,
   }) async {
     hotelInfoData.clear();
-   
+
     dio.Response<dynamic> response =
         await hotelInfoApiServices.hotelInfoApiServices(
             userIp: userIp,
             resultIndex: resultIndex,
             hotelCode: hotelCode,
             searchToken: searchToken);
-   
+
     if (response.statusCode == 200) {
       HotelInfoModel hotelInfoModel = HotelInfoModel.fromJson(response.data);
       hotelInfoData.add(hotelInfoModel.result);

@@ -3,10 +3,8 @@ import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
-
 import '../../controller/auth_controller/auth_profile_controller.dart';
 import '../../registerhomescreen/common_reg_homescreen.dart';
 import 'bookins/flight/booking_flight.dart';

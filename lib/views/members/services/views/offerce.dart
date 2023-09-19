@@ -1,14 +1,9 @@
 
-
-
 import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-
 import '../../../../constant/constans.dart';
-//import '../../../../registerhomescreen/common_reg_appbar';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';

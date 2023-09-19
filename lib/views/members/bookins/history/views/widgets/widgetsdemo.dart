@@ -36,8 +36,11 @@ class _FlightBookingHistoryState extends State<FlightBookingHistory> {
             //  height: 500,
             // width: size.width * 0.5,
             child: flightController.flightBookingHistoyrList.isEmpty
-                ? const Center(
-                    child: Text("No bookings found"),
+                ? Center(
+                    child: Image.asset(
+                      'assets/icons/Group 39781.png',
+                      height: 500,
+                    ),
                   )
                 : ListView.builder(
                     shrinkWrap: true,
@@ -473,13 +476,14 @@ class _HolidayHistoryState extends State<HolidayHistory> {
     // TODO: implement initState
     super.initState();
     setdefault();
-   
   }
-setdefault()async{
- await holidayPackageController.enquiryList();
-}
+
+  setdefault() async {
+    await holidayPackageController.enquiryList();
+  }
+
   // ignore: avoid_types_as_parameter_names
-   Future<void> dialogBuilder(BuildContext context, EnquiryData enquiryDatas) {
+  Future<void> dialogBuilder(BuildContext context, EnquiryData enquiryDatas) {
     return showDialog<void>(
       context: context,
       builder: (
@@ -703,7 +707,10 @@ setdefault()async{
         children: [
           GetBuilder<HolidayPackageController>(builder: (_) {
             return holidayPackageController.enquiryData.isEmpty
-                ? Text('No Bookings Found')
+                ? Image.asset(
+                    'assets/icons/Group 39781.png',
+                    height: 500,
+                  )
                 : GridView.builder(
                     itemCount: holidayPackageController.enquiryData.length,
                     shrinkWrap: true,
@@ -717,7 +724,7 @@ setdefault()async{
                       return InkWell(
                         onTap: () {
                           dialogBuilder(context,
-                          holidayPackageController.enquiryData[index]);
+                              holidayPackageController.enquiryData[index]);
                           // tripdialogeBuilder(
                           //   context,
                           //   holidayPackageController
@@ -754,15 +761,12 @@ setdefault()async{
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
                                   child: Image.network(
-                                        holidayPackageController
-                                            .enquiryData[index]
-                                            .packageDetails
-                                            .image
-                                            .first,
-                                        height: 150,
-                                        width: 150,
-                                        fit: BoxFit.cover,
-                                      ),
+                                    holidayPackageController.enquiryData[index]
+                                        .packageDetails.image.first,
+                                    height: 150,
+                                    width: 150,
+                                    fit: BoxFit.cover,
+                                  ),
                                 ),
                               ),
                               kwidth10,
@@ -775,16 +779,16 @@ setdefault()async{
                                   Text(
                                     holidayPackageController.enquiryData[index]
                                         .packageDetails.title,
-                                        maxLines: 2,
-                                        
-                                    style: TextStyle(fontSize: 18,
-                                    fontWeight: FontWeight.bold),
+                                    maxLines: 2,
+                                    style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
                                   ),
-                                  
-                                                                    Text(
+
+                                  Text(
                                     '₹${holidayPackageController.enquiryData[index].packageDetails.amount}',
-                                    style: TextStyle(color: kblue,
-                                    fontSize: 15),
+                                    style:
+                                        TextStyle(color: kblue, fontSize: 15),
                                   ),
 
                                   // Row(
@@ -816,20 +820,20 @@ setdefault()async{
                                   //     // ),
                                   //   ],
                                   // ),
-                                                                    Text(
+                                  Text(
                                     '${holidayPackageController.enquiryData[index].packageDetails.duration}',
-                                    style: TextStyle(color: kblue,
-                                    fontSize: 15),
+                                    style:
+                                        TextStyle(color: kblue, fontSize: 15),
                                   ),
                                   Text(
                                     'Total Person :${holidayPackageController.enquiryData[index].adultCount}',
-                                    style: TextStyle(color: kblue,
-                                    fontSize: 15),
+                                    style:
+                                        TextStyle(color: kblue, fontSize: 15),
                                   ),
-                                   Text(
+                                  Text(
                                     '${holidayPackageController.enquiryData[index].packageDetails.location}',
-                                    style: TextStyle(color: kblue,
-                                    fontSize: 15),
+                                    style:
+                                        TextStyle(color: kblue, fontSize: 15),
                                   ),
                                   ksizedbox20
                                 ],
@@ -1107,9 +1111,12 @@ class _index4State extends State<index4> {
     return Column(children: [
       GetBuilder<SubscriptionApiController>(builder: (_) {
         return Container(
-         // width: 1000,
+          // width: 1000,
           child: subscriptionapiController.othersbookinglist.isEmpty
-              ? Text('No data found')
+              ? Image.asset(
+                  'assets/icons/Group 39781.png',
+                  height: 500,
+                )
               : GridView.builder(
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
@@ -1143,14 +1150,15 @@ class _index4State extends State<index4> {
                           height: 40,
                           width: 60,
                           decoration: BoxDecoration(
-                              color: kwhite,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                    offset: Offset(0.0, 0.75),
-                                    blurRadius: 5,
-                                    color: kgrey)
-                              ]),
+                            color: kwhite,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  offset: Offset(0.0, 0.75),
+                                  blurRadius: 5,
+                                  color: kgrey)
+                            ],
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [

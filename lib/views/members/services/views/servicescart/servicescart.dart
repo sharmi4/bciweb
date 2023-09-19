@@ -27,14 +27,16 @@ class _ServicesCartState extends State<ServicesCart> {
 
   // final profileController = Get.find<ProfileController>();
   final homeController = Get.find<HomeServiceController>();
-final profileController = Get.find<AuthProfileController>();
+  final profileController = Get.find<AuthProfileController>();
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+        child: CommonScreen(),
+        preferredSize: Size(double.infinity, 40),
+      ),
       body: ListView(
         children: [
           RegisterCommonContainer(),
@@ -45,7 +47,7 @@ final profileController = Get.find<AuthProfileController>();
                   ? Container(
                       height: 300,
                       child: Center(
-                          child: Text(' item not  fount').text.xl2.thin.make()))
+                          child: Image.asset('assets/icons/Group 39781.png')))
                   : Padding(
                       padding:
                           const EdgeInsets.only(top: 30, left: 30, right: 30),
@@ -304,8 +306,7 @@ final profileController = Get.find<AuthProfileController>();
                       child: InkWell(
                         onTap: () {
 //  var tempAmount = homeController.getGrandTotal(tcartListData: []);
-                            profileController.payFromCart(100);
-
+                          profileController.payFromCart(100);
 
                           // for (int i = 0;
                           //     i < homeController.cartListData.length;
@@ -321,7 +322,7 @@ final profileController = Get.find<AuthProfileController>();
                           //       amount: homeController.cartListData[i].amount);
                           // }
 
-                         // Get.toNamed(Routes.MEMBHOME);
+                          // Get.toNamed(Routes.MEMBHOME);
                         },
                         //  onTap: () {
                         //  homeController.addToCart(

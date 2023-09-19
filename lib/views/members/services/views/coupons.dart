@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:clipboard/clipboard.dart';
@@ -7,12 +6,10 @@ import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import '../../../../constant/constans.dart';
 import '../../../../controller/subscription_controller/subscription_controller.dart';
 import '../../common_widget/common.dart';
-//import '../../../../registerhomescreen/common_reg_appbar';
+
 
 class Coupones extends StatefulWidget {
   const Coupones({super.key});

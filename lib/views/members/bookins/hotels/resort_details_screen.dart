@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
-
 import 'package:get/get.dart';
 import 'package:websafe_svg/websafe_svg.dart';
-
 import '../../../../constant/constans.dart';
-
 import '../../../../controller/hotel_controller/hotel_controller.dart';
-
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
+
+
+
 
 class ResortDetailsScreen extends StatefulWidget {
   final String userIp;
@@ -54,9 +53,14 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
     String dropdownvalue = 'MR';
 
+
+
     var size = MediaQuery.of(context).size;
+    
     return Scaffold(
       body: GetBuilder<HotelController>(builder: (_) {
         return ListView(children: [

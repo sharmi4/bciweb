@@ -1,5 +1,4 @@
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
-import 'package:bciweb/views/members/services/views/coupons.dart';
 import 'package:bciweb/views/members/services/views/servicescart/vendor_details_Screen.dart';
 import 'package:bciweb/views/members/services/views/servicescart/vendor_service_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -11,14 +10,19 @@ import '../../../../../controller/auth_controller/auth_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../common_widget/common.dart';
-import '../offerce.dart';
+
+
+
 
 class Services extends StatefulWidget {
   const Services({super.key});
 
+
+
   @override
   State<Services> createState() => _ServicesState();
 }
+
 
 final homeController = Get.find<HomeServiceController>();
 
@@ -39,19 +43,23 @@ class _ServicesState extends State<Services> {
 
   final serviceofferController = Get.find<HomeServiceController>();
 
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
+    
     return Scaffold(
       appBar: PreferredSize(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 110)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            CommonScreen(),
+            RegisterCommonContainer(),
+          ],
+        ),
+        preferredSize: const Size(double.infinity, 110),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -99,7 +107,10 @@ class _ServicesState extends State<Services> {
               return Column(
                 children: [
                   homeController.vendorList.isEmpty
-                      ? const Text('No Service Found')
+                      ? Image.asset(
+                          'assets/icons/Group 39781.png',
+                          height: 500,
+                        )
                       : GridView.builder(
                           itemCount: homeController.vendorList.length,
                           shrinkWrap: true,
@@ -163,9 +174,13 @@ class _ServicesState extends State<Services> {
                                             onTap: () {
                                               Get.to(
                                                 VendorDetailsScreen(
-                                                    vendorListModelData:
-                                                        homeController
-                                                            .vendorList[index], userid: homeController.vendorList[index].id.toString(),),
+                                                  vendorListModelData:
+                                                      homeController
+                                                          .vendorList[index],
+                                                  userid: homeController
+                                                      .vendorList[index].id
+                                                      .toString(),
+                                                ),
                                               );
                                             },
                                             child: Container(
@@ -418,16 +433,17 @@ class _ServicesState extends State<Services> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: kblue,
-                                  minimumSize: const Size(200, 45),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(15))),
-                              onPressed: () {},
-                              child: const Text(
-                                'Click Now',
-                                style: TextStyle(fontSize: 20),
-                              ))
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: kblue,
+                                minimumSize: const Size(200, 45),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15))),
+                            onPressed: () {},
+                            child: const Text(
+                              'Click Now',
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
                         ],
                       ),
                     )
@@ -458,137 +474,144 @@ class _ServicesState extends State<Services> {
                   style: TextStyle(color: ktextblue),
                 )),
             ksizedbox40,
-            GetBuilder<HomeServiceController>(builder: (_) {
-              return Column(
-                children: [
-                  GridView.builder(
-                    itemCount: serviceofferController.todayOfferListData.length,
-                    shrinkWrap: true,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 2.5, crossAxisCount: 3),
-                    itemBuilder: ((context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          height: 55,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: [
-                                BoxShadow(
-                                    blurRadius: 2.5,
-                                    color: Colors.grey.withOpacity(0.5))
-                              ]),
-                          child: Row(
-                            children: [
-                              Container(
-                                  width: size.width * 0.12,
-                                  decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                        image: NetworkImage(
-                                            serviceofferController
-                                                .todayOfferListData[index]
-                                                .image),
-                                        fit: BoxFit.fill,
+            GetBuilder<HomeServiceController>(
+              builder: (_) {
+                return Column(
+                  children: [
+                    GridView.builder(
+                      itemCount:
+                          serviceofferController.todayOfferListData.length,
+                      shrinkWrap: true,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: 2.5, crossAxisCount: 3),
+                      itemBuilder: ((context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            height: 55,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 2.5,
+                                      color: Colors.grey.withOpacity(0.5))
+                                ]),
+                            child: Row(
+                              children: [
+                                Container(
+                                    width: size.width * 0.12,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                              serviceofferController
+                                                  .todayOfferListData[index]
+                                                  .image),
+                                          fit: BoxFit.fill,
+                                        ),
+                                        //     color: Colors.red,
+                                        borderRadius: BorderRadius.circular(20),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              blurRadius: 2.5,
+                                              color:
+                                                  Colors.grey.withOpacity(0.5))
+                                        ])),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const SizedBox(
+                                        height: 10,
                                       ),
-                                      //     color: Colors.red,
-                                      borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            blurRadius: 2.5,
-                                            color: Colors.grey.withOpacity(0.5))
-                                      ])),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Text(
-                                      serviceofferController
-                                          .todayOfferListData[index].title,
-                                      style: primaryFont.copyWith(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    Container(
+                                      Text(
+                                        serviceofferController
+                                            .todayOfferListData[index].title,
+                                        style: primaryFont.copyWith(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      Container(
+                                          width: size.width * 0.16,
+                                          child: Text(
+                                            "Discount value : ₹${serviceofferController.todayOfferListData[index].discountValue}",
+                                            style: primaryFont.copyWith(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.black54),
+                                          )),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Container(
                                         width: size.width * 0.16,
                                         child: Text(
-                                          "Discount value : ₹${serviceofferController.todayOfferListData[index].discountValue}",
+                                          "Ends on : ${formatDate(serviceofferController.todayOfferListData[index].endsAt, [
+                                                dd,
+                                                "-",
+                                                mm,
+                                                "-",
+                                                yyyy
+                                              ])}",
                                           style: primaryFont.copyWith(
                                               fontSize: 15,
                                               fontWeight: FontWeight.w500,
                                               color: Colors.black54),
-                                        )),
-                                    const SizedBox(
-                                      height: 5,
-                                    ),
-                                    Container(
-                                      width: size.width * 0.16,
-                                      child: Text(
-                                        "Ends on : ${formatDate(serviceofferController.todayOfferListData[index].endsAt, [
-                                              dd,
-                                              "-",
-                                              mm,
-                                              "-",
-                                              yyyy
-                                            ])}",
-                                        style: primaryFont.copyWith(
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.black54),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      height: 10,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Get.to(VendorServiceListScreen(
-                                          vendorId: serviceofferController
-                                              .todayOfferListData[index]
-                                              .vendorId,
-                                        ));
-                                      },
-                                      child: Container(
-                                        height: 35,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          color: kblue,
                                         ),
-                                        alignment: Alignment.center,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, right: 10),
-                                          child: Text(
-                                            "Click now",
-                                            style: primaryFont.copyWith(
-                                                color: Colors.white,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
+                                      ),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          Get.to(
+                                            VendorServiceListScreen(
+                                              vendorId: serviceofferController
+                                                  .todayOfferListData[index]
+                                                  .vendorId,
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          height: 35,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            color: kblue,
+                                          ),
+                                          alignment: Alignment.center,
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(
+                                                left: 10, right: 10),
+                                            child: Text(
+                                              "Click now",
+                                              style: primaryFont.copyWith(
+                                                  color: Colors.white,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
-                        ),
-                      );
-                    }),
-                  )
-                ],
-              );
-            }),
+                        );
+                      }),
+                    )
+                  ],
+                );
+              },
+            ),
             //offercontainer(),
             ksizedbox30,
             // InkWell(

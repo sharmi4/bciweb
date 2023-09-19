@@ -13,15 +13,15 @@ import '../history/views/history.dart';
 import '../hotels/booking_hotels.dart';
 import '../trip/trip_booking.dart';
 
-
-
 class BookingLiquer extends StatelessWidget {
   const BookingLiquer({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    var searchController=TextEditingController();
+
+    var searchController = TextEditingController();
+
     return Scaffold(
       appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
@@ -32,8 +32,9 @@ class BookingLiquer extends StatelessWidget {
             Stack(
               children: [
                 Container(
-                    width: size.width,
-                    child: Image.asset('assets/images/Group 39751.png')),
+                  width: size.width,
+                  child: Image.asset('assets/images/Group 39751.png'),
+                ),
                 Positioned(
                   top: 0,
                   bottom: 0,
@@ -60,7 +61,9 @@ class BookingLiquer extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingHotels());
+                                  Get.to(
+                                    BookingHotels(),
+                                  );
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -70,7 +73,9 @@ class BookingLiquer extends StatelessWidget {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingTrip());
+                                  Get.to(
+                                    BookingTrip(),
+                                  );
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -90,7 +95,9 @@ class BookingLiquer extends StatelessWidget {
                               // ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(History());
+                                  Get.to(
+                                    History(),
+                                  );
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -98,7 +105,7 @@ class BookingLiquer extends StatelessWidget {
                                   colorr: kblue,
                                 ),
                               ),
-                           InkWell(
+                              InkWell(
                                 onTap: () {
                                   Get.to(BusBookingMain());
                                 },
@@ -119,33 +126,32 @@ class BookingLiquer extends StatelessWidget {
                         Container(
                           child: Center(
                               child: Container(
-                                                           child: Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Container(
                                   child: TextField(
-                                   controller: searchController,
-                                   
-                                   decoration: InputDecoration(
-                                    border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(10)
-                                    ),
-                                    hintText:  'Search Your Brand',
-                                    prefixIcon:Icon(Icons.search),
-                                    suffixIcon: Image.asset(
-                                            'assets/images/Icon material-location-on.png',
-                                            color: kblue,)
-                                   ),
-                                      //  
-                                      //   kwidth10,
-                                      //   Text(
-                                      //    
-                                      //     style: TextStyle(
-                                      //         fontSize: 18, color: kgrey),
-                                      //   ),
-                                        // Spacer(),
-                                        // 
-                                     
+                                    controller: searchController,
+
+                                    decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10)),
+                                        hintText: 'Search Your Brand',
+                                        prefixIcon: Icon(Icons.search),
+                                        suffixIcon: Image.asset(
+                                          'assets/images/Icon material-location-on.png',
+                                          color: kblue,
+                                        )),
+                                    //
+                                    //   kwidth10,
+                                    //   Text(
+                                    //
+                                    //     style: TextStyle(
+                                    //         fontSize: 18, color: kgrey),
+                                    //   ),
+                                    // Spacer(),
+                                    //
                                   ),
                                   decoration: BoxDecoration(
                                       color: Colors.grey[200],
@@ -238,18 +244,15 @@ class BookingLiquer extends StatelessWidget {
                 Container(
                   height: 150,
                   width: 400,
-                 
                   decoration: BoxDecoration(
-                         color: kwhite,
-                         borderRadius: BorderRadius.circular(10),
-                         boxShadow: <BoxShadow>[
-                          BoxShadow(
+                      color: kwhite,
+                      borderRadius: BorderRadius.circular(10),
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
                             offset: Offset(0.0, 0.75),
                             blurRadius: 5,
-                            color: kgrey
-                          )
-                         ]
-                  ),
+                            color: kgrey)
+                      ]),
                   child: Row(
                     children: [
                       Padding(

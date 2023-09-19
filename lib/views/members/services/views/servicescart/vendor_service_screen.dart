@@ -51,8 +51,8 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
              GetBuilder<HomeServiceController>(
                builder: (_) {
                  return homeController.vendorServiceListData.isEmpty
-            ? const Center(
-                child: Text("No Data Found"),
+            ?  Center(
+                child: Image.asset('assets/icons/Group 39781.png',height: 500,),
               )
             :  GridView.builder(
                         itemCount: homeController.vendorServiceListData.length,
