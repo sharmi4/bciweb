@@ -65,7 +65,6 @@ class _OfficeAddressState extends State<OfficeAddress> {
                     ),
                   ],
                 ),
-                
                 Padding(
                   padding: const EdgeInsets.only(top: 15,right: 40),
                   child: Row(

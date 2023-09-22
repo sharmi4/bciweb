@@ -273,6 +273,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   ),
                                 )
                               : authprofileController
+                                          .profileData
+                                          .isNotEmpty?  authprofileController
                                           .profileData.first.profilePicture ==
                                       null
                                   ? Stack(
@@ -292,7 +294,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                             child: const Center(
                                               child: Icon(
                                                 Icons.camera_alt,
-                                                color: Colors.white,
+                                                color: Colors.black,
                                                 size: 17,
                                               ),
                                             ),
@@ -356,7 +358,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           //                     .first
                           //                     .profilePicture,))),
                           //   )
-                          ),
+                          : Container(
+                            height: 20,
+                          )),
                     const Padding(
                       padding: EdgeInsets.only(bottom: 40),
                       child: Text(
@@ -974,7 +978,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   kwidth10,
                   Column(
                     children: [
-                      Container(
+                     authprofileController.profileData.isEmpty? Container(
+                      height: 20,
+                     ): Container(
                         height: 100,
                         width: 100,
                         child: authprofileController
@@ -1019,7 +1025,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                     .profileData.first.adharProof),
                               ),
                       ),
-                      Icon(Icons.upload_file)
+                     const Icon(Icons.upload_file)
                     ],
                   ),
                 ],

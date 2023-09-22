@@ -56,9 +56,9 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(RespoDisclimer());
+                    Get.to(const RespoDisclimer());
                   },
-                  child: Text(
+                  child: const Text(
                     "Privacy",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -67,14 +67,14 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+               const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(RespoRepresentation());
+                    Get.to(const RespoRepresentation());
                   },
-                  child: Text(
+                  child:const Text(
                     "Representation",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -83,14 +83,14 @@ class _MobileCommonBottomState extends State<MobileCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(SarviceAgrement());
+                    Get.to(const SarviceAgrement());
                   },
-                  child: Text(
+                  child: const Text(
                     "Service Agreement",
                     textAlign: TextAlign.start,
                     style: TextStyle(

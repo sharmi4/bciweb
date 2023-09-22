@@ -84,9 +84,9 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
 
   AlertDialog mAlertItem2 = AlertDialog(
     backgroundColor: Colors.white,
-    title: Text("Confirmation",
+    title: const Text("Confirmation",
         style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-    content: Text(
+    content: const Text(
       "Are you sure you want to logout?",
       style: TextStyle(color: Colors.black),
     ),
@@ -351,7 +351,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             decoration: BoxDecoration(
                                 border: BorderDirectional(
                                     bottom: BorderSide(color: kwhite)),
-                                color: reghomeController.proindex == 4
+                                color:  reghomeController.proindex == 4
                                     ? kblue
                                     : kyellow),
                             child: Padding(
