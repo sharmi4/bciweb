@@ -82,6 +82,7 @@ class _BusSeatsState extends State<BusSeats> {
               ),
             ),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 ksizedbox20,
                 Row(
@@ -129,8 +130,10 @@ class _BusSeatsState extends State<BusSeats> {
                     ]),
                 ksizedbox20,
                 GetBuilder<BusController>(builder: (_) {
-                  return Container(height: 500,
+                  return Container(
+                    height: 500,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         // Positioned(
@@ -147,21 +150,24 @@ class _BusSeatsState extends State<BusSeats> {
                         //     ),
                         //   ),
                         // ),
-                  
+
                         Padding(
                           padding: const EdgeInsets.only(
                             left: 10,
                           ),
                           child: Container(
                             height: 450,
-                            child: ListView(
-                              scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Column(
                                   children: [
                                     Text(
                                       "Upper birth",
-                                      style: primaryFont.copyWith(fontSize: 12),
+                                      style: primaryFont.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: kblue),
                                     ),
                                     const SizedBox(
                                       height: 5,
@@ -170,7 +176,8 @@ class _BusSeatsState extends State<BusSeats> {
                                       width: 180,
                                       height: 400,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           color: Colors.white,
                                           border: Border.all(
                                               color: Colors.grey, width: 0.5)),
@@ -178,8 +185,8 @@ class _BusSeatsState extends State<BusSeats> {
                                         padding: const EdgeInsets.all(8.0),
                                         child: ListView.builder(
                                             shrinkWrap: true,
-                                            itemCount:
-                                                busController.seatMapList.length,
+                                            itemCount: busController
+                                                .seatMapList.length,
                                             itemBuilder: (context, index1) {
                                               return Container(
                                                 height: 40,
@@ -201,14 +208,13 @@ class _BusSeatsState extends State<BusSeats> {
                                                                   .zIndex ==
                                                               "1"
                                                           ? Padding(
-                                                              padding:
-                                                                  EdgeInsets.only(
+                                                              padding: EdgeInsets
+                                                                  .only(
                                                                       bottom: 5,
-                                                                      right:
-                                                                          index ==
-                                                                                  1
-                                                                              ? 7
-                                                                              : 2),
+                                                                      right: index ==
+                                                                              1
+                                                                          ? 7
+                                                                          : 2),
                                                               child: busController
                                                                           .seatMapList[
                                                                               index1]
@@ -217,39 +223,35 @@ class _BusSeatsState extends State<BusSeats> {
                                                                           .bookable ==
                                                                       true
                                                                   ? InkWell(
-                                                                      onTap: () {
-                                                                        if (busController
-                                                                                .seatMapList[index1][index]
-                                                                                .isSelect ==
+                                                                      onTap:
+                                                                          () {
+                                                                        if (busController.seatMapList[index1][index].isSelect ==
                                                                             true) {
                                                                           busController
                                                                               .seatMapList[index1][index]
                                                                               .isSelect = false;
                                                                           setState(
                                                                               () {
-                                                                            seatIds.remove(busController
-                                                                                .seatMapList[index1][index]
-                                                                                .seatNumber);
-                  
+                                                                            seatIds.remove(busController.seatMapList[index1][index].seatNumber);
+
                                                                             BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
                                                                                 ageController: TextEditingController(),
                                                                                 gender: "",
                                                                                 nameController: TextEditingController(),
                                                                                 seats: busController.seatMapList[index1][index].seatNumber);
-                  
+
                                                                             busContactDetailsModel.removeWhere((element) =>
                                                                                 element.seats ==
                                                                                 busController.seatMapList[index1][index].seatNumber);
                                                                           });
-                  
+
                                                                           double
                                                                               tempAmount =
-                                                                              busController.totalAmount.value -
-                                                                                  busController.seatMapList[index1][index].fareMaster.totalAmount;
-                  
+                                                                              busController.totalAmount.value - busController.seatMapList[index1][index].fareMaster.totalAmount;
+
                                                                           busController
                                                                               .totalAmount(tempAmount);
-                  
+
                                                                           busController
                                                                               .update();
                                                                         } else {
@@ -258,28 +260,24 @@ class _BusSeatsState extends State<BusSeats> {
                                                                               .isSelect = true;
                                                                           setState(
                                                                               () {
-                                                                            seatIds.add(busController
-                                                                                .seatMapList[index1][index]
-                                                                                .seatNumber);
-                  
+                                                                            seatIds.add(busController.seatMapList[index1][index].seatNumber);
+
                                                                             BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
                                                                                 ageController: TextEditingController(),
                                                                                 gender: "",
                                                                                 nameController: TextEditingController(),
                                                                                 seats: busController.seatMapList[index1][index].seatNumber);
-                  
-                                                                            busContactDetailsModel
-                                                                                .add(busContactDetailsModeldata);
+
+                                                                            busContactDetailsModel.add(busContactDetailsModeldata);
                                                                           });
-                  
+
                                                                           double
                                                                               tempAmount =
-                                                                              busController.totalAmount.value +
-                                                                                  busController.seatMapList[index1][index].fareMaster.totalAmount;
-                  
+                                                                              busController.totalAmount.value + busController.seatMapList[index1][index].fareMaster.totalAmount;
+
                                                                           busController
                                                                               .totalAmount(tempAmount);
-                  
+
                                                                           busController
                                                                               .update();
                                                                         }
@@ -290,16 +288,14 @@ class _BusSeatsState extends State<BusSeats> {
                                                                                 "1"
                                                                             ? 60
                                                                             : 80,
-                                                                        width: 30,
+                                                                        width:
+                                                                            30,
                                                                         decoration: BoxDecoration(
                                                                             color: busController.seatMapList[index1][index].isSelect == true
                                                                                 ? kOrange
-                                                                                : Colors.grey[
-                                                                                    200],
-                                                                            borderRadius: BorderRadius.circular(
-                                                                                5),
-                                                                            border:
-                                                                                Border.all(color: Colors.grey)),
+                                                                                : Colors.grey[200],
+                                                                            borderRadius: BorderRadius.circular(5),
+                                                                            border: Border.all(color: Colors.grey)),
                                                                         child:
                                                                             Center(
                                                                           child: Text(busController
@@ -309,24 +305,20 @@ class _BusSeatsState extends State<BusSeats> {
                                                                       ),
                                                                     )
                                                                   : Container(
-                                                                      height: 60,
+                                                                      height:
+                                                                          60,
                                                                       width: 30,
                                                                       decoration: BoxDecoration(
                                                                           color: Colors.red[
                                                                               200],
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(
-                                                                                  5),
-                                                                          border: Border.all(
-                                                                              color:
-                                                                                  Colors.grey)),
+                                                                          borderRadius: BorderRadius.circular(
+                                                                              5),
+                                                                          border:
+                                                                              Border.all(color: Colors.grey)),
                                                                       child:
                                                                           Center(
                                                                         child: Text(busController
-                                                                            .seatMapList[
-                                                                                index1]
-                                                                                [
-                                                                                index]
+                                                                            .seatMapList[index1][index]
                                                                             .seatNumber),
                                                                       ),
                                                                     ),
@@ -346,7 +338,10 @@ class _BusSeatsState extends State<BusSeats> {
                                   children: [
                                     Text(
                                       "Lower birth",
-                                      style: primaryFont.copyWith(fontSize: 12),
+                                      style: primaryFont.copyWith(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w700,
+                                          color: kblue),
                                     ),
                                     const SizedBox(
                                       height: 5,
@@ -355,7 +350,8 @@ class _BusSeatsState extends State<BusSeats> {
                                       width: 180,
                                       height: 400,
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
                                           color: Colors.white,
                                           border: Border.all(
                                               color: Colors.grey, width: 0.5)),
@@ -369,165 +365,142 @@ class _BusSeatsState extends State<BusSeats> {
                                             return Container(
                                               height: 40,
                                               child: ListView.builder(
-                                                  itemCount: busController
-                                                      .seatMapList[index1].length,
-                                                  shrinkWrap: true,
-                                                  scrollDirection:
-                                                      Axis.horizontal,
-                                                  physics:
-                                                      const NeverScrollableScrollPhysics(),
-                                                  itemBuilder: (context, index) {
-                                                    return busController
-                                                                .seatMapList[
-                                                                    index1][index]
-                                                                .zIndex ==
-                                                            "0"
-                                                        ? Padding(
-                                                            padding:
-                                                                EdgeInsets.only(
-                                                                    bottom: 5,
-                                                                    right:
-                                                                        index == 1
-                                                                            ? 7
-                                                                            : 2),
-                                                            child: busController
-                                                                        .seatMapList[
-                                                                            index1]
-                                                                            [
-                                                                            index]
-                                                                        .bookable ==
-                                                                    true
-                                                                ? InkWell(
-                                                                    onTap: () {
-                                                                      if (busController
+                                                itemCount: busController
+                                                    .seatMapList[index1].length,
+                                                shrinkWrap: true,
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                physics:
+                                                    const NeverScrollableScrollPhysics(),
+                                                itemBuilder: (context, index) {
+                                                  return busController
+                                                              .seatMapList[
+                                                                  index1][index]
+                                                              .zIndex ==
+                                                          "0"
+                                                      ? Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  bottom: 5,
+                                                                  right:
+                                                                      index == 1
+                                                                          ? 7
+                                                                          : 2),
+                                                          child: busController
+                                                                      .seatMapList[
+                                                                          index1]
+                                                                          [
+                                                                          index]
+                                                                      .bookable ==
+                                                                  true
+                                                              ? InkWell(
+                                                                  onTap: () {
+                                                                    if (busController
+                                                                            .seatMapList[index1][index]
+                                                                            .isSelect ==
+                                                                        true) {
+                                                                      busController
+                                                                          .seatMapList[
+                                                                              index1]
+                                                                              [
+                                                                              index]
+                                                                          .isSelect = false;
+                                                                      setState(
+                                                                          () {
+                                                                        seatIds.remove(busController
+                                                                            .seatMapList[index1][index]
+                                                                            .seatNumber);
+
+                                                                        BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
+                                                                            ageController:
+                                                                                TextEditingController(),
+                                                                            gender:
+                                                                                "",
+                                                                            nameController:
+                                                                                TextEditingController(),
+                                                                            seats:
+                                                                                busController.seatMapList[index1][index].seatNumber);
+
+                                                                        busContactDetailsModel.removeWhere((element) =>
+                                                                            element.seats ==
+                                                                            busController.seatMapList[index1][index].seatNumber);
+                                                                      });
+
+                                                                      double tempAmount = busController
+                                                                              .totalAmount
+                                                                              .value -
+                                                                          busController
                                                                               .seatMapList[index1][index]
-                                                                              .isSelect ==
-                                                                          true) {
-                                                                        busController
-                                                                            .seatMapList[
-                                                                                index1]
-                                                                                [
-                                                                                index]
-                                                                            .isSelect = false;
-                                                                        setState(
-                                                                            () {
-                                                                          seatIds.remove(busController
+                                                                              .fareMaster
+                                                                              .totalAmount;
+
+                                                                      busController
+                                                                          .totalAmount(
+                                                                              tempAmount);
+
+                                                                      busController
+                                                                          .update();
+                                                                    } else {
+                                                                      busController
+                                                                          .seatMapList[
+                                                                              index1]
+                                                                              [
+                                                                              index]
+                                                                          .isSelect = true;
+                                                                      setState(
+                                                                          () {
+                                                                        seatIds.add(busController
+                                                                            .seatMapList[index1][index]
+                                                                            .seatNumber);
+
+                                                                        BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
+                                                                            ageController:
+                                                                                TextEditingController(),
+                                                                            gender:
+                                                                                "",
+                                                                            nameController:
+                                                                                TextEditingController(),
+                                                                            seats:
+                                                                                busController.seatMapList[index1][index].seatNumber);
+
+                                                                        busContactDetailsModel
+                                                                            .add(busContactDetailsModeldata);
+                                                                      });
+
+                                                                      double tempAmount = busController
+                                                                              .totalAmount
+                                                                              .value +
+                                                                          busController
                                                                               .seatMapList[index1][index]
-                                                                              .seatNumber);
-                  
-                                                                          BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
-                                                                              ageController:
-                                                                                  TextEditingController(),
-                                                                              gender:
-                                                                                  "",
-                                                                              nameController:
-                                                                                  TextEditingController(),
-                                                                              seats:
-                                                                                  busController.seatMapList[index1][index].seatNumber);
-                  
-                                                                          busContactDetailsModel.removeWhere((element) =>
-                                                                              element.seats ==
-                                                                              busController.seatMapList[index1][index].seatNumber);
-                                                                        });
-                  
-                                                                        double tempAmount = busController
-                                                                                .totalAmount
-                                                                                .value -
-                                                                            busController
-                                                                                .seatMapList[index1][index]
-                                                                                .fareMaster
-                                                                                .totalAmount;
-                  
-                                                                        busController
-                                                                            .totalAmount(
-                                                                                tempAmount);
-                  
-                                                                        busController
-                                                                            .update();
-                                                                      } else {
-                                                                        busController
-                                                                            .seatMapList[
-                                                                                index1]
-                                                                                [
-                                                                                index]
-                                                                            .isSelect = true;
-                                                                        setState(
-                                                                            () {
-                                                                          seatIds.add(busController
-                                                                              .seatMapList[index1][index]
-                                                                              .seatNumber);
-                  
-                                                                          BusContactDetailsModel busContactDetailsModeldata = BusContactDetailsModel(
-                                                                              ageController:
-                                                                                  TextEditingController(),
-                                                                              gender:
-                                                                                  "",
-                                                                              nameController:
-                                                                                  TextEditingController(),
-                                                                              seats:
-                                                                                  busController.seatMapList[index1][index].seatNumber);
-                  
-                                                                          busContactDetailsModel
-                                                                              .add(busContactDetailsModeldata);
-                                                                        });
-                  
-                                                                        double tempAmount = busController
-                                                                                .totalAmount
-                                                                                .value +
-                                                                            busController
-                                                                                .seatMapList[index1][index]
-                                                                                .fareMaster
-                                                                                .totalAmount;
-                  
-                                                                        busController
-                                                                            .totalAmount(
-                                                                                tempAmount);
-                  
-                                                                        busController
-                                                                            .update();
-                                                                      }
-                                                                    },
-                                                                    child:
-                                                                        Container(
-                                                                      height: 60,
-                                                                      width: 30,
-                                                                      decoration: BoxDecoration(
-                                                                          color: busController.seatMapList[index1][index].isSelect ==
-                                                                                  true
-                                                                              ? kOrange
-                                                                              : Colors.grey[
-                                                                                  200],
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(
-                                                                                  5),
-                                                                          border: Border.all(
-                                                                              color:
-                                                                                  Colors.grey)),
-                                                                      child:
-                                                                          Center(
-                                                                        child: Text(busController
-                                                                            .seatMapList[
-                                                                                index1]
-                                                                                [
-                                                                                index]
-                                                                            .seatNumber),
-                                                                      ),
-                                                                    ),
-                                                                  )
-                                                                : Container(
+                                                                              .fareMaster
+                                                                              .totalAmount;
+
+                                                                      busController
+                                                                          .totalAmount(
+                                                                              tempAmount);
+
+                                                                      busController
+                                                                          .update();
+                                                                    }
+                                                                  },
+                                                                  child:
+                                                                      Container(
                                                                     height: 60,
                                                                     width: 30,
                                                                     decoration: BoxDecoration(
-                                                                        color: Colors
-                                                                                .red[
-                                                                            200],
+                                                                        color: busController.seatMapList[index1][index].isSelect ==
+                                                                                true
+                                                                            ? kOrange
+                                                                            : Colors.grey[
+                                                                                200],
                                                                         borderRadius:
                                                                             BorderRadius.circular(
                                                                                 5),
                                                                         border: Border.all(
                                                                             color:
                                                                                 Colors.grey)),
-                                                                    child: Center(
+                                                                    child:
+                                                                        Center(
                                                                       child: Text(busController
                                                                           .seatMapList[
                                                                               index1]
@@ -536,9 +509,33 @@ class _BusSeatsState extends State<BusSeats> {
                                                                           .seatNumber),
                                                                     ),
                                                                   ),
-                                                          )
-                                                        : Container();
-                                                  }),
+                                                                )
+                                                              : Container(
+                                                                  height: 60,
+                                                                  width: 30,
+                                                                  decoration: BoxDecoration(
+                                                                      color: Colors
+                                                                              .red[
+                                                                          200],
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              5),
+                                                                      border: Border.all(
+                                                                          color:
+                                                                              Colors.grey)),
+                                                                  child: Center(
+                                                                    child: Text(busController
+                                                                        .seatMapList[
+                                                                            index1]
+                                                                            [
+                                                                            index]
+                                                                        .seatNumber),
+                                                                  ),
+                                                                ),
+                                                        )
+                                                      : Container();
+                                                },
+                                              ),
                                             );
                                           },
                                         ),
@@ -550,138 +547,6 @@ class _BusSeatsState extends State<BusSeats> {
                             ),
                           ),
                         )
-                  
-                        // Row(
-                        //   children: [
-                        //     Container(
-                        //         height: size.height * 0.8,
-                        //         width: size.width * 0.1,
-                        //         child: GridView.builder(
-                        //           physics: NeverScrollableScrollPhysics(),
-                        //           gridDelegate:
-                        //               SliverGridDelegateWithFixedCrossAxisCount(
-                        //             crossAxisCount: 4,
-                        //             crossAxisSpacing: 8.0,
-                        //             mainAxisSpacing: 8.0,
-                        //           ),
-                        //           itemCount: busController.seatMap.length,
-                        //           itemBuilder: (BuildContext context, int index) {
-                        //             return InkWell(
-                        //               onTap: () {
-                        //                 if (busController
-                        //                         .seatMap[index].isSelect ==
-                        //                     true) {
-                        //                   busController.seatMap[index].isSelect =
-                        //                       false;
-                        //                   setState(() {
-                        //                     busController.seatIds.remove(
-                        //                         busController
-                        //                             .seatMap[index].seatNumber);
-                  
-                        //                     BusContactDetailsModel
-                        //                         busContactDetailsModeldata =
-                        //                         BusContactDetailsModel(
-                        //                             ageController:
-                        //                                 TextEditingController(),
-                        //                             gender: "",
-                        //                             nameController:
-                        //                                 TextEditingController(),
-                        //                             seats: busController
-                        //                                 .seatMap[index]
-                        //                                 .seatNumber);
-                  
-                        //                     busContactDetailsModel.removeWhere(
-                        //                         (element) =>
-                        //                             element.seats ==
-                        //                             busController.seatMap[index]
-                        //                                 .seatNumber);
-                        //                   });
-                  
-                        //                   double tempAmount =
-                        //                       busController.totalAmount.value -
-                        //                           busController.seatMap[index]
-                        //                               .fareMaster.totalAmount;
-                  
-                        //                   busController.totalAmount(tempAmount);
-                  
-                        //                   busController.update();
-                        //                 } else {
-                        //                   busController.seatMap[index].isSelect =
-                        //                       true;
-                        //                   setState(() {
-                        //                     busController.seatIds.add(
-                        //                         busController
-                        //                             .seatMap[index].seatNumber);
-                  
-                        //                     BusContactDetailsModel
-                        //                         busContactDetailsModeldata =
-                        //                         BusContactDetailsModel(
-                        //                             ageController:
-                        //                                 TextEditingController(),
-                        //                             gender: "",
-                        //                             nameController:
-                        //                                 TextEditingController(),
-                        //                             seats: busController
-                        //                                 .seatMap[index]
-                        //                                 .seatNumber);
-                        //                     busContactDetailsModel
-                        //                         .add(busContactDetailsModeldata);
-                        //                   });
-                  
-                        //                   double tempAmount =
-                        //                       busController.totalAmount.value +
-                        //                           busController.seatMap[index]
-                        //                               .fareMaster.totalAmount;
-                  
-                        //                   busController.totalAmount(tempAmount);
-                  
-                        //                   busController.update();
-                        //                 }
-                        //               },
-                        //               child: Container(
-                        //                 height: 40,
-                        //                 width: 40,
-                        //                 decoration: BoxDecoration(
-                        //                     color: busController.seatMap[index]
-                        //                                 .isSelect ==
-                        //                             true
-                        //                         ? korange
-                        //                         : Colors.grey[300],
-                        //                     borderRadius:
-                        //                         BorderRadius.circular(5)),
-                        //                 child: Center(
-                        //                   child: Text(
-                        //                     busController
-                        //                         .seatMap[index].seatNumber,
-                        //                     style: TextStyle(
-                        //                       color: busController.seatMap[index]
-                        //                                   .isSelect ==
-                        //                               true
-                        //                           ? korange
-                        //                           : Colors.grey[300],
-                        //                     ),
-                        //                   ),
-                        //                 ),
-                        //               ),
-                        //             );
-                        //           },
-                        //         )),
-                        //   ],
-                        // ),
-                        // ,  Positioned(
-                        //     bottom: 19,
-                        //     right: 5,
-                        //     child: Transform.rotate(
-                        //       angle: -math.pi / 2.0,
-                        //       child: Text(
-                        //         "Lower Seats",
-                        //         style: TextStyle(
-                        //             color: kgrey,
-                        //             fontSize: 22,
-                        //             fontWeight: FontWeight.w700),
-                        //       ),
-                        //     ),
-                        //   ),
                       ],
                     ),
                   );
@@ -716,20 +581,21 @@ class _BusSeatsState extends State<BusSeats> {
                           children: [
                             Text("Seat No.").text.xl3.blue900.semiBold.make(),
                             Container(
-                                width: 100,
-                                child: Wrap(
-                                  children: [
-                                    for (int i = 0;
-                                        i < busController.seatIds.length;
-                                        i++)
-                                      Text("${busController.seatIds[i]},")
-                                          .text
-                                          .xl
-                                          .blue900
-                                          .semiBold
-                                          .make(),
-                                  ],
-                                )),
+                              width: 100,
+                              child: Wrap(
+                                children: [
+                                  for (int i = 0;
+                                      i < busController.seatIds.length;
+                                      i++)
+                                    Text("${busController.seatIds[i]},")
+                                        .text
+                                        .xl
+                                        .blue900
+                                        .semiBold
+                                        .make(),
+                                ],
+                              ),
+                            ),
                           ],
                         ),
                         Divider(

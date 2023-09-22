@@ -139,6 +139,7 @@ class BusController extends GetxController {
       BusSeatMapList busSeatMapList = BusSeatMapList.fromJson(response.data);
       seatMap = busSeatMapList.seatMap;
       seatMapKey(busSeatMapList.seatMapKey);
+      generateBusSeats(seatMap);
     } else {
       Get.rawSnackbar(
         backgroundColor: Colors.red,

@@ -3,7 +3,6 @@ import 'package:bciweb/models/busbookingmodels/search_bus_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:velocity_x/velocity_x.dart';
 import '../../../../controller/bus_controllers.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -555,7 +554,11 @@ class _busBoardingState extends State<busBoarding> {
               ],
             ),
             ksizedbox30,
+
+            
             RegisterCommonBottom()
+
+
           ],
         ),
       ),
