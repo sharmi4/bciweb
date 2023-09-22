@@ -5,10 +5,6 @@ import 'dart:developer' as developer;
 import '../../../models/hotel_model/get_hotel_room_model.dart';
 import '../../base_url/base_url.dart';
 
-
-
-
-
 class HotelBookingApiServices extends BaseApiService {
   Future hotelBookingApiServices(
       {required String hotelName,
@@ -21,7 +17,7 @@ class HotelBookingApiServices extends BaseApiService {
       required String emailId,
       required String pancard,
       required HotelRoomsDetail hotelRoomsDetail}) async {
-    dynamic responseJson;
+     dynamic responseJson;
     try {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
@@ -111,7 +107,6 @@ class HotelBookingApiServices extends BaseApiService {
         "UserIp": "122.160.83.78",
         "Search_Token": searchToken
       };
-
       var data2 = {
         "IsPackageFare": false,
         "IsPackageDetailsMandatory": false,
@@ -135,24 +130,23 @@ class HotelBookingApiServices extends BaseApiService {
         "HotelRoomsDetails": [
           {
             "AvailabilityType": hotelRoomsDetail.availabilityType.toString(),
-            "ChildCount": int.parse(hotelRoomsDetail.childCount.toString()),
+            "ChildCount": hotelRoomsDetail.childCount,
             "RequireAllPaxDetails": hotelRoomsDetail.requireAllPaxDetails,
-            "RoomId": int.parse(hotelRoomsDetail.roomId.toString()),
-            "RoomStatus": int.parse(hotelRoomsDetail.roomId.toString()),
-            "RoomIndex": int.parse(hotelRoomsDetail.roomIndex.toString()),
+            "RoomId": hotelRoomsDetail.roomId,
+            "RoomStatus": hotelRoomsDetail.roomStatus,
+            "RoomIndex": hotelRoomsDetail.roomIndex,
             "RoomTypeCode": hotelRoomsDetail.roomTypeCode.toString(),
             "RoomDescription": hotelRoomsDetail.roomDescription.toString(),
             "RoomTypeName": hotelRoomsDetail.roomTypeName.toString(),
             "RatePlanCode": hotelRoomsDetail.ratePlanCode.toString(),
-            "RatePlan": int.parse(hotelRoomsDetail.ratePlan.toString()),
+            "RatePlan": hotelRoomsDetail.ratePlan,
             "RatePlanName": hotelRoomsDetail.ratePlanName.toString(),
             "InfoSource": hotelRoomsDetail.infoSource.toString(),
             "SequenceNo": hotelRoomsDetail.sequenceNo.toString(),
             "DayRates": [
               for (int i = 0; i < hotelRoomsDetail.dayRates.length; i++)
                 {
-                  "Amount": double.parse(
-                      hotelRoomsDetail.dayRates[i].amount.toString()),
+                  "Amount": hotelRoomsDetail.dayRates[i].amount,
                   "Date": hotelRoomsDetail.dayRates[i].date.toIso8601String()
                 }
             ],
@@ -160,55 +154,35 @@ class HotelBookingApiServices extends BaseApiService {
             "SupplierPrice": hotelRoomsDetail.supplierPrice,
             "Price": {
               "CurrencyCode": hotelRoomsDetail.price.currencyCode.toString(),
-              "RoomPrice":
-                  double.parse(hotelRoomsDetail.price.roomPrice.toString()),
-              "Tax": double.parse(hotelRoomsDetail.price.tax.toString()),
-              "ExtraGuestCharge":
-                  int.parse(hotelRoomsDetail.price.extraGuestCharge.toString()),
-              "ChildCharge":
-                  int.parse(hotelRoomsDetail.price.childCharge.toString()),
-              "OtherCharges":
-                  double.parse(hotelRoomsDetail.price.otherCharges.toString()),
-              "Discount": int.parse(hotelRoomsDetail.price.discount.toString()),
-              "PublishedPrice": double.parse(
-                  hotelRoomsDetail.price.publishedPrice.toString()),
-              "PublishedPriceRoundedOff": int.parse(
-                  hotelRoomsDetail.price.publishedPriceRoundedOff.toString()),
-              "OfferedPrice":
-                  double.parse(hotelRoomsDetail.price.offeredPrice.toString()),
-              "OfferedPriceRoundedOff": int.parse(
-                  hotelRoomsDetail.price.offeredPriceRoundedOff.toString()),
-              "AgentCommission":
-                  int.parse(hotelRoomsDetail.price.agentCommission.toString()),
-              "AgentMarkUp":
-                  int.parse(hotelRoomsDetail.price.agentMarkUp.toString()),
-              "ServiceTax":
-                  double.parse(hotelRoomsDetail.price.serviceTax.toString()),
-              "TCS": int.parse(hotelRoomsDetail.price.tcs.toString()),
-              "TDS": int.parse(hotelRoomsDetail.price.tds.toString()),
-              "ServiceCharge":
-                  int.parse(hotelRoomsDetail.price.serviceCharge.toString()),
-              "TotalGSTAmount": double.parse(
-                  hotelRoomsDetail.price.totalGstAmount.toString()),
+              "RoomPrice": hotelRoomsDetail.price.roomPrice,
+              "Tax": hotelRoomsDetail.price.tax,
+              "ExtraGuestCharge": hotelRoomsDetail.price.extraGuestCharge,
+              "ChildCharge": hotelRoomsDetail.price.childCharge,
+              "OtherCharges": hotelRoomsDetail.price.otherCharges,
+              "Discount": hotelRoomsDetail.price.discount,
+              "PublishedPrice": hotelRoomsDetail.price.publishedPrice,
+              "PublishedPriceRoundedOff":
+                  hotelRoomsDetail.price.publishedPriceRoundedOff,
+              "OfferedPrice": hotelRoomsDetail.price.offeredPrice,
+              "OfferedPriceRoundedOff":
+                  hotelRoomsDetail.price.offeredPriceRoundedOff,
+              "AgentCommission": hotelRoomsDetail.price.agentCommission,
+              "AgentMarkUp": hotelRoomsDetail.price.agentMarkUp,
+              "ServiceTax": hotelRoomsDetail.price.serviceTax,
+              "TCS": hotelRoomsDetail.price.tcs,
+              "TDS": hotelRoomsDetail.price.tds,
+              "ServiceCharge": hotelRoomsDetail.price.serviceCharge,
+              "TotalGSTAmount": hotelRoomsDetail.price.totalGstAmount,
               "GST": {
-                "CGSTAmount":
-                    int.parse(hotelRoomsDetail.price.gst.cgstAmount.toString()),
-                "CGSTRate":
-                    int.parse(hotelRoomsDetail.price.gst.cgstRate.toString()),
-                "CessAmount":
-                    int.parse(hotelRoomsDetail.price.gst.cessAmount.toString()),
-                "CessRate":
-                    int.parse(hotelRoomsDetail.price.gst.cessRate.toString()),
-                "IGSTAmount": double.parse(
-                    hotelRoomsDetail.price.gst.igstAmount.toString()),
-                "IGSTRate":
-                    int.parse(hotelRoomsDetail.price.gst.igstRate.toString()),
-                "SGSTAmount":
-                    int.parse(hotelRoomsDetail.price.gst.sgstAmount.toString()),
-                "SGSTRate":
-                    int.parse(hotelRoomsDetail.price.gst.sgstRate.toString()),
-                "TaxableAmount": double.parse(
-                    hotelRoomsDetail.price.gst.taxableAmount.toString()),
+                "CGSTAmount": hotelRoomsDetail.price.gst.cgstAmount,
+                "CGSTRate": hotelRoomsDetail.price.gst.cgstRate,
+                "CessAmount": hotelRoomsDetail.price.gst.cessAmount,
+                "CessRate": hotelRoomsDetail.price.gst.cessRate,
+                "IGSTAmount": hotelRoomsDetail.price.gst.igstAmount,
+                "IGSTRate": hotelRoomsDetail.price.gst.igstRate,
+                "SGSTAmount": hotelRoomsDetail.price.gst.sgstAmount,
+                "SGSTRate": hotelRoomsDetail.price.gst.sgstRate,
+                "TaxableAmount": hotelRoomsDetail.price.gst.taxableAmount,
               }
             },
             "HotelPassenger": [
@@ -216,7 +190,9 @@ class HotelBookingApiServices extends BaseApiService {
                 "Title": "Mr",
                 "FirstName": userName.trim().split(" ").first,
                 "MiddleName": "",
-                "LastName": userName.trim().split(" ").length > 1 ?  userName.trim().split(" ").last : ".",
+                "LastName": userName.trim().split(" ").length > 1
+                    ? userName.trim().split(" ").last
+                    : ".",
                 "Phoneno": mobileNumber,
                 "Email": emailId,
                 "PaxType": 1,
@@ -237,6 +213,10 @@ class HotelBookingApiServices extends BaseApiService {
       developer.log(
           "----------------------------------------------------->>Booking data");
       developer.log(data2.toString(), name: "hotel booking");
+      print('::::::::::::::::::::pancard:::::::::::::::');
+      print(pancard);
+      print(':::::::::name:::::::::::::');
+      print(userName);
 
       var response = await dio.post(hotelBookingApiUrl,
           options: Options(
@@ -252,7 +232,8 @@ class HotelBookingApiServices extends BaseApiService {
       print(
           "::::::::<hotel booking api Services>::::::::status code::::::::::");
       print(response.statusCode);
-      print(response.data);
+      // print(response.data);
+      developer.log(response.data.toString(), name: "hotel booking response");
       responseJson = response;
     } on SocketException {
       print("no internet");
@@ -277,7 +258,7 @@ class HotelBookingApiServices extends BaseApiService {
       default:
       // throw FetchDataException(
       //     'Error occured while communication with server' +
-      //         ' with status code : ${response.statusCode}');
+      //         ' with status code : ${re
     }
   }
 }

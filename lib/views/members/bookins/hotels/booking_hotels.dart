@@ -452,25 +452,36 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                     print(hotelController.hotelSearchKeyCode.value);
                                                     print(hotelController.hotelSearchKey.value);
                                                     print(hotelController.hotelSearchKey.value);
-                                        Get.to(
+
+                                                       hotelController.searchHotel(
+                                                     child: hotelController.child.value,
+                                                     adult: hotelController.adult.value,
+                                               checkindate: DateFormat('dd/MM/yyyy').format(start),
+                                               checkoutdate: DateFormat('dd/MM/yyyy').format(end),
+                                               destination: hotelController.hotelSearchKey.value,
+                                              //  childage: hotelController.roomno.value,
+                                               roomsno: hotelController.roomno.string,
+                                               countryCode: hotelController.hotelSearchKeyCode.value
+                );
+                                        // Get.to(
                                           
-                                          HotelSearchList(
-                                            adult: hotelController.adult.value,
-                                            checkindate:
-                                                DateFormat('dd/MM/yyyy')
-                                                    .format(start),
-                                            checkoutdate:
-                                                DateFormat('dd/MM/yyyy')
-                                                    .format(end),
-                                            countryCode: hotelController
-                                                .hotelSearchKeyCode.value,
-                                            destination: hotelController
-                                                .hotelSearchKey.value,
-                                            roomsno:
-                                                hotelController.roomno.string,
-                                            child: hotelController.child.value,
-                                          ),
-                                        );
+                                        //   HotelSearchList(
+                                        //     adult: hotelController.adult.value,
+                                        //     checkindate:
+                                        //         DateFormat('dd/MM/yyyy')
+                                        //             .format(start),
+                                        //     checkoutdate:
+                                        //         DateFormat('dd/MM/yyyy')
+                                        //             .format(end),
+                                        //     countryCode: hotelController
+                                        //         .hotelSearchKeyCode.value,
+                                        //     destination: hotelController
+                                        //         .hotelSearchKey.value,
+                                        //     roomsno:
+                                        //         hotelController.roomno.string,
+                                        //     child: hotelController.child.value,
+                                        //   ),
+                                        // );
                                      
                                       },
                                       child: hotelController.isLoading.isTrue

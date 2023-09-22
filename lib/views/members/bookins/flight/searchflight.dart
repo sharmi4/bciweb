@@ -1,14 +1,10 @@
-import 'package:bciweb/models/flight_searchdatamodel.dart';
-import 'package:bciweb/responsive/booking_view/flight/search.dart';
-import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'dart:math' as math;
-
-import '../../../constant/constans.dart';
-import '../../../controller/api_flightcontroller/api_flight_Controller.dart';
+import '../../../../constant/constans.dart';
+import '../../../../controller/api_flightcontroller/api_flight_Controller.dart';
 
 
 class flightScreenChoose extends StatefulWidget {
@@ -19,10 +15,9 @@ class flightScreenChoose extends StatefulWidget {
 }
 
 class _flightScreenChooseState extends State<flightScreenChoose> {
+  final flightsController = Get.find<ApiflightsController>();
 
-  final apiflightsController = Get.find<ApiflightsController>();
-
-    @override
+  @override
   void initState() {
     super.initState();
     setDefault();
@@ -30,11 +25,12 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
 
   setDefault() async {
     WidgetsBinding.instance.addPostFrameCallback((timings) {
-      apiflightsController.airports.clear();
-      apiflightsController.airPortFound(false);
-      apiflightsController.update();
+      flightsController.airports.clear();
+      flightsController.airPortFound(false);
+      flightsController.update();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     final _mediaQurey = MediaQuery.of(context).size;
@@ -64,7 +60,6 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                   ),
                 ),
                 ksizedbox10,
-                search2(),
                 ksizedbox10,
                 Padding(
                     padding: const EdgeInsets.only(left: 15, right: 15),
@@ -84,13 +79,12 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                 ],
                                 borderRadius: BorderRadius.circular(5)),
                             child: GetBuilder<ApiflightsController>(builder: (_) {
-                              print(FlightSearchDataModel);
-                              return apiflightsController.airports.isEmpty &&
-                                      apiflightsController.airPortFound.isTrue
+                              return flightsController.airports.isEmpty &&
+                                      flightsController.airPortFound.isTrue
                                   ? const Center(
                                       child: Text("No airports found"),
                                     )
-                                  : apiflightsController.airports.isEmpty
+                                  : flightsController.airports.isEmpty
                                       ? const Center(
                                           child: Text("Search City, Airports"),
                                         )
@@ -111,7 +105,7 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                           ksizedbox10,
                                           for (int i = 0;
                                               i <
-                                                  apiflightsController
+                                                  flightsController
                                                       .airports.length;
                                               i++)
                                             Padding(
@@ -119,12 +113,20 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                                   left: 15, right: 15),
                                               child: InkWell(
                                                 onTap: () {
-                                                  apiflightsController.origin(
-                                                      apiflightsController
+                                                  flightsController.origin(
+                                                      flightsController
                                                           .airports[i]['iata']);
-                                                  apiflightsController.originFullName(
-                                                      apiflightsController
-                                                          .airports[i]['name']);
+                                                  flightsController
+                                                      .originFullName(
+                                                          flightsController
+                                                              .airports[i]
+                                                              ['name']);
+
+                                                  flightsController
+                                                      .originCountry(
+                                                          flightsController
+                                                              .airports[i]
+                                                              ['country']);
 
                                                   Get.back();
                                                 },
@@ -155,9 +157,9 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                                                         kblue),
                                                             onPressed: () {},
                                                             child: Text(
-                                                              apiflightsController
+                                                              flightsController
                                                                   .airports[i]
-                                                                  ['iata'].toString(),
+                                                                  ['iata'].toString()
                                                             ),
                                                           ),
                                                         ],
@@ -170,7 +172,7 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                                                   .width *
                                                               0.4,
                                                       child: Text(
-                                                        apiflightsController
+                                                        flightsController
                                                             .airports[i]['name'].toString(),
                                                         style: TextStyle(
                                                             fontSize: 15),
@@ -183,7 +185,7 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                                                 .width *
                                                             0.1,
                                                         child: Text(
-                                                            apiflightsController
+                                                            flightsController
                                                                 .airports[i]
                                                                 ['dst'].toString(),
                                                             style: TextStyle(
@@ -196,8 +198,7 @@ class _flightScreenChooseState extends State<flightScreenChoose> {
                                         ]);
                             }),
                           ))
-                    ])
-                    ),
+                    ]))
               ])
             ]))));
   }

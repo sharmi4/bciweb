@@ -24,6 +24,7 @@ import 'package:bciweb/models/hotel_model/hotel_detials_model.dart'
     as htDetails;
 import '../../services/networks/hotel_api_service/store_hotel_booking_data_api.dart';
 import '../../services/networks/hotel_api_service/successful_screen.dart';
+import '../../views/members/bookins/hotels/hotel_search_list.dart';
 import '../auth_controller/auth_profile_controller.dart';
 import '../profile_controller.dart';
 
@@ -95,7 +96,14 @@ class HotelController extends GetxController {
       SearchHotelModel searchHotelModel =
           SearchHotelModel.fromJson(response.data);
       searchHotelData = searchHotelModel.result;
-      // Get.to(HotelListScreen());
+      Get.to(HotelSearchList(
+        adult: adult, 
+        checkindate: checkindate, 
+        checkoutdate:checkoutdate, 
+        countryCode: countryCode,
+      destination: destination,
+      roomsno: roomsno,
+      child: child,));
       print(response.data);
       update();
 
@@ -247,7 +255,7 @@ class HotelController extends GetxController {
         await hotelbookingapiservice.hotelBookingApiServices(
             hotelCode: hotelCode,
             hotelName: hotelName,
-            hotelRoomsDetail: hotelRoomsDetail,
+            hotelRoomsDetail:hotelRoomsDetail,
             resultIndex: resultIndex,
             searchToken: searchToken,
             emailId: profileController.profileData.first.email,
@@ -260,12 +268,13 @@ class HotelController extends GetxController {
       if (response.data["Error"]["ErrorCode"] == 0) {
         // success page
         final profileController = Get.find<AuthProfileController>();
+        print(response.statusMessage);
         print(
             "<<---------------------------before booking model-------------------------------->>");
         print(tempBookingModel);
         print(response);
         HotelBookingStroreData hotelBookingStroreData = HotelBookingStroreData(
-            bookingDate: tempBookingModel!.bookingDate ?? "",
+            bookingDate: tempBookingModel!.bookingDate,
             bookingId: response.data["Result"]["BookingId"].toString(),
             bookingRefNo: response.data["Result"]["BookingRefNo"].toString(),
             confirmationNo:
@@ -291,6 +300,7 @@ class HotelController extends GetxController {
         storeHotlBookingData(hotelBookingStoreData: hotelBookingStroreData);
         print(
             "<<----------------after storing model------------------------>>");
+            print(response.statusMessage);
 
         Get.off(() => const SucssesFullsceen());
       } else {

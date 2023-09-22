@@ -30,13 +30,14 @@ class SubscriptionApiController extends GetxController{
     List<Datum>othersbookinglist=[];
      List<Plan> subscriptionplan=[];
 
-     getplansList() async {
+   getplansList() async {
     dio.Response<dynamic> response = await getPlansApiServices.getPlans();
     if (response.statusCode == 200) {
-      PlansModel plansModel = PlansModel.fromJson(response.data); 
+      PlansModel plansModel = PlansModel.fromJson(response.data);
       plansdataList = plansModel.data;
     }
-   
+     print(response.data);
+     print(response.statusMessage);
     update();
   }
 

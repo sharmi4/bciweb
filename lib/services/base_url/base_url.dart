@@ -75,7 +75,7 @@ abstract class BaseApiService {
   final String airSearchUrl =
       "https://www.portal.bcipvtltd.com/api/auth/flight_search";
 
-  final String airportSearch = "https://openflights.org/php/apsearch.php";
+  final String airportSearch = "https://www.portal.bcipvtltd.com/api/flight_city_search";
 
   //----------- holidays bookings ---------------//
 

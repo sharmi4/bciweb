@@ -27,7 +27,7 @@ class ApiflightsController extends GetxController {
   RxInt adultsCount = 1.obs;
   RxInt childsCount = 0.obs;
   RxInt onwayOrTwoWay = 0.obs;
-
+ RxString originCountry = "Choose".obs;
   RxInt domesticORInternational = 0.obs;
 
   DateTime depatureDate = DateTime.now();
@@ -41,7 +41,7 @@ class ApiflightsController extends GetxController {
   AirSearchApiServices airSearchApiServices = AirSearchApiServices();
   AirportSearchApiServices airportSearchApiServices =
       AirportSearchApiServices();
-  List<Airport> airports = [];
+  List<Map<String, String?>> airports = [];
 
   RxBool airPortFound = false.obs;
 
@@ -61,8 +61,8 @@ class ApiflightsController extends GetxController {
     if (jsonDecode(response.data)["status"] == 1) {
       print("---------on 1-----------");
       airPortFound(false);
-      AirportSearchModel airportSearchModel =
-          AirportSearchModel.fromJson(jsonDecode(response.data));
+      AirportsearchModel airportSearchModel =
+          AirportsearchModel.fromJson(response.data);
 
       airports = airportSearchModel.airports;
     } else {
@@ -765,6 +765,8 @@ class ApiflightsController extends GetxController {
 
     //downloadFile(bytes, airReprintModel.airPnrDetails.first.airlinePnr);
   }
+
+  void destinationCountry(String country) {}
 
   //   downloadFile(var bytes, String txId) async {
   //   await Permission.storage.request();

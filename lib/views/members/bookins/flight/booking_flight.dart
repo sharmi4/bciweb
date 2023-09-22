@@ -3,11 +3,14 @@ import 'package:bciweb/controller/flaight_show_controller.dart';
 import 'package:bciweb/controller/flaightdate_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:date_format/date_format.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/flaight _controller.dart';
+import '../../../../models/airport_search_model.dart';
+import '../../../../models/busbookingmodels/bus_cityList_model.dart';
 import '../../../../models/flight_searchdatamodel.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -348,35 +351,87 @@ class _BookingFlightState extends State<BookingFlight> {
                                         ),
                                         Icon(Icons.compare_arrows_sharp),
                                         Container(
-                                          height: 40,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.12,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(color: kgrey),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: TextField(
-                                            onChanged: (value) async {
-                                              if (value.length > 1) {
-                                                await Future.delayed(Duration(
-                                                    milliseconds: 200));
-                                                Get.find<ApiflightsController>()
-                                                    .seachAirport(
-                                                        keyWord: value);
-                                              }
-                                            },
-                                            textInputAction:
-                                                TextInputAction.next,
-                                            controller: faligsearchController,
-                                            decoration: InputDecoration(
-                                                hintText: 'Any Airport or City',
-                                                hintStyle:
-                                                    TextStyle(fontSize: 14),
-                                                border: OutlineInputBorder()),
-                                          ),
-                                        ),
+                                              decoration: BoxDecoration(
+                                                  //  color: Colors.grey[200],
+                                                  borderRadius:
+                                                      BorderRadius.circular(15)),
+                                              height: size.height * 0.06,
+                                              width: size.width * 0.2,
+                                              child:
+                                                  TypeAheadField<Map<String, String?>>(
+                                                getImmediateSuggestions: true,
+                                                textFieldConfiguration:
+                                                    TextFieldConfiguration(
+                                                  controller: faligsearchController,
+                                                  onChanged: (value) async {
+                                                    if (value.length > 1) {
+                                                      await Future.delayed(
+                                                          const Duration(
+                                                              milliseconds: 200));
+                                                      Get.find<ApiflightsController>()
+                                                          .seachAirport(
+                                                              keyWord: value);
+                                                    }
+                                                  },
+                                                  decoration:
+                                                      const InputDecoration(
+                                                          border:
+                                                              OutlineInputBorder(),
+                                                          hintText:
+                                                              'Search Any Airport City',
+                                                              hintStyle: TextStyle(
+                                                              fontSize: 15)),
+                                                ),
+                                                suggestionsCallback:
+                                                    (String pattern) async {
+                                                  return apiflightController
+                                                      .airports
+                                                      .where(
+                                                        (item) => item["city"].toString()
+                                                            .toLowerCase()
+                                                            .startsWith(
+                                                              pattern
+                                                                  .toLowerCase(),
+                                                            ),
+                                                      ).toList();
+                                                },
+                                                itemBuilder: (context,
+                                                    Map<String, String?> citymodel) {
+                                                  return ListTile(
+                                                    title:
+                                                        Text(citymodel["name"].toString()),
+                                                  );
+                                                },
+                                                itemSeparatorBuilder:
+                                                    (context, index) {
+                                                  return const Divider();
+                                                },
+                                                onSuggestionSelected:
+                                                    (Map<String, String?> citymodel) {
+                                                  print("bording selected");
+                                                  apiflightController.origin(
+                                                      apiflightController
+                                                          .airports.first["iata"]);
+                                                  apiflightController
+                                                      .originFullName(
+                                                          apiflightController
+                                                              .airports.first
+                                                              ['name']);
+
+                                                  apiflightController
+                                                      .originCountry(
+                                                          apiflightController
+                                                              .airports.first
+                                                              ['country']);
+                                                  // Bordingcontrolr.text =
+                                                  //     citymodel.cityName;
+                                                  // apiflightController.fromCity(
+                                                  //     citymodel.cityName);
+                                                  // busController.fromcityId(
+                                                  //     citymodel.cityId);
+                                                },
+                                              ),
+                                            ),
                                         Container(
                                           height: 40,
                                           width: MediaQuery.of(context)
@@ -4109,3 +4164,4 @@ class _BookingFlightState extends State<BookingFlight> {
     );
   }
 }
+

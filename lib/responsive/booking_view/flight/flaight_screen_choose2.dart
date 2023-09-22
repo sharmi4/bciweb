@@ -105,12 +105,12 @@ class _flightScreenChoose2State extends State<flightScreenChoose2> {
                                                 onTap: () {
                                                   apiflightsController.destination(
                                                       apiflightsController
-                                                          .airports[i].iata);
+                                                          .airports[i]['iata']);
                                                   apiflightsController
                                                       .destinationFullName(
                                                           apiflightsController
                                                               .airports[i]
-                                                              .name);
+                                                              ['name']);
                                                   Get.back();
                                                 },
                                                 child: Row(
@@ -142,7 +142,7 @@ class _flightScreenChoose2State extends State<flightScreenChoose2> {
                                                             child: Text(
                                                              apiflightsController 
                                                                   .airports[i]
-                                                                  .iata,
+                                                                  ['iata'].toString(),
                                                             ),
                                                           ),
                                                         ],
@@ -156,7 +156,7 @@ class _flightScreenChoose2State extends State<flightScreenChoose2> {
                                                               0.4,
                                                       child: Text(
                                                         apiflightsController
-                                                            .airports[i].name,
+                                                            .airports[i]['name'].toString(),
                                                         style: TextStyle(
                                                             fontSize: 15),
                                                       ),
@@ -170,7 +170,7 @@ class _flightScreenChoose2State extends State<flightScreenChoose2> {
                                                         child: Text(
                                                             apiflightsController
                                                                 .airports[i]
-                                                                .dst,
+                                                                ['dst'].toString(),
                                                             style: TextStyle(
                                                                 fontSize:
                                                                     15)))
