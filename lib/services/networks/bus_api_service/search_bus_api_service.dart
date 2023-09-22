@@ -16,6 +16,17 @@ class SearchBusListApiService extends BaseApiService {
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
+
+      var data = {
+                    "imei_Number":"123345",
+                    "from_city": fromCityId,
+                    "to_city": toCityId,
+                    "travel_date": travelDate
+                 };
+
+
+                 print(data);
+
       var response = await dio.post(
         searchBusApiUrl,
         options: Options(

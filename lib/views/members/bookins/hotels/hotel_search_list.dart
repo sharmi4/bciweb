@@ -2,7 +2,7 @@ import 'package:bciweb/views/members/bookins/hotels/resort.dart';
 
 import 'package:bciweb/views/members/bookins/hotels/resort_details_screen.dart';
 import 'package:flutter/cupertino.dart';
-
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -14,9 +14,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 import 'package:websafe_svg/websafe_svg.dart';
-
+import 'package:date_format/date_format.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/hotel_controller/hotel_controller.dart';
+import '../../../../models/hotel_model/hotel_search_model.dart';
 
 class HotelSearchList extends StatefulWidget {
   HotelSearchList({
@@ -35,28 +36,47 @@ class HotelSearchList extends StatefulWidget {
 }
 
 class _HotelSearchListState extends State<HotelSearchList> {
+   List<SearchHotelData> _searchResult = [];
+   onSearchTextChanged(String text) async {
+    _searchResult.clear();
+    if (text.isEmpty) {
+      setState(() {});
+      return;
+    }
+
+    hotelController.searchHotelData.forEach((searchData) {
+      if (searchData.hotelName.contains(text) || searchData.hotelAddress.contains(text)) {
+        _searchResult.add(searchData);
+      }
+    });
+
+    setState(() {});
+  }
+ var  start =DateTime.now();
+var end = DateTime.now();
+
   final hotelController = Get.find<HotelController>();
 
-  void initState() {
-    super.initState();
-    hotelController.searchHotel(
-        child: hotelController.child.value,
-        adult: hotelController.adult.value,
-        checkindate: DateFormat('dd/MM/yyyy').format(start),
-        checkoutdate: DateFormat('dd/MM/yyyy').format(end),
-        destination: hotelController.hotelSearchKey.value,
-        //  childage: hotelController.roomno.value,
-        roomsno: hotelController.roomno.string,
-        countryCode: hotelController.hotelSearchKeyCode.value);
-    hotelController.update();
-  }
+  // void initState() {
+  //   super.initState();
+  //   hotelController.searchHotel(
+  //       child: hotelController.child.value,
+  //       adult: hotelController.adult.value,
+  //       checkindate: DateFormat('dd/MM/yyyy').format(start),
+  //       checkoutdate: DateFormat('dd/MM/yyyy').format(end),
+  //       destination: hotelController.hotelSearchKey.value,
+  //       //  childage: hotelController.roomno.value,
+  //       roomsno: hotelController.roomno.string,
+  //       countryCode: hotelController.hotelSearchKeyCode.value);
+  //   hotelController.update();
+  // }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return GetBuilder<HotelController>(builder: (_) {
-      return Obx(
-        () => Padding(
+    return Scaffold(
+      body: GetBuilder<HotelController>(builder: (_) {
+      return hotelController.searchHotelData.isEmpty?Text('No Found Data'): Padding(
           padding: const EdgeInsets.all(15.0),
           child: hotelController.isLoading.isTrue
               ? Container(
@@ -72,7 +92,9 @@ class _HotelSearchListState extends State<HotelSearchList> {
                     shrinkWrap: true,
                     itemCount: hotelController.searchHotelData.length,
                     itemBuilder: (context, index) {
-                      return Padding(
+                      return hotelController.searchHotelData.isEmpty?
+                      Text('No Found Data'):
+                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Container(
                           child: Row(
@@ -278,8 +300,10 @@ class _HotelSearchListState extends State<HotelSearchList> {
                     },
                   ),
                 ),
-        ),
+        
       );
-    });
+    })
+    );
   }
 }
+

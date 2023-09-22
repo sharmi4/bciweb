@@ -27,6 +27,8 @@ class BookingHotels extends StatefulWidget {
 }
 
 class _BookingHotelsState extends State<BookingHotels> {
+
+  
   Future pickDateRange() async {
     DateTimeRange? newDateRange = await showDateRangePicker(
       context: context,
@@ -445,9 +447,13 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                 noOfPeople: hotelController
                                                     .adult.value
                                                     .toString(),
-                                                place:
-                                                    Destinationcontrolr.text);
+                                                place: destinationController.text);
+                                                    print(':::::::::searchhotel:::::::::');
+                                                    print(hotelController.hotelSearchKeyCode.value);
+                                                    print(hotelController.hotelSearchKey.value);
+                                                    print(hotelController.hotelSearchKey.value);
                                         Get.to(
+                                          
                                           HotelSearchList(
                                             adult: hotelController.adult.value,
                                             checkindate:

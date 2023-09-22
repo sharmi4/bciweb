@@ -96,7 +96,9 @@ class HotelController extends GetxController {
           SearchHotelModel.fromJson(response.data);
       searchHotelData = searchHotelModel.result;
       // Get.to(HotelListScreen());
+      print(response.data);
       update();
+
       if (response.data["Error_Code"] == "0001") {
         Get.rawSnackbar(
           backgroundColor: Colors.red,
