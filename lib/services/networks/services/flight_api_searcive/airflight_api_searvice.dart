@@ -8,14 +8,32 @@ import '../../../../models/flight_searchdatamodel.dart';
 import '../../../base_url/base_url.dart';
 
 class AirSearchApiServices extends BaseApiService {
-  Future airSearchApiServices({
-    required FlightSearchDataModel flightSearchModel,
-  }) async {
+  Future airSearchApiServices(
+      {required FlightSearchDataModel flightSearchModel,
+      required String airlineCode}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
+      
+      var data = {
+            "imei_number": "64654546546546",
+            "origin": flightSearchModel.fromIata,
+            "destination": flightSearchModel.toIata,
+            "travel_date": formatDate(
+                flightSearchModel.depatureDate, [mm, "/", dd, "/", yyyy]),
+            "travel_type": flightSearchModel.isDomOrINTL,
+            "booking_type": flightSearchModel.isOneWayOrRoundTrip,
+            "adult_count": "${flightSearchModel.adultsCount}",
+            "child_count": "${flightSearchModel.childCount}",
+            "infant_count": "0",
+            "class_of_travel": "${flightSearchModel.cabinClass}",
+            "inventory_type": 0,
+            "airline_code": airlineCode
+          };
+
+          print(data);
 
       var response = await dio.post(airSearchUrl,
           options: Options(
@@ -29,10 +47,10 @@ class AirSearchApiServices extends BaseApiService {
               }),
           data: {
             "imei_number": "64654546546546",
-            "origin": "MAA",
-            "destination": "COK",
+            "origin": flightSearchModel.fromIata,
+            "destination": flightSearchModel.toIata,
             "travel_date": formatDate(
-                flightSearchModel.depatureDate, [mm, "/", dd, "/", yyyy]),
+                flightSearchModel.depatureDate.add(Duration(days: 30)), [mm, "/", dd, "/", yyyy]),
             "travel_type": 0,
             "booking_type": flightSearchModel.isOneWayOrRoundTrip,
             "adult_count": "${flightSearchModel.adultsCount}",
@@ -45,14 +63,6 @@ class AirSearchApiServices extends BaseApiService {
       print("::::::::<--Air search-->::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
-      print(flightSearchModel.isOneWayOrRoundTrip);
-      print(flightSearchModel.adultsCount);
-      print(flightSearchModel.cabinClass);
-      print(flightSearchModel.depatureDate);
-      print(flightSearchModel.childCount);
-      print(flightSearchModel.toIata);
-      print(flightSearchModel.fromIata);
-
       responseJson = response;
     } on SocketException {
       print("no internet");

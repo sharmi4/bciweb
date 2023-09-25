@@ -311,6 +311,14 @@ class _FlightBookingLandingScreenState
                       )
                     : InkWell(
                         onTap: () {
+                               int domORIntl = 0;
+
+                               if (apiflightController.originCountry.value ==
+                                  apiflightController.destinationCountry.value) {
+                                  domORIntl = 0;
+                                  } else {
+                                   domORIntl = 1;
+                                 }
                           FlightSearchDataModel flightSearchDataModel =
                               FlightSearchDataModel(
                                   adultsCount: apiflightController
@@ -333,7 +341,10 @@ class _FlightBookingLandingScreenState
                                   returnDate:
                                       apiflightController.returnDate,
                                   toIata: apiflightController
-                                      .destination.value);
+                                      .destination.value,
+                                       fromCountry: apiflightController.originCountry.value, 
+                                       isDomOrINTL: domORIntl, 
+                                       toCountry: apiflightController.destinationCountry.value);
 
                           apiflightController.airSearch(
                               flightSearchModel: flightSearchDataModel,ismobilorweb: true);

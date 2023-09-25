@@ -25,9 +25,9 @@ class ApiflightsController extends GetxController {
   RxInt flighttypeindex = 0.obs;
 
   RxInt adultsCount = 1.obs;
+  RxInt showdetails = 0.obs;
   RxInt childsCount = 0.obs;
   RxInt onwayOrTwoWay = 0.obs;
- RxString originCountry = "Choose".obs;
   RxInt domesticORInternational = 0.obs;
 
   DateTime depatureDate = DateTime.now();
@@ -43,11 +43,14 @@ class ApiflightsController extends GetxController {
       AirportSearchApiServices();
   List<Map<String, String?>> airports = [];
 
-  RxBool airPortFound = false.obs;
 
-  RxString origin = "MAA".obs;
+  
+  RxBool airPortFound = false.obs;
+  RxString origin = "Choose".obs;
+  RxString originCountry = "Choose".obs;
   RxString originFullName = "Choose".obs;
-  RxString destination = "COK".obs;
+  RxString destination = "Choose".obs;
+  RxString destinationCountry = "Choose".obs;
   RxString destinationFullName = "Choose".obs;
 
   RxInt isMaleOrFemale = 2.obs;
@@ -58,7 +61,7 @@ class ApiflightsController extends GetxController {
     dio.Response<dynamic> response = await airportSearchApiServices
         .airportSearchApiServices(keyWord: keyWord);
 
-    if (jsonDecode(response.data)["status"] == 1) {
+    if (response.data["status"] == 1) {
       print("---------on 1-----------");
       airPortFound(false);
       AirportsearchModel airportSearchModel =
@@ -79,12 +82,13 @@ class ApiflightsController extends GetxController {
 
   airSearch(
       {required FlightSearchDataModel flightSearchModel,
+      String airlineCode='',
       required bool ismobilorweb}) async {
     isLoading(true);
     flightList.clear();
     String seachKey = "";
     dio.Response<dynamic> response = await airSearchApiServices
-        .airSearchApiServices(flightSearchModel: flightSearchModel);
+        .airSearchApiServices(flightSearchModel: flightSearchModel, airlineCode: airlineCode);
     isLoading(false);
     if (response.data["Response_Header"]["Error_Code"] == "0000") {
       AirSearchModel airSearchModel = AirSearchModel.fromJson(response.data);
@@ -766,7 +770,7 @@ class ApiflightsController extends GetxController {
     //downloadFile(bytes, airReprintModel.airPnrDetails.first.airlinePnr);
   }
 
-  void destinationCountry(String country) {}
+  //void destinationCountry(String country) {}
 
   //   downloadFile(var bytes, String txId) async {
   //   await Permission.storage.request();

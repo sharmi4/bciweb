@@ -11,9 +11,14 @@ import 'dart:math' as math;
 
 import 'liquer_cart.dart';
 
-class LiquerBrand extends StatelessWidget {
+class LiquerBrand extends StatefulWidget {
   const LiquerBrand({super.key});
 
+  @override
+  State<LiquerBrand> createState() => _LiquerBrandState();
+}
+
+class _LiquerBrandState extends State<LiquerBrand> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
