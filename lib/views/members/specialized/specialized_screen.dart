@@ -11,8 +11,6 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
-import '../common_widget/commoncontainer.dart';
-import '../common_widget/common_buttom.dart';
 
 class SpecializedScreen extends StatefulWidget {
   // ignore: constant_identifier_names

@@ -32,16 +32,18 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
 
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+
     return Container(
       child: Padding(
         padding: const EdgeInsets.only(top: 0, left: 0),
         child: Row(
           children: [
             Container(
-                height: 70,
-                width: 180,
-                color: Colors.deepOrange[50],
-                child: Image.asset('assets/images/logo.png')),
+              height: 70,
+              width: 180,
+              color: Colors.deepOrange[50],
+              child: Image.asset('assets/images/logo.png'),
+            ),
             // ClipPath(
             //   clipper: ClipClipper(),
             //   child: Container(height: 70,width: 60,color:Colors.deepOrange[50],

@@ -331,6 +331,9 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
+if (hotelController.roomno! == 0)
+
+
                                                         hotelController
                                                             .roomno--;
                                                       },
@@ -387,6 +390,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
+                                                        if (hotelController.adult! == 0)
                                                         hotelController.adult--;
                                                       },
                                                       child: const Icon(

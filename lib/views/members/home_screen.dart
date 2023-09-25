@@ -22,7 +22,9 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
 
 
   final _homeController = Get.find<HomeController>();
+
   final authProfileController=Get.find<AuthProfileController>();
+  
 
 
   @override

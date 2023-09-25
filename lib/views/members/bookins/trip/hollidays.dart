@@ -1327,21 +1327,23 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .only(
+                                                                  .only(
                                                                   bottom: 10),
                                                           child: IconButton(
-                                                              onPressed: () {
-                                                                holidayPackageController
-                                                                    .adult--;
+                                                            onPressed: () {
+                                                              if (holidaycontroller
+                                                                      .cout ==
+                                                                  1)
                                                                 holidaycontroller
                                                                     .decrement();
-                                                                holidaycontroller
-                                                                    .update();
-                                                              },
-                                                              icon: Icon(
-                                                                Icons.remove,
-                                                                size: 14,
-                                                              )),
+                                                              holidaycontroller
+                                                                  .update();
+                                                            },
+                                                            icon: Icon(
+                                                              Icons.remove,
+                                                              size: 14,
+                                                            ),
+                                                          ),
                                                         ),
                                                         Container(
                                                           height: 50,
@@ -1351,14 +1353,16 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                                   color:
                                                                       korange),
                                                           child: Center(
-                                                            child: Obx(() => Text(
-                                                                '${holidaycontroller.cout.value}')),
+                                                            child: Obx(
+                                                              () => Text(
+                                                                  '${holidaycontroller.cout.value}'),
+                                                            ),
                                                           ),
                                                         ),
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .only(
+                                                                  .only(
                                                                   bottom: 10),
                                                           child: IconButton(
                                                               onPressed: () {
@@ -1408,12 +1412,15 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .only(
+                                                                  .only(
                                                                   bottom: 10),
                                                           child: IconButton(
                                                               onPressed: () {
-                                                                holiday2controller
-                                                                    .decrement();
+                                                                if (holiday2controller
+                                                                        .cout! ==
+                                                                    1)
+                                                                  holiday2controller
+                                                                      .decrement();
                                                                 holiday2controller
                                                                     .update();
                                                               },
@@ -1437,7 +1444,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                         Padding(
                                                           padding:
                                                               const EdgeInsets
-                                                                      .only(
+                                                                  .only(
                                                                   bottom: 10),
                                                           child: IconButton(
                                                               onPressed: () {
@@ -1485,16 +1492,20 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                       //crossAxisAlignment: CrossAxisAlignment.center,
                                                       children: [
                                                         IconButton(
-                                                            onPressed: () {
+                                                          onPressed: () {
+                                                            if (holiday3controller
+                                                                    .cout! ==
+                                                                1)
                                                               holiday3controller
                                                                   .decrement();
-                                                              holiday3controller
-                                                                  .update();
-                                                            },
-                                                            icon: Icon(
-                                                              Icons.remove,
-                                                              size: 14,
-                                                            )),
+                                                            holiday3controller
+                                                                .update();
+                                                          },
+                                                          icon: Icon(
+                                                            Icons.remove,
+                                                            size: 14,
+                                                          ),
+                                                        ),
                                                         Container(
                                                           height: 50,
                                                           width: 22,
