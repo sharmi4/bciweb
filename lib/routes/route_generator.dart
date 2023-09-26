@@ -21,9 +21,13 @@ import '../views/members/specialized/specialized_screen.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      
+      case Routes.Cancelation:
+        return _GeneratePageRoute(
+            widget: Canslation(), routeName: settings.name);
+
       case Routes.SPLASH:
-        return _GeneratePageRoute(widget: splash(), routeName: settings.name);
+        return _GeneratePageRoute(
+            widget: MemberHomeScreen(), routeName: settings.name);
 
       case Routes.MEMBHOME:
         return _GeneratePageRoute(
@@ -70,15 +74,12 @@ class RouteGenerator {
       case Routes.Gallery:
         return _GeneratePageRoute(widget: Gallery(), routeName: settings.name);
 
-      case Routes.Cancelation:
-        return _GeneratePageRoute(widget: Canslation(), routeName: settings.name);
-        
       default:
-        return _GeneratePageRoute(widget: splash(), routeName: settings.name);
+        return _GeneratePageRoute(
+            widget: const MemberHomeScreen(), routeName: settings.name);
     }
   }
 } // Navigator.pushNamed(context, RoutesName.name);
-
 
 //       case Routes.OTP_VIEWS:
 //         return _GeneratePageRoute(

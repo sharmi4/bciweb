@@ -31,7 +31,7 @@ abstract class Routes {
 abstract class _Paths {
   _Paths._();
   static const MEMBHOME = '/members-homescreen';
-  static const SPLASH = '/splash-page';
+  static const SPLASH = '/';
 
   static const landing_screen = '/landing-screen';
 

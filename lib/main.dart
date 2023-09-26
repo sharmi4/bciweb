@@ -15,6 +15,7 @@ import 'package:bciweb/controller/subscribe_controllers.dart';
 
 import 'package:bciweb/responsive/holiday/controllers/holidaycontroller.dart';
 import 'package:bciweb/responsive/res_controller/yours_coupon_controller.dart';
+import 'package:bciweb/routes/app_pages.dart';
 
 import 'package:bciweb/routes/route_generator.dart';
 
@@ -75,28 +76,31 @@ void main() {
   Get.put(SubscriptionApiController());
   Get.put(FlaightBookingController());
   Get.put(HolidayController());
-   Get.put(Holiday2Controller());
-    Get.put(Holiday3Controller());
-    Get.put(HolidayyController());
-    Get.put(ApiflightsController());
-   Get.put(HolidayPackageController());
-   Get.put(BusController());
-   Get.put(ApiSettingController());
-   Get.put(HotelController());
-  runApp(const MyApp());
+  Get.put(Holiday2Controller());
+  Get.put(Holiday3Controller());
+  Get.put(HolidayyController());
+  Get.put(ApiflightsController());
+  Get.put(HolidayPackageController());
+  Get.put(BusController());
+  Get.put(ApiSettingController());
+  Get.put(HotelController());
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final GlobalKey<NavigatorState> secondFocusMarkerKey =
+      GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-    //  home: History(),
-
-   debugShowCheckedModeBanner: false,
+      navigatorKey: secondFocusMarkerKey,
+      debugShowCheckedModeBanner: false,
+      title: "BCI Member",
       onGenerateRoute: RouteGenerator.generateRoute,
-
+      initialRoute: Routes.SPLASH,
     );
   }
 }

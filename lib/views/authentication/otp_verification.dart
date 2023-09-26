@@ -73,15 +73,15 @@ int _start = 60; // Timer duration in seconds
                     //   decoration: TextDecoration.underline,
                     color: kblue),
                 ),
-                ksizedbox20,
-                Text(
-                    'OTP is ${widget.otp}',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        //   decoration: TextDecoration.underline,
-                        color: kblue),
-                  ),
+                // ksizedbox20,
+                // Text(
+                //     'OTP is ${widget.otp}',
+                //     style: TextStyle(
+                //         fontSize: 14,
+                //         fontWeight: FontWeight.w500,
+                //         //   decoration: TextDecoration.underline,
+                //         color: kblue),
+                //   ),
                 ksizedbox30,
                 SingleChildScrollView(
                   child: Column(

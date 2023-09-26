@@ -5,9 +5,12 @@
 
 
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/views/members/common_widget/common_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
@@ -526,9 +529,12 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                   children: [
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: kblue, minimumSize: Size(200, 47)),
-                        onPressed: () {},
-                        child: Text(
+                            backgroundColor: kblue,
+                            minimumSize: const Size(200, 47)),
+                        onPressed: () {
+                          Get.toNamed(Routes.contact_screen);
+                        },
+                        child: const Text(
                           'Contact Us',
                           style: TextStyle(fontSize: 18),
                         )),
@@ -539,14 +545,14 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                               backgroundColor: kOrange,
                               minimumSize: Size(200, 47)),
                           onPressed: () async {
-                            Uri url = Uri.parse(
-                                "https://www.portal.bcipvtltd.com/paymentgateway?amount=100&payOpt=''&user_id=197");
-                            _launched = _launchInBrowser(url);
-                            _launched!.then((value) {
-                              //print("Current url state-------------------->>${value}");
-                            });
+                            // Uri url = Uri.parse(
+                            //     "https://www.portal.bcipvtltd.com/paymentgateway?amount=100&payOpt=''&user_id=197");
+                            // _launched = _launchInBrowser(url);
+                            // _launched!.then((value) {
+                            //   //print("Current url state-------------------->>${value}");
+                            // });
                           },
-                          child: Text(
+                          child: const Text(
                             'Book Now',
                             style: TextStyle(fontSize: 18),
                           )),

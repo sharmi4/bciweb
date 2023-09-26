@@ -1,4 +1,5 @@
 import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -35,9 +36,10 @@ class _splashState extends State<splash> {
     print("---------------------->> fro splash");
     await Future.delayed(const Duration(seconds: 2));
 
-    Get.offAll(
-      () =>MobileHomeScreen(),
-    );
+    // Get.offAll(
+    //   () =>MobileHomeScreen(),
+    // );
+    Get.offAllNamed(Routes.MEMBHOME);
   }
 
   // toLoginPage() async {

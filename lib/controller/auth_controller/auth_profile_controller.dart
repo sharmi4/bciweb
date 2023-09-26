@@ -57,7 +57,7 @@ class AuthProfileController extends GetxController {
       profileData.add(profileModel.user);
       update();
     } else if (response.statusCode == 401) {
-      // Get.find<AuthController>().logout();
+      Get.find<AuthController>().logout();
     }
     update();
   }

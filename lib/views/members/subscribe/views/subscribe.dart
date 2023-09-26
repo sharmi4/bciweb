@@ -10,10 +10,12 @@ import '../../../../controller/subscription_controller/subscription_controller.d
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
 
-class Subscribe extends StatefulWidget { 
+class Subscribe extends StatefulWidget {
   // PlansData ? planesdata;
-   Subscribe({super.key,});
- 
+  Subscribe({
+    super.key,
+  });
+
   @override
   State<Subscribe> createState() => _SubscribeState();
 }
@@ -22,19 +24,18 @@ class _SubscribeState extends State<Subscribe> {
   final settingsController = Get.find<SubscribeController>();
   final subscriptionapiController = Get.find<SubscriptionApiController>();
 
+  @override
+  void initState() {
+    super.initState();
+    subscriptionapiController.getplansList();
+    // setDefault();
+  }
 
-@override
-void initState() {
-  super.initState();
-  subscriptionapiController.getplansList();
-  // setDefault();
-}
-bool showContainer=false;
-String cardimgae='';
-int temindex=0;
+  bool showContainer = false;
+  String cardimgae = '';
+  int temindex = 0;
 
-
-int button=0;
+  int button = 0;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -46,14 +47,13 @@ int button=0;
               CommonScreen(),
               RegisterCommonContainer(),
             ],
-          ), preferredSize:const Size(double.infinity, 110)),
-      body:  GetBuilder<SubscriptionApiController>(
-          builder: (_){
-            
-            return ListView(
+          ),
+          preferredSize: const Size(double.infinity, 110)),
+      body: GetBuilder<SubscriptionApiController>(builder: (_) {
+        return ListView(
             //  crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-             // RegisterCommonContainer(),
+              // RegisterCommonContainer(),
               Container(
                 child: Stack(
                   children: [
@@ -105,146 +105,193 @@ int button=0;
                   Padding(
                     padding: const EdgeInsets.only(left: 40),
                     child: Container(
-                     height: 500,
-                     width:700,
+                      height: 500,
+                      width: 700,
                       child: GridView.builder(
-                       shrinkWrap: true,
-                       itemCount: subscriptionapiController.plansdataList.length,
-                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        mainAxisSpacing: 40,
-                        crossAxisSpacing: 40,
-                        childAspectRatio: 6,
-                        crossAxisCount: 2), 
-                      itemBuilder: (context,index){
-                       return GestureDetector(
-                        onTap: (){
-                          print("------------------------------------------------${subscriptionapiController.plansdataList[index].cardImg}");
-                          setState(() {
-                            temindex= index;
-                            cardimgae= subscriptionapiController.plansdataList[index].cardImg;
-                          });
-                        },
-                         child: Container(
-                          height: 30,
-                           alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                             color:temindex==index ?kOrange:kwhite,
-                             borderRadius: BorderRadius.circular(10),
-                             border: Border.all(
-                              color:temindex== index?kwhite:kblue
-                             )
-                          ),
-                           child: Text(
-                            subscriptionapiController.plansdataList[index].title,
-                            style: TextStyle(
-                              fontSize: 18,
-                              color:temindex==index? kwhite:kblue
-                            ),
-                            
-                           ),
-                                                   ),
-                       );
-                      }),
+                          shrinkWrap: true,
+                          itemCount:
+                              subscriptionapiController.plansdataList.length,
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                  mainAxisSpacing: 40,
+                                  crossAxisSpacing: 40,
+                                  childAspectRatio: 6,
+                                  crossAxisCount: 2),
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: () {
+                                print(
+                                    "------------------------------------------------${subscriptionapiController.plansdataList[index].cardImg}");
+                                setState(() {
+                                  temindex = index;
+                                  cardimgae = subscriptionapiController
+                                      .plansdataList[index].cardImg;
+                                });
+                              },
+                              child: Container(
+                                height: 30,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                    color: temindex == index ? kOrange : kwhite,
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: temindex == index
+                                            ? kwhite
+                                            : kblue)),
+                                child: Text(
+                                  subscriptionapiController
+                                      .plansdataList[index].title,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color:
+                                          temindex == index ? kwhite : kblue),
+                                ),
+                              ),
+                            );
+                          }),
                     ),
                   ),
-                  Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-              
-                InkWell(
-                    onTap: () {
-                      Get.to(Payment(image: subscriptionapiController.plansdataList[temindex].cardImg, 
-                      htext: subscriptionapiController.plansdataList[temindex].title, 
-                      text:subscriptionapiController.plansdataList[temindex].planDescription,
-                      id: subscriptionapiController.plansdataList[temindex].id));
-                    },
-                    child: subscriptionapiController.plansdataList.isEmpty ? Container(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            Get.to(Payment(
+                                image: subscriptionapiController
+                                    .plansdataList[temindex].cardImg,
+                                htext: subscriptionapiController
+                                    .plansdataList[temindex].title,
+                                text: subscriptionapiController
+                                    .plansdataList[temindex].planDescription,
+                                id: subscriptionapiController
+                                    .plansdataList[temindex].id));
+                          },
+                          child: subscriptionapiController.plansdataList.isEmpty
+                              ? Container()
+                              : Image(
+                                  image: cardimgae == ""
+                                      ? NetworkImage(subscriptionapiController
+                                          .plansdataList.first.cardImg)
+                                      : NetworkImage(cardimgae),
+                                  height: 234,
+                                ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Get.to(Payment(
+                                image: subscriptionapiController
+                                    .plansdataList[temindex].cardImg,
+                                htext: subscriptionapiController
+                                    .plansdataList[temindex].title,
+                                text: subscriptionapiController
+                                    .plansdataList[temindex].planDescription,
+                                id: subscriptionapiController
+                                    .plansdataList[temindex].id));
+                          },
+                          child: Container(
+                            width: 300,
+                            height: 50,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(
+                                16,
+                              ),
+                              gradient: const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Color(0xFFFF5C29),
+                                  Color(0xFFFFCD38),
+                                ],
+                              ),
+                            ),
+                            child: const Text(
+                              'Subscribe',
+                              style: TextStyle(
+                                  fontSize: 28,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                        )
+                        //if (settingsController.index.value == 1)
+                        // InkWell(
+                        //     onTap: () {
+                        //       Get.to(Payment(image: "assets/images/e2.png",
+                        //       htext: subscriptionapiController.plansdataList.first.title,
+                        //       text: subscriptionapiController.plansdataList.first.planDescription,
+                        //       id: subscriptionapiController.plansdataList.first.id.toString(),));
+                        //     },
+                        //     child:  Image(
+                        //       image: NetworkImage(cardimgae),
+                        //       height: 234,
+                        //     )),
+                        // if (settingsController.index.value == 2)
+                        //         InkWell(
+                        //             onTap: () {
+                        //               Get.to(Payment(image: subscriptionapiController.plansdataList.first.cardImg,
+                        //                text: subscriptionapiController.plansdataList.first.title,
+                        // htext:subscriptionapiController.plansdataList.first.planDescription,
+                        // id: subscriptionapiController.plansdataList.first.id.toString(),));
+                        //             },
+                        //             child:  Image(
+                        //               image: NetworkImage(subscriptionapiController.plansdataList.first.cardImg),
+                        //               height: 234,
+                        //             )),
+                        // if (settingsController.index.value == 3)
+                        // InkWell(
+                        //     onTap: () {
+                        //       Get.to(Payment(image: subscriptionapiController.plansdataList.first.cardImg,
+                        //       htext: subscriptionapiController.plansdataList.first.title,
+                        //       text: subscriptionapiController.plansdataList.first.planDescription,
+                        //       id: subscriptionapiController.plansdataList.first.id.toString(),));
+                        //     },
+                        //     child:  Image(
+                        //       image: NetworkImage(cardimgae),
+                        //       height: 234,
+                        //     )),
+                        //       if (settingsController.index.value == 4)
+                        //         InkWell(
+                        //             onTap: () {
+                        //               Get.to(Payment(image: subscriptionapiController.plansdataList.first.cardImg,
+                        //                text: subscriptionapiController.plansdataList.first.planDescription,
+                        //  htext: subscriptionapiController.plansdataList.first.title,
+                        //  id: subscriptionapiController.plansdataList.first.id.toString(),));
+                        //             },
+                        //             child:  Image(
+                        //               image: NetworkImage(cardimgae),
+                        //               height: 234,
+                        //             )),
+                        // if (settingsController.index.value == 5)
+                        //         InkWell(
+                        //             onTap: () {
+                        //               Get.to(Payment(image:cardimgae,
+                        //                text:subscriptionapiController.plansdataList.first.planDescription,
+                        // htext: subscriptionapiController.plansdataList.first.title,
 
-                    ): Image(
-                      image: cardimgae == "" ? NetworkImage(subscriptionapiController.plansdataList.first.cardImg): NetworkImage(cardimgae),
-                      height: 234,
-                      
+                        // id: subscriptionapiController.plansdataList.first.id.toString(),));
+                        //             },
+                        //             child:  Image(
+                        //               image: NetworkImage(cardimgae),
+                        //               height: 234,
+                        //             )),
+                      ],
                     ),
-                    
-                    ),
-              //if (settingsController.index.value == 1)
-                // InkWell(
-                //     onTap: () {
-                //       Get.to(Payment(image: "assets/images/e2.png", 
-                //       htext: subscriptionapiController.plansdataList.first.title, 
-                //       text: subscriptionapiController.plansdataList.first.planDescription,
-                //       id: subscriptionapiController.plansdataList.first.id.toString(),));
-                //     },
-                //     child:  Image(
-                //       image: NetworkImage(cardimgae),
-                //       height: 234,
-                //     )),
-             // if (settingsController.index.value == 2)
-        //         InkWell(
-        //             onTap: () {
-        //               Get.to(Payment(image: subscriptionapiController.plansdataList.first.cardImg,
-        //                text: subscriptionapiController.plansdataList.first.title, 
-        // htext:subscriptionapiController.plansdataList.first.planDescription,
-        // id: subscriptionapiController.plansdataList.first.id.toString(),));
-        //             },
-        //             child:  Image(
-        //               image: NetworkImage(subscriptionapiController.plansdataList.first.cardImg),
-        //               height: 234,
-        //             )),
-             // if (settingsController.index.value == 3)
-                // InkWell(
-                //     onTap: () {
-                //       Get.to(Payment(image: subscriptionapiController.plansdataList.first.cardImg, 
-                //       htext: subscriptionapiController.plansdataList.first.title, 
-                //       text: subscriptionapiController.plansdataList.first.planDescription,
-                //       id: subscriptionapiController.plansdataList.first.id.toString(),));
-                //     },
-                //     child:  Image(
-                //       image: NetworkImage(cardimgae),
-                //       height: 234,
-                //     )),
-        //       if (settingsController.index.value == 4)
-        //         InkWell(
-        //             onTap: () {
-        //               Get.to(Payment(image: subscriptionapiController.plansdataList.first.cardImg,
-        //                text: subscriptionapiController.plansdataList.first.planDescription,
-        //  htext: subscriptionapiController.plansdataList.first.title,
-        //  id: subscriptionapiController.plansdataList.first.id.toString(),));
-        //             },
-        //             child:  Image(
-        //               image: NetworkImage(cardimgae),
-        //               height: 234,
-        //             )),
-             // if (settingsController.index.value == 5)
-        //         InkWell(
-        //             onTap: () {
-        //               Get.to(Payment(image:cardimgae,
-        //                text:subscriptionapiController.plansdataList.first.planDescription, 
-        // htext: subscriptionapiController.plansdataList.first.title,
-        
-        // id: subscriptionapiController.plansdataList.first.id.toString(),));
-        //             },
-        //             child:  Image(
-        //               image: NetworkImage(cardimgae),
-        //               height: 234,
-        //             )),
+                  ),
                 ],
               ),
-                ],
-              ),
-              
-               
- ksizedbox40,
-              
+
+              ksizedbox40,
+
               ksizedbox40,
               RegisterCommonBottom()
-            ]
-            
-            );
-            
-          }
-        ),
-    
+            ]);
+      }),
     );
   }
 }

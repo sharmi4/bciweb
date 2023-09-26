@@ -77,15 +77,15 @@ class _otp_varificationState extends State<otp_varification> {
                   ),
                 ],
               ),
-              ksizedbox20,
-               Text(
-                    'OTP is ${widget.otp}',
-                    style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        //   decoration: TextDecoration.underline,
-                        color: kblue),
-                  ),
+              // ksizedbox20,
+              //  Text(
+              //       'OTP is ${widget.otp}',
+              //       style: TextStyle(
+              //           fontSize: 14,
+              //           fontWeight: FontWeight.w500,
+              //           //   decoration: TextDecoration.underline,
+              //           color: kblue),
+              //     ),
               ksizedbox40,
               SingleChildScrollView(
                child:   OtpTextField(

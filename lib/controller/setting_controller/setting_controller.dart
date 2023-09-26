@@ -28,12 +28,12 @@ class ApiSettingController extends GetxController {
           GetwalletDetails.fromJson(response.data);
       getWalletData.add(getwalletDetails);
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            'Something Went Wrong',
-            style: primaryFont.copyWith(color: kwhite),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       'Something Went Wrong',
+      //       style: primaryFont.copyWith(color: kwhite),
+      //     ));
     }
   }
 
@@ -47,12 +47,12 @@ class ApiSettingController extends GetxController {
     if (response.statusCode == 200) {
       referralCode(response.data['code']);
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "Something went wrong",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
@@ -67,12 +67,12 @@ class ApiSettingController extends GetxController {
       OurPartnersList ourPartnersList = OurPartnersList.fromJson(response.data);
       ourPartnersData = ourPartnersList.data;
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "Something went wrong",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
@@ -140,12 +140,12 @@ class ApiSettingController extends GetxController {
           TransactionHistoryModel.fromJson(response.data);
       transactionhistorydata = transactionHistoryModel.transactionHistory;
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "something went wrong",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
