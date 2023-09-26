@@ -23,6 +23,7 @@ import 'options_booking.dart';
 import 'package:date_format/date_format.dart';
 
 class BookingFlight extends StatefulWidget {
+  
   const BookingFlight({super.key});
 
   @override
@@ -1105,900 +1106,777 @@ class _BookingFlightState extends State<BookingFlight> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: nonstop,
-                                            splashRadius: 1,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                nonstop = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Non Stop (17)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
                                     Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹6,523'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: prenoon,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                prenoon = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Prenoon Deparature (17)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹5,183'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: indiGo,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                indiGo = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'IndiGo (23)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹9,027'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: vistara,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                vistara = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Vistara (6)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹7,620'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: airIndia,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                airIndia = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Air India(6)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹13,447'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: spiceJet,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                spiceJet = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'SpiceJet (1)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹8,524'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: goFirst,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                goFirst = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Go First (1)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹6,549'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: airAsia,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                airAsia = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Air Asia (2)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹5,183'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: lateDepartures,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                lateDepartures = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Late Departures (9)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹6,569'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: morningDepratures,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                morningDepratures = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Morning Depratures(2)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹6,523'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: stop,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                stop = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          '1 Stop (22)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹5,183'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                            checkColor: kblue,
-                                            activeColor: kwhite,
-                                            value: refundable,
-                                            onChanged: (value) {
-                                              setState(() {
-                                                refundable = value!;
-                                              });
-                                            }),
-                                        Text(
-                                          'Refundable Fares (39)',
-                                          style: TextStyle(fontSize: 13),
-                                        )
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹6,523'),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 16),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Show less',
-                                      style: TextStyle(
-                                          fontSize: 13, color: Colors.blue),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 25, left: 10),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'One Way Price',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Row(
-                                children: [
-                                  Container(
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.2,
-                                    child: Slider(
-                                        divisions: 200,
-                                        thumbColor: kwhite,
-                                        max: 200.0,
-                                        min: 0.0,
-                                        value: slider,
-                                        label: slider.round().toString(),
-                                        onChanged: (value) {
-                                          setState(() {
-                                            slider = value;
-                                          });
-                                        }),
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 8),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('₹ 5,183'),
-                                    Padding(
-                                      padding: const EdgeInsets.only(right: 10),
-                                      child: Text('₹ 13,600'),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 20, left: 10),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Stops From Chennai',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 15, top: 10),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Checkbox(
-                                                checkColor: kblue,
-                                                activeColor: kwhite,
-                                                value: stop,
-                                                splashRadius: 1,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    stop = value!;
-                                                  });
-                                                }),
-                                            Text(
-                                              'Non Stop (17)',
-                                              style: TextStyle(fontSize: 13),
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Checkbox(
-                                                checkColor: kblue,
-                                                activeColor: kwhite,
-                                                value: stop2,
-                                                splashRadius: 1,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    stop2 = value!;
-                                                  });
-                                                }),
-                                            Text(
-                                              '1 Stop (22)',
-                                              style: TextStyle(fontSize: 13),
-                                            )
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 7, right: 10),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
                                         children: [
-                                          Text('₹5,183'),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(top: 15),
-                                            child: Text('₹6,523'),
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: nonstop,
+                                              splashRadius: 1,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  nonstop = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Non Stop (17)',
+                                            style: TextStyle(fontSize: 13),
                                           )
                                         ],
                                       ),
-                                    )
+                                    ),
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 30, left: 10),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Departure From Chennai',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, top: 20, right: 10),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.wb_twilight_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: prenoon,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  prenoon = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Prenoon Deparature (17)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.light_mode_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.light_mode_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.wb_twilight_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: 30, left: 10),
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'Arrival at New Delhi ',
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                    left: 10, top: 20, right: 10),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
                                 child: Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.wb_twilight_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: indiGo,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  indiGo = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'IndiGo (23)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.light_mode_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.light_mode_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Container(
-                                      height: 80,
-                                      width: 70,
-                                      decoration: BoxDecoration(
-                                          border: Border.all(color: kgrey),
-                                          borderRadius:
-                                              BorderRadius.circular(5)),
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(top: 10),
-                                        child: Column(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 2),
-                                              child: Center(
-                                                child: Icon(
-                                                  Icons.wb_twilight_outlined,
-                                                  color: kgrey,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 5),
-                                              child: Text(
-                                                'Before 6AM',
-                                                style: TextStyle(fontSize: 11),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 4),
-                                              child: Text(
-                                                '₹6,569',
-                                                style: TextStyle(
-                                                  fontSize: 11,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )
                                   ],
                                 ),
                               ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: vistara,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  vistara = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Vistara (6)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: airIndia,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  airIndia = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Air India(6)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: spiceJet,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  spiceJet = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'SpiceJet (1)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: goFirst,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  goFirst = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Go First (1)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: airAsia,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  airAsia = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Air Asia (2)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: lateDepartures,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  lateDepartures = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Late Departures (9)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: morningDepratures,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  morningDepratures = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Morning Depratures(2)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: stop,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  stop = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            '1 Stop (22)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.25,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 10),
+                                      child: Row(
+                                        children: [
+                                          Checkbox(
+                                              checkColor: kblue,
+                                              activeColor: kwhite,
+                                              value: refundable,
+                                              onChanged: (value) {
+                                                setState(() {
+                                                  refundable = value!;
+                                                });
+                                              }),
+                                          Text(
+                                            'Refundable Fares (39)',
+                                            style: TextStyle(fontSize: 13),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(left: 10, top: 16),
+                              //   child: Row(
+                              //     children: [
+                              //       Text(
+                              //         'Show less',
+                              //         style: TextStyle(
+                              //             fontSize: 13, color: Colors.blue),
+                              //       )
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(top: 25, left: 10),
+                              //   child: Row(
+                              //     children: [
+                              //       Text(
+                              //         'One Way Price',
+                              //         style: TextStyle(
+                              //             fontSize: 14,
+                              //             fontWeight: FontWeight.bold),
+                              //       )
+                              //     ],
+                              //   ),
+                              // ),
+                              // Row(
+                              //   children: [
+                              //     Container(
+                              //       width:
+                              //           MediaQuery.of(context).size.width * 0.2,
+                              //       child: Slider(
+                              //           divisions: 200,
+                              //           thumbColor: kwhite,
+                              //           max: 200.0,
+                              //           min: 0.0,
+                              //           value: slider,
+                              //           label: slider.round().toString(),
+                              //           onChanged: (value) {
+                              //             setState(() {
+                              //               slider = value;
+                              //             });
+                              //           }),
+                              //     )
+                              //   ],
+                              // ),
+                            
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(top: 20, left: 10),
+                              //   child: Row(
+                              //     children: [
+                              //       Text(
+                              //         'Stops From Chennai',
+                              //         style: TextStyle(
+                              //             fontSize: 14,
+                              //             fontWeight: FontWeight.bold),
+                              //       )
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(left: 15, top: 10),
+                              //   child: Row(
+                              //     crossAxisAlignment: CrossAxisAlignment.start,
+                              //     mainAxisAlignment:
+                              //         MainAxisAlignment.spaceBetween,
+                              //     children: [
+                              //       Column(
+                              //         crossAxisAlignment:
+                              //             CrossAxisAlignment.start,
+                              //         children: [
+                              //           Row(
+                              //             children: [
+                              //               Checkbox(
+                              //                   checkColor: kblue,
+                              //                   activeColor: kwhite,
+                              //                   value: stop,
+                              //                   splashRadius: 1,
+                              //                   onChanged: (value) {
+                              //                     setState(() {
+                              //                       stop = value!;
+                              //                     });
+                              //                   }),
+                              //               Text(
+                              //                 'Non Stop (17)',
+                              //                 style: TextStyle(fontSize: 13),
+                              //               )
+                              //             ],
+                              //           ),
+                              //           Row(
+                              //             children: [
+                              //               Checkbox(
+                              //                   checkColor: kblue,
+                              //                   activeColor: kwhite,
+                              //                   value: stop2,
+                              //                   splashRadius: 1,
+                              //                   onChanged: (value) {
+                              //                     setState(() {
+                              //                       stop2 = value!;
+                              //                     });
+                              //                   }),
+                              //               Text(
+                              //                 '1 Stop (22)',
+                              //                 style: TextStyle(fontSize: 13),
+                              //               )
+                              //             ],
+                              //           ),
+                              //         ],
+                              //       ),
+                                 
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(top: 30, left: 10),
+                              //   child: Row(
+                              //     children: [
+                              //       Text(
+                              //         'Departure From Chennai',
+                              //         style: TextStyle(
+                              //             fontSize: 14,
+                              //             fontWeight: FontWeight.bold),
+                              //       )
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //       left: 10, top: 20, right: 10),
+                              //   child: Row(
+                              //     mainAxisAlignment:
+                              //         MainAxisAlignment.spaceAround,
+                              //     children: [
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.wb_twilight_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.light_mode_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.light_mode_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.wb_twilight_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       )
+                              //     ],
+                              //   ),
+                              // // ),
+                              // Padding(
+                              //   padding:
+                              //       const EdgeInsets.only(top: 30, left: 10),
+                              //   child: Row(
+                              //     children: [
+                              //       Text(
+                              //         'Arrival at New Delhi ',
+                              //         style: TextStyle(
+                              //             fontSize: 14,
+                              //             fontWeight: FontWeight.bold),
+                              //       )
+                              //     ],
+                              //   ),
+                              // ),
+                              // Padding(
+                              //   padding: const EdgeInsets.only(
+                              //       left: 10, top: 20, right: 10),
+                              //   child: Row(
+                              //     mainAxisAlignment:
+                              //         MainAxisAlignment.spaceAround,
+                              //     children: [
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.wb_twilight_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.light_mode_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.light_mode_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       ),
+                              //       Container(
+                              //         height: 80,
+                              //         width: 70,
+                              //         decoration: BoxDecoration(
+                              //             border: Border.all(color: kgrey),
+                              //             borderRadius:
+                              //                 BorderRadius.circular(5)),
+                              //         child: Padding(
+                              //           padding: const EdgeInsets.only(top: 10),
+                              //           child: Column(
+                              //             children: [
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 2),
+                              //                 child: Center(
+                              //                   child: Icon(
+                              //                     Icons.wb_twilight_outlined,
+                              //                     color: kgrey,
+                              //                   ),
+                              //                 ),
+                              //               ),
+                              //               Padding(
+                              //                 padding:
+                              //                     const EdgeInsets.only(top: 5),
+                              //                 child: Text(
+                              //                   'Before 6AM',
+                              //                   style: TextStyle(fontSize: 11),
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ),
+                              //       )
+                              //     ],
+                              //   ),
+                              // ),
                               Padding(
                                 padding:
                                     const EdgeInsets.only(left: 10, top: 20),
@@ -2117,43 +1995,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                       ],
                                     ),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 30, right: 7),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment: MainAxisAlignment.end,
-                                      children: [
-                                        Text('₹6,549'),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
-                                          child: Text('₹8,524'),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
-                                          child: Text('₹5,183'),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
-                                          child: Text('₹13,447'),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
-                                          child: Text('₹9,027'),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 15),
-                                          child: Text('₹7,620'),
-                                        ),
-                                      ],
-                                    ),
-                                  )
+                                 
                                 ],
                               ),
                               ksizedbox20,
@@ -2966,7 +2808,9 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                                 toIata: apiflightController.destination.value, 
                                                                                 fromCountry: apiflightController.originCountry.value, 
                                                                                 isDomOrINTL: domORIntl,
-                                                                                 toCountry: apiflightController.destinationCountry.value),
+                                                                                 toCountry: apiflightController.destinationCountry.value), 
+                                                                                 flightKey: '', 
+                                                                                 seachKey: '',
                                                                           ));
                                                                         },
                                                                         child: Text(
@@ -2990,10 +2834,26 @@ class _BookingFlightState extends State<BookingFlight> {
                                                   left: 20, top: 10),
                                               child: Row(
                                                 children: [
-                                                  Text('Hide details',
-                                                      style: TextStyle(
-                                                          fontSize: 12,
-                                                          color: korange)),
+                                                  InkWell(
+                                                    onTap: (){
+                                                      apiflightController.showdetails(1);
+                                                      apiflightController.update();
+                                                     
+                                                    },
+                                                    onDoubleTap: (){
+                                                      apiflightController.showdetails(0);
+                                                      apiflightController.update();
+                                                    },
+                                                   
+                                                    child:apiflightController.showdetails.value==0?Text('Show details',
+                                                    style: TextStyle(
+                                                      fontSize: 12,
+                                                      color:korange
+                                                    ),) :Text('Hide details',
+                                                        style: TextStyle(
+                                                            fontSize: 12,
+                                                            color: korange)),
+                                                  ),
                                                 ],
                                               ),
                                             ),
@@ -3009,6 +2869,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 ],
                                               ),
                                             ),
+                                            if(apiflightController.showdetails.value==1)
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   top: 20, left: 20, right: 20),

@@ -3,22 +3,30 @@ import 'dart:html';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:pdf/pdf.dart';
+import '../../models/air_get_ssr_model.dart';
+import '../../models/air_repricing_model.dart';
 import '../../models/air_reprint_model.dart';
 import '../../models/air_search_model.dart';
+import '../../models/air_seat_map_model.dart';
 import '../../models/airport_search_model.dart';
 import '../../models/flight_searchdatamodel.dart';
 import '../../models/get_flight_booking_history.dart';
 import '../../models/pasenger_mode.dart';
 import '../../responsive/booking_view/flight/par_nyc_screen.dart';
+import '../../services/networks/services/flight_api_searcive/air_add_ssr_api_services.dart';
 import '../../services/networks/services/flight_api_searcive/air_printing_api_services.dart';
+import '../../services/networks/services/flight_api_searcive/air_repricing_api_services.dart';
 import '../../services/networks/services/flight_api_searcive/airflight_api_searvice.dart';
 import '../../services/networks/services/flight_api_searcive/airport_search_apiservice.dart';
 import '../../services/networks/services/flight_api_searcive/get_flight_booking_list.dart';
 import 'package:pdf/widgets.dart' as pw;
 
+import '../../services/networks/services/flight_api_searcive/get_seat_map_api_services.dart';
+
 class ApiflightsController extends GetxController {
   GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
       GetFlightBookingHistoryAPIServices();
+  
 
   RxInt wayIndex = 0.obs;
   RxInt cabinClassIndex = 0.obs;
@@ -80,6 +88,8 @@ class ApiflightsController extends GetxController {
   //air search flight list
   List<Flight> flightList = [];
 
+  RxString tempSearchKey = "".obs;
+
   airSearch(
       {required FlightSearchDataModel flightSearchModel,
       String airlineCode='',
@@ -94,6 +104,7 @@ class ApiflightsController extends GetxController {
       AirSearchModel airSearchModel = AirSearchModel.fromJson(response.data);
       flightList = airSearchModel.tripDetails.first.flights;
       seachKey = airSearchModel.searchKey;
+      tempSearchKey(seachKey);
     }
 
     if (ismobilorweb) {
@@ -813,4 +824,84 @@ class ApiflightsController extends GetxController {
   //     OpenFile.open(file.path);
   //   }
   // }
+  
+  // List<FlightBookedData> flightBookingHistoyrList = [];
+
+  // getFlightBookingHistory() async {
+  //   dio.Response<dynamic> response =
+  //       await getFlightBookingHistoryAPIServices.getFlightBookingAPIServices();
+
+  //   if (response.statusCode == 200) {
+  //     GetFlightsModel flightsModel = GetFlightsModel.fromJson(response.data);
+  //     flightBookingHistoyrList = flightsModel.data;
+  //     update();
+  //   }
+  // }
+  AirRepriceApiServices airRepriceApiServices = AirRepriceApiServices();
+  getFlightRepricing({
+    required FlightSearchDataModel flightSearchModel,
+    required Flight flight,
+    required String searchKey,
+    required String mobileNumber,
+
+  }) async {
+    String flightKey = "";
+    dio.Response<dynamic> response =
+        await airRepriceApiServices.airRepriceApiServices(
+            flightSearchModel: flightSearchModel,
+            flight: flight,
+            searchKey: searchKey, 
+            mobileNumber: mobileNumber,);
+
+    if (response.statusCode == 200) {
+      AirRepriceModel airReprintModel = AirRepriceModel.fromJson(response.data);
+      flightKey = airReprintModel.airRepriceResponses.first.flight.flightKey;
+    }
+    return flightKey;
+  }
+
+AirAddSsrApiServices airAddSsrApiServices =AirAddSsrApiServices();
+   List<SsrDetail> ssrDetailsList = []; 
+
+  getFightSSRDetails({
+    required String flightKey,
+    required String searchKey,
+    required String fairId,
+  }) async {
+    dio.Response<dynamic> response =
+        await airAddSsrApiServices.airGetSsrDetails(
+      flightKey: flightKey,
+      searchKey: searchKey,
+    );
+
+    if (response.statusCode == 200) {
+      GetSsrModel airReprintModel = GetSsrModel.fromJson(response.data);
+      ssrDetailsList = airReprintModel.ssrFlightDetails.first.ssrDetails;
+    }
+    update();
+  }
+
+  AirGetSeatMapApiServices airGetSeatMapApiServices = AirGetSeatMapApiServices();
+    List<SeatRow> airSeatMapsList = [];
+  Future<bool> getSeatMapApiServises({
+    required String searchKey,
+    required String flightKey,
+    required dynamic paxDetails,
+  }) async {
+    isLoading(true);
+    bool isSeatMapAvailable = false;
+    dio.Response<dynamic> response =
+        await airGetSeatMapApiServices.airGetSeatMapApiServices(
+            searchKey: searchKey, flightKey: flightKey, paxDetails: paxDetails);
+    isLoading(false);
+    if (response.data["Response_Header"]["Error_Code"] == "0000") {
+      isSeatMapAvailable = true;
+      AirSeatMapModel airSeatMapModel = AirSeatMapModel.fromJson(response.data);
+      airSeatMapsList =
+          airSeatMapModel.airSeatMaps.first.seatSegments.first.seatRow;
+      update();
+    }
+
+    return isSeatMapAvailable;
+  }
 }

@@ -521,11 +521,14 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                 ),
                 Row(
                   children: [
-                    Image.network(
-                      enquiryDatas.packageDetails.image.first,
-                      height: 50,
-                      width: 60,
-                      fit: BoxFit.cover,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(
+                        enquiryDatas.packageDetails.image.first,
+                        height: 80,
+                        width: 110,
+                        fit: BoxFit.cover,
+                      ),
                     ),
                     const SizedBox(
                       width: 10,
@@ -533,12 +536,19 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          enquiryDatas.packageDetails.title,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: kblue,
-                              fontWeight: FontWeight.bold),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20),
+                          child: Container(
+                            width: 150,
+                            child: Text(
+                              enquiryDatas.packageDetails.title,
+                              maxLines: 2,
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: kblue,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
@@ -588,7 +598,7 @@ class _HolidayHistoryState extends State<HolidayHistory> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Trip',
+                      'Duration',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,

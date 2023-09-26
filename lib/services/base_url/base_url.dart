@@ -77,6 +77,15 @@ abstract class BaseApiService {
 
   final String airportSearch = "https://www.portal.bcipvtltd.com/api/flight_city_search";
 
+    final String airGetSsrURL =
+      "https://www.portal.bcipvtltd.com/api/auth/air_get_ssr";
+
+       final String airGetSeatMap =
+      "https://www.portal.bcipvtltd.com/api/auth/air_get_seat_map";
+      
+        final String airRepricingUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/air_reprice";
+
   //----------- holidays bookings ---------------//
 
   final String getEnquiryListApiUrl =
