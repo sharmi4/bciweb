@@ -77,7 +77,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                               ),
                             ),
                             ksizedbox10,
-                            Text('DIVAKAR').text.semiBold.xl.make()
+                            Text('DIPANKAR').text.semiBold.xl.make()
                           ],
                         ),
                       ),

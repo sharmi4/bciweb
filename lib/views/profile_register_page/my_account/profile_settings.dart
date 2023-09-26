@@ -272,95 +272,95 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                     ),
                                   ),
                                 )
-                              : authprofileController
-                                          .profileData
-                                          .isNotEmpty?  authprofileController
-                                          .profileData.first.profilePicture ==
-                                      null
-                                  ? Stack(
-                                      children: [
-                                        Image.asset('assets/images/prfl.png'),
-                                        Positioned(
-                                          left: 55,
-                                          top: 55,
-                                          child: Container(
-                                            height: 25,
-                                            width: 25,
-                                            decoration: BoxDecoration(
-                                              color: kblue,
-                                              borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            child: const Center(
-                                              child: Icon(
-                                                Icons.camera_alt,
-                                                color: Colors.black,
-                                                size: 17,
+                              : authprofileController.profileData.isNotEmpty
+                                  ? authprofileController.profileData.first
+                                              .profilePicture ==
+                                          null
+                                      ? Stack(
+                                          children: [
+                                            Image.asset(
+                                                'assets/images/prfl.png'),
+                                            Positioned(
+                                              left: 55,
+                                              top: 55,
+                                              child: Container(
+                                                height: 25,
+                                                width: 25,
+                                                decoration: BoxDecoration(
+                                                  color: kblue,
+                                                  borderRadius:
+                                                      BorderRadius.circular(15),
+                                                ),
+                                                child: const Center(
+                                                  child: Icon(
+                                                    Icons.camera_alt,
+                                                    color: Colors.black,
+                                                    size: 17,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  : Stack(
-                                      children: [
-                                        Container(
-                                          height: 80,
-                                          width: 80,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            image: DecorationImage(
-                                              fit: BoxFit.cover,
-                                              image: NetworkImage(
-                                                authprofileController
-                                                    .profileData
-                                                    .first
-                                                    .profilePicture,
+                                          ],
+                                        )
+                                      : Stack(
+                                          children: [
+                                            Container(
+                                              height: 80,
+                                              width: 80,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50),
+                                                image: DecorationImage(
+                                                  fit: BoxFit.cover,
+                                                  image: NetworkImage(
+                                                    authprofileController
+                                                        .profileData
+                                                        .first
+                                                        .profilePicture,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                        Positioned(
-                                          left: 85,
-                                          top: 75,
-                                          child: Container(
-                                            height: 40,
-                                            width: 40,
-                                            decoration: BoxDecoration(
-                                              color: kblue,
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            child: const Center(
-                                              child: Icon(
-                                                Icons.camera_alt,
-                                                color: Colors.white,
-                                                size: 22,
+                                            Positioned(
+                                              left: 85,
+                                              top: 75,
+                                              child: Container(
+                                                height: 40,
+                                                width: 40,
+                                                decoration: BoxDecoration(
+                                                  color: kblue,
+                                                  borderRadius:
+                                                      BorderRadius.circular(25),
+                                                ),
+                                                child: const Center(
+                                                  child: Icon(
+                                                    Icons.camera_alt,
+                                                    color: Colors.white,
+                                                    size: 22,
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                          //  Container(
-                          //     height: 60,
-                          //     width: 60,
-                          //     decoration: BoxDecoration(
-                          //         borderRadius:
-                          //             BorderRadius
-                          //                 .circular(
-                          //                     90),
-                          //         image: DecorationImage(
-                          //             image: NetworkImage(
-                          //                 authprofileController
-                          //                     .profileData
-                          //                     .first
-                          //                     .profilePicture,))),
-                          //   )
-                          : Container(
-                            height: 20,
-                          )),
+                                          ],
+                                        )
+                                  //  Container(
+                                  //     height: 60,
+                                  //     width: 60,
+                                  //     decoration: BoxDecoration(
+                                  //         borderRadius:
+                                  //             BorderRadius
+                                  //                 .circular(
+                                  //                     90),
+                                  //         image: DecorationImage(
+                                  //             image: NetworkImage(
+                                  //                 authprofileController
+                                  //                     .profileData
+                                  //                     .first
+                                  //                     .profilePicture,))),
+                                  //   )
+                                  : Container(
+                                      height: 20,
+                                    )),
                     const Padding(
                       padding: EdgeInsets.only(bottom: 40),
                       child: Text(
@@ -829,10 +829,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                                         255, 74, 80, 137),
                                                   ),
                                                   margin: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       horizontal: 5.0),
                                                   padding: const EdgeInsets
-                                                          .symmetric(
+                                                      .symmetric(
                                                       horizontal: 10.0,
                                                       vertical: 5.0),
                                                   child: Row(
@@ -927,72 +927,99 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             children: [
               Row(
                 children: [
-                  Column(
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 100,
-                        child: authprofileController
-                                .profileData.first.panProof.isEmpty
-                            ? panimage != null
-                                ? Image.memory(panimage)
-                                : Container(
-                                    height: 150,
-                                    width: 150,
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        PickedFile? pickedFile =
-                                            await ImagePicker().getImage(
-                                          source: ImageSource.gallery,
-                                        );
+                  Container(
+                    height: 180,
+                    width: 250,
+                    child: authprofileController
+                            .profileData.first.panProof.isEmpty
+                        ? panimage != null
+                            ? Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Image.memory(
+                                  panimage,
+                                  height: 330,
+                                  width: 400,
+                                ),
+                            )
+                            : Container(
+                                decoration: BoxDecoration(color: kgrey),
+                                height: 330,
+                                width: 400,
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    PickedFile? pickedFile =
+                                        await ImagePicker().getImage(
+                                      source: ImageSource.gallery,
+                                    );
 
-                                        var tempCont =
-                                            await pickedFile!.readAsBytes();
-                                        setState(() {
-                                          panimage = tempCont;
-                                        });
-                                      },
-                                      child: const Text('Upload Pan Card'),
-                                    ),
-                                  )
-                            : InkWell(
-                                onTap: () async {
-                                  PickedFile? pickedFile =
-                                      await ImagePicker().getImage(
-                                    source: ImageSource.gallery,
-                                  );
+                                    var tempCont =
+                                        await pickedFile!.readAsBytes();
+                                    setState(() {
+                                      panimage = tempCont;
+                                    });
+                                  },
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      const Text('Upload Pan Card'),
+                                      Icon(Icons.upload_file),
+                                    ],
+                                  ),
+                                ),
+                              )
+                        : InkWell(
+                            onTap: () async {
+                              PickedFile? pickedFile =
+                                  await ImagePicker().getImage(
+                                source: ImageSource.gallery,
+                              );
 
-                                  var tempCont =
-                                      await pickedFile!.readAsBytes();
-                                  setState(() {
-                                    aadharimage = tempCont;
-                                  });
-                                },
-                                child: Image.network(authprofileController
-                                    .profileData.first.panProof),
-                              ),
-                      ),
-                      Icon(Icons.upload_file),
-                    ],
+                              var tempCont = await pickedFile!.readAsBytes();
+                              setState(() {
+                                aadharimage = tempCont;
+                              });
+                            },
+                            child: Image.network(authprofileController
+                                .profileData.first.panProof),
+                          ),
                   ),
-                  kwidth10,
+                  kwidth10,kwidth10,kwidth10,
                   Column(
                     children: [
-                     authprofileController.profileData.isEmpty? Container(
-                      height: 20,
-                     ): Container(
-                        height: 100,
-                        width: 100,
-                        child: authprofileController
-                                .profileData.first.adharProof.isEmpty
-                            ? aadharimage != null
-                                ? Image.memory(aadharimage)
-                                // : authprofileController.profileData.first.adharProof !=
-                                //         null
-                                : Container(
-                                    height: 150,
-                                    width: 150,
-                                    child: GestureDetector(
+                      authprofileController.profileData.isEmpty
+                          ? Container(
+                              height: 20,
+                            )
+                          : Container(
+                              height: 100,
+                              width: 100,
+                              child: authprofileController
+                                      .profileData.first.adharProof.isEmpty
+                                  ? aadharimage != null
+                                      ? Image.memory(aadharimage)
+                                      // : authprofileController.profileData.first.adharProof !=
+                                      //         null
+                                      : Container(
+                                          height: 150,
+                                          width: 150,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              PickedFile? pickedFile =
+                                                  await ImagePicker().getImage(
+                                                source: ImageSource.gallery,
+                                              );
+
+                                              var tempCont = await pickedFile!
+                                                  .readAsBytes();
+                                              setState(() {
+                                                aadharimage = tempCont;
+                                              });
+                                            },
+                                            child: const Text(
+                                                'Upload Aadhar Card'),
+                                          ),
+                                        )
+                                  : InkWell(
                                       onTap: () async {
                                         PickedFile? pickedFile =
                                             await ImagePicker().getImage(
@@ -1005,27 +1032,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                           aadharimage = tempCont;
                                         });
                                       },
-                                      child: const Text('Upload Aadhar Card'),
+                                      child: Image.network(authprofileController
+                                          .profileData.first.adharProof),
                                     ),
-                                  )
-                            : InkWell(
-                                onTap: () async {
-                                  PickedFile? pickedFile =
-                                      await ImagePicker().getImage(
-                                    source: ImageSource.gallery,
-                                  );
-
-                                  var tempCont =
-                                      await pickedFile!.readAsBytes();
-                                  setState(() {
-                                    aadharimage = tempCont;
-                                  });
-                                },
-                                child: Image.network(authprofileController
-                                    .profileData.first.adharProof),
-                              ),
-                      ),
-                     const Icon(Icons.upload_file)
+                            ),
+                      const Icon(Icons.upload_file)
                     ],
                   ),
                 ],
@@ -1063,6 +1074,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   ],
                 ),
               ),
+              //
+              //kwidth10  ,kwidth10 ,  kwidth10  ,kwidth10
             ],
           ),
           ksizedbox30,

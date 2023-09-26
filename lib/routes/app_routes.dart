@@ -25,6 +25,7 @@ abstract class Routes {
   static const SpecializedScreen = _Paths.SpecializedScreen;
   static const contact_screen = _Paths.contact_screen;
   static const MobileVerification = _Paths.MobileVerification;
+  static const Cancelation = _Paths.Cancelation;
 }
 
 abstract class _Paths {
@@ -45,6 +46,7 @@ abstract class _Paths {
   static const contact_screen = '/contact-us';
   static const MobileVerification = '/mobile-verification';
   static const BOOKINGS = '/booking-screen';
+  static const Cancelation = '/refund-and-cancellation-policy';
 }
  
   // static const SIGN_UP = '/home-screen';

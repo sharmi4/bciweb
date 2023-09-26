@@ -2,6 +2,7 @@ import 'package:bciweb/responsive/authentications/generate_otp/generate_otp.dart
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
+import '../registerhomescreen/privacy_policy.dart';
 import '../splash_screen/Splash_screen.dart';
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
@@ -20,6 +21,7 @@ import '../views/members/specialized/specialized_screen.dart';
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      
       case Routes.SPLASH:
         return _GeneratePageRoute(widget: splash(), routeName: settings.name);
 
@@ -61,14 +63,22 @@ class RouteGenerator {
         return _GeneratePageRoute(
             widget: ClubHouse(), routeName: settings.name);
 
-      case Routes.History:
-        return _GeneratePageRoute(widget: History(), routeName: settings.name);
-
-     case Routes.MobLogin:
-       return _GeneratePageRoute(widget: MemberLoginScreenrespo(), routeName: settings.name);
+      case Routes.MobLogin:
+        return _GeneratePageRoute(
+            widget: MemberLoginScreenrespo(), routeName: settings.name);
 
       case Routes.Gallery:
         return _GeneratePageRoute(widget: Gallery(), routeName: settings.name);
+
+      case Routes.Cancelation:
+        return _GeneratePageRoute(widget: Canslation(), routeName: settings.name);
+        
+      default:
+        return _GeneratePageRoute(widget: splash(), routeName: settings.name);
+    }
+  }
+} // Navigator.pushNamed(context, RoutesName.name);
+
 
 //       case Routes.OTP_VIEWS:
 //         return _GeneratePageRoute(
@@ -88,12 +98,6 @@ class RouteGenerator {
 //       case Routes.REGISTER_VIEWS:
 //         return _GeneratePageRoute(
 //             widget: const RegisterViews(), routeName: settings.name);
-
-      default:
-        return _GeneratePageRoute(widget: splash(), routeName: settings.name);
-    }
-  }
-} // Navigator.pushNamed(context, RoutesName.name);
 
 class _GeneratePageRoute extends PageRouteBuilder {
   final Widget widget;

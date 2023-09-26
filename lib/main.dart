@@ -96,43 +96,7 @@ class MyApp extends StatelessWidget {
 
    debugShowCheckedModeBanner: false,
       onGenerateRoute: RouteGenerator.generateRoute,
-  //initialRoute: TRoutes.HOME_PAGE,
-  //     initialRoute: Routes.SPLASH,
-      // initialRoute: '/',
-      // getPages: [
-      //     GetPage(name: '/', page: () => splash()),
-      //   GetPage(name: '/', page: () => MobileHomeScreen()),
-      //   GetPage(name: '/', page: () => MemberHomeScreen()),
-      //   GetPage(name: '/', page: () => RegisterProfileScreen()),
-      //   GetPage(name: '/landing-screen', page: () => LandingScreen()),
-      //   GetPage(name: '/otp-verification', page: () => MobileVerification()),
-      //   GetPage(name: '/final-otp-verification', page: () => OtpVerification(otp: '', phoneNumber: '',)),
-      //   GetPage(name: '/verification-done', page: () => Verification_Done()),
-      //   GetPage(name: '/office-addreass', page: () => OfficeAddress()),
-      //   GetPage(name: '/signin', page: () => SignUpView()),
-      //   GetPage(name: '/residential-address', page: () => ResidentialAddress( )),
-      //    GetPage(name: '/subscribe', page: () => Subscribe()),
-      //   // GetPage(name: '/payment', page: () => Payment(
-      //   //  image: "assets/images/Group 38637.png",
-      //   //  )),
-      //   GetPage(name: '/add-wallet', page: () => AddWallet()),
-      // GetPage(name: '/services', page: () => Services()),
-      //   GetPage(name: '/coupones', page: () => Coupones()),
-      //   GetPage(name: '/reghome', page: () => BusinessRegisterHomeScreen()),
-      //   GetPage(name: '/offer-screen', page: () => OfferScreen()),
-      //   GetPage(name: '/respo-coupon', page: () => RespoCoupones()),
-      //   GetPage(name: '/respo-offer', page: () => RespOffer()),
-      //   GetPage(name: '/respo-contact', page: () => RespoContact()),
-      //   GetPage(name: '/respo-specialised', page: () => RespoSpecialized()),
-      //   GetPage(name: '/respo-gallery', page: () => RespoGallery()),
-      //   GetPage(name: '/history-screen', page: () => History()),
-      //   GetPage(name: '/respo-gallery', page: () => RespoGallery()),
-      //   GetPage(name: '/reg-profile', page: () => RegisterProfileScreen()),
-      //   GetPage(name: '/respo-profile', page: () => MobileProfileScreen()),
-      //   GetPage(name: '/booking_option', page: ()=>BookingOptionsScreen()),
-      //   GetPage(name: '/payment-screen', page: ()=>FlaightPaymentScreen())
-      //   //  GetPage(name: '/history-screen', page: () => History()),
-      // ],
+
     );
   }
 }

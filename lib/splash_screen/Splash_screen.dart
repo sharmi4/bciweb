@@ -32,6 +32,7 @@ class _splashState extends State<splash> {
   // }
 
   toHomePageMember() async {
+    print("---------------------->> fro splash");
     await Future.delayed(const Duration(seconds: 2));
 
     Get.offAll(

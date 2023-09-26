@@ -164,7 +164,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
 
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Container(
-              height: 900,
+              height: 1500,
               width: 195,
               color: kyellow,
               child: Column(

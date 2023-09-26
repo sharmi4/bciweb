@@ -1,4 +1,5 @@
 import 'package:bciweb/registerhomescreen/privacy_policy.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/clubhouse.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -238,7 +239,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Canslation());
+                    Get.toNamed(Routes.Cancelation);
                   },
                   child: Text('Refund and Cancellation Policy',
                   //  "REFUND AND CANCELLATION POLICY",

@@ -77,7 +77,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                         ),
                         Spacer(),
-                        Text('DIVAKAR').text.bold.xl6.make(),
+                        Text('DIPANKAR').text.bold.xl6.make(),
                       ],
                     ),
                     kwidth10,
