@@ -132,6 +132,7 @@ class _BusSeatsState extends State<BusSeats> {
                 GetBuilder<BusController>(builder: (_) {
                   return Container(
                     height: 500,
+                  //  width: 400,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -156,6 +157,7 @@ class _BusSeatsState extends State<BusSeats> {
                             left: 10,
                           ),
                           child: Container(
+                            //width: 400,
                             height: 450,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -225,6 +227,7 @@ class _BusSeatsState extends State<BusSeats> {
                                                                   ? InkWell(
                                                                       onTap:
                                                                           () {
+                                                                            print("---------------------->>>this ");
                                                                         if (busController.seatMapList[index1][index].isSelect ==
                                                                             true) {
                                                                           busController
@@ -255,6 +258,7 @@ class _BusSeatsState extends State<BusSeats> {
                                                                           busController
                                                                               .update();
                                                                         } else {
+                                                                          print("<<--->>---<<------>>----<<----->>----<<<------>>>");
                                                                           busController
                                                                               .seatMapList[index1][index]
                                                                               .isSelect = true;
@@ -552,175 +556,179 @@ class _BusSeatsState extends State<BusSeats> {
                   );
                 }),
                 ksizedbox20,
-                Container(
-                  width: size.width * 0.7,
-                  height: size.height * 0.3,
-                  decoration: BoxDecoration(
-                    color: kwhite,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color.fromARGB(255, 228, 228, 228)
-                            .withOpacity(0.3), // Shadow color
-                        spreadRadius: 1, // The spread radius of the shadow
-                        blurRadius: 5, // The blur radius of the shadow
-                        offset: Offset(0, 3), // The offset of the shadow
+                GetBuilder<BusController>(
+                  builder: (_) {
+                    return Container(
+                      width: size.width * 0.7,
+                      height: size.height * 0.3,
+                      decoration: BoxDecoration(
+                        color: kwhite,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color.fromARGB(255, 228, 228, 228)
+                                .withOpacity(0.3), // Shadow color
+                            spreadRadius: 1, // The spread radius of the shadow
+                            blurRadius: 5, // The blur radius of the shadow
+                            offset: Offset(0, 3), // The offset of the shadow
+                          ),
+                        ],
+                        border: Border.all(
+                          color: Colors.grey, // Border color
+                          width: 0.2, // Border width
+                        ),
                       ),
-                    ],
-                    border: Border.all(
-                      color: Colors.grey, // Border color
-                      width: 0.2, // Border width
-                    ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 10),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Text("Seat No.").text.xl3.blue900.semiBold.make(),
-                            Container(
-                              width: 100,
-                              child: Wrap(
-                                children: [
-                                  for (int i = 0;
-                                      i < busController.seatIds.length;
-                                      i++)
-                                    Text("${busController.seatIds[i]},")
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Seat No.").text.xl3.blue900.semiBold.make(),
+                                Container(
+                                  width: 100,
+                                  child: Wrap(
+                                    children: [
+                                      for (int i = 0;
+                                          i < busController.seatIds.length;
+                                          i++)
+                                        Text("${busController.seatIds[i]},")
+                                            .text
+                                            .xl
+                                            .blue900
+                                            .semiBold
+                                            .make(),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Divider(
+                              height: 1,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Text("Fare Details")
                                         .text
                                         .xl
                                         .blue900
                                         .semiBold
                                         .make(),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Divider(
-                          height: 1,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text("Fare Details")
-                                    .text
-                                    .xl
-                                    .blue900
-                                    .semiBold
-                                    .make(),
-                                ksizedbox10,
-                                Text("Amount").text.xl2.blue900.semiBold.make(),
-                                ksizedbox10,
-                                Text("Cash will be calculated During Payment")
-                                    .text
-                                    .xl
-                                    .blue900
-                                    .semiBold
-                                    .make(),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Text("INR ${busController.totalAmount.value} ")
-                                    .text
-                                    .xl2
-                                    .blue900
-                                    .semiBold
-                                    .make(),
-                                ksizedbox10,
-                                Obx(
-                                  () => busController.isLoading.isTrue
-                                      ? InkWell(
-                                          onTap: () {
-                                            Get.to(PssengesDetails(
-                                              cusName: profileController
-                                                      .profileData.isEmpty
-                                                  ? "test"
-                                                  : profileController
-                                                      .profileData.first.name,
-                                              busContactmodel:
-                                                  busContactDetailsModel,
-                                              boardingId: widget.boardingId,
-                                              busData: widget.busData,
-                                              dropingId: widget.dropingId,
-                                              searchkey: widget.searchkey,
-                                              seatIds: busController.seatIds,
-                                              amount: busController
-                                                  .totalAmount.value
-                                                  .toStringAsFixed(2),
-                                            ));
-                                          },
-                                          child: Container(
-                                            height: 50,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                    colors: [korange, kyellow]),
-                                                borderRadius:
-                                                    BorderRadius.circular(15)),
-                                            child: Center(
-                                              child:
-                                                  const CupertinoActivityIndicator(
-                                                color: Colors.white,
+                                    ksizedbox10,
+                                    Text("Amount").text.xl2.blue900.semiBold.make(),
+                                    ksizedbox10,
+                                    Text("Cash will be calculated During Payment")
+                                        .text
+                                        .xl
+                                        .blue900
+                                        .semiBold
+                                        .make(),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Text("INR ${busController.totalAmount.value} ")
+                                        .text
+                                        .xl2
+                                        .blue900
+                                        .semiBold
+                                        .make(),
+                                    ksizedbox10,
+                                    Obx(
+                                      () => busController.isLoading.isTrue
+                                          ? InkWell(
+                                              onTap: () {
+                                                Get.to(PssengesDetails(
+                                                  cusName: profileController
+                                                          .profileData.isEmpty
+                                                      ? "test"
+                                                      : profileController
+                                                          .profileData.first.name,
+                                                  busContactmodel:
+                                                      busContactDetailsModel,
+                                                  boardingId: widget.boardingId,
+                                                  busData: widget.busData,
+                                                  dropingId: widget.dropingId,
+                                                  searchkey: widget.searchkey,
+                                                  seatIds: busController.seatIds,
+                                                  amount: busController
+                                                      .totalAmount.value
+                                                      .toStringAsFixed(2),
+                                                ));
+                                              },
+                                              child: Container(
+                                                height: 50,
+                                                width: 200,
+                                                decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [korange, kyellow]),
+                                                    borderRadius:
+                                                        BorderRadius.circular(15)),
+                                                child: Center(
+                                                  child:
+                                                      const CupertinoActivityIndicator(
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : InkWell(
+                                              onTap: () {
+                                                Get.to(
+                                                  PssengesDetails(
+                                                    cusName: profileController
+                                                            .profileData.isEmpty
+                                                        ? "test"
+                                                        : profileController
+                                                            .profileData.first.name,
+                                                    busContactmodel:
+                                                        busContactDetailsModel,
+                                                    boardingId: widget.boardingId,
+                                                    busData: widget.busData,
+                                                    dropingId: widget.dropingId,
+                                                    searchkey: widget.searchkey,
+                                                    seatIds: busController.seatIds,
+                                                    amount: busController
+                                                        .totalAmount.value
+                                                        .toStringAsFixed(2),
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                height: 50,
+                                                width: 200,
+                                                decoration: BoxDecoration(
+                                                    gradient: LinearGradient(
+                                                        colors: [korange, kyellow]),
+                                                    borderRadius:
+                                                        BorderRadius.circular(15)),
+                                                child: Center(
+                                                  child: Text(
+                                                    'Proceed To Book ',
+                                                    style: TextStyle(
+                                                        fontSize: 17,
+                                                        fontWeight: FontWeight.w700,
+                                                        color: kwhite),
+                                                  ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                        )
-                                      : InkWell(
-                                          onTap: () {
-                                            Get.to(
-                                              PssengesDetails(
-                                                cusName: profileController
-                                                        .profileData.isEmpty
-                                                    ? "test"
-                                                    : profileController
-                                                        .profileData.first.name,
-                                                busContactmodel:
-                                                    busContactDetailsModel,
-                                                boardingId: widget.boardingId,
-                                                busData: widget.busData,
-                                                dropingId: widget.dropingId,
-                                                searchkey: widget.searchkey,
-                                                seatIds: busController.seatIds,
-                                                amount: busController
-                                                    .totalAmount.value
-                                                    .toStringAsFixed(2),
-                                              ),
-                                            );
-                                          },
-                                          child: Container(
-                                            height: 50,
-                                            width: 200,
-                                            decoration: BoxDecoration(
-                                                gradient: LinearGradient(
-                                                    colors: [korange, kyellow]),
-                                                borderRadius:
-                                                    BorderRadius.circular(15)),
-                                            child: Center(
-                                              child: Text(
-                                                'Proceed To Book ',
-                                                style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.w700,
-                                                    color: kwhite),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
                           ],
                         ),
-                      ],
-                    ),
-                  ),
+                      ),
+                    );
+                  }
                 ),
                 ksizedbox40
               ],

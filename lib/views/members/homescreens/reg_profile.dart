@@ -212,7 +212,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
+                    padding: const EdgeInsets.only(top: 20), 
                     child: Row(
                       children: [
                         InkWell(

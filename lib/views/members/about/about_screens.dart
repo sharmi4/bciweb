@@ -1,21 +1,34 @@
+
+
+
+
+
+
 import 'package:bciweb/constant/constans.dart';
-import 'package:bciweb/views/members/common_widget/common_buttom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:url_launcher/url_launcher.dart';
-
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
-import '../common_widget/commoncontainer.dart';
+
+
+
+
+
 
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
 
+
+
+
+
   @override
   State<AboutUsScreen> createState() => _AboutUsScreenState();
 }
+
 
 class _AboutUsScreenState extends State<AboutUsScreen> {
   Future<void>? _launched;

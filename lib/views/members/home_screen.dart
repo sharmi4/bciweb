@@ -10,7 +10,6 @@ import '../../registerhomescreen/common_reg_homescreen.dart';
 import 'bookins/flight/booking_flight.dart';
 import 'common_widget/common.dart';
 
-
 class MemberHomeScreen extends StatefulWidget {
   const MemberHomeScreen({super.key});
 
@@ -19,13 +18,9 @@ class MemberHomeScreen extends StatefulWidget {
 }
 
 class _MemberHomeScreenState extends State<MemberHomeScreen> {
-
-
   final _homeController = Get.find<HomeController>();
 
-  final authProfileController=Get.find<AuthProfileController>();
-  
-
+  final authProfileController = Get.find<AuthProfileController>();
 
   @override
   void initState() {
@@ -33,7 +28,6 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
     authProfileController.getProfile();
   }
 
-  
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -45,8 +39,8 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
               CommonScreen(),
               RegisterCommonContainer(),
             ],
-          ), preferredSize:const Size(double.infinity, 110)),
-      
+          ),
+          preferredSize: const Size(double.infinity, 110)),
       body: ListView(children: [
         Column(
           children: [
@@ -74,27 +68,31 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           "image_large": "assets/images/sliders/Slider2.jpg",
                           "ad": "1",
                         },
-                      ].map((i) {
-                        return Builder(
-                          builder: (BuildContext context) {
-                            return Stack(
-                              children: [
-                              Container(
-                                  width: size.width,
-                                  height: 600,
-                                  child: Image.asset(
-                                    i["image"]!,
-                                    fit: BoxFit.fill,
-                                  )),
-                              Container(
-                                width: size.width,
-                                height: 600,
-                                color: Colors.black38.withOpacity(0.3),
-                              ),
-                            ]);
-                          },
-                        );
-                      }).toList(),
+                      ].map(
+                        (i) {
+                          return Builder(
+                            builder: (BuildContext context) {
+                              return Stack(
+                                children: [
+                                  Container(
+                                    width: size.width,
+                                    height: 600,
+                                    child: Image.asset(
+                                      i["image"]!,
+                                      fit: BoxFit.fill,
+                                    ),
+                                  ),
+                                  Container(
+                                    width: size.width,
+                                    height: 600,
+                                    color: Colors.black38.withOpacity(0.3),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
+                      ).toList(),
                       //       carouselController: buttonCarouselController,
                       options: CarouselOptions(
                         autoPlay: true,
@@ -115,20 +113,20 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           Row(
                             children: [
                               GestureDetector(
-                                onTap: (){
+                                onTap: () {
                                   Get.to(BookingFlight());
                                 },
                                 child: Row(
                                   children: [
                                     Text(
                                       'BOOK',
-                                      style:
-                                          TextStyle(color: kOrange, fontSize: 45),
+                                      style: TextStyle(
+                                          color: kOrange, fontSize: 45),
                                     ),
                                     Text(
                                       ' YOUR FLIGHT',
-                                      style:
-                                          TextStyle(fontSize: 45, color: kwhite),
+                                      style: TextStyle(
+                                          fontSize: 45, color: kwhite),
                                     )
                                   ],
                                 ),
@@ -813,7 +811,8 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                     right: 100,
                     //   right: 0,
                     top: 160,
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.end,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(left: 256),
