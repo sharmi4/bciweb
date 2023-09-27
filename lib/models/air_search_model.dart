@@ -197,8 +197,8 @@ class Fare {
         fareDetails: List<FareDetail>.from(
             json["FareDetails"].map((x) => FareDetail.fromJson(x))),
         fareType: json["FareType"],
-        fareId: json["Fare_Id"],
-        fareKey: json["Fare_Key"],
+        fareId: json["Fare_Id"]??"",
+        fareKey: json["Fare_Key"]??"",
         foodOnboard: json["Food_onboard"],
         gstMandatory: json["GSTMandatory"],
         lastFewSeats: json["LastFewSeats"],
@@ -225,25 +225,25 @@ class Fare {
       };
 }
 
-class FareDetail {
+class FareDetail {     
   double airportTaxAmount;
   List<AirportTax> airportTaxes;
-  int basicAmount;
+  dynamic basicAmount;
   List<Charge>? cancellationCharges;
   String currencyCode;
-  List<FareClass> fareClasses;
+  List<FareClass> fareClasses;       
   FreeBaggage freeBaggage;
-  int gst;
-  int grossCommission;
-  int netCommission;
-  int paxType;
-  int promoDiscount;
+  dynamic gst;
+  dynamic grossCommission;
+  dynamic netCommission;
+  dynamic paxType;
+  dynamic promoDiscount;
   List<Charge>? rescheduleCharges;
-  int serviceFeeAmount;
-  int tds;
-  int totalAmount;
-  int tradeMarkupAmount;
-  int yqAmount;
+  dynamic serviceFeeAmount;
+  dynamic tds;
+  dynamic totalAmount;
+  dynamic tradeMarkupAmount;
+  dynamic yqAmount;
 
   FareDetail({
     required this.airportTaxAmount,
