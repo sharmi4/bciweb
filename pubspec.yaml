@@ -81,6 +81,7 @@ dependencies:
   syncfusion_flutter_charts: ^22.2.5
   webview_flutter: ^3.0.4
   month_year_picker: ^0.3.0+1
+  paged_vertical_calendar: ^1.1.6
 
   # flutter_super_html_viewer: ^0.1.0
 

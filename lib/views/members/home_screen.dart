@@ -226,7 +226,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
               child: Column(
                 children: [
                   Text(
-                    '''Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.We are also expanding our tie-up-affiliations to global, where Members can transact and get offers & discounts from all leading INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. We are having our club houses at Chennai Bolleneni Hill side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.''',
+                    'Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.We are also expanding our tie-up-affiliations to global, where Members can transact and get offers & discounts from all leading INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. We are having our club houses at Chennai Bolleneni Hill side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.',
                     style: TextStyle(
                         fontSize: 18,
                         color: kblue,
@@ -333,7 +333,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                 ),
                                 ksizedbox10,
                                 Text(
-                                    'BCI Prestigious Members Can Access\n our Amazing Discounts Coupons @ Our \nAssociate Provision / Restaurant / \nJewellery / Textile / Complimentary \nCoupon.'),
+                                    'BCI Prestigious Members Can Access\nour Amazing Discounts Coupons @ Our\nAssociate Provision / Restaurant /\nJewellery / Textile / Complimentary\nCoupon.'),
                               ],
                             ),
                             Column(
@@ -847,7 +847,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 70, left: 423),
+                          padding: const EdgeInsets.only(top: 50, left: 423),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -904,7 +904,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                'VENDOR FOCUS 2 INCREASE SALES',
+                                'VENDOR FOCUS TO INCREASING SALES',
                                 style: TextStyle(
                                     fontSize: 16.5,
                                     color: kblue,
@@ -951,7 +951,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 20, left: 325),
+                          padding: const EdgeInsets.only(top: 15, left: 0),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -980,7 +980,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                     ))
               ],
             ),
-            ksizedbox30,
+            ksizedbox40,
             Container(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,

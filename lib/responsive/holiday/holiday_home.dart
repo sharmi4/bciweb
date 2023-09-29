@@ -55,121 +55,180 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
     return GetBuilder<HolidayPackageController>(builder: (_) {
       return Scaffold(
           backgroundColor: const Color(0xFFF9F8FD),
-          appBar: AppBar(
-            backgroundColor: const Color(0xFFF9F8FD),
-            elevation: 0,
-            leading: InkWell(
-                onTap: () {
-                  Get.back();
-                },
-                child:
-                    Image.asset('assets/images/Icon awesome-arrow-right.png')),
-            title: Text(
-              'Plan your trip with us.',
-              style: TextStyle(
-                  fontSize: 27, fontWeight: FontWeight.w800, color: kblue),
-            ),
-          ),
-          body: Container(color: kwhite,
-            height: size.height,
-            child: ListView(shrinkWrap: true,
-              children: [
-                kwidth10,
-                Text(
-                  'Categories',
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
-                ),
-                ksizedbox10,
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                    height: 55,
-                    child: TextFormField(
-                        controller: searchController,
-                        decoration: InputDecoration(
-                          hintText: 'Search',
-                          fillColor: const Color(0xFFFFFFFF),
-                          focusColor: Colors.grey[200],
-                          isDense: true,
-                          filled: true,
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 0.5, color: Colors.grey.withOpacity(0.2)),
-                            borderRadius: BorderRadius.circular(19.0),
-                          ),
-                          prefixIcon: const Icon(
-                            Icons.search,
-                            color: Colors.grey,
-                          ),
-                        )),
+          appBar:PreferredSize(
+            preferredSize: const Size.fromHeight(340),
+            child: Column(children: [
+              Stack(
+                children:[ 
+                Container(
+                  height: size.height*0.39,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 30),
+                    child: Container(
+                      height: size.height*0.34,
+                      width: size.width,
+                      child: Image.asset('assets/images/Group 6977 (  ).png',
+                      //height: size.height*0.34,
+                      width: size.width,
+                      fit: BoxFit.fill,)),
                   ),
                 ),
-                ksizedbox30,
-                Container(
-                  height: 100,
-                  width: size.width,
-                  child: GetBuilder<HolidayPackageController>(builder: (_) {
-                    return ListView.separated(
-                      scrollDirection: Axis.horizontal,
-                      shrinkWrap: true,
-                      itemCount: holidayPackageController.packageCategoryData
-                          .length, // Replace witsh your desired number of items
-                      itemBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: InkWell(
-                            onTap: () {
-                              holidayPackageController.tripindex(index);
-                               holidayPackageController.getPackage(
-                              categoryId: holidayPackageController
-                                  .packageCategoryData[index].id
-                                  .toString());
-                             holidayPackageController.searchInt(
-                              holidayPackageController
-                                  .getPackageDetailsData[index].id);
-                              holidayPackageController.update();
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: holidayPackageController.tripindex.value ==
-                                          index
-                                      ? kyellow
-                                      : kwhite,
-                                  borderRadius: BorderRadius.circular(15)),
-                              height: 50,
-                              width: 110,
-                
-                              // Replace with your desired color
-                              child: Center(
-                                child: Text(
-                                  holidayPackageController
-                                      .packageCategoryData[index].name,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
+                  InkWell(
+            onTap: () {
+              Get.back();
+            },
+            child: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 25,
+                      width: 25,
+                      decoration: BoxDecoration(
+                        color: kOrange,
+                        borderRadius: BorderRadius.circular(7)
+                      ),
+                      child: Center(
+                        child: Icon(Icons.arrow_back_ios_new,color: kwhite,size: 16,))),
+                        kwidth10,
+                        Text(
+                  'Plan your trip with us.',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700,color: kwhite),
+                ),
+                  ],
+                ),
+              ))),
+
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Padding(
+                 padding: const EdgeInsets.only(top: 10,left: 10,right: 10,),
+                 child: Container(
+                   height: 50,
+                   width: size.width,
+                   child: TextFormField(
+                       controller: searchController,
+                       decoration: InputDecoration(
+                         hintText: 'Search',
+                         fillColor: const Color(0xFFFFFFFF),
+                         focusColor: Colors.grey[200],
+                         isDense: true,
+                         filled: true,
+                         border: OutlineInputBorder(
+                           borderSide: BorderSide(
+                               width: 0.5,
+                               color: Colors.grey.withOpacity(0.2)),
+                           borderRadius: BorderRadius.circular(10.0),
+                         ),
+                         prefixIcon: const Icon(
+                           Icons.search,
+                           color: Colors.grey,
+                         ),
+                       )),
+                 ),
+                           ),
+              ),
+              ]),
+             
+              // AppBar(
+              //   backgroundColor:const Color(0xFFF9F8FD),
+              //   elevation: 0,
+              //   leading: InkWell(
+              //       onTap: () {
+              //         Get.back();
+              //       },
+              //       child: Image.asset('assets/images/Icon awesome-arrow-right.png')),
+              //   title: Text(
+              //     'Plan your trip with us.',
+              //     style: TextStyle(
+              //         fontSize: 25, fontWeight: FontWeight.w600, color: kblue),
+              //   ),
+              // ),
+            ])),
+          body: Padding(
+            padding: const EdgeInsets.only(left: 15,right: 15,top: 20 ),
+            child: SingleChildScrollView(
+              
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   Padding(
+                     padding: const EdgeInsets.only(left: 10),
+                     child: Text(
+                                     'Categories',
+                                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+                                   ),
+                   ),
+                   ksizedbox10,
+                  Container(
+                    height: 60,
+                    width: size.width,
+                    child: GetBuilder<HolidayPackageController>(builder: (_) {
+                      return ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: holidayPackageController.packageCategoryData
+                            .length, // Replace witsh your desired number of items
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: InkWell(
+                              onTap: () {
+                                holidayPackageController.tripindex(index);
+                                 holidayPackageController.getPackage(
+                                categoryId: holidayPackageController
+                                    .packageCategoryData[index].id
+                                    .toString());
+                               holidayPackageController.searchInt(
+                                holidayPackageController
+                                    .getPackageDetailsData[index].id);
+                                holidayPackageController.update();
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
                                     color: holidayPackageController.tripindex.value ==
                                             index
-                                        ? kwhite
-                                        : kyellow,
+                                        ? kyellow
+                                        : kwhite,
+                                    borderRadius: BorderRadius.circular(15)),
+                                height: 50,
+                                width: 110,
+                  
+                                // Replace with your desired color
+                                child: Center(
+                                  child: Text(
+                                    holidayPackageController
+                                        .packageCategoryData[index].name,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16,
+                                      color: holidayPackageController.tripindex.value ==
+                                              index
+                                          ? kwhite
+                                          : kyellow,
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Divider(
-                          height: 2,
-                        );
-                      },
-                    );
-                  }),
-                ),
-                ksizedbox10,
-                Container(
-                  child: holiday_listview()),ksizedbox30
-              ],
+                          );
+                        },
+                        // separatorBuilder: (BuildContext context, int index) {
+                        //   return Divider(
+                        //     height: 2,
+                        //   );
+                        // },
+                      );
+                    }),
+                  ),
+                  ksizedbox10,
+                  Container(
+                    child: holiday_listview()),ksizedbox30,
+                ],
+              ),
             ),
           )
 
@@ -185,7 +244,7 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
 
   Column holiday_listview() {
     return Column(
-     
+     crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ksizedbox10,
         Row(
@@ -216,7 +275,7 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () {
                           Get.to(HolidayScreen(
                               packageId: holidayPackageController
@@ -226,7 +285,7 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                         },
                         child: Container(
                           height: 100,
-                          width: 100,
+                          width: 150,
                           decoration: BoxDecoration(
                               color: kwhite,
                               borderRadius: BorderRadius.circular(19)),

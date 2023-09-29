@@ -11,18 +11,12 @@ import '../../../../../controller/service_controller/home_controller.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../common_widget/common.dart';
 
-
-
-
 class Services extends StatefulWidget {
   const Services({super.key});
-
-
 
   @override
   State<Services> createState() => _ServicesState();
 }
-
 
 final homeController = Get.find<HomeServiceController>();
 
@@ -131,6 +125,7 @@ class _ServicesState extends State<Services> {
                                           color: Colors.grey.withOpacity(0.5))
                                     ]),
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(15),
@@ -141,35 +136,39 @@ class _ServicesState extends State<Services> {
                                               homeController.vendorList[index]
                                                   .profilePicture!,
                                               //height: 125,
-                                              width: size.width * 0.12,
-                                              fit: BoxFit.cover,
+                                              height: 100,
+                                              width: 150,
+                                              fit: BoxFit.fitHeight,
                                             )
                                           : Image.asset(
                                               "assets/icons/no.jpg",
                                               //height: 125,
-                                              width: size.width * 0.12,
+                                              height: 100,
+                                              width: 150,
                                               fit: BoxFit.cover,
                                             ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 15),
                                       child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
                                           const SizedBox(
                                             height: 10,
                                           ),
-                                          Text(
-                                            homeController
-                                                .vendorList[index].name,
-                                            style: primaryFont.copyWith(
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold),
+                                          Container(
+                                            width: 150,
+                                            child: Text(
+                                              homeController
+                                                  .vendorList[index].name,
+                                              style: primaryFont.copyWith(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
                                           ),
-                                          const SizedBox(
-                                            height: 15,
-                                          ),
+                                          ksizedbox20,
                                           InkWell(
                                             onTap: () {
                                               Get.to(

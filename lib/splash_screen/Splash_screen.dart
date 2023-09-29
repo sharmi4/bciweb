@@ -7,9 +7,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/image.dart';
 
-
-
-
 class splash extends StatefulWidget {
   const splash({super.key});
 

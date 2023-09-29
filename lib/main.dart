@@ -100,7 +100,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "BCI Member",
       onGenerateRoute: RouteGenerator.generateRoute,
-      initialRoute: Routes.SPLASH,
+      initialRoute: Routes.MobLogin,
     );
   }
 }

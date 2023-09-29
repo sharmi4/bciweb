@@ -1,26 +1,88 @@
 
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
 import '../../../controller/holiday_controller.dart';
+import '../../../controller/holiday_package_controller.dart';
+import '../../../models/holiday_packages_models/get_package_details_model.dart';
 import '../../mobile_wdgets/comomappbar.dart';
 import '../../mobile_wdgets/drawer.dart';
 
 
 class EnquiryNowWidget extends StatefulWidget {
-  const EnquiryNowWidget({super.key});
+  String packageId;
+  GetPackageDetailsData getPackageDetailsData;
+   EnquiryNowWidget({super.key,
+   required this.packageId,required this.getPackageDetailsData});
 
   @override
   State<EnquiryNowWidget> createState() => _EnquiryNowWidgetState();
 }
 
 class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
-  @override
-  Widget build(BuildContext context) {
+   final packageNameController = TextEditingController();
+  final cityOfDepController = TextEditingController();
+  final dateOfDepController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final mobileController = TextEditingController();
+
+   final holidayPackageController = Get.find<HolidayPackageController>();
     final mobileholidaysController=Get.find<HolidayController>();
     final mobileholidays2Controller=Get.find<Holiday2Controller>();
     final mobileholidays3Controller=Get.find<Holiday3Controller>();
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setdefault();
+  }
+  setdefault(){
+    packageNameController.text = widget.getPackageDetailsData.title;
+  }
+    DateTime date = DateTime.now();
+
+  _selectDate(BuildContext context) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: date,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime.now(),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now().add(const Duration(days: 6570)),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null)
+      setState(() {
+        date = picked;
+        dateOfDepController.text = formatDate(date, [dd, "/", mm, "/", yyyy]);
+      });
+  }
+  @override
+  Widget build(BuildContext context) {
+    
     var size = MediaQuery.of(context).size;
     return Scaffold(
        appBar: PreferredSize(
@@ -87,10 +149,10 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                       border: Border.all(),
                       color:const Color.fromARGB(255, 254, 252, 252)),
                   alignment: Alignment.center,
-                  child:const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      //controller: usernamecontroller,
+                      controller: packageNameController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -119,10 +181,10 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                       border: Border.all(),
                       color:const Color.fromARGB(255, 254, 252, 252)),
                   alignment: Alignment.center,
-                  child:const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      //controller: usernamecontroller,
+                      controller: nameController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -151,10 +213,13 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                       border: Border.all(),
                       color:const Color.fromARGB(255, 254, 252, 252)),
                   alignment: Alignment.center,
-                  child:const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      //controller: usernamecontroller,
+                      onTap: (){
+                        _selectDate(context);
+                      },
+                      controller:dateOfDepController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -191,8 +256,12 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(onPressed: (){
-                              mobileholidaysController.decrement();
-                              mobileholidaysController.update();
+                             if(mobileholidaysController.cout!=0){
+                                     mobileholidaysController.cout--;
+                             }
+                             else{
+                              return null;
+                             }
                             }, 
                             icon: Icon(Icons.remove,
                             size: 12,)),
@@ -237,8 +306,11 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(onPressed: (){
-                              mobileholidays2Controller.decrement();
-                              mobileholidays2Controller.update();
+                              if(mobileholidays2Controller.cout!=0){
+                                mobileholidays2Controller.cout--;
+                              }else{
+                                return null;
+                              }
                             }, 
                             icon: Icon(Icons.remove,
                             size: 12,)),
@@ -283,8 +355,12 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             IconButton(onPressed: (){
-                              mobileholidays3Controller.decrement();
-                              mobileholidays3Controller.update();
+                            if(mobileholidays3Controller.cout!=0){
+                              mobileholidays3Controller.cout--;
+                            }
+                            else{
+                              return null;
+                            }
                             }, 
                             icon: Icon(Icons.remove,
                             size: 12,)),
@@ -380,10 +456,16 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                       border: Border.all(),
                       color:const Color.fromARGB(255, 254, 252, 252)),
                   alignment: Alignment.center,
-                  child:const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      //controller: usernamecontroller,
+                      keyboardType: TextInputType.phone,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(10),
+                        FilteringTextInputFormatter.digitsOnly,
+                        FilteringTextInputFormatter.deny(RegExp(r'/s'))
+                      ],
+                      controller:mobileController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -397,22 +479,52 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                   ),
                 ),
                 ksizedbox30,
-                Container(
-                          height: 35,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            color: kOrange,
-                            borderRadius: BorderRadius.circular(8)
+                GestureDetector(
+                  onTap: (){
+                     print('---------testing enquiry');
+                     print(widget.packageId);
+                     print(cityOfDepController.text);
+                     print(dateOfDepController.text);
+                     print(nameController.text);
+                     print(emailController.text);
+                     print(mobileController.text);
+                     if(emailController.text.isEmail){
+                      holidayPackageController.createEnquiry(
+                        packageid:widget.packageId, 
+                        cityofdeparture:cityOfDepController.text, 
+                        dateofdeparture: dateOfDepController.text, 
+                        adultcount: holidayPackageController.adult.value.toString(), 
+                        childcount: holidayPackageController.child.value.toString(), 
+                        infantcount: holidayPackageController.infant.value.toString(), 
+                        name: nameController.text, 
+                        email: emailController.text, 
+                        mobile:mobileController.text, 
+                        status: 'pending');
+                     }
+                     else {
+                                Get.rawSnackbar(
+                                    message: "Enter a valid email id",
+                                    backgroundColor: Colors.red);
+                              }
+                   },
+                  child: Container(
+                            height: 35,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                              color: kOrange,
+                              borderRadius: BorderRadius.circular(8)
+                            ),
+                            child:const Center(
+                                child: Text("Send Query",style: TextStyle(color: Colors.white),),
+                            ),
                           ),
-                          child:const Center(
-                              child: Text("Send Query",style: TextStyle(color: Colors.white),),
-                          ),
-                        ),
+                ),
                         ksizedbox20,
                         Row(
                           children: [
                             Icon(Icons.punch_clock_sharp,color: kOrange,),
-                            Text('Duration :6 Nights & 7 Days',
+                            holidayPackageController.getPackageDetailsData.isEmpty?Text(''):
+                            Text(holidayPackageController.getPackageDetailsData.first.duration,
                           style: TextStyle(
                           fontSize: 18, 
                           color: Colors.black,

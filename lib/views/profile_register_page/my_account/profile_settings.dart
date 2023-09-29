@@ -22,7 +22,7 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   DateTime selectedDate = DateTime.now();
-  Future<void> _selectDate(BuildContext context) async {
+   _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
@@ -62,8 +62,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   File? image2;
 
   TextfieldTagsController? _controller;
+
   DateTime selectedDate2 = DateTime.now();
-  Future<void> _selectDate2(BuildContext context) async {
+   _selectDate2(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate2,
@@ -147,7 +148,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   var aadhaarController = TextEditingController();
   var gstController = TextEditingController();
 
-  String selectedGender = '';
+  dynamic selectedGender = '';
   dynamic imageprofile;
   dynamic aadharimage;
   dynamic panimage;
@@ -195,6 +196,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       branchController.text = authprofileController.profileData.first.branch;
 
       setState(() {
+        selectedGender = authprofileController.profileData.first.gender;
+        print('-------------------->>Gender is--------------->>$selectedGender');
         isMarried = authprofileController.profileData.first.isMarried == "0"
             ? false
             : true;
@@ -244,7 +247,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   children: [
                     const Text(""),
                     if (authprofileController.profileData.isNotEmpty)
-                      InkWell(
+                      GestureDetector(
                           onTap: () async {
                             PickedFile? pickedFile =
                                 await ImagePicker().getImage(
@@ -897,7 +900,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               Padding(
                 padding: const EdgeInsets.only(left: 40, bottom: 30),
                 child: Container(
-                  width: 560,
+                  width: 435,
                   child: Column(
                     children: [
                       TextField(
@@ -978,7 +981,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   ),
                                 ),
                               )
-                        : InkWell(
+                        : GestureDetector(
                             onTap: () async {
                               PickedFile? pickedFile =
                                   await ImagePicker().getImage(
@@ -1048,7 +1051,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                         ),
                                       ),
                                     )
-                              : InkWell(
+                              : GestureDetector(
                                   onTap: () async {
                                     PickedFile? pickedFile =
                                         await ImagePicker().getImage(
@@ -1162,7 +1165,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               motherName: mothernameController.text,
                               occupation: occupationController.text,
                               branch: branchController.text,
-                              children: _controller!.getTags,
+                              children: isMarried?_controller!.getTags:[],
                               panNo: panController.text,
                               spouse: spousenameController.text,
                               gender:
@@ -1210,7 +1213,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               occupation: occupationController.text,
                               adharNo: aadhaarController.text,
                               branch: branchController.text,
-                              children: _controller!.getTags,
+                              children: isMarried?_controller!.getTags:[],
                               gstNo: gstController.text,
                               weddingDate: wedingnameController.text,
                               panNo: panController.text,

@@ -9,6 +9,10 @@ import 'package:get/get.dart';
 
 import '../../../constant/constans.dart';
 import '../responsive/responsive_homescreen/responsive_homescreen.dart';
+import '../views/members/bookins/bus/Bus_booking_main.dart';
+import '../views/members/bookins/flight/booking_flight.dart';
+import '../views/members/bookins/hotels/booking_hotels.dart';
+import '../views/members/bookins/trip/trip_booking.dart';
 import '../views/members/services/views/servicescart/services.dart';
 import '../views/members/about/about_screens.dart';
 import '../views/members/contacs/contact_screen.dart';
@@ -333,13 +337,18 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 SizedBox(
                   height: 15,
                 ),
-                Text(
-                  "Fight Booking",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
+                GestureDetector(
+                  onTap: (){
+                      Get.to(BookingFlight());
+                  },
+                  child: Text(
+                    "Fight Booking",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400),
+                  ),
                 ),
                 // SizedBox(
                 //   height: 10,
@@ -355,25 +364,51 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "Holidays Trip Booking",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
+                GestureDetector(
+                  onTap: (){
+                     Get.to(BookingTrip());
+                  },
+                  child: Text(
+                    "Holidays Trip Booking",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
-                // Text(
-                //   "Liquor Booking",
-                //   textAlign: TextAlign.start,
-                //   style: TextStyle(
-                //       color: Colors.white,
-                //       fontSize: 17,
-                //       fontWeight: FontWeight.w400),
-                // ),
+                GestureDetector(
+                  onTap: (){
+                      Get.to(BusBookingMain());
+                  },
+                  child: Text(
+                    "Bus Booking",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
+                  SizedBox(
+                  height: 10,
+                ),
+                GestureDetector(
+                  onTap: (){
+                      Get.to(BookingHotels());
+                  },
+                  child: Text(
+                    "Hotel Booking",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400),
+                  ),
+                ),
               ],
             ),
             Column(

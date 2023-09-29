@@ -12,6 +12,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'package:velocity_x/velocity_x.dart';
 
@@ -65,7 +66,92 @@ class _HolidayScreenState extends State<HolidayScreen> {
                       width: size.width * 0.9,
                       child: Column(
                         children: [
-                          Image.asset('assets/images/overviewimage.png'),
+                          Stack(
+                                children: [
+                                  CarouselSlider(
+                                      carouselController: sliderController,
+                                      items: [
+                                        for (int i = 0;
+                                            i <
+                                                holidayPackageController
+                                                    .getPackageDetailsData
+                                                    .first
+                                                    .images
+                                                    .length;
+                                            i++)
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: NetworkImage(
+                                                  holidayPackageController
+                                                      .getPackageDetailsData
+                                                      .first
+                                                      .images[i]),
+                                            )),
+                                          ),
+                                        // Container(
+                                        //   decoration: const BoxDecoration(
+                                        //       image: DecorationImage(fit: BoxFit.fill,
+                                        //           image: AssetImage(
+                                        //               'assets/images/munnar2.jpg'))),
+                                        // ),
+                                        // Container(
+                                        //   decoration: const BoxDecoration(
+                                        //       image: DecorationImage(fit: BoxFit.fill,
+                                        //           image: AssetImage(
+                                        //               'assets/images/munnar3.jpg'))),
+                                        // ),
+                                      ],
+                                      options: CarouselOptions(
+                                        height: 170,
+                                        onPageChanged: (index, reason) {
+                                          setState(() {
+                                            activeIndex = index;
+                                          });
+                                        },
+                                        aspectRatio: 16 / 9,
+                                        viewportFraction: 1,
+                                        initialPage: 0,
+                                        enableInfiniteScroll: true,
+                                        reverse: false,
+                                        autoPlay: true,
+                                        autoPlayInterval:
+                                            const Duration(seconds: 3),
+                                        autoPlayAnimationDuration:
+                                            const Duration(milliseconds: 800),
+                                        autoPlayCurve: Curves.fastOutSlowIn,
+                                        enlargeCenterPage: true,
+                                        enlargeFactor: 0.3,
+                                        scrollDirection: Axis.horizontal,
+                                      )),
+                                  Positioned(
+                                    bottom: 10,
+                                    left: 0,
+                                    right: 0,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        AnimatedSmoothIndicator(
+                                          activeIndex: activeIndex,
+                                          count: holidayPackageController
+                                              .getPackageDetailsData.length,
+                                          effect: ScaleEffect(
+                                              dotHeight: 9.0,
+                                              dotWidth: 9.0,
+                                              dotColor: kgrey,
+                                              activeDotColor: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              holidayPackageController.getPackageDetailsData.isEmpty?
+                              Text(''):Text(holidayPackageController.getPackageDetailsData.first.title,
+                                 style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.w700, color: kblue),),
                           // Stack(
                           //   children: [
                           //     CarouselSlider(
@@ -142,7 +228,7 @@ class _HolidayScreenState extends State<HolidayScreen> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Starting From ${widget.packageId} ${holidayPackageController.getPackageDetailsData.length.toString()}')
+                                  Text('Starting From')
                                       .text
                                       .semiBold
                                       .blue900
@@ -160,7 +246,9 @@ class _HolidayScreenState extends State<HolidayScreen> {
                                       .blue900
                                       .make()
                                       .p2(),
-                                  InkWell(onTap: (){Get.to(EnquiryNowWidget());},
+                                  InkWell(onTap: (){Get.to(EnquiryNowWidget(
+                                    getPackageDetailsData:holidayPackageController.getPackageDetailsData.first, 
+                                    packageId: widget.packageId,));},
                                     child: Container(
                                       height: 40,
                                       width: 130,
@@ -271,10 +359,10 @@ class _HolidayScreenState extends State<HolidayScreen> {
                     child: Container(
                       child: Column(
                         children: [
-                          if (holidayControllerss.reindex.value == 0) OverviewWidget(),
-                          if (holidayControllerss.reindex.value == 1) HotelDetails(),
-                          if (holidayControllerss.reindex.value == 2) DayWiseItinerary(),
-                          if (holidayControllerss.reindex.value == 3) AdditionalInfoWidget(),
+                          if (holidayControllerss.reindex.value == 0) OverviewWidget(packageId: widget.packageId,),
+                          if (holidayControllerss.reindex.value == 1) HotelDetails(packageId: widget.packageId,),
+                          if (holidayControllerss.reindex.value == 2) DayWiseItinerary(packageId: widget.packageId,),
+                          if (holidayControllerss.reindex.value == 3) AdditionalInfoWidget(packageId: widget.packageId,),
                             
                     
                         ],

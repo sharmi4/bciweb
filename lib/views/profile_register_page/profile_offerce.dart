@@ -43,7 +43,9 @@ class _ProfileOfferceScreenState extends State<ProfileOfferceScreen> {
                               top: 20, left: 30, right: 30),
                           child: Container(
                             height: MediaQuery.of(context).size.height,
-                            child: GridView.builder(
+                            child:seriveoffersController
+                                          .todayOfferListData.isNotEmpty
+                                      ?  GridView.builder(
                                 shrinkWrap: true,
                                 itemCount: seriveoffersController
                                     .todayOfferListData.length,
@@ -54,9 +56,7 @@ class _ProfileOfferceScreenState extends State<ProfileOfferceScreen> {
                                         mainAxisSpacing: 20,
                                         crossAxisSpacing: 20),
                                 itemBuilder: (context, index) {
-                                  return seriveoffersController
-                                          .todayOfferListData.isNotEmpty
-                                      ? Container(
+                                  return Container(
                                           height: 50,
                                           width: MediaQuery.of(context)
                                                   .size
@@ -182,11 +182,28 @@ class _ProfileOfferceScreenState extends State<ProfileOfferceScreen> {
                                               )
                                             ],
                                           ),
-                                        )
-                                      : Center(
-                                          child: Text('No Offers',
-                                              style: TextStyle(fontSize: 18)));
-                                }),
+                                        );
+                                      
+                                }):Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                                'assets/images/offersnotavailableimage.png',
+                                height: 480,
+                                fit: BoxFit.fitHeight,),
+                            ksizedbox30,
+                            Text(
+                              'Member Offers Not Available',
+                              style: TextStyle(
+                                letterSpacing: 0.2,
+                                  fontSize: 20,
+                                  color: kblue,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      )
                           ),
                         );
                       }),

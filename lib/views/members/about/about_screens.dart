@@ -16,17 +16,8 @@ import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../common_widget/common.dart';
 
-
-
-
-
-
 class AboutUsScreen extends StatefulWidget {
   const AboutUsScreen({super.key});
-
-
-
-
 
   @override
   State<AboutUsScreen> createState() => _AboutUsScreenState();
@@ -97,7 +88,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: kblue,
-                                fontSize: 46,
+                                fontSize: 32,
                                 fontWeight: FontWeight.bold),
                           ),
                           const SizedBox(
@@ -115,7 +106,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                                   style: TextStyle(
                                       color: kblue,
                                       height: 1.8,
-                                      fontSize: 26,
+                                      fontSize: 19,
                                       fontWeight: FontWeight.w400),
                                 ),
                               ],
@@ -131,13 +122,13 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
             ],
           ),
           Container(
-            height: 700,
+            height: 600,
             color: const Color(0xffE6E6E6),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(
-                  width: 50,
+                  width: 0,
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -149,11 +140,11 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                       style: TextStyle(
                           color: kblue,
                           height: 2,
-                          fontSize: 46,
+                          fontSize: 32,
                           fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     Text(
                       "Look into what benefits are included with\nthe membership. Does it offer discounts on\nproducts or services that you regularly use?\nDoes it provide access to exclusive events\nor experiences?",
@@ -161,7 +152,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                       style: TextStyle(
                           color: kblue,
                           height: 1.8,
-                          fontSize: 26,
+                          fontSize: 20,
                           fontWeight: FontWeight.w400),
                     ),
                   ],
@@ -355,7 +346,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                     Text(
                       'Special coupons are promotional discounts offered by businesses to encourage \ncustomers to make a purchase or use their services. These coupons may be available \nin various forms such as printed coupons, digital coupons, or promo codes.',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 15, height: 2),
+                      style: TextStyle(fontSize: 17, height: 2),
                     ),
                     ksizedbox30,
                     Row(
@@ -375,18 +366,21 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                               ]),
                           child: Column(
                             children: [
-                              Container(
-                                height: 150,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                          'assets/images/travelimage.png',
-                                        ),
-                                        fit: BoxFit.cover)),
-                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
+                                child: Container(
+                                  height: 130,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                            'assets/images/travelimage.png',
+                                          ),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15),
                                 child: Text('TRAVEL',
                                     style: TextStyle(color: kblue)),
                               )
@@ -407,17 +401,20 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                               ]),
                           child: Column(
                             children: [
-                              Container(
-                                height: 150,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/retailimage.png'),
-                                        fit: BoxFit.cover)),
-                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
+                                child: Container(
+                                  height: 130,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/retailimage.png'),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15),
                                 child: Text(
                                   'RETAIL',
                                   style: TextStyle(color: kblue),
@@ -440,17 +437,20 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                               ]),
                           child: Column(
                             children: [
-                              Container(
-                                height: 150,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/gymimage.png'),
-                                        fit: BoxFit.cover)),
-                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
+                                child: Container(
+                                  height: 130,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/gymimage.png'),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15),
                                 child: Text(
                                   'GYM',
                                   style: TextStyle(color: kblue),
@@ -473,17 +473,20 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                               ]),
                           child: Column(
                             children: [
-                              Container(
-                                height: 150,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/entertaiment.png'),
-                                        fit: BoxFit.cover)),
-                              ),
                               Padding(
                                 padding: const EdgeInsets.only(top: 10),
+                                child: Container(
+                                  height: 130,
+                                  width: 170,
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              'assets/images/entertaiment.png'),
+                                          fit: BoxFit.cover)),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 15),
                                 child: Text(
                                   'ENTERTAIMENT',
                                   style: TextStyle(color: kblue),
@@ -518,7 +521,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                 ),
                 ksizedbox20,
                 Text(
-                  'Unforgettable Subscrition Experiences \nGet Your Guide',
+                  'Unforgettable subscription Experiences \nGet Your Guide',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       fontSize: 30, color: kblue, fontWeight: FontWeight.bold),
@@ -545,12 +548,12 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                               backgroundColor: kOrange,
                               minimumSize: Size(200, 47)),
                           onPressed: () async {
-                            // Uri url = Uri.parse(
-                            //     "https://www.portal.bcipvtltd.com/paymentgateway?amount=100&payOpt=''&user_id=197");
-                            // _launched = _launchInBrowser(url);
-                            // _launched!.then((value) {
-                            //   //print("Current url state-------------------->>${value}");
-                            // });
+                            Uri url = Uri.parse(
+                                "youtube.com/watch?v=KDjmKFjxXt0");
+                            _launched = _launchInBrowser(url);
+                            _launched!.then((value) {
+                              //print("Current url state-------------------->>${value}");
+                            });
                           },
                           child: const Text(
                             'Book Now',

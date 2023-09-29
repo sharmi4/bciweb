@@ -286,7 +286,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                           Spacer(),
                                           Text(
                                             DateFormat('dd-MM-yyyy')
-                                                .format(end),
+                                                .format(start),
                                             style: TextStyle(
                                                 color: kblue, fontSize: 14),
                                           ),
@@ -331,11 +331,13 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-if (hotelController.roomno! == 0)
-
-
+                                             //if (hotelController.roomno! == 0)
+                                             if(hotelController.roomno!=0){
                                                         hotelController
                                                             .roomno--;
+                                                      }else{
+                                                        return null;
+                                                      }
                                                       },
                                                       child: const Icon(
                                                         Icons
@@ -390,8 +392,11 @@ if (hotelController.roomno! == 0)
                                                   children: [
                                                     InkWell(
                                                       onTap: () {
-                                                        if (hotelController.adult! == 0)
+                                                        if(hotelController.adult!=0){
                                                         hotelController.adult--;
+                                                      }else{
+                                                        return null;
+                                                      }
                                                       },
                                                       child: const Icon(
                                                         Icons

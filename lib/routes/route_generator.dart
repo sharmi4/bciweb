@@ -33,9 +33,9 @@ class RouteGenerator {
         return _GeneratePageRoute(
             widget: MemberHomeScreen(), routeName: settings.name);
 
-      case Routes.landing_screen:
-        return _GeneratePageRoute(
-            widget: LandingScreen(), routeName: settings.name);
+      // case Routes.landing_screen:
+      //   return _GeneratePageRoute(
+      //       widget: LandingScreen(), routeName: settings.name);
 
       case Routes.about_screens:
         return _GeneratePageRoute(

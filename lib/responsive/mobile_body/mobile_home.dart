@@ -1398,10 +1398,15 @@ final authController=Get.find<AuthController>();
                               Padding(
                                 padding:
                                     const EdgeInsets.only(left: 0, top: 10),
-                                child: Image.asset(
-                                  'assets/images/playgoogle.png',
-                                  height: 90,
-                                  fit: BoxFit.fitHeight,
+                                child: GestureDetector(
+                                  onTap: (){
+                                    
+                                  },
+                                  child: Image.asset(
+                                    'assets/images/playgoogle.png',
+                                    height: 90,
+                                    fit: BoxFit.fitHeight,
+                                  ),
                                 ),
                               )
                             ],

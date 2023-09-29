@@ -50,12 +50,13 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                           fit: BoxFit.fill)),
                   child: Center(
-                      child: Text('MEET OUR LEGENDARY AMBASSADORS')
-                          .text
-                          .bold
-                          .xl6
-                          .white
-                          .make())),
+                      child: Text('MEET OUR LEGENDARY AMBASSADORS',
+                      style: TextStyle(
+                        letterSpacing: 0.1,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: kwhite
+                      ),))),
               ksizedbox40, ksizedbox40,
               Container(
                 height: 600,
@@ -77,7 +78,12 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                         ),
                         Spacer(),
-                        Text('DIPANKAR').text.bold.xl6.make(),
+                        Text('DIPANKAR',
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+
+                        ),),
                       ],
                     ),
                     kwidth10,
@@ -96,7 +102,11 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                         ),
                         Spacer(),
-                        Text('MIME GOPI').text.bold.xl6.make()
+                        Text('MIME GOPI',
+                        style: TextStyle(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold
+                        ),)
                       ],
                     )
                   ],
@@ -110,7 +120,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                     Text(
                       'SERVICES',
                       style: TextStyle(
-                          fontSize: 21.5,
+                          fontSize: 23.5,
                           color: kOrange,
                           fontWeight: FontWeight.bold),
                     )
@@ -183,12 +193,12 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                           ksizedbox20,
                           Text(
-                            'These packages can include a range \nof features and benefits, such as',
+                            'These packages can include a range\nof features and benefits,\nsuch as',
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 fontSize: 13,
                                 height: 1.2,
-                                fontWeight: FontWeight.w500),
+                                ),
                           )
                         ],
                       ),
@@ -224,7 +234,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         ),
                         ksizedbox20,
                         Text(
-                          'Memberships are typically offered by \norganizations or groups as a way for \nindividuals to gain access to specific \nbenefits or privileges.',
+                          'Memberships are typically offered by\norganizations or groups as a way for\nindividuals to gain access to specific\nbenefits or privileges.',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 13, height: 1.2),
                         )
@@ -267,9 +277,10 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                                   color: kblue, fontWeight: FontWeight.bold)),
                           ksizedbox20,
                           Text(
-                            'Coupons are a type of promotional \noffer that provides a discount or \nspecial deal on a product or service.',
+                            'Coupons are a type of promotional\noffer that provides a discount or\nspecial deal on a product or service.',
                             textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 13, height: 1.2),
+                            style: TextStyle(fontSize: 13, height: 1.2,
+                            ),
                           )
                         ],
                       ),
@@ -309,7 +320,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                                 color: kblue, fontWeight: FontWeight.bold)),
                         ksizedbox20,
                         Text(
-                          'Bookings refer to the process of \nreserving or scheduling a particular \nservice, event, or accommodation.',
+                          'Bookings refer to the process of\nreserving or scheduling a particular\nservice, event, or accommodation.',
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 13, height: 1.2),
                         )
@@ -336,11 +347,17 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
-                            child: Image.asset(
-                              'assets/images/offers.png',
+                            child: Container(
                               height: 50,
-                              fit: BoxFit.fitHeight,
-                            ),
+                              width: 50,
+                              decoration: BoxDecoration(
+                              color:Colors.deepOrange[50],
+                              borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: Center(
+                                child: Image.asset('assets/images/offershome.png',fit: BoxFit.fitHeight,height: 30,),
+                              ),
+                            )
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 20),
@@ -350,8 +367,9 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                           ),
                           ksizedbox20,
                           Text(
-                            'Offers are promotions or deals that \ncompanies or businesses provide to \ntheir customers in order to incentivize \nthem to make a purchase or take. advantage of a specific service.',
+                            'Offers are promotions or deals that\ncompanies or businesses provide to\ntheir customers in order to incentivize \nthem to make a purchase or take. advantage of a specific service.',
                             textAlign: TextAlign.center,
+                            maxLines: 5,
                             style: TextStyle(fontSize: 13, height: 1.2),
                           )
                         ],
@@ -393,10 +411,11 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.only(top: 20),
+                            padding: const EdgeInsets.only(top: 20,left: 1,right: 1),
                             child: Text(
-                              'Digital wallets are software \napplications that allow users to securely store and manage various \npayment methods, such as bank account information.',
+                              'Digital wallets are software applications\nthat allow users to securely store and\nmanage various payment methods,\nsuch as bank account information.',
                               textAlign: TextAlign.center,
+                              maxLines: 5,
                               style: TextStyle(fontSize: 13, height: 1.2),
                             ),
                           )
@@ -434,15 +453,18 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                                   'CLUB SERVICES',
                                   textAlign: TextAlign.end,
                                   style: TextStyle(
-                                      fontSize: 30,
+                                      fontSize: 25,
                                       color: kblue,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 ksizedbox10,
-                                Container(
-                                  height: 7,
-                                  width: 60,
-                                  color: kOrange,
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 2),
+                                  child: Container(
+                                    height: 7,
+                                    width: 60,
+                                    color: kOrange,
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 20),
@@ -450,7 +472,7 @@ class _SpecializedScreenState extends State<SpecializedScreen> {
                                     'Club services refer to the various \namenities and offerings provided by \nclubs to their members. These services \ncan vary widely depending on the type of \nclub and its focus, but may include.',
                                     textAlign: TextAlign.start,
                                     style: TextStyle(
-                                        fontSize: 30, color: kblue, height: 2),
+                                        fontSize: 20, color: kblue, height: 1.7),
                                   ),
                                 ),
                                 ksizedbox20,

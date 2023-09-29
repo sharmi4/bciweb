@@ -29,47 +29,119 @@ class SpecializedClub extends StatelessWidget {
                         ),
                         fit: BoxFit.fill)),
                 child:
-                    Center(child:  Text('MEET OUR LEGENDARY AMBASSADORS')
-                          .text
-                          .bold
-                          .xl6
-                          .white
-                          .make())),
+                    Center(child:  Text('MEET OUR LEGENDARY AMBASSADORS',
+                    style: TextStyle(
+                      fontSize: 30,
+                      color: kwhite,
+                      fontWeight: FontWeight.bold
+                    ),))),
+                    ksizedbox20,
             Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
-                    width: size.width * 0.4,
+                    width: size.width * 0.35,
                     child:
                         Image.asset('assets/images/specialized/Image 38.png')),
                 Container(
-                  width: size.width * 0.4,
+                  width: size.width * 0.35,
                   child: Column(
                     children: [
-                      ksizedbox40,
-                      Text('''WATER, LAND, FIRE, AIR & SKY are pancha boothas or simply NATURE which forms this entire UNIVERSE and its functioning.''')
-                          .text
-                          .xl4
-                          .bold
-                          .blue900
-                          .tight
-                          .make(),
+                      Text('WATER, LAND, FIRE, AIR & SKY are pancha boothas or simply NATURE which forms this entire UNIVERSE and its functioning.',
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: kblue
+
+                      ),)
+                        ,
                       ksizedbox10,
-                      Text('''Harmony with nature makes people feel more alive, healthy and happy. We have the following Adventure Sports-activities @ BCI-VIRTUALINK to be in touch with Nature: 
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Harmony with nature makes people feel more alive, healthy and happy. We have the following Adventure Sports-activities @ BCI-VIRTUALINK to be in touch with Nature:',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          ksizedbox10,
+                          Text('* TREKKING & MOUNTAINEERING',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* WILDLIFE SAFARI',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* CAMPING',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* MARATHON & ROAD EXPEDITIONS.',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* PARA GLIDING',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* SEA-FARING & DEEP-SEA DIVING',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* BIRD WATCHING.',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* WIND & WATER SURFING.',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          SizedBox(
+                            height: 4,
+                          ),
+                          Text('* OUTWARD BOUND LEADERSHIP ADVENTURE ACTIVITIES.',
+                          style: TextStyle(
+                            fontSize: 18
+                          ),),
+                          ksizedbox20,
+                          Text('Our man at BCI, Mr. DIPANKAR GHOSE-63, with 40 years of field experience in the Great Outdoors with Eco Conservation and Adventure Tourism, is raring to take you out on Adventure & Nature. He"s the CEO of PRAKRUTHI KOTINOS Wilderness and Adventure Sports Pvt. Ltd. And Senior Consultant of ACCEPT - ADVANCED CENTRE FOR CONSERVATION EDUCATION, PLANNING & TRAINING. He is the Founding Trustee and Director of OUTWARD BOUND in India.PRAKRUTHI KOTINOS collaborates regularly with India Tourism, Yuva Tourism Clubs, Chennai Snake Park, ATOAI, MMA, DRA and at the top of these partnerships is with BCI',
+                          style: TextStyle(
+                            fontSize: 18,
+                            height: 1.6,
+                            color: kblue,
+                            fontWeight: FontWeight.w500
+                          ),)
+                          ]) 
 
-* TREKKING & MOUNTAINEERING
-* WILDLIFE SAFARI
-* CAMPING
-* MARATHON & ROAD EXPEDITIONS.
-* PARA GLIDING
-* SEA-FARING & DEEP-SEA DIVING
-* BIRD WATCHING.
-* WIND & WATER SURFING.    
-* OUTWARD BOUND LEADERSHIP ADVENTURE ACTIVITIES.
 
-Our man at BCI, Mr. DIPANKAR GHOSE-63, with 40 years of field experience in the Great Outdoors with Eco Conservation and Adventure Tourism, is raring to take you out on Adventure & Nature. He's the CEO of PRAKRUTHI KOTINOS Wilderness and Adventure Sports Pvt. Ltd. And Senior Consultant of ACCEPT - ADVANCED CENTRE FOR CONSERVATION EDUCATION, PLANNING & TRAINING. He is the Founding Trustee and Director of OUTWARD BOUND in India.
-PRAKRUTHI KOTINOS collaborates regularly with India Tourism, Yuva Tourism Clubs, Chennai Snake Park, ATOAI, MMA, DRA and at the top of these partnerships is with BCI...
-''').text.semiBold.xl2.thin.blue900.heightLoose.make()
+
+
+// Our man at BCI, Mr. DIPANKAR GHOSE-63, with 40 years of field experience in the Great Outdoors with Eco Conservation and Adventure Tourism, is raring to take you out on Adventure & Nature. He's the CEO of PRAKRUTHI KOTINOS Wilderness and Adventure Sports Pvt. Ltd. And Senior Consultant of ACCEPT - ADVANCED CENTRE FOR CONSERVATION EDUCATION, PLANNING & TRAINING. He is the Founding Trustee and Director of OUTWARD BOUND in India.
+// PRAKRUTHI KOTINOS collaborates regularly with India Tourism, Yuva Tourism Clubs, Chennai Snake Park, ATOAI, MMA, DRA and at the top of these partnerships is with BCI...
+// '''
+                        
                     ],
                   ),
                 )
@@ -86,13 +158,13 @@ PRAKRUTHI KOTINOS collaborates regularly with India Tourism, Yuva Tourism Clubs,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('Set out with us from your courtyard at IXORA, to explore the nature India.;')
-                                .text
-                                .xl5
-                                .bold
-                                .blue900
-                                .tight
-                                .make(),
+                            Text('Set out with us from your courtyard at IXORA, to explore the nature India.;',
+                            style: TextStyle(
+                              fontSize: 27,
+                              fontWeight: FontWeight.w700,
+                              color: kblue
+
+                            ),),
                             ksizedbox20,
                             Text('''Led by Dipankar and his team of experts, you can experience:
 * Bird Watching around Perumbakam Wetlands,     

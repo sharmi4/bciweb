@@ -3,6 +3,7 @@ import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/members/homescreens/reg_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constant/constans.dart';
 import '../controller/auth_controller/auth_profile_controller.dart';
 import '../controller/reg_home_controller.dart';
@@ -16,6 +17,25 @@ class RegisterCommonContainer extends StatefulWidget {
 }
 
 class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
+
+  bool isLoggedIn =false;
+    checkForLoggedInState() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? authtoken = prefs.getString('auth_token');
+    print("Token is here");
+    print(authtoken);
+    if (authtoken == "null" || authtoken == null) {
+      setState(() {
+        isLoggedIn = false;
+      });
+    } else {
+      setState(() {
+        isLoggedIn = true;
+      });
+    }
+  }
+
+  
   @override
   final reghomeController = Get.find<RegisterHomeController>();
   final authController = Get.find<AuthController>();
@@ -28,6 +48,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
     super.initState();
     authController.checkAuthendication();
     authProfileController.getProfile();
+    checkForLoggedInState();
   }
 
   Widget build(BuildContext context) {
@@ -168,14 +189,17 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                     : kblue),
                           )),
                     ),
+                   if(isLoggedIn==true)
                     Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
                           onPressed: () {
+                           
                             reghomeController.reindex(7);
                             reghomeController.update();
+                              Get.toNamed(Routes.BOOKINGS);
                             //  Get.to(Hstory());
-                            Get.toNamed(Routes.BOOKINGS);
+                        
                           },
                           child: Text(
                             'BOOKINGS',
@@ -184,7 +208,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                     ? kOrange
                                     : kblue),
                           )),
-                    ),
+                    )
                   ],
                 ),
               ),

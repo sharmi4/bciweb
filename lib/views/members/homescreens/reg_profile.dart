@@ -4,6 +4,7 @@ import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/profile_controller.dart';
 import '../../../controller/profile_show_controller.dart';
 import '../../../controller/service_controller/home_controller.dart';
@@ -97,7 +98,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
           style: TextStyle(color: kblue),
         ),
         onPressed: () {
-          Get.offAll(LandingScreen());
+          //Get.offAll(LandingScreen());
         },
       ),
       TextButton(
@@ -159,7 +160,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
           ),
           preferredSize: const Size(double.infinity, 110)),
       body: Obx(
-        () => ListView(children: [
+        () => ListView(
+          primary: true,
+          scrollDirection: Axis.vertical,
+          children: [
           // RegisterCommonContainer(),
 
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -604,10 +608,76 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             reghomeController.proindex(10);
                             reghomeController.update();
                             showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return mAlertItem2;
-                                });
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        backgroundColor: Colors.white,
+                        title: Column(
+                          children: [
+                            Image.asset('assets/images/logoutimage.png'),
+                            Text("Comeback Soon!",
+                                style: TextStyle(
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black)),
+                          ],
+                        ),
+                        content:const Text(
+                          "Are you sure want to logout?",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 17,
+                          ),
+                        ),
+                        actions: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                      // ignore: unrelated_type_equality_checks
+                                      color: kwhite),
+                                  child: Center(
+                                      child: Text("Cancel",
+                                          style: TextStyle(
+                                              color: kOrange))),
+                                ),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  // authController.logoutindex(1);
+                                  // authController.update();
+                                  Get.find<AuthController>().logoutWeb();
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 120,
+                                  decoration: BoxDecoration(
+                                      color: kOrange,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Center(
+                                    child: Text(
+                                      "Logout",
+                                      style:TextStyle(color: kwhite),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          ksizedbox10
+                        ],
+                      );
+                    });
                             //Get.offAll(LandingScreen());
                           },
                           child: Container(

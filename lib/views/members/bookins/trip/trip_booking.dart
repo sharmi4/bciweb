@@ -271,7 +271,7 @@ class _BookingTripState extends State<BookingTrip> {
                   itemBuilder: (BuildContext context, int index) {
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
+                      child: GestureDetector(
                         onTap: () {
                           holidayPackageController.catindex(index);
                           holidayPackageController.getPackage(
@@ -350,7 +350,7 @@ class _BookingTripState extends State<BookingTrip> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(horizontal: 20),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 Get.to(
                                   HolidaysScreen(

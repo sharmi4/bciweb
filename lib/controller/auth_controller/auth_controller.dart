@@ -1,4 +1,5 @@
 import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/responsive/authentications/sign_up_view/sign_up_screen.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/get_otp_api_service.dart';
 import 'package:bciweb/services/networks/services/catogory_api_service/category_api_service.dart';
@@ -16,6 +17,8 @@ import '../../services/networks/services/catogory_api_service/service_list_apise
 import '../../services/networks/services/register_referal_api_service.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../views/authentication/Verification_done.dart';
+import '../../views/authentication/generate_otp_screen.dart';
+import '../../views/authentication/landing_screen.dart';
 import '../../views/authentication/otp_verification.dart';
 
 class AuthController extends GetxController {
@@ -177,10 +180,11 @@ class AuthController extends GetxController {
     prefs.setString("auth_token", "null");
     // Get.to(const MemberLoginScreenrespo());
   }
-
+ 
   logoutWeb() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
+    Get.to(MobileVerification());
     // Get.to(const MemberLoginScreenrespo());
   }
 

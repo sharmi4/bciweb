@@ -31,12 +31,13 @@ class SpecializedExplore extends StatelessWidget {
                         ),
                         fit: BoxFit.fill)),
                 child:
-                    Center(child:  Text('MEET OUR LEGENDARY AMBASSADORS')
-                          .text
-                          .bold
-                          .xl6
-                          .white
-                          .make())),
+                    Center(child:  Text('MEET OUR LEGENDARY AMBASSADORS',
+                     style: TextStyle(
+                      fontSize: 30,
+                      color: kwhite,
+                      fontWeight: FontWeight.bold
+                    ),)
+                          )),
             Row(
               children: [Spacer(),
                 Container(width: size.width*0.4,
@@ -47,7 +48,12 @@ class SpecializedExplore extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [Text('G-MIME Studio @ BCI IXORA Club house.' ,).text.xl5.bold.blue900.tight.make(),
+                      children: [Text('G-MIME Studio @ BCI IXORA Club house.' ,
+                      style:TextStyle(
+                        fontSize: 25,
+                        color: kblue,
+                        fontWeight: FontWeight.bold
+                      ) ,),
                      ksizedbox20,  Text('''G-MIME Studio is a theatre Art practicing Studio, founded by Actor Dr. MIME GOPI who has performed in lots of Movies, TV shows & 10,000+ mime shows in & outside India. 
                   
 This is one of the best studios to learn MIME, acting, expressing emotions, personal-public behavior, common nature of a human being, social responsibilities, fitness, career growth, respecting elders, program management and photography.
@@ -56,8 +62,9 @@ Heading the G-MIME Studio, Mr. Gopi is a renowned mime actor in Chennai. In his 
                   
 
                   ''').text.semiBold.xl2.thin.blue900.heightLoose.make()
-                  ,   Row(children: [Text('YouTube link👇 ').text.semiBold.xl.blue900.make(),InkWell(onTap: _launchUrl,
-                    child: Text('youtube.com/@GMIMESTUDIOMumbai.').text.thin.red700.make())],) ],
+                  // ,   Row(children: [Text('YouTube link👇 ').text.semiBold.xl.blue900.make(),InkWell(onTap: _launchUrl,
+                  //   child: const Text('https://www.youtube.com/watch?v=KDjmKFjxXt0').text.thin.red700.make())],) ],
+                      ]
                     ),
                   ),
                 ),
@@ -109,7 +116,7 @@ Heading the G-MIME Studio, Mr. Gopi is a renowned mime actor in Chennai. In his 
     );
   }
 }
-final Uri _url = Uri.parse('youtube.com/@GMIMESTUDIOMumbai.');
+final Uri _url = Uri.parse('https://youtube.com/watch?v=KDjmKFjxXt0');
 Future<void> _launchUrl() async {
   if (!await launchUrl(_url)) {
     throw Exception('Could not launch $_url');

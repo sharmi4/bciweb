@@ -57,13 +57,13 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                     child: authprofileController.profileData.isEmpty
                         ? Image.asset(
                             'assets/images/profileimage.png',
-                            height: 75,
+                            height: 74,
                             fit: BoxFit.fitHeight,
                           )
                         : ClipRRect(
                             borderRadius: BorderRadius.circular(100),
                             child: Container(
-                              height: 80,
+                              height: 79,
                               width: 80,
                               child: Image.network(
                                 authprofileController
@@ -104,7 +104,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 100, top: 30),
+                padding: const EdgeInsets.only(left: 100, top: 32),
                 child: Row(
                   children: [
                     Container(
@@ -139,7 +139,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                               ),
                             ),
                             Padding(
-                                padding: const EdgeInsets.only(left: 580),
+                                padding: const EdgeInsets.only(left: 550),
                                 child:
                                     apisettingController.getWalletData.isEmpty
                                         ? const Text("0")
@@ -242,7 +242,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                                                                 child: apisettingController
                                                                         .getWalletData
                                                                         .isEmpty
-                                                                    ? Text('')
+                                                                    ? Text('0')
                                                                     : Text(
                                                                         apisettingController
                                                                             .getWalletData
@@ -304,7 +304,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                                                                 child: apisettingController
                                                                         .getWalletData
                                                                         .isEmpty
-                                                                    ? Text('')
+                                                                    ? Text('0')
                                                                     : Text(
                                                                         apisettingController
                                                                             .getWalletData
@@ -366,7 +366,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                                                                 child: apisettingController
                                                                         .getWalletData
                                                                         .isEmpty
-                                                                    ? Text('')
+                                                                    ? Text('0')
                                                                     : Text(
                                                                         apisettingController
                                                                             .getWalletData

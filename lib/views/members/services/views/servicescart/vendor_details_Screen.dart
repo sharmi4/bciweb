@@ -63,7 +63,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                     children: [
                       widget.vendorListModelData.profilePicture != null
                           ? ClipRRect(
-                              borderRadius: BorderRadius.circular(5),
+                              borderRadius: BorderRadius.circular(10),
                               child: Image.network(
                                 widget.vendorListModelData.profilePicture!,
                                 height: 350,
@@ -87,7 +87,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                             Text(
                               widget.vendorListModelData.name,
                               style: TextStyle(
-                                  fontSize: 45,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   color: kblue),
                             ),
@@ -95,7 +95,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                             const Text(
                               "Details",
                               style: TextStyle(
-                                  fontSize: 40,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black54),
                             ),
@@ -200,7 +200,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                 );
                               },
                               child: Container(
-                                height: 55,
+                                height: 50,
                                 width: size.width,
                                 decoration: BoxDecoration(
                                     color: korange,
