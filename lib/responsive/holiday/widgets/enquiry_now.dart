@@ -184,7 +184,7 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      controller: nameController,
+                      controller: cityOfDepController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -406,10 +406,10 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                       border: Border.all(),
                       color:const Color.fromARGB(255, 254, 252, 252)),
                   alignment: Alignment.center,
-                  child:const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      //controller: usernamecontroller,
+                      controller: nameController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -431,10 +431,10 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                       border: Border.all(),
                       color:const Color.fromARGB(255, 254, 252, 252)),
                   alignment: Alignment.center,
-                  child:const Padding(
+                  child: Padding(
                     padding: EdgeInsets.only(left: 15, right: 10),
                     child: TextField(
-                      //controller: usernamecontroller,
+                    controller: emailController,
                       decoration: InputDecoration(
                           isCollapsed: true,
                           isDense: true,
@@ -481,32 +481,38 @@ class _EnquiryNowWidgetState extends State<EnquiryNowWidget> {
                 ksizedbox30,
                 GestureDetector(
                   onTap: (){
-                     print('---------testing enquiry');
-                     print(widget.packageId);
-                     print(cityOfDepController.text);
-                     print(dateOfDepController.text);
-                     print(nameController.text);
-                     print(emailController.text);
-                     print(mobileController.text);
-                     if(emailController.text.isEmail){
-                      holidayPackageController.createEnquiry(
-                        packageid:widget.packageId, 
-                        cityofdeparture:cityOfDepController.text, 
-                        dateofdeparture: dateOfDepController.text, 
-                        adultcount: holidayPackageController.adult.value.toString(), 
-                        childcount: holidayPackageController.child.value.toString(), 
-                        infantcount: holidayPackageController.infant.value.toString(), 
-                        name: nameController.text, 
-                        email: emailController.text, 
-                        mobile:mobileController.text, 
-                        status: 'pending');
-                     }
-                     else {
+                    print("---------testing enquiry--------------");
+                              print(widget.packageId);
+                              print(cityOfDepController.text);
+                              print(dateOfDepController.text);
+                              print(nameController.text);
+                              print(emailController.text);
+                              print(mobileController.text);
+                              if (emailController.text.isEmail) {
+                                holidayPackageController.createEnquiry(
+                                  packageid: widget.packageId,
+                                  cityofdeparture: cityOfDepController.text,
+                                  dateofdeparture: dateOfDepController.text,
+                                  adultcount: holidayPackageController
+                                      .adult.value
+                                      .toString(),
+                                  childcount: holidayPackageController
+                                      .child.value
+                                      .toString(),
+                                  infantcount: holidayPackageController
+                                      .infant.value
+                                      .toString(),
+                                  name: nameController.text,
+                                  email: emailController.text,
+                                  mobile: mobileController.text,
+                                  status: "pending",
+                                );
+                              } else {
                                 Get.rawSnackbar(
                                     message: "Enter a valid email id",
                                     backgroundColor: Colors.red);
                               }
-                   },
+                            },
                   child: Container(
                             height: 35,
                             width: size.width,

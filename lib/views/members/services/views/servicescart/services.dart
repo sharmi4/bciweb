@@ -1,5 +1,5 @@
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
-import 'package:bciweb/views/members/services/views/servicescart/vendor_details_Screen.dart';
+import 'package:bciweb/responsive/respo_services/respovendor_details_Screen.dart';
 import 'package:bciweb/views/members/services/views/servicescart/vendor_service_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:date_format/date_format.dart';
@@ -172,7 +172,7 @@ class _ServicesState extends State<Services> {
                                           InkWell(
                                             onTap: () {
                                               Get.to(
-                                                VendorDetailsScreen(
+                                                ResVendorDetailsScreen(
                                                   vendorListModelData:
                                                       homeController
                                                           .vendorList[index],

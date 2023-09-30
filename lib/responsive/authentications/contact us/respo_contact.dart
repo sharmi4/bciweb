@@ -3,7 +3,9 @@ import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:bciweb/views/members/common_widget/commoncontainer.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/setting_controller/setting_controller.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../mobile_wdgets/drawer.dart';
@@ -22,6 +24,9 @@ class _ContactScreenState extends State<RespoContact> {
   var emailController = TextEditingController();
   var subjectController = TextEditingController();
   var messageController = TextEditingController();
+  var mobilenumberController = TextEditingController();
+
+  final apisettingController = Get.find<ApiSettingController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -170,7 +175,7 @@ class _ContactScreenState extends State<RespoContact> {
                       BoxShadow(
                           offset: Offset(0.0, 0.75),
                           blurRadius: 4,
-                          color: kgrey)
+                          color: kgrey),
                     ],
                     borderRadius: BorderRadius.circular(12)),
                 child: Column(
@@ -235,7 +240,6 @@ class _ContactScreenState extends State<RespoContact> {
                               height: 45,
                               width: MediaQuery.of(context).size.width,
                               child: TextField(
-                                
                                 maxLines: 5,
                                 controller: messageController,
                                 decoration: InputDecoration(
@@ -248,19 +252,26 @@ class _ContactScreenState extends State<RespoContact> {
                           ),
                           Padding(
                             padding: const EdgeInsets.only(top: 30),
-                            child: Container(
-                              height: 42,
-                              width: MediaQuery.of(context).size.width * 0.31,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),
-                                  gradient: LinearGradient(colors: [
-                                    kyellow,
-                                    kOrange,
-                                  ])),
-                              child: Center(
-                                child: Text(
-                                  'Send Message',
-                                  style: TextStyle(color: kwhite, fontSize: 16),
+                            child: GestureDetector(
+                              onTap: (){
+                                apisettingController.createSupport(
+                                  title:subjectController.text ,
+                                   message: messageController.text);
+                              },
+                              child: Container(
+                                height: 42,
+                                width: MediaQuery.of(context).size.width * 0.31,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5),
+                                    gradient: LinearGradient(colors: [
+                                      kyellow,
+                                      kOrange,
+                                    ])),
+                                child: Center(
+                                  child: Text(
+                                    'Send Message',
+                                    style: TextStyle(color: kwhite, fontSize: 16),
+                                  ),
                                 ),
                               ),
                             ),

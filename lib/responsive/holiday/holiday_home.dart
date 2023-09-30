@@ -67,7 +67,7 @@ class _HolidayHomeScreenState extends State<HolidayHomeScreen> {
                     child: Container(
                       height: size.height*0.34,
                       width: size.width,
-                      child: Image.asset('assets/images/Group 6977 (  ).png',
+                      child: Image.asset("assets/images/Group 6977 (4).png",
                       //height: size.height*0.34,
                       width: size.width,
                       fit: BoxFit.fill,)),

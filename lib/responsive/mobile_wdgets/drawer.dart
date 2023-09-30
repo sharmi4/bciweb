@@ -33,6 +33,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
     super.initState();
     authController.checkAuthendication();
     authprofileController.getProfile();
+    
   }
 
 

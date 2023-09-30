@@ -129,7 +129,7 @@ abstract class BaseApiService {
   final String addBusBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/add_bus_booking_history";
   final String airAddPayment =
-      "https://www.portal.bcipvtltd.com/api/auth/add_payment";
+      "https://www.portal.bcipvtltd.com/api/auth/add_payment"; 
 
   final String getBusBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/get_bus_booking_history";
@@ -151,7 +151,8 @@ abstract class BaseApiService {
   // "https://www.portal.bcipvtltd.com/api/auth/getpartners";
 
   final String createSupportApiUrl =
-      "https://www.portal.bcipvtltd.com/api/auth/create_ticket";
+  "https://www.portal.bcipvtltd.com/api/get/app/support/details";
+     // "https://www.portal.bcipvtltd.com/api/auth/create_ticket";
 
   final String registerreferalURL =
       "https://www.portal.bcipvtltd.com/api/auth/generateReferralregister";
@@ -220,4 +221,7 @@ abstract class BaseApiService {
   //get gallery
   final String getGalleryURI =
       "https://www.portal.bcipvtltd.com/api/auth/get_gallery";
+
+  //support admin details 
+  final String supportAdminDetailsApiUrl = "https://portal.bcipvtltd.com/api/get/app/support/details";    
 }

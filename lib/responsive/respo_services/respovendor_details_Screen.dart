@@ -4,23 +4,23 @@ import 'package:bciweb/views/members/services/views/servicescart/vendor_service_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../../../../constant/constans.dart';
-import '../../../../../controller/redeem_controller/redeem_controller.dart';
-import '../../../../../controller/service_controller/home_controller.dart';
-import '../../../../../registerhomescreen/common_reg_bottom.dart';
-import '../../../../../registerhomescreen/common_reg_homescreen.dart';
-import '../../../common_widget/common.dart';
+import '../../constant/constans.dart';
+import '../../controller/redeem_controller/redeem_controller.dart';
+import '../../controller/service_controller/home_controller.dart';
+import '../../registerhomescreen/common_reg_bottom.dart';
+import '../../registerhomescreen/common_reg_homescreen.dart';
+import '../../views/members/common_widget/common.dart';
 
-class VendorDetailsScreen extends StatefulWidget {
+class ResVendorDetailsScreen extends StatefulWidget {
   VendorListModelData vendorListModelData;
   final String userid;
-  VendorDetailsScreen({super.key, required this.vendorListModelData,required this.userid});
+  ResVendorDetailsScreen({super.key, required this.vendorListModelData,required this.userid});
 
   @override
-  State<VendorDetailsScreen> createState() => _VendorDetailsScreenState();
+  State<ResVendorDetailsScreen> createState() => _ResVendorDetailsScreenState();
 }
 
-class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
+class _ResVendorDetailsScreenState extends State<ResVendorDetailsScreen> {
   final authController = Get.find<AuthController>();
   final homeController = Get.find<HomeServiceController>();
 
