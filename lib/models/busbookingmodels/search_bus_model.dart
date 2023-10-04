@@ -35,7 +35,7 @@ class SearchBusList {
 class Bus {
     bool ac;
     String arrivalTime;
-    int availableSeats;
+    dynamic availableSeats;
     List<BoardingDetail> boardingDetails;
     bool bookable;
     String busKey;
@@ -49,7 +49,7 @@ class Bus {
     String operatorName;
     bool partialCancellationAllowed;
     bool seatLayout;
-    int seatType;
+    dynamic seatType;
     String toCity;
     dynamic travelDate;
     dynamic vehicleType;
@@ -80,27 +80,27 @@ class Bus {
     });
 
     factory Bus.fromJson(Map<String, dynamic> json) => Bus(
-        ac: json["AC"],
-        arrivalTime: json["Arrival_Time"],
-        availableSeats: json["Available_Seats"],
+        ac: json["AC"]??"",
+        arrivalTime: json["Arrival_Time"]??"",
+        availableSeats: json["Available_Seats"]??"",
         boardingDetails: List<BoardingDetail>.from(json["BoardingDetails"].map((x) => BoardingDetail.fromJson(x))),
-        bookable: json["Bookable"],
-        busKey: json["Bus_Key"],
-        busType: json["Bus_Type"],
-        departureTime: json["Departure_Time"],
-        dropPointMandatory: json["DropPoint_Mandatory"],
+        bookable: json["Bookable"]??"",
+        busKey: json["Bus_Key"]??"",
+        busType: json["Bus_Type"]??"",
+        departureTime: json["Departure_Time"]??"",
+        dropPointMandatory: json["DropPoint_Mandatory"]??"",
         droppingDetails: List<DroppingDetail>.from(json["DroppingDetails"].map((x) => DroppingDetail.fromJson(x))),
         fareMasters: List<FareMaster>.from(json["FareMasters"].map((x) => FareMaster.fromJson(x))),
-        fromCity: json["From_City"],
-        getFareMandatory: json["GetFareMandatory"],
-        operatorName: json["Operator_Name"],
-        partialCancellationAllowed: json["Partial_Cancellation_Allowed"],
-        seatLayout: json["Seat_Layout"],
-        seatType: json["Seat_Type"],
-        toCity: json["To_City"],
+        fromCity: json["From_City"]??"",
+        getFareMandatory: json["GetFareMandatory"]??"",
+        operatorName: json["Operator_Name"]??"",
+        partialCancellationAllowed: json["Partial_Cancellation_Allowed"]??"",
+        seatLayout: json["Seat_Layout"]??"",
+        seatType: json["Seat_Type"]??"",
+        toCity: json["To_City"]??"",
         travelDate:json["TravelDate"]?? "",
         vehicleType: json["Vehicle_Type"]?? "",
-        mTicket: json["mTicket"],
+        mTicket: json["mTicket"]??"",
     );
 
     Map<String, dynamic> toJson() => {
@@ -201,16 +201,16 @@ class DroppingDetail {
 }
 
 class FareMaster {
-    int basicAmount;
-    int cancellationCharges;
+    dynamic basicAmount;
+    dynamic cancellationCharges;
     List<FareDetail> fareDetails;
-    int gst;
-    int grossCommission;
-    int netCommission;
-    double otherAmount;
-    int serviceFeeAmount;
-    double totalAmount;
-    int tradeMarkupAmount;
+    dynamic gst;
+    dynamic grossCommission;
+    dynamic netCommission;
+    dynamic otherAmount;
+    dynamic serviceFeeAmount;
+    dynamic totalAmount;
+    dynamic tradeMarkupAmount;
 
     FareMaster({
         required this.basicAmount,

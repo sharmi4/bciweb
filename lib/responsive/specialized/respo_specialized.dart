@@ -48,12 +48,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                           ),
                           fit: BoxFit.fill)),
                   child: Center(
-                      child:Text('MEET OUR LEGENDARY AMBASSADORS')
-                          .text
-                          
-                          .xl2
-                          .white
-                          .make())),
+                      child:Text('MEET OUR LEGENDARY AMBASSADORS',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        
+                        fontSize: 23,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                      ),))),
               ksizedbox20,
               Container(
                 //height: 300,
@@ -77,7 +79,12 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                               ),
                             ),
                             ksizedbox10,
-                            Text('DIPANKAR').text.semiBold.xl.make()
+                            Text('DIPANKAR',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: kblue,
+                              fontWeight: FontWeight.w500
+                            ),)
                           ],
                         ),
                       ),
@@ -100,7 +107,12 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                               ),
                             ),
                             ksizedbox10,
-                            Text('MIME GOPI').text.semiBold.xl.make()
+                            Text('MIME GOPI',
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: kblue,
+                              fontWeight: FontWeight.w500
+                            ),)
                           ],
                         ),
                       ),
@@ -116,7 +128,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     Text(
                       'SERVICES',
                       style: TextStyle(
-                          fontSize: 21.5,
+                          fontSize: 22.5,
                           color: kOrange,
                           fontWeight: FontWeight.bold),
                     )
@@ -131,21 +143,25 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                   'FIND THE SPECIALIZED US YOU NEED',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 26,
+                    fontSize: 20,
                     color: kblue,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.only(left: 20, top: 10),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
-                      'Membership features are the benefits or privileges that a member of a particular \ngroup or organization receives. These features can vary widely depending on the \ntype of membership and the goals and objectives of the \norganization. Some common membership features include:',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(height: 2),
+                    Container(
+                      width: 300,
+                      child: Text(
+                        'Membership features are the benefits or privileges that a member of a particular group or organization receives.These features can vary widely depending on the type of membership and the goals and objectives of the organization.Some common membership features include:',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(),
+                      ),
                     ),
                   ],
                 ),
@@ -168,6 +184,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     color: kwhite,
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -183,11 +200,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         style: TextStyle(
                             color: kblue, fontWeight: FontWeight.bold),
                       ),
-                      ksizedbox20,
-                      Text(
-                        'These packages can include a range \nof features and benefits, such as',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13, height: 1.2),
+                      ksizedbox10,
+                      Container(
+                        width: 250,
+                        child: Text(
+                          'These packages can include a range \nof features and benefits, such as',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 13, height: 1.2),
+                        ),
                       )
                     ],
                   ),
@@ -204,6 +224,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                   color: kwhite,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 20),
@@ -219,11 +240,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                           style: TextStyle(
                               color: kblue, fontWeight: FontWeight.bold)),
                     ),
-                    ksizedbox20,
-                    Text(
-                      'Memberships are typically offered by \norganizations or groups as a way for \nindividuals to gain access to specific \nbenefits or privileges.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, height: 1.2),
+                    ksizedbox10,
+                    Container(
+                      width: 250,
+                      child: Text(
+                        'Memberships are typically offered by \norganizations or groups as a way for \nindividuals to gain access to specific \nbenefits or privileges.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13, height: 1.2),
+                      ),
                     )
                   ],
                 ),
@@ -245,6 +269,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     color: kwhite,
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -262,11 +287,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                       Text('COUPONS',
                           style: TextStyle(
                               color: kblue, fontWeight: FontWeight.bold)),
-                      ksizedbox20,
-                      Text(
-                        'Coupons are a type of promotional \noffer that provides a discount or \nspecial deal on a product or service.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13, height: 1.2),
+                      ksizedbox10,
+                      Container(
+                        width: 250,
+                        child: Text(
+                          'Coupons are a type of promotional \noffer that provides a discount or \nspecial deal on a product or service.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 13, height: 1.2),
+                        ),
                       )
                     ],
                   ),
@@ -284,6 +312,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                   color: kwhite,
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ksizedbox10,
                     Container(
@@ -297,11 +326,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     Text('BOOKINGS',
                         style: TextStyle(
                             color: kblue, fontWeight: FontWeight.bold)),
-                    ksizedbox20,
-                    Text(
-                      'Bookings refer to the process of \nreserving or scheduling a particular \nservice, event, or accommodation.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 13, height: 1.2),
+                    ksizedbox10,
+                    Container(
+                      width: 250,
+                      child: Text(
+                        'Bookings refer to the process of \nreserving or scheduling a particular \nservice, event, or accommodation.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 13, height: 1.2),
+                      ),
                     )
                   ],
                 ),
@@ -323,14 +355,21 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     color: kwhite,
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
-                        child: Image.asset(
-                          'assets/images/offers.png',
-                          height: 50,
-                          fit: BoxFit.fitHeight,
-                        ),
+                        child:  Container(
+                              height: 50,
+                              width: 50,
+                              decoration: BoxDecoration(
+                              color:Colors.deepOrange[50],
+                              borderRadius: BorderRadius.circular(5)
+                              ),
+                              child: Center(
+                                child: Image.asset('assets/images/offershome.png',fit: BoxFit.fitHeight,height: 30,),
+                              ),
+                            )
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -338,11 +377,14 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                             style: TextStyle(
                                 color: kblue, fontWeight: FontWeight.bold)),
                       ),
-                      ksizedbox20,
-                      Text(
-                        'Offers are promotions or deals that \ncompanies or businesses provide to \ntheir customers in order to incentivize \nthem to make a purchase or take. advantage of a specific service.',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 13, height: 1.2),
+                      ksizedbox10,
+                      Container(
+                        width: 250,
+                        child: Text(
+                          'Offers are promotions or deals that \ncompanies or businesses provide to \ntheir customers in order to incentivize \nthem to make a purchase or take. advantage of a specific service.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(fontSize: 13, height: 1.2),
+                        ),
                       )
                     ],
                   ),
@@ -365,6 +407,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     color: kwhite,
                   ),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 20),
@@ -379,14 +422,17 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         child: Text(
                           'WALLETS',
                           style: TextStyle(
-                              color: kblue, fontWeight: FontWeight.bold),
+                              color: kblue, fontWeight: FontWeight.bold,
+                              ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20),
+                      ksizedbox10,
+                      Container(
+                        width: 250,
                         child: Text(
-                          'Digital wallets are software \napplications that allow users to securely store and manage various \npayment methods, such as bank account information.',
+                          'Digital wallets are software applications that allow users to securely store and manage various payment methods,such as bank account information.',
                           textAlign: TextAlign.center,
+                          maxLines: 4,
                           style: TextStyle(fontSize: 13, height: 1.2),
                         ),
                       )
@@ -413,7 +459,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                           'CLUB SERVICES',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 30,
+                              fontSize: 25,
                               color: kblue,
                               fontWeight: FontWeight.bold),
                         ),
@@ -430,10 +476,18 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 20),
-                          child: Text(
-                            'Club services refer to the various \namenities and offerings provided by \nclubs to their members. These services \ncan vary widely depending on the type of \nclub and its focus, but may include.',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(color: kblue, height: 2),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: 300,
+                                child: Text(
+                                  'Club services refer to the various amenities and offerings provided by clubs to their members.These services can vary widely depending on the type of club and its focus,but may include.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(color: kblue, ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         ksizedbox20,
@@ -473,15 +527,24 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                     Text(
                       'FIND THE SERVICES YOU NEED',
                       style: TextStyle(
-                          fontSize: 26,
+                          fontSize: 20,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
                     ksizedbox20,
-                    Text(
-                      'I"d be happy to help you find the services you need! Can you please provide me \nwith some more information about what type of services you are looking for? \nHere are some examples of services that people often search for',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(height: 2),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          width: 300,
+                          child: Text(
+                            'I"d be happy to help you find the services you need!Can you please provide me with some more information about what type of services you are looking for?Here are some examples of services that people often search for',
+                            textAlign: TextAlign.center,
+                            maxLines: 4,
+                            style: TextStyle(),
+                          ),
+                        ),
+                      ],
                     ),
                     ksizedbox30,
                     Row(
@@ -543,6 +606,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                         ),
                       ],
                     ),
+                    ksizedbox20,
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -593,7 +657,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
               specialController.specialindex.value == 0
                   ? Container(
                       //  alignment: Alignment.center,
-                      height: 110,
+                      height: 120,
                       width: MediaQuery.of(context).size.width * 0.2,
                       color: kgrey.withOpacity(0.1),
                       child: const Column(
@@ -615,7 +679,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                               ),
                             ),
                             Padding(
-                              padding: EdgeInsets.only(top: 10, left: 10),
+                              padding: EdgeInsets.only(top: 10, left: 10,right: 10),
                               child: Text(
                                 'The Benze Club International Community is where members can interact with other members, ask questions, share insights, learn from experiences, find answers, plan holidays better and earn Trip Coins.',
                                 style: TextStyle(fontSize: 13),

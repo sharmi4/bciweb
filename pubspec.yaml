@@ -82,6 +82,7 @@ dependencies:
   webview_flutter: ^3.0.4
   month_year_picker: ^0.3.0+1
   paged_vertical_calendar: ^1.1.6
+  lottie: ^2.6.0
 
   # flutter_super_html_viewer: ^0.1.0
 

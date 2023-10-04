@@ -12,6 +12,7 @@ import '../models/busbookingmodels/bus_cityList_model.dart';
 import '../models/busbookingmodels/bus_seat_map_model.dart';
 import '../models/busbookingmodels/pax_list_model.dart';
 import '../models/busbookingmodels/search_bus_model.dart';
+import '../responsive/bus/bus_details.dart';
 import '../services/networks/bus_api_service/add_bus_booking_history.dart';
 import '../services/networks/bus_api_service/bus_booking_add_payment_api_services.dart';
 import '../services/networks/bus_api_service/bus_cityList_api_service.dart';
@@ -88,7 +89,7 @@ class BusController extends GetxController {
   searchBus(
       {required String fromCityId,
       required String toCityId,
-      required String travelDate}) async {
+      required String travelDate,required bool isMobile }) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await searchBusListApiService.searchBusListApiService(
@@ -98,13 +99,22 @@ class BusController extends GetxController {
       SearchBusList searchBusList = SearchBusList.fromJson(response.data);
       busData = searchBusList.buses;
       busSearchKey(searchBusList.searchKey);
+      if(isMobile==true){
+        Get.to(BusDetailsScreen(
+          fromCityName: fromCity.value,
+          toCityName: toCity.value,
+          tdate: date.value,
+          searchKey: searchBusList.searchKey,
+        ));
+      }else{
       Get.to(BusList(
         fromCityName: fromCity.value,
         toCityName: toCity.value,
         tdate: date.value,
         searchKey: searchBusList.searchKey,
       ));
-    } else {
+    } }
+    else {
       Get.rawSnackbar(
           backgroundColor: Colors.red,
           messageText: Text(

@@ -5,6 +5,7 @@ import 'package:bciweb/responsive/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/responsive/respo_services/respo_coupens.dart';
 import 'package:bciweb/responsive/respo_services/respo_offers.dart';
 import 'package:bciweb/responsive/respo_services/respo_service_cart_list.dart';
+import 'package:bciweb/responsive/respo_services/responvendor_details_screen.dart';
 
 
 import 'package:carousel_slider/carousel_slider.dart';
@@ -20,7 +21,7 @@ import '../../controller/service_controller/home_controller.dart';
 import '../../models/vendor_list_model.dart';
 import '../mobile_wdgets/drawer.dart';
 import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
-import 'respovendor_details_Screen.dart';
+import '../../views/members/services/vendor_details_screen.dart';
 //import '../../../members/common_widget/common.dart';
 
 class RespoServices extends StatefulWidget {
@@ -69,7 +70,7 @@ class _ServicesState extends State<RespoServices> {
                       child: Text(
                         'SERVICES',
                         style: GoogleFonts.lato(
-                            fontSize: 35,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: kwhite),
                       ),
@@ -78,21 +79,21 @@ class _ServicesState extends State<RespoServices> {
                 ],
               ),
             ),
-            ksizedbox20,
-            Text(
-              'SPECIAL COUPONS',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Color(0xff003366),
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
-            ),
-            ksizedbox10,
-            Container(
-              height: 10,
-              width: 60,
-              color: korange,
-            ),
+            // ksizedbox20,
+            // Text(
+            //   'SPECIAL COUPONS',
+            //   textAlign: TextAlign.center,
+            //   style: TextStyle(
+            //       color: Color(0xff003366),
+            //       fontSize: 25,
+            //       fontWeight: FontWeight.bold),
+            // ),
+            // ksizedbox10,
+            // Container(
+            //   height: 10,
+            //   width: 60,
+            //   color: korange,
+            // ),
             // ksizedbox10,
             // Padding(
             //   padding: const EdgeInsets.all(15.0),
@@ -107,112 +108,116 @@ class _ServicesState extends State<RespoServices> {
 
             Container(
               height: 500,
-              child: ListView.builder(
-                            itemCount: serviceController.vendorList.length,
-                            shrinkWrap: true,
-                         
-                            itemBuilder: ((context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                  height: 55,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(20),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            blurRadius: 2.5,
-                                            color: Colors.grey.withOpacity(0.5))
-                                      ]),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                    children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(15),
-                                        child: serviceController.vendorList[index]
-                                                    .profilePicture !=
-                                                null
-                                            ? Image.network(
-                                                serviceController.vendorList[index]
-                                                    .profilePicture!,
-                                                //height: 125,
-                                                height: 100,
-                                                width: 150,
-                                                fit: BoxFit.fitHeight,
-                                              )
-                                            : Image.asset(
-                                                "assets/icons/no.jpg",
-                                                //height: 125,
-                                                height: 100,
-                                                width: 150,
-                                                fit: BoxFit.cover,
-                                              ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(left: 15),
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            const SizedBox(
-                                              height: 10,
-                                            ),
-                                            Container(
-                                              width: 150,
-                                              child: Text(
-                                                serviceController
-                                                    .vendorList[index].name,
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.bold),
-                                              ),
-                                            ),
-                                            ksizedbox20,
-                                            InkWell(
-                                              onTap: () {
-                                                Get.to(
-                                                  ResVendorDetailsScreen(
-                                                    vendorListModelData:
-                                                        serviceController
-                                                            .vendorList[index],
-                                                    userid: serviceController
-                                                        .vendorList[index].id
-                                                        .toString(),
+              child: GetBuilder<HomeServiceController>(
+                builder: (context) {
+                  return ListView.builder(
+                                itemCount: serviceController.vendorList.length,
+                                shrinkWrap: true,
+                             
+                                itemBuilder: ((context, index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Container(
+                                      height: 130,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius: BorderRadius.circular(20),
+                                          boxShadow: [
+                                            BoxShadow(
+                                                blurRadius: 2.5,
+                                                color: Colors.grey.withOpacity(0.5))
+                                          ]),
+                                      child: Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          ClipRRect(
+                                            borderRadius: BorderRadius.circular(15),
+                                            child: serviceController.vendorList[index]
+                                                        .profilePicture !=
+                                                    null
+                                                ? Image.network(
+                                                    serviceController.vendorList[index]
+                                                        .profilePicture!,
+                                                    //height: 125,
+                                                    height: 100,
+                                                    width: 150,
+                                                    fit: BoxFit.fitHeight,
+                                                  )
+                                                : Image.asset(
+                                                    "assets/icons/no.jpg",
+                                                    //height: 125,
+                                                    height: 100,
+                                                    width: 150,
+                                                    fit: BoxFit.cover,
                                                   ),
-                                                );
-                                              },
-                                              child: Container(
-                                                height: 35,
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  color: kblue,
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left: 15),
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                const SizedBox(
+                                                  height: 10,
                                                 ),
-                                                alignment: Alignment.center,
-                                                child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      left: 10, right: 10),
+                                                Container(
+                                                  width: 150,
                                                   child: Text(
-                                                    "Click now",
+                                                    serviceController
+                                                        .vendorList[index].name,
                                                     style: primaryFont.copyWith(
-                                                        color: Colors.white,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.bold),
+                                                        fontSize: 15,
+                                                        fontWeight: FontWeight.bold),
                                                   ),
                                                 ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
+                                                ksizedbox20,
+                                                InkWell(
+                                                  onTap: () {
+                                                    Get.to(
+                                                      ResVendorDetailsScreen(
+                                                        vendorListModelData:
+                                                            serviceController
+                                                                .vendorList[index],
+                                                        userid: serviceController
+                                                            .vendorList[index].id
+                                                            .toString(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: Container(
+                                                    height: 35,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(10),
+                                                      color: kblue,
+                                                    ),
+                                                    alignment: Alignment.center,
+                                                    child: Padding(
+                                                      padding: const EdgeInsets.only(
+                                                          left: 10, right: 10),
+                                                      child: Text(
+                                                        "Click now",
+                                                        style: primaryFont.copyWith(
+                                                            color: Colors.white,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.bold),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
                               );
-                            }),
-                          ),
+                }
+              ),
             ),
        
 

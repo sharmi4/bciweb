@@ -1,135 +1,115 @@
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../constant/constans.dart';
-import '../../controller/holiday_package_controller.dart';
-import '../../models/holiday_packages_models/get_enquiry_list_model.dart';
-class MobileHolidaysBooking extends StatefulWidget {
-  const MobileHolidaysBooking({super.key});
+import '../../../constant/constans.dart';
+import '../../../controller/bus_controllers.dart';
+import '../../../models/busbookingmodels/bus_booking_history_model.dart';
+import '../../../views/members/bookins/history/views/widgets/orders.dart';
+import 'liqour_order.dart';
+
+class MobileBusBooking extends StatefulWidget {
+  const MobileBusBooking({super.key});
 
   @override
-  State<MobileHolidaysBooking> createState() => _MobileHolidaysBookingState();
+  State<MobileBusBooking> createState() => _MobileBusBookingState();
 }
 
-class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
-   final holidayPackageController = Get.find<HolidayPackageController>();
+class _MobileBusBookingState extends State<MobileBusBooking> {
+   final busController = Get.find<BusController>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    holidayPackageController.enquiryList();
+    busController.getBusBookingHistory();
   }
-
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-    return GetBuilder<HolidayPackageController>(builder: (_) {
+     var size = MediaQuery.of(context).size;
+    return GetBuilder<BusController>(builder: (_) {
       return Padding(
-        padding: const EdgeInsets.only(top: 20),
-        child: holidayPackageController.enquiryData.isEmpty
+        padding: const EdgeInsets.only(top: 10),
+        child: busController.bookingHistoryList.isEmpty
             ?  Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20,right: 20),
-                      child: Image.asset('assets/images/holidaytripnotavailable.png'),
-                    ),
-                    ksizedbox20,
-                    Text('Not Booking In Holidays Trip',
-                    style: TextStyle(
+                     Padding(
+                       padding: const EdgeInsets.only(left: 20,right: 20),
+                       child: Image.asset('assets/images/busbookingnotavailableimage.png'),
+                     ),
+                     ksizedbox20,
+                     Text('Not Booking In Bus Tickets',
+                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: kblue
-                    ),)
+                     ),)
                   ],
                 ),
               )
             : ListView.builder(
                 physics: const BouncingScrollPhysics(),
-                itemCount: holidayPackageController.enquiryData.length,
+                itemCount: busController.bookingHistoryList.length,
                 itemBuilder: (context, index) {
                   return Card(
                     child: InkWell(
                       onTap: () {
                         dialogBuilder(context,
-                            holidayPackageController.enquiryData[index]);
+                            busBookingData:
+                                busController.bookingHistoryList[index]);
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Container(
-                         // height: 125,
                           width: size.width,
                           decoration: BoxDecoration(
                             color: kwhite,
                             borderRadius: BorderRadius.circular(5),
                           ),
                           child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Image.network(
-                                      holidayPackageController
-                                          .enquiryData[index]
-                                          .packageDetails
-                                          .image
-                                          .first,
-                                      height: 100,
-                                      width: 100,
-                                      fit: BoxFit.cover,
-                                    )),
-                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: ClipRRect(
+                              //       borderRadius: BorderRadius.circular(5),
+                              //       child: Image.network(
+                              //         holidayPackageController.enquiryData[index].packageDetails.image.first,
+                              //         height: 100,
+                              //         width: 100,
+                              //         fit: BoxFit.cover,
+                              //       )),
+                              // ),
                               kwidth10,
                               Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ksizedbox10,
                                   Container(
                                     width: 200,
                                     child: Text(
-                                      holidayPackageController
-                                          .enquiryData[index]
-                                          .packageDetails
-                                          .title
+                                      busController
+                                          .bookingHistoryList[index].busName
                                           .toString(),
                                       maxLines: 2,
                                       style: const TextStyle(fontSize: 21),
                                     ),
                                   ),
-                                   Container(
-                                    width: 200,
-                                    child: Text(
-                                      '₹${holidayPackageController.enquiryData[index].packageDetails.amount}',
-                                      maxLines: 4,
-                                      style: const TextStyle(color: Colors.black),
-                                    ),
-                                  ),
-                                     Container(
-                                    width: 200,
-                                    child: Text(
-                                      '${holidayPackageController.enquiryData[index].packageDetails.duration}',
-                                      maxLines: 4,
-                                      style: TextStyle(color: kblue),
-                                    ),
-                                  ),
-                                  
                                   Container(
                                     width: 200,
                                     child: Text(
-                                      '${holidayPackageController.enquiryData[index].packageDetails.location}',
+                                      '${busController.bookingHistoryList[index].fromCityname} to ${busController.bookingHistoryList[index].toCityname}',
                                       maxLines: 4,
                                       style: TextStyle(color: kblue),
                                     ),
                                   ),
-                                  // Text(
-                                  //   'Check in : 03:44PM Check Out 03:43 PM',
-                                  //   style: TextStyle(color: kblue),
-                                  // ),
+
+                                  Text(
+                                    'Booking Date :${busController.bookingHistoryList[index].bookingDate.split(" ").first}',
+                                    style: const TextStyle(color: Colors.black),
+                                  ),
                                   // Text(
                                   //   'Total Person : 5 Members',
                                   //   style: TextStyle(color: kblue),
@@ -152,7 +132,10 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
     });
   }
 
-  Future<void> dialogBuilder(BuildContext context, EnquiryData enquiryDatas) {
+  Future<void> dialogBuilder(
+    BuildContext context, {
+    required BookingHistoryData busBookingData,
+  }) {
     return showDialog<void>(
       context: context,
       builder: (
@@ -190,36 +173,35 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                 ),
                 Row(
                   children: [
-                    Image.network(
-                      enquiryDatas.packageDetails.image.first,
-                      height: 50,
-                      width: 60,
-                      fit: BoxFit.cover,
-                    ),
+                    const Icon(Icons.bus_alert),
                     const SizedBox(
                       width: 10,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          enquiryDatas.packageDetails.title,
-                          style: TextStyle(
-                              fontSize: 16,
-                              color: kblue,
-                              fontWeight: FontWeight.bold),
+                        Container(
+                          width: 150,
+                          child: Text(
+                            busBookingData.remarks == ""
+                                ? "Bus Booking"
+                                : busBookingData.remarks,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: kblue,
+                                fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const SizedBox(
                           height: 5,
                         ),
-                        // Text(
-                        //    'Date : ${formatDate(enquiryDatas.packageDetails.createdAt,
-                        //            [dd ,'-',mm,'-',yyyy])}',
-                        //   style: TextStyle(
-                        //       fontSize: 12,
-                        //       color: kblue,
-                        //       fontWeight: FontWeight.w500),
-                        // ),
+                        Text(
+                          'Date : ${busBookingData.bookingDate.split(" ").first}',
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: kblue,
+                              fontWeight: FontWeight.w500),
+                        ),
                       ],
                     ),
                   ],
@@ -227,25 +209,21 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                 const SizedBox(
                   height: 5,
                 ),
-                const Divider(
-                  thickness: 1,
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Date',
+                      'From city',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      formatDate(enquiryDatas.packageDetails.createdAt,
-                          [dd, '-', mm, '-', yyyy]),
+                      busBookingData.fromCityname,
                       style: TextStyle(
                           fontSize: 15,
-                          color: kgrey,
+                          color: kblue,
                           fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -257,17 +235,17 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Trip',
+                      'To City',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      enquiryDatas.packageDetails.duration,
+                      busBookingData.toCityname,
                       style: TextStyle(
                           fontSize: 15,
-                          color: kgrey,
+                          color: kblue,
                           fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -279,17 +257,17 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Places',
+                      'Booking Ref.no',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      enquiryDatas.packageDetails.location,
+                      busBookingData.bookingRefno,
                       style: TextStyle(
                           fontSize: 15,
-                          color: kgrey,
+                          color: kblue,
                           fontWeight: FontWeight.w500),
                     ),
                   ],
@@ -301,63 +279,85 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Adult',
+                      'Bus Name',
                       style: TextStyle(
                           fontSize: 16,
                           color: kblue,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      enquiryDatas.adultCount,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: kgrey,
-                          fontWeight: FontWeight.w500),
+                    Container(
+                      width: 120,
+                      child: Text(
+                        busBookingData.busName,
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: kblue,
+                            fontWeight: FontWeight.w500),
+                      ),
                     ),
                   ],
                 ),
+
+                // const Divider(
+                //   thickness: 1,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'Quantity',
+                //       style: TextStyle(
+                //           fontSize: 16,
+                //           color: kblue,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     Text(
+                //       qty,
+                //       style: TextStyle(
+                //           fontSize: 15,
+                //           color: kblue,
+                //           fontWeight: FontWeight.w500),
+                //     ),
+                //   ],
+                // ),
                 const Divider(
                   thickness: 1,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      'Child',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: kblue,
-                          fontWeight: FontWeight.bold),
+                    InkWell(
+                      onTap: (){
+                      showDialog(context: context, 
+                      builder: (BuildContext context){
+                        return mAlertItem2;
+                      });
+                      },
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
-                    Text(
-                      enquiryDatas.childCount,
-                      style: TextStyle(
-                          fontSize: 15,
-                          color: kgrey,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                const Divider(
-                  thickness: 1,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Price',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.green,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "₹ ${enquiryDatas.packageDetails.amount.toString()}",
-                      style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.green,
-                          fontWeight: FontWeight.w500),
-                    ),
+                    InkWell(
+                      onTap: () {
+                        Get.find<BusController>().busTicketDownload(
+                            refernceNo: busBookingData.bookingRefno);
+                      },
+                      child: Container(
+                        height: 35,
+                        width: 100,
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const Icon(
+                          Icons.download,
+                          color: Colors.white,
+                        ),
+                      ),
+                    )
                   ],
                 ),
               ],
@@ -367,4 +367,30 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
       },
     );
   }
-}
+    AlertDialog mAlertItem2 = AlertDialog(
+    backgroundColor: Colors.white,
+    title: Text("Cancel Booking", style: TextStyle(color: Colors.black)),
+    content: Text(
+      "Are you sure you want to Cancel?",
+      style: TextStyle(color: Colors.black),
+    ),
+    actions: [
+      TextButton(
+        child: Text(
+          "Yes",
+          style: TextStyle(color: kblue),
+        ),
+        onPressed: () {
+          Get.back();
+          //Get.find<AuthController>().logout();
+        },
+      ),
+      TextButton(
+        child: Text("No", style: TextStyle(color: kblue)),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+    ],
+  );
+  }

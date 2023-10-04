@@ -243,16 +243,16 @@ class SeatMap {
 }
 
 class FareMaster {
-    int basicAmount;
-    int cancellationCharges;
+    dynamic basicAmount;
+    dynamic cancellationCharges;
     List<FareDetail> fareDetails;
-    int gst;
-    int grossCommission;
-    int netCommission;
-    double otherAmount;
-    int serviceFeeAmount;
-    double totalAmount;
-    int tradeMarkupAmount;
+    dynamic gst;
+    dynamic grossCommission;
+    dynamic netCommission;
+    dynamic otherAmount;
+    dynamic serviceFeeAmount;
+    dynamic totalAmount;
+    dynamic tradeMarkupAmount;
 
     FareMaster({
         required this.basicAmount,

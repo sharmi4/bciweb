@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:pdf/pdf.dart';
@@ -18,6 +19,7 @@ import '../../services/networks/services/flight_api_searcive/air_printing_api_se
 import '../../services/networks/services/flight_api_searcive/air_repricing_api_services.dart';
 import '../../services/networks/services/flight_api_searcive/airflight_api_searvice.dart';
 import '../../services/networks/services/flight_api_searcive/airport_search_apiservice.dart';
+import '../../services/networks/services/flight_api_searcive/airticket_cancel_api_service.dart';
 import '../../services/networks/services/flight_api_searcive/get_flight_booking_list.dart';
 import 'package:pdf/widgets.dart' as pw;
 
@@ -903,5 +905,28 @@ AirAddSsrApiServices airAddSsrApiServices =AirAddSsrApiServices();
     }
 
     return isSeatMapAvailable;
+  }
+  AirCancelApiServices  airCancelApiServices = AirCancelApiServices();
+
+    airCancelTicket({required String refernceNo}) async {
+    dio.Response<dynamic> response = await airRePrintingServices
+        .airRePrintingApi(clientReferneNo: "", refrenceNo: refernceNo);
+
+    if (response.statusCode == 200) {
+      AirReprintModel airReprintModel = AirReprintModel.fromJson(response.data);
+       
+  dio.Response<dynamic> cancelresponse = await airCancelApiServices.airCancelApiServices(
+    Airlinepnr: airReprintModel.airPnrDetails.first.airlinePnr, 
+    Refno: refernceNo, 
+    Cancelcode: airReprintModel.airPnrDetails.first.crsCode,
+     ReqRemarks: airReprintModel.remark, 
+     CancellationType: airReprintModel.airPnrDetails.first.crsPnr, 
+     Imeinumber: '64654546546546');
+    if(cancelresponse.statusCode==200){
+         Get.rawSnackbar(
+          message: "Cancellation sucessfully ", 
+          backgroundColor: Colors.green);
+    }
+    } else {}
   }
 }

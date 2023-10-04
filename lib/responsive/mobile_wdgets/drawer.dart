@@ -10,7 +10,9 @@ import 'package:get/get.dart';
 import '../../controller/auth_controller/auth_controller.dart';
 import '../authentications/contact us/respo_contact.dart';
 import '../authentications/generate_otp/generate_otp.dart';
+import '../bus/bus_screen.dart';
 import '../holiday/holidaybookings.dart';
+import '../hottel/search_hotel_screen.dart';
 import '../respo_services/respo_service.dart';
 import '../mobile_body/mobile_home.dart';
 import '../respo_services/widgets/resprofile/mobile_profile_screen.dart';
@@ -76,6 +78,50 @@ class _MobileDrawerState extends State<MobileDrawer> {
               ),
             ),
             Padding(
+              padding: const EdgeInsets.only(top: 15, left: 8),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                       Get.to(BusScreen());
+                       // Get.to(HolidayHomeScreen());
+                      },
+                      child: Text(
+                        'BUS',
+                        style: TextStyle(fontSize: 16, color: kwhite),
+                      )),
+                ],
+              ),
+            ),
+             Padding(
+              padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+              child: Divider(
+                color: kgrey,
+              ),
+            ),
+             Padding(
+              padding: const EdgeInsets.only(top: 15, left: 10),
+              child: Row(
+                children: [
+                  TextButton(
+                      onPressed: () {
+                        Get.to(SerchHotelScreen());
+                        //Get.to(HolidayHomeScreen());
+                      },
+                      child: Text(
+                        'HOTEL',
+                        style: TextStyle(fontSize: 16, color: kwhite),
+                      )),
+                ],
+              ), 
+            ),
+             Padding(
+              padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+              child: Divider(
+                color: kgrey,
+              ),
+            ),
+             Padding(
               padding: const EdgeInsets.only(top: 15, left: 10),
               child: Row(
                 children: [

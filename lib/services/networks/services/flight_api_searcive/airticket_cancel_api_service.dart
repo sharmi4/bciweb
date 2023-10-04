@@ -1,29 +1,47 @@
 import 'dart:io';
-
+import 'package:date_format/date_format.dart';
 import 'package:dio/dio.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../base_url/base_url.dart';
 
-class LoginApiServices extends BaseApiService {
-  Future loginApi({
-    required String mobile,
-    required String otp,
+class AirCancelApiServices extends BaseApiService {
+
+  Future airCancelApiServices({
+    required String  Airlinepnr,
+    required String  Refno,
+    required String Cancelcode,
+    required String ReqRemarks,
+    required String CancellationType,
+    required String Imeinumber,
   }) async {
     dynamic responseJson;
     try {
       var dio = Dio();
-      var response = await dio.post(loginURL,
+      final prefs = await SharedPreferences.getInstance();
+      String? authtoken = prefs.getString("auth_token");
+
+      var response = await dio.post(airCancelApiURL,
           options: Options(
               headers: {
-                'Accept': 'application/json',
-                "Access-Control-Allow-Origin": "*"
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer $authtoken'
               },
               followRedirects: false,
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {"mobile": mobile, "otp": otp,"role_id":"3"});
-      print("::::::::<otp verify URL>::::::::status code::::::::::");
+          data: {
+            "IMEI_Number": "64654546546546",
+            "CancellationType": '',
+            "ReqRemarks": '',
+            "Cancelcode":"",
+            "Refno":"",
+            "Airline_PNR":""
+
+          });
+      print(
+          "::::::::<-- Air cancellation api -->::::::::status code::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

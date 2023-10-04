@@ -76,6 +76,9 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/flight_search";
 
   final String airportSearch = "https://www.portal.bcipvtltd.com/api/flight_city_search";
+  
+  final String airCancelApiURL =
+      "https://www.portal.bcipvtltd.com/api/auth/air_ticket_cancellation";
 
     final String airGetSsrURL =
       "https://www.portal.bcipvtltd.com/api/auth/air_get_ssr";

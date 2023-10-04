@@ -11,6 +11,7 @@ import '../../models/hotel_model/hotel_info_model.dart';
 import '../../models/hotel_model/hotel_search_model.dart';
 import '../../models/hotel_model/hoteldestination_model.dart';
 import '../../models/hotel_model/store_temp_search_data.dart';
+import '../../responsive/hottel/Hotel_members.dart';
 import '../../services/networks/hotel_api_service/block_room_api_service.dart';
 import '../../services/networks/hotel_api_service/get_hotel_room_api_service.dart';
 import '../../services/networks/hotel_api_service/get_room_details_api_services.dart';
@@ -39,6 +40,7 @@ class HotelController extends GetxController {
   RxInt roomno = 1.obs;
   RxString cityid = ''.obs;
   RxBool isLoading = false.obs;
+  RxBool isPageLoading = false.obs;
   List<SearchCityListModel> getHotelCityList = [];
   TempBookingModel? tempBookingModel;
 
@@ -78,6 +80,7 @@ class HotelController extends GetxController {
     required String checkindate,
     required String checkoutdate,
     required String roomsno,
+    required bool isMobile
   }) async {
     isLoading(true);
     dio.Response<dynamic> response =
@@ -96,7 +99,11 @@ class HotelController extends GetxController {
       SearchHotelModel searchHotelModel =
           SearchHotelModel.fromJson(response.data);
       searchHotelData = searchHotelModel.result;
-      Get.to(HotelSearchList(
+      if(isMobile==true){
+           Get.to(HotelListScreen());
+          
+      }else{
+           Get.to(HotelSearchList(
         adult: adult, 
         checkindate: checkindate, 
         checkoutdate:checkoutdate, 
@@ -106,7 +113,7 @@ class HotelController extends GetxController {
       child: child,));
       print(response.data);
       update();
-
+      }
       if (response.data["Error_Code"] == "0001") {
         Get.rawSnackbar(
           backgroundColor: Colors.red,
@@ -115,6 +122,7 @@ class HotelController extends GetxController {
             style: primaryFont.copyWith(color: Colors.white),
           ),
         );
+      
       }
     }
 

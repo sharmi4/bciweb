@@ -61,8 +61,7 @@ Heading the G-MIME Studio, Mr. Gopi is a renowned mime actor in Chennai. In his 
                   
 
                   ''').text.xl.thin.blue900.heightLoose.make()
-                  ,   Row(children: [Text('YouTube link👇 ').text.semiBold.blue900.make(),InkWell(onTap: _launchUrl,
-                    child: Text('youtube.com/@GMIMESTUDIOMumbai.').text.thin.red700.make())],) ],
+                  ,  ]
                     ),
                   ),
                 ),

@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'holiday_booking.dart';
 import 'hotel_booking.dart';
-import 'liqour/liqour_booking_screen.dart';
+import 'bus/bus_booking_screen.dart';
 
 
 class MembersBookingCommonContainer extends StatefulWidget {
@@ -135,7 +135,7 @@ class _MembersBookingCommonContainerState extends State<MembersBookingCommonCont
                                     child: Container(
                                       child: Center(
                                           child: Text(
-                                        'Liquor',
+                                        'Bus',
                                         style: TextStyle(
                                             color: kwhite,
                                             fontSize: 12,
@@ -192,6 +192,8 @@ class _MembersBookingCommonContainerState extends State<MembersBookingCommonCont
                           if(historyController.hisindex.value == 4)
                           const OthersBookingsView(),  
                           ksizedbox40,
+                          ksizedbox40,
+
                           if(historyController.hisindex.value == 0)
                           MobileFlightHome(),
 
@@ -202,7 +204,7 @@ class _MembersBookingCommonContainerState extends State<MembersBookingCommonCont
                            MobileHolidaysBooking(),
 
                            if(historyController.hisindex.value==3)
-                           MobileLiqourBooking()
+                           MobileBusBooking()
         
             ],
           ),
