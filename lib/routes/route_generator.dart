@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 
 import '../registerhomescreen/privacy_policy.dart';
 import '../splash_screen/Splash_screen.dart';
+import '../views/authentication/business_authentication/business_generate_otp_screen.dart';
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
+import '../views/business/business_home_screen.dart';
+import '../views/business/services_screens/services_homescreen.dart';
+import '../views/business/services_screens/services_homescreen.dart';
 import '../views/members/Gallery/gallery.dart';
 
 import '../views/members/bookins/history/views/history.dart';
@@ -33,9 +37,15 @@ class RouteGenerator {
         return _GeneratePageRoute(
             widget: MemberHomeScreen(), routeName: settings.name);
 
-      // case Routes.landing_screen:
-      //   return _GeneratePageRoute(
-      //       widget: LandingScreen(), routeName: settings.name);
+      case Routes.BusinessHome:
+        return _GeneratePageRoute(
+            widget:BusinessHomeScreen (), routeName: settings.name);
+
+            case Routes.BusinessMobileVerification:
+            return _GeneratePageRoute(widget: BusinessMobileVerification(), routeName: settings.name);
+            
+            case Routes.BUSINESSSERVICE:
+            return _GeneratePageRoute(widget:BusinessServicesScreen() , routeName:settings.name);
 
       case Routes.about_screens:
         return _GeneratePageRoute(

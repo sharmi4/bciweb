@@ -158,7 +158,7 @@ class _otp_varificationState extends State<otp_varification> {
               // ksizedbox30,
               InkWell(
                 onTap: () {
-                  authController.loginUsers(mobile: widget.phoneNumber, 
+                  authController.businessloginUsers(mobile: widget.phoneNumber, 
                         otp: otpString,screen: true);
                  
                 },

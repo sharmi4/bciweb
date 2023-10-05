@@ -30,6 +30,7 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'controller/api_flightcontroller/api_flight_Controller.dart';
 import 'controller/bus_controllers.dart';
+import 'controller/business_controller/business_service_controller.dart';
 import 'controller/flaibooking_option.dart';
 import 'controller/flaight _controller.dart';
 import 'controller/flaight_booking_controller.dart';
@@ -53,6 +54,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
   Get.put(RedeemController());
+  Get.put(BusinessServiceController());
   Get.put(HomeServiceController());
   Get.put(HomeController());
   Get.put(SubscribeController());
@@ -100,8 +102,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "BCI Member",
       onGenerateRoute: RouteGenerator.generateRoute,
-      //initialRoute: Routes.SPLASH,
-      initialRoute: Routes.MobLogin,
+      initialRoute: Routes.SPLASH,
+      //initialRoute: Routes.MobLogin,
     );
   }
 }

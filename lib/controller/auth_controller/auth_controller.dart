@@ -3,20 +3,28 @@ import 'package:bciweb/responsive/authentications/sign_up_view/sign_up_screen.da
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/get_otp_api_service.dart';
 import 'package:bciweb/services/networks/services/catogory_api_service/category_api_service.dart';
+import 'package:bciweb/views/authentication/business_authentication/business_otp_verification_done.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../constant/constans.dart';
+import '../../models/business_model/merchants_register_model.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
+import '../../models/sub_category_model.dart';
 import '../../responsive/authentications/otp_verification/otp_verification.dart';
 import '../../responsive/authentications/verified_screen/verified_screen.dart';
+import '../../services/networks/business_service/business_login_api_service.dart';
+import '../../services/networks/business_service/merchant_api_services.dart';
 import '../../services/networks/services/authapi_service/login_api_service.dart';
 import '../../services/networks/services/catogory_api_service/service_list_apiservice.dart';
+import '../../services/networks/services/catogory_api_service/sub_category_api_services.dart';
 import '../../services/networks/services/register_referal_api_service.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../views/authentication/Verification_done.dart';
+import '../../views/authentication/business_authentication/business_generate_otp_screen.dart';
+import '../../views/authentication/business_authentication/business_otp_verification.dart';
 import '../../views/authentication/generate_otp_screen.dart';
 import '../../views/authentication/landing_screen.dart';
 import '../../views/authentication/otp_verification.dart';
@@ -27,6 +35,10 @@ class AuthController extends GetxController {
 
   MemberRegisterApiservices memberRegisterApiservices =
       MemberRegisterApiservices();
+
+  MerchantRegisterApiServices merchantRegisterApiServices =
+   MerchantRegisterApiServices();
+  
   GenerateReferralCodeApiService generateReferralCodeApiService =
       GenerateReferralCodeApiService();
 //this api calling
@@ -93,7 +105,30 @@ class AuthController extends GetxController {
           ));
     }
   }
-
+  
+   //api callings
+  registerMerchants(
+      {required MerchantRegisterModel merchantRegisterModel,
+      required String referralCode}) async {
+    isLoading(true);
+    dio.Response<dynamic> response = await merchantRegisterApiServices
+        .merchantRegister(merchantRegisterModel: merchantRegisterModel);
+    isLoading(false);
+    if (response.statusCode == 201) {
+      registerReferalcode(referalcode: referralCode);
+      Get.to(BusinessOtpVerification(
+        phoneNumber: merchantRegisterModel.mobile,
+        otp: response.data["user"]["otp"].toString(),
+      ));
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["errors"].first,
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+  }
   GetCategoryApiServices getCategoryApiServices = GetCategoryApiServices();
   List<CategoryData> categoryData = [];
 
@@ -107,6 +142,35 @@ class AuthController extends GetxController {
     update();
   }
 
+  getbusinessOtpFunction({required String mobileNumber, required bool isMobile}) async {
+    isLoading(true);
+
+    dio.Response<dynamic> response =
+        await getOTPApiServices.getOtpApi(mobileNumber: mobileNumber);
+    isLoading(false);
+
+    if (response.statusCode == 200) {
+      if (isMobile == true) {
+        Get.to(otp_varification(
+          phoneNumber: mobileNumber,
+          otp: response.data["otp"].toString(),
+        ));
+      } else {
+        Get.to(OtpVerification(
+          phoneNumber: mobileNumber,
+          otp: response.data["otp"].toString(),
+        ));
+      }
+    } else if (response.statusCode == 404) {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "User not found",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+  }
+  
   getOtpFunction({required String mobileNumber, required bool isMobile}) async {
     isLoading(true);
 
@@ -135,8 +199,40 @@ class AuthController extends GetxController {
           ));
     }
   }
+  BusinessLoginApiServices businessLoginApiServices =BusinessLoginApiServices();
+  businessloginUsers(
+      {required String mobile,
+      required String otp,
+      required bool screen}) async {
+    isLoading(true);
+    dio.Response<dynamic> response =
+        await businessLoginApiServices.businessloginApi(mobile: mobile, otp: otp);
 
-  loginUsers(
+    print("login data");
+    print(response.data);
+    isLoading(false);
+    if (response.statusCode == 200) {
+      if (response.data["user"]["role_id"].toString() == "5") {
+        final prefs = await SharedPreferences.getInstance();
+        await prefs.setString("auth_token", response.data["token"]);
+        await prefs.setString("id", response.data["user"]["id"].toString());
+        if (screen == true) {
+          Get.offAll(verified_Screen());
+        } else {
+          Get.offAll(const BusinessVerificationDone());
+        }
+      }
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Invalid OTP",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    
+  }
+    loginUsers(
       {required String mobile,
       required String otp,
       required bool screen}) async {
@@ -174,7 +270,37 @@ class AuthController extends GetxController {
           ));
     }
   }
+    
+  //   //verify otp
+  // VerifyOtpApiServices verifyOtpApiServices = VerifyOtpApiServices();
 
+  // verifyOtp(
+  //     {required String mobile,
+  //     required String otp,
+  //     required bool isFromRegister}) async {
+  //   dio.Response<dynamic> response = await verifyOtpApiServices
+  //       .verifyOtpApiServices(mobile: mobile, otp: otp);
+  //   if (response.statusCode == 200) {
+  //     if (isFromRegister) {
+  //       Get.offAll(() => const WaitingForApprovalScreen());
+  //       Get.rawSnackbar(
+  //           backgroundColor: Colors.blue,
+  //           messageText: Text(
+  //             "Thank you for registering! Your account is pending approval.",
+  //             style: primaryFont.copyWith(color: Colors.white),
+  //           ));
+  //     } else {
+  //       Get.offAll(const BusinessverifiedScreen());
+  //     }
+  //   } else {
+  //     Get.rawSnackbar(
+  //         backgroundColor: Colors.red,
+  //         messageText: Text(
+  //           "something went wrong",
+  //           style: primaryFont.copyWith(color: Colors.white),
+  //         ));
+  //   }
+  // }
   logout() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
@@ -185,6 +311,12 @@ class AuthController extends GetxController {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
     Get.to(MobileVerification());
+    // Get.to(const MemberLoginScreenrespo());
+  }
+   businesslogoutWeb() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("auth_token", "null");
+    Get.to(BusinessMobileVerification());
     // Get.to(const MemberLoginScreenrespo());
   }
 
@@ -245,5 +377,19 @@ class AuthController extends GetxController {
             style: primaryFont.copyWith(color: Colors.white),
           ));
     }
+  }
+    GetSubCategoryApiServices getSubCategoryApiServices =
+      GetSubCategoryApiServices();
+       List<SubCategoryModelList> subCategoryList = [];
+  getSubCategoryList() async {
+    dio.Response<dynamic> response =
+        await getSubCategoryApiServices.getSubCategory();
+
+    if (response.statusCode == 201) {
+      SubCategoryModel subCategoryModel =
+          SubCategoryModel.fromJson(response.data);
+      subCategoryList = subCategoryModel.data;
+    }
+    update();
   }
 }

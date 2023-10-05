@@ -7,19 +7,20 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
-import '../../constant/constans.dart';
-import '../../controller/auth_controller/auth_controller.dart';
+import '../../../constant/constans.dart';
+import '../../../controller/auth_controller/auth_controller.dart';
 
-class OtpVerification extends StatefulWidget {
-   OtpVerification({super.key, this.phoneNumber='',this.otp=''});
+
+class BusinessOtpVerification extends StatefulWidget {
+   BusinessOtpVerification({super.key, this.phoneNumber='',this.otp=''});
   String phoneNumber;
   String otp;
 
   @override
-  State<OtpVerification> createState() => _OtpVerificationState();
+  State<BusinessOtpVerification> createState() => _BusinessOtpVerificationState();
 }
 
-class _OtpVerificationState extends State<OtpVerification> {
+class _BusinessOtpVerificationState extends State<BusinessOtpVerification> {
   String otpString = "";
   
 int _start = 60; // Timer duration in seconds

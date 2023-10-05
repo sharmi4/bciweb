@@ -5,17 +5,20 @@ import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
-import '../../constant/constans.dart';
-import '../../controller/auth_controller/auth_controller.dart';
+import '../../../constant/constans.dart';
+import '../../../controller/auth_controller/auth_controller.dart';
+import 'business_signup_screen.dart';
 
-class MobileVerification extends StatefulWidget {
-  const MobileVerification({super.key});
+
+
+class BusinessMobileVerification extends StatefulWidget {
+  const BusinessMobileVerification({super.key});
 
   @override
-  State<MobileVerification> createState() => _MobileVerificationState();
+  State<BusinessMobileVerification> createState() => _BusinessMobileVerificationState();
 }
 
-class _MobileVerificationState extends State<MobileVerification> {
+class _BusinessMobileVerificationState extends State<BusinessMobileVerification> {
    var phoneNumberController = TextEditingController();
 
   final authController = Get.find<AuthController>();
@@ -251,7 +254,7 @@ class _MobileVerificationState extends State<MobileVerification> {
                             ),
                             InkWell(
                               onTap: () {
-                                Get.to(SignUpView(isMobile: '',));
+                                Get.to(BusinessSignupScreen(isMobile: '',));
                               },
                               child: Text(
                                 'Sign up',

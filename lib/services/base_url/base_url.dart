@@ -6,6 +6,10 @@ abstract class BaseApiService {
   //category
   final String categoryApiUrl = "https://www.portal.bcipvtltd.com/api/category";
 
+   //sub category URL
+  final String subCategoryURL =
+      "https://www.portal.bcipvtltd.com/api/sub_category";
+
   //login url
   // final String getOtpUrl = "https://www.portal.bcipvtltd.com/api/category";
   final String getOtpUrl = "https://www.portal.bcipvtltd.com/api/get_otp";

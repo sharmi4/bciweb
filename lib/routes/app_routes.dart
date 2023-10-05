@@ -7,6 +7,7 @@ abstract class Routes {
   Routes._();
   static const MEMBHOME = _Paths.MEMBHOME;
   static const SPLASH = _Paths.SPLASH;
+  static const BusinessHome = _Paths.BusinessHome;
   // static const SIGN_IN = _Paths.SIGN_IN;
   // static const HOME_PAGE = _Paths.HOME_PAGE;
   // static const FORGOT_PASSWORD = _Paths.FORGOT_PASSWORD;
@@ -20,11 +21,12 @@ abstract class Routes {
   static const MobLogin = _Paths.Moblogin;
   static const landing_screen = _Paths.landing_screen;
   static const BOOKINGS = _Paths.BOOKINGS;
-
+  static const BUSINESSSERVICE = _Paths.BusinessService;
   static const Subscrib = _Paths.Subscrib;
   static const SpecializedScreen = _Paths.SpecializedScreen;
   static const contact_screen = _Paths.contact_screen;
   static const MobileVerification = _Paths.MobileVerification;
+  static const BusinessMobileVerification = _Paths.BusinessMobileVerification;
   static const Cancelation = _Paths.Cancelation;
 }
 
@@ -34,9 +36,10 @@ abstract class _Paths {
   static const SPLASH = '/';
 
   static const landing_screen = '/landing-screen';
-
+   static const BusinessHome ='/business-homescreen';
   static const about_screens = '/about-screen';
   static const Service = '/service-screen';
+  static const BusinessService ='/business-service';
   static const ClubHouse = '/clubhouse-screen';
   static const History = '/booking-screen';
   static const Gallery = '/gallery-screen';
@@ -45,6 +48,7 @@ abstract class _Paths {
   static const SpecializedScreen = '/specialised-screen';
   static const contact_screen = '/contact-us';
   static const MobileVerification = '/mobile-verification';
+  static const BusinessMobileVerification = '/businessmobile-verification';
   static const BOOKINGS = '/booking-screen';
   static const Cancelation = '/refund-and-cancellation-policy';
 }

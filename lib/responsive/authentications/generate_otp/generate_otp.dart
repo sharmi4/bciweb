@@ -130,7 +130,7 @@ class _MemberLoginScreenrespoState extends State<MemberLoginScreenrespo> {
                         ):InkWell(
                           onTap: () {
                              if (phoneNumberController.text.isNotEmpty) {
-                              authController.getOtpFunction(
+                              authController.getbusinessOtpFunction(
                                   mobileNumber: phoneNumberController.text, isMobile: true);
                             } else {
                               Get.rawSnackbar(

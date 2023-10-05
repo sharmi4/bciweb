@@ -8,17 +8,18 @@ import '../../../constant/constans.dart';
 import '../controller/auth_controller/auth_profile_controller.dart';
 import '../controller/reg_home_controller.dart';
 import '../views/authentication/landing_screen.dart';
+import '../views/business/services_screens/services_homescreen.dart';
 
-class RegisterCommonContainer extends StatefulWidget {
+class BusinessCommonhomeContainer extends StatefulWidget {
   
-  RegisterCommonContainer({super.key});
+  BusinessCommonhomeContainer({super.key});
 
   @override
-  State<RegisterCommonContainer> createState() =>
-      _RegisterCommonContainerState();
+  State<BusinessCommonhomeContainer> createState() =>
+      _BusinessCommonhomeContainerState();
 }
 
-class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
+class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContainer> {
 
   bool isLoggedIn =false;
     checkForLoggedInState() async {
@@ -132,7 +133,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           onPressed: () {
                             reghomeController.reindex(3);
                             reghomeController.update();
-                            Get.toNamed(Routes.Service);
+                            Get.toNamed(Routes.BUSINESSSERVICE);
+                            //Get.toNamed(Routes.Service);
                           },
                           child: Text(
                             'SERVICE',
@@ -199,7 +201,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                            
                             reghomeController.reindex(7);
                             reghomeController.update();
-                              Get.toNamed(Routes.BOOKINGS);
+                              //Get.toNamed(Routes.BOOKINGS);
                             //  Get.to(Hstory());
                         
                           },
@@ -261,32 +263,32 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         ),
                       ),
                     ),
-                    authController.isLogedin == false
-                        ? Container(
-                            width: 110,
-                            color: Colors.white,
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.only(left: 10),
-                            child: InkWell(
-                              onTap: () {
-                                Get.toNamed(Routes.Subscrib);
-                              },
-                              child: Container(
-                                height: 35,
-                                width: 110,
-                                decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        colors: [korange, kyellow]),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Center(
-                                    child: Text(
-                                  'Membership',
-                                  style: TextStyle(fontSize: 15, color: kwhite),
-                                )),
-                              ),
-                            ),
-                          ),
+                    // authController.isLogedin == false
+                    //     ? Container(
+                    //         width: 110,
+                    //         color: Colors.white,
+                    //       )
+                    //     : Padding(
+                    //         padding: const EdgeInsets.only(left: 10),
+                    //         child: InkWell(
+                    //           onTap: () {
+                    //             //Get.toNamed(Routes.Subscrib);
+                    //           },
+                    //           child: Container(
+                    //             height: 35,
+                    //             width: 110,
+                    //             decoration: BoxDecoration(
+                    //                 gradient: LinearGradient(
+                    //                     colors: [korange, kyellow]),
+                    //                 borderRadius: BorderRadius.circular(15)),
+                    //             child: Center(
+                    //                 child: Text(
+                    //               'Membership',
+                    //               style: TextStyle(fontSize: 15, color: kwhite),
+                    //             )),
+                    //           ),
+                    //         ),
+                    //       ),
                     authController.isLogedin == false
                         ? Padding(
                             padding: const EdgeInsets.only(left: 10),
@@ -316,7 +318,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                               onTap: () {
                                 // Get.to(MobileVerificatio());
                                 authController.logoutWeb();
-                                Get.toNamed(Routes.MobileVerification);
+                                Get.toNamed(Routes.BusinessMobileVerification);
                               },
                               child: Container(
                                 height: 35,
