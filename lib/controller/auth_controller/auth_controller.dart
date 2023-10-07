@@ -156,7 +156,7 @@ class AuthController extends GetxController {
           otp: response.data["otp"].toString(),
         ));
       } else {
-        Get.to(OtpVerification(
+        Get.to(BusinessOtpVerification(
           phoneNumber: mobileNumber,
           otp: response.data["otp"].toString(),
         ));
@@ -171,7 +171,7 @@ class AuthController extends GetxController {
     }
   }
   
-  getOtpFunction({required String mobileNumber, required bool isMobile}) async {
+  getOtpFunction({required String mobileNumber, required bool isMobile,}) async {
     isLoading(true);
 
     dio.Response<dynamic> response =

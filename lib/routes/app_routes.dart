@@ -22,12 +22,16 @@ abstract class Routes {
   static const landing_screen = _Paths.landing_screen;
   static const BOOKINGS = _Paths.BOOKINGS;
   static const BUSINESSSERVICE = _Paths.BusinessService;
+  static const BUSINESSCOUPONREDEMTIONSCREEN = _Paths.BusinessCouponRedementionScreen;
+  static const BUSINESSCREATECOUPONS = _Paths.BusinessCreateCouponsScreen;
   static const Subscrib = _Paths.Subscrib;
   static const SpecializedScreen = _Paths.SpecializedScreen;
   static const contact_screen = _Paths.contact_screen;
   static const MobileVerification = _Paths.MobileVerification;
   static const BusinessMobileVerification = _Paths.BusinessMobileVerification;
   static const Cancelation = _Paths.Cancelation;
+  static const  BusinessLastCouponAddedScreen=_Paths.BusinessLastCouponAddedScreen;
+  static const BusinessOffersScreen = _Paths.BusinessOffersScreen;
 }
 
 abstract class _Paths {
@@ -37,6 +41,8 @@ abstract class _Paths {
 
   static const landing_screen = '/landing-screen';
    static const BusinessHome ='/business-homescreen';
+   static const BusinessCouponRedementionScreen ='/business-couponremenditionscreen';
+   static const BusinessLastCouponAddedScreen ='/businesslast-couponadd';
   static const about_screens = '/about-screen';
   static const Service = '/service-screen';
   static const BusinessService ='/business-service';
@@ -49,8 +55,10 @@ abstract class _Paths {
   static const contact_screen = '/contact-us';
   static const MobileVerification = '/mobile-verification';
   static const BusinessMobileVerification = '/businessmobile-verification';
+  static const BusinessCreateCouponsScreen ='/businesscreate-couponsscreen';
   static const BOOKINGS = '/booking-screen';
   static const Cancelation = '/refund-and-cancellation-policy';
+  static const BusinessOffersScreen ='/business-offersscreen';
 }
  
   // static const SIGN_UP = '/home-screen';

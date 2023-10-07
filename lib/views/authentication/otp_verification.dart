@@ -190,7 +190,7 @@ int _start = 60; // Timer duration in seconds
                     ):
                      InkWell(
                       onTap: () {
-                        authController.businessloginUsers(mobile: widget.phoneNumber, 
+                        authController.loginUsers(mobile: widget.phoneNumber, 
                         otp: otpString,screen: false);
                         //     Get.to(BusinessverifiedScreen());
                       },

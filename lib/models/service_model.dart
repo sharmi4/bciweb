@@ -41,7 +41,7 @@ class ServiceData {
     dynamic isBooking;
     dynamic status;
     List<Amenty>? amenties;
-    String image;
+    dynamic image;
     DateTime createdAt;
     DateTime updatedAt;
 

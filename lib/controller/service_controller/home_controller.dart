@@ -1,5 +1,5 @@
 import 'package:bciweb/models/getCartlistmodel.dart';
-import 'package:bciweb/models/get_vendor_service_list_model.dart';
+import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
@@ -208,9 +208,7 @@ class HomeServiceController extends GetxController {
     update();
   }
 
-  //vendor service
-
-  VendorServiceListApiServices vendorServiceListApiServices =
+ VendorServiceListApiServices vendorServiceListApiServices =
       VendorServiceListApiServices();
   List<GetServiceListData> vendorServiceListData = [];
 

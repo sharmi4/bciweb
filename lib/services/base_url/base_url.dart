@@ -221,6 +221,13 @@ abstract class BaseApiService {
   final String transactionHistoryApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/transaction_history";
 
+       // add today offers
+  final String addCouponsURL =
+      "https://www.portal.bcipvtltd.com/api/auth/vendor_coupon";
+        // add today offers
+  final String addedCouponListURL =
+      "https://www.portal.bcipvtltd.com/api/auth/vendor_coupon_list";
+
   //vendor list
   final String vendorListURL =
       "https://www.portal.bcipvtltd.com/api/auth/vendor_list";
@@ -230,5 +237,13 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/get_gallery";
 
   //support admin details 
-  final String supportAdminDetailsApiUrl = "https://portal.bcipvtltd.com/api/get/app/support/details";    
+  final String supportAdminDetailsApiUrl = "https://portal.bcipvtltd.com/api/get/app/support/details"; 
+
+   //vendor redeemption coupons
+  final String redeemprtionCouponsApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/vedorRedeemCoupons";   
+
+   //Add services
+  final String addServicesURL =
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_create_service";    
 }

@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 import '../../../constant/constans.dart';
+import '../../../views/authentication/business_authentication/business_otp_verification.dart';
 import '../generate_otp/generate_otp.dart';
 
 class landing_screen extends StatelessWidget {
@@ -107,7 +108,7 @@ class landing_screen extends StatelessWidget {
                   ksizedbox40,
                   GestureDetector(
                     onTap: () {
-//Get.to(const BusinessLoginScreen());
+Get.to( BusinessOtpVerification());
                     },
                     child: Padding(
                       padding: const EdgeInsets.only(right: 20, left: 20),

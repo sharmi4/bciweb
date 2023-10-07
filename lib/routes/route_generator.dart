@@ -1,4 +1,5 @@
 import 'package:bciweb/responsive/authentications/generate_otp/generate_otp.dart';
+import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +9,10 @@ import '../views/authentication/business_authentication/business_generate_otp_sc
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business/business_home_screen.dart';
+import '../views/business/services_screens/business_offers_screen.dart';
+import '../views/business/services_screens/coupon_redemtion_screen.dart';
+import '../views/business/services_screens/create_coupons_screen.dart';
+import '../views/business/services_screens/lastcoupon_add_screen.dart';
 import '../views/business/services_screens/services_homescreen.dart';
 import '../views/business/services_screens/services_homescreen.dart';
 import '../views/members/Gallery/gallery.dart';
@@ -31,7 +36,7 @@ class RouteGenerator {
 
       case Routes.SPLASH:
         return _GeneratePageRoute(
-            widget: MemberHomeScreen(), routeName: settings.name);
+            widget: MobileHomeScreen(), routeName: settings.name);
 
       case Routes.MEMBHOME:
         return _GeneratePageRoute(
@@ -46,6 +51,18 @@ class RouteGenerator {
             
             case Routes.BUSINESSSERVICE:
             return _GeneratePageRoute(widget:BusinessServicesScreen() , routeName:settings.name);
+
+            case Routes.BusinessLastCouponAddedScreen:
+            return _GeneratePageRoute(widget: BusinessLastCouponAddedScreen(), routeName: settings.name);
+
+            case Routes.BUSINESSCOUPONREDEMTIONSCREEN:
+            return _GeneratePageRoute(widget: BusinessCouponRedementionScreen(), routeName: settings.name);
+
+            case Routes.BUSINESSCREATECOUPONS:
+            return _GeneratePageRoute(widget: BusinessCreateCouponsScreen(), routeName:settings.name);
+            
+            case Routes.BusinessOffersScreen:
+            return _GeneratePageRoute(widget: BusinessOffersScreen(), routeName: settings.name);
 
       case Routes.about_screens:
         return _GeneratePageRoute(
@@ -86,7 +103,7 @@ class RouteGenerator {
 
       default:
         return _GeneratePageRoute(
-            widget: const MemberHomeScreen(), routeName: settings.name);
+            widget: const MobileHomeScreen(), routeName: settings.name);
     }
   }
 } // Navigator.pushNamed(context, RoutesName.name);

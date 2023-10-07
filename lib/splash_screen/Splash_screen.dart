@@ -36,7 +36,8 @@ class _splashState extends State<splash> {
     // Get.offAll(
     //   () =>MobileHomeScreen(),
     // );
-    Get.offAllNamed(Routes.MEMBHOME);
+    Get.offAll(Routes.BusinessHome);
+    //Get.offAllNamed(Routes.MEMBHOME);
   }
 
   // toLoginPage() async {

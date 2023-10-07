@@ -1,5 +1,5 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
-import 'package:bciweb/models/get_vendor_service_list_model.dart';
+import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/views/members/services/views/servicescart/servicescart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

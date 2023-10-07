@@ -238,25 +238,30 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                     //  ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: kwhite,
-                            shape: BoxShape.circle,
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                  offset: Offset(0.0, 0.75),
-                                  blurRadius: 2,
-                                  color: kgrey)
-                            ]),
-                        child: InkWell(
-                          onTap: () {
-                            //
-                          },
-                          child: Icon(
-                            Icons.notifications,
-                            color: kblue,
+                      child: GestureDetector(
+                        onTap: (){
+                            Get.toNamed(Routes.BusinessHome);
+                        },
+                        child: Container(
+                          height: 30,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              shape: BoxShape.circle,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    offset: Offset(0.0, 0.75),
+                                    blurRadius: 2,
+                                    color: kgrey)
+                              ]),
+                          child: InkWell(
+                            onTap: () {
+                              Get.toNamed(Routes.BusinessHome);
+                            },
+                            child: Icon(
+                              Icons.notifications,
+                              color: kblue,
+                            ),
                           ),
                         ),
                       ),

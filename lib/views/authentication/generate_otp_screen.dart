@@ -190,8 +190,8 @@ class _MobileVerificationState extends State<MobileVerification> {
                             ):InkWell(
                               onTap: () {
                                  if (phoneNumberController.text.isNotEmpty) {
-                                  authController.getbusinessOtpFunction(
-                                      mobileNumber: phoneNumberController.text, isMobile: false);
+                                  authController.getOtpFunction(
+                                      mobileNumber: phoneNumberController.text, isMobile: false,);
                                 } else {
                                   Get.rawSnackbar(
                                     backgroundColor: Colors.red,

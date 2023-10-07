@@ -84,6 +84,7 @@ dependencies:
   paged_vertical_calendar: ^1.1.6
   lottie: ^2.6.0
   dropdown_search: ^5.0.6
+  coupon_uikit: ^0.2.0
 
   # flutter_super_html_viewer: ^0.1.0
 

@@ -252,14 +252,9 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                                   blurRadius: 2,
                                   color: kgrey)
                             ]),
-                        child: InkWell(
-                          onTap: () {
-                            //
-                          },
-                          child: Icon(
-                            Icons.notifications,
-                            color: kblue,
-                          ),
+                        child: Icon(
+                          Icons.notifications,
+                          color: kblue,
                         ),
                       ),
                     ),

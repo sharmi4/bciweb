@@ -1,3 +1,4 @@
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,8 @@ import '../../../registerhomescreen/business_comm_homecontainer.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../members/common_widget/business_common_screen.dart';
 import 'package:dotted_line/dotted_line.dart';
+
+import 'coupon_redemtion_screen.dart';
 
 class BusinessServicesScreen extends StatefulWidget {
   const BusinessServicesScreen({super.key});
@@ -55,8 +58,9 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                   ],
                 ),
               ),
+              ksizedbox10,
                 Container(
-                  height: 160,
+                  height: 200,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -64,19 +68,19 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                     children: [
                       Text('AVAILABLE SERVICES',
                       style: TextStyle(
-                        fontSize: 25,
+                        fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: kblue
                       ),),
                     
                       Container(
-                        height: 8,
-                        width: 55,
+                        height: 9,
+                        width: 60,
                         color: kOrange,
                       ),
                       Text('I can help you research market trends,complittors,customer behaviour,and other relevant\n business information.Vendors Can put Offers&Discount on the Website,Showing vendors \nslide for our member to view offers and available form the some Vendors',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 18,
                         height: 1.5
                       
                       ),)
@@ -97,7 +101,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                 Positioned(
                   left: 0,
                   right: 0,
-                  top: 20,
+                  top: 50,
                   child:  Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -105,12 +109,14 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                       onTap: (){
                        busiserviceController.Containerindex(0);
                        busiserviceController.update();
+                      Get.to(BusinessCouponRedementionScreen());
                         
                       },
                       child: Container(
                         height: 130,
                         width: 180,
                         decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
                           color:busiserviceController.Containerindex==0?kOrange:kblue
                         ),
                         child: Column(
@@ -127,7 +133,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                     ),
                      Dash(
                       direction: Axis.vertical,
-                      length: 130,
+                      length: 125,
                       dashLength: 10,
                       dashColor: kgrey),
               
@@ -135,12 +141,14 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                       onTap: (){
                        busiserviceController.Containerindex(1);
                        busiserviceController.update();
+                       Get.toNamed(Routes.BUSINESSCREATECOUPONS);
                         
                       },
                       child: Container(
                         height: 130,
                         width: 180,
                         decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
                           color:busiserviceController.Containerindex==1?korange:kblue
                         ),
                         child:  Column(
@@ -157,7 +165,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                     ),
                       Dash(
                       direction: Axis.vertical,
-                      length: 130,
+                      length: 125,
                       dashLength: 10,
                       dashColor: kgrey),
                     GestureDetector(
@@ -165,11 +173,13 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                        
                         busiserviceController.Containerindex(2);
                         busiserviceController.update();
+                        Get.toNamed(Routes.BusinessOffersScreen);
                       },
                       child: Container(
                         height: 130,
                         width: 180,
                         decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
                           color:busiserviceController.Containerindex==2?kOrange:kblue
                         ),
                         child: Column(
@@ -185,7 +195,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                     ),
                       Dash(
                       direction: Axis.vertical,
-                      length: 130,
+                      length: 125,
                       dashLength: 10,
                       dashColor: kgrey),
                     GestureDetector(
@@ -197,6 +207,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                         height: 130,
                         width: 180,
                         decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5),
                           color:busiserviceController.Containerindex==3?kOrange:kblue
                         ),
                         child: Column(
