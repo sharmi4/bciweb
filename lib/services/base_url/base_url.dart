@@ -245,5 +245,9 @@ abstract class BaseApiService {
 
    //Add services
   final String addServicesURL =
-      "https://www.portal.bcipvtltd.com/api/auth/merchant_create_service";    
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_create_service";  
+
+       // add today offers
+  final String addTodayOffersApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_offers";  
 }

@@ -129,18 +129,6 @@ class AuthController extends GetxController {
           ));
     }
   }
-  GetCategoryApiServices getCategoryApiServices = GetCategoryApiServices();
-  List<CategoryData> categoryData = [];
-
-  getCategoryList() async {
-    dio.Response<dynamic> response = await getCategoryApiServices.getCategory();
-
-    if (response.statusCode == 201) {
-      CategoryModel categoryModel = CategoryModel.fromJson(response.data);
-      categoryData = categoryModel.data;
-    }
-    update();
-  }
 
   getbusinessOtpFunction({required String mobileNumber, required bool isMobile}) async {
     isLoading(true);
@@ -378,9 +366,25 @@ class AuthController extends GetxController {
           ));
     }
   }
+
+     GetCategoryApiServices getCategoryApiServices = GetCategoryApiServices();
+  List<CategoryData> categoryData = [];
+
+  getCategoryList() async {
+    dio.Response<dynamic> response = await getCategoryApiServices.getCategory();
+
+    if (response.statusCode == 201) {
+      CategoryModel categoryModel = CategoryModel.fromJson(response.data);
+      categoryData = categoryModel.data;
+    }
+    update();
+  }
+
+
     GetSubCategoryApiServices getSubCategoryApiServices =
       GetSubCategoryApiServices();
        List<SubCategoryModelList> subCategoryList = [];
+
   getSubCategoryList() async {
     dio.Response<dynamic> response =
         await getSubCategoryApiServices.getSubCategory();
