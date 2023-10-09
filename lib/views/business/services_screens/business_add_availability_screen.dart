@@ -5,6 +5,7 @@ import 'package:bciweb/routes/app_pages.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:textfield_tags/textfield_tags.dart';
@@ -12,6 +13,7 @@ import 'package:textfield_tags/textfield_tags.dart';
 import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
+import '../../../models/business_model/createservice_model.dart';
 import '../../../models/category_model.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
 import '../../members/common_widget/business_common_screen.dart';
@@ -630,31 +632,40 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                              
                                ksizedbox20,
                               Padding(
-                                padding: const EdgeInsets.only(right: 60),
-                                child: Container(
-                                        height: 54,
-                                         width: MediaQuery.of(context).size.width*0.25,
-                                         decoration: BoxDecoration(
-                                               
-                                      ),
-                                  child: TextField(
-                                 controller: quantityController,
-                                 
-                                 decoration: InputDecoration(
-                                   labelText: 'Quantity',
-                                   border: OutlineInputBorder(
-                                     
-                                     
-                                     borderSide: BorderSide(
-                                       color: kblue
-                                     )
-                                   )
-
-                                 ),
-                                                                ),
-
-                                                              ),
-                              ),
+            padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+            child: TextFormField(
+              controller: quantityController,
+              keyboardType: TextInputType.number,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Quantity Can't be Empty";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  labelText: "Quantity *",
+                  hintStyle: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.w400,
+                  )),
+            ),
+          ),
                                  
                     ],
                   ),
@@ -789,33 +800,37 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                   
-                                   Container(
-                                           height: 54,
-                                            width: MediaQuery.of(context).size.width*0.25,
-                                            decoration: BoxDecoration(
-                                                  
-                                                                   ),
-                                                                   child: TextField(
-                                    controller:unitController ,
-                                    decoration: InputDecoration(
-                                       labelText: 'Unit',
-                                        hintStyle: TextStyle(
+                                    TextFormField(
+              controller: unitController,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              // validator: (value) {
+              //   if (value!.isEmpty) {
+              //     return "Unit Can't be Empty";
+              //   }
+              //   return null;
+              // },
+              decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  labelText: "Unit",
+                  hintStyle: TextStyle(
                     color: kblue,
                     fontWeight: FontWeight.w400,
-                  ),
-                                      border: OutlineInputBorder(
-                                        
-                                        
-                                        borderSide: BorderSide(
-                                          color: kblue
-                                        )
-                                      )
-
-                                    ),
-                                                                   ),
-
-                                                                 )
+                  )),
+            ),
                                   ],
                                 ),
                               ),
@@ -852,60 +867,279 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                         ),
                       ),
                   ),
-                  ksizedbox40,
-                  Padding(
-                    padding: const EdgeInsets.only(right: 55),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                      InkWell(
-                        onTap: (){
-                          Get.toNamed(Routes.BusinessLastCouponAddedScreen);
-                        },
-                        child: Container(
-                          height: 54,
+                  ksizedbox30,
+                    if (isOfferEligible)
+            Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                  child: TextFormField(
+                    // controller: emailIdController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Offer Percentage can't be empty";
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(3),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xff707070))),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xff707070))),
+                        isCollapsed: false,
+                        isDense: true,
+                        contentPadding: const EdgeInsets.only(
+                            top: 12, bottom: 12, left: 15),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xff707070))),
+                        labelText: "Offer Percentage",
+                        hintStyle: TextStyle(
+                          color: kblue,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ),
+                ),
+                ksizedbox10,
+                Padding(
+                  padding: const EdgeInsets.only(top: 5, left: 15, right: 15),
+                  child: TextFormField(
+                    // controller: emailIdController,
+                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Offer Upto Amount can't be empty";
+                      }
+                      return null;
+                    },
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(7),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    decoration: InputDecoration(
+                        fillColor: Colors.white,
+                        filled: true,
+                        enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xff707070))),
+                        focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xff707070))),
+                        isCollapsed: false,
+                        isDense: true,
+                        contentPadding: const EdgeInsets.only(
+                            top: 12, bottom: 12, left: 15),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide:
+                                const BorderSide(color: Color(0xff707070))),
+                        labelText: "Offer Upto Amount",
+                        hintStyle: TextStyle(
+                          color: kblue,
+                          fontWeight: FontWeight.w400,
+                        )),
+                  ),
+                ),
+              ],
+            ),
+            ksizedbox30,
+            if (isCouponEligible)
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              child: TextFormField(
+                // controller: emailIdController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return "Coupon Amount can't be empty";
+                  }
+                  return null;
+                },
+                keyboardType: TextInputType.number,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(10),
+                  FilteringTextInputFormatter.digitsOnly,
+                  FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                ],
+                decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xff707070))),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xff707070))),
+                    isCollapsed: false,
+                    isDense: true,
+                    contentPadding:
+                        const EdgeInsets.only(top: 12, bottom: 12, left: 15),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xff707070))),
+                    labelText: "Coupon Amount",
+                    hintStyle: TextStyle(
+                      color: kblue,
+                      fontWeight: FontWeight.w400,
+                    )),
+              ),
+            ),
+             Obx(
+            () => Padding(
+              padding: const EdgeInsets.only(right: 15, left: 15),
+              child: businessserviceController.isLoading.isTrue
+                  ? Container(
+                      height: 55,
+                      width:  MediaQuery.of(context).size.width*0.31,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: kblue),
+                      alignment: Alignment.center,
+                      child: const CircularProgressIndicator(
+                        color: Colors.white,
+                      ),
+                    )
+                  : InkWell(
+                      onTap: () {
+                        List<Amenty> listTags = [];
+
+                        var tagsList = _controller!.getTags;
+
+                        for (var i = 0; i < tagsList!.length; i++) {
+                          listTags.add(Amenty(value: tagsList[i]));
+                        }
+
+                        CategoryData categoryModel =
+                            merchantCategory as CategoryData;
+
+                        CreateServiceModel createServiceModel =
+                            CreateServiceModel(
+                                offerPercentage:
+                                    offerPercentageController.text.isEmpty
+                                        ? null
+                                        : offerPercentageController.text,
+                                actualAmount: actualAmountController.text,
+                                amenities: listTags,
+                                // share: shareValue,
+                                booking: authController.isGstAvailable.isTrue
+                                    ? "1"
+                                    : "0",
+                                // bvcAmount: bvcAmountController.text,
+                                category: categoryModel.id.toString(),
+                                description: descriptionController.text,
+                                image: serviceImage.path,
+                                isCouponsAvailable:
+                                    isCouponEligible ? "1" : "0",
+                                isOfferAvailable: isOfferEligible ? "1" : "0",
+                                saleAmount: saleAmountController.text,
+                                title: serviceTitleController.text,
+                                couponAmount:
+                                    couponAmountController.text.isEmpty
+                                        ? null
+                                        : couponAmountController.text,
+                                offerAmount: offerAmountController.text.isEmpty
+                                    ? null
+                                    : offerAmountController.text,
+                                unit: unitController.text,
+                                cgst: cgstPercentage,
+                                sgst: sgstPercentage,
+                                endTime: selectdt1,
+                                startTime: selectdt,
+                                quantity: quantityController.text);
+
+                        businessserviceController.addServices(
+                            createServiceModel: createServiceModel);
+                      },
+                      child: Container(
+                        height: 55,
                           width: MediaQuery.of(context).size.width*0.31,
-                          decoration: BoxDecoration(
-                            color: kgrey.withOpacity(0.5)
-                          ),
-                          child: Center(
-                            child: Text('LAST COUPON',
-                            style: TextStyle(
-                                   fontSize: 18,
-                                   color: kblue,
-                                   fontWeight: FontWeight.bold
-                            ),)),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            color: kblue),
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Submit",
+                          style: primaryFont.copyWith(
+                              color: Colors.white,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 33),
-                          child: GestureDetector(
-                            onTap: (){
-                              
-                            },
-                            child: Container(
-                            height: 50,
-                            width: MediaQuery.of(context).size.width*0.31,
-                            decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              colors: [
-                                  kOrange,
-                                  kyellow
-                            ])
-                            ),
-                            child: Center(
-                              child: Text('SUBMIT',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: kwhite,
-                                fontWeight: FontWeight.bold
-                              ),)),
-                                                ),
-                          ),
-                        )
-                      ],
                     ),
-                  ),
+            ),
+          ),
+                  ksizedbox40,
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 55),
+                  //   child: Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //     children: [
+                  //     InkWell(
+                  //       onTap: (){
+                  //         Get.toNamed(Routes.BusinessLastCouponAddedScreen);
+                  //       },
+                  //       child: Container(
+                  //         height: 54,
+                  //         width: MediaQuery.of(context).size.width*0.31,
+                  //         decoration: BoxDecoration(
+                  //           color: kgrey.withOpacity(0.5)
+                  //         ),
+                  //         child: Center(
+                  //           child: Text('LAST COUPON',
+                  //           style: TextStyle(
+                  //                  fontSize: 18,
+                  //                  color: kblue,
+                  //                  fontWeight: FontWeight.bold
+                  //           ),)),
+                  //       ),
+                  //     ),
+                  //       Padding(
+                  //         padding: const EdgeInsets.only(left: 33),
+                  //         child: GestureDetector(
+                  //           onTap: (){
+                              
+                  //           },
+                  //           child: Container(
+                  //           height: 50,
+                  //           width: MediaQuery.of(context).size.width*0.31,
+                  //           decoration: BoxDecoration(
+                  //           gradient: LinearGradient(
+                  //             colors: [
+                  //                 kOrange,
+                  //                 kyellow
+                  //           ])
+                  //           ),
+                  //           child: Center(
+                  //             child: Text('SUBMIT',
+                  //             style: TextStyle(
+                  //               fontSize: 18,
+                  //               color: kwhite,
+                  //               fontWeight: FontWeight.bold
+                  //             ),)),
+                  //                               ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                       ksizedbox40 
                 ],
               ),
