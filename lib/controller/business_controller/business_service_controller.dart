@@ -5,9 +5,11 @@ import 'package:dio/dio.dart' as dio;
 import '../../constant/constans.dart';
 import '../../models/busbookingmodels/redeemption_Coupons_model.dart';
 import '../../models/business_model/createservice_model.dart';
+import '../../models/business_model/get_vendor_offerslist_model.dart';
 import '../../models/business_model/get_vendor_service_list_model.dart';
 import '../../models/business_model/getcouponlist_model.dart';
 import '../../models/service_model.dart';
+import '../../services/networks/business_service/businees_getvendor_offerslist_api_service.dart';
 import '../../services/networks/business_service/business_addcoupon_api_service.dart';
 import '../../services/networks/business_service/business_addservice_api_service.dart';
 import '../../services/networks/business_service/business_couponredemtion_api_service.dart';
@@ -67,7 +69,9 @@ class BusinessServiceController extends GetxController{
     } else {}
   }
      getServicesByVendor() async {
-    dio.Response<dynamic> response =
+      await  Get.find<AuthProfileController>().getProfile();
+      if(Get.find<AuthProfileController>().profileData.isNotEmpty){
+        dio.Response<dynamic> response =
         await getServicesApiServices.vendorServiceListApiServices(
             vendorId:
                 Get.find<AuthProfileController>().profileData.first.id.toString());
@@ -78,6 +82,9 @@ class BusinessServiceController extends GetxController{
 
       serviceDataList = serviceListModel.data;
     }
+
+      }
+     
     update();
   }
 
@@ -180,7 +187,7 @@ class BusinessServiceController extends GetxController{
     //add today offers
   AddTodayOffersApiServices addTodayOffersApiServices = AddTodayOffersApiServices();
   addTodayOffers({
-    required String image,
+    required dynamic image,
     required String title,
     required String category,
     required String startsat,
@@ -213,5 +220,18 @@ class BusinessServiceController extends GetxController{
           ));
       }
 
+  }
+
+    //vendor offer list
+  GetVendorOfferListApiServices getVendorOfferListApiServices = GetVendorOfferListApiServices();
+  List<VendorOfferList> offerListData = [];
+
+  offerList() async {
+    dio.Response<dynamic> response = await getVendorOfferListApiServices.getVendorOfferListApiServices();
+    if(response.statusCode == 200){
+        offerListData = List<VendorOfferList>.from(
+          response.data.map((x) => VendorOfferList.fromJson(x)));
+    } 
+    update();
   }
 }

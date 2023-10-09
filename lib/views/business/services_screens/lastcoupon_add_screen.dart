@@ -43,7 +43,7 @@ class _BusinessLastCouponAddedScreenState extends State<BusinessLastCouponAddedS
                 
                     GetBuilder<BusinessServiceController>(builder: (_) {
               return Container(
-                height: MediaQuery.of(context).size.height * 0.5,
+                height: MediaQuery.of(context).size.height,
                 child: businessserviceController.addedCouponList.isEmpty
                     ? Center(
                         child: Column(

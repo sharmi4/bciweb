@@ -32,6 +32,10 @@ abstract class Routes {
   static const Cancelation = _Paths.Cancelation;
   static const  BusinessLastCouponAddedScreen=_Paths.BusinessLastCouponAddedScreen;
   static const BusinessOffersScreen = _Paths.BusinessOffersScreen;
+  static const BusinessLastOffersScreen = _Paths.BusinessLastOffersScreen;
+  static const BusinessAvailabilityScreen = _Paths.BusinessAvailabilityScreen;
+  static const BusinessAddAvailabilityScreen = _Paths.BusinessAddAvailabilityScreen;
+  
 }
 
 abstract class _Paths {
@@ -59,6 +63,9 @@ abstract class _Paths {
   static const BOOKINGS = '/booking-screen';
   static const Cancelation = '/refund-and-cancellation-policy';
   static const BusinessOffersScreen ='/business-offersscreen';
+  static const BusinessLastOffersScreen ='/business-lastofferscreen';
+  static const BusinessAvailabilityScreen = '/business-availability-screen';
+  static const BusinessAddAvailabilityScreen = '/business-addavailability-screen';
 }
  
   // static const SIGN_UP = '/home-screen';

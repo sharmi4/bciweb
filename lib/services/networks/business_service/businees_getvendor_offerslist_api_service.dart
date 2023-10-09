@@ -4,47 +4,26 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../base_url/base_url.dart';
 
-class AddTodayOffersApiServices extends BaseApiService {
-  Future addTodayOffersApiServices({
-    required dynamic image,
-    required String title,
-    required String category,
-    required String startsat,
-    required String endsat,
-    required dynamic discountValue,
-    required dynamic claimUser,
-  }) async {
+class GetVendorOfferListApiServices extends BaseApiService {
+  Future getVendorOfferListApiServices() async {
     dynamic responseJson;
     try {
       var dio = Dio();
 
-      FormData formData = FormData.fromMap({
-        "image":  MultipartFile.fromBytes(image, filename: "image"),
-        "title": title,
-        "category": category,
-        "starts_at": startsat,
-        "ends_at": endsat,
-        "discount_value": discountValue,
-        "claim_user": claimUser,
-        // "bs_value": bsValue,
-      });
-
-      print(formData.fields);
-
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(addTodayOffersApiUrl,
+      var response = await dio.post(vendorOfferListApiUrl,
           options: Options(
               headers: {'Authorization': 'Bearer $authtoken'},
               followRedirects: false,
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: formData);
-      print("::::::::<Add today offers list>::::::::status code::::::::::.>>");
-      // print(response.statusCode);
-      // print(response.data);
+          );
+      print("::::::::<get vendor offer list URL>::::::::status code::::::::::");
+      print(response.statusCode);
+      print(response.data);
       responseJson = response;
     } on SocketException {
       print("no internet");

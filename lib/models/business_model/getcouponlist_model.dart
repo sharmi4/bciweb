@@ -63,17 +63,17 @@ class CouponsListData {
   });
 
   factory CouponsListData.fromJson(Map<String, dynamic> json) => CouponsListData(
-        id: json["id"],
-        vendorId: json["vendor_id"],
-        categoryId: json["category_id"],
-        title: json["title"],
+        id: json["id"]??"0",
+        vendorId: json["vendor_id"]??"",
+        categoryId: json["category_id"]??"",
+        title: json["title"]??"",
         startsAt: DateTime.parse(json["starts_at"]),
         endsAt: DateTime.parse(json["ends_at"]),
-        couponAmount: json["coupon_amount"],
-        buyAmount: json["buy_amount"],
-        status: json["status"],
-        image: json["image"],
-        description: json["description"],
+        couponAmount: json["coupon_amount"]??"",
+        buyAmount: json["buy_amount"]??"",
+        status: json["status"]??"",
+        image: json["image"]??"",
+        description: json["description"]??"",
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );

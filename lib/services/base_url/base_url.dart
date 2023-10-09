@@ -250,4 +250,8 @@ abstract class BaseApiService {
        // add today offers
   final String addTodayOffersApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/merchant_offers";  
+
+     //vendor offer list
+  final String vendorOfferListApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list";   
 }

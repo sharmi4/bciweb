@@ -1,3 +1,5 @@
+import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/views/members/services/views/widgets/containors.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
 import '../../../models/category_model.dart';
+import '../../../models/service_model.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
 import '../../members/common_widget/business_common_screen.dart';
 
@@ -250,48 +253,52 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
                           ),
                         ),
                         ksizedbox40,
-                        Container(
-                          height: 54,
-                          width: MediaQuery.of(context).size.width * 0.25,
-                          decoration: BoxDecoration(),
-                          child: DropdownSearch<CategoryData>(
-                            itemAsString: (CategoryData u) => u.title,
-                            selectedItem: merchantCategory,
-                            popupProps: PopupProps.menu(
-                              showSelectedItems: false,
-                              showSearchBox: true,
-                              menuProps: MenuProps(
-                                  borderRadius: BorderRadius.circular(15)),
-                              searchFieldProps: const TextFieldProps(),
-                            ),
-                            //items: authController.categoryData,
-                            dropdownDecoratorProps: DropDownDecoratorProps(
-                              dropdownSearchDecoration: InputDecoration(
-                                  // labelText: "Department *",
-                                  hintText: "Products",
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Color(0xff707070)),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Color(0xff707070)),
-                                      borderRadius: BorderRadius.circular(5)),
-                                  border: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: Color(0xff707070)),
-                                      borderRadius: BorderRadius.circular(5))),
-                            ),
-                            onChanged: (value) {
-                              setState(() {
-                                // authController
-                                //     .isDesignationSelected(false);
-                                merchantCategory = value!;
-                                // requiremtsSelected = null;
-                              });
-                            },
-                            // selectedItem: selectedState,
-                          ),
+                        GetBuilder<BusinessServiceController>(
+                          builder: (_) {
+                            return Container(
+                              height: 54,
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              decoration: BoxDecoration(),
+                              child: DropdownSearch<ServiceData>(
+                                itemAsString: (ServiceData u) => u.title,
+                                //selectedItem: businessserviceController.serviceDataList,
+                                popupProps: PopupProps.menu(
+                                  showSelectedItems: false,
+                                  showSearchBox: true,
+                                  menuProps: MenuProps(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  searchFieldProps: const TextFieldProps(),
+                                ),
+                                items: businessserviceController.serviceDataList,
+                                dropdownDecoratorProps: DropDownDecoratorProps(
+                                  dropdownSearchDecoration: InputDecoration(
+                                      // labelText: "Department *",
+                                      hintText: "Products",
+                                      enabledBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Color(0xff707070)),
+                                          borderRadius: BorderRadius.circular(5)),
+                                      focusedBorder: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Color(0xff707070)),
+                                          borderRadius: BorderRadius.circular(5)),
+                                      border: OutlineInputBorder(
+                                          borderSide: const BorderSide(
+                                              color: Color(0xff707070)),
+                                          borderRadius: BorderRadius.circular(5))),
+                                ),
+                                onChanged: (value) {
+                                  setState(() {
+                                    // authController
+                                    //     .isDesignationSelected(false);
+                                    merchantCategory = value!;
+                                    // requiremtsSelected = null;
+                                  });
+                                },
+                                // selectedItem: selectedState,
+                              ),
+                            );
+                          }
                         ),
                         ksizedbox40,
                         Container(
@@ -401,7 +408,7 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 0),
+                      padding: const EdgeInsets.only(left: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -477,7 +484,7 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
               ),
               ksizedbox30,
               Padding(
-                padding: const EdgeInsets.only(right: 70),
+                padding: const EdgeInsets.only(right: 50),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -512,7 +519,7 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
                   children: [
                     InkWell(
                       onTap: () {
-                        // Get.toNamed(Routes.BusinessLastCouponAddedScreen);
+                         Get.toNamed(Routes.BusinessLastOffersScreen);
                       },
                       child: Container(
                         height: 54,
@@ -541,9 +548,9 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
                             businessserviceController.addTodayOffers(
                                 image: imageprofile,
                                 title: offertitleController.text,
-                                category: merchantCategory,
-                                startsat: startdateController.text,
-                                endsat: enddateController.text,
+                                category: merchantCategory.id.toString(),
+                                startsat: selectdt,
+                                endsat: selectdt1,
                                 discountValue: discountvalueController.text,
                                 claimUser: claimuserController.text);
                           } else {

@@ -202,6 +202,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                       onTap: (){
                       busiserviceController.Containerindex(3);
                         busiserviceController.update();
+                        Get.toNamed(Routes.BusinessAvailabilityScreen);
                       },
                       child: Container(
                         height: 130,

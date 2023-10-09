@@ -9,6 +9,9 @@ import '../views/authentication/business_authentication/business_generate_otp_sc
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business/business_home_screen.dart';
+import '../views/business/services_screens/businees_lastoffers_screen.dart';
+import '../views/business/services_screens/business_add_availability_screen.dart';
+import '../views/business/services_screens/business_availability_screen.dart';
 import '../views/business/services_screens/business_offers_screen.dart';
 import '../views/business/services_screens/coupon_redemtion_screen.dart';
 import '../views/business/services_screens/create_coupons_screen.dart';
@@ -64,6 +67,14 @@ class RouteGenerator {
             case Routes.BusinessOffersScreen:
             return _GeneratePageRoute(widget: BusinessOffersScreen(), routeName: settings.name);
 
+            case Routes.BusinessLastOffersScreen:
+            return _GeneratePageRoute(widget: BusinessLastOffersScreen(), routeName: settings.name);
+
+            case Routes.BusinessAvailabilityScreen:
+            return _GeneratePageRoute(widget: BusinessAvailabilityScreen(), routeName: settings.name);
+
+            case Routes.BusinessAddAvailabilityScreen:
+            return _GeneratePageRoute(widget: BusinessAddAvailabilityScreen(), routeName: settings.name);
       case Routes.about_screens:
         return _GeneratePageRoute(
             widget: AboutUsScreen(), routeName: settings.name);
