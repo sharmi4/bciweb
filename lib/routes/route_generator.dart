@@ -1,5 +1,5 @@
-import 'package:bciweb/responsive/authentications/generate_otp/generate_otp.dart';
-import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
+import 'package:bciweb/views/members/responsive/authentications/generate_otp/generate_otp.dart';
+import 'package:bciweb/views/members/responsive/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 

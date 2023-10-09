@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 
 
 import '../../../constant/constans.dart';
-import '../responsive/responsive_homescreen/responsive_homescreen.dart';
+import '../views/members/responsive/responsive_homescreen/responsive_homescreen.dart';
 import '../views/members/bookins/bus/Bus_booking_main.dart';
 import '../views/members/bookins/flight/booking_flight.dart';
 import '../views/members/bookins/hotels/booking_hotels.dart';

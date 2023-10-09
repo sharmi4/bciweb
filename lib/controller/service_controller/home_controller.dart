@@ -12,7 +12,7 @@ import '../../constant/constans.dart';
 
 import '../../models/get_gallery_model.dart';
 import '../../models/todayoffers_model.dart';
-import '../../responsive/mobile_body/cart_divertion.dart';
+import '../../views/members/responsive/mobile_body/cart_divertion.dart';
 import '../../services/networks/services/add_to_cart_api_service.dart';
 import '../../services/networks/services/catogory_api_service/add_booking_api_services.dart';
 import '../../services/networks/services/catogory_api_service/delete_cart_api_services.dart';

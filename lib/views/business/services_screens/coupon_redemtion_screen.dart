@@ -1,4 +1,4 @@
-import 'package:bciweb/responsive/booking_view/flight/search.dart';
+import 'package:bciweb/views/members/responsive/booking_view/flight/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:coupon_uikit/coupon_uikit.dart';

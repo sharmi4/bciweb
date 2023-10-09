@@ -1,4 +1,4 @@
-import 'package:bciweb/responsive/responsive_homescreen/responsive_homescreen.dart';
+import 'package:bciweb/views/members/responsive/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';

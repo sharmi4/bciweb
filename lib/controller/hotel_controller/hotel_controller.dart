@@ -11,7 +11,7 @@ import '../../models/hotel_model/hotel_info_model.dart';
 import '../../models/hotel_model/hotel_search_model.dart';
 import '../../models/hotel_model/hoteldestination_model.dart';
 import '../../models/hotel_model/store_temp_search_data.dart';
-import '../../responsive/hottel/Hotel_members.dart';
+import '../../views/members/responsive/hottel/Hotel_members.dart';
 import '../../services/networks/hotel_api_service/block_room_api_service.dart';
 import '../../services/networks/hotel_api_service/get_hotel_room_api_service.dart';
 import '../../services/networks/hotel_api_service/get_room_details_api_services.dart';

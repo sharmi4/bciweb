@@ -1,12 +1,8 @@
 import 'dart:async';
-
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-//import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
-
 import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 

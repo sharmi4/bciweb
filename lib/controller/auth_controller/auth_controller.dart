@@ -1,5 +1,6 @@
 import 'package:bciweb/models/category_model.dart';
-import 'package:bciweb/responsive/authentications/sign_up_view/sign_up_screen.dart';
+import 'package:bciweb/views/business/responsive_business/authentication/respo_business_otpverification.dart';
+import 'package:bciweb/views/members/responsive/authentications/sign_up_view/sign_up_screen.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/get_otp_api_service.dart';
 import 'package:bciweb/services/networks/services/catogory_api_service/category_api_service.dart';
@@ -13,8 +14,8 @@ import '../../models/business_model/merchants_register_model.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
 import '../../models/sub_category_model.dart';
-import '../../responsive/authentications/otp_verification/otp_verification.dart';
-import '../../responsive/authentications/verified_screen/verified_screen.dart';
+import '../../views/members/responsive/authentications/otp_verification/otp_verification.dart';
+import '../../views/members/responsive/authentications/verified_screen/verified_screen.dart';
 import '../../services/networks/business_service/business_login_api_service.dart';
 import '../../services/networks/business_service/merchant_api_services.dart';
 import '../../services/networks/services/authapi_service/login_api_service.dart';
@@ -37,8 +38,8 @@ class AuthController extends GetxController {
       MemberRegisterApiservices();
 
   MerchantRegisterApiServices merchantRegisterApiServices =
-   MerchantRegisterApiServices();
-  
+      MerchantRegisterApiServices();
+
   GenerateReferralCodeApiService generateReferralCodeApiService =
       GenerateReferralCodeApiService();
 //this api calling
@@ -105,8 +106,8 @@ class AuthController extends GetxController {
           ));
     }
   }
-  
-   //api callings
+
+  //api callings
   registerMerchants(
       {required MerchantRegisterModel merchantRegisterModel,
       required String referralCode}) async {
@@ -130,7 +131,8 @@ class AuthController extends GetxController {
     }
   }
 
-  getbusinessOtpFunction({required String mobileNumber, required bool isMobile}) async {
+  getbusinessOtpFunction(
+      {required String mobileNumber, required bool isMobile}) async {
     isLoading(true);
 
     dio.Response<dynamic> response =
@@ -139,27 +141,33 @@ class AuthController extends GetxController {
 
     if (response.statusCode == 200) {
       if (isMobile == true) {
-        Get.to(otp_varification(
-          phoneNumber: mobileNumber,
-          otp: response.data["otp"].toString(),
-        ));
-      } else {
         Get.to(BusinessOtpVerification(
           phoneNumber: mobileNumber,
           otp: response.data["otp"].toString(),
         ));
+      } else {
+        Get.to(
+          RespoBusinessOtpVerification(
+            phoneNumber: mobileNumber,
+            otp: response.data["otp"].toString(),
+          ),
+        );
       }
     } else if (response.statusCode == 404) {
       Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "User not found",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+        backgroundColor: Colors.red,
+        messageText: Text(
+          "User not found",
+          style: primaryFont.copyWith(color: Colors.white),
+        ),
+      );
     }
   }
-  
-  getOtpFunction({required String mobileNumber, required bool isMobile,}) async {
+
+  getOtpFunction({
+    required String mobileNumber,
+    required bool isMobile,
+  }) async {
     isLoading(true);
 
     dio.Response<dynamic> response =
@@ -187,14 +195,16 @@ class AuthController extends GetxController {
           ));
     }
   }
-  BusinessLoginApiServices businessLoginApiServices =BusinessLoginApiServices();
+
+  BusinessLoginApiServices businessLoginApiServices =
+      BusinessLoginApiServices();
   businessloginUsers(
       {required String mobile,
       required String otp,
       required bool screen}) async {
     isLoading(true);
-    dio.Response<dynamic> response =
-        await businessLoginApiServices.businessloginApi(mobile: mobile, otp: otp);
+    dio.Response<dynamic> response = await businessLoginApiServices
+        .businessloginApi(mobile: mobile, otp: otp);
 
     print("login data");
     print(response.data);
@@ -212,15 +222,16 @@ class AuthController extends GetxController {
       }
     } else {
       Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Invalid OTP",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+        backgroundColor: Colors.red,
+        messageText: Text(
+          "Invalid OTP",
+          style: primaryFont.copyWith(color: Colors.white),
+        ),
+      );
     }
-    
   }
-    loginUsers(
+
+  loginUsers(
       {required String mobile,
       required String otp,
       required bool screen}) async {
@@ -258,7 +269,7 @@ class AuthController extends GetxController {
           ));
     }
   }
-    
+
   //   //verify otp
   // VerifyOtpApiServices verifyOtpApiServices = VerifyOtpApiServices();
 
@@ -294,14 +305,15 @@ class AuthController extends GetxController {
     prefs.setString("auth_token", "null");
     // Get.to(const MemberLoginScreenrespo());
   }
- 
+
   logoutWeb() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
     Get.to(MobileVerification());
     // Get.to(const MemberLoginScreenrespo());
   }
-   businesslogoutWeb() async {
+
+  businesslogoutWeb() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
     Get.to(BusinessMobileVerification());
@@ -367,7 +379,7 @@ class AuthController extends GetxController {
     }
   }
 
-     GetCategoryApiServices getCategoryApiServices = GetCategoryApiServices();
+  GetCategoryApiServices getCategoryApiServices = GetCategoryApiServices();
   List<CategoryData> categoryData = [];
 
   getCategoryList() async {
@@ -380,10 +392,9 @@ class AuthController extends GetxController {
     update();
   }
 
-
-    GetSubCategoryApiServices getSubCategoryApiServices =
+  GetSubCategoryApiServices getSubCategoryApiServices =
       GetSubCategoryApiServices();
-       List<SubCategoryModelList> subCategoryList = [];
+  List<SubCategoryModelList> subCategoryList = [];
 
   getSubCategoryList() async {
     dio.Response<dynamic> response =

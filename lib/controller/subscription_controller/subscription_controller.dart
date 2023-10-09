@@ -1,5 +1,5 @@
 import 'package:bciweb/models/get_coupons_model.dart';
-import 'package:bciweb/responsive/mobile_wdgets/resmembership/mobile_paymentsucess.dart';
+import 'package:bciweb/views/members/responsive/mobile_wdgets/resmembership/mobile_paymentsucess.dart';
 import 'package:bciweb/services/networks/get_coupons_api_service.dart';
 import 'package:bciweb/services/networks/subscription/get_payment_apiservice.dart';
 import 'package:bciweb/views/members/subscribe/views/payment_sucess.dart';

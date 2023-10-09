@@ -5,7 +5,7 @@ import 'package:flutter/src/widgets/framework.dart';
 //import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:get/get.dart';
 
-import '../../responsive/authentications/generate_otp/generate_otp.dart';
+import '../members/responsive/authentications/generate_otp/generate_otp.dart';
 import 'business_authentication/business_generate_otp_screen.dart';
 
 class LandingScreen extends StatelessWidget {

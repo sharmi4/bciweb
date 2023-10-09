@@ -13,7 +13,7 @@ import '../../models/airport_search_model.dart';
 import '../../models/flight_searchdatamodel.dart';
 import '../../models/get_flight_booking_history.dart';
 import '../../models/pasenger_mode.dart';
-import '../../responsive/booking_view/flight/par_nyc_screen.dart';
+import '../../views/members/responsive/booking_view/flight/par_nyc_screen.dart';
 import '../../services/networks/services/flight_api_searcive/air_add_ssr_api_services.dart';
 import '../../services/networks/services/flight_api_searcive/air_printing_api_services.dart';
 import '../../services/networks/services/flight_api_searcive/air_repricing_api_services.dart';
