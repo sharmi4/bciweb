@@ -13,8 +13,8 @@ import 'package:bciweb/controller/seat_controller.dart';
 import 'package:bciweb/controller/subscribe_controllers.dart';
 // import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 
-import 'package:bciweb/views/members/responsive/holiday/controllers/holidaycontroller.dart';
-import 'package:bciweb/views/members/responsive/res_controller/yours_coupon_controller.dart';
+import 'package:bciweb/views/responsive------------------------------------/holiday/controllers/holidaycontroller.dart';
+import 'package:bciweb/views/responsive------------------------------------/res_controller/yours_coupon_controller.dart';
 import 'package:bciweb/routes/app_pages.dart';
 
 import 'package:bciweb/routes/route_generator.dart';

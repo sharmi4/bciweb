@@ -12,7 +12,7 @@ import '../models/busbookingmodels/bus_cityList_model.dart';
 import '../models/busbookingmodels/bus_seat_map_model.dart';
 import '../models/busbookingmodels/pax_list_model.dart';
 import '../models/busbookingmodels/search_bus_model.dart';
-import '../views/members/responsive/bus/bus_details.dart';
+import '../views/responsive------------------------------------/bus/bus_details.dart';
 import '../services/networks/bus_api_service/add_bus_booking_history.dart';
 import '../services/networks/bus_api_service/bus_booking_add_payment_api_services.dart';
 import '../services/networks/bus_api_service/bus_cityList_api_service.dart';

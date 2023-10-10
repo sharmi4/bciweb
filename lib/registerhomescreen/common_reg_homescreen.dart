@@ -8,7 +8,7 @@ import '../../../constant/constans.dart';
 import '../controller/auth_controller/auth_profile_controller.dart';
 import '../controller/reg_home_controller.dart';
 import '../views/authentication/landing_screen.dart';
-import '../views/business/responsive_business/home_respo/busimess_home_respo.dart';
+import '../views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 
 class RegisterCommonContainer extends StatefulWidget {
   RegisterCommonContainer({super.key});

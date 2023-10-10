@@ -1,5 +1,5 @@
-import 'package:bciweb/views/members/responsive/authentications/generate_otp/generate_otp.dart';
-import 'package:bciweb/views/members/responsive/responsive_homescreen/responsive_homescreen.dart';
+import 'package:bciweb/views/responsive------------------------------------/authentications/generate_otp/generate_otp.dart';
+import 'package:bciweb/views/responsive------------------------------------/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -8,16 +8,16 @@ import '../splash_screen/Splash_screen.dart';
 import '../views/authentication/business_authentication/business_generate_otp_screen.dart';
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
-import '../views/business/business_home_screen.dart';
-import '../views/business/services_screens/businees_lastoffers_screen.dart';
-import '../views/business/services_screens/business_add_availability_screen.dart';
-import '../views/business/services_screens/business_availability_screen.dart';
-import '../views/business/services_screens/business_offers_screen.dart';
-import '../views/business/services_screens/coupon_redemtion_screen.dart';
-import '../views/business/services_screens/create_coupons_screen.dart';
-import '../views/business/services_screens/lastcoupon_add_screen.dart';
-import '../views/business/services_screens/services_homescreen.dart';
-import '../views/business/services_screens/services_homescreen.dart';
+import '../views/business-------------------------------------/business_home_screen.dart';
+import '../views/business-------------------------------------/services_screens/businees_lastoffers_screen.dart';
+import '../views/business-------------------------------------/services_screens/business_add_availability_screen.dart';
+import '../views/business-------------------------------------/services_screens/business_availability_screen.dart';
+import '../views/business-------------------------------------/services_screens/business_offers_screen.dart';
+import '../views/business-------------------------------------/services_screens/coupon_redemtion_screen.dart';
+import '../views/business-------------------------------------/services_screens/create_coupons_screen.dart';
+import '../views/business-------------------------------------/services_screens/lastcoupon_add_screen.dart';
+import '../views/business-------------------------------------/services_screens/services_homescreen.dart';
+import '../views/business-------------------------------------/services_screens/services_homescreen.dart';
 import '../views/members/Gallery/gallery.dart';
 
 import '../views/members/bookins/history/views/history.dart';

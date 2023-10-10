@@ -1,11 +1,11 @@
 import 'dart:convert';
-
+import 'package:bciweb/models/busbookingmodels/category_model.dart';
+import 'package:bciweb/models/business_user_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:isgpayui_plugin/isgpayui_plugin.dart';
-
 import '../../constant/constans.dart';
 import '../../models/create_account_model.dart';
 import '../../models/member profileupdate.dart';
@@ -17,9 +17,10 @@ import '../../services/networks/profile_api_service/update_officialaddress.dart'
 import '../../services/networks/profile_api_service/update_residentialaddressapi.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../views/members/homescreens/reg_profile.dart';
-import '../home_controller.dart';
 import '../setting_controller/setting_controller.dart';
 import 'auth_controller.dart';
+
+
 
 class AuthProfileController extends GetxController {
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
@@ -37,6 +38,8 @@ class AuthProfileController extends GetxController {
       ProfilePIcUpdateApiServices();
 
   List<MemberUser> profileData = [];
+  List<BusinessUser> bussinessprofileData = [];
+  List<CategoryList> categoryList = [];
 
   RxBool isLoading = false.obs;
 

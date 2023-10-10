@@ -1,6 +1,6 @@
 import 'package:bciweb/models/category_model.dart';
-import 'package:bciweb/views/business/responsive_business/authentication/respo_business_otpverification.dart';
-import 'package:bciweb/views/members/responsive/authentications/sign_up_view/sign_up_screen.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/authentication/respo_business_otpverification.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/get_otp_api_service.dart';
 import 'package:bciweb/services/networks/services/catogory_api_service/category_api_service.dart';
@@ -14,8 +14,8 @@ import '../../models/business_model/merchants_register_model.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
 import '../../models/sub_category_model.dart';
-import '../../views/members/responsive/authentications/otp_verification/otp_verification.dart';
-import '../../views/members/responsive/authentications/verified_screen/verified_screen.dart';
+import '../../views/responsive------------------------------------/authentications/otp_verification/otp_verification.dart';
+import '../../views/responsive------------------------------------/authentications/verified_screen/verified_screen.dart';
 import '../../services/networks/business_service/business_login_api_service.dart';
 import '../../services/networks/business_service/merchant_api_services.dart';
 import '../../services/networks/services/authapi_service/login_api_service.dart';
@@ -27,7 +27,6 @@ import '../../views/authentication/Verification_done.dart';
 import '../../views/authentication/business_authentication/business_generate_otp_screen.dart';
 import '../../views/authentication/business_authentication/business_otp_verification.dart';
 import '../../views/authentication/generate_otp_screen.dart';
-import '../../views/authentication/landing_screen.dart';
 import '../../views/authentication/otp_verification.dart';
 
 class AuthController extends GetxController {
@@ -52,6 +51,7 @@ class AuthController extends GetxController {
   // RxBool isLoading = false.obs;
   RxBool isOTPLoading = false.obs;
   RxInt imageIndex = 0.obs;
+  
 
   Future<String> rendOtpFunction({required String mobileNumber}) async {
     String otpCode = "null";
@@ -210,12 +210,16 @@ class AuthController extends GetxController {
     print(response.data);
     isLoading(false);
     if (response.statusCode == 200) {
+      print(
+          '------------------------------${response.data["user"]["role_id"].toString()}----------VENDOR------------roll id-----------');
+      print(
+          '--------------------------${screen}-------------------screen--------');
       if (response.data["user"]["role_id"].toString() == "5") {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString("auth_token", response.data["token"]);
         await prefs.setString("id", response.data["user"]["id"].toString());
         if (screen == true) {
-          Get.offAll(verified_Screen());
+          Get.offAll(BusinesHomeRespo());
         } else {
           Get.offAll(const BusinessVerificationDone());
         }
@@ -243,7 +247,13 @@ class AuthController extends GetxController {
     print(response.data);
     isLoading(false);
     if (response.statusCode == 200) {
+      //
+
       if (response.data["user"]["role_id"].toString() == "3") {
+        print(
+            '------------------------------${response.data["user"]["role_id"].toString()}---------------MEMBER-------roll id-----------');
+        print(
+            '--------------------------${screen}-------------------screen--------');
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString("auth_token", response.data["token"]);
         await prefs.setString("id", response.data["user"]["id"].toString());

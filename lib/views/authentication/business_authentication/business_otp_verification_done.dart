@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/get_core.dart';
 import '../../../constant/constans.dart';
-import '../../business/business_home_screen.dart';
+import '../../business-------------------------------------/business_home_screen.dart';
 
 class BusinessVerificationDone extends StatelessWidget {
   const BusinessVerificationDone({super.key});

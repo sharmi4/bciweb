@@ -1,4 +1,4 @@
-import 'package:bciweb/views/members/responsive/authentications/generate_otp/generate_otp.dart';
+import 'package:bciweb/views/responsive------------------------------------/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/authentication/residential_Address.dart';
 import 'package:bciweb/views/authentication/widgets/formfield.dart';
 import 'package:bciweb/views/members/home_screen.dart';
