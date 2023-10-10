@@ -44,7 +44,10 @@ class ServiceData {
     dynamic image;
     DateTime createdAt;
     DateTime updatedAt;
-
+    dynamic sgst;
+    dynamic cgst;
+    String quantity;
+    String unit;
     ServiceData({
         required this.id,
         required this.categoryId,
@@ -57,11 +60,15 @@ class ServiceData {
         this.offerPercentage,
         this.offerUptoAmount,
         required this.isCoupon,
+        this.cgst,
+        required this.quantity,
+        this.sgst,
         this.couponAmount,
         required this.description,
         required this.isBooking,
         required this.status,
         this.amenties,
+        required this.unit,
         required this.image,
         required this.createdAt,
         required this.updatedAt,
@@ -88,6 +95,10 @@ class ServiceData {
         image: json["image"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+          sgst: json["cgst"],
+         cgst: json["sgst"],
+         quantity: json["quantity"]?? "",
+        unit: json["unit"]?? "",
     );
 
     Map<String, dynamic> toJson() => {
