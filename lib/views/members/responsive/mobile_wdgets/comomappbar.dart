@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../../constant/constans.dart';
+import '../../../business/responsive_business/home_respo/busimess_home_respo.dart';
 
 class AppBarMob extends StatelessWidget {
   const AppBarMob({super.key});
@@ -12,8 +14,9 @@ class AppBarMob extends StatelessWidget {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Colors.orange, Colors.deepOrangeAccent,
-                ],
+                Colors.orange,
+                Colors.deepOrangeAccent,
+              ],
             ),
           ),
         ),
@@ -47,7 +50,7 @@ class AppBarMob extends StatelessWidget {
                       ]),
                   child: InkWell(
                       onTap: () {
-                        //       Get.offAll(Subscribe1());
+                        //  Get.offAll(Subscribe1());
                       },
                       child: Icon(
                         Icons.search,
@@ -55,27 +58,43 @@ class AppBarMob extends StatelessWidget {
                         size: 17,
                       )),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 6),
-                  child: Container(
-                    height: 20,
-                    width: 20,
-                    decoration: BoxDecoration(
-                        color: kwhite,
-                        shape: BoxShape.circle,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              offset: Offset(0.0, 0.75),
-                              blurRadius: 2,
-                              color: kgrey)
-                        ]),
-                    child: Icon(
-                      Icons.notifications,
-                      color: kblue,
-                      size: 17,
+                InkWell(
+                  onTap: () {
+                    Get.offAll(BusinesHomeRespo());
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 6),
+                    child: InkWell(
+                      onTap: () {
+                        Get.offAll(BusinesHomeRespo());
+                      },
+                      child: Container(
+                        height: 20,
+                        width: 20,
+                        decoration: BoxDecoration(
+                            color: kwhite,
+                            shape: BoxShape.circle,
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  offset: Offset(0.0, 0.75),
+                                  blurRadius: 2,
+                                  color: kgrey)
+                            ]),
+                        child: InkWell(
+                          onTap: () {
+                            Get.offAll(BusinesHomeRespo());
+                          },
+                          child: Icon(
+                            Icons.notifications,
+                            color: kblue,
+                            size: 17,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
+                Text('data')
               ])),
         ]);
   }

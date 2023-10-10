@@ -8,9 +8,9 @@ import '../../../constant/constans.dart';
 import '../controller/auth_controller/auth_profile_controller.dart';
 import '../controller/reg_home_controller.dart';
 import '../views/authentication/landing_screen.dart';
+import '../views/business/responsive_business/home_respo/busimess_home_respo.dart';
 
 class RegisterCommonContainer extends StatefulWidget {
-  
   RegisterCommonContainer({super.key});
 
   @override
@@ -19,9 +19,8 @@ class RegisterCommonContainer extends StatefulWidget {
 }
 
 class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
-
-  bool isLoggedIn =false;
-    checkForLoggedInState() async {
+  bool isLoggedIn = false;
+  checkForLoggedInState() async {
     final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString('auth_token');
     print("Token is here");
@@ -37,7 +36,6 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
     }
   }
 
-  
   @override
   final reghomeController = Get.find<RegisterHomeController>();
   final authController = Get.find<AuthController>();
@@ -177,40 +175,39 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                     Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
-                          onPressed: () {
-                            reghomeController.reindex(6);
-                            reghomeController.update();
+                        onPressed: () {
+                          reghomeController.reindex(6);
+                          reghomeController.update();
 
-                            Get.toNamed(Routes.contact_screen);
-                          },
-                          child: Text(
-                            'CONTACT',
-                            style: TextStyle(
-                                color: reghomeController.reindex == 6
-                                    ? kOrange
-                                    : kblue),
-                          )),
+                          Get.toNamed(Routes.contact_screen);
+                        },
+                        child: Text(
+                          'CONTACT',
+                          style: TextStyle(
+                              color: reghomeController.reindex == 6
+                                  ? kOrange
+                                  : kblue),
+                        ),
+                      ),
                     ),
-                   if(isLoggedIn==true)
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7),
-                      child: TextButton(
-                          onPressed: () {
-                           
-                            reghomeController.reindex(7);
-                            reghomeController.update();
+                    if (isLoggedIn == true)
+                      Padding(
+                        padding: const EdgeInsets.only(left: 7),
+                        child: TextButton(
+                            onPressed: () {
+                              reghomeController.reindex(7);
+                              reghomeController.update();
                               Get.toNamed(Routes.BOOKINGS);
-                            //  Get.to(Hstory());
-                        
-                          },
-                          child: Text(
-                            'BOOKINGS',
-                            style: TextStyle(
-                                color: reghomeController.reindex == 7
-                                    ? kOrange
-                                    : kblue),
-                          )),
-                    )
+                              //  Get.to(Hstory());
+                            },
+                            child: Text(
+                              'BOOKINGS',
+                              style: TextStyle(
+                                  color: reghomeController.reindex == 7
+                                      ? kOrange
+                                      : kblue),
+                            )),
+                      )
                   ],
                 ),
               ),
@@ -220,27 +217,33 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 padding: const EdgeInsets.only(left: 0),
                 child: Row(
                   children: [
-                    //  Container(
-                    //   height: 30,
-                    //   width: 30,
-                    //   decoration: BoxDecoration(
-                    //    color: kwhite,
-                    //    shape: BoxShape.circle,
-                    //    boxShadow: <BoxShadow>[
-                    //     BoxShadow(
-                    //       offset: Offset(0.0, 0.75),
-                    //       blurRadius: 2,
-                    //       color: kgrey
-                    //     )
-                    //    ]
-                    //   ),
-                    //   child: Icon(Icons.search,color: kblue,),
-                    //  ),
+                    InkWell(
+                      onTap: () {
+                        Get.offAll(BusinesHomeRespo());
+                      },
+                      child: Container(
+                        height: 30,
+                        width: 30,
+                        decoration: BoxDecoration(
+                            color: kwhite,
+                            shape: BoxShape.circle,
+                            boxShadow: <BoxShadow>[
+                              BoxShadow(
+                                  offset: Offset(0.0, 0.75),
+                                  blurRadius: 2,
+                                  color: kgrey)
+                            ]),
+                        child: Icon(
+                          Icons.search,
+                          color: kblue,
+                        ),
+                      ),
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
                       child: GestureDetector(
-                        onTap: (){
-                            Get.toNamed(Routes.BusinessHome);
+                        onTap: () {
+                          Get.toNamed(Routes.BusinessHome);
                         },
                         child: Container(
                           height: 30,
@@ -297,8 +300,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             padding: const EdgeInsets.only(left: 10),
                             child: InkWell(
                               onTap: () {
-                                  Get.to(LandingScreen());
-                               // Get.toNamed(Routes.MobileVerification);
+                                Get.to(LandingScreen());
+                                // Get.toNamed(Routes.MobileVerification);
                               },
                               child: Container(
                                 height: 35,
