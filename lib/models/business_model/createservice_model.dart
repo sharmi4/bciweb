@@ -7,7 +7,7 @@ class CreateServiceModel {
   // String bvcAmount;
   String booking;
   List<Amenty> amenities;
-  String image;
+  dynamic image;
   String description;
   String isOfferAvailable;
   String isCouponsAvailable;

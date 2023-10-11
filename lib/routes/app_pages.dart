@@ -4,6 +4,8 @@
 
 import 'package:get/get.dart';
 
+import '../views/business/business_booking_details_screen.dart';
+
 
 part 'app_routes.dart';
 

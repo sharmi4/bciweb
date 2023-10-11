@@ -35,6 +35,9 @@ abstract class Routes {
   static const BusinessLastOffersScreen = _Paths.BusinessLastOffersScreen;
   static const BusinessAvailabilityScreen = _Paths.BusinessAvailabilityScreen;
   static const BusinessAddAvailabilityScreen = _Paths.BusinessAddAvailabilityScreen;
+  static const BusinessWalletScreen = _Paths.BusinessWalletScreen;
+  static const BusinessBookingScreen = _Paths.BusinessBookingScreen;
+  static const BusinessBookingDetailsScreen = _Paths.BusinessBookingDetailsScreen;
   
 }
 
@@ -66,6 +69,9 @@ abstract class _Paths {
   static const BusinessLastOffersScreen ='/business-lastofferscreen';
   static const BusinessAvailabilityScreen = '/business-availability-screen';
   static const BusinessAddAvailabilityScreen = '/business-addavailability-screen';
+  static const BusinessWalletScreen = '/business-walletscreen';
+  static const BusinessBookingScreen = '/business-bookingscreen';
+  static const BusinessBookingDetailsScreen ='/business-bookingdetailsscreen';
 }
  
   // static const SIGN_UP = '/home-screen';

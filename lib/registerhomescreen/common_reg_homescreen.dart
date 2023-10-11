@@ -91,7 +91,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                   : kblue),
                         )),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextButton(
                           onPressed: () {
                             Get.toNamed(Routes.about_screens);
@@ -108,7 +108,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextButton(
                           onPressed: () {
                             reghomeController.reindex(2);
@@ -125,7 +125,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextButton(
                           onPressed: () {
                             reghomeController.reindex(3);
@@ -141,7 +141,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextButton(
                           onPressed: () {
                             reghomeController.reindex(4);
@@ -157,7 +157,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextButton(
                           onPressed: () {
                             reghomeController.reindex(5);
@@ -173,7 +173,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           )),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 7),
+                      padding: const EdgeInsets.only(left: 5),
                       child: TextButton(
                         onPressed: () {
                           reghomeController.reindex(6);
@@ -275,7 +275,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             color: Colors.white,
                           )
                         : Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
                               onTap: () {
                                 Get.toNamed(Routes.Subscrib);
@@ -297,7 +297,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           ),
                     authController.isLogedin == false
                         ? Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
                               onTap: () {
                                 Get.to(LandingScreen());
@@ -319,7 +319,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             ),
                           )
                         : Padding(
-                            padding: const EdgeInsets.only(left: 10),
+                            padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
                               onTap: () {
                                 // Get.to(MobileVerificatio());
@@ -347,7 +347,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
             ),
             Obx(() => authController.isLogedin == true
                 ? Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                    padding: const EdgeInsets.only(left: 10),
                     child: Row(children: [
                       GetBuilder<AuthProfileController>(builder: (_) {
                         return authProfileController.profileData.isNotEmpty

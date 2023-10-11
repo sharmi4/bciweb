@@ -17,8 +17,7 @@ class AddServicesApiServices extends BaseApiService {
           createServiceModel.amenities.map((element) => element.toJson()));
       print(createServiceModel.image);
       FormData formData = FormData.fromMap({
-        "image": await MultipartFile.fromFile(createServiceModel.image,
-            filename: createServiceModel.image.split("/").last),
+           "image":  MultipartFile.fromBytes(createServiceModel.image, filename: "image"),
         "title": createServiceModel.title,
         "category": createServiceModel.category.toString(),
         "sale_amount": createServiceModel.saleAmount,

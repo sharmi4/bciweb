@@ -13,7 +13,9 @@ import '../../constant/constans.dart';
 import '../../models/business_model/merchants_register_model.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
+import '../../models/setting_model/transation_history_model.dart';
 import '../../models/sub_category_model.dart';
+import '../../services/networks/transaction_history_api_service.dart';
 import '../../views/responsive------------------------------------/authentications/otp_verification/otp_verification.dart';
 import '../../views/responsive------------------------------------/authentications/verified_screen/verified_screen.dart';
 import '../../services/networks/business_service/business_login_api_service.dart';
@@ -141,17 +143,18 @@ class AuthController extends GetxController {
 
     if (response.statusCode == 200) {
       if (isMobile == true) {
-        Get.to(BusinessOtpVerification(
-          phoneNumber: mobileNumber,
-          otp: response.data["otp"].toString(),
-        ));
-      } else {
-        Get.to(
+           Get.to(
           RespoBusinessOtpVerification(
             phoneNumber: mobileNumber,
             otp: response.data["otp"].toString(),
           ),
         );
+      
+      } else {
+         Get.to(BusinessOtpVerification(
+          phoneNumber: mobileNumber,
+          otp: response.data["otp"].toString(),
+        ));
       }
     } else if (response.statusCode == 404) {
       Get.rawSnackbar(
@@ -414,6 +417,29 @@ class AuthController extends GetxController {
       SubCategoryModel subCategoryModel =
           SubCategoryModel.fromJson(response.data);
       subCategoryList = subCategoryModel.data;
+    }
+    update();
+  }
+   //transaction history
+  TransactionHistoryApiServices transactionHistoryApiServices =
+      TransactionHistoryApiServices();
+  List<TransactionHistory> transactionHistorydata = [];
+
+  transactionHistoryDetails() async {
+    dio.Response<dynamic> response =
+        await transactionHistoryApiServices.transactionHistoryApi();
+    if (response.statusCode == 200) {
+      TransactionHistoryModel transactionHistoryModel =
+          TransactionHistoryModel.fromJson(response.data);
+      transactionHistorydata = transactionHistoryModel.transactionHistory;
+      print('transaction data');
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
     }
     update();
   }

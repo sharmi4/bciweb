@@ -1,9 +1,16 @@
+import 'package:bciweb/views/business/services_screens/business_withdraw_screen.dart';
+import 'package:date_format/date_format.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
 import '../../constant/constans.dart';
+import '../../controller/auth_controller/auth_profile_controller.dart';
+import '../../controller/setting_controller/setting_controller.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
-import '../../registerhomescreen/common_reg_bottom.dart';
 import '../members/common_widget/business_common_screen.dart';
+import '../members/homescreens/wallet_deposit_screen.dart';
 
 class BusinessWalletScreen extends StatefulWidget {
   const BusinessWalletScreen({super.key});
@@ -14,10 +21,17 @@ class BusinessWalletScreen extends StatefulWidget {
 
 class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    apisettingController.transactionHistoryDetails();
+  }
+    final apisettingController = Get.find<ApiSettingController>();
+     final authprofileController = Get.find<AuthProfileController>();
+  @override
   Widget build(BuildContext context) {
-     var size = MediaQuery.of(context).size;
-    return Scaffold(
-       appBar: PreferredSize(
+    return  Scaffold(
+      appBar: PreferredSize(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -26,475 +40,352 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
             ],
           ),
           preferredSize: const Size(double.infinity, 110)),
-          body:  ListView(
-            children:[ Column(
-              children: [
-                Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage('assets/images/Group 39755.png',
-                    ),
-                    fit: BoxFit.cover)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 125),
-                    child: Text('Wallet Us',textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 35,
-                    fontWeight: FontWeight.bold,
-                    color: kwhite),),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30,left: 50),
-                  child: Row(
-                    children: [
-                      Text('Total Wallet',
-                      style: TextStyle(
-                        fontSize: 32,
-                        color: kblue,
-                
-                      ),)
-                    ],
-                  ),
-                ),
-                ksizedbox20,
-                Padding(
-                  padding: const EdgeInsets.only(left: 60),
-                  child: Row(
-                    
-                    children: [
-                      Container(
-                        height: 150,
-                        width: MediaQuery.of(context).size.width*0.75,
-                        decoration:BoxDecoration(
-                          color: kOrange,
-                          border: Border.all(
-                            color: kyellow,
-                            width: 1
-                          ),
-                          borderRadius: BorderRadius.circular(5)
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 25,left: 40),
-                              child: Row(
-                                children: [
-                                  Text('Total Wallet Amounts',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: kwhite.withOpacity(0.8)
-                                  ),),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10,left: 40),
-                              child: Row(
-                                children: [
-                                  Text('₹1990.00',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                    color: kwhite
-                                  ),),
-                                  
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10,left: 40),
-                              child: Row(
-                                children: [
-                                  Text('Last Transaction Amount ₹1.00',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: kwhite.withOpacity(0.8)
-                                  ),),
-                                  
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 50),
-                        child: Container(
-                          height: 150,
-                          width: 120,
-                        
-                          decoration: BoxDecoration(
-                                   color: kyellow,
-                                  border: Border.all(
-                                    color: kOrange
-                                  ),
-                                  borderRadius: BorderRadius.circular(5)
-                          ),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset('assets/icons/walleticon.png',color: kwhite,)                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 0,left: 20),
-                                child: Row(
-                                  children: [
-                                    Text('Deposit \nCash',textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      color: kwhite,
-
-                                    ),)
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                ksizedbox40,
-                Padding(
-                  padding: const EdgeInsets.only(left: 60,right: 90),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height*0.6,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: kwhite
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Text('Transaction History')
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30, left: 50),
-              child: Row(
-                children: [
-                  Text(
-                    'Total Wallet',
-                    style: TextStyle(
-                      fontSize: 32,
-                      color: kblue,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            ksizedbox20,
-            Padding(
-              padding: const EdgeInsets.only(left: 60),
-              child: Row(
-                children: [
-                  Container(
-                    height: 150,
-                    width: MediaQuery.of(context).size.width * 0.75,
-                    decoration: BoxDecoration(
-                        color: kOrange,
-                        border: Border.all(color: kyellow, width: 1),
-                        borderRadius: BorderRadius.circular(5)),
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 25, left: 40),
-                          child: Row(
-                            children: [
-                              Text(
-                                'Total Wallet Amounts',
-                                style: TextStyle(
-                                    fontSize: 22,
-                                    color: kwhite.withOpacity(0.8)),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10, left: 40),
-                          child: Row(
-                            children: [
-                              Text(
-                                '₹1990.00',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 22,
-                                    color: kwhite),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10, left: 40),
-                          child: Row(
-                            children: [
-                              Text(
-                                'Last Transaction Amount ₹1.00',
-                                style: TextStyle(
-                                    fontSize: 22,
-                                    color: kwhite.withOpacity(0.8)),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: InkWell(
-                      onTap: () {
-                       // Get.toNamed('/add-wallet');
-                      },
-                      child: Container(
-                        height: 150,
-                        width: 120,
-                        decoration: BoxDecoration(
-                            color: kyellow,
-                            border: Border.all(color: kOrange),
-                            borderRadius: BorderRadius.circular(5)),
-                        child: Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 35,
-                              backgroundColor: kwhite,
-                              child: Image.asset(
-                                'assets/images/add-money-wallet-icon.png',
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            Text(
-                              'Deposit \nCash',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: kwhite,
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            ksizedbox40,
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 60,right: 90),
-            //   child: Container(
-            //     height: MediaQuery.of(context).size.height*0.6,
-            //     width: MediaQuery.of(context).size.width,
-            //     decoration: BoxDecoration(
-            //       color: kwhite
-            //     ),
-            //     child: Column(
-            //       children: [
-            //         Row(
-            //           children: [
-            //             Text('Transaction History')
-            //           ],
-            //         )
-            //       ],
-            //     ),
-            //   ),
-            // ),
-
-            Container(
-              decoration: BoxDecoration(
-                  color: kwhite, borderRadius: BorderRadius.circular(7)),
-              height: 625,
-              width: size.width * 0.9,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
+      body: ListView(
+        children: [
+          Column(
+            children: [
+            
+            
+                 Stack(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Transaction History',
-                          style: TextStyle(fontSize: 25, color: kblue),
+                    Container(
+                      height: 250,
+                      width: MediaQuery.of(context).size.width,
+                      child: Image.asset('assets/images/walletbackgroundimage.png',
+                      fit: BoxFit.cover,)),
+                    Positioned(
+                      top:0,
+                      left:0,
+                      right:0,
+                      bottom:0,
+                      child: Center(
+                        child: Text('Wallet',
+                           style: displayfont,
+                                                  
                         ),
-                        Image.asset('assets/images/transactionicon.png')
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          'Today Transaction',
-                          style: TextStyle(fontSize: 18),
-                          textAlign: TextAlign.start,
-                        ),
-                      ],
-                    ),
-                    ksizedbox10,
-                    Divider(
-                      thickness: 1,
-                    ),
-                    ksizedbox10,
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Luck Draw registration...',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
-                              ),
-                              ksizedbox10,
-                              Row(
-                                children: [
-                                  Text('20/04/2023              Ref.no:654')
-                                ],
-                              )
-                            ],
-                          ),
-                          Text(
-                            '-₹4500',
-                            style: TextStyle(
-                                color: korange,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          )
-                        ],
-                      ),
-                    ),
-                    ksizedbox10,
-                    Divider(
-                      thickness: 0.4,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Luck Draw registration...',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
-                              ),
-                              ksizedbox10,
-                              Row(
-                                children: [
-                                  Text('20/04/2023              Ref.no:654')
-                                ],
-                              )
-                            ],
-                          ),
-                          Text(
-                            '-₹4500',
-                            style: TextStyle(
-                                color: kblue,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          )
-                        ],
-                      ),
-                    ),
-                    ksizedbox10,
-                    Divider(
-                      thickness: 0.4,
-                    ),
-                    ksizedbox10,
-                    Row(
-                      children: [
-                        Text(
-                          'Yesterday Transaction',
-                          style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.w500),
-                        ),
-                      ],
-                    ),
-                    ksizedbox10,
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Luck Draw registration...',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
-                              ),
-                              ksizedbox10,
-                              Row(
-                                children: [
-                                  Text('20/04/2023              Ref.no:654')
-                                ],
-                              )
-                            ],
-                          ),
-                          Text(
-                            '-₹4500',
-                            style: TextStyle(
-                                color: korange,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          )
-                        ],
-                      ),
-                    ),
-                    ksizedbox10,
-                    Divider(
-                      thickness: 0.4,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                'Luck Draw registration...',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
-                              ),
-                              ksizedbox10,
-                              Row(
-                                children: [
-                                  Text('20/04/2023              Ref.no:654')
-                                ],
-                              )
-                            ],
-                          ),
-                          Text(
-                            '-₹4500',
-                            style: TextStyle(
-                                color: kblue,
-                                fontWeight: FontWeight.w600,
-                                fontSize: 19),
-                          )
-                        ],
-                      ),
-                    ),
+                      ))
+                  ],
+                ),
+            
+              Padding(
+                padding: const EdgeInsets.only(top:40,left:50),
+                child: Row(
+                  children: [
+                    Text('Total Wallet',
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color:kblue
+                    ),),
                   ],
                 ),
               ),
-            ),
-            ksizedbox30,
-         RegisterCommonBottom()  ],
-        ),
+              ksizedbox40,
+              Padding(
+                padding: const EdgeInsets.only(top:0,left:0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height*0.29,
+                      width: MediaQuery.of(context).size.width*0.65,
+                      decoration: BoxDecoration(
+                       color:korange,
+                      boxShadow: <BoxShadow>[
+                        BoxShadow(
+                          blurRadius: 3,
+                          offset: Offset(0.0,0.75),
+                          color:kyellow,
+    
+                        )
+                      ]
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:20),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('Total Wallet Amounts',
+                            style:TextStyle(
+                              color: Colors.white.withOpacity(0.91),
+                            fontSize: 23
+                            )
+                            ),
+                           authprofileController.profileData.isNotEmpty? 
+                           Text('₹${authprofileController.profileData.first.walletAmount}',
+                            style:TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color:Colors.white
+                            )):Text('₹ 0.0',
+                            style:TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              color:Colors.white
+                            )
+                            ),
+                            // Text('Last Transaction Amount ₹1.00',
+                            // style:TextStyle(
+                            //   fontSize: 23,
+                            //   color: Colors.white.withOpacity(0.91)
+                            // ))
+                          ],
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left:20),
+                      child: InkWell(
+                            onTap: (){
+                                  if (authprofileController
+                                  .profileData.first.bankAccountNumber !=
+                              "" &&
+                          authprofileController.profileData.first.bankAccountName !=
+                              "" &&
+                          authprofileController.profileData.first.ifscCode != "") {
+                        Get.to(() => const EnterAmountForWithdrawalScreen());
+                      } else {
+                        showModalBottomSheet(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            context: context,
+                            builder: (context) {
+                              return Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 5, right: 5, bottom: 2),
+                                child: Container(
+                                  height: 130,
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 25),
+                                            child: Text(
+                                              'Add Bank Account to Withdraw',
+                                              style: TextStyle(
+                                                  fontSize: 17, color: kblue),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      const SizedBox(
+                                        height: 25,
+                                      ),
+                                      ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                            minimumSize: const Size(170, 45),
+                                            backgroundColor: kblue,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(15))),
+                                        onPressed: () {
+                                          //Get.to(const BankDetailsScreen());
+                                        },
+                                        child: const Text(
+                                          'Add',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            });
+                      }
+                                },
+                        child: Container(
+                          height: MediaQuery.of(context).size.height*0.29,
+                          width:MediaQuery.of(context).size.width*0.11,
+                          decoration: BoxDecoration(
+                            color:kyellow,
+                            border: Border.all(
+                              color:korange
+                            )
+                          ),
+                          child:Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children:[
+                              CircleAvatar(
+                                radius: 29,
+                                backgroundColor: kwhite.withOpacity(0.8),
+                                child: Image.asset('assets/icons/depositwalleticon.png',
+                                height: 30,fit:BoxFit.fitHeight,)),
+                              Text('Withdraw \nCash',
+                              style: TextStyle(
+                                color:kwhite,
+                                fontSize: 20
+                              ),)
+                            ]
+                          )
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left:70,right:70,top:50),
+                child: Container(
+                  height:MediaQuery.of(context).size.height,
+                  
+                  decoration:BoxDecoration(
+                    color:kwhite,
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        offset: Offset(0.0, 0.75),
+                        blurRadius: 3,
+                        color:kgrey
+                      )
+                    ]
+                  ),
+                  child: 
+                      Column(
+                        children: [
+                            Padding(
+                        padding: const EdgeInsets.only(left:20,right:20,top:0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Transaction History',
+                            style:TextStyle(
+                              fontSize: 20,
+                              color:kblue
+                            )),
+                            Padding(
+                              padding:  EdgeInsets.only(top:30),
+                              child: Container(
+                                height: 60,
+                                width: 60,
+                                decoration: BoxDecoration(
+                                  color:kwhite.withOpacity(0.6),
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      offset: Offset(0.0,0.5),
+                                       blurRadius: 1,
+                                       color:kgrey
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(4)
+                                ),
+                                child: Center(
+                                  child: Image.asset('assets/icons/historywalleticon.png',
+                                  height: 30,fit:BoxFit.fitHeight,),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                        GetBuilder<ApiSettingController>(
+                          builder: (_) {
+                            return apisettingController.transactionhistorydata.isEmpty?
+                            Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children:[
+                                 Image.asset('assets/images/nowalletimage.png',
+                                 height: 300,fit: BoxFit.fitHeight,),
+                                 ksizedbox30,
+                                 Text('No Transaction History',
+                                 style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: kblue
+                                 ),)]),
+                            ):  ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: apisettingController.transactionhistorydata.length,
+                              itemBuilder: (context,index){
+                              return  Column(
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children:[
+                                                  
+                              Padding(
+                              padding: const EdgeInsets.only(left:10,right:20),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                       
+                                        children: [
+                                          Image.asset('assets/icons/amounticon.png',
+                                          height: 90,fit:BoxFit.fitHeight,),
+                                          Padding(
+                                            padding: const EdgeInsets.only(left:20),
+                                            child: Column(
+                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text(apisettingController.transactionhistorydata[index].type,
+                                                style:TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.bold
+                                                )),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(top:7),
+                                                  child: Row(
+                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                    children: [
+                                                       Text(formatDate(apisettingController.transactionhistorydata[index].createdAt,
+                                 [dd ,'-',mm,'-',yyyy]), style: TextStyle(
+                                                          fontSize: 16
+                                                         ),),
+                                                       Padding(
+                                                         padding: const EdgeInsets.only(left:40),
+                                                         child: Text(apisettingController.transactionhistorydata[index].transactionId,
+                                                         style: TextStyle(
+                                                          fontSize: 16
+                                                         ),),
+                                                       )
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            ), 
+                                             ),  
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children:[
+                                      Text('₹${apisettingController.transactionhistorydata[index].amount}',
+                                      style:TextStyle(
+                                        color:Colors.red,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold
+                                      ))
+                                    ]
+                                  )
+                                ],
+                              ),
+                            ),
+                                                  ]
+                              );
+                      
+                            });
+                          }
+                        ),
+                        ]
+                      ),
+                 
+                ),
+              )
+            ],
+          ),
+          ksizedbox40
+        ],
+      ),
     );
   }
 }

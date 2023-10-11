@@ -46,10 +46,10 @@ class CategoryData {
     });
 
     factory CategoryData.fromJson(Map<String, dynamic> json) => CategoryData(
-        id: json["id"],
-        title: json["title"],
-        description: json["description"],
-        status: json["status"],
+        id: json["id"]??"0",
+        title: json["title"]??"",
+        description: json["description"]??"",
+        status: json["status"]??"",
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
     );

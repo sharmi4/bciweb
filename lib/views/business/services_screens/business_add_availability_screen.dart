@@ -1,6 +1,7 @@
 
 import 'dart:typed_data';
 
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -59,8 +60,10 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
   void initState() {
     // TODO: implement initState
     super.initState();
+     _controller = TextfieldTagsController();
     authController.getCategoryList();
-    businessserviceController.getServicesByVendor();
+   authController.getSubCategoryList();
+   
   }
   
 
@@ -192,12 +195,12 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                       bottom: 0,
                       right: 0,
                       child: Center(
-                        child: Text('SERVICE CREATES', style: displayfont),
+                        child: Text('CREATE COUPONS', style: displayfont),
                       ),
                     )
                     ],
                   ),
-      //             ksizedbox10,
+                  ksizedbox10,
       //             Stack(
       //               children: [
       //                   Container(
@@ -242,7 +245,6 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
       // )
       //               ],
       //             ),
-                 ksizedbox20,
                   Padding(
                     padding: const EdgeInsets.only(left: 100),
                     child: Row(
@@ -273,15 +275,38 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                               decoration: BoxDecoration(
                   
                               ),
-                              child: TextField(
-                                controller:serviceTitleController ,
+                              child: TextFormField(
+                                controller: serviceTitleController,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                validator: (value) {
+                                if (value!.isEmpty) {
+                                return "Title Can't be Empty";
+                                }
+                                return null;
+                                },
                                 decoration: InputDecoration(
-                                  labelText: 'Product title*',
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: kblue
-                                    )
-                                  )
+                                  hintText: 'Product Title',
+                                  
+                                 fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  labelText: "Product title *",
+                  hintStyle: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.w400,
+                  )
                                 ),
                               ),
                             ),ksizedbox40,
@@ -289,7 +314,6 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                               height: 54,
                               width: MediaQuery.of(context).size.width*0.25,
                               decoration: BoxDecoration(
-                  
                               ),
                               child:  DropdownSearch<CategoryData>(
                     itemAsString: (CategoryData u) => u.title,
@@ -305,7 +329,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
                           // labelText: "Department *",
-                          labelText: "Product Category Name*",
+                          hintText: "Product Category Name",
                           enabledBorder: OutlineInputBorder(
                               borderSide:
                                   const BorderSide(color: Color(0xff707070)),
@@ -336,16 +360,44 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                               decoration: BoxDecoration(
                   
                               ),
-                              child: TextField(
+                              child: TextFormField(
                                 controller: saleAmountController,
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Sale Amount Can't be Empty";
+                }
+                return null;
+              },
+              keyboardType: TextInputType.phone,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(10),
+                FilteringTextInputFormatter.digitsOnly,
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ],
                                 decoration: InputDecoration(
-                                  hintText: 'Sale Amount*',
-                                  border: OutlineInputBorder(
-                                    
-                                    borderSide: BorderSide(
-                                      color: kblue
-                                    )
-                                  )
+                                  hintText: 'Sale Amount',
+                                  
+                                  fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  labelText: "Sale Amount *",
+                  hintStyle: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.w400,
+                  )
                                 ),
                               ),
                             ),
@@ -429,54 +481,64 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                         Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              
-                                      ksizedbox20,
-                                   Container(
+                          padding: const EdgeInsets.only(left: 14),
+                          child: Container(
                                   height: 54,
                                   width: MediaQuery.of(context).size.width*0.25,
                                   decoration: BoxDecoration(
-                                            
+                                   
                                   ),
                                   child: Column(
-                                    children: [
-                                      TextField(
-                                        controller: startdateController,
-                                        decoration: InputDecoration(
-                                          labelText: 'Starts At',
-                                          hintText: selectdt1,
-                                          suffixIcon: InkWell(
-                                            onTap: (){
-                                            _showDatePicker1(context);
-                                            },
-                                            child: Icon(Icons.date_range)),
-                                          border: OutlineInputBorder(
-                                            
-                                            
-                                            borderSide: BorderSide(
-                                              color: kblue
-                                            )
-                                          )
-                                        ),
-                                      ),
-                                    ],
+                           children: [
+                             TextFormField(
+                              
+                               controller: actualAmountController,
+                               
+                                autovalidateMode: AutovalidateMode.onUserInteraction,
+                                 validator: (value) {
+                if (value!.isEmpty) {
+                  return "Actual amount Can't be Empty";
+                }
+                return null;
+              },
+              keyboardType: TextInputType.phone,
+              inputFormatters: [
+                LengthLimitingTextInputFormatter(10),
+                FilteringTextInputFormatter.digitsOnly,
+                FilteringTextInputFormatter.deny(RegExp(r'\s')),
+              ],
+                               decoration: InputDecoration(
+                                       fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                                labelText: 'Actual Amount*',
+                                 hintStyle: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.w400,
+                  )
+                               ),
+                             ),
+                           ],
                                   ),
                                 ),
-                            ],
-                          ),
                         ),
                              
-                               ksizedbox20,
+                               ksizedbox30,
                               Padding(
                                 padding: const EdgeInsets.only(right: 60),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-
-                                    ksizedbox20,
+                                child: 
                                    Container(
                                            height: 54,
                                             width: MediaQuery.of(context).size.width*0.25,
@@ -484,9 +546,8 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                                   
                                                                    ),
                                                                    child: TextField(
-                                    controller: enddateController,
+                                    controller: startdateController,
                                     decoration: InputDecoration(
-                                      labelText: 'Ends At',
                                       hintText: selectdt,
                                       suffixIcon: InkWell(
                                         onTap: (){
@@ -505,25 +566,62 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                                                    ),
 
                                                                  )
-                                  ],
-                                ),
+                                  
                               ),
                                  
                     ],
                   ),
-                ),ksizedbox30,
-                  ksizedbox10,
-          GetBuilder<AuthController>(builder: (_) {
-            return Padding(
-              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-              child: Container(
-                height: 55,
-                width: 330,
+                ),
+                ksizedbox30,
+                 Padding(
+                  padding: const EdgeInsets.only(left: 0,right:0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                                  height: 54,
+                                  width: MediaQuery.of(context).size.width*0.25,
+                                  decoration: BoxDecoration(
+                                   
+                                  ),
+                                  child: TextField(
+                                    controller: enddateController,
+                                    decoration: InputDecoration(
+                                     suffixIcon: InkWell(
+                                             onTap: (){
+                                                 _showDatePicker1(context);
+                                             },
+                                             child: Icon(Icons.date_range)),
+                                         hintText: selectdt1,
+                                      border: OutlineInputBorder(
+                                        
+                                        
+                                        borderSide: BorderSide(
+                                          color: kblue
+                                        )
+                                      )
+                                    ),
+                                  ),
+                                ),
+                        ),
+                             
+                               ksizedbox30,
+                              Padding(
+                                padding: const EdgeInsets.only(right: 60),
+                                child: 
+                                 GetBuilder<AuthProfileController>(
+                                   builder: (_) {
+                                     return Container(
+                height: 54,
+                width: MediaQuery.of(context).size.width*0.25,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(3),
                     border: Border.all(
                         color: const Color.fromARGB(255, 5, 5, 5)
-                            .withOpacity(0.8))),
+                            .withOpacity(0.8))
+                            ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 10, right: 10, top: 15),
                   child: DropdownButton<int>(
@@ -557,14 +655,34 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                     }).toList(),
                   ),
                 ),
-              ),
-            );
-          }),ksizedbox30,
-           Padding(
-            padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-            child: TextFormField(
-              controller: cgstController,
-              readOnly: true,
+              );
+                                   }
+                                 ),
+                                  
+                              ),
+                                 
+                    ],
+                  ),
+                ),
+                ksizedbox30,
+                 Padding(
+                  padding: const EdgeInsets.only(left: 0,right:0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                                  height: 54,
+                                  width: MediaQuery.of(context).size.width*0.25,
+                                  decoration: BoxDecoration(
+                                   
+                                  ),
+                                  child: Column(
+                           children: [
+                             TextFormField(
+                               controller: cgstController,
+                                readOnly: true,
               keyboardType: TextInputType.number,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
@@ -573,8 +691,8 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                 }
                 return null;
               },
-              decoration: InputDecoration(
-                  fillColor: Colors.white,
+                               decoration: InputDecoration(
+                               fillColor: Colors.white,
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -593,9 +711,67 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                   hintStyle: TextStyle(
                     color: kblue,
                     fontWeight: FontWeight.w400,
-                  )),
-            ),
-          ),
+                  )
+                               ),
+                             ),
+                           ],
+                                  ),
+                                ),
+                        ),
+                             
+                               ksizedbox30,
+                              Padding(
+                                padding: const EdgeInsets.only(right: 60),
+                                child: 
+                                   Container(
+                                           height: 54,
+                                            width: MediaQuery.of(context).size.width*0.25,
+                                            decoration: BoxDecoration(
+                                                  
+                                                                   ),
+                                        child: TextFormField(
+                                    controller: sgstController,
+                                                  readOnly: true,
+              keyboardType: TextInputType.number,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "SGST Can't be Empty";
+                }
+                return null;
+              },
+                                    decoration: InputDecoration(
+                                     fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  labelText: "SGST",
+                  hintStyle: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.w400,
+                  )
+
+                                    ),
+                                                                   ),
+
+                                                                 )
+                                  
+                              ),
+                                 
+                    ],
+                  ),
+                ),
                 ksizedbox30,
                  Padding(
                   padding: const EdgeInsets.only(left: 0,right:0),
@@ -612,30 +788,9 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                   ),
                                   child: Column(
                            children: [
-                             TextField(
-                               controller: sgstController,
-                               decoration: InputDecoration(
-                                 labelText: 'SGST',
-                                 border: OutlineInputBorder(
-                                   
-                                   
-                                   borderSide: BorderSide(
-                                     color: kblue
-                                   )
-                                 )
-                               ),
-                             ),
-                           ],
-                                  ),
-                                ),
-                        ),
-                             
-                               ksizedbox20,
-                              Padding(
-            padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-            child: TextFormField(
-              controller: quantityController,
-              keyboardType: TextInputType.number,
+                             TextFormField(
+                               controller: quantityController,
+                                keyboardType: TextInputType.number,
               autovalidateMode: AutovalidateMode.onUserInteraction,
               validator: (value) {
                 if (value!.isEmpty) {
@@ -643,8 +798,8 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                 }
                 return null;
               },
-              decoration: InputDecoration(
-                  fillColor: Colors.white,
+                               decoration: InputDecoration(
+                                 fillColor: Colors.white,
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -663,154 +818,29 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                   hintStyle: TextStyle(
                     color: kblue,
                     fontWeight: FontWeight.w400,
-                  )),
-            ),
-          ),
-                                 
-                    ],
-                  ),
-                ),
-                ksizedbox30,
-                 Padding(
-                  padding: const EdgeInsets.only(left: 0,right:0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Container(
-                                  height: 54,
-                                  width: MediaQuery.of(context).size.width*0.25,
-                                  decoration: BoxDecoration(
-                                   
-                                  ),
-                                  child: Column(
-                           children: [
-                             Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 7),
-            child: TextFieldTags(
-              textfieldTagsController: _controller,
-              initialTags: const [],
-              textSeparators: const [','],
-              letterCase: LetterCase.normal,
-              validator: (String tag) {
-                if (tag == 'php') {
-                  return 'No, please just no';
-                } else if (_controller!.getTags!.contains(tag)) {
-                  return 'you already entered that';
-                }
-                return null;
-              },
-              inputfieldBuilder:
-                  (context, tec, fn, error, onChanged, onSubmitted) {
-                return ((context, sc, tags, onTagDelete) {
-                  return Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: TextField(
-                      controller: tec,
-                      focusNode: fn,
-                      decoration: InputDecoration(
-                        isDense: true,
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 74, 137, 92),
-                            width: 3.0,
-                          ),
-                        ),
-                        focusedBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(
-                            color: Color.fromARGB(255, 74, 137, 92),
-                            width: 3.0,
-                          ),
-                        ),
-                        labelText: 'Enter Amenties',
-                        helperStyle: TextStyle(
-                          color: kblue,
-                        ),
-                        hintText: _controller!.hasTags ? '' : "Enter Amenties...",
-                        errorText: error,
-                        prefixIconConstraints:
-                            BoxConstraints(maxWidth: _distanceToField! * 0.74),
-                        prefixIcon: tags.isNotEmpty
-                            ? SingleChildScrollView(
-                                controller: sc,
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                    children: tags.map((String tag) {
-                                  return Container(
-                                    decoration: const BoxDecoration(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0),
-                                      ),
-                                      color: Color.fromARGB(255, 74, 137, 92),
-                                    ),
-                                    margin: const EdgeInsets.symmetric(
-                                        horizontal: 5.0),
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 10.0, vertical: 5.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        InkWell(
-                                          child: Text(
-                                            '$tag',
-                                            style: const TextStyle(
-                                                color: Colors.white),
-                                          ),
-                                          onTap: () {
-                                            print("$tag selected");
-                                          },
-                                        ),
-                                        const SizedBox(width: 4.0),
-                                        InkWell(
-                                          child: const Icon(
-                                            Icons.cancel,
-                                            size: 14.0,
-                                            color: Color.fromARGB(
-                                                255, 233, 233, 233),
-                                          ),
-                                          onTap: () {
-                                            onTagDelete(tag);
-                                          },
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                }).toList()),
-                              )
-                            : null,
-                      ),
-                      onChanged: onChanged,
-                      onSubmitted: onSubmitted,
-                    ),
-                  );
-                });
-              },
-            ),
-          ),
+                  )
+                               ),
+                             ),
                            ],
                                   ),
                                 ),
                         ),
                              
-                               ksizedbox20,
+                               ksizedbox30,
                               Padding(
                                 padding: const EdgeInsets.only(right: 60),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    TextFormField(
-              controller: unitController,
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              // validator: (value) {
-              //   if (value!.isEmpty) {
-              //     return "Unit Can't be Empty";
-              //   }
-              //   return null;
-              // },
-              decoration: InputDecoration(
-                  fillColor: Colors.white,
+                                child: 
+                                   Container(
+                                           height: 54,
+                                            width: MediaQuery.of(context).size.width*0.25,
+                                            decoration: BoxDecoration(
+                                                  
+                                                                   ),
+                                    child: TextFormField(
+                                    controller: unitController,
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
+                                    decoration: InputDecoration(
+                                                         fillColor: Colors.white,
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -829,10 +859,13 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                   hintStyle: TextStyle(
                     color: kblue,
                     fontWeight: FontWeight.w400,
-                  )),
-            ),
-                                  ],
-                                ),
+                  )
+
+                                    ),
+                                                                   ),
+
+                                                                 )
+                                  
                               ),
                                  
                     ],
@@ -840,35 +873,171 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                 ),
                 ksizedbox30,
                   Padding(
-                    padding: const EdgeInsets.only(right: 50),
-                    child: Container(
-                        height: 54,
-                        width: MediaQuery.of(context).size.width*0.8,
-                        
-                        decoration: BoxDecoration(
-                             
-                        ),
-                        child: TextField(
-                          maxLines: 30,
-                     controller: descriptionController,
-                     decoration: InputDecoration(
-                       hintStyle: TextStyle(
-                    color: kblue,
-                    fontWeight: FontWeight.w400,
-                  ),
-                      labelText: 'Description',
-                       hintText: 'Type something',
-                       border: OutlineInputBorder(
-                         borderSide: BorderSide(
-                           color: kblue
-                         )
-                       )
-                     ),
+                  padding: const EdgeInsets.only(left: 0,right:0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: Container(
+                                  height: 49,
+                                  width: MediaQuery.of(context).size.width*0.25,
+                                    color: kwhite,
+                                  child:TextFieldTags(
+              textfieldTagsController: _controller,
+              initialTags: const [],
+              textSeparators: const [','],
+              letterCase: LetterCase.normal,
+              validator: (String tag) {
+                if (tag == 'php') {
+                  return 'No, please just no';
+                } else if (_controller!.getTags!.contains(tag)) {
+                  return 'you already entered that';
+                }
+                return null;
+              },
+              inputfieldBuilder:
+                  (context, tec, fn, error, onChanged, onSubmitted) {
+                return ((context, sc, tags, onTagDelete) {
+                  return TextField(
+                    controller: tec,
+                    focusNode: fn,
+                    decoration: InputDecoration(
+                      isDense: true,
+                      fillColor: kwhite,
+                      border: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 74, 137, 92),
+                          width: 3.0,
                         ),
                       ),
+                      focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Color.fromARGB(255, 74, 137, 92),
+                          width: 3.0,
+                        ),
+                      ),
+                      labelText: 'Enter Amenties',
+                      helperStyle: TextStyle(
+                        color: kblue,
+                      ),
+                      hintText: _controller!.hasTags ? '' : "Enter Amenties...",
+                      errorText: error,
+                      prefixIconConstraints:
+                          BoxConstraints(maxWidth:300),
+                      prefixIcon: tags.isNotEmpty
+                          ? SingleChildScrollView(
+                              controller: sc,
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                  children: tags.map((String tag) {
+                                return Container(
+                                  decoration: const BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(20.0),
+                                    ),
+                                    color: Color.fromARGB(255, 74, 137, 92),
+                                  ),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 5.0),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0, vertical: 5.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        child: Text(
+                                          '$tag',
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
+                                        onTap: () {
+                                          print("$tag selected");
+                                        },
+                                      ),
+                                      const SizedBox(width: 4.0),
+                                      InkWell(
+                                        child: const Icon(
+                                          Icons.cancel,
+                                          size: 14.0,
+                                          color: Color.fromARGB(
+                                              255, 233, 233, 233),
+                                        ),
+                                        onTap: () {
+                                          onTagDelete(tag);
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }).toList()),
+                            )
+                          : null,
+                    ),
+                    onChanged: onChanged,
+                    onSubmitted: onSubmitted,
+                  );
+                });
+              },
+            ),
+                                ),
+                        ),
+                             
+                               ksizedbox20,
+                              Padding(
+                                padding: const EdgeInsets.only(right: 60),
+                                child: 
+                                   Container(
+                                           height: 53,
+                                            width: MediaQuery.of(context).size.width*0.25,
+                                            decoration: BoxDecoration(
+                                                  
+                                                                   ),
+                                    child: TextFormField(
+                                    controller: descriptionController,
+                                    autovalidateMode: AutovalidateMode.onUserInteraction,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Description can't be empty";
+                }
+                return null;
+              },
+              maxLines: 5,
+                                    decoration: InputDecoration(
+                                                        fillColor: Colors.white,
+                  filled: true,
+                  enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  isCollapsed: false,
+                  isDense: true,
+                  contentPadding:
+                      const EdgeInsets.only(top: 12, bottom: 12, left: 15),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5),
+                      borderSide: const BorderSide(color: Color(0xff707070))),
+                  labelText: "Description",
+                  hintStyle: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.w400,
+                  )
+
+                                    ),
+                                                                   ),
+
+                                                                 )
+                                  
+                              ),
+                                 
+                    ],
                   ),
-                  ksizedbox30,
-                    if (isOfferEligible)
+                ),
+                ksizedbox30,
+                 if (isOfferEligible)
             Column(
               children: [
                 Padding(
@@ -960,7 +1129,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                 ),
               ],
             ),
-            ksizedbox30,
+            
             if (isCouponEligible)
             Padding(
               padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
@@ -1002,13 +1171,40 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                     )),
               ),
             ),
-             Obx(
+                  ksizedbox40,
+                  Padding(
+                    padding: const EdgeInsets.only(right: 55),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(Routes.BusinessLastCouponAddedScreen);
+                        },
+                        child: Container(
+                          height: 54,
+                          width: MediaQuery.of(context).size.width*0.31,
+                          decoration: BoxDecoration(
+                            color: kgrey.withOpacity(0.5)
+                          ),
+                          child: Center(
+                            child: Text('LAST COUPON',
+                            style: TextStyle(
+                                   fontSize: 18,
+                                   color: kblue,
+                                   fontWeight: FontWeight.bold
+                            ),)),
+                        ),
+                      ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 33),
+                          child:   Obx(
             () => Padding(
               padding: const EdgeInsets.only(right: 15, left: 15),
               child: businessserviceController.isLoading.isTrue
                   ? Container(
                       height: 55,
-                      width:  MediaQuery.of(context).size.width*0.31,
+                      width: MediaQuery.of(context).size.width*0.31,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: kblue),
@@ -1026,9 +1222,42 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                         for (var i = 0; i < tagsList!.length; i++) {
                           listTags.add(Amenty(value: tagsList[i]));
                         }
+                        print('::::::::::::here.category data:::::');
+                        print(merchantCategory);
 
                         CategoryData categoryModel =
                             merchantCategory as CategoryData;
+                             print('values::::::::::::::::');
+                             print('actualamount');
+                            print(actualAmountController.text);
+                            print('listtag');
+                            print(listTags);
+                            print('category');
+                            print(categoryModel);
+                            print('description');
+                            print(descriptionController.text);
+                            print('serviceimage');
+                            print(imageprofile);
+                            print('saleamount');
+                            print(saleAmountController.text);
+                            print('servicetitle');
+                            print(serviceTitleController.text);
+                            print('gst');
+                            print(gstController.text);
+                            print('cgst');
+                            print(cgstController.text);
+                            print('unit');
+                            print(unitController.text);
+                            print('sgst');
+                            print(sgstController.text);
+                            print('start');
+                            print(selectdt);
+                            print('end');
+                            print(selectdt1);
+                            print('quantity');
+                            print(quantityController.text);
+                            print('amenties');
+                            print(amentiesController.text);
 
                         CreateServiceModel createServiceModel =
                             CreateServiceModel(
@@ -1045,7 +1274,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                 // bvcAmount: bvcAmountController.text,
                                 category: categoryModel.id.toString(),
                                 description: descriptionController.text,
-                                image: serviceImage.path,
+                                image: imageprofile,
                                 isCouponsAvailable:
                                     isCouponEligible ? "1" : "0",
                                 isOfferAvailable: isOfferEligible ? "1" : "0",
@@ -1061,16 +1290,19 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                 unit: unitController.text,
                                 cgst: cgstPercentage,
                                 sgst: sgstPercentage,
-                                endTime: selectdt1,
-                                startTime: selectdt,
+                                endTime: selectdt,
+                                startTime: selectdt1,
                                 quantity: quantityController.text);
+
+
+                          print('nosucherror');
 
                         businessserviceController.addServices(
                             createServiceModel: createServiceModel);
                       },
                       child: Container(
                         height: 55,
-                          width: MediaQuery.of(context).size.width*0.31,
+                        width: MediaQuery.of(context).size.width*0.31,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: kblue),
@@ -1086,60 +1318,10 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                     ),
             ),
           ),
-                  ksizedbox40,
-                  // Padding(
-                  //   padding: const EdgeInsets.only(right: 55),
-                  //   child: Row(
-                  //     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //     children: [
-                  //     InkWell(
-                  //       onTap: (){
-                  //         Get.toNamed(Routes.BusinessLastCouponAddedScreen);
-                  //       },
-                  //       child: Container(
-                  //         height: 54,
-                  //         width: MediaQuery.of(context).size.width*0.31,
-                  //         decoration: BoxDecoration(
-                  //           color: kgrey.withOpacity(0.5)
-                  //         ),
-                  //         child: Center(
-                  //           child: Text('LAST COUPON',
-                  //           style: TextStyle(
-                  //                  fontSize: 18,
-                  //                  color: kblue,
-                  //                  fontWeight: FontWeight.bold
-                  //           ),)),
-                  //       ),
-                  //     ),
-                  //       Padding(
-                  //         padding: const EdgeInsets.only(left: 33),
-                  //         child: GestureDetector(
-                  //           onTap: (){
-                              
-                  //           },
-                  //           child: Container(
-                  //           height: 50,
-                  //           width: MediaQuery.of(context).size.width*0.31,
-                  //           decoration: BoxDecoration(
-                  //           gradient: LinearGradient(
-                  //             colors: [
-                  //                 kOrange,
-                  //                 kyellow
-                  //           ])
-                  //           ),
-                  //           child: Center(
-                  //             child: Text('SUBMIT',
-                  //             style: TextStyle(
-                  //               fontSize: 18,
-                  //               color: kwhite,
-                  //               fontWeight: FontWeight.bold
-                  //             ),)),
-                  //                               ),
-                  //         ),
-                  //       )
-                  //     ],
-                  //   ),
-                  // ),
+                        )
+                      ],
+                    ),
+                  ),
                       ksizedbox40 
                 ],
               ),

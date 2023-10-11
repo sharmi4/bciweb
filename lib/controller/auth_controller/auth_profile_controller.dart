@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:bciweb/models/busbookingmodels/category_model.dart';
 import 'package:bciweb/models/business_user_profile.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import '../../constant/constans.dart';
 import '../../models/create_account_model.dart';
 import '../../models/member profileupdate.dart';
 import '../../models/member_profile.dart';
+import '../../services/networks/business_service/business_withdraw_api_service.dart';
 import '../../services/networks/profile_api_service/profile_api_service.dart';
 import '../../services/networks/profile_api_service/profile_pick.dart';
 import '../../services/networks/profile_api_service/profile_update.dart';
@@ -261,4 +263,26 @@ class AuthProfileController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+  WithdrawWalletApiServices withdrawWalletApiServices =WithdrawWalletApiServices();
+  withdrawAmountFromWallet({required String amount}) async {
+    isLoading(true);
+    dio.Response<dynamic> response = await withdrawWalletApiServices
+        .withdrawWalletApiServices(amount: amount);
+    isLoading(false);
+    print(response.data);
+
+    if (response.statusCode == 200) {
+      Get.rawSnackbar(
+        message: "Withrawal submitted successfully",
+        backgroundColor: Colors.green,
+      );
+      Get.toNamed(Routes.BusinessWalletScreen);
+    } else {
+      Get.rawSnackbar(
+        message:response.data["error"],
+        backgroundColor: Colors.red,
+      );
+    }
+  }
+
 }

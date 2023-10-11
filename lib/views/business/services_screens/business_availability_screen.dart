@@ -7,6 +7,7 @@ import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
+import 'business_addupdate_screen.dart';
 import '../../members/common_widget/business_common_screen.dart';
 
 class BusinessAvailabilityScreen extends StatefulWidget {
@@ -289,9 +290,7 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                     children: [
                                       InkWell(
                                         onTap: (){
-                                          //  Get.to(() => UpdateServicesView(
-                                          //     serviceData: servicesController
-                                          //         .serviceDataList[index]));
+                                         
                                         },
                                         child: Container(
                                           height: 140,
@@ -393,9 +392,9 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                         PopupMenuButton(
                                           // Callback that sets the selected popup menu item.
                                           onSelected: (var item) {
-                                            // Get.off(() => UpdateServicesView(
-                                            //     serviceData: servicesController
-                                            //         .serviceDataList[index]));
+                                            Get.off(() => UpdateServicesView(
+                                                serviceData: serviceController
+                                                    .serviceDataList[index]));
                                           },
                                           itemBuilder: (BuildContext context) =>
                                               <PopupMenuEntry>[

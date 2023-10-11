@@ -253,5 +253,16 @@ abstract class BaseApiService {
 
      //vendor offer list
   final String vendorOfferListApiUrl =
-      "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list";   
+      "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list";
+       //withdraw amount
+  final String withdrawAmountURL =
+      "https://www.portal.bcipvtltd.com/api/auth/withdraw_wallet";   
+
+     //get booking list
+  final String bookingListApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/vendor_booking_list";
+      
+      //add gallery
+  final String addGallery =
+      "https://www.portal.bcipvtltd.com/api/auth/user_gallery";   
 }

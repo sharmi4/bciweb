@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:dio/dio.dart' as dio;
 import '../../constant/constans.dart';
 import '../../models/busbookingmodels/redeemption_Coupons_model.dart';
+import '../../models/business_model/business_getbooking_list_model.dart';
 import '../../models/business_model/createservice_model.dart';
 import '../../models/business_model/get_vendor_offerslist_model.dart';
 import '../../models/business_model/get_vendor_service_list_model.dart';
@@ -12,8 +13,10 @@ import '../../models/service_model.dart';
 import '../../services/networks/business_service/businees_getvendor_offerslist_api_service.dart';
 import '../../services/networks/business_service/business_addcoupon_api_service.dart';
 import '../../services/networks/business_service/business_addservice_api_service.dart';
+import '../../services/networks/business_service/business_bookingdatefilter_api_service.dart';
 import '../../services/networks/business_service/business_couponredemtion_api_service.dart';
 import '../../services/networks/business_service/business_get_updateservice_api_service.dart';
+import '../../services/networks/business_service/business_getbookinglist_api_service.dart';
 import '../../services/networks/business_service/business_todayoffers_api_service.dart';
 import '../../services/networks/business_service/getservice_bycategory_api_service.dart';
 import '../../services/networks/business_service/lastadd_couponlist_api_service.dart';
@@ -234,4 +237,56 @@ class BusinessServiceController extends GetxController{
     } 
     update();
   }
+
+   //get booking list api
+  GetBookingListApiServices getBookingListApiServices = GetBookingListApiServices();
+  List<BookingListData> bookingListData = [];
+
+  getBooking() async {
+    dio.Response<dynamic> response = await getBookingListApiServices.getBookingListApiServices();
+    if(response.statusCode == 200){
+
+      GetBookingList getBookingList = GetBookingList.fromJson(response.data);
+      bookingListData = getBookingList.data;
+
+    } else {
+        Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+  //get date filter booking list
+  GetDateFilterBookingListApiServices 
+  getDateFilterBookingListApiServices = GetDateFilterBookingListApiServices();
+
+  List<BookingListData> dateFilterBookingListData = [];
+
+  dateFilterBooking({
+    required String fromdate,
+    required String todate
+  }) async {
+
+    dio.Response<dynamic> response = await 
+    getDateFilterBookingListApiServices.getDateFilterBookingListApiServices(
+      fromdate: fromdate, todate: todate);
+      if(response.statusCode == 200){
+
+        GetBookingList getDateFBookingList = GetBookingList.fromJson(response.data);
+        bookingListData = getDateFBookingList.data;
+
+      } else {
+        Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+
 }

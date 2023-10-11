@@ -33,6 +33,10 @@ class ServiceData {
     dynamic bvcAmount;
     dynamic saleAmount;
     dynamic isOffer;
+    String unit;
+    String quantity;
+    dynamic sgst;
+    dynamic cgst;
     String? offerPercentage;
     String? offerUptoAmount;
     dynamic isCoupon;
@@ -44,10 +48,7 @@ class ServiceData {
     dynamic image;
     DateTime createdAt;
     DateTime updatedAt;
-    dynamic sgst;
-    dynamic cgst;
-    String quantity;
-    String unit;
+    
     ServiceData({
         required this.id,
         required this.categoryId,
@@ -59,16 +60,17 @@ class ServiceData {
         required this.isOffer,
         this.offerPercentage,
         this.offerUptoAmount,
-        required this.isCoupon,
         this.cgst,
         required this.quantity,
         this.sgst,
+        required this.unit,
+        required this.isCoupon,
+        
         this.couponAmount,
         required this.description,
         required this.isBooking,
         required this.status,
         this.amenties,
-        required this.unit,
         required this.image,
         required this.createdAt,
         required this.updatedAt,
@@ -116,11 +118,14 @@ class ServiceData {
         "coupon_amount": couponAmount,
         "description": description,
         "is_booking": isBooking,
+         "quantity": quantity,
+        "unit": unit,
         "status": status,
         "amenties": amenties == null ? [] : List<dynamic>.from(amenties!.map((x) => x.toJson())),
         "image": image,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
+
     };
 }
 

@@ -6,9 +6,10 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constant/constans.dart';
 import '../controller/auth_controller/auth_profile_controller.dart';
+import '../controller/profile_controller.dart';
 import '../controller/reg_home_controller.dart';
 import '../views/authentication/landing_screen.dart';
-import '../views/business-------------------------------------/services_screens/services_homescreen.dart';
+import '../views/business/business_profilescreen.dart';
 
 class BusinessCommonhomeContainer extends StatefulWidget {
   
@@ -42,6 +43,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
   @override
   final reghomeController = Get.find<RegisterHomeController>();
   final authController = Get.find<AuthController>();
+  final businessprofileController = Get.find<ProfileController>();
   final authProfileController = Get.find<AuthProfileController>();
   // final _homeController=Get.find<HomeController>();
 
@@ -49,9 +51,9 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
   void initState() {
     // TODO: implement initState
     super.initState();
-    authController.checkAuthendication();
-    authProfileController.getProfile();
+  
     checkForLoggedInState();
+    businessprofileController.getProfile();
   }
 
   Widget build(BuildContext context) {
@@ -193,7 +195,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                                     : kblue),
                           )),
                     ),
-                   if(isLoggedIn==true)
+                   //if(isLoggedIn==true)
                     Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
@@ -201,14 +203,34 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                            
                             reghomeController.reindex(7);
                             reghomeController.update();
-                              //Get.toNamed(Routes.BOOKINGS);
-                            //  Get.to(Hstory());
+                              Get.toNamed(Routes.BusinessBookingScreen);
+                             //Get.to(Hstory());
                         
                           },
                           child: Text(
                             'BOOKINGS',
                             style: TextStyle(
                                 color: reghomeController.reindex == 7
+                                    ? kOrange
+                                    : kblue),
+                          )),
+                    ),
+                     Padding(
+                      padding: const EdgeInsets.only(left: 7),
+                      child: TextButton(
+                          onPressed: () {
+                           
+                            reghomeController.reindex(8);
+                            reghomeController.update();
+                            Get.toNamed(Routes.BusinessWalletScreen);
+                              //Get.toNamed(Routes.BOOKINGS);
+                            //  Get.to(Hstory());
+                        
+                          },
+                          child: Text(
+                            'WALLETS',
+                            style: TextStyle(
+                                color: reghomeController.reindex == 8
                                     ? kOrange
                                     : kblue),
                           )),
@@ -334,20 +356,20 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                 ),
               ),
             ),
-            Obx(() => authController.isLogedin == true
+            Obx(() => businessprofileController.isLogedin.isTrue
                 ? Padding(
                     padding: const EdgeInsets.only(left: 20),
                     child: Row(children: [
-                      GetBuilder<AuthProfileController>(builder: (_) {
-                        return authProfileController.profileData.isNotEmpty
-                            ? Text(authProfileController.profileData.first.name)
+                      GetBuilder<ProfileController>(builder: (_) {
+                        return businessprofileController.profileData.isNotEmpty
+                            ? Text(businessprofileController.profileData.first.name)
                             : Text('');
                       }),
                       //   Icon(Icons.expand_more),
                       kwidth10,
-                      GetBuilder<AuthProfileController>(builder: (_) {
-                        return authProfileController.profileData.isNotEmpty
-                            ? authProfileController
+                      GetBuilder<ProfileController>(builder: (_) {
+                        return businessprofileController.profileData.isNotEmpty
+                            ? businessprofileController
                                         .profileData.first.profilePicture !=
                                     null
                                 ? InkWell(
@@ -355,12 +377,12 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                                       Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
-                                                  RegisterProfileScreen()));
+                                                  BusinessRegisterProfileScreen()));
                                     },
                                     child: CircleAvatar(
                                         radius: 22.0,
                                         backgroundImage: NetworkImage(
-                                          authProfileController
+                                          businessprofileController
                                               .profileData.first.profilePicture,
                                         )),
                                   )

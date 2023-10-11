@@ -9,15 +9,18 @@ import '../views/authentication/business_authentication/business_generate_otp_sc
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business-------------------------------------/business_home_screen.dart';
-import '../views/business-------------------------------------/services_screens/businees_lastoffers_screen.dart';
-import '../views/business-------------------------------------/services_screens/business_add_availability_screen.dart';
-import '../views/business-------------------------------------/services_screens/business_availability_screen.dart';
-import '../views/business-------------------------------------/services_screens/business_offers_screen.dart';
-import '../views/business-------------------------------------/services_screens/coupon_redemtion_screen.dart';
-import '../views/business-------------------------------------/services_screens/create_coupons_screen.dart';
-import '../views/business-------------------------------------/services_screens/lastcoupon_add_screen.dart';
-import '../views/business-------------------------------------/services_screens/services_homescreen.dart';
-import '../views/business-------------------------------------/services_screens/services_homescreen.dart';
+import '../views/business/business_booking_details_screen.dart';
+import '../views/business/business_booking_screen.dart';
+import '../views/business/services_screens/businees_lastoffers_screen.dart';
+import '../views/business/services_screens/business_add_availability_screen.dart';
+import '../views/business/services_screens/business_availability_screen.dart';
+import '../views/business/services_screens/business_offers_screen.dart';
+import '../views/business/services_screens/coupon_redemtion_screen.dart';
+import '../views/business/services_screens/create_coupons_screen.dart';
+import '../views/business/services_screens/lastcoupon_add_screen.dart';
+import '../views/business/services_screens/services_homescreen.dart';
+import '../views/business/services_screens/services_homescreen.dart';
+import '../views/business/business_wallet_screen.dart';
 import '../views/members/Gallery/gallery.dart';
 
 import '../views/members/bookins/history/views/history.dart';
@@ -61,6 +64,11 @@ class RouteGenerator {
             case Routes.BUSINESSCOUPONREDEMTIONSCREEN:
             return _GeneratePageRoute(widget: BusinessCouponRedementionScreen(), routeName: settings.name);
 
+            case Routes.BusinessBookingScreen:
+            return _GeneratePageRoute(widget: BusinessBookingScreen(), routeName: settings.name);
+
+          
+
             case Routes.BUSINESSCREATECOUPONS:
             return _GeneratePageRoute(widget: BusinessCreateCouponsScreen(), routeName:settings.name);
             
@@ -75,6 +83,10 @@ class RouteGenerator {
 
             case Routes.BusinessAddAvailabilityScreen:
             return _GeneratePageRoute(widget: BusinessAddAvailabilityScreen(), routeName: settings.name);
+            
+            case Routes.BusinessWalletScreen:
+            return _GeneratePageRoute(widget: BusinessWalletScreen(), routeName: settings.name);
+
       case Routes.about_screens:
         return _GeneratePageRoute(
             widget: AboutUsScreen(), routeName: settings.name);
