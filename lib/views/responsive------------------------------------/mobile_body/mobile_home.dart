@@ -4,6 +4,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../booking_view/flight/flightBooking_screen.dart';
@@ -98,7 +99,7 @@ final authController=Get.find<AuthController>();
                   ),
                 ])),
           ]),
-      drawer: MobileDrawer(),
+      drawer:const MobileDrawer(),
       body: ListView(children: [
         Column(
           children: [
@@ -314,7 +315,7 @@ final authController=Get.find<AuthController>();
                     ],
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 70,
                   right: 0,left: 0,
                   child: Column(
@@ -349,9 +350,8 @@ final authController=Get.find<AuthController>();
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(top: 6, left: 22),
+                                const Padding(
+                                  padding: EdgeInsets.only(top: 6, left: 22),
                                   child: Text(
                                       'BCI Prestigious Members Can Access \nour Amazing Discounts Coupons \n@ Our Associate Hotels / Resorts \n/ Spas / Saloons / Services Apartments \n/ Marriage Halls / Tours & Travels.'),
                                 ),
@@ -374,9 +374,8 @@ final authController=Get.find<AuthController>();
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 22, top: 6),
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 22, top: 6),
                                     child: Text(
                                         'BCI Prestigious Members Can \nAccess our Amazing Discounts \nCoupons @ Our Associate Provision \n/Restaurant /jewellery / Textile \n/Complimentary Coupon.'),
                                   ),
@@ -401,9 +400,8 @@ final authController=Get.find<AuthController>();
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 22, top: 6),
+                                const Padding(
+                                  padding: EdgeInsets.only(left: 22, top: 6),
                                   child: Text(
                                       'BCI Prestigious Members Can \nAccess our Amazing Discounts \nCoupons @ Our Associate Utility \nService Providers /Online Shopping \n/ Online Recharge /Online Cinema \nTickets.'),
                                 ),
@@ -442,15 +440,15 @@ final authController=Get.find<AuthController>();
                           color: kOrange,
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10, left: 10),
                         child: Text(
                           'Since 2 Decade BCI INDIA \nIs Servicing In India"s first \nfamily entertainment club\n,Have about 45000 \nMembers. Now We Are \nProviding New And \nVibrate Management Is \nExcited To Offer Our \nMembers The Best Multi\n-Clubbing Experience Of \nLife Time.',
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, left: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10, left: 10),
                         child: Text(
                             'BCI INDIA in the Google play store makes world of \nopportunities and services, offers, value added mutual \nbenefits to members & vendors. Now we are \nExpanding Our Business Operations All over India, we \nare estimating about 1 Million Members to subscribe \nwithin Couple of Years, in The Way Of All Digital, Social, \nMedia, Member 2 Member, Vendors 2 Members & Etc.'),
                       )
@@ -692,8 +690,8 @@ final authController=Get.find<AuthController>();
                             color: kwhite,
                           ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 5, top: 20),
+                        const Padding(
+                          padding: EdgeInsets.only(left: 5, top: 20),
                           child: Text(
                             'Starting a business requires financial investment. \nConsider the potential costs, profits,and funding \noptions for your business.',
                             style: TextStyle(fontSize: 17),
@@ -1139,11 +1137,11 @@ final authController=Get.find<AuthController>();
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: kblue,
-                                  minimumSize: Size(100, 37),
+                                  minimumSize:const Size(100, 37),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15))),
                               onPressed: () {},
-                              child: Text(
+                              child:const Text(
                                 'Click Now',
                                 style: TextStyle(fontSize: 15),
                               ))
@@ -1182,8 +1180,8 @@ final authController=Get.find<AuthController>();
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40, top: 5),
+                      const Padding(
+                        padding: EdgeInsets.only(left: 40, top: 5),
                         child: Text(
                           'What Our Clients Say About Us',
                           style: TextStyle(fontSize: 20),
@@ -1214,9 +1212,8 @@ final authController=Get.find<AuthController>();
                                           TextStyle(fontSize: 15, color: kblue),
                                     ),
                                   ),
-                                  Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 10, top: 4),
+                                  const Padding(
+                                    padding: EdgeInsets.only(left: 10, top: 4),
                                     child: Text(
                                       'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
                                       style: TextStyle(fontSize: 12),
@@ -1253,8 +1250,8 @@ final authController=Get.find<AuthController>();
                                             fontSize: 15, color: kblue),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
+                                    const Padding(
+                                      padding: EdgeInsets.only(
                                           left: 10, top: 7),
                                       child: Text(
                                         'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
@@ -1293,8 +1290,8 @@ final authController=Get.find<AuthController>();
                                             fontSize: 15, color: kblue),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
+                                    const Padding(
+                                      padding: EdgeInsets.only(
                                           left: 10, top: 7),
                                       child: Text(
                                         'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
@@ -1333,8 +1330,8 @@ final authController=Get.find<AuthController>();
                                             fontSize: 15, color: kblue),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
+                                    const Padding(
+                                      padding: EdgeInsets.only(
                                           left: 10, top: 7),
                                       child: Text(
                                         'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
@@ -1396,18 +1393,31 @@ final authController=Get.find<AuthController>();
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 0, top: 10),
-                                child: GestureDetector(
-                                  onTap: (){
-                                    
-                                  },
-                                  child: Image.asset(
-                                    'assets/images/playgoogle.png',
-                                    height: 90,
-                                    fit: BoxFit.fitHeight,
-                                  ),
+                                padding:const EdgeInsets.only(left: 0, top: 10),
+                                child: Column(
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                   launchUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.memberapp.bci"));
+                                },
+                                child: Image.asset(
+                                  'assets/icons/MaskGroup26.png',
+                                   height: 50,
+                                   fit: BoxFit.fitHeight,
                                 ),
+                              ),
+                              InkWell(
+                                onTap: (){
+                                  launchUrl(Uri.parse("https://apps.apple.com/app/id6466208765"));
+                                },
+                                child: Image.asset(
+                                  'assets/icons/MaskGroup25.png',
+                                   height: 50,
+                                   fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ],
+                          ),
                               )
                             ],
                           ),
@@ -1418,7 +1428,7 @@ final authController=Get.find<AuthController>();
                 ),
               ),
             ),
-            MobileCommonBottom()
+            const MobileCommonBottom()
           ],
         ),
       ]),

@@ -42,19 +42,13 @@ class _MobileDrawerState extends State<MobileDrawer> {
       shadowColor: kOrange,
       child: ListView(
         children: [
-          Row(
-            children: [
-              // Image.asset('')
-            ],
-          ),
-          //   ksizedbox40,
           Padding(
             padding: const EdgeInsets.only(top: 30, left: 10),
             child: Row(
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(MobileHome());
+                      Get.to(const MobileHome());
                     },
                     child: Text(
                       'HOME',
@@ -76,7 +70,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(BusScreen());
+                      Get.to(const BusScreen());
                       // Get.to(HolidayHomeScreen());
                     },
                     child: Text(
@@ -98,7 +92,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(SerchHotelScreen());
+                      Get.to(const SerchHotelScreen());
                       //Get.to(HolidayHomeScreen());
                     },
                     child: Text(
@@ -121,7 +115,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 TextButton(
                     onPressed: () {
                       // Get.to(HolidayScreen());
-                      Get.to(HolidayHomeScreen());
+                      Get.to(const HolidayHomeScreen());
                     },
                     child: Text(
                       'TRIP ',
@@ -143,7 +137,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(RespoContact());
+                      Get.to(const RespoContact());
                     },
                     child: Text(
                       'CONTACT ',
@@ -207,7 +201,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(RespoGallery());
+                      Get.to(const RespoGallery());
                       //Get.to(RespoServices());
                     },
                     child: Text(
@@ -229,7 +223,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(ClubHousemob());
+                      Get.to(const ClubHousemob());
                     },
                     child: Text(
                       'CLUB HOUSE',
@@ -292,7 +286,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                   onPressed: () {
-                    Get.to(MobileProfileScreen());
+                    Get.to(const MobileProfileScreen());
                   },
                   child: GetBuilder<AuthProfileController>(
                     builder: (_) {
@@ -368,14 +362,14 @@ class _MobileDrawerState extends State<MobileDrawer> {
           ),
           authController.isLogedin.isFalse
               ? Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
                         onTap: () {
                           // Get.offAll(()=> const MemberLoginScreenrespo());
-                          Get.to(RespoLanding());
+                          Get.to(const RespoLanding());
 
                           //    Get.toNamed(Routes.MobLogin);
 
@@ -400,13 +394,13 @@ class _MobileDrawerState extends State<MobileDrawer> {
                   ),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(top: 100),
+                  padding: const EdgeInsets.only(top: 50),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.to(RespoLanding());
+                          Get.to(const RespoLanding());
                         },
                         child: Container(
                           height: 30,
@@ -427,7 +421,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                   ),
                 ),
           Padding(
-            padding: const EdgeInsets.only(top: 150, left: 20),
+            padding: const EdgeInsets.only(top: 50, left: 20),
             child: Row(children: [
               Image.asset(
                 'assets/images/phoneimage.png',
@@ -482,14 +476,14 @@ class _MobileDrawerState extends State<MobileDrawer> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 23, top: 10),
+            padding: const EdgeInsets.only(left: 23, top: 10,bottom: 15),
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Text(
                 'Follow Us :',
                 style: TextStyle(color: kwhite, fontSize: 13),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 10),
                 child: Image.asset(
                   'assets/images/facebook.png',
                   height: 15,
@@ -497,7 +491,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 10),
                 child: Image.asset(
                   'assets/images/twitter.png',
                   fit: BoxFit.fitHeight,
@@ -505,7 +499,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 10),
                 child: Image.asset(
                   'assets/images/linkedin.png',
                   height: 15,
@@ -513,7 +507,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 10),
                 child: Image.asset(
                   'assets/images/instagram.png',
                   height: 15,
@@ -521,7 +515,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 5),
+                padding: const EdgeInsets.only(left: 10),
                 child: Image.asset(
                   'assets/images/whatsappimage.png',
                   height: 15,

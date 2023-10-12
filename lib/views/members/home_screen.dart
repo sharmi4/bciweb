@@ -5,6 +5,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../controller/auth_controller/auth_profile_controller.dart';
 import '../../registerhomescreen/common_reg_homescreen.dart';
 import 'bookins/flight/booking_flight.dart';
@@ -1387,9 +1388,9 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                       ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: kblue,
-                              minimumSize: Size(200, 47)),
+                              minimumSize:const Size(200, 47)),
                           onPressed: () {},
-                          child: Text(
+                          child:const Text(
                             'Contact Us',
                             style: TextStyle(fontSize: 18),
                           )),
@@ -1398,9 +1399,9 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: kOrange,
-                                minimumSize: Size(200, 47)),
+                                minimumSize:const Size(200, 47)),
                             onPressed: () {},
-                            child: Text(
+                            child:const Text(
                               'Book Now',
                               style: TextStyle(fontSize: 18),
                             )),
@@ -1452,10 +1453,29 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 150, top: 20),
-                          child: Image.asset(
-                            'assets/images/playgoogle.png',
-                            height: 150,
-                            fit: BoxFit.fitHeight,
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                   launchUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.memberapp.bci"));
+                                },
+                                child: Image.asset(
+                                  'assets/icons/MaskGroup26.png',
+                                   height: 70,
+                                   fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: (){
+                                  launchUrl(Uri.parse("https://apps.apple.com/app/id6466208765"));
+                                },
+                                child: Image.asset(
+                                  'assets/icons/MaskGroup25.png',
+                                   height: 70,
+                                   fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ],
                           ),
                         )
                       ],
@@ -1465,7 +1485,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
               ),
             ),
 
-            RegisterCommonBottom()
+            const RegisterCommonBottom()
           ],
         ),
       ]),

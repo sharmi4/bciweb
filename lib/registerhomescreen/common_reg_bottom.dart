@@ -32,11 +32,11 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
     return Container(
       color: kblue,
       child: Padding(
-        padding: EdgeInsets.only(top: 20),
+        padding:const EdgeInsets.only(top: 20,bottom: 20),
         child: Row(crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Column(mainAxisAlignment: MainAxisAlignment.start,
+            const Column(mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image(
@@ -91,7 +91,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                ksizedbox20,
-                Text(
+                const Text(
                   "MENU",
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -99,14 +99,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(MobileHomeScreen());
+                    Get.to(const MobileHomeScreen());
                   },
-                  child: Text(
+                  child:const Text(
                     "Home",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -115,14 +115,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(AboutUsScreen());
+                    Get.to(const AboutUsScreen());
                   },
-                  child: Text(
+                  child:const Text(
                     "About",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -131,14 +131,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Services());
+                    Get.to(const Services());
                   },
-                  child: Text(
+                  child:const Text(
                     "Services",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -147,10 +147,10 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
-                Text(
+                const Text(
                   "Booking",
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -158,14 +158,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                       fontSize: 17,
                       fontWeight: FontWeight.w400),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(ClubHouse());
+                    Get.to(const ClubHouse());
                   },
-                  child: Text(
+                  child:const Text(
                     "Club House",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -174,14 +174,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(ContactScreen());
+                    Get.to(const ContactScreen());
                   },
-                  child: Text(
+                  child:const Text(
                     "Contact",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -190,30 +190,31 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-        ksizedbox20,      ],
+              ksizedbox20,
+               ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "Privacy&Policy",
+                const Text(
+                  "Privacy & Policy",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       color: Color(0xffEF5323),
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(PrivacyPolicy());
+                    Get.to(const PrivacyPolicy());
                   },
-                  child: Text(
+                  child:const Text(
                     "Disclaimer",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -222,14 +223,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Disclimer());
+                    Get.to(const Disclimer());
                   },
-                  child: Text(
+                  child:const Text(
                     "Privacy",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -238,14 +239,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
                     Get.toNamed(Routes.Cancelation);
                   },
-                  child: Text('Refund and Cancellation Policy',
+                  child:const Text('Refund and Cancellation Policy',
                   //  "REFUND AND CANCELLATION POLICY",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -254,14 +255,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Service());
+                    Get.to(const Service());
                   },
-                  child: Text(
+                  child:const Text(
                     "Service Agreement",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -270,15 +271,15 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Tc());
+                    Get.to(const Tc());
                   },
-                  child: Text(
-                    "T&C",
+                  child:const Text(
+                    "T & C",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -286,14 +287,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Representation());
+                    Get.to(const Representation());
                   },
-                  child: Text(
+                  child:const  Text(
                     "Representation",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -302,14 +303,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(Faq());
+                    Get.to(const Faq());
                   },
-                  child: Text(
+                  child:const Text(
                     "FAQ",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -323,10 +324,10 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
+                const Text(
                   "Booking",
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -334,14 +335,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 GestureDetector(
                   onTap: (){
-                      Get.to(BookingFlight());
+                      Get.to(const BookingFlight());
                   },
-                  child: Text(
+                  child:const Text(
                     "Fight Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -361,14 +362,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 //       fontSize: 17,
                 //       fontWeight: FontWeight.w400),
                 // ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
                   onTap: (){
-                     Get.to(BookingTrip());
+                     Get.to(const BookingTrip());
                   },
-                  child: Text(
+                  child:const Text(
                     "Holidays Trip Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -377,14 +378,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
                   onTap: (){
-                      Get.to(BusBookingMain());
+                      Get.to(const BusBookingMain());
                   },
-                  child: Text(
+                  child:const Text(
                     "Bus Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -393,14 +394,14 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-                  SizedBox(
+                 const  SizedBox(
                   height: 10,
                 ),
                 GestureDetector(
                   onTap: (){
-                      Get.to(BookingHotels());
+                      Get.to(const BookingHotels());
                   },
-                  child: Text(
+                  child:const  Text(
                     "Hotel Booking",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -411,9 +412,10 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
               ],
             ),
-            Column(
+            const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [ksizedbox20,
+              children: [
+                ksizedbox20,
                 Text(
                   "Contact Us",
                   textAlign: TextAlign.start,
