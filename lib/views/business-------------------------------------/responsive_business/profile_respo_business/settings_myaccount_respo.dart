@@ -33,7 +33,6 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
   var bankAccountNumberController = TextEditingController();
   var accountTypeController = TextEditingController();
   var ifscCodeController = TextEditingController();
-
   var merchantCategory;
 
   // Future pickerimage() async {
@@ -145,7 +144,8 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
         return ListView(children: [
           Column(
             children: [
-              Stack(children: [
+              Stack(
+                children: [
                 if (profileController.profileData.isNotEmpty)
                   GetBuilder<AuthProfileController>(builder: (_) {
                     return Row(
@@ -390,10 +390,126 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
                   ),
                 ),
               ),
-              ksizedbox20
+              ksizedbox20,
+
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                backgroundColor: Colors.white,
+                                title: Column(
+                                  children: [
+                                    Image.asset('assets/images/userdlt.png'),
+                                    Text("Delete Account!",
+                                        style: TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.black)),
+                                  ],
+                                ),
+                                content: const Text(
+                                  "Are you sure want to this Delete account?",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                                actions: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                              // ignore: unrelated_type_equality_checks
+                                              color: kwhite),
+                                          child: Center(
+                                              child: Text("Cancel",
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize: 17,
+                                                      color: korange))),
+                                        ),
+                                      ),
+                                      InkWell(
+                                        onTap: () {
+                                          // authController.logoutindex(1);
+                                          // authController.update();
+                                          Get.find<AuthController>()
+                                              .deleteUser();
+                                          Get.find<AuthController>().logout();
+                                        },
+                                        child: Container(
+                                          height: 40,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                              color: kOrange,
+                                              borderRadius:
+                                                  BorderRadius.circular(5)),
+                                          child: Center(
+                                            child: Text("Delete",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w600,
+                                                    fontSize: 17,
+                                                    color: korange)),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  ksizedbox10
+                                ],
+                              );
+                            });
+                      },
+                      child: Container(
+                        height: 50,
+                        width: double.infinity,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            border: Border.all(color: const Color(0xffFF9021)),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color(0xffFF5003),
+                                blurRadius: 2.0,
+                              ),
+                            ]),
+                        child: const Center(
+                          child: Text(
+                            "Delete your account",
+                            style: TextStyle(
+                                fontSize: 22,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
-        ]);
+      ksizedbox30,  ]);
       }),
     );
   }

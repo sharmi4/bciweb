@@ -1,7 +1,12 @@
 import 'dart:convert';
+import 'package:bciweb/models/bank_account_no_model.dart';
 import 'package:bciweb/models/busbookingmodels/category_model.dart';
 import 'package:bciweb/models/business_user_profile.dart';
+import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/models/support_admin_details_model.dart';
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/services/networks/profile_api_service/update_bank_account_api_services.dart';
+import 'package:bciweb/services/networks/setting_api_service.dart/support_admin_details_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -25,6 +30,7 @@ import 'auth_controller.dart';
 
 
 class AuthProfileController extends GetxController {
+  
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
   GenerateReferralCodeApiService generateReferralCodeApiService =
       GenerateReferralCodeApiService();
@@ -40,14 +46,37 @@ class AuthProfileController extends GetxController {
       ProfilePIcUpdateApiServices();
 
   List<MemberUser> profileData = [];
+
   List<BusinessUser> bussinessprofileData = [];
-  List<CategoryList> categoryList = [];
+
+  List<CategoryData> categoryList = [];
+
 
   RxBool isLoading = false.obs;
 
   RxBool isSubscribed = false.obs;
 
   RxString planid = "".obs;
+
+  UpdateBankApiServices updateBankApiServices = UpdateBankApiServices();
+
+  updateBankAccount({required UpdateBankModel merchantUpdateModel}) async {
+    isLoading(true);
+    dio.Response<dynamic> response = await updateBankApiServices.updateBank(
+      merchantUpdateModel: merchantUpdateModel,
+    );
+    isLoading(false);
+    if (response.statusCode == 200 || response.statusCode == 201) {
+     // Get.off(() => HomeBottomnavigationBar());
+      Get.rawSnackbar(
+          backgroundColor: Colors.green,
+          messageText: Text(
+            "Bank Account updated",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+  }
+
 
   getProfile() async {
     profileData.clear();
@@ -283,6 +312,23 @@ class AuthProfileController extends GetxController {
         backgroundColor: Colors.red,
       );
     }
+  }
+
+
+
+    //support admin detail
+  SupportAdminDetailsApiServices supportAdminDetailsApiServices = SupportAdminDetailsApiServices();
+  ContactDetailsData? contactDetailsData;
+  
+  supportAdminDetail() async {
+    dio.Response<dynamic> response =
+        await supportAdminDetailsApiServices.supportAdminDetailsApiServices();
+    if (response.statusCode == 200) {
+      SupportAdminModel supportAdminModel =
+          SupportAdminModel.fromJson(response.data);
+      contactDetailsData = supportAdminModel.data;
+    }
+    update();
   }
 
 }

@@ -1,4 +1,13 @@
+
+
+
+
+
+
 import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/models/setting_model/transation_history_model.dart';
+import 'package:bciweb/services/networks/services/authapi_service/delete_user_api_services.dart';
+import 'package:bciweb/services/networks/transaction_history_api_service.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/authentication/respo_business_otpverification.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
@@ -10,12 +19,11 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../constant/constans.dart';
+import '../../models/busbookingmodels/category_model.dart';
 import '../../models/business_model/merchants_register_model.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
-import '../../models/setting_model/transation_history_model.dart';
 import '../../models/sub_category_model.dart';
-import '../../services/networks/transaction_history_api_service.dart';
 import '../../views/responsive------------------------------------/authentications/otp_verification/otp_verification.dart';
 import '../../views/responsive------------------------------------/authentications/verified_screen/verified_screen.dart';
 import '../../services/networks/business_service/business_login_api_service.dart';
@@ -31,9 +39,17 @@ import '../../views/authentication/business_authentication/business_otp_verifica
 import '../../views/authentication/generate_otp_screen.dart';
 import '../../views/authentication/otp_verification.dart';
 
+
+
+
+
+
+
+
 class AuthController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLogedin = false.obs;
+  List<CategoryData> categoryList = [];
 
   MemberRegisterApiservices memberRegisterApiservices =
       MemberRegisterApiservices();
@@ -420,7 +436,41 @@ class AuthController extends GetxController {
     }
     update();
   }
-   //transaction history
+
+
+DeleteUserAccountApi deleteUserAccountApi = DeleteUserAccountApi();
+
+deleteUser() async {
+    isLoading(true);
+    dio.Response<dynamic> response = await deleteUserAccountApi
+        .deleteUserAccountApi();
+    isLoading(false);
+    if (response.statusCode == 200) {
+     Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+  }
+
+
+
+
+
+
+
+
+
+    //transaction history
   TransactionHistoryApiServices transactionHistoryApiServices =
       TransactionHistoryApiServices();
   List<TransactionHistory> transactionHistorydata = [];
@@ -443,4 +493,6 @@ class AuthController extends GetxController {
     }
     update();
   }
+
+
 }

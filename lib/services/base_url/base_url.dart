@@ -265,4 +265,15 @@ abstract class BaseApiService {
       //add gallery
   final String addGallery =
       "https://www.portal.bcipvtltd.com/api/auth/user_gallery";   
+    //  "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list"; 
+
+
+ final String deleteUserURL =
+  "https://portal.bcipvtltd.com/api/auth/delete_user";  
+
+
+
+    //get Services
+  final String getServicesURL =
+      "https://www.portal.bcipvtltd.com/api/auth/service_list";
 }

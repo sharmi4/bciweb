@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/models/setting_model/get_wallet_details.model.dart';
 import 'package:bciweb/models/setting_model/getwallet_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,12 @@ class ApiSettingController extends GetxController {
       GetWalletDetailsApiServices();
 
   List<GetwalletDetails> getWalletData = [];
+
+
+
+
+
+
 
   getwalletList() async {
     getWalletData.clear();

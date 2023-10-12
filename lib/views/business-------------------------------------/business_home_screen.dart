@@ -1,5 +1,3 @@
-
-
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
@@ -11,16 +9,21 @@ import '../../controller/auth_controller/auth_profile_controller.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
 import '../members/common_widget/business_common_screen.dart';
 
+
+
 class BusinessHomeScreen extends StatefulWidget {
   const BusinessHomeScreen({super.key});
+
 
   @override
   State<BusinessHomeScreen> createState() => _BusinessHomeScreenState();
 }
 
-class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
-  final _homeController = Get.find<HomeController>();
 
+
+class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
+
+  final _homeController = Get.find<HomeController>();
   final authProfileController = Get.find<AuthProfileController>();
 
   @override
@@ -42,7 +45,8 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
             ],
           ),
           preferredSize: const Size(double.infinity, 110)),
-      body: ListView(children: [
+      body: ListView(
+        children: [
         Column(
           children: [
             // RegisterCommonContainer(),

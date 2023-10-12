@@ -1,13 +1,21 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_business_bankdetails.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_business_referal.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_business_support.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_bussiness_dashboard.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/settings_myaccount_respo.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+
+
 class BusinessProfileRespo extends StatelessWidget {
   const BusinessProfileRespo({super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +70,9 @@ class BusinessProfileRespo extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              // Get.to(const BankDetailsScreen());
+
+               Get.to(RespoBusinessBankDetails());
+               
             },
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -99,7 +109,7 @@ class BusinessProfileRespo extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              //    Get.to(const DashBoardScreen());
+                  Get.to(RespoBussinessDashboard());
             },
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -136,7 +146,7 @@ class BusinessProfileRespo extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              // Get.to(const BusinessYourReferralScreen());
+              Get.to(RespoBusinessReferal());
             },
             child: Container(
               width: MediaQuery.of(context).size.width,
@@ -210,7 +220,7 @@ class BusinessProfileRespo extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {
-              // Get.to(const ContactAdmin());
+               Get.to(RespoBusinessSupport());
             },
             child: Container(
               width: MediaQuery.of(context).size.width,

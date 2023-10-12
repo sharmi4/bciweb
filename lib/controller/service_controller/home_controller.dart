@@ -1,6 +1,11 @@
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/controller/profile_controller.dart';
 import 'package:bciweb/models/getCartlistmodel.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
+import 'package:bciweb/models/setting_model/service_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
+import 'package:bciweb/services/networks/business_service/getservice_bycategory_api_service.dart';
+import 'package:bciweb/services/networks/services/get_services_api_services.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +34,9 @@ class HomeServiceController extends GetxController {
 
   List<Datum> cartListData = [];
   List<OffersListModel> todayofferslist = [];
+  
+  //service data list
+  List<ServiceData> serviceDataList = [];
 
   double getGrandTotal({required List<Datum> tcartListData}) {
     double grandTotal = 0.0;
@@ -49,6 +57,59 @@ class HomeServiceController extends GetxController {
 
     return grandTotal;
   }
+
+
+
+
+
+
+
+
+
+
+  GetServicesByCategoryApiServices getServicesByCategoryApiServices =
+      GetServicesByCategoryApiServices();
+
+
+  getServicesByCategory({required String categoryId}) async {
+    dio.Response<dynamic> response = await getServicesByCategoryApiServices
+        .getServicesByCategory(categoryId: categoryId,vendorId: Get.find<ProfileController>().profileData.first.id.toString());
+
+    if (response.statusCode == 200) {
+      ServiceListModel serviceListModel =
+          ServiceListModel.fromJson(response.data);
+
+      serviceDataList = serviceListModel.data;
+    }
+    update();
+  }
+
+
+
+
+ GetServicesApiServices getServicesApiServices = GetServicesApiServices();
+
+
+
+  getServicesByVendor() async {
+    dio.Response<dynamic> response =
+        await getServicesApiServices.getServicesByVendor(
+            vendorId:
+                Get.find<AuthProfileController>().profileData.first.id.toString());
+
+    if (response.statusCode == 200) {
+      ServiceListModel serviceListModel =
+          ServiceListModel.fromJson(response.data);
+
+      serviceDataList = serviceListModel.data;
+    }
+    update();
+  }
+
+
+
+
+
 
 //list cart
   getCartdetails() async {
