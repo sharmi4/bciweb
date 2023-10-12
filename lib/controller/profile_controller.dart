@@ -7,11 +7,13 @@ import '../constant/constans.dart';
 import '../models/business_model/business_profile_model.dart';
 import '../models/business_model/business_update_model.dart';
 import '../models/business_model/business_updatebank_details_model.dart';
+import '../models/get_gallery_model.dart';
 import '../services/networks/business_service/business_bankdetails_api_service.dart';
 import '../services/networks/business_service/business_gallery_api_service.dart';
 import '../services/networks/business_service/business_getprofile_api_service.dart';
 import '../services/networks/business_service/business_profile_update.dart';
 import '../services/networks/business_service/business_profilepicupdate_api_service.dart';
+import '../services/networks/business_service/get_gallery_api_service.dart';
 import '../views/business/business_profile/accout_profile.dart';
 
 class ProfileController extends GetxController{
@@ -25,9 +27,10 @@ class ProfileController extends GetxController{
     List<BusinessUser> profileData = [];
 
    getProfile() async {
+    isLoading(true);
     profileData.clear();
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
-
+    isLoading(false);
     if (response.statusCode == 200) {
       BusinessProfileModel profileModel =
           BusinessProfileModel.fromJson(response.data);
@@ -64,7 +67,7 @@ class ProfileController extends GetxController{
   }
   AddGalleryApiServices addgalleryapi = AddGalleryApiServices();
 
-  addgalleryApiServices({required String imageprofiletemp}) async {
+  addgalleryApiServices({required dynamic imageprofiletemp}) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await addgalleryapi.addgalleryApiServices(gallery:imageprofiletemp );
@@ -104,5 +107,29 @@ class ProfileController extends GetxController{
         await businessprofilepicupdateapiservice.profilepicUpdate(image: image);
 
     getProfile();
+  }
+
+   //get GALLERY
+
+  GetGalleryApiServices getgalleryApiService = GetGalleryApiServices();
+  List<GalleryListModel> galleryListData = [];
+  getInstance({required String userid}) async {
+    isLoading(true);
+    print("---------------------------------->>> user id = ${userid}");
+    dio.Response<dynamic> response =
+        await getgalleryApiService.getgalleryApiServices(userid: userid);
+        isLoading(false);
+    if (response.statusCode == 200) {
+      GetGalleryModel getGalleryList = GetGalleryModel.fromJson(response.data);
+      galleryListData = getGalleryList.data;
+    } else {
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       response.data["message"],
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
+    }
+    update();
   }
 }

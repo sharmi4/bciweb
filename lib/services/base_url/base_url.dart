@@ -276,4 +276,6 @@ abstract class BaseApiService {
     //get Services
   final String getServicesURL =
       "https://www.portal.bcipvtltd.com/api/auth/service_list";
+
+    // final String deleteUserURL = "https://portal.bcipvtltd.com/api/auth/delete_user";   
 }

@@ -4,21 +4,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../base_url/base_url.dart';
 
-class AddGalleryApiServices extends BaseApiService {
-  Future addgalleryApiServices({required dynamic gallery}) async {
+
+
+class GetGalleryApiServices extends BaseApiService {
+  Future getgalleryApiServices({required String userid}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var formData = FormData.fromMap({
-        "gallery":
-             MultipartFile.fromBytes(gallery, filename: "gallery"),
-      
-      });
-
-      var response = await dio.post(addGallery,
+      var response = await dio.post(getGalleryURI,
           options: Options(
               headers: {
                 'Accept': 'application/json',
@@ -28,9 +24,9 @@ class AddGalleryApiServices extends BaseApiService {
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: formData);
+          data: {"user_id": userid});
       print(
-          "::::::::<get gallery Services Api>::::::::status code:::::::::$gallery:");
+          "::::::::<get gallery Services Api>::::::::status code:::::::::$userid:");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

@@ -16,9 +16,12 @@ import '../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
 import '../members/common_widget/business_common_screen.dart';
 import 'business_profile/accout_profile.dart';
+import 'business_profile/bank_details_screen.dart';
+import 'business_profile/business_gallery.dart';
 import 'business_profile/business_profile_dashboard.dart';
 import 'business_profile/business_support.dart';
 import 'business_profile/business_yourreferal.dart';
+import 'business_profile/update_accountprofile.dart';
 
 class BusinessRegisterProfileScreen extends StatefulWidget {
   const BusinessRegisterProfileScreen({super.key});
@@ -105,11 +108,11 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
   );
   final apisettingController = Get.find<ApiSettingController>();
 
-  callApis() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+  callApis() async{
+    WidgetsBinding.instance.addPostFrameCallback((_) async{
       // setDefauld();
-      subscripeController.getcouponsList();
       authprofileController.getProfile();
+      subscripeController.getcouponsList();
       apisettingController.getwalletList();
       apisettingController.generateReferralCode();
       apisettingController.transactionHistoryDetails();
@@ -122,16 +125,19 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
   @override
   void initState() {
     super.initState();
-    // setDefauld();
-    // subscripeController.getcouponsList();
-    // authprofileController.getProfile();
-    // apisettingController.getwalletList();
-    // apisettingController.generateReferralCode();
-    // apisettingController.ourPartner();
+    
     callApis();
+     setvalue();
     // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
+       
   }
-
+  setvalue() async{
+    
+      await Future.delayed(Duration(seconds: 1));
+       profileController.profileindex(0);
+       profileController.update();
+  
+  }
   final List<ChartData> chartData = [
     ChartData('David', 25, Color.fromRGBO(9, 0, 136, 1)),
     ChartData('Steve', 38, Color.fromRGBO(147, 0, 119, 1)),
@@ -626,8 +632,39 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
                           thickness: 1,
                         ),
                       ),
+                      //   Row(
+                      //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //   children: [
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(left: 20, top: 20),
+                      //       child: Text(
+                      //         'Profile Update',
+                      //         style: TextStyle(
+                      //             fontSize: 18,
+                      //             fontWeight: FontWeight.w500,
+                      //             color: kblue),
+                      //       ),
+                      //     ),
+                      //     Padding(
+                      //       padding: const EdgeInsets.only(right: 150, top: 20),
+                      //       child: InkWell(
+                      //         onTap: () {
+                      //           profileController.profileindex(1);
+                      //           profileController.update();
+                      //         },
+                      //         child: Image.asset(
+                      //           'assets/icons/profiledropdown.png',
+                      //           height: 10,
+                      //           fit: BoxFit.fitHeight,
+                      //         ),
+                      //       ),
+                      //     )
+                      //   ],
+                      // ),
                       if (profileController.profileindex.value == 0)
                         BusinessProfileSettings(),
+                      //    if(profileController.profileindex.value==1)
+                      // BusinessUpdateAccountScreen(),  
                       
                     
                       
@@ -635,6 +672,8 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
                   ),
                 ),
               ),
+                
+             
             if (reghomeController.proindex.value == 1) BusinessProfileDashboardScreen(),
 
             // if (reghomeController.proindex.value == 3)
@@ -724,10 +763,12 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
             //       ],
             //     ),
             //   ),
-
+            
+             if (reghomeController.proindex.value == 2) BusinessAddGallery(userid: authprofileController.profileData.first.id.toString(),),
             if (reghomeController.proindex.value == 4) BusinessProfileReferal(),
-
+                if (reghomeController.proindex.value == 3)  BusinessBankDetailsScreen(),
             if (reghomeController.proindex.value == 5) BusinessProfileSupport(),
+           
 
           ]),
           ksizedbox20,

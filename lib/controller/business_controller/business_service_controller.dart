@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../constant/constans.dart';
 import '../../models/busbookingmodels/redeemption_Coupons_model.dart';
 import '../../models/business_model/business_getbooking_list_model.dart';
@@ -15,12 +16,14 @@ import '../../services/networks/business_service/business_addcoupon_api_service.
 import '../../services/networks/business_service/business_addservice_api_service.dart';
 import '../../services/networks/business_service/business_bookingdatefilter_api_service.dart';
 import '../../services/networks/business_service/business_couponredemtion_api_service.dart';
+import '../../services/networks/business_service/business_deleteaccount_api_service.dart';
 import '../../services/networks/business_service/business_get_updateservice_api_service.dart';
 import '../../services/networks/business_service/business_getbookinglist_api_service.dart';
 import '../../services/networks/business_service/business_todayoffers_api_service.dart';
 import '../../services/networks/business_service/getservice_bycategory_api_service.dart';
 import '../../services/networks/business_service/lastadd_couponlist_api_service.dart';
 import '../../services/networks/vendor_list_api_services/get_vendor_service_api.dart';
+import '../../views/authentication/business_authentication/business_generate_otp_screen.dart';
 import '../auth_controller/auth_profile_controller.dart';
 
 class BusinessServiceController extends GetxController{
@@ -288,5 +291,35 @@ class BusinessServiceController extends GetxController{
     }
     update();
   }
+    
+  logout() async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString("auth_token", "null");
+    Get.to(const BusinessMobileVerification());
+  }
 
+  DeleteUserAccountApi deleteUserAccountApi = DeleteUserAccountApi();
+
+deleteUser() async {
+    isLoading(true);
+    dio.Response<dynamic> response = await deleteUserAccountApi
+        .deleteUserAccountApi();
+    isLoading(false);
+    if (response.statusCode == 200) {
+     Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+  }
+  
 }
