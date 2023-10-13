@@ -3,6 +3,8 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:bciweb/models/busbookingmodels/category_model.dart';
 import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -87,7 +89,15 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(body:  ListView(children: [
+    return Scaffold(
+      
+       appBar: PreferredSize(
+        child: AppBarMob(),
+        preferredSize: Size(double.infinity, 40),
+      ),
+      drawer: DrawerBusiness(),
+
+      body:  ListView(children: [
         Column(
           children: [
             ksizedbox20,

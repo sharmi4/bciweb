@@ -2,6 +2,7 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_profile_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_availability/respo_business_availability.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_offers/respo_business_offers.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_landing_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/wallet_respo_business/respo_business_walllet.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,6 +68,32 @@ class DrawerBusiness extends StatelessWidget {
               color: kgrey,
             ),
           ),
+
+
+     Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(RespoBusinessOffers());
+                  },
+                  child: Text(
+                    'OFFERS',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+
+
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10),
             child: Row(

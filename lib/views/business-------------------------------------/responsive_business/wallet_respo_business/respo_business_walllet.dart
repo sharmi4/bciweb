@@ -68,7 +68,9 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
 
       
       body:  GetBuilder<ProfileController>(builder: (_) {
-        return ListView(physics: const BouncingScrollPhysics(), children: [
+        return ListView(
+          physics: const BouncingScrollPhysics(),
+           children: [
           Column(
             children: [
               const Row(

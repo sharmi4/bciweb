@@ -4,6 +4,8 @@ import 'package:bciweb/models/getCartlistmodel.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/models/setting_model/service_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
+import 'package:bciweb/services/networks/business_service/business_addcoupon_api_service.dart';
+import 'package:bciweb/services/networks/business_service/business_todayoffers_api_service.dart';
 import 'package:bciweb/services/networks/business_service/getservice_bycategory_api_service.dart';
 import 'package:bciweb/services/networks/services/get_services_api_services.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
@@ -37,6 +39,7 @@ class HomeServiceController extends GetxController {
   
   //service data list
   List<ServiceData> serviceDataList = [];
+  
 
   double getGrandTotal({required List<Datum> tcartListData}) {
     double grandTotal = 0.0;
@@ -62,6 +65,53 @@ class HomeServiceController extends GetxController {
 
 
 
+
+
+
+
+
+
+
+
+
+  //add today offers
+  AddTodayOffersApiServices addTodayOffersApiServices = AddTodayOffersApiServices();
+AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
+  addTodayOffers({
+    required String image,
+    required String title,
+    required String category,
+    required String startsat,
+    required String endsat,
+    required String discountValue,
+    required String claimUser,
+  }) async {
+    dio.Response<dynamic> response = await addTodayOffersApiServices.addTodayOffersApiServices(
+      image: image, 
+      title: title, 
+      category: category, 
+      startsat: startsat, 
+      endsat: endsat, 
+      discountValue: discountValue, 
+      claimUser: claimUser,);
+      if(response.statusCode == 200){
+         Get.back();
+         Get.rawSnackbar(
+          backgroundColor: Colors.green,
+          messageText: Text(
+            "Offer created successfully",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+      } else {
+         Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+      }
+
+  }
 
 
 
