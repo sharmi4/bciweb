@@ -143,7 +143,7 @@ class _ProfileResidentialAddressScreenState
                   child: TextField(
                     textInputAction: TextInputAction.next,
                     controller: resibnameController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                         hintText: 'Building Name',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
@@ -165,7 +165,7 @@ class _ProfileResidentialAddressScreenState
                     child: TextField(
                       textInputAction: TextInputAction.next,
                       controller: resiaddressController,
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                           hintText: 'Address',
                           suffixIcon: Icon(Icons.edit),
                           fillColor: Color(0xffF9F8FD),
@@ -180,7 +180,7 @@ class _ProfileResidentialAddressScreenState
                   child: TextField(
                     textInputAction: TextInputAction.next,
                     controller: resibcityController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                         hintText: 'City',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
@@ -202,7 +202,7 @@ class _ProfileResidentialAddressScreenState
                     child: TextField(
                         keyboardType: TextInputType.number,
                       controller: idproofresidentialController,
-                      decoration: InputDecoration(
+                      decoration:const InputDecoration(
                           hintText: 'Proof Id No',
                           suffixIcon: Icon(Icons.edit),
                           fillColor: Color(0xffF9F8FD),
@@ -223,7 +223,7 @@ class _ProfileResidentialAddressScreenState
                                             RegExp(r'\s')),
                                       ],
                     controller: pincoderesidentialController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                       hintText: 'Pincode',
                       suffixIcon: Icon(Icons.edit),
                       fillColor: Color(0xffF9F8FD),
@@ -243,7 +243,7 @@ class _ProfileResidentialAddressScreenState
                   child: TextField(
                     textInputAction: TextInputAction.next,
                     controller: resistateController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                         hintText: 'State',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),

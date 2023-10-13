@@ -54,6 +54,8 @@ class AuthProfileController extends GetxController {
 
   RxBool isLoading = false.obs;
 
+  RxBool isLogedin = false.obs;
+
   RxBool isSubscribed = false.obs;
 
   RxString planid = "".obs;

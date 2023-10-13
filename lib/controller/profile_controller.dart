@@ -18,7 +18,7 @@ import '../views/business/business_profile/accout_profile.dart';
 
 class ProfileController extends GetxController{
   RxInt profileindex =0.obs;
-   RxBool isLogedin = false.obs;
+  RxBool isLogedin = false.obs;
   RxInt businessprofileindex =0.obs; 
 
   RxBool isLoading = false.obs;

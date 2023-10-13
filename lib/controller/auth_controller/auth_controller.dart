@@ -115,14 +115,7 @@ class AuthController extends GetxController {
           otp: response.data["user"]["otp"].toString(),
         ));
       }
-    } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            response.data["errors"].first,
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
-    }
+    } 
   }
 
   //api callings

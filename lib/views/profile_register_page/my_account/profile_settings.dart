@@ -235,149 +235,113 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 80),
+      padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          Stack(children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 60, left: 75),
-              child: GetBuilder<AuthProfileController>(builder: (_) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(""),
-                    if (authprofileController.profileData.isNotEmpty)
-                      GestureDetector(
-                          onTap: () async {
-                            PickedFile? pickedFile =
-                                await ImagePicker().getImage(
-                              source: ImageSource.gallery,
-                            );
+          Stack(
+            children: [
+            GetBuilder<AuthProfileController>(builder: (_) {
+              return 
+                GestureDetector(
+                    onTap: () async {
+                      PickedFile? pickedFile =
+                          await ImagePicker().getImage(
+                        source: ImageSource.gallery,
+                      );
 
-                            var tempCont = await pickedFile!.readAsBytes();
-                            setState(
-                              () {
-                                imageprofile = tempCont;
-                              },
-                            );
-                            authprofileController
-                                .updateProfilePic(imageprofile);
-                          },
-                          child: imageprofile != null
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: Container(
-                                    height: 80,
-                                    width: 80,
-                                    child: Image.memory(
-                                      imageprofile!,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                )
-                              : authprofileController.profileData.isNotEmpty
-                                  ? authprofileController.profileData.first
-                                              .profilePicture ==
-                                          null
-                                      ? Stack(
-                                          children: [
-                                            Image.asset(
-                                                'assets/images/prfl.png'),
-                                            Positioned(
-                                              left: 55,
-                                              top: 55,
-                                              child: Container(
-                                                height: 25,
-                                                width: 25,
-                                                decoration: BoxDecoration(
-                                                  color: kblue,
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                child: const Center(
-                                                  child: Icon(
-                                                    Icons.camera_alt,
-                                                    color: Colors.black,
-                                                    size: 17,
-                                                  ),
-                                                ),
-                                              ),
+                      var tempCont = await pickedFile!.readAsBytes();
+                      setState(
+                        () {
+                          imageprofile = tempCont;
+                        },
+                      );
+                      authprofileController
+                          .updateProfilePic(imageprofile);
+                    },
+                    child: imageprofile != null
+                        ? ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            child: Container(
+                              height: 80,
+                              width: 80,
+                              color: kOrange,
+                              child: Image.memory(
+                                imageprofile!,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                           ) :
+                            authprofileController.profileData.first.profilePicture.isEmpty ?
+                            Stack(
+                                    children: [
+                                      //  Image.network(
+                                      //         authprofileController
+                                      //             .profileData
+                                      //             .first
+                                      //             .profilePicture,
+                                      //       ),
+                                      Image.asset('assets/images/prfl.png',height: 120,),
+                                      Positioned(
+                                        left: 85,
+                                        top: 95,
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: BoxDecoration(
+                                            color: kblue,
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: const Center(
+                                            child: Icon(
+                                              Icons.camera_alt,
+                                              color: Colors.white,
+                                              size: 17,
                                             ),
-                                          ],
-                                        )
-                                      : Stack(
-                                          children: [
-                                            Container(
-                                              height: 80,
-                                              width: 80,
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(50),
-                                                image: DecorationImage(
-                                                  fit: BoxFit.cover,
-                                                  image: NetworkImage(
-                                                    authprofileController
-                                                        .profileData
-                                                        .first
-                                                        .profilePicture,
-                                                  ),
-                                                ),
-                                              ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ) :
+                                  Stack(
+                                    children: [
+                                      Container(
+                                        height: 80,
+                                        width: 80,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(50),
+                                        ),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(50),
+                                          child: Image.network(authprofileController.profileData.first.profilePicture)),
+                                      ),
+                                      Positioned(
+                                        left: 55,
+                                        top: 55,
+                                        child: Container(
+                                          height: 25,
+                                          width: 25,
+                                          decoration: BoxDecoration(
+                                            color: kblue,
+                                            borderRadius: BorderRadius.circular(25),
+                                          ),
+                                          child: const Center(
+                                            child: Icon(
+                                              Icons.camera_alt,
+                                              color: Colors.white,
+                                              size: 15,
                                             ),
-                                            Positioned(
-                                              left: 85,
-                                              top: 75,
-                                              child: Container(
-                                                height: 40,
-                                                width: 40,
-                                                decoration: BoxDecoration(
-                                                  color: kblue,
-                                                  borderRadius:
-                                                      BorderRadius.circular(25),
-                                                ),
-                                                child: const Center(
-                                                  child: Icon(
-                                                    Icons.camera_alt,
-                                                    color: Colors.white,
-                                                    size: 22,
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        )
-                                  //  Container(
-                                  //     height: 60,
-                                  //     width: 60,
-                                  //     decoration: BoxDecoration(
-                                  //         borderRadius:
-                                  //             BorderRadius
-                                  //                 .circular(
-                                  //                     90),
-                                  //         image: DecorationImage(
-                                  //             image: NetworkImage(
-                                  //                 authprofileController
-                                  //                     .profileData
-                                  //                     .first
-                                  //                     .profilePicture,))),
-                                  //   )
-                                  : Container(
-                                      height: 20,
-                                    )),
-                    const Padding(
-                      padding: EdgeInsets.only(bottom: 40),
-                      child: Text(
-                        "",
-                        style: TextStyle(
-                            color: Color(0xffFF5003),
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
-                  ],
-                );
-              }),
-            )
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                            // : Container(
+                            //     color: knavblue,
+                            //     height: 20,
+                            //   )
+                              );
+            })
           ]),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,

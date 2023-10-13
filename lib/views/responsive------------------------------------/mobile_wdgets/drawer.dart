@@ -280,6 +280,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
               color: kgrey,
             ),
           ),
+          authController.isLogedin.isTrue ?
           Padding(
             padding: const EdgeInsets.only(top: 10, left: 10),
             child: Row(
@@ -291,8 +292,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                   child: GetBuilder<AuthProfileController>(
                     builder: (_) {
                       return authprofileController.profileData.isNotEmpty
-                          ? authprofileController
-                                      .profileData.first.profilePicture !=
+                          ? authprofileController.profileData.first.profilePicture !=
                                   null
                               ? Row(
                                   children: [
@@ -353,13 +353,14 @@ class _MobileDrawerState extends State<MobileDrawer> {
                 )
               ],
             ),
-          ),
+          ) : const Text(""),
+          authController.isLogedin.isTrue ?
           Padding(
             padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
             child: Divider(
               color: kgrey,
             ),
-          ),
+          ) : const Text(""),
           authController.isLogedin.isFalse
               ? Padding(
                   padding: const EdgeInsets.only(top: 50),

@@ -95,6 +95,7 @@ class HotelController extends GetxController {
     isLoading(false);
     if (response.data["Error"]["ErrorCode"] == 0) {
       final prefs = await SharedPreferences.getInstance();
+      String? authtoken = prefs.getString("auth_token");
       await prefs.setString("searchtoken", response.data["Search_Token"]);
       SearchHotelModel searchHotelModel =
           SearchHotelModel.fromJson(response.data);

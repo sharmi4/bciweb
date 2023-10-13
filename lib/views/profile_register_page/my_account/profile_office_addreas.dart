@@ -116,7 +116,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                   child: TextField(
                     textInputAction: TextInputAction.next,
                     controller: officedoornoController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                         hintText: 'Door Number',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
@@ -131,7 +131,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                 child: TextField(
                     keyboardType: TextInputType.number,
                   controller: officebnameController,
-                  decoration: InputDecoration(
+                  decoration:const InputDecoration(
                       hintText: 'Building Number',
                       suffixIcon: Icon(Icons.edit),
                       fillColor: Color(0xffF9F8FD),
@@ -154,7 +154,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                   child: TextField(
                      keyboardType: TextInputType.number,
                     controller: idproofController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                         hintText: 'Proof Id No',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
@@ -175,7 +175,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                                             RegExp(r'\s')),
                                       ],
                   controller: pincodeController,
-                  decoration: InputDecoration(
+                  decoration:const InputDecoration(
                     hintText: 'Pincode',
                     suffixIcon: Icon(Icons.edit),
                     fillColor: Color(0xffF9F8FD),
@@ -199,7 +199,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                   child: TextField(
                     textInputAction: TextInputAction.next,
                     controller: officeaddresController,
-                    decoration: InputDecoration(
+                    decoration:const InputDecoration(
                       hintText: 'Address',
                       suffixIcon: Icon(Icons.edit),
                       fillColor: Color(0xffF9F8FD),
@@ -215,7 +215,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                 child: TextField(
                   textInputAction: TextInputAction.next,
                   controller: officecityController,
-                  decoration: InputDecoration(
+                  decoration:const InputDecoration(
                     hintText: 'City',
                     suffixIcon: Icon(Icons.edit),
                     fillColor: Color(0xffF9F8FD),
@@ -235,7 +235,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                 child: TextField(
                   textInputAction: TextInputAction.next,
                   controller: officestateController,
-                  decoration: InputDecoration(
+                  decoration:const InputDecoration(
                       hintText: 'State',
                       suffixIcon: Icon(Icons.edit),
                       fillColor: Color(0xffF9F8FD),
@@ -302,7 +302,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                           authprofileController.updateOfficalAddress(
                               officialAddress: addressModel);
                         },
-                        child: Text(
+                        child:const Text(
                           'Update',
                           style: TextStyle(fontSize: 17),
                         ),

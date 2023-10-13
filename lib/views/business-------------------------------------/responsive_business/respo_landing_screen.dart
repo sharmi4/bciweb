@@ -55,7 +55,7 @@ class RespoLanding extends StatelessWidget {
                         ],
                       ),
                     ),
-                    child: Center(
+                    child:const Center(
                       child: Text(
                         "Members Login",
                         style: TextStyle(
@@ -88,7 +88,7 @@ class RespoLanding extends StatelessWidget {
                         )
                       ],
                     ),
-                    child: Center(
+                    child:const Center(
                       child: Text(
                         "Bussiness login",
                         style: TextStyle(

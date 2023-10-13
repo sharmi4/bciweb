@@ -617,7 +617,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                         title: Column(
                           children: [
                             Image.asset('assets/images/logoutimage.png'),
-                            Text("Comeback Soon!",
+                            const Text("Comeback Soon!",
                                 style: TextStyle(
                                     fontSize: 25,
                                     fontWeight: FontWeight.bold,
@@ -759,7 +759,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                         ),
                       ),
                       if (profileController.profileindex.value == 0)
-                        ProfileSettings(),
+                         const ProfileSettings(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -789,9 +789,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           )
                         ],
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 1, left: 10, right: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 1, left: 10, right: 10),
                         child: Divider(
                           thickness: 1,
                         ),
@@ -825,24 +824,24 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           )
                         ],
                       ),
-                      Padding(
-                        padding:
-                            const EdgeInsets.only(top: 1, left: 10, right: 10),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 1, left: 10, right: 10),
                         child: Divider(
                           thickness: 1,
                         ),
                       ),
                       if (profileController.profileindex.value == 1)
-                        ProfileOfficeAddreass(),
+                         const ProfileOfficeAddreass(),
                       if (profileController.profileindex.value == 2)
-                        ProfileResidentialAddressScreen()
+                         const ProfileResidentialAddressScreen()
                     ],
                   ),
                 ),
               ),
-            if (reghomeController.proindex.value == 1) ProfileDashboardScreen(),
-
-            if (reghomeController.proindex.value == 2) ProfileOfferceScreen(),
+            if (reghomeController.proindex.value == 1) 
+               const ProfileDashboardScreen(),
+            if (reghomeController.proindex.value == 2) 
+               const ProfileOfferceScreen(),
             // if (reghomeController.proindex.value == 3)
             //   Container(
             //     width: MediaQuery.of(context).size.width - 195,
@@ -930,15 +929,15 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             //       ],
             //     ),
             //   ),
-            if (reghomeController.proindex.value == 4) ProfileSubscription(),
-            if (reghomeController.proindex.value == 5) ProfileReferal(),
-            if (reghomeController.proindex.value == 6) ProfilePartners(),
-            if (reghomeController.proindex.value == 7) ProfileUpgradeScreen(),
-            if (reghomeController.proindex.value == 8) ProfileSupport(),
-            if (reghomeController.proindex.value == 9) ProfileWalletScreen()
+            if (reghomeController.proindex.value == 4) const ProfileSubscription(),
+            if (reghomeController.proindex.value == 5) const ProfileReferal(),
+            if (reghomeController.proindex.value == 6) const ProfilePartners(),
+            if (reghomeController.proindex.value == 7) const ProfileUpgradeScreen(),
+            if (reghomeController.proindex.value == 8) const ProfileSupport(),
+            if (reghomeController.proindex.value == 9) const ProfileWalletScreen()
           ]),
           ksizedbox20,
-          RegisterCommonBottom()
+          const RegisterCommonBottom()
         ]),
       ),
     );
