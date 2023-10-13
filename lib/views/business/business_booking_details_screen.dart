@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 
 import '../../constant/constans.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../registerhomescreen/common_reg_bottom.dart';
 import '../members/common_widget/business_common_screen.dart';
 
 class BusinessBookingDetailsScreen extends StatefulWidget {
@@ -272,7 +273,8 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                         ),
                 ],
               ),
-              ksizedbox40,
+                  ksizedbox30,
+            RegisterCommonBottom()
             ],
           ),
     );

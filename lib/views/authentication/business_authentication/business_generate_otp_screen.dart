@@ -251,7 +251,7 @@ class _BusinessMobileVerificationState extends State<BusinessMobileVerification>
                               textAlign: TextAlign.center,
                               style: TextStyle(fontSize: 18, color: kblue),
                             ),
-                            InkWell(
+                            GestureDetector(
                               onTap: () {
                                 Get.to(BusinessSignupScreen(isMobile: '',));
                               },

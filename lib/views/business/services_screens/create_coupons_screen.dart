@@ -14,6 +14,7 @@ import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
 import '../../../models/category_model.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../members/common_widget/business_common_screen.dart';
 
 class BusinessCreateCouponsScreen extends StatefulWidget {
@@ -609,7 +610,8 @@ class _BusinessCreateCouponsScreenState extends State<BusinessCreateCouponsScree
                       ksizedbox40 
                 ],
               ),
-
+                     ksizedbox30,
+            RegisterCommonBottom()
             ],
           ),
     );

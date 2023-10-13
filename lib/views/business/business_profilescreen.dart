@@ -530,7 +530,7 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
                                 onTap: () {
                                   // authController.logoutindex(1);
                                   // authController.update();
-                                  Get.find<AuthController>().logoutWeb();
+                                  Get.find<AuthController>().businesslogoutWeb();
                                 },
                                 child: Container(
                                   height: 40,

@@ -38,6 +38,10 @@ abstract class Routes {
   static const BusinessWalletScreen = _Paths.BusinessWalletScreen;
   static const BusinessBookingScreen = _Paths.BusinessBookingScreen;
   static const BusinessBookingDetailsScreen = _Paths.BusinessBookingDetailsScreen;
+  static const BusinessHomeScreen = _Paths.BusinessHomeScreen;
+  static const BusinessAboutUsScreen = _Paths.BusinessAboutUsScreen;
+  static const BusinessSpecializedScreen = _Paths.BusinessSpecializedScreen;
+  static const BusinessClubHouse = _Paths.BusinessClubHouse;
   
 }
 
@@ -72,6 +76,10 @@ abstract class _Paths {
   static const BusinessWalletScreen = '/business-walletscreen';
   static const BusinessBookingScreen = '/business-bookingscreen';
   static const BusinessBookingDetailsScreen ='/business-bookingdetailsscreen';
+  static const BusinessHomeScreen = '/business-homescreen';
+  static const BusinessAboutUsScreen = '/business-aboutscreen';
+  static const BusinessSpecializedScreen ='/business-speclizedscreen';
+  static const BusinessClubHouse ='/business_clubhouse';
 }
  
   // static const SIGN_UP = '/home-screen';

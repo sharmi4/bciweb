@@ -86,7 +86,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                         onPressed: () {
                           reghomeController.reindex(0);
                           reghomeController.update();
-                          Get.toNamed(Routes.MEMBHOME);
+                          Get.toNamed(Routes.BusinessHomeScreen);
                         },
                         child: Text(
                           'HOME',
@@ -99,7 +99,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
                           onPressed: () {
-                            Get.toNamed(Routes.about_screens);
+                            Get.toNamed(Routes.BusinessAboutUsScreen);
                             print("-------------------------");
                             reghomeController.reindex(1);
                             reghomeController.update();
@@ -152,7 +152,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                           onPressed: () {
                             reghomeController.reindex(4);
                             reghomeController.update();
-                            Get.toNamed(Routes.ClubHouse);
+                            Get.toNamed(Routes.BusinessClubHouse);
                           },
                           child: Text(
                             'CLUB HOUSE',
@@ -334,7 +334,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                             child: InkWell(
                               onTap: () {
                                 // Get.to(MobileVerificatio());
-                                authController.logoutWeb();
+                                authController.businesslogoutWeb();
                                 Get.toNamed(Routes.BusinessMobileVerification);
                               },
                               child: Container(

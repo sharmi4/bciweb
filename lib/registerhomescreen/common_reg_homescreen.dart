@@ -249,7 +249,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       padding: const EdgeInsets.only(left: 10),
                       child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.BusinessHome);
+                          //Get.toNamed(Routes.BusinessHome);
                         },
                         child: Container(
                           height: 30,

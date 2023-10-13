@@ -78,7 +78,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
                         width: 60,
                         color: kOrange,
                       ),
-                      Text('I can help you research market trends,complittors,customer behaviour,and other relevant\n business information.Vendors Can put Offers&Discount on the Website,Showing vendors \nslide for our member to view offers and available form the some Vendors',
+                      Text(' I can help you research market trends,complittors,customer behaviour,and other relevant\n business information.Vendors Can put Offers&Discount on the Website,Showing vendors \n slide for our member to view offers and available form the some Vendors',
                       style: TextStyle(
                         fontSize: 18,
                         height: 1.5

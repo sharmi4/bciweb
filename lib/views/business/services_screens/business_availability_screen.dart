@@ -7,6 +7,7 @@ import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../../registerhomescreen/common_reg_bottom.dart';
 import 'business_addupdate_screen.dart';
 import '../../members/common_widget/business_common_screen.dart';
 
@@ -66,7 +67,7 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                            Container(
                             height: 205,
                             width: MediaQuery.of(context).size.width,
-                            child: Image.asset('assets/images/couponredemtionbackgroundimage.png',fit: BoxFit.cover)),
+                            child: Image.asset('assets/images/availabilitybackgroundimage.png',fit: BoxFit.cover)),
                         Positioned(
                           top: 0,
                           left: 0,
@@ -422,7 +423,8 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                          );
                                  }),
                      ),
-                   ksizedbox40
+                      ksizedbox30,
+                    RegisterCommonBottom()
                 ],
               ),
             ],

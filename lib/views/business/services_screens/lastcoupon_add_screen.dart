@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../constant/constans.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../members/common_widget/business_common_screen.dart';
 
 class BusinessLastCouponAddedScreen extends StatefulWidget {
@@ -168,7 +169,8 @@ class _BusinessLastCouponAddedScreenState extends State<BusinessLastCouponAddedS
                       ),
               );
             }),
-                
+                     ksizedbox30,
+            RegisterCommonBottom()
               ],
             ),
           ),

@@ -105,7 +105,7 @@ class LandingScreen extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          "Bussiness login",
+                          "Bussiness Login",
                           style: TextStyle(
                               shadows: [
                                 Shadow(

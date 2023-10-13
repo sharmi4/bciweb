@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../constant/constans.dart';
 import '../../controller/business_controller/business_service_controller.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../registerhomescreen/common_reg_bottom.dart';
 import '../members/common_widget/business_common_screen.dart';
 import 'business_booking_details_screen.dart';
 
@@ -432,7 +433,8 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                     
                 ],
               ),
-              ksizedbox40,
+                 ksizedbox30,
+            RegisterCommonBottom()
             ],
           ),
     );
