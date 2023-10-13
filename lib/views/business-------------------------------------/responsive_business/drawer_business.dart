@@ -14,170 +14,156 @@ class DrawerBusiness extends StatelessWidget {
   DrawerBusiness({super.key});
 
   final authprofileController = Get.find<AuthProfileController>();
-  final authController=Get.find<AuthController>();
+  final authController = Get.find<AuthController>();
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
       backgroundColor: kblue,
       shadowColor: kOrange,
-      child: ListView(children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 30, left: 10),
-          child: Row(
-            children: [
-              TextButton(
-                onPressed: () {
-                  //        Get.to(MobileHome());
-                },
-                child: Text(
-                  'HOME',
-                  style: TextStyle(fontSize: 16, color: kwhite),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
-          child: Divider(
-            color: kgrey,
-          ),
-        ),
-
-
-
-
-
-
-
- Padding(
-          padding: const EdgeInsets.only(top: 30, left: 10),
-          child: Row(
-            children: [
-              TextButton(
-                onPressed: () {
-                          Get.to(RespoBusinessAvailability());
-                },
-                child: Text(
-                  'Availability',
-                  style: TextStyle(fontSize: 16, color: kwhite),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
-          child: Divider(
-            color: kgrey,
-          ),
-        ),
-
-
-
-
-
-
-
-
-
-        Padding(
-          padding: const EdgeInsets.only(top: 15, left: 10),
-          child: Row(
-            children: [
-              TextButton(
-                onPressed: () {
-                     Get.to(RespoBusinessWallet());
-                },
-                child: Text(
-                  'Wallet',
-                  style: TextStyle(fontSize: 16, color: kwhite),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
-          child: Divider(
-            color: kgrey,
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10, left: 10),
-          child: Row(
-            children: [
-              TextButton(
-                onPressed: () {
-                  Get.to(BusinessProfileRespo());
-                },
-                child: GetBuilder<AuthProfileController>(
-                  builder: (_) {
-                    return authprofileController.profileData.isNotEmpty
-                        ? authprofileController
-                                    .profileData.first.profilePicture !=
-                                null
-                            ? Row(
-                                children: [
-                                  CircleAvatar(
-                                    radius: 22.0,
-                                    backgroundImage: NetworkImage(
-                                      authprofileController
-                                          .profileData.first.profilePicture,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      authprofileController
-                                          .profileData.first.name,
-                                      style: TextStyle(
-                                          fontSize: 18, color: kwhite),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/nick.png',
-                                    height: 30,
-                                    fit: BoxFit.fitHeight,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15),
-                                    child: Text(
-                                      'PROFILE',
-                                      style: TextStyle(
-                                          fontSize: 16, color: kwhite),
-                                    ),
-                                  ),
-                                ],
-                              )
-                        : Row(
-                            children: [
-                              Image.asset(
-                                'assets/images/nick.png',
-                                height: 30,
-                                fit: BoxFit.fitHeight,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 15),
-                                child: Text(
-                                  'PROFILE',
-                                  style: TextStyle(fontSize: 16, color: kwhite),
-                                ),
-                              ),
-                            ],
-                          );
+      child: ListView(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    //        Get.to(MobileHome());
                   },
+                  child: Text(
+                    'HOME',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
-        ),
-   authController.isLogedin.isFalse
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(RespoBusinessAvailability());
+                  },
+                  child: Text(
+                    'Availability',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 15, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(RespoBusinessWallet());
+                  },
+                  child: Text(
+                    'Wallet',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(BusinessProfileRespo());
+                  },
+                  child: GetBuilder<AuthProfileController>(
+                    builder: (_) {
+                      return authprofileController.profileData.isNotEmpty
+                          ? authprofileController
+                                      .profileData.first.profilePicture !=
+                                  null
+                              ? Row(
+                                  children: [
+                                    CircleAvatar(
+                                      radius: 22.0,
+                                      backgroundImage: NetworkImage(
+                                        authprofileController
+                                            .profileData.first.profilePicture,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: Text(
+                                        authprofileController
+                                            .profileData.first.name,
+                                        style: TextStyle(
+                                            fontSize: 18, color: kwhite),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              : Row(
+                                  children: [
+                                    Image.asset(
+                                      'assets/images/nick.png',
+                                      height: 30,
+                                      fit: BoxFit.fitHeight,
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 15),
+                                      child: Text(
+                                        'PROFILE',
+                                        style: TextStyle(
+                                            fontSize: 16, color: kwhite),
+                                      ),
+                                    ),
+                                  ],
+                                )
+                          : Row(
+                              children: [
+                                Image.asset(
+                                  'assets/images/nick.png',
+                                  height: 30,
+                                  fit: BoxFit.fitHeight,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 15),
+                                  child: Text(
+                                    'PROFILE',
+                                    style:
+                                        TextStyle(fontSize: 16, color: kwhite),
+                                  ),
+                                ),
+                              ],
+                            );
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+          authController.isLogedin.isFalse
               ? Padding(
                   padding: const EdgeInsets.only(top: 100),
                   child: Row(
@@ -236,7 +222,9 @@ class DrawerBusiness extends StatelessWidget {
                       )
                     ],
                   ),
-                ),   ]),
+                ),
+        ],
+      ),
     );
   }
 }

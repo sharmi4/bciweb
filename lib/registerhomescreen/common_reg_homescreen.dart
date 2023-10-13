@@ -219,7 +219,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                   children: [
                     InkWell(
                       onTap: () {
-                        Get.offAll(BusinesHomeRespo());
+                   //     Get.offAll(BusinesHomeRespo());
                       },
                       child: Container(
                         height: 30,
@@ -259,7 +259,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                               ]),
                           child: InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.BusinessHome);
+                          //    Get.toNamed(Routes.BusinessHome);
                             },
                             child: Icon(
                               Icons.notifications,
@@ -322,22 +322,25 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
                               onTap: () {
-                                // Get.to(MobileVerificatio());
+                                Get.to(LandingScreen());
                                 authController.logoutWeb();
-                                Get.toNamed(Routes.MobileVerification);
+                                //    Get.toNamed(Routes.MobileVerification);
                               },
                               child: Container(
                                 height: 35,
                                 width: 110,
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                        colors: [korange, kyellow]),
+                                        colors: [
+                                        korange,kyellow]),
                                     borderRadius: BorderRadius.circular(15)),
                                 child: Center(
-                                    child: Text(
-                                  'Logout',
-                                  style: TextStyle(fontSize: 15, color: kwhite),
-                                )),
+                                  child: Text(
+                                    'Logout',
+                                    style:
+                                        TextStyle(fontSize: 15, color: kwhite),
+                                  ),
+                                ),
                               ),
                             ),
                           )
