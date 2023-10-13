@@ -135,7 +135,7 @@ class _BussinessLoginScreenRespoState extends State<BussinessLoginScreenRespo> {
                             if (phoneNumberController.text.isNotEmpty) {
                               authController.getbusinessOtpFunction(
                                   mobileNumber: phoneNumberController.text,
-                                  isMobile: false);
+                                  isMobile: true);
                             } else {
                               Get.rawSnackbar(
                                 backgroundColor: Colors.red,

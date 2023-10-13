@@ -159,18 +159,19 @@ class AuthController extends GetxController {
 
     if (response.statusCode == 200) {
       if (isMobile == true) {
-           Get.to(
-          RespoBusinessOtpVerification(
+         Get.to(RespoBusinessOtpVerification(
+          phoneNumber: mobileNumber,
+          otp: response.data["otp"].toString(),
+        ));
+          
+      
+      } else {
+         Get.to(
+         BusinessOtpVerification(
             phoneNumber: mobileNumber,
             otp: response.data["otp"].toString(),
           ),
         );
-      
-      } else {
-         Get.to(BusinessOtpVerification(
-          phoneNumber: mobileNumber,
-          otp: response.data["otp"].toString(),
-        ));
       }
     } else if (response.statusCode == 404) {
       Get.rawSnackbar(
@@ -214,7 +215,7 @@ class AuthController extends GetxController {
           ));
     }
   }
-
+//
   BusinessLoginApiServices businessLoginApiServices =
       BusinessLoginApiServices();
   businessloginUsers(
@@ -253,7 +254,7 @@ class AuthController extends GetxController {
       );
     }
   }
-
+//
   loginUsers(
       {required String mobile,
       required String otp,

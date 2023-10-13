@@ -80,7 +80,7 @@ class _BusinessMobileVerificationState extends State<BusinessMobileVerification>
                         Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Text(
-                            'on this mobile number',
+                            'on this mobile number (mobile)',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 18, color: kblue),
                           ),
