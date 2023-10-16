@@ -47,17 +47,17 @@ class _MobileDrawerState extends State<MobileDrawer> {
             child: Row(
               children: [
                 TextButton(
-                    onPressed: () {
-                      Get.to(const MobileHome());
-                    },
-                    child: Text(
-                      'HOME',
-                      style: TextStyle(fontSize: 16, color: kwhite),
-                    ))
+                  onPressed: () {
+                    Get.to(const MobileHome());
+                  },
+                  child: Text(
+                    'HOME',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                )
               ],
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
             child: Divider(
@@ -124,7 +124,6 @@ class _MobileDrawerState extends State<MobileDrawer> {
               ],
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
             child: Divider(
@@ -280,87 +279,93 @@ class _MobileDrawerState extends State<MobileDrawer> {
               color: kgrey,
             ),
           ),
-          authController.isLogedin.isTrue ?
-          Padding(
-            padding: const EdgeInsets.only(top: 10, left: 10),
-            child: Row(
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Get.to(const MobileProfileScreen());
-                  },
-                  child: GetBuilder<AuthProfileController>(
-                    builder: (_) {
-                      return authprofileController.profileData.isNotEmpty
-                          ? authprofileController.profileData.first.profilePicture !=
-                                  null
-                              ? Row(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 22.0,
-                                      backgroundImage: NetworkImage(
-                                        authprofileController
-                                            .profileData.first.profilePicture,
+          authController.isLogedin.isTrue
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 10),
+                  child: Row(
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          Get.to(const MobileProfileScreen());
+                        },
+                        child: GetBuilder<AuthProfileController>(
+                          builder: (_) {
+                            return authprofileController.profileData.isNotEmpty
+                                ? authprofileController
+                                            .profileData.first.profilePicture !=
+                                        null
+                                    ? Row(
+                                        children: [
+                                          CircleAvatar(
+                                            radius: 22.0,
+                                            backgroundImage: NetworkImage(
+                                              authprofileController.profileData
+                                                  .first.profilePicture,
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 15),
+                                            child: Text(
+                                              authprofileController
+                                                  .profileData.first.name,
+                                              style: TextStyle(
+                                                  fontSize: 18, color: kwhite),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    : Row(
+                                        children: [
+                                          Image.asset(
+                                            'assets/images/nick.png',
+                                            height: 30,
+                                            fit: BoxFit.fitHeight,
+                                          ),
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(left: 15),
+                                            child: Text(
+                                              'PROFILE',
+                                              style: TextStyle(
+                                                  fontSize: 16, color: kwhite),
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                : Row(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/nick.png',
+                                        height: 30,
+                                        fit: BoxFit.fitHeight,
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        authprofileController
-                                            .profileData.first.name,
-                                        style: TextStyle(
-                                            fontSize: 18, color: kwhite),
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 15),
+                                        child: Text(
+                                          'PROFILE',
+                                          style: TextStyle(
+                                              fontSize: 16, color: kwhite),
+                                        ),
                                       ),
-                                    )
-                                  ],
-                                )
-                              : Row(
-                                  children: [
-                                    Image.asset(
-                                      'assets/images/nick.png',
-                                      height: 30,
-                                      fit: BoxFit.fitHeight,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 15),
-                                      child: Text(
-                                        'PROFILE',
-                                        style: TextStyle(
-                                            fontSize: 16, color: kwhite),
-                                      ),
-                                    ),
-                                  ],
-                                )
-                          : Row(
-                              children: [
-                                Image.asset(
-                                  'assets/images/nick.png',
-                                  height: 30,
-                                  fit: BoxFit.fitHeight,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 15),
-                                  child: Text(
-                                    'PROFILE',
-                                    style:
-                                        TextStyle(fontSize: 16, color: kwhite),
-                                  ),
-                                ),
-                              ],
-                            );
-                    },
+                                    ],
+                                  );
+                          },
+                        ),
+                      )
+                    ],
                   ),
                 )
-              ],
-            ),
-          ) : const Text(""),
-          authController.isLogedin.isTrue ?
-          Padding(
-            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
-            child: Divider(
-              color: kgrey,
-            ),
-          ) : const Text(""),
+              : const Text(""),
+          authController.isLogedin.isTrue
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+                  child: Divider(
+                    color: kgrey,
+                  ),
+                )
+              : const Text(""),
           authController.isLogedin.isFalse
               ? Padding(
                   padding: const EdgeInsets.only(top: 50),
@@ -477,7 +482,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 23, top: 10,bottom: 15),
+            padding: const EdgeInsets.only(left: 23, top: 10, bottom: 15),
             child: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
               Text(
                 'Follow Us :',

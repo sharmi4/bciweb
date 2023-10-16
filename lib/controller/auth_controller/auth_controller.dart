@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import 'package:bciweb/models/busbookingmodels/redeemption_Coupons_model.dart';
 import 'package:bciweb/models/business_model/getcouponlist_model.dart';
 import 'package:bciweb/models/category_model.dart';
@@ -44,13 +38,9 @@ import '../../views/authentication/generate_otp_screen.dart';
 import '../../views/authentication/otp_verification.dart';
 
 
-
-
-
-
-
-
 class AuthController extends GetxController {
+
+  RxBool isbusinessLogedin = false.obs;
   RxBool isLoading = false.obs;
   RxBool isLogedin = false.obs;
   List<CategoryData> categoryList = [];
@@ -66,7 +56,6 @@ class AuthController extends GetxController {
 //this api calling
 
   GetOtpApiService getOTPApiServices = GetOtpApiService();
-
   LoginApiServices loginApiServices = LoginApiServices();
   ServiceApiService serviceApiServices = ServiceApiService();
   RxBool isGstAvailable = true.obs;
@@ -233,6 +222,7 @@ class AuthController extends GetxController {
           '--------------------------${screen}-------------------screen--------');
       if (response.data["user"]["role_id"].toString() == "5") {
         final prefs = await SharedPreferences.getInstance();
+        await prefs.setString("role", response.data["user"]["role_id"].toString());
         await prefs.setString("auth_token", response.data["token"]);
         await prefs.setString("id", response.data["user"]["id"].toString());
         if (screen == true) {
@@ -360,6 +350,25 @@ class AuthController extends GetxController {
     }
     update();
   }
+
+
+
+
+
+    checkAuthendicationbusiness() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? authtoken = prefs.getString("auth_token");
+
+    print("Token is here");
+    print(authtoken);
+    if (authtoken == "null" || authtoken == null) {
+      isbusinessLogedin(false);
+    } else {
+     isbusinessLogedin(true);
+    }
+    update();
+  }
+
 
   List<ServiceData> dataList = [];
 

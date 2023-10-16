@@ -87,7 +87,7 @@ void main() {
   Get.put(BusController());
   Get.put(ApiSettingController());
   Get.put(HotelController());
- Get.put(NotificationController());
+  Get.put(NotificationController());
   runApp( MyApp());
 }
 

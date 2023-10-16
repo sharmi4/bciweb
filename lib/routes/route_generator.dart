@@ -46,7 +46,7 @@ class RouteGenerator {
 
       case Routes.SPLASH:
         return _GeneratePageRoute(
-            widget: MobileHomeScreen(), routeName: settings.name);
+            widget: CommonScreenRedirection(), routeName: settings.name);
 
       case Routes.MEMBHOME:
         return _GeneratePageRoute(
@@ -57,7 +57,8 @@ class RouteGenerator {
             widget:BusinessHomeScreen (), routeName: settings.name);
 
             case Routes.BusinessMobileVerification:
-            return _GeneratePageRoute(widget: BusinessMobileVerification(), routeName: settings.name);
+            return _GeneratePageRoute(
+              widget: BusinessMobileVerification(), routeName: settings.name);
             
             case Routes.BUSINESSSERVICE:
             return _GeneratePageRoute(widget:BusinessServicesScreen() , routeName:settings.name);
@@ -146,7 +147,7 @@ class RouteGenerator {
 
       default:
         return _GeneratePageRoute(
-            widget: const MobileHomeScreen(), routeName: settings.name);
+            widget: const CommonScreenRedirection(), routeName: settings.name);
     }
   }
 } // Navigator.pushNamed(context, RoutesName.name);

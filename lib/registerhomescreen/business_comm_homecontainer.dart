@@ -306,7 +306,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                     //           ),
                     //         ),
                     //       ),
-                    authController.isLogedin == false
+                    authController.isbusinessLogedin.isTrue
                         ? Padding(
                             padding: const EdgeInsets.only(left: 10),
                             child: InkWell(

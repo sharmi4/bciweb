@@ -104,7 +104,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const MobileHomeScreen());
+                    Get.to(const MobileHomeScreenMembers());
                   },
                   child:const Text(
                     "Home",

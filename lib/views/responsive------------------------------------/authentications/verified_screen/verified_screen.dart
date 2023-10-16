@@ -48,7 +48,7 @@ class verified_Screen extends StatelessWidget {
               ksizedbox40,
               InkWell(
                 onTap: () {
-                  Get.to(MobileHomeScreen());
+                  Get.to(MobileHomeScreenMembers());
                //   Get.to(Onbording());
                 },
                 child: Padding(
