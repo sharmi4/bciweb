@@ -2,6 +2,9 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_profile_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_availability/respo_business_availability.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_booking/respo_business_booking.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_couponredemption/respo_business_couponredemption.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_createcoupons/respo_business_createcoupons.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_offers/respo_business_offers.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_landing_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/wallet_respo_business/respo_business_walllet.dart';
@@ -52,10 +55,10 @@ class DrawerBusiness extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    Get.to(RespoBusinessAvailability());
+                    Get.to(RespoBusinessCreateCoupons());
                   },
                   child: Text(
-                    'Availability',
+                    'CREATE COUPONS',
                     style: TextStyle(fontSize: 16, color: kwhite),
                   ),
                 ),
@@ -68,9 +71,73 @@ class DrawerBusiness extends StatelessWidget {
               color: kgrey,
             ),
           ),
-
-
-     Padding(
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(RespoBusinessCouponredemption());
+                  },
+                  child: Text(
+                    'COUPON REDEMPTION',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(RespoBusinessBookings());
+                  },
+                  child: Text(
+                    'BOOKINGS',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Get.to(RespoBusinessAvailability());
+                  },
+                  child: Text(
+                    'AVILABILITY',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.only(top: 30, left: 10),
             child: Row(
               children: [
@@ -92,8 +159,6 @@ class DrawerBusiness extends StatelessWidget {
               color: kgrey,
             ),
           ),
-
-
           Padding(
             padding: const EdgeInsets.only(top: 15, left: 10),
             child: Row(
@@ -103,7 +168,7 @@ class DrawerBusiness extends StatelessWidget {
                     Get.to(RespoBusinessWallet());
                   },
                   child: Text(
-                    'Wallet',
+                    'WALLET',
                     style: TextStyle(fontSize: 16, color: kwhite),
                   ),
                 ),

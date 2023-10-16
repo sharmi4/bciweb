@@ -4,10 +4,14 @@
 
 
 
+import 'package:bciweb/models/busbookingmodels/redeemption_Coupons_model.dart';
+import 'package:bciweb/models/business_model/getcouponlist_model.dart';
 import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/models/setting_model/transation_history_model.dart';
+import 'package:bciweb/services/networks/business_service/lastadd_couponlist_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/delete_user_api_services.dart';
 import 'package:bciweb/services/networks/transaction_history_api_service.dart';
+import 'package:bciweb/services/networks/vendor_list_api_services/coupons_redeemption_api_service.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/authentication/respo_business_otpverification.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
@@ -487,6 +491,36 @@ deleteUser() async {
     }
     update();
   }
+
+
+
+
+
+
+    //coupon redeemption api
+  CouponsRedeemptionApiService couponsRedeemptionApiService =
+      CouponsRedeemptionApiService();
+  List<CouponRedeemptionData> couponRedeemptionData = [];
+  List<CouponsListData> addedCouponList = [];
+
+  AdeedCouponListApiService addedCouponsServices = AdeedCouponListApiService();
+
+  redeemptionCoupon() async {
+    dio.Response<dynamic> response =
+        await couponsRedeemptionApiService.couponsRedeemptionApiService();
+    if (response.statusCode == 200) {
+      RedeemtioncouponsListModel redeemtioncouponsListModel =
+          RedeemtioncouponsListModel.fromJson(response.data);
+      couponRedeemptionData = redeemtioncouponsListModel.data;
+    } else {
+      Get.snackbar("Something went wrong", "",
+          colorText: Colors.white,
+          backgroundColor: Colors.red,
+          snackPosition: SnackPosition.BOTTOM);
+    }
+    update();
+  }
+
 
 
 }

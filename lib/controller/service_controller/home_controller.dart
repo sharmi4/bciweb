@@ -1,10 +1,13 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
+import 'package:bciweb/models/business_model/business_getbooking_list_model.dart';
 import 'package:bciweb/models/getCartlistmodel.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/models/setting_model/service_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
 import 'package:bciweb/services/networks/business_service/business_addcoupon_api_service.dart';
+import 'package:bciweb/services/networks/business_service/business_bookingdatefilter_api_service.dart';
+import 'package:bciweb/services/networks/business_service/business_getbookinglist_api_service.dart';
 import 'package:bciweb/services/networks/business_service/business_todayoffers_api_service.dart';
 import 'package:bciweb/services/networks/business_service/getservice_bycategory_api_service.dart';
 import 'package:bciweb/services/networks/services/get_services_api_services.dart';
@@ -341,17 +344,111 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     update();
   }
 
-  //   double getGrandTotal() {
-  //   double grandTotal = 0.0;
 
-  //   for (var i = 0; i < cartListData.length; i++) {
-  //     double amount = double.parse(cartListData[i].amount);
-  //     int qty = int.parse(cartListData[i].quantity.toString());
-  //     double tempTotalAmount = amount * qty;
 
-  //     grandTotal = grandTotal + tempTotalAmount;
-  //   }
 
-  //   return grandTotal;
-  // }
+
+
+
+  //get booking list api
+  GetBookingListApiServices getBookingListApiServices = GetBookingListApiServices();
+  List<BookingListData> bookingListData = [];
+
+  getBooking() async {
+    dio.Response<dynamic> response = await getBookingListApiServices.getBookingListApiServices();
+    if(response.statusCode == 200){
+
+      GetBookingList getBookingList = GetBookingList.fromJson(response.data);
+      bookingListData = getBookingList.data;
+
+    } else {
+        Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+
+
+
+
+
+
+
+
+
+
+
+  //get date filter booking list
+  GetDateFilterBookingListApiServices 
+  getDateFilterBookingListApiServices = GetDateFilterBookingListApiServices();
+
+  List<BookingListData> dateFilterBookingListData = [];
+
+  dateFilterBooking({
+    required String fromdate,
+    required String todate
+  }) async {
+
+    dio.Response<dynamic> response = await 
+    getDateFilterBookingListApiServices.getDateFilterBookingListApiServices(
+      fromdate: fromdate, todate: todate);
+      if(response.statusCode == 200){
+
+        GetBookingList getDateFBookingList = GetBookingList.fromJson(response.data);
+        bookingListData = getDateFBookingList.data;
+
+      } else {
+        Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+
+
+
+    addCoupons({
+    required String image,
+    required String title,
+    required String category,
+    required String startsat,
+    required String endsat,
+    required String discountValue,
+    required String claimUser,
+  }) async {
+    dio.Response<dynamic> response = await addCouponsApiServices.addCouponsApiServices(
+      image: image, 
+      title: title, 
+      category: category, 
+      startsat: startsat, 
+      endsat: endsat, 
+      discountValue: discountValue, 
+      merchantId: Get.find<ProfileController>().profileData.first.id.toString(),
+      description: claimUser,);
+      if(response.statusCode == 201){
+         Get.back();
+         Get.rawSnackbar(
+          backgroundColor: Colors.green,
+          messageText: Text(
+            "Coupon created successfully",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+      } else {
+         Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+      }
+
+  }
+
 }

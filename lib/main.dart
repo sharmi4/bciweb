@@ -5,6 +5,7 @@ import 'package:bciweb/controller/flaight_payment_controller.dart';
 import 'package:bciweb/controller/holiday_package_controller.dart';
 import 'package:bciweb/controller/holiday_controller.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/controller/notification_controller.dart';
 import 'package:bciweb/controller/redeem_controller/redeem_controller.dart';
 import 'package:bciweb/controller/profile_show_controller.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
@@ -86,6 +87,7 @@ void main() {
   Get.put(BusController());
   Get.put(ApiSettingController());
   Get.put(HotelController());
+ Get.put(NotificationController());
   runApp( MyApp());
 }
 

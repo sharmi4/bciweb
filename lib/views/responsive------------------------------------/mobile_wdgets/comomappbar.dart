@@ -1,3 +1,4 @@
+import 'package:bciweb/views/business-------------------------------------/respo_business_notification/respo_business_notification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -50,6 +51,7 @@ class AppBarMob extends StatelessWidget {
                       ]),
                   child: InkWell(
                     onTap: () {
+                        Get.offAll(BusinesHomeRespo());
                       //  Get.offAll(Subscribe1());
                     },
                     child: Icon(
@@ -61,13 +63,13 @@ class AppBarMob extends StatelessWidget {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.offAll(BusinesHomeRespo());
+                  
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: InkWell(
                       onTap: () {
-                        Get.offAll(BusinesHomeRespo());
+                      //  Get.offAll(BusinesHomeRespo());
                       },
                       child: Container(
                         height: 20,
@@ -83,7 +85,7 @@ class AppBarMob extends StatelessWidget {
                             ]),
                         child: InkWell(
                           onTap: () {
-                            Get.offAll(BusinesHomeRespo());
+                            Get.offAll( RespoBusinessNotification());
                           },
                           child: Icon(
                             Icons.notifications,

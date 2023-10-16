@@ -273,6 +273,11 @@ abstract class BaseApiService {
 
 
 
+  //Get notification_list
+  final String notificationlistURL =
+      "https://www.portal.bcipvtltd.com/api/auth/notification_list";
+
+
     //get Services
   final String getServicesURL =
       "https://www.portal.bcipvtltd.com/api/auth/service_list";
