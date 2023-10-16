@@ -1,5 +1,4 @@
 
-
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/members/common_widget/common_buttom.dart';
@@ -10,17 +9,18 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
-import '../common_widget/common.dart';
+import '../../registerhomescreen/business_comm_homecontainer.dart';
+import '../members/common_widget/business_common_screen.dart';
 
-class AboutUsScreen extends StatefulWidget {
-  const AboutUsScreen({super.key});
+class BusinessAboutUsScreen extends StatefulWidget {
+  const BusinessAboutUsScreen({super.key});
 
   @override
-  State<AboutUsScreen> createState() => _AboutUsScreenState();
+  State<BusinessAboutUsScreen> createState() => _BusinessAboutUsScreenState();
 }
 
 
-class _AboutUsScreenState extends State<AboutUsScreen> {
+class _BusinessAboutUsScreenState extends State<BusinessAboutUsScreen> {
   Future<void>? _launched;
   final Uri toLaunch =
       Uri(scheme: 'https', host: 'www.portal.bcipvtltd.com', path: 'headers/');
@@ -32,8 +32,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
+              BusinessCommonScreen(),
+              BusinessCommonhomeContainer(),
             ],
           ),
           preferredSize: const Size(double.infinity, 110)),

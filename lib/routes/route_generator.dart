@@ -9,8 +9,11 @@ import '../views/authentication/business_authentication/business_generate_otp_sc
 import '../views/authentication/generate_otp_screen.dart';
 import '../views/authentication/landing_screen.dart';
 import '../views/business-------------------------------------/business_home_screen.dart';
+import '../views/business/business_about_screen.dart';
 import '../views/business/business_booking_details_screen.dart';
 import '../views/business/business_booking_screen.dart';
+import '../views/business/business_clubhouse_screen.dart';
+import '../views/business/business_speclized/business_speclized_screen.dart';
 import '../views/business/services_screens/businees_lastoffers_screen.dart';
 import '../views/business/services_screens/business_add_availability_screen.dart';
 import '../views/business/services_screens/business_availability_screen.dart';
@@ -93,6 +96,19 @@ class RouteGenerator {
 
       case Routes.Service:
         return _GeneratePageRoute(widget: Services(), routeName: settings.name);
+
+        case Routes.BusinessSpecializedScreen:
+        return _GeneratePageRoute(widget: BusinessSpecializedScreen(), routeName: settings.name);
+
+        case Routes.BusinessClubHouse:
+        return _GeneratePageRoute(widget: BusinessClubHouse(), routeName:settings.name);
+
+        case Routes.BusinessHomeScreen:
+        return _GeneratePageRoute(widget: BusinessHomeScreen(), routeName: settings.name);
+
+        case Routes.BusinessAboutUsScreen:
+        return _GeneratePageRoute(widget: BusinessAboutUsScreen(),
+         routeName: settings.name);
 
       case Routes.SpecializedScreen:
         return _GeneratePageRoute(

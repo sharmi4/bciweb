@@ -17,6 +17,7 @@ import '../../../controller/business_controller/business_service_controller.dart
 import '../../../models/business_model/createservice_model.dart';
 import '../../../models/category_model.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../members/common_widget/business_common_screen.dart';
 
 class BusinessAddAvailabilityScreen extends StatefulWidget {
@@ -188,14 +189,14 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                        Container(
                         height: 205,
                         width: MediaQuery.of(context).size.width,
-                        child: Image.asset('assets/images/businesscreatecouponhomescreen.png',fit: BoxFit.cover)),
+                        child: Image.asset('assets/images/availabilitybackgroundimage.png',fit: BoxFit.cover)),
                     Positioned(
                       top: 0,
                       left: 0,
                       bottom: 0,
                       right: 0,
                       child: Center(
-                        child: Text('CREATE COUPONS', style: displayfont),
+                        child: Text('SERVICE CREATE', style: displayfont),
                       ),
                     )
                     ],
@@ -1199,124 +1200,121 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                         Padding(
                           padding: const EdgeInsets.only(left: 33),
                           child:   Obx(
-            () => Padding(
-              padding: const EdgeInsets.only(right: 15, left: 15),
-              child: businessserviceController.isLoading.isTrue
-                  ? Container(
+            () => businessserviceController.isLoading.isTrue
+                ? Container(
+                    height: 55,
+                    width: MediaQuery.of(context).size.width*0.31,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: kblue),
+                    alignment: Alignment.center,
+                    child: const CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                : InkWell(
+                    onTap: () {
+                      List<Amenty> listTags = [];
+
+                      var tagsList = _controller!.getTags;
+
+                      for (var i = 0; i < tagsList!.length; i++) {
+                        listTags.add(Amenty(value: tagsList[i]));
+                      }
+                      print('::::::::::::here.category data:::::');
+                      print(merchantCategory);
+
+                      CategoryData categoryModel =
+                          merchantCategory as CategoryData;
+                           print('values::::::::::::::::');
+                           print('actualamount');
+                          print(actualAmountController.text);
+                          print('listtag');
+                          print(listTags);
+                          print('category');
+                          print(categoryModel);
+                          print('description');
+                          print(descriptionController.text);
+                          print('serviceimage');
+                          print(imageprofile);
+                          print('saleamount');
+                          print(saleAmountController.text);
+                          print('servicetitle');
+                          print(serviceTitleController.text);
+                          print('gst');
+                          print(gstController.text);
+                          print('cgst');
+                          print(cgstController.text);
+                          print('unit');
+                          print(unitController.text);
+                          print('sgst');
+                          print(sgstController.text);
+                          print('start');
+                          print(selectdt);
+                          print('end');
+                          print(selectdt1);
+                          print('quantity');
+                          print(quantityController.text);
+                          print('amenties');
+                          print(amentiesController.text);
+
+                      CreateServiceModel createServiceModel =
+                          CreateServiceModel(
+                              offerPercentage:
+                                  offerPercentageController.text.isEmpty
+                                      ? null
+                                      : offerPercentageController.text,
+                              actualAmount: actualAmountController.text,
+                              amenities: listTags,
+                              // share: shareValue,
+                              booking: authController.isGstAvailable.isTrue
+                                  ? "1"
+                                  : "0",
+                              // bvcAmount: bvcAmountController.text,
+                              category: categoryModel.id.toString(),
+                              description: descriptionController.text,
+                              image: imageprofile,
+                              isCouponsAvailable:
+                                  isCouponEligible ? "1" : "0",
+                              isOfferAvailable: isOfferEligible ? "1" : "0",
+                              saleAmount: saleAmountController.text,
+                              title: serviceTitleController.text,
+                              couponAmount:
+                                  couponAmountController.text.isEmpty
+                                      ? null
+                                      : couponAmountController.text,
+                              offerAmount: offerAmountController.text.isEmpty
+                                  ? null
+                                  : offerAmountController.text,
+                              unit: unitController.text,
+                              cgst: cgstPercentage,
+                              sgst: sgstPercentage,
+                              endTime: selectdt,
+                              startTime: selectdt1,
+                              quantity: quantityController.text);
+
+
+                        print('nosucherror');
+
+                      businessserviceController.addServices(
+                          createServiceModel: createServiceModel);
+                    },
+                    child: Container(
                       height: 55,
                       width: MediaQuery.of(context).size.width*0.31,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(10),
                           color: kblue),
                       alignment: Alignment.center,
-                      child: const CircularProgressIndicator(
-                        color: Colors.white,
-                      ),
-                    )
-                  : InkWell(
-                      onTap: () {
-                        List<Amenty> listTags = [];
-
-                        var tagsList = _controller!.getTags;
-
-                        for (var i = 0; i < tagsList!.length; i++) {
-                          listTags.add(Amenty(value: tagsList[i]));
-                        }
-                        print('::::::::::::here.category data:::::');
-                        print(merchantCategory);
-
-                        CategoryData categoryModel =
-                            merchantCategory as CategoryData;
-                             print('values::::::::::::::::');
-                             print('actualamount');
-                            print(actualAmountController.text);
-                            print('listtag');
-                            print(listTags);
-                            print('category');
-                            print(categoryModel);
-                            print('description');
-                            print(descriptionController.text);
-                            print('serviceimage');
-                            print(imageprofile);
-                            print('saleamount');
-                            print(saleAmountController.text);
-                            print('servicetitle');
-                            print(serviceTitleController.text);
-                            print('gst');
-                            print(gstController.text);
-                            print('cgst');
-                            print(cgstController.text);
-                            print('unit');
-                            print(unitController.text);
-                            print('sgst');
-                            print(sgstController.text);
-                            print('start');
-                            print(selectdt);
-                            print('end');
-                            print(selectdt1);
-                            print('quantity');
-                            print(quantityController.text);
-                            print('amenties');
-                            print(amentiesController.text);
-
-                        CreateServiceModel createServiceModel =
-                            CreateServiceModel(
-                                offerPercentage:
-                                    offerPercentageController.text.isEmpty
-                                        ? null
-                                        : offerPercentageController.text,
-                                actualAmount: actualAmountController.text,
-                                amenities: listTags,
-                                // share: shareValue,
-                                booking: authController.isGstAvailable.isTrue
-                                    ? "1"
-                                    : "0",
-                                // bvcAmount: bvcAmountController.text,
-                                category: categoryModel.id.toString(),
-                                description: descriptionController.text,
-                                image: imageprofile,
-                                isCouponsAvailable:
-                                    isCouponEligible ? "1" : "0",
-                                isOfferAvailable: isOfferEligible ? "1" : "0",
-                                saleAmount: saleAmountController.text,
-                                title: serviceTitleController.text,
-                                couponAmount:
-                                    couponAmountController.text.isEmpty
-                                        ? null
-                                        : couponAmountController.text,
-                                offerAmount: offerAmountController.text.isEmpty
-                                    ? null
-                                    : offerAmountController.text,
-                                unit: unitController.text,
-                                cgst: cgstPercentage,
-                                sgst: sgstPercentage,
-                                endTime: selectdt,
-                                startTime: selectdt1,
-                                quantity: quantityController.text);
-
-
-                          print('nosucherror');
-
-                        businessserviceController.addServices(
-                            createServiceModel: createServiceModel);
-                      },
-                      child: Container(
-                        height: 55,
-                        width: MediaQuery.of(context).size.width*0.31,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: kblue),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Submit",
-                          style: primaryFont.copyWith(
-                              color: Colors.white,
-                              fontSize: 17,
-                              fontWeight: FontWeight.bold),
-                        ),
+                      child: Text(
+                        "Submit",
+                        style: primaryFont.copyWith(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
-            ),
+                  ),
           ),
                         )
                       ],
@@ -1325,7 +1323,8 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                       ksizedbox40 
                 ],
               ),
-
+                    ksizedbox30,
+            RegisterCommonBottom()
             ],
           ),
     );

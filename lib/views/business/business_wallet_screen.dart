@@ -9,6 +9,7 @@ import '../../constant/constans.dart';
 import '../../controller/auth_controller/auth_profile_controller.dart';
 import '../../controller/setting_controller/setting_controller.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
+import '../../registerhomescreen/common_reg_bottom.dart';
 import '../members/common_widget/business_common_screen.dart';
 import '../members/homescreens/wallet_deposit_screen.dart';
 
@@ -51,7 +52,7 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
                     Container(
                       height: 250,
                       width: MediaQuery.of(context).size.width,
-                      child: Image.asset('assets/images/walletbackgroundimage.png',
+                      child: Image.asset('assets/images/businesswalletbackgroundimage.png',
                       fit: BoxFit.cover,)),
                     Positioned(
                       top:0,
@@ -383,7 +384,8 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
               )
             ],
           ),
-          ksizedbox40
+             ksizedbox30,
+            RegisterCommonBottom()
         ],
       ),
     );

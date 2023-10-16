@@ -36,12 +36,12 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
   File? aadharCardImage;
   File? panCardImage;
 
-  @override
-  void initState() {
-    super.initState();
-    authcontroller.getCategoryList();
-    authcontroller.getSubCategoryList();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   authcontroller.getCategoryList();
+  //   authcontroller.getSubCategoryList();
+  // }
 
   bool checkvalue = false;
 
@@ -116,7 +116,7 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                             fontSize: 20,
-                            fontWeight: FontWeight.w600,
+                            fontWeight: FontWeight.w700,
                             color: kblue),
                       ),
                       ksizedbox10,
@@ -132,8 +132,8 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                       ksizedbox30,
                       GetBuilder<AuthController>(builder: (_) {
                         return Container(
-                          height: 55,
-                          width: 220,
+                          height: 50,
+                          width: MediaQuery.of(context).size.width*0.3,
                           child: DropdownSearch<CategoryData>(
                             itemAsString: (CategoryData u) => u.title,
                             popupProps: PopupProps.menu(
@@ -222,157 +222,154 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                       //     ),
                       //   );
                       // }),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Container(
-                          width: size.width * 0.3,
-                          child: TextFormField(
-                            textInputAction: TextInputAction.next,
-                            controller: merchantDistplaynameController,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            textCapitalization: TextCapitalization.words,
-                            inputFormatters: [
-                              FilteringTextInputFormatter.allow(
-                                  RegExp("[a-z A-Z]"))
-                            ],
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Merchant display name can't be empty";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff707070))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff707070))),
-                                isCollapsed: false,
-                                isDense: true,
-                                contentPadding: const EdgeInsets.only(
-                                    top: 12, bottom: 12, left: 15),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff707070))),
-                                hintText: "Merchant Display Name",
-                                hintStyle: TextStyle(
-                                  color: kblue,
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Container(
-                          width: size.width * 0.3,
-                          child: TextFormField(
-                            textInputAction: TextInputAction.next,
-                            keyboardType: TextInputType.emailAddress,
-                            controller: emailIdController,
-                            // autovalidateMode: AutovalidateMode.onUserInteraction,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Email Id can't be empty";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
+                      ksizedbox30,
+                      Container(
+                        height: 50,
+                        width: size.width * 0.3,
+                        child: TextFormField(
+                          textInputAction: TextInputAction.next,
+                          controller: merchantDistplaynameController,
+                          autovalidateMode:
+                              AutovalidateMode.onUserInteraction,
+                          textCapitalization: TextCapitalization.words,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(
+                                RegExp("[a-z A-Z]"))
+                          ],
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Merchant display name can't be empty";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
                               fillColor: Colors.white,
                               filled: true,
                               enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                  color: Color(0xff707070),
-                                ),
-                              ),
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xff707070))),
                               focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                  color: Color(0xff707070),
-                                ),
-                              ),
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xff707070))),
                               isCollapsed: false,
                               isDense: true,
                               contentPadding: const EdgeInsets.only(
                                   top: 12, bottom: 12, left: 15),
                               border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(5),
-                                borderSide: const BorderSide(
-                                  color: Color(0xff707070),
-                                ),
-                              ),
-                              hintText: "Email ID",
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xff707070))),
+                              hintText: "Merchant Display Name",
                               hintStyle: TextStyle(
                                 color: kblue,
                                 fontWeight: FontWeight.w400,
+                              )),
+                        ),
+                      ),
+                      ksizedbox30,
+                      Container(
+                        height: 50,
+                        width: size.width * 0.3,
+                        child: TextFormField(
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.emailAddress,
+                          controller: emailIdController,
+                          // autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Email Id can't be empty";
+                            }
+                            return null;
+                          },
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: Color(0xff707070),
                               ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: Color(0xff707070),
+                              ),
+                            ),
+                            isCollapsed: false,
+                            isDense: true,
+                            contentPadding: const EdgeInsets.only(
+                                top: 12, bottom: 12, left: 15),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5),
+                              borderSide: const BorderSide(
+                                color: Color(0xff707070),
+                              ),
+                            ),
+                            hintText: "Email ID",
+                            hintStyle: TextStyle(
+                              color: kblue,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 15),
-                        child: Container(
-                          width: size.width * 0.3,
-                          child: TextFormField(
-                            textInputAction: TextInputAction.next,
-                            controller: phoneNumberController,
-                            autovalidateMode:
-                                AutovalidateMode.onUserInteraction,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Phone Number name can't be empty";
-                              } else if (value.length < 10) {
-                                return "Phone Number must be 10 digit";
-                              }
-                              return null;
-                            },
-                            //  textCapitalization: TextCapitalization.characters,
-                            keyboardType: TextInputType.phone,
-                            inputFormatters: [
-                              LengthLimitingTextInputFormatter(10),
-                              FilteringTextInputFormatter.digitsOnly,
-                              FilteringTextInputFormatter.deny(RegExp(r'\s')),
-                            ],
-                            decoration: InputDecoration(
-                                fillColor: Colors.white,
-                                filled: true,
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff707070))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff707070))),
-                                isCollapsed: false,
-                                isDense: true,
-                                contentPadding: const EdgeInsets.only(
-                                    top: 12, bottom: 12, left: 15),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                    borderSide: const BorderSide(
-                                        color: Color(0xff707070))),
-                                hintText: "Phone Number",
-                                hintStyle: TextStyle(
-                                  color: kblue,
-                                  fontWeight: FontWeight.w400,
-                                )),
-                          ),
+                      ksizedbox30,
+                      Container(
+                        height: 50,
+                        width: size.width * 0.3,
+                        child: TextFormField(
+                          textInputAction: TextInputAction.next,
+                          controller: phoneNumberController,
+                          autovalidateMode:
+                              AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return "Phone Number name can't be empty";
+                            } else if (value.length < 10) {
+                              return "Phone Number must be 10 digit";
+                            }
+                            return null;
+                          },
+                          //  textCapitalization: TextCapitalization.characters,
+                          keyboardType: TextInputType.phone,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(10),
+                            FilteringTextInputFormatter.digitsOnly,
+                            FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                          ],
+                          decoration: InputDecoration(
+                              fillColor: Colors.white,
+                              filled: true,
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xff707070))),
+                              focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xff707070))),
+                              isCollapsed: false,
+                              isDense: true,
+                              contentPadding: const EdgeInsets.only(
+                                  top: 12, bottom: 12, left: 15),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                  borderSide: const BorderSide(
+                                      color: Color(0xff707070))),
+                              hintText: "Phone Number",
+                              hintStyle: TextStyle(
+                                color: kblue,
+                                fontWeight: FontWeight.w400,
+                              )),
                         ),
                       ),
 
                       if (isReferral == true)
                         Padding(
-                          padding: const EdgeInsets.only(top: 15),
+                          padding: const EdgeInsets.only(top: 30),
                           child: Container(
                             width: size.width * 0.3,
                             child: TextFormField(
@@ -406,6 +403,7 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                             ),
                           ),
                         ),
+                        ksizedbox30,
                       Row(
                         children: [
                           Checkbox(
@@ -429,7 +427,7 @@ class _BusinessSignupScreenState extends State<BusinessSignupScreen> {
                           ),
                         ],
                       ),
-                      ksizedbox40,
+                      ksizedbox30,
                       Obx(
                         () => authcontroller.isLoading.isTrue
                             ? Container(
