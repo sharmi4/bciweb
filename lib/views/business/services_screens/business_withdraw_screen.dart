@@ -87,18 +87,24 @@ class _EnterAmountForWithdrawalScreenState
                   )
                  ),
                  child: profileController.profileData.isNotEmpty? 
-                           Text('₹${profileController.profileData.first.walletAmount}',
-                            style:TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color:kblue
-                            )):Text('₹ 0.0',
-                            style:TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color:kblue
-                            )
-                            ),
+                           Padding(
+                             padding: const EdgeInsets.only(top: 10,left: 5),
+                             child: Text('₹${profileController.profileData.first.walletAmount}',
+                              style:TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color:kblue
+                              )),
+                           ):Padding(
+                             padding: const EdgeInsets.only(left: 5,top: 10),
+                             child: Text('₹ 0.0',
+                              style:TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color:kblue
+                              )
+                              ),
+                           ),
                 ),
               ),
               
@@ -134,9 +140,12 @@ class _EnterAmountForWithdrawalScreenState
                     ],
                     decoration: InputDecoration(
                         hintStyle: TextStyle(fontSize: 18, color: kblue),
-                        prefix: Text(
-                          "₹ ",
-                          style: primaryFont.copyWith(),
+                        prefix: Padding(
+                          padding: const EdgeInsets.only(top:10,left: 5),
+                          child: Text(
+                            "₹ ",
+                            style: primaryFont.copyWith(),
+                          ),
                         ),
                         border: const OutlineInputBorder(
                           
@@ -265,14 +274,18 @@ class _EnterAmountForWithdrawalScreenState
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Row(
-
+                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                                Image.asset('assets/images/withdrawbankimage.png'),
-                              Text('Primary Bank Account',
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: kblue
-                              ),),
+                                Image.asset('assets/images/withdrawbankimage.png',
+                                fit: BoxFit.fitHeight,height: 25,),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 5),
+                                child: Text('Primary Bank Account',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: kblue
+                                ),),
+                              ),
                             ],
                           ),
                           Container(

@@ -323,51 +323,104 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
                                           height: 90,fit:BoxFit.fitHeight,),
                                           Padding(
                                             padding: const EdgeInsets.only(left:20),
-                                            child: Column(
-                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text(apisettingController.transactionhistorydata[index].type,
-                                                style:TextStyle(
-                                                fontSize: 17,
-                                                fontWeight: FontWeight.bold
-                                                )),
-                                                Padding(
-                                                  padding: const EdgeInsets.only(top:7),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                    children: [
-                                                       Text(formatDate(apisettingController.transactionhistorydata[index].createdAt,
-                                 [dd ,'-',mm,'-',yyyy]), style: TextStyle(
-                                                          fontSize: 16
-                                                         ),),
-                                                       Padding(
-                                                         padding: const EdgeInsets.only(left:40),
-                                                         child: Text(apisettingController.transactionhistorydata[index].transactionId,
-                                                         style: TextStyle(
-                                                          fontSize: 16
-                                                         ),),
-                                                       )
-                                                    ],
-                                                  ),
+                                            child:  Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          apisettingController
+                                                      .transactionhistorydata[
+                                                          index]
+                                                      .status ==
+                                                  "credit"
+                                              ? Text(
+                                                  "Credited",
+                                                  style: primaryFont.copyWith(
+                                                      color: Colors.black,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w600),
                                                 )
-                                              ],
-                                            ), 
+                                              : Text(
+                                                  "Debited",
+                                                  style: primaryFont.copyWith(
+                                                      color: Colors.black,
+                                                      fontSize: 17,
+                                                      fontWeight:
+                                                          FontWeight.w600),
+                                                ),
+                                          const SizedBox(
+                                            height: 7,
+                                          ),
+                                          apisettingController
+                                                      .transactionhistorydata[
+                                                          index]
+                                                      .status ==
+                                                  "credit"
+                                              ? Text(
+                                                  "Credited on ${formatDate(apisettingController.transactionhistorydata[index].createdAt, [
+                                                        dd,
+                                                        "-",
+                                                        mm,
+                                                        "-",
+                                                        yyyy,
+                                                        " ",
+                                                        hh,
+                                                        ":",
+                                                        nn,
+                                                        " ",
+                                                        am
+                                                      ])}",
+                                                  style: primaryFont.copyWith(
+                                                      color: Colors.black45,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                )
+                                              : Text(
+                                                  "Debited on ${formatDate(apisettingController.transactionhistorydata[index].createdAt, [
+                                                        dd,
+                                                        "-",
+                                                        mm,
+                                                        "-",
+                                                        yyyy,
+                                                        " ",
+                                                        hh,
+                                                        ":",
+                                                        nn,
+                                                        " ",
+                                                        am
+                                                      ])}",
+                                                  style: primaryFont.copyWith(
+                                                      color: Colors.black45,
+                                                      fontSize: 16,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                )
+                                        ],
+                                      ),
                                              ),  
                                         ],
                                       ),
                                     ],
                                   ),
-                                  Column(
-                                    children:[
-                                      Text('₹${apisettingController.transactionhistorydata[index].amount}',
-                                      style:TextStyle(
-                                        color:Colors.red,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold
-                                      ))
-                                    ]
-                                  )
+                                apisettingController
+                                                  .transactionhistorydata[index]
+                                                  .status ==
+                                              "credit"
+                                          ? Text(
+                                              "+ ₹${apisettingController.transactionhistorydata[index].amount}",
+                                              style: primaryFont.copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.green),
+                                            )
+                                          : Text(
+                                              "- ₹${apisettingController.transactionhistorydata[index].amount}",
+                                              style: primaryFont.copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.red),
+                                            )
                                 ],
                               ),
                             ),

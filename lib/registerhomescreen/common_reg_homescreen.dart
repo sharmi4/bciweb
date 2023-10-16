@@ -223,58 +223,58 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 padding: const EdgeInsets.only(left: 0),
                 child: Row(
                   children: [
-                    InkWell(
-                      onTap: () {
-                   //     Get.offAll(BusinesHomeRespo());
-                      },
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: kwhite,
-                            shape: BoxShape.circle,
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                  offset: Offset(0.0, 0.75),
-                                  blurRadius: 2,
-                                  color: kgrey)
-                            ]),
-                        child: Icon(
-                          Icons.search,
-                          color: kblue,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: GestureDetector(
-                        onTap: () {
-                          //Get.toNamed(Routes.BusinessHome);
-                        },
-                        child: Container(
-                          height: 30,
-                          width: 30,
-                          decoration: BoxDecoration(
-                              color: kwhite,
-                              shape: BoxShape.circle,
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                    offset: Offset(0.0, 0.75),
-                                    blurRadius: 2,
-                                    color: kgrey)
-                              ]),
-                          child: InkWell(
-                            onTap: () {
-                          //    Get.toNamed(Routes.BusinessHome);
-                            },
-                            child: Icon(
-                              Icons.notifications,
-                              color: kblue,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
+                  //   InkWell(
+                  //     onTap: () {
+                  //  //     Get.offAll(BusinesHomeRespo());
+                  //     },
+                  //     child: Container(
+                  //       height: 30,
+                  //       width: 30, 
+                  //       decoration: BoxDecoration(
+                  //           color: kwhite,
+                  //           shape: BoxShape.circle,
+                  //           boxShadow: <BoxShadow>[
+                  //             BoxShadow(
+                  //                 offset: Offset(0.0, 0.75),
+                  //                 blurRadius: 2,
+                  //                 color: kgrey)
+                  //           ]),
+                  //       child: Icon(
+                  //         Icons.search,
+                  //         color: kblue,
+                  //       ),
+                  //     ),
+                  //   ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 10),
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       //Get.toNamed(Routes.BusinessHome);
+                    //     },
+                    //     child: Container(
+                    //       height: 30,
+                    //       width: 30,
+                    //       decoration: BoxDecoration(
+                    //           color: kwhite,
+                    //           shape: BoxShape.circle,
+                    //           boxShadow: <BoxShadow>[
+                    //             BoxShadow(
+                    //                 offset: Offset(0.0, 0.75),
+                    //                 blurRadius: 2,
+                    //                 color: kgrey)
+                    //           ]),
+                    //       child: InkWell(
+                    //         onTap: () {
+                    //       //    Get.toNamed(Routes.BusinessHome);
+                    //         },
+                    //         child: Icon(
+                    //           Icons.notifications,
+                    //           color: kblue,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
                     authController.isLogedin == false
                         ? Container(
                             width: 110,

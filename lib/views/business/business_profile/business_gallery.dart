@@ -53,17 +53,25 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return  Obx(()=> profileController.isLoading.isTrue ? Center(
-      child: CircularProgressIndicator(
+      child: Center(
+     child: CircularProgressIndicator(
         color: Colors.orange,
       ),
+      )
     ): Column(
         children:[
           Row(
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 50,
+                child:InkWell(
+                  onTap:(){
+                    profileimage();
+                  },
+                  child: 
+                Container(
+                  height: 45,
+                  width:130,
                   decoration: BoxDecoration(
                      color: Colors.orange,
                      borderRadius: BorderRadius.circular(20)
@@ -79,6 +87,7 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
                   ),
                 ),
               ),
+              )
             ],
           ),
           ksizedbox30,

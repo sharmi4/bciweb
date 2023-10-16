@@ -205,10 +205,10 @@ class _BusinessCreateCouponsScreenState extends State<BusinessCreateCouponsScree
                           width: 60,
                           color: kOrange,
                         ),
-                        Text('Create a coupon online with our powerful coupon generator.Coustomizable\n coupons.Make life esier by just selecting the best temple to\n personalize.Get access..',
+                        Text(' Create a coupon online with our powerful coupon generator.Coustomizable\n coupons.Make life esier by just selecting the best temple to\n personalize.Get access..',
                         maxLines: 3,
                         style: TextStyle(
-                          
+                          height:1.8,
                           fontSize: 18,
                           
                   

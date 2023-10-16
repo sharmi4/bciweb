@@ -296,7 +296,10 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                         child: Container(
                                           height: 140,
                                           width: MediaQuery.of(context).size.width*0.4,
-                                          color: Colors.white,
+                                          decoration:BoxDecoration(
+                                           color: Colors.white,
+                                            
+                                          ),
                                           child: Row(
                                             children: [
                                               Container(

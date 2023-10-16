@@ -206,10 +206,11 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
                               color: kOrange,
                             ),
                             Text(
-                              'Create a coupon online with our powerful coupon generator.Coustomizable\n coupons.Make life esier by just selecting the best temple to\n personalize.Get access..',
+                              ' Create a coupon online with our powerful coupon generator.Coustomizable\n coupons.Make life esier by just selecting the best temple to\n personalize.Get access..',
                               maxLines: 3,
                               style: TextStyle(
                                 fontSize: 18,
+                                height:1.8,
                               ),
                             )
                           ],

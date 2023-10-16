@@ -168,7 +168,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                           onPressed: () {
                             reghomeController.reindex(5);
                             reghomeController.update();
-                            Get.toNamed(Routes.Gallery);
+                            Get.toNamed(Routes.BusinessAddGallery);
                           },
                           child: Text(
                             'GALLERY',
@@ -260,26 +260,26 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                     //   ),
                     //   child: Icon(Icons.search,color: kblue,),
                     //  ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 30,
-                        width: 30,
-                        decoration: BoxDecoration(
-                            color: kwhite,
-                            shape: BoxShape.circle,
-                            boxShadow: <BoxShadow>[
-                              BoxShadow(
-                                  offset: Offset(0.0, 0.75),
-                                  blurRadius: 2,
-                                  color: kgrey)
-                            ]),
-                        child: Icon(
-                          Icons.notifications,
-                          color: kblue,
-                        ),
-                      ),
-                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 10),
+                    //   child: Container(
+                    //     height: 30,
+                    //     width: 30,
+                    //     decoration: BoxDecoration(
+                    //         color: kwhite,
+                    //         shape: BoxShape.circle,
+                    //         boxShadow: <BoxShadow>[
+                    //           BoxShadow(
+                    //               offset: Offset(0.0, 0.75),
+                    //               blurRadius: 2,
+                    //               color: kgrey)
+                    //         ]),
+                    //     child: Icon(
+                    //       Icons.notifications,
+                    //       color: kblue,
+                    //     ),
+                    //   ),
+                    // ),
                     // authController.isLogedin == false
                     //     ? Container(
                     //         width: 110,
