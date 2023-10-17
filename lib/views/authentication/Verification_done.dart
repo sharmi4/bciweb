@@ -46,16 +46,13 @@ class Verification_Done extends StatelessWidget {
                           color: kblue),
                       ),
                     ),
-                    
-                  
                     Column(
                       children: [
-                   
-                                            Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top:50),
                     child: InkWell(
                       onTap: () {
-                        Get.to((MemberHomeScreen()));
+                        Get.to((const MemberHomeScreen()));
                       },
                       child: Container(
                         width: size.width*0.3,
@@ -81,7 +78,7 @@ class Verification_Done extends StatelessWidget {
                             ],
                           ),
                         ),
-                        child: Text(
+                        child:const Text(
                           'Done',
                           style: TextStyle(
                               fontSize: 22,

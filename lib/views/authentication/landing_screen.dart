@@ -25,7 +25,11 @@ class LandingScreen extends StatelessWidget {
               child: Image.asset('assets/images/img22.png'),
             ),
           ),
-          Container(
+           Container(
+            height: 600,
+            width: 450,
+            decoration: BoxDecoration(
+            color: kwhite, borderRadius: BorderRadius.circular(13)),
             child: Column(
               children: [
                 Padding(
@@ -63,7 +67,7 @@ class LandingScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      child: Center(
+                      child:const Center(
                         child: Text(
                           "Members Login",
                           style: TextStyle(
@@ -103,7 +107,7 @@ class LandingScreen extends StatelessWidget {
                           )
                         ],
                       ),
-                      child: Center(
+                      child:const Center(
                         child: Text(
                           "Bussiness Login",
                           style: TextStyle(
@@ -124,10 +128,6 @@ class LandingScreen extends StatelessWidget {
                 ),
               ],
             ),
-            height: 600,
-            width: 450,
-            decoration: BoxDecoration(
-                color: kwhite, borderRadius: BorderRadius.circular(13)),
           )
         ],
       ),

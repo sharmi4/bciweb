@@ -113,7 +113,7 @@ int _start = 60; // Timer duration in seconds
                         Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "Didn't Receive OTP ",
                     style: TextStyle(
                       fontSize: 19,

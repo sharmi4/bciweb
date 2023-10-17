@@ -40,11 +40,10 @@ var kcontainer = BoxDecoration(
   color: kwhite,
   boxShadow: [
     BoxShadow(
-      color:
-          Color.fromARGB(255, 190, 190, 190).withOpacity(0.5), // Shadow color
+      color:const Color.fromARGB(255, 190, 190, 190).withOpacity(0.5), // Shadow color
       spreadRadius: 1, // The spread radius of the shadow
       blurRadius: 5, // The blur radius of the shadow
-      offset: Offset(0, 3), // The offset of the shadow
+      offset: const Offset(0, 3), // The offset of the shadow
     ),
   ],
   border: Border.all(

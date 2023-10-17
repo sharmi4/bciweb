@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/registerhomescreen/business_comm_homecontainer.dart';
 import 'package:bciweb/views/members/common_widget/common.dart';
 
 import 'package:flutter/material.dart';
@@ -22,14 +23,16 @@ class _ContactScreenState extends State<ContactScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
+        preferredSize:const Size(double.infinity, 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
+              //CommonScreen(),
+              //RegisterCommonContainer(),
+              BusinessCommonhomeContainer(),
             ],
           ),
-          preferredSize: const Size(double.infinity, 110)),
+          ),
       body: ListView(children: [
         Column(
           children: [

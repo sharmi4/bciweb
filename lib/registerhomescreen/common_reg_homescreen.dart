@@ -306,7 +306,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
                               onTap: () {
-                                Get.to(LandingScreen());
+                                Get.to(const LandingScreen());
                                 // Get.toNamed(Routes.MobileVerification);
                               },
                               child: Container(

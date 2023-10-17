@@ -37,14 +37,15 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              BusinessCommonScreen(),
+              //BusinessCommonScreen(),
               BusinessCommonhomeContainer(),
             ],
           ),
-          preferredSize: const Size(double.infinity, 110)),
+          ),
       body: ListView(
         children: [
         Column(

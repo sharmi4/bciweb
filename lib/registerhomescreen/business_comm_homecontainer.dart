@@ -311,7 +311,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                             padding: const EdgeInsets.only(left: 10),
                             child: InkWell(
                               onTap: () {
-                                  Get.to(LandingScreen());
+                                  Get.to(const LandingScreen());
                                // Get.toNamed(Routes.MobileVerification);
                               },
                               child: Container(
@@ -335,7 +335,8 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                               onTap: () {
                                 // Get.to(MobileVerificatio());
                                 authController.businesslogoutWeb();
-                                Get.toNamed(Routes.BusinessMobileVerification);
+                                Get.to(const LandingScreen());
+                                //Get.toNamed(Routes.BusinessMobileVerification);
                               },
                               child: Container(
                                 height: 35,

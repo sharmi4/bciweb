@@ -52,7 +52,7 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return  Obx(()=> profileController.isLoading.isTrue ? Center(
+    return  Obx(()=> profileController.isLoading.isTrue ? const Center(
       child: Center(
      child: CircularProgressIndicator(
         color: Colors.orange,
@@ -77,8 +77,8 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
                      borderRadius: BorderRadius.circular(20)
                   ),
                   alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                  child:const Padding(
+                    padding: EdgeInsets.all(8.0),
                     child: Text("Add Images",style: TextStyle(
                       color: Colors.white,
                       fontSize: 15,

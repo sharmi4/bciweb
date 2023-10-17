@@ -34,14 +34,15 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CommonScreen(),
+              const CommonScreen(),
               RegisterCommonContainer(),
             ],
           ),
-          preferredSize: const Size(double.infinity, 110)),
+          ),
       body: ListView(children: [
         Column(
           children: [
@@ -264,7 +265,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                     ],
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 150,
                   left: 0,
                   right: 0,
@@ -275,14 +276,14 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                         style: TextStyle(fontSize: 17),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 6),
+                        padding: EdgeInsets.only(top: 6),
                         child: Text(
                           'looking for in a membership. Here are some general tips to help you find a',
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 6),
+                        padding: EdgeInsets.only(top: 6),
                         child: Text(
                           'membership that suits your needs:',
                           style: TextStyle(fontSize: 17),
@@ -315,7 +316,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 ksizedbox10,
-                                Text(
+                                const Text(
                                     'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Hotels / Resorts / Spas / \nSaloons / Services Apartments / Marriage \nHalls / Tours & Travels.'),
                               ],
                             ),
@@ -333,7 +334,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 ksizedbox10,
-                                Text(
+                                const Text(
                                     'BCI Prestigious Members Can Access\nour Amazing Discounts Coupons @ Our\nAssociate Provision / Restaurant /\nJewellery / Textile / Complimentary\nCoupon.'),
                               ],
                             ),
@@ -351,7 +352,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 ksizedbox10,
-                                Text(
+                                const Text(
                                     'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Utility Service Providers / \nOnline Shopping / Online Recharge / \nOnline Cinema Tickets.'),
                               ],
                             )
@@ -381,15 +382,15 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 20, left: 210),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 20, left: 210),
                         child: Text(
                           'Since 2 Decade BCI INDIA Is Servicing In India"s \nfirst family entertainment club, Have about 45000 \nMembers. Now We Are Providing New And Vibrate \nManagement Is Excited To Offer Our Members The \nBest Multi-Clubbing Experience Of Life Time.',
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 40, left: 210),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 40, left: 210),
                         child: Text(
                           'BCI INDIA in the Google play store makes world of \nopportunities and services, offers, value added mutual \nbenefits to members & vendors. Now we are \nExpanding Our Business Operations All over India, we \nare estimating about 1 Million Members to subscribe \nwithin Couple of Years, in The Way Of All Digital, Social, \nMedia, Member 2 Member, Vendors 2 Members & Etc.',
                           style: TextStyle(fontSize: 15),
@@ -465,8 +466,8 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                             fontSize: 15, color: kblue),
                                       ),
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
+                                    const Padding(
+                                      padding: EdgeInsets.only(
                                           left: 10, top: 15),
                                       child: Text(
                                         'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
@@ -511,8 +512,8 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                               fontSize: 15, color: kblue),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 10, top: 15),
                                         child: Text(
                                           'World-class service refers to exceptional and unparalleled service quality that sets a business apart from its competitors.',
@@ -558,8 +559,8 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                               fontSize: 15, color: kblue),
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
+                                      const Padding(
+                                        padding: EdgeInsets.only(
                                             left: 10, top: 15),
                                         child: Text(
                                           'A best price guarantee is a promise made by a business or service provider to offer the lowest possible price for their product or service.',

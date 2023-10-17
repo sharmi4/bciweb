@@ -50,12 +50,11 @@ class BusinessVerificationDone extends StatelessWidget {
                   
                     Column(
                       children: [
-                   
-                                            Padding(
+                    Padding(
                     padding: const EdgeInsets.only(top:50),
                     child: InkWell(
                       onTap: () {
-                        Get.to(BusinessHomeScreen());
+                        Get.to(const BusinessHomeScreen());
                        // Get.to((MemberHomeScreen()));
                       },
                       child: Container(

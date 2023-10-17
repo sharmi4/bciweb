@@ -6,6 +6,7 @@ import 'package:bciweb/services/networks/business_service/lastadd_couponlist_api
 import 'package:bciweb/services/networks/services/authapi_service/delete_user_api_services.dart';
 import 'package:bciweb/services/networks/transaction_history_api_service.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/coupons_redeemption_api_service.dart';
+import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/authentication/respo_business_otpverification.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 import 'package:bciweb/services/networks/services/authapi_service/auth_api_service.dart';
@@ -226,7 +227,7 @@ class AuthController extends GetxController {
         await prefs.setString("auth_token", response.data["token"]);
         await prefs.setString("id", response.data["user"]["id"].toString());
         if (screen == true) {
-          Get.offAll(BusinesHomeRespo());
+          Get.offAll(const BusinesHomeRespo());
         } else {
           Get.offAll(const BusinessVerificationDone());
         }
@@ -326,14 +327,14 @@ class AuthController extends GetxController {
   logoutWeb() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
-    Get.to(MobileVerification());
+    Get.to(const MobileVerification());
     // Get.to(const MemberLoginScreenrespo());
   }
 
   businesslogoutWeb() async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString("auth_token", "null");
-    Get.to(BusinessMobileVerification());
+    Get.to(const LandingScreen());
     // Get.to(const MemberLoginScreenrespo());
   }
 
