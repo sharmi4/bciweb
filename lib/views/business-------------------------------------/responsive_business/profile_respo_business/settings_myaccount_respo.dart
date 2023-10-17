@@ -3,6 +3,7 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_busines_editprof.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,7 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
   var accountTypeController = TextEditingController();
   var ifscCodeController = TextEditingController();
   var merchantCategory;
-
+  final businessprofileController = Get.find<ProfileController>();
   // Future pickerimage() async {
   //   try {
   //     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -143,25 +144,28 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
       body: GetBuilder<ProfileController>(builder: (_) {
         return ListView(children: [
           Column(
-            children: [
-              Stack(
-                children: [
-                if (profileController.profileData.isNotEmpty)
+            children: [ksizedbox20,
+              Stack(children: [
+                if (businessprofileController.profileData.isNotEmpty)
                   GetBuilder<AuthProfileController>(builder: (_) {
                     return Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        profileController.profileData.isEmpty
-                            ? Image.asset('assets/images/settingprofile.png')
-                            : Container(
-                                height: 80,
-                                width: 80,
-                                decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(profileController
-                                            .profileData.first.profilePicture)),
-                                    borderRadius: BorderRadius.circular(50)),
-                              ),
+                        businessprofileController.profileData.isEmpty
+                            ? Image.asset('assets/images/prfl.png')
+                            : CircleAvatar(backgroundImage: NetworkImage( businessprofileController
+                                          .profileData.first.profilePicture,),)
+                            // Container(
+                            //     height: 80,
+                            //     width: 80,
+                            //     decoration: BoxDecoration(
+                            //         image: DecorationImage(
+                            //             image: NetworkImage(
+                            //           businessprofileController
+                            //               .profileData.first.profilePicture,
+                            //         )),
+                            //         borderRadius: BorderRadius.circular(50)),
+                            //   ),
                       ],
                     );
                   }),
@@ -172,7 +176,7 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
                       padding: const EdgeInsets.only(right: 10, bottom: 10),
                       child: TextButton(
                           onPressed: () {
-                            //  Get.to(const SettingEditScreen());
+                              Get.to(RespoBusinessEditProfile());
                           },
                           child: Text(
                             'Edit',
@@ -509,7 +513,8 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
               ),
             ],
           ),
-      ksizedbox30,  ]);
+          ksizedbox30,
+        ]);
       }),
     );
   }

@@ -4,6 +4,7 @@ import 'package:bciweb/controller/service_controller/home_controller.dart';
 
 import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_availability/respo_business_addservices.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -97,7 +98,8 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
       ),
       drawer: DrawerBusiness(),
 
-      body:  ListView(children: [
+      body:  ListView(
+        children: [
         Column(
           children: [
             ksizedbox20,
@@ -114,7 +116,7 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                 ksizedbox10,
                 InkWell(
                   onTap: () {
-                 //   Get.to(() => const AddServicesView());
+                    Get.to(() => const RespoBusinessAddServices());
                     
                   },
                   child: Container(
@@ -245,7 +247,7 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                               _selectDate(context);
                             },
                             child: Image.asset(
-                                'assets/images/availabilitycircle3.png'),
+                        'assets/images/availabilitycircle3.png'),
                           ),
                         )
                       ],

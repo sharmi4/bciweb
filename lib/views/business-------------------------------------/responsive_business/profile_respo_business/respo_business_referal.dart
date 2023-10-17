@@ -18,35 +18,30 @@ class RespoBusinessReferal extends StatefulWidget {
 }
 
 class _RespoBusinessReferalState extends State<RespoBusinessReferal> {
-
-
   final settingsController = Get.find<ApiSettingController>();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    settingsController. getwalletList();
+    settingsController.getwalletList();
     settingsController.generateReferralCode();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: PreferredSize(
+    return Scaffold(
+      appBar: PreferredSize(
         child: AppBarMob(),
         preferredSize: Size(double.infinity, 40),
       ),
       drawer: DrawerBusiness(),
-      
-      
-      
-      body:  Padding(
+      body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
-          physics:const BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
-           const Image(
+            const Image(
               image: AssetImage(
                 "assets/images/pngwing.com (30).png",
               ),
@@ -61,53 +56,55 @@ class _RespoBusinessReferalState extends State<RespoBusinessReferal> {
                       fontSize: 22, fontWeight: FontWeight.w600, color: kblue),
                 ),
               ),
-            ),ksizedbox10,
-            Obx( () =>
-               Padding(
-                 padding: const EdgeInsets.only(left: 15,right: 15),
-                 child: Container(
+            ),
+            ksizedbox10,
+            Obx(
+              () => Padding(
+                padding: const EdgeInsets.only(left: 15, right: 15),
+                child: Container(
                   height: 50,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: kblue)
-                  ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: kblue)),
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 10,right: 10),
+                      padding: const EdgeInsets.only(left: 10, right: 10),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(settingsController.referralCode.value,style: TextStyle(
-                             fontSize: 16, color: kblue, fontWeight: FontWeight.w500),),
+                          Text(
+                            settingsController.referralCode.value,
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: kblue,
+                                fontWeight: FontWeight.w500),
+                          ),
                           InkWell(
-                            onTap: (){
-                              FlutterClipboard.copy(settingsController.referralCode.value).then(
-                                                    (value) =>
-                                                        Fluttertoast.showToast(
-                                                            msg:
-                                                                "Copy to clipboard",
-                                                            toastLength: Toast
-                                                                .LENGTH_SHORT,
-                                                            gravity: ToastGravity
-                                                                .CENTER,
-                                                            timeInSecForIosWeb: 1,
-                                                            backgroundColor:
-                                                                kblue,
-                                                            textColor:
-                                                                Colors.white,
-                                                            fontSize: 16.0),
-                                                    //print("code copied")
-                                                  );
-                            },
-                            child: Image.asset('assets/images/Icon awesome-copy.png')),
+                              onTap: () {
+                                FlutterClipboard.copy(
+                                        settingsController.referralCode.value)
+                                    .then(
+                                  (value) => Fluttertoast.showToast(
+                                      msg: "Copy to clipboard",
+                                      toastLength: Toast.LENGTH_SHORT,
+                                      gravity: ToastGravity.CENTER,
+                                      timeInSecForIosWeb: 1,
+                                      backgroundColor: kblue,
+                                      textColor: Colors.white,
+                                      fontSize: 16.0),
+                                  //print("code copied")
+                                );
+                              },
+                              child: Image.asset(
+                                  'assets/images/Icon awesome-copy.png')),
                         ],
                       ),
                     ),
                   ),
-                             ),
-               ),
+                ),
+              ),
             ),
 
             // authController.referralcode();
@@ -128,19 +125,22 @@ class _RespoBusinessReferalState extends State<RespoBusinessReferal> {
                   ),
                   Container(
                     height: 30,
-                  width: 30,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(7), color: korange),
-                  child: Center(
-                      child:settingsController.getWalletData.isEmpty ? const Text("") : 
-                      Text(settingsController.getWalletData.first.referrals.totalReferrals.toString(),
-                    style: TextStyle(
-              color: kwhite,
-              fontSize: 18,
-              fontWeight: FontWeight.w600),
-                  )),
-                  
-                ),
+                    width: 30,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(7), color: korange),
+                    child: Center(
+                        child: settingsController.getWalletData.isEmpty
+                            ? const Text("")
+                            : Text(
+                                settingsController.getWalletData.first.referrals
+                                    .totalReferrals
+                                    .toString(),
+                                style: TextStyle(
+                                    color: kwhite,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600),
+                              )),
+                  ),
                 ],
               ),
             ),
@@ -150,7 +150,8 @@ class _RespoBusinessReferalState extends State<RespoBusinessReferal> {
               padding: const EdgeInsets.only(left: 15, right: 15),
               child: InkWell(
                 onTap: () {
-                  String referralmsg = "Use my referral code ${settingsController.referralCode.value} when you sign up, and we'll both receive fantastic rewards. Don't forget to click on the link below to download the app and start enjoying the perks right away!\n\n";
+                  String referralmsg =
+                      "Use my referral code ${settingsController.referralCode.value} when you sign up, and we'll both receive fantastic rewards. Don't forget to click on the link below to download the app and start enjoying the perks right away!\n\n";
                   Share.share('$referralmsg');
                 },
                 child: Container(
@@ -189,6 +190,7 @@ class _RespoBusinessReferalState extends State<RespoBusinessReferal> {
             ksizedbox40
           ],
         ),
-      ),);
+      ),
+    );
   }
 }

@@ -1,11 +1,13 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
 import 'package:bciweb/models/business_model/business_getbooking_list_model.dart';
+import 'package:bciweb/models/business_model/createservice_model.dart';
 import 'package:bciweb/models/getCartlistmodel.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/models/setting_model/service_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
 import 'package:bciweb/services/networks/business_service/business_addcoupon_api_service.dart';
+import 'package:bciweb/services/networks/business_service/business_addservice_api_service.dart';
 import 'package:bciweb/services/networks/business_service/business_bookingdatefilter_api_service.dart';
 import 'package:bciweb/services/networks/business_service/business_getbookinglist_api_service.dart';
 import 'package:bciweb/services/networks/business_service/business_todayoffers_api_service.dart';
@@ -450,5 +452,31 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
       }
 
   }
+
+ AddServicesApiServices addServicesApiServices = AddServicesApiServices();
+ addServices({required CreateServiceModel createServiceModel}) async {
+    isLoading(true);
+    dio.Response<dynamic> response = await addServicesApiServices.addServices(
+        createServiceModel: createServiceModel);
+    isLoading(false);
+    if (response.statusCode == 200) {
+      getServicesByVendor();
+      Get.back();
+      Get.rawSnackbar(
+          backgroundColor: Colors.green,
+          messageText: Text(
+            "Service Created Successfully",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    } else if (response.statusCode == 500) {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            "Something went wrong, Please check all the fields",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    } else {}
+  }
+  
 
 }

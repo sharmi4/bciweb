@@ -2,7 +2,9 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
+import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/wallet_respo_business/respo_business_payout.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
@@ -18,10 +20,7 @@ class RespoBusinessWallet extends StatefulWidget {
 }
 
 class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
-
-
-
- int index = 0;
+  int index = 0;
   List amountimage = [
     'assets/images/amounticon.png',
     'assets/images/amounticon.png',
@@ -50,27 +49,25 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    profileController.getProfile();
+    authprofileController.getProfile();
     authController.transactionHistoryDetails();
+    apisettingController.transactionHistoryDetails();
   }
-  final profileController = Get.find<AuthProfileController>();
+final apisettingController = Get.find<ApiSettingController>();
+  final authprofileController = Get.find<AuthProfileController>();
   final authController = Get.find<AuthController>();
-
 
   @override
   Widget build(BuildContext context) {
-     var _mediaQuery = MediaQuery.of(context).size;
-    return Scaffold(appBar: PreferredSize(
+    var _mediaQuery = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: PreferredSize(
         child: AppBarMob(),
         preferredSize: Size(double.infinity, 40),
       ),
       drawer: DrawerBusiness(),
-
-      
-      body:  GetBuilder<ProfileController>(builder: (_) {
-        return ListView(
-          physics: const BouncingScrollPhysics(),
-           children: [
+      body: GetBuilder<ProfileController>(builder: (_) {
+        return ListView(physics: const BouncingScrollPhysics(), children: [
           Column(
             children: [
               const Row(
@@ -110,14 +107,17 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
                           children: [
                             Text(
                               'Total Wallet Amount',
-                              style: TextStyle(color: kwhite, fontSize: 17,),
+                              style: TextStyle(
+                                color: kwhite,
+                                fontSize: 17,
+                              ),
                             ),
                             Padding(
                               padding:
                                   const EdgeInsets.only(top: 10, right: 30),
-                              child: profileController.profileData.isNotEmpty
+                              child:authprofileController.profileData.isNotEmpty
                                   ? Text(
-                                      '₹${profileController.profileData.first.walletAmount}',
+                                      '₹${authprofileController.profileData.first.walletAmount}',
                                       style: TextStyle(
                                           fontSize: 21, color: kwhite),
                                     )
@@ -125,7 +125,7 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
                                       padding: const EdgeInsets.only(
                                           top: 10, right: 30),
                                       child: Text(
-                                        '₹ 0.0',
+                                        '₹ 0',
                                         style: TextStyle(
                                             fontSize: 21, color: kwhite),
                                       ),
@@ -138,13 +138,13 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      if (profileController
+                      if (authprofileController
                                   .profileData.first.bankAccountNumber !=
                               "" &&
-                          profileController.profileData.first.bankAccountName !=
+                         authprofileController.profileData.first.bankAccountName !=
                               "" &&
-                          profileController.profileData.first.ifscCode != "") {
-                   //     Get.to(() => const EnterAmountForWithdrawalScreen());
+                         authprofileController.profileData.first.ifscCode != "") {
+                        Get.to(() => RespoBusinessPayout());
                       } else {
                         showModalBottomSheet(
                             shape: RoundedRectangleBorder(
@@ -184,7 +184,7 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
                                                 borderRadius:
                                                     BorderRadius.circular(15))),
                                         onPressed: () {
-                                //          Get.to(const BankDetailsScreen());
+                                          //          Get.to(const BankDetailsScreen());
                                         },
                                         child: const Text(
                                           'Add',
@@ -232,8 +232,7 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
                                 Text(
                                   'Withdraw \nCash',
                                   textAlign: TextAlign.center,
-                                  style:
-                                      TextStyle(fontSize: 14, color: kwhite),
+                                  style: TextStyle(fontSize: 14, color: kwhite),
                                 ),
                               ],
                             ),
@@ -268,7 +267,7 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
               ),
               GetBuilder<AuthController>(builder: (_) {
                 return Container(
-                  height: _mediaQuery.height*0.50,
+                  height: _mediaQuery.height * 0.50,
                   child: authController.transactionHistorydata.isNotEmpty
                       ? ListView.builder(
                           itemCount:
@@ -400,17 +399,16 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
                             children: [
                               Image.asset(
                                 'assets/icons/w.jpeg',
-                               // fit: BoxFit.fitHeight,
+                                // fit: BoxFit.fitHeight,
                                 height: 200,
                               ),
                               ksizedbox20,
                               Text(
                                 'No Wallet Data',
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  color: kblue,
-                                  fontWeight: FontWeight.w700
-                                ),
+                                    fontSize: 16,
+                                    color: kblue,
+                                    fontWeight: FontWeight.w700),
                               ),
                             ],
                           ),
@@ -420,6 +418,7 @@ class _RespoBusinessWalletState extends State<RespoBusinessWallet> {
             ],
           ),
         ]);
-      }),);
+      }),
+    );
   }
 }

@@ -1,4 +1,5 @@
 
+import 'package:bciweb/services/networks/business_service/business_withdraw_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
@@ -132,4 +133,33 @@ class ProfileController extends GetxController{
     }
     update();
   }
+
+
+  WithdrawWalletApiServices withdrawWalletApiServices =
+      WithdrawWalletApiServices();
+
+  withdrawAmountFromWallet({required String amount}) async {
+    isLoading(true);
+    dio.Response<dynamic> response = await withdrawWalletApiServices
+        .withdrawWalletApiServices(amount: amount);
+    isLoading(false);
+    print(response.data);
+
+    if (response.statusCode == 200) {
+      Get.rawSnackbar(
+        message: "Withrawal submitted successfully",
+        backgroundColor: Colors.green,
+      );
+      // Get.offAll(() => HomeBottomnavigationBar(
+      //       index: 2,
+      //     ));
+    } else {
+      Get.rawSnackbar(
+        message:response.data["error"],
+        backgroundColor: Colors.red,
+      );
+    }
+  }
+
+
 }

@@ -25,6 +25,7 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
+     authprofileController.getProfile();
     apisettingController.transactionHistoryDetails();
   }
     final apisettingController = Get.find<ApiSettingController>();
