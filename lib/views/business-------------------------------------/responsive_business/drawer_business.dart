@@ -2,6 +2,7 @@ import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_profile_screen.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_addgallery/respo_business_addgallery.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_availability/respo_business_availability.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_booking/respo_business_booking.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_couponredemption/respo_business_couponredemption.dart';
@@ -63,6 +64,42 @@ class _DrawerBusinessState extends State<DrawerBusiness> {
               color: kgrey,
             ),
           ),
+
+
+
+
+
+
+            Padding(
+            padding: const EdgeInsets.only(top: 30, left: 10),
+            child: Row(
+            children: [
+            TextButton(
+            onPressed: () {
+            Get.to(RespoBusinessAddGallery(  userid: authprofileController.profileData.first.id.toString()));
+            },
+                  child: Text(
+                    'ADD GALLERY',
+                    style: TextStyle(fontSize: 16, color: kwhite),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+            child: Divider(
+              color: kgrey,
+            ),
+          ),
+
+
+
+
+
+
+
+
           Padding(
             padding: const EdgeInsets.only(top: 30, left: 10),
             child: Row(

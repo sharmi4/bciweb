@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
@@ -44,8 +43,8 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
 
   File? image;
   File? image2;
-  File? imageprofile;
-
+//  File? imageprofile;
+  dynamic imageprofile;
   final profileController = Get.find<ProfileController>();
 
   final authController = Get.find<AuthController>();
@@ -53,7 +52,8 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
   var merchantCategory;
 
   bool isGSTNum = true;
-
+  dynamic aadharimage;
+  dynamic panimage;
   var aadharCardImage;
   var panCardImage;
   var shopImage;
@@ -104,12 +104,7 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
     }
   }
 
-
-
-
-
-
- //
+  //
   File? simage;
 
   Future spickerimage() async {
@@ -138,18 +133,19 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
     }
   }
 
-
-
-
-    Future profileimage() async {
+  Future profileimage() async {
     try {
-      final imageprofile =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (imageprofile == null) return;
-      final imageprofiletemp = File(imageprofile.path);
-      profileController.updateProfilePic(imageprofiletemp);
+      var timageprofile =
+          await ImagePicker().getImage(source: ImageSource.gallery);
+      if (timageprofile == null) return;
+
+      var tempCont = await timageprofile!.readAsBytes();
       setState(() {
-        this.imageprofile = imageprofiletemp;
+        imageprofile = tempCont;
+      });
+      profileController.updateProfilePic(tempCont);
+      setState(() {
+        this.imageprofile = tempCont;
       });
     } catch (e) {
       print('Failed to pick image:$e');
@@ -169,7 +165,6 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
       print('Failed to pick image:$e');
     }
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -197,7 +192,7 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
                               width: 135,
                               child: ClipRRect(
                                   borderRadius: BorderRadius.circular(60),
-                                  child: Image.file(
+                                  child: Image.memory(
                                     imageprofile!,
                                     fit: BoxFit.cover,
                                   ))),
@@ -545,110 +540,83 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                aadharCardImage != null
-                    ? Container(
-                        height: 100,
-                        width: 100,
-                        child: Image.network(aadharCardImage))
-                    : image != null
+                Container(
+                    height: 100,
+                    width: 100,
+                    child: profileController.profileData.isEmpty
                         ? Container(
-                            height: 100, width: 100, child: Image.file(image!))
-                        : InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          TextButton(
-                                              onPressed: () {
-                                                Get.back();
-                                            //    pickerimage();
-                                              },
-                                              child: const Text(
-                                                'Choose Gallery',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16),
-                                              )),
-                                          TextButton(
-                                              onPressed: () {
-                                                Get.back();
-                                            //    imagepic();
-                                              },
-                                              child: const Text(
-                                                'Choose Camera',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16),
-                                              ))
-                                        ],
+                            height: 150,
+                            width: 150,
+                          )
+                        : profileController.profileData.first.adharProof == null
+                            ? aadharimage != null
+                                ? Image.memory(aadharimage!)
+                                : InkWell(
+                                    onTap: () async {
+                                      PickedFile? pickedFile =
+                                          await ImagePicker().getImage(
+                                        source: ImageSource.gallery,
+                                      );
+
+                                      var tempCont =
+                                          await pickedFile!.readAsBytes();
+                                      setState(() {
+                                        aadharimage = tempCont;
+                                      });
+                                    },
+                                    child: Container(
+                                      height: 150,
+                                      width: 150,
+                                      child: GestureDetector(
+                                        onTap: () async {
+                                          PickedFile? pickedFile =
+                                              await ImagePicker().getImage(
+                                            source: ImageSource.gallery,
+                                          );
+
+                                          var tempCont =
+                                              await pickedFile!.readAsBytes();
+                                          setState(() {
+                                            aadharimage = tempCont;
+                                          });
+                                        },
+                                        child: Text('Upload Aadhar Card',
+                                            style: TextStyle(fontSize: 12)),
                                       ),
-                                    );
-                                  });
-                            },
-                            child: Container(
-                                height: 100,
-                                width: 100,
-                                color: const Color(0xffE4E4E4),
-                                child: Image.asset(
-                                    'assets/images/imageupload.png')),
-                          ),
-                panCardImage != null
-                    ? Container(
-                        height: 100,
-                        width: 100,
-                        child: Image.network(panCardImage))
-                    : image2 != null
-                        ? Container(
-                            height: 100, width: 100, child: Image.file(image2!))
-                        : InkWell(
-                            onTap: () {
-                              showModalBottomSheet(
-                                  context: context,
-                                  builder: (context) {
-                                    return Container(
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceAround,
-                                        children: [
-                                          TextButton(
-                                              onPressed: () {
-                                                Get.back();
-                                            //    pickerimage2();
-                                              },
-                                              child: const Text(
-                                                'Choose gallery',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16),
-                                              )),
-                                          TextButton(
-                                              onPressed: () {
-                                                Get.back();
-                                             //   imagepic2();
-                                              },
-                                              child: const Text(
-                                                'Choose Camera',
-                                                style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontSize: 16),
-                                              ))
-                                        ],
-                                      ),
-                                    );
-                                  });
-                            },
-                            child: Container(
-                                height: 100,
-                                width: 100,
-                                color: const Color(0xffE4E4E4),
-                                child: Image.asset(
-                                    'assets/images/imageupload.png')),
-                          ),
+                                    ),
+                                  )
+                            : Image.network(profileController
+                                .profileData.first.adharProof)),
+
+                // Container(
+                //     height: 100,
+                //     width: 100,
+                //     child: profileController
+                //             .profileData.first.adharProof.isEmpty
+                //         ? aadharimage != null
+                //             ? Image.memory(aadharimage!)
+                //             : Container(
+                //                 height: 150,
+                //                 width: 150,
+                //                 child: GestureDetector(
+                //                   onTap: () async {
+                //                     PickedFile? pickedFile =
+                //                         await ImagePicker().getImage(
+                //                       source: ImageSource.gallery,
+                //                     );
+
+                //                     var tempCont =
+                //                         await pickedFile!.readAsBytes();
+                //                     setState(() {
+                //                       aadharimage = tempCont;
+                //                     });
+                //                   },
+                //                   child: Text('Upload Aadhar Card',
+                //                       style: TextStyle(fontSize: 12)),
+                //                 ),
+                //               )
+                //         : Image.network(
+                //             profileController.profileData.first.adharProof)),
                 //
                 // simage != null
                 //     ? Container(
@@ -818,17 +786,7 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
     );
   }
 
-
-
-
-
-
-
-
-
-
-
- var mult = [
+  var mult = [
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
     [1, 2, 3, 4, 0, 6, 7, 8, 9, 5],
     [2, 3, 4, 0, 1, 7, 8, 9, 5, 6],
@@ -895,6 +853,4 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
     bool val = csum == check ? true : false;
     return val;
   }
-
-
 }

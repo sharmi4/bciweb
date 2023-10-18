@@ -418,43 +418,42 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                     if (authprofileController
                                         .profileData.isNotEmpty)
                                       InkWell(
-                                          onTap: () async {
-                                            PickedFile? pickedFile =
-                                                await ImagePicker().getImage(
-                                              source: ImageSource.gallery,
-                                            );
+                                        onTap: () async {
+                                          PickedFile? pickedFile =
+                                              await ImagePicker().getImage(
+                                            source: ImageSource.gallery,
+                                          );
 
-                                            var tempCont =
-                                                await pickedFile!.readAsBytes();
-                                            setState(() {
-                                              imageprofile = tempCont;
-                                            });
-                                            authprofileController
-                                                .updateProfilePic(imageprofile);
-                                          },
-                                          child: imageprofile != null
-                                              ? Image.memory(imageprofile!)
-                                              : authprofileController
-                                                          .profileData
-                                                          .first
-                                                          .profilePicture ==
-                                                      null
-                                                  ? Image.asset(
-                                                      'assets/images/profileimage.png')
-                                                  : Container(
-                                                      height: 60,
-                                                      width: 60,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(50),
-                                                          image: DecorationImage(
-                                                              image: NetworkImage(
-                                                                  authprofileController
-                                                                      .profileData
-                                                                      .first
-                                                                      .profilePicture))),
-                                                    )),
+                                          var tempCont =
+                                              await pickedFile!.readAsBytes();
+                                          setState(() {
+                                            imageprofile = tempCont;
+                                          });
+                                          authprofileController
+                                              .updateProfilePic(imageprofile);
+                                        },
+                                        child: imageprofile != null
+                                            ? Image.memory(imageprofile!)
+                                            : authprofileController.profileData
+                                                        .first.profilePicture ==
+                                                    null
+                                                ? Image.asset(
+                                                    'assets/images/profileimage.png')
+                                                : Container(
+                                                    height: 60,
+                                                    width: 60,
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(50),
+                                                        image: DecorationImage(
+                                                            image: NetworkImage(
+                                                                authprofileController
+                                                                    .profileData
+                                                                    .first
+                                                                    .profilePicture))),
+                                                  ),
+                                      ),
                                     const Padding(
                                       padding: EdgeInsets.only(bottom: 40),
                                       child: Text(
@@ -1369,7 +1368,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                                   doorNo: mobileofficedoornumber
                                                       .text,
                                                   personalId: "",
-                                                  state: mobileofficestate.text, pincode: '',
+                                                  state: mobileofficestate.text,
+                                                  pincode: '',
                                                 );
 
                                                 authprofileController
@@ -1408,7 +1408,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                                   doorNo: mobileofficedoornumber
                                                       .text,
                                                   personalId: "",
-                                                  state: mobileofficestate.text, pincode: '',
+                                                  state: mobileofficestate.text,
+                                                  pincode: '',
                                                 );
 
                                                 authprofileController
@@ -1566,7 +1567,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                                     mobileresiperidController
                                                         .text,
                                                 state: mobileresistateController
-                                                    .text, pincode: '');
+                                                    .text,
+                                                pincode: '');
                                             authprofileController
                                                 .updateRecidencyAddress(
                                                     residentialAddress:
@@ -1618,7 +1620,8 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                                     mobileresiperidController
                                                         .text,
                                                 state: mobileresistateController
-                                                    .text, pincode: '');
+                                                    .text,
+                                                pincode: '');
                                             authprofileController
                                                 .updateRecidencyAddress(
                                                     residentialAddress:

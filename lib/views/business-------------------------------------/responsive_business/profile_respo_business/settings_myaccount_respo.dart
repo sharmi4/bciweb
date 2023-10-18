@@ -154,7 +154,7 @@ class _BusinessMyAccountRespoState extends State<BusinessMyAccountRespo> {
                         businessprofileController.profileData.isEmpty
                             ? Image.asset('assets/images/prfl.png')
                             : CircleAvatar(backgroundImage: NetworkImage( businessprofileController
-                                          .profileData.first.profilePicture,),)
+                                          .profileData.first.profilePicture,),radius: 32,)
                             // Container(
                             //     height: 80,
                             //     width: 80,

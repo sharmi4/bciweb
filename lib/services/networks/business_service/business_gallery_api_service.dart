@@ -13,9 +13,8 @@ class AddGalleryApiServices extends BaseApiService {
       String? authtoken = prefs.getString("auth_token");
 
       var formData = FormData.fromMap({
-        "gallery":
-             MultipartFile.fromBytes(gallery, filename: "gallery"),
-      
+        "gallery[0]":
+             MultipartFile.fromBytes(gallery, filename: "gallery_IMG"),
       });
 
       var response = await dio.post(addGallery,
@@ -30,7 +29,7 @@ class AddGalleryApiServices extends BaseApiService {
               }),
           data: formData);
       print(
-          "::::::::<get gallery Services Api>::::::::status code:::::::::$gallery:");
+          ":<<<THIS IS THE API WE ARE TRY TO CALL :::::::<get gallery Services Api>::::::::status code::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

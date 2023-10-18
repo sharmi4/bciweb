@@ -12,7 +12,6 @@ import '../views/authentication/landing_screen.dart';
 import '../views/business/business_profilescreen.dart';
 
 class BusinessCommonhomeContainer extends StatefulWidget {
-  
   BusinessCommonhomeContainer({super.key});
 
   @override
@@ -20,10 +19,10 @@ class BusinessCommonhomeContainer extends StatefulWidget {
       _BusinessCommonhomeContainerState();
 }
 
-class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContainer> {
-
-  bool isLoggedIn =false;
-    checkForLoggedInState() async {
+class _BusinessCommonhomeContainerState
+    extends State<BusinessCommonhomeContainer> {
+  bool isLoggedIn = false;
+  checkForLoggedInState() async {
     final prefs = await SharedPreferences.getInstance();
     String? authtoken = prefs.getString('auth_token');
     print("Token is here");
@@ -39,7 +38,6 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
     }
   }
 
-  
   @override
   final reghomeController = Get.find<RegisterHomeController>();
   final authController = Get.find<AuthController>();
@@ -51,7 +49,7 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
   void initState() {
     // TODO: implement initState
     super.initState();
-  
+
     checkForLoggedInState();
     businessprofileController.getProfile();
   }
@@ -195,17 +193,15 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                                     : kblue),
                           )),
                     ),
-                   //if(isLoggedIn==true)
+                    //if(isLoggedIn==true)
                     Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
                           onPressed: () {
-                           
                             reghomeController.reindex(7);
                             reghomeController.update();
-                              Get.toNamed(Routes.BusinessBookingScreen);
-                             //Get.to(Hstory());
-                        
+                            Get.toNamed(Routes.BusinessBookingScreen);
+                            //Get.to(Hstory());
                           },
                           child: Text(
                             'BOOKINGS',
@@ -215,17 +211,15 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                                     : kblue),
                           )),
                     ),
-                     Padding(
+                    Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
                           onPressed: () {
-                           
                             reghomeController.reindex(8);
                             reghomeController.update();
                             Get.toNamed(Routes.BusinessWalletScreen);
-                              //Get.toNamed(Routes.BOOKINGS);
+                            //Get.toNamed(Routes.BOOKINGS);
                             //  Get.to(Hstory());
-                        
                           },
                           child: Text(
                             'WALLETS',
@@ -311,8 +305,8 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                             padding: const EdgeInsets.only(left: 10),
                             child: InkWell(
                               onTap: () {
-                                  Get.to(const LandingScreen());
-                               // Get.toNamed(Routes.MobileVerification);
+                                Get.to(const LandingScreen());
+                                // Get.toNamed(Routes.MobileVerification);
                               },
                               child: Container(
                                 height: 35,
@@ -363,43 +357,49 @@ class _BusinessCommonhomeContainerState extends State<BusinessCommonhomeContaine
                     child: Row(children: [
                       GetBuilder<ProfileController>(builder: (_) {
                         return businessprofileController.profileData.isNotEmpty
-                            ? Text(businessprofileController.profileData.first.name)
+                            ? Text(businessprofileController
+                                .profileData.first.name)
                             : Text('');
                       }),
                       //   Icon(Icons.expand_more),
                       kwidth10,
-                      GetBuilder<ProfileController>(builder: (_) {
-                        return businessprofileController.profileData.isNotEmpty
-                            ? businessprofileController
-                                        .profileData.first.profilePicture !=
-                                    null
-                                ? InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  BusinessRegisterProfileScreen()));
-                                    },
-                                    child: CircleAvatar(
-                                        radius: 22.0,
-                                        backgroundImage: NetworkImage(
-                                          businessprofileController
-                                              .profileData.first.profilePicture,
-                                        )),
-                                  )
-                                //:Text('')
-                                : Image.asset(
-                                    'assets/images/nick.png',
-                                    height: 35,
-                                    fit: BoxFit.fitHeight,
-                                  )
-                            //:Text('');
-                            : Image.asset(
-                                'assets/images/nick.png',
-                                height: 35,
-                                fit: BoxFit.fitHeight,
-                              );
-                      })
+                      GetBuilder<ProfileController>(
+                        builder: (_) {
+                          return businessprofileController
+                                  .profileData.isNotEmpty
+                              ? businessprofileController
+                                          .profileData.first.profilePicture !=
+                                      null
+                                  ? InkWell(
+                                      onTap: () {
+                                        Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    BusinessRegisterProfileScreen()));
+                                      },
+                                      child: CircleAvatar(
+                                          radius: 22.0,
+                                          backgroundImage: NetworkImage(
+                                            businessprofileController
+                                                .profileData
+                                                .first
+                                                .profilePicture,
+                                          )),
+                                    )
+                                  //:Text('')
+                                  : Image.asset(
+                                      'assets/images/nick.png',
+                                      height: 35,
+                                      fit: BoxFit.fitHeight,
+                                    )
+                              //:Text('');
+                              : Image.asset(
+                                  'assets/images/nick.png',
+                                  height: 35,
+                                  fit: BoxFit.fitHeight,
+                                );
+                        },
+                      )
                     ]),
                   )
                 : Text('')),

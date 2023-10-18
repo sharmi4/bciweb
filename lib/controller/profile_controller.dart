@@ -3,7 +3,6 @@ import 'package:bciweb/services/networks/business_service/business_withdraw_api_
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
-
 import '../constant/constans.dart';
 import '../models/business_model/business_profile_model.dart';
 import '../models/business_model/business_update_model.dart';
@@ -16,6 +15,8 @@ import '../services/networks/business_service/business_profile_update.dart';
 import '../services/networks/business_service/business_profilepicupdate_api_service.dart';
 import '../services/networks/business_service/get_gallery_api_service.dart';
 import '../views/business/business_profile/accout_profile.dart';
+
+
 
 class ProfileController extends GetxController{
   RxInt profileindex =0.obs;
