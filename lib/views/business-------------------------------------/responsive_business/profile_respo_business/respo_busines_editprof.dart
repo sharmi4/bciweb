@@ -65,7 +65,9 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
   }
 
   getCategorybyID() {
+    print("------------------->> its is wgat it us rhet tvsg sgts tsyheg srbe rebgs");
     authController.categoryList.forEach((element) {
+      print("00--00--00-000-000--0-0-");
       if (element.id.toString() ==
           profileController.profileData.first.category) {
         setState(() {
@@ -98,7 +100,7 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
       panCardImage = profileController.profileData.first.panProof;
       shopImage = profileController.profileData.first.shopImage;
       mapUrlController.text =
-          profileController.profileData.first.locationAddress;
+          profileController.profileData.first.locationAddress ?? "";
       setState(() {});
       getCategorybyID();
     }
@@ -535,22 +537,58 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
           //   ),
           // ),
           ksizedbox20,
-          Padding(
-            padding: const EdgeInsets.only(left: 0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                    height: 100,
-                    width: 100,
-                    child: profileController.profileData.isEmpty
-                        ? Container(
-                            height: 150,
-                            width: 150,
-                          )
-                        : profileController.profileData.first.adharProof == null
-                            ? aadharimage != null
-                                ? Image.memory(aadharimage!)
+          GetBuilder<ProfileController>(
+            builder: (_) {
+              return Padding(
+                padding: const EdgeInsets.only(left: 0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                        height: 100,
+                        width: 100,
+                        child: profileController.profileData.isEmpty
+                            ? Container(
+                                height: 150,
+                                width: 150,
+                              )
+                            : profileController.profileData.first.adharProof .isEmpty
+                                ? aadharimage != null
+                                    ? Image.memory(aadharimage!)
+                                    : InkWell(
+                                        onTap: () async {
+                                          PickedFile? pickedFile =
+                                              await ImagePicker().getImage(
+                                            source: ImageSource.gallery,
+                                          );
+
+                                          var tempCont =
+                                              await pickedFile!.readAsBytes();
+                                          setState(() {
+                                            aadharimage = tempCont;
+                                          });
+                                        },
+                                        child: Container(
+                                          height: 150,
+                                          width: 150,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              PickedFile? pickedFile =
+                                                  await ImagePicker().getImage(
+                                                source: ImageSource.gallery,
+                                              );
+
+                                              var tempCont =
+                                                  await pickedFile!.readAsBytes();
+                                              setState(() {
+                                                aadharimage = tempCont;
+                                              });
+                                            },
+                                            child: Text('Upload Aadhar Card',
+                                                style: TextStyle(fontSize: 12)),
+                                          ),
+                                        ),
+                                      )
                                 : InkWell(
                                     onTap: () async {
                                       PickedFile? pickedFile =
@@ -564,107 +602,89 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
                                         aadharimage = tempCont;
                                       });
                                     },
-                                    child: Container(
-                                      height: 150,
-                                      width: 150,
-                                      child: GestureDetector(
-                                        onTap: () async {
-                                          PickedFile? pickedFile =
-                                              await ImagePicker().getImage(
-                                            source: ImageSource.gallery,
-                                          );
+                                    child: Image.network(profileController
+                                        .profileData.first.adharProof),
+                                  )),
 
-                                          var tempCont =
-                                              await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            aadharimage = tempCont;
-                                          });
-                                        },
-                                        child: Text('Upload Aadhar Card',
-                                            style: TextStyle(fontSize: 12)),
-                                      ),
-                                    ),
-                                  )
-                            : Image.network(profileController
-                                .profileData.first.adharProof)),
+                    // Container(
+                    //     height: 100,
+                    //     width: 100,
+                    //     child: profileController
+                    //             .profileData.first.adharProof.isEmpty
+                    //         ? aadharimage != null
+                    //             ? Image.memory(aadharimage!)
+                    //             : Container(
+                    //                 height: 150,
+                    //                 width: 150,
+                    //                 child: GestureDetector(
+                    //                   onTap: () async {
+                    //                     PickedFile? pickedFile =
+                    //                         await ImagePicker().getImage(
+                    //                       source: ImageSource.gallery,
+                    //                     );
 
-                // Container(
-                //     height: 100,
-                //     width: 100,
-                //     child: profileController
-                //             .profileData.first.adharProof.isEmpty
-                //         ? aadharimage != null
-                //             ? Image.memory(aadharimage!)
-                //             : Container(
-                //                 height: 150,
-                //                 width: 150,
-                //                 child: GestureDetector(
-                //                   onTap: () async {
-                //                     PickedFile? pickedFile =
-                //                         await ImagePicker().getImage(
-                //                       source: ImageSource.gallery,
-                //                     );
-
-                //                     var tempCont =
-                //                         await pickedFile!.readAsBytes();
-                //                     setState(() {
-                //                       aadharimage = tempCont;
-                //                     });
-                //                   },
-                //                   child: Text('Upload Aadhar Card',
-                //                       style: TextStyle(fontSize: 12)),
-                //                 ),
-                //               )
-                //         : Image.network(
-                //             profileController.profileData.first.adharProof)),
-                //
-                // simage != null
-                //     ? Container(
-                //         height: 100, width: 100, child: Image.file(simage!))
-                //     : InkWell(
-                //         onTap: () {
-                //           showModalBottomSheet(
-                //               context: context,
-                //               builder: (context) {
-                //                 return Container(
-                //                   child: Row(
-                //                     mainAxisAlignment:
-                //                         MainAxisAlignment.spaceAround,
-                //                     children: [
-                //                       TextButton(
-                //                           onPressed: () {
-                //                             spickerimage();
-                //                           },
-                //                           child: const Text(
-                //                             'Choose ur gallery',
-                //                             style: TextStyle(
-                //                                 color: Colors.black,
-                //                                 fontSize: 16),
-                //                           )),
-                //                       TextButton(
-                //                           onPressed: () {
-                //                             simagepic();
-                //                           },
-                //                           child: const Text(
-                //                             'Choose ur Camera',
-                //                             style: TextStyle(
-                //                                 color: Colors.black,
-                //                                 fontSize: 16),
-                //                           ))
-                //                     ],
-                //                   ),
-                //                 );
-                //               });
-                //         },
-                //         child: Container(
-                //             height: 100,
-                //             width: 100,
-                //             color: const Color(0xffE4E4E4),
-                //             child:
-                //                 Image.asset('assets/images/imageupload.png')),
-                //       ),
-              ],
-            ),
+                    //                     var tempCont =
+                    //                         await pickedFile!.readAsBytes();
+                    //                     setState(() {
+                    //                       aadharimage = tempCont;
+                    //                     });
+                    //                   },
+                    //                   child: Text('Upload Aadhar Card',
+                    //                       style: TextStyle(fontSize: 12)),
+                    //                 ),
+                    //               )
+                    //         : Image.network(
+                    //             profileController.profileData.first.adharProof)),
+                    //
+                    // simage != null
+                    //     ? Container(
+                    //         height: 100, width: 100, child: Image.file(simage!))
+                    //     : InkWell(
+                    //         onTap: () {
+                    //           showModalBottomSheet(
+                    //               context: context,
+                    //               builder: (context) {
+                    //                 return Container(
+                    //                   child: Row(
+                    //                     mainAxisAlignment:
+                    //                         MainAxisAlignment.spaceAround,
+                    //                     children: [
+                    //                       TextButton(
+                    //                           onPressed: () {
+                    //                             spickerimage();
+                    //                           },
+                    //                           child: const Text(
+                    //                             'Choose ur gallery',
+                    //                             style: TextStyle(
+                    //                                 color: Colors.black,
+                    //                                 fontSize: 16),
+                    //                           )),
+                    //                       TextButton(
+                    //                           onPressed: () {
+                    //                             simagepic();
+                    //                           },
+                    //                           child: const Text(
+                    //                             'Choose ur Camera',
+                    //                             style: TextStyle(
+                    //                                 color: Colors.black,
+                    //                                 fontSize: 16),
+                    //                           ))
+                    //                     ],
+                    //                   ),
+                    //                 );
+                    //               });
+                    //         },
+                    //         child: Container(
+                    //             height: 100,
+                    //             width: 100,
+                    //             color: const Color(0xffE4E4E4),
+                    //             child:
+                    //                 Image.asset('assets/images/imageupload.png')),
+                    //       ),
+                  ],
+                ),
+              );
+            }
           ),
           ksizedbox10,
           Row(

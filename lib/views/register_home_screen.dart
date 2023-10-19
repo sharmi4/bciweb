@@ -31,7 +31,8 @@ class _BusinessRegisterHomeScreenState
               CommonScreen(),
               RegisterCommonContainer(),
             ],
-          ), preferredSize:const Size(double.infinity, 110)),
+          ),
+          preferredSize: const Size(double.infinity, 110)),
       body: ListView(children: [
         Column(
           children: [
@@ -63,15 +64,16 @@ class _BusinessRegisterHomeScreenState
                   ),
                 ),
                 Positioned(
-                    top: 265,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40),
-                      child: Text(
-                        'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
-                        style: TextStyle(
-                            fontSize: 17, color: kwhite.withOpacity(0.7)),
-                      ),
-                    )),
+                  top: 265,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Text(
+                      'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
+                      style: TextStyle(
+                          fontSize: 17, color: kwhite.withOpacity(0.7)),
+                    ),
+                  ),
+                ),
                 Positioned(
                     top: 375,
                     child: Row(

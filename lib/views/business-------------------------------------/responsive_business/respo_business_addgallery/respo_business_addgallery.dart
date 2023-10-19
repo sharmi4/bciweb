@@ -137,7 +137,7 @@ class _RespoBusinessAddGalleryState extends State<RespoBusinessAddGallery> {
           Icons.add_a_photo,
           color: kwhite,
         ),
-        backgroundColor: kblue,
+        backgroundColor: kyellow,
       ),
       
       );

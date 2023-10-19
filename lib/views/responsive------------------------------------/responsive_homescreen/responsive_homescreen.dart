@@ -46,40 +46,44 @@ class CommonScreenRedirection extends StatefulWidget {
 }
 
 class _CommonScreenRedirectionState extends State<CommonScreenRedirection> {
-   
-   int roleIndex = 0;
+  int roleIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
 
-   @override
-   void initState() {
-     super.initState();
-     
-      checkForAuth();
-   }
+    checkForAuth();
+  }
 
-checkForAuth() async {
+  checkForAuth() async {
     final prefs = await SharedPreferences.getInstance();
     String? role = prefs.getString("role");
 
     if (role != null && role == "5") {
-      print('----------------------------print-on-business${role}-----------------------------');
+      print(
+          '----------------------------print-on-business${role}-----------------------------');
       setState(() {
         roleIndex = 1;
       });
     } else if (role != null && role == "3") {
-        print('----------------------------print on member${role}-----------------------------');
+      print(
+          '----------------------------print on member${role}-----------------------------');
       setState(() {
         roleIndex = 2;
       });
-    } 
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: roleIndex == 1 ?  MobileHomeScreenbusiness() : roleIndex == 2 ? MobileHomeScreenMembers(): Center(
-        child: MobileHomeScreenMembers(),
-      ),
+      body: roleIndex == 1
+          ? MobileHomeScreenbusiness()
+          : roleIndex == 2
+              ? MobileHomeScreenMembers()
+              : Center(
+                  child: MobileHomeScreenMembers(),
+                ),
     );
   }
 }

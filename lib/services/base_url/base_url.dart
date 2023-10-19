@@ -282,5 +282,17 @@ abstract class BaseApiService {
   final String getServicesURL =
       "https://www.portal.bcipvtltd.com/api/auth/service_list";
 
-    // final String deleteUserURL = "https://portal.bcipvtltd.com/api/auth/delete_user";   
+    // final String deleteUserURL = "https://portal.bcipvtltd.com/api/auth/delete_user"; 
+    
+  //support admin details
+  final String paymentInitiateURL =
+      "https://www.portal.bcipvtltd.com/api/pay_phonepay";
+
+  //plan check api url
+  final String paymentStatusURL =
+      "https://www.portal.bcipvtltd.com/api/checkPaymentStatus";
+
+  //add subscription plan
+  final String addPlanUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/add_subscription_plan";
 }

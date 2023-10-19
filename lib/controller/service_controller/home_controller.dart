@@ -13,8 +13,10 @@ import 'package:bciweb/services/networks/business_service/business_getbookinglis
 import 'package:bciweb/services/networks/business_service/business_todayoffers_api_service.dart';
 import 'package:bciweb/services/networks/business_service/getservice_bycategory_api_service.dart';
 import 'package:bciweb/services/networks/services/get_services_api_services.dart';
+import 'package:bciweb/services/networks/subscription/add_subscription_api_services.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
+import 'package:bciweb/views/members/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -478,5 +480,51 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     } else {}
   }
   
+
+
+
+  
+  AddSubscriptionApiServices addSubscriptionApiServices =
+      AddSubscriptionApiServices();
+
+
+    addSubscription(
+      {required int planId,
+      required int customerId,
+      required String paymentMenthod,
+      required String gstPercentage,
+      required String percentageAmount,
+      required String totalAmount,
+      required String amount,
+      required String utrNumber}) async {
+    dio.Response<dynamic> response =
+        await addSubscriptionApiServices.addSubscription(
+            planId: planId,
+            customerId: customerId,
+            paymentMenthod: paymentMenthod,
+            gstPercentage: gstPercentage,
+            percentageAmount: percentageAmount,
+            totalAmount: totalAmount,
+            amount: amount,
+            status: "Success",
+            utrNumber: utrNumber);
+
+    if (response.statusCode == 200) {
+      Get.to( MemberHomeScreen(),);
+      Get.rawSnackbar(
+          backgroundColor: Colors.green,
+          messageText: Text(
+            "Plan Activated Successfully",
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+  }
 
 }

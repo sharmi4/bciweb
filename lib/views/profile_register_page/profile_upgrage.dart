@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:bciweb/controller/plans_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +24,9 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
   int temindex = 0;
   final subscripeController = Get.find<SubscriptionApiController>();
   final subscriptionapiController = Get.find<SubscriptionApiController>();
+
+  final planController = Get.find<PlanController>();
+
   callApis() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // setDefauld();
@@ -43,6 +49,7 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
     // plansController.getPlanDetails(id: int.parse(authprofileController.planId.value));
   }
 
+  
   @override
   Widget build(BuildContext context) {
     return GetBuilder<SubscriptionApiController>(builder: (_) {
@@ -172,9 +179,15 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
                                   : NetworkImage(cardimgae),
                               height: 234,
                             ),
-                    ),ksizedbox20,
+                    ),
+                    ksizedbox20,
                     InkWell(
                       onTap: () {
+                      
+
+
+
+
                         Get.to(
                           Payment(
                               image: subscriptionapiController

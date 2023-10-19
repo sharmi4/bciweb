@@ -1,3 +1,4 @@
+import 'package:bciweb/controller/plans_controller.dart';
 import 'package:bciweb/controller/subscription_controller/subscription_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:flutter/material.dart';
@@ -20,12 +21,17 @@ class Payment extends StatefulWidget {
 }
 
 class _PaymentState extends State<Payment> {
+
+  int temindex = 0;
+
   @override
 void initState() {
   super.initState();
   subsciptionController.getplansList();
   // setDefault();
 }
+  final planController = Get.find<PlanController>();
+
   final subsciptionController = Get.find<SubscriptionApiController>();
   @override
   Widget build(BuildContext context) {
@@ -120,9 +126,25 @@ void initState() {
                     children: [
                       InkWell(
                         onTap: () {
+
+
+
+  planController.initiatePayment(
+                            id: subsciptionController
+                                .plansdataList[temindex].id,
+                            amount:  1
+                                ,
+                            gstPercentage: 'dd',
+                            percentageAmount: subsciptionController
+                                .plansdataList[temindex].actualAmount,
+                            planId:subsciptionController
+                                .plansdataList[temindex].id,
+                            totalAmount: subsciptionController
+                                .plansdataList[temindex].saleAmount);
+
                          
-                          subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
-                          showpayment: true);
+                          // subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
+                          // showpayment: true);
                           
                          // Get.toNamed('/add-wallet');
                         },

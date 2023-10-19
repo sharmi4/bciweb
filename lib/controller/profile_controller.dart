@@ -1,4 +1,5 @@
 
+import 'package:bciweb/models/member_profile.dart';
 import 'package:bciweb/services/networks/business_service/business_withdraw_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,15 +28,20 @@ class ProfileController extends GetxController{
 
   BusinessGetProfileApiServices getProfileApiServices = BusinessGetProfileApiServices();
     List<BusinessUser> profileData = [];
+    //  List<MemberUser>memberprofiledata=[];
 
    getProfile() async {
     isLoading(true);
     profileData.clear();
+    print("-------------->>1");
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
+     print("-------------->>2");
     isLoading(false);
     if (response.statusCode == 200) {
+
       BusinessProfileModel profileModel =
           BusinessProfileModel.fromJson(response.data);
+      print("-------------->>3");
       profileData.add(profileModel.user);
       isLogedin(true);
     }
