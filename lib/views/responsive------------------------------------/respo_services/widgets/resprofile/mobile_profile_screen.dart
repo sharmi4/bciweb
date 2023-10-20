@@ -3,12 +3,14 @@ import 'dart:io';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/reg_home_controller.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
+import 'package:bciweb/views/members/subscribe/views/subscribe.dart';
 import 'package:bciweb/views/responsive------------------------------------/respo_services/widgets/resprofile/offers_screen.dart';
 import 'package:bciweb/views/responsive------------------------------------/respo_services/widgets/resprofile/partner_screen.dart';
 import 'package:bciweb/views/responsive------------------------------------/respo_services/widgets/resprofile/referal_screen.dart';
 import 'package:bciweb/views/responsive------------------------------------/respo_services/widgets/resprofile/suport_screen.dart';
 import 'package:bciweb/views/responsive------------------------------------/respo_services/widgets/resprofile/yours_coupons_screen.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
+import 'package:bciweb/views/responsive------------------------------------/responsive_subscription/responsive_subscription.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -339,7 +341,7 @@ class _MobileProfileScreenState extends State<MobileProfileScreen> {
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0))),
                       ),
-                      onPressed: () {},
+                      onPressed: () {Get.to(Subscribe1());},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [

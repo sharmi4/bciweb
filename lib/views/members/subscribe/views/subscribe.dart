@@ -1,4 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/plans_controller.dart';
+import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/views/members/subscribe/views/payment.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,8 @@ class Subscribe extends StatefulWidget {
 }
 
 class _SubscribeState extends State<Subscribe> {
+     final settingsControllers = Get.find< ApiSettingController>();
+  final plansController = Get.find<PlanController>();
   final settingsController = Get.find<SubscribeController>();
   final subscriptionapiController = Get.find<SubscriptionApiController>();
 
@@ -124,7 +128,9 @@ class _SubscribeState extends State<Subscribe> {
                                     "------------------------------------------------${subscriptionapiController.plansdataList[index].cardImg}");
                                 setState(() {
                                   temindex = index;
-                                  cardimgae = subscriptionapiController
+
+
+                                   settingsControllers.index(index);                                  cardimgae = subscriptionapiController
                                       .plansdataList[index].cardImg;
                                 });
                               },
@@ -158,6 +164,9 @@ class _SubscribeState extends State<Subscribe> {
                       children: [
                         InkWell(
                           onTap: () {
+                            print("-------------------->>${temindex}");
+                            print("-------------------->>${subscriptionapiController
+                                    .plansdataList}");
                             Get.to(Payment(
                                 image: subscriptionapiController
                                     .plansdataList[temindex].cardImg,
@@ -166,7 +175,8 @@ class _SubscribeState extends State<Subscribe> {
                                 text: subscriptionapiController
                                     .plansdataList[temindex].planDescription,
                                 id: subscriptionapiController
-                                    .plansdataList[temindex].id));
+                                    .plansdataList[temindex].id,plansData:  subscriptionapiController.plansdataList[
+                                      temindex],));
                           },
                           child: subscriptionapiController.plansdataList.isEmpty
                               ? Container()
@@ -183,6 +193,9 @@ class _SubscribeState extends State<Subscribe> {
                         ),
                         InkWell(
                           onTap: () {
+                             print("-------------------->>${temindex}");
+                            print("-------------------->>${subscriptionapiController
+                                    .plansdataList}");
                             Get.to(Payment(
                                 image: subscriptionapiController
                                     .plansdataList[temindex].cardImg,
@@ -191,7 +204,8 @@ class _SubscribeState extends State<Subscribe> {
                                 text: subscriptionapiController
                                     .plansdataList[temindex].planDescription,
                                 id: subscriptionapiController
-                                    .plansdataList[temindex].id));
+                                    .plansdataList[temindex].id,plansData:  subscriptionapiController.plansdataList[
+                                      temindex],));
                           },
                           child: Container(
                             width: 300,
@@ -211,7 +225,7 @@ class _SubscribeState extends State<Subscribe> {
                               ),
                             ),
                             child: const Text(
-                              'Subscribe',
+                              'Subscribe now',
                               style: TextStyle(
                                   fontSize: 28,
                                   color: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:bciweb/controller/plans_controller.dart';
 import 'package:bciweb/controller/subscription_controller/subscription_controller.dart';
+import 'package:bciweb/models/get_plansmodel.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,25 +12,33 @@ import '../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../common_widget/common.dart';
 
 class Payment extends StatefulWidget {
-  String image;String htext;String text;
+  PlansData plansData;
+  String image;
+  String htext;
+  String text;
   dynamic id;
-   Payment({super.key,required this.image,required this.htext,required this.text,
-   required this.id});
+  Payment(
+      {super.key,
+      required this.plansData,
+      required this.image,
+      required this.htext,
+      required this.text,
+      required this.id});
 
   @override
   State<Payment> createState() => _PaymentState();
 }
 
 class _PaymentState extends State<Payment> {
-
   int temindex = 0;
 
   @override
-void initState() {
-  super.initState();
-  subsciptionController.getplansList();
-  // setDefault();
-}
+  void initState() {
+    super.initState();
+    subsciptionController.getplansList();
+    // setDefault();
+  }
+
   final planController = Get.find<PlanController>();
 
   final subsciptionController = Get.find<SubscriptionApiController>();
@@ -38,8 +47,7 @@ void initState() {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
-          child: CommonScreen(),
-          preferredSize: Size(double.infinity, 40)),
+          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
       body: ListView(
         children: [
           RegisterCommonContainer(),
@@ -71,8 +79,7 @@ void initState() {
             children: [
               Container(
                   width: size.width * 0.4,
-                  child: Image(image: NetworkImage(widget.image))
-                  ),
+                  child: Image(image: NetworkImage(widget.image))),
               ksizedbox10,
               Container(
                 width: size.width * 0.5,
@@ -89,7 +96,7 @@ void initState() {
                     ),
                     ksizedbox20,
                     Text(
-                    widget.text,
+                      widget.text,
                       style: TextStyle(color: kblue, fontSize: 20),
                     ),
                   ],
@@ -117,36 +124,32 @@ void initState() {
                   //         borderSide: BorderSide(color: kblue),
                   //         borderRadius: BorderRadius.circular(4.0),
                   //       ),
-                        
+
                   //       ),
                   // ),
-              
+
                   ksizedbox40,
-                  Row(mainAxisAlignment: MainAxisAlignment.end,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
                         onTap: () {
+                          planController.initiatePayment(
+                            id: widget.plansData.id,
+                            amount: double.parse(widget.plansData.saleAmount),
+                            gstPercentage: widget.plansData.gst,
+                            percentageAmount: widget
+                                .plansData.gstPercentageAmount
+                                .toStringAsFixed(2),
+                           
+                            totalAmount:
+                                widget.plansData.totalAmount.toStringAsFixed(2),
+                          );
 
-
-
-  planController.initiatePayment(
-                            id: subsciptionController
-                                .plansdataList[temindex].id,
-                            amount:  1
-                                ,
-                            gstPercentage: 'dd',
-                            percentageAmount: subsciptionController
-                                .plansdataList[temindex].actualAmount,
-                            planId:subsciptionController
-                                .plansdataList[temindex].id,
-                            totalAmount: subsciptionController
-                                .plansdataList[temindex].saleAmount);
-
-                         
                           // subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
                           // showpayment: true);
-                          
-                         // Get.toNamed('/add-wallet');
+
+                          // Get.toNamed('/add-wallet');
                         },
                         child: Container(
                           width: 500,

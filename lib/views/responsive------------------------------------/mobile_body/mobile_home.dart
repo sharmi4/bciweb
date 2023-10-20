@@ -229,7 +229,7 @@ final authController=Get.find<AuthController>();
                                     padding: const EdgeInsets.only(left: 30),
                                     child: InkWell(
                                       onTap: () {
-                                        // Get.toNamed('/subscribe');},
+                                         Get.toNamed('/subscribe');
                                       },
                                       child: Container(
                                         height: 38,

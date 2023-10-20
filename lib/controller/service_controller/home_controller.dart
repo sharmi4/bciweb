@@ -17,6 +17,7 @@ import 'package:bciweb/services/networks/subscription/add_subscription_api_servi
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
 import 'package:bciweb/views/members/home_screen.dart';
+import 'package:bciweb/views/business-------------------------------------/sucssesful.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -489,7 +490,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
 
 
     addSubscription(
-      {required int planId,
+      {
       required int customerId,
       required String paymentMenthod,
       required String gstPercentage,
@@ -499,7 +500,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
       required String utrNumber}) async {
     dio.Response<dynamic> response =
         await addSubscriptionApiServices.addSubscription(
-            planId: planId,
+       
             customerId: customerId,
             paymentMenthod: paymentMenthod,
             gstPercentage: gstPercentage,
@@ -510,7 +511,8 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
             utrNumber: utrNumber);
 
     if (response.statusCode == 200) {
-      Get.to( MemberHomeScreen(),);
+      Get.to(Sucessful_screen());
+     //success screen
       Get.rawSnackbar(
           backgroundColor: Colors.green,
           messageText: Text(

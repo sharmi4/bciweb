@@ -4,6 +4,7 @@ import 'dart:js';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
+import 'package:bciweb/models/get_plansmodel.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
 import 'package:bciweb/payment_gateway/payment_gateway_view/payment_view.dart';
 
@@ -25,6 +26,8 @@ class PlanController extends GetxController {
 
   PaymentResponseApiServices paymentResponseApiServices =
       PaymentResponseApiServices();
+      
+        get getPlansApiServices => null;
 
   checkPhonePeStatus(
       {required String refernceID,
@@ -33,7 +36,7 @@ class PlanController extends GetxController {
       required String gstPercentage,
       required String percentageAmount,
       required String totalAmount,
-      required int planId}) async {
+    }) async {
 
         int paymentId = 0;
     dio.Response<dynamic> response = await paymentResponseApiServices
@@ -42,8 +45,9 @@ class PlanController extends GetxController {
     if (response.data["code"] == "PAYMENT_SUCCESS") {
       paymentId = 1;
       print("<<<<<<<<payment is Success>>>>>>>>");
+      
       Get.find<HomeServiceController>().addSubscription(
-          planId: planId,
+        //  planId: planId,
           customerId: Get.find<ProfileController>().profileData.first.id,
           paymentMenthod: "5",
           utrNumber: "",
@@ -73,7 +77,7 @@ class PlanController extends GetxController {
       required String gstPercentage,
       required String percentageAmount,
       required String totalAmount,
-      required int planId}) async {
+  }) async {
     print('------------------------------------------------1111111');
     await Get.find<ProfileController>().getProfile();
     print('${Get.find<ProfileController>().profileData}');
@@ -96,8 +100,8 @@ class PlanController extends GetxController {
         id,
         gstPercentage,
         percentageAmount,
-        totalAmount,
-        planId,
+        totalAmount
+     
       );
       print("Payment is over ------------>>");
     }
@@ -105,7 +109,7 @@ class PlanController extends GetxController {
 
   Timer? tempTimer;
   startTimer(var referenceId, var amount, var id, var gstpercentage,
-      var persentageamount, var totalamount, var planid) {
+      var persentageamount, var totalamount, ) {
     print(":::::::::_________________payment strated---------------");
     tempTimer = Timer.periodic(const Duration(seconds: 6), (timer) async {
       print("timer working ...");
@@ -116,7 +120,7 @@ class PlanController extends GetxController {
           gstPercentage: gstpercentage,
           percentageAmount: persentageamount,
           totalAmount: totalamount,
-          planId: planid);
+          );
 
       print(
           "<<<>>><<<>>><<>>><>><><><><1><><1><------cccccc------><1><><><><><><><><><><><><><><>");
@@ -130,5 +134,40 @@ class PlanController extends GetxController {
         timer.cancel();
       }
     });
+  }
+
+
+
+
+    calcGstAmount(String gstPercentage, String saleAmount) {
+    print("<<--------on payment screen------->>");
+    int tempGst = int.parse(gstPercentage);
+    int tempSaleAmount = int.parse(saleAmount);
+    var tempGstPercent = tempGst / 100;
+
+    var gstAmount = tempSaleAmount * tempGstPercent;
+
+    return gstAmount;
+  }
+
+  calcTotalAmountIncGst(String gstPercentage, String saleAmount) {
+    int tempGst = int.parse(gstPercentage);
+    int tempSaleAmount = int.parse(saleAmount);
+    var tempGstPercent = tempGst / 100;
+
+    var gstAmount = tempSaleAmount * tempGstPercent;
+    var totalAmountincGst = tempSaleAmount + gstAmount;
+    return totalAmountincGst;
+  }
+
+
+ List<PlansData> plansdataList = [];
+    getplansList() async {
+    dio.Response<dynamic> response = await getPlansApiServices.getPlans();
+    if (response.statusCode == 200) {
+      PlansModel plansModel = PlansModel.fromJson(response.data);
+      plansdataList = plansModel.data;
+    }
+    update();
   }
 }

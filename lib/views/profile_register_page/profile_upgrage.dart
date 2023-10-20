@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bciweb/controller/plans_controller.dart';
+import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,6 +25,8 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
   int temindex = 0;
   final subscripeController = Get.find<SubscriptionApiController>();
   final subscriptionapiController = Get.find<SubscriptionApiController>();
+   final settingsController = Get.find< ApiSettingController>();
+  final plansController = Get.find<PlanController>();
 
   final planController = Get.find<PlanController>();
 
@@ -168,7 +171,8 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
                             text: subscriptionapiController
                                 .plansdataList[temindex].planDescription,
                             id: subscriptionapiController
-                                .plansdataList[temindex].id));
+                                .plansdataList[temindex].id, plansData:  subscriptionapiController.plansdataList[
+                                      temindex],));
                       },
                       child: subscriptionapiController.plansdataList.isEmpty
                           ? Container()
@@ -197,7 +201,8 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
                               text: subscriptionapiController
                                   .plansdataList[temindex].planDescription,
                               id: subscriptionapiController
-                                  .plansdataList[temindex].id),
+                                  .plansdataList[temindex].id, plansData:  subscriptionapiController.plansdataList[
+                                      temindex],),
                         );
                       },
                       child: Padding(

@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AddSubscriptionApiServices extends BaseApiService {
   Future addSubscription(
-      {required int planId,
+      { int? planId,
       required int customerId,
       required String paymentMenthod,
       required String gstPercentage,

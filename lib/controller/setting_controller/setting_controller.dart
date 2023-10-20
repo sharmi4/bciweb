@@ -21,7 +21,7 @@ class ApiSettingController extends GetxController {
   List<GetwalletDetails> getWalletData = [];
 
 
-
+  RxInt index = 0.obs;
 
 
 
