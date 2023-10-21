@@ -12,36 +12,32 @@ class RespoBusinessNotification extends StatefulWidget {
   const RespoBusinessNotification({super.key});
 
   @override
-  State<RespoBusinessNotification> createState() => _RespoBusinessNotificationState();
+  State<RespoBusinessNotification> createState() =>
+      _RespoBusinessNotificationState();
 }
 
 class _RespoBusinessNotificationState extends State<RespoBusinessNotification> {
-
-
-  
   @override
   void initState() {
     super.initState();
     notificationController.notification();
   }
-final notificationController = Get.find<NotificationController>();
+
+  final notificationController = Get.find<NotificationController>();
   @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
-    return Scaffold(      appBar: PreferredSize(
+    var size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: PreferredSize(
         child: AppBarMob(),
         preferredSize: Size(double.infinity, 40),
       ),
       drawer: DrawerBusiness(),
-      
-      
-      
-      
-        body: GetBuilder<NotificationController>(
-          builder: (_) {
-            return  Container(
-              height: size.height,
-              child:notificationController.notificationlist.isNotEmpty? ListView.builder(
+      body: GetBuilder<NotificationController>(builder: (_) {
+        return Container(
+          height: size.height,
+          child: notificationController.notificationlist.isNotEmpty
+              ? ListView.builder(
                   itemCount: notificationController.notificationlist.length,
                   itemBuilder: (context, index) {
                     return Padding(
@@ -49,33 +45,37 @@ final notificationController = Get.find<NotificationController>();
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                          boxShadow: const [
-                            BoxShadow(
-                              blurRadius: 2,
-                              color: Color.fromARGB(255, 202, 202, 202)
-                            )
-                          ]
-                        ),
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                            boxShadow: const [
+                              BoxShadow(
+                                  blurRadius: 2,
+                                  color: Color.fromARGB(255, 202, 202, 202))
+                            ]),
                         child: Row(
                           children: [
                             const Padding(
-                              padding: EdgeInsets.only(left: 10,bottom: 30),
-                              child: Image(image: AssetImage("assets/images/logo.png",),
-                              height: 30,width: 30,),
+                              padding: EdgeInsets.only(left: 10, bottom: 30),
+                              child: Image(
+                                image: AssetImage(
+                                  "assets/images/logo.png",
+                                ),
+                                height: 30,
+                                width: 30,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 15),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                    const SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    notificationController.notificationlist[index].title,
-                                    style:const TextStyle(
+                                    notificationController
+                                        .notificationlist[index].title,
+                                    style: const TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -83,24 +83,25 @@ final notificationController = Get.find<NotificationController>();
                                     height: 4,
                                   ),
                                   Text(
-                                    notificationController.notificationlist[index].message,
+                                    notificationController
+                                        .notificationlist[index].message,
                                     style: const TextStyle(
                                         fontSize: 13, color: Colors.black),
                                   ),
-                                   const SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                   Text(
-                                    formatDate(notificationController.notificationlist[index].createdAt,
-                                     [dd ,'-',mm,'-',yyyy])
-                                    ,
-                                    style:const TextStyle(
+                                    formatDate(
+                                        notificationController
+                                            .notificationlist[index].createdAt,
+                                        [dd, '-', mm, '-', yyyy]),
+                                    style: const TextStyle(
                                         fontSize: 11.5,
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.grey
-                                        ),
+                                        color: Colors.grey),
                                   ),
-                                   const SizedBox(
+                                  const SizedBox(
                                     height: 10,
                                   ),
                                 ],
@@ -111,22 +112,23 @@ final notificationController = Get.find<NotificationController>();
                       ),
                     );
                   })
-                  :
-                  Center(
-                    child: Column(
+              : Center(
+                  child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children:[
-                       Image.asset("assets/images/notificationnotavailableimage.png"),
-                       ksizedbox20,
-                       Text('No Notification Data',
-                       style: TextStyle(
-                        fontSize: 16,
-                        color: kblue,
-                        fontWeight: FontWeight.w700
-                       ),)
-                       ])),
-            );
-          }
-        ),);
+                      children: [
+                      Image.asset(
+                          "assets/images/notificationnotavailableimage.png"),
+                      ksizedbox20,
+                      Text(
+                        'No Notification Data',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: kblue,
+                            fontWeight: FontWeight.w700),
+                      )
+                    ])),
+        );
+      }),
+    );
   }
 }

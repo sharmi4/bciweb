@@ -22,7 +22,7 @@ class SubscriptionApiController extends GetxController{
    GetOthersBookingApiService getOthersbookingApiService = GetOthersBookingApiService();
    GetPlansDetailsApiServices getPlansdetailsApiService=GetPlansDetailsApiServices();
   
-  
+     RxInt index = 0.obs;
   final authprofileController=Get.find<AuthProfileController>();
     List<PlansData> plansdataList = [];
     List<CouponsData> couponsdatalist=[];

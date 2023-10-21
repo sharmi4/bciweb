@@ -295,4 +295,10 @@ abstract class BaseApiService {
   //add subscription plan
   final String addPlanUrl =
       "https://www.portal.bcipvtltd.com/api/auth/add_subscription_plan";
+
+
+
+      //get profilebusines api
+  final String getbusinesProfileURL =
+      "https://www.portal.bcipvtltd.com/api/auth/profile";
 }

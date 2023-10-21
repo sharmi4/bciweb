@@ -45,11 +45,11 @@ class BusinessProfileModel {
 }
 
 class BusinessUser {
-    int id;
-    int roleId;
+    dynamic id;
+    dynamic roleId;
     String name;
     String email;
-    String mobile;
+    dynamic mobile;
     int isVerrifiedMobile;
     String otp;
     String referralCode;
@@ -162,7 +162,7 @@ class BusinessUser {
     });
 
     factory BusinessUser.fromJson(Map<String, dynamic> json) => BusinessUser(
-        id: json["id"]?? 0,
+        id: json["id"] ?? "",
         roleId: json["role_id"]?? 0,
         name: json["name"]?? "",
         email: json["email"]?? "",

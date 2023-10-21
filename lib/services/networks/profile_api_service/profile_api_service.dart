@@ -13,7 +13,7 @@ class GetProfileApiServices extends BaseApiService {
       String? authtoken = prefs.getString("auth_token");
 
       var response = await dio.post(
-        getProfileURL,
+        getbusinesProfileURL,
         options: Options(
             headers: {
               'Accept': 'application/json',
