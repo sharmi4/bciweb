@@ -1,5 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/registerhomescreen/business_comm_homecontainer.dart';
+import 'package:bciweb/views/members/common_widget/business_common_screen.dart';
 import 'package:bciweb/views/members/common_widget/common.dart';
 
 import 'package:flutter/material.dart';
@@ -7,14 +8,14 @@ import 'package:flutter/material.dart';
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
 
-class ContactScreen extends StatefulWidget {
-  const ContactScreen({super.key});
+class BusinessContactScreen extends StatefulWidget {
+  const BusinessContactScreen({super.key});
 
   @override
-  State<ContactScreen> createState() => _ContactScreenState();
+  State<BusinessContactScreen> createState() => _BusinessContactScreenState();
 }
 
-class _ContactScreenState extends State<ContactScreen> {
+class _BusinessContactScreenState extends State<BusinessContactScreen> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var subjectController = TextEditingController();
@@ -22,17 +23,15 @@ class _ContactScreenState extends State<ContactScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:const Size(double.infinity, 110),
+           appBar: PreferredSize(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
-              //BusinessCommonhomeContainer(),
+              BusinessCommonScreen(),
+              BusinessCommonhomeContainer(),
             ],
           ),
-          ),
+          preferredSize: const Size(double.infinity, 110)),
       body: ListView(children: [
         Column(
           children: [
@@ -73,7 +72,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   children: [
                     Image.asset(
                       'assets/images/locationcontainer.png',
-                      height: 190,
+                      height: 184,
                       fit: BoxFit.fitHeight,
                     ),
                     Positioned(
@@ -144,7 +143,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   children: [
                     Image.asset(
                        'assets/images/phonecontainer.png',
-                      height: 190,
+                      height: 184,
                       fit: BoxFit.fitHeight,
                     ),
                     Positioned(
@@ -173,7 +172,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   children: [
                     Image.asset( 'assets/images/locationcontainer.png',
                     
-                      height: 190,
+                      height: 184,
                       fit: BoxFit.fitHeight,
                     ),
                     Positioned(
@@ -211,7 +210,7 @@ class _ContactScreenState extends State<ContactScreen> {
                   children: [
                     Image.asset(
                       'assets/images/phonecontainer.png',
-                      height: 190,
+                      height: 184,
                       fit: BoxFit.fitHeight,
                     ),
                     Positioned(
@@ -219,6 +218,7 @@ class _ContactScreenState extends State<ContactScreen> {
                         left: 0,
                         right: 0,
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
                               'Contact Us',
@@ -226,16 +226,19 @@ class _ContactScreenState extends State<ContactScreen> {
                               textAlign: TextAlign.center,
                             ),
                            // ksizedbox10,
-                            Text(
-                              'customercare@bcipvtltd.com',
-                              style: TextStyle(fontSize: 14, color: kwhite),
-                            ),   ksizedbox10,
+                            Padding(
+                              padding: const EdgeInsets.only(top: 2),
+                              child: Text(
+                                'customercare@bcipvtltd.com',
+                                style: TextStyle(fontSize: 14, color: kwhite),
+                              ),
+                            ), 
                             Text(
                               '+91  9884 551 551',
                               style: TextStyle(fontSize: 13, color: kwhite),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(top: 2),
+                              padding: const EdgeInsets.only(top: 0),
                               child: Text(
                                 '+91  9884 660 660',
                                 style: TextStyle(fontSize: 13, color: kwhite),

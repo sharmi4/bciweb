@@ -196,14 +196,19 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         ),
                       ),
                     ),
-                    if (isLoggedIn == true)
+                   
                       Padding(
                         padding: const EdgeInsets.only(left: 7),
                         child: TextButton(
                             onPressed: () {
-                              reghomeController.reindex(7);
+                               if (isLoggedIn == true){
+                                       reghomeController.reindex(7);
                               reghomeController.update();
                               Get.toNamed(Routes.BOOKINGS);
+                               }else{
+                                Get.to(LandingScreen());
+                               }
+                           
                               //  Get.to(Hstory());
                             },
                             child: Text(

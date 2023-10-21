@@ -1,12 +1,14 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_landing_screen.dart';
+import 'package:bciweb/views/responsive------------------------------------/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/responsive------------------------------------/booking_view/booking_screen.dart';
 import 'package:bciweb/views/responsive------------------------------------/holiday/holiday_home.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/resmembership/mobile_subscription.dart';
 import 'package:bciweb/views/responsive------------------------------------/respo%20gallery/respo_gallery.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../authentications/contact us/respo_contact.dart';
 import '../bus/bus_screen.dart';
@@ -25,6 +27,24 @@ class MobileDrawer extends StatefulWidget {
 }
 
 class _MobileDrawerState extends State<MobileDrawer> {
+
+  
+  bool isLoggedIn =false;
+    checkForLoggedInState() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? authtoken = prefs.getString('auth_token');
+    print("Token is here");
+    print(authtoken);
+    if (authtoken == "null" || authtoken == null) {
+      setState(() {
+        isLoggedIn = false;
+      });
+    } else {
+      setState(() {
+        isLoggedIn = true;
+      });
+    }
+  }
   final authController = Get.find<AuthController>();
   final authprofileController = Get.find<AuthProfileController>();
   @override
@@ -243,7 +263,14 @@ class _MobileDrawerState extends State<MobileDrawer> {
               children: [
                 TextButton(
                     onPressed: () {
-                      Get.to(const MembersBookingCommonContainer());
+                      if(isLoggedIn==true){
+                        Get.to(const MembersBookingCommonContainer());
+                      }else{
+                          Get.to(const RespoLanding());
+                        
+                        // Get.to(MemberLoginScreenrespo());
+                      }
+                     
                     },
                     child: Text(
                       'BOOKINGS',

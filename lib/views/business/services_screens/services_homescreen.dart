@@ -28,16 +28,15 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 110),
+          appBar: PreferredSize(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              //BusinessCommonScreen(),
+              BusinessCommonScreen(),
               BusinessCommonhomeContainer(),
             ],
           ),
-          ),
+          preferredSize: const Size(double.infinity, 110)),
           body: Obx(()=>
            ListView(
                   children: [

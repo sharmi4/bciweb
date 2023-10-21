@@ -1,5 +1,6 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/authentication/businness_login.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/home_respo/busimess_home_respo.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_profile_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_addgallery/respo_business_addgallery.dart';
@@ -14,6 +15,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../constant/constans.dart';
 
 class DrawerBusiness extends StatefulWidget {
@@ -24,6 +26,24 @@ class DrawerBusiness extends StatefulWidget {
 }
 
 class _DrawerBusinessState extends State<DrawerBusiness> {
+
+  bool isLoggedIn =false;
+    checkForLoggedInState() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? authtoken = prefs.getString('auth_token');
+    print("Token is here");
+    print(authtoken);
+    if (authtoken == "null" || authtoken == null) {
+      setState(() {
+        isLoggedIn = false;
+      });
+    } else {
+      setState(() {
+        isLoggedIn = true;
+      });
+    }
+  }
+
   final authprofileController = Get.find<AuthProfileController>();
 
   final authController = Get.find<AuthController>();
@@ -150,7 +170,13 @@ class _DrawerBusinessState extends State<DrawerBusiness> {
               children: [
                 TextButton(
                   onPressed: () {
-                    Get.to(RespoBusinessBookings());
+                    if(isLoggedIn==true){
+                      Get.to(RespoBusinessBookings());
+                    }else{
+                          Get.to(const RespoLanding());
+                      
+                    }
+                 
                   },
                   child: Text(
                     'BOOKINGS',

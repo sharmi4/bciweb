@@ -1,3 +1,5 @@
+import 'package:bciweb/views/business/business_contact_screen.dart';
+import 'package:bciweb/views/business/business_gallery_screen.dart';
 import 'package:bciweb/views/business/business_profile/business_gallery.dart';
 import 'package:bciweb/views/responsive------------------------------------/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/responsive------------------------------------/responsive_homescreen/responsive_homescreen.dart';
@@ -115,6 +117,10 @@ class RouteGenerator {
         return _GeneratePageRoute(widget: BusinessAboutUsScreen(),
          routeName: settings.name);
 
+         case Routes.BusinessGallery:
+         return _GeneratePageRoute(widget: BusinessGallery(), 
+         routeName: settings.name);
+
       case Routes.SpecializedScreen:
         return _GeneratePageRoute(
             widget: SpecializedScreen(), routeName: settings.name);
@@ -122,6 +128,9 @@ class RouteGenerator {
       case Routes.contact_screen:
         return _GeneratePageRoute(
             widget: ContactScreen(), routeName: settings.name);
+
+      case Routes.BusinessContactScreen:
+      return _GeneratePageRoute(widget: BusinessContactScreen(), routeName: settings.name);      
 
       case Routes.Subscrib:
         return _GeneratePageRoute(

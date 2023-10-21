@@ -28,6 +28,7 @@ import '../auth_controller/auth_profile_controller.dart';
 
 class BusinessServiceController extends GetxController{
   RxInt Containerindex =0.obs;
+  RxBool bookingregister = false.obs;
 
    //coupon redeemption api
   BusinessCouponsRedeemptionApiService couponsRedeemptionApiService =

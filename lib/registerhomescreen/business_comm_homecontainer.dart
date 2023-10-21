@@ -198,10 +198,16 @@ class _BusinessCommonhomeContainerState
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
                           onPressed: () {
-                            reghomeController.reindex(7);
+                           if(isLoggedIn==true){
+                               reghomeController.reindex(7);
                             reghomeController.update();
-                            Get.toNamed(Routes.BusinessBookingScreen);
-                            //Get.to(Hstory());
+                              Get.toNamed(Routes.BusinessBookingScreen);
+                           }else{
+                            Get.to(LandingScreen());
+                           }
+                            
+                             //Get.to(Hstory());
+                        
                           },
                           child: Text(
                             'BOOKINGS',

@@ -43,6 +43,8 @@ abstract class Routes {
   static const BusinessSpecializedScreen = _Paths.BusinessSpecializedScreen;
   static const BusinessClubHouse = _Paths.BusinessClubHouse;
   static const BusinessAddGallery = _Paths.BusinessAddGallery;
+  static const BusinessGallery = _Paths.BusinessGallery;
+  static const BusinessContactScreen =_Paths.BusinessContactScreen;
   
 }
 
@@ -82,6 +84,8 @@ abstract class _Paths {
   static const BusinessSpecializedScreen ='/business-speclizedscreen';
   static const BusinessClubHouse ='/business_clubhouse';
   static const BusinessAddGallery = '/business-addgallery';
+  static const BusinessGallery = '/business-gallery';
+  static const BusinessContactScreen ='/business-contactscreen';
 }
  
   // static const SIGN_UP = '/home-screen';

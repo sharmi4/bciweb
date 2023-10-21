@@ -190,40 +190,40 @@ var end = DateTime.now();
                                               ],
                                             ),
                                           ),
-                                          ksizedbox10,
-                                          InkWell(
-                                            onTap: () async {
-                                              final prefs = await SharedPreferences
-                                                  .getInstance();
-                                              var searchtocken =
-                                                  prefs.getString("searchtocken");
-                                              Get.to(ResortBooking(
-                                                  hotelcode: hotelController
-                                                      .searchHotelData[index]
-                                                      .hotelCode,
-                                                  resultIndex: hotelController
-                                                      .searchHotelData[index]
-                                                      .resultIndex
-                                                      .toString(),
-                                                  searchtoken: searchtocken ?? "",
-                                                  userIp: '122.160.83.78'));
-                                              hotelController.update();
-                                            },
-                                            child: Container(
-                                              height: 30,
-                                              width: 120,
-                                              decoration: BoxDecoration(
-                                                  color: kOrange,
-                                                  borderRadius:
-                                                      BorderRadius.circular(5)),
-                                              child: Center(
-                                                child: Text(
-                                                  'Couple  Friendly',
-                                                  style: TextStyle(color: kwhite),
-                                                ),
-                                              ),
-                                            ),
-                                          )
+                                          // ksizedbox10,
+                                          // InkWell(
+                                          //   onTap: () async {
+                                          //     final prefs = await SharedPreferences
+                                          //         .getInstance();
+                                          //     var searchtocken =
+                                          //         prefs.getString("searchtocken");
+                                          //     Get.to(ResortBooking(
+                                          //         hotelcode: hotelController
+                                          //             .searchHotelData[index]
+                                          //             .hotelCode,
+                                          //         resultIndex: hotelController
+                                          //             .searchHotelData[index]
+                                          //             .resultIndex
+                                          //             .toString(),
+                                          //         searchtoken: searchtocken ?? "",
+                                          //         userIp: '122.160.83.78'));
+                                          //     hotelController.update();
+                                          //   },
+                                          //   child: Container(
+                                          //     height: 30,
+                                          //     width: 120,
+                                          //     decoration: BoxDecoration(
+                                          //         color: kOrange,
+                                          //         borderRadius:
+                                          //             BorderRadius.circular(5)),
+                                          //     child: Center(
+                                          //       child: Text(
+                                          //         'Couple  Friendly',
+                                          //         style: TextStyle(color: kwhite),
+                                          //       ),
+                                          //     ),
+                                          //   ),
+                                          // )
                                         ],
                                       ),
                                     ),

@@ -44,6 +44,7 @@ class AuthController extends GetxController {
   RxBool isbusinessLogedin = false.obs;
   RxBool isLoading = false.obs;
   RxBool isLogedin = false.obs;
+  RxInt bookingindex = 0.obs;
   List<CategoryData> categoryList = [];
 
   MemberRegisterApiservices memberRegisterApiservices =
@@ -229,7 +230,7 @@ class AuthController extends GetxController {
         if (screen == true) {
           Get.offAll(const BusinesHomeRespo());
         } else {
-          Get.offAll(const BusinessVerificationDone());
+          Get.offAll( BusinessVerificationDone());
         }
       }
     } else {
@@ -268,7 +269,7 @@ class AuthController extends GetxController {
         if (screen == true) {
           Get.offAll(verified_Screen());
         } else {
-          Get.offAll(const Verification_Done());
+          Get.offAll( Verification_Done());
         }
       } else {
         Get.rawSnackbar(

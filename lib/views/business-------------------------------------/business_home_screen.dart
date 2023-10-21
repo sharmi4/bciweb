@@ -41,7 +41,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              //BusinessCommonScreen(),
+              BusinessCommonScreen(),
               BusinessCommonhomeContainer(),
             ],
           ),

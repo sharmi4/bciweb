@@ -18,16 +18,15 @@ class BusinessClubHouse extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 110),
+          appBar: PreferredSize(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // BusinessCommonScreen(),
+              BusinessCommonScreen(),
               BusinessCommonhomeContainer(),
             ],
           ),
-          ),
+          preferredSize: const Size(double.infinity, 110)),
       body: SingleChildScrollView(
         child: Column(
           children: [

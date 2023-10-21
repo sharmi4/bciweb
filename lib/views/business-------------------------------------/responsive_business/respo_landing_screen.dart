@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/authentication/businness_login.dart';
+import 'package:bciweb/views/responsive------------------------------------/responsive_homescreen/responsive_homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -30,7 +31,8 @@ class RespoLanding extends StatelessWidget {
               ksizedbox40,
               InkWell(
                 onTap: () {
-                  Get.toNamed(Routes.MobLogin);
+                  Get.to(MobileHomeScreenMembers());
+                  //Get.toNamed(Routes.MobLogin);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20, left: 20),
@@ -70,7 +72,8 @@ class RespoLanding extends StatelessWidget {
               ksizedbox20,
               InkWell(
                 onTap: () async {
-                  Get.to(BussinessLoginScreenRespo());
+                  Get.to(MobileHomeScreenbusiness());
+                  //Get.to(BussinessLoginScreenRespo());
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20, left: 20),
