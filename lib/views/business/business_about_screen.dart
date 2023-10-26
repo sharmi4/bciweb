@@ -29,14 +29,15 @@ class _BusinessAboutUsScreenState extends State<BusinessAboutUsScreen> {
     var size = MediaQuery.of(context).size;
     return Scaffold(
        appBar: PreferredSize(
+        preferredSize: const Size(double.infinity, 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              BusinessCommonScreen(),
+              const BusinessCommonScreen(),
               BusinessCommonhomeContainer(),
             ],
           ),
-          preferredSize: const Size(double.infinity, 110)),
+          ),
       body: ListView(
         children: [
           // RegisterCommonContainer(),
@@ -44,7 +45,7 @@ class _BusinessAboutUsScreenState extends State<BusinessAboutUsScreen> {
           Container(
             height: 200,
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration:const BoxDecoration(
                 image: DecorationImage(
                     image: AssetImage(
                       'assets/images/aboutbackground.png',
@@ -56,7 +57,6 @@ class _BusinessAboutUsScreenState extends State<BusinessAboutUsScreen> {
             ),
           ),
           ksizedbox30,
-
           Stack(
             children: [
               const Image(

@@ -203,7 +203,7 @@ class _BusinessCommonhomeContainerState
                             reghomeController.update();
                               Get.toNamed(Routes.BusinessBookingScreen);
                            }else{
-                            Get.to(LandingScreen());
+                            Get.to(const LandingScreen());
                            }
                             
                              //Get.to(Hstory());

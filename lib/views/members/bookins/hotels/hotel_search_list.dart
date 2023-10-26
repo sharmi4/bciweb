@@ -89,7 +89,7 @@ var end = DateTime.now();
         children: [
           Column(
             children:[ GetBuilder<HotelController>(builder: (_) {
-            return hotelController.searchHotelData.isEmpty?Text('No Found Data'): Padding(
+            return hotelController.searchHotelData.isEmpty? const Text('No Found Data'): Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: hotelController.isLoading.isTrue
                     ? Container(
@@ -157,7 +157,7 @@ var end = DateTime.now();
                                                       .p8
                                                       .make(),
                                               kwidth5,
-                                              Text('Very Good Raiting')
+                                              Text('Very Good Rating')
                                                   .text
                                                   .semiBold
                                                   .blue900
@@ -240,15 +240,15 @@ var end = DateTime.now();
                                                 MainAxisAlignment.spaceAround,
                                             children: [
                                               Text('Per Night').text.white.make(),
-                                              Text('₹ 3,499').text.white.make(),
-                                              Text('₹ 2,490').text.white.make(),
+                                              //Text('₹ 3,499').text.white.make(),
+                                              //Text('₹ 2,490').text.white.make(),
                                               Text(
                                                 '₹ ${hotelController.searchHotelData[index].price.publishedPrice}',
                                               ).text.white.make(),
-                                              Text('Saving ₹ 1,009')
-                                                  .text
-                                                  .white
-                                                  .make(),
+                                             // Text('Saving ₹ 1,009')
+                                                  // .text
+                                                  // .white
+                                                  // .make(),
                                               InkWell(
                                                 onTap: () async {
                                                   final prefs =
@@ -272,7 +272,7 @@ var end = DateTime.now();
                                                   padding:
                                                       const EdgeInsets.only(top: 3.5),
                                                   child: Container(
-                                                    height: 18,
+                                                    height: 22,
                                                     width: 90,
                                                     decoration: BoxDecoration(
                                                         borderRadius:

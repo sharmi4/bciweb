@@ -130,14 +130,15 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
             appBar: PreferredSize(
+              preferredSize: const Size(double.infinity, 110),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              BusinessCommonScreen(),
+              const BusinessCommonScreen(),
               BusinessCommonhomeContainer(),
             ],
           ),
-          preferredSize: const Size(double.infinity, 110)),
+          ),
           body: ListView(
             children: [
               Column(
@@ -204,7 +205,7 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                                 Padding(
                                   padding: const EdgeInsets.only(right: 30),
                                   child: Text(selectdt,
-                                   style: TextStyle(
+                                   style:const TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,
                                           fontWeight: FontWeight.bold),

@@ -10,6 +10,7 @@ class BusinessCommonScreen extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
         child: PreferredSize(
+          preferredSize:const Size(double.infinity,40),
         child: Stack(
         children: [
           Container(
@@ -58,10 +59,10 @@ class BusinessCommonScreen extends StatelessWidget {
                       ],
                     ),
                     //next
- Padding(
-   padding: const EdgeInsets.only(right: 5),
-   child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  Padding(
+                   padding: const EdgeInsets.only(right: 5),
+                   child: Row(
+                   mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                     Text('Follow Us :',style: TextStyle(color: kwhite,fontSize: 15),),
                     Padding(
@@ -109,9 +110,7 @@ class BusinessCommonScreen extends StatelessWidget {
           // ),
           
         ],
-        
-             ), preferredSize: Size(double.infinity, 
-             40)),
+             ),),
        
     );
   }
