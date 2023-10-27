@@ -64,116 +64,119 @@ class _MobileHotelBookingState extends State<MobileHotelBooking> {
               )
             : Stack(
                 children: [
-                  ListView.builder(
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: hotelController.bookingList.length,
-                      itemBuilder: (context, index) {
-                        return Card(
-                          child: InkWell(
-                            onTap: () async {
-                              setState(() {
-                                isLoading = true;
-                              });
-                              Result result = await hotelController
-                                  .getHotelDetails(hotelController
-                                      .bookingList[index].bookingId);
-                              setState(() {
-                                isLoading = false;
-                              });
-                              dialogBuilder(
-                                  context,
-                                  hotelController.bookingList[index],
-                                  result);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(10.0),
-                              child: Container(
-                                height: 125,
-                                width: size.width,
-                                decoration: BoxDecoration(
-                                  color: kwhite,
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                          child: hotelController
-                                                      .bookingList[index]
-                                                      .hotelImage ==
-                                                  "null"
-                                              ? Image.asset(
-                                                  "assets/icons/no-photo.png",
-                                                  height: 100,
-                                                  width: 100,
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : Image.network(
-                                                  hotelController
-                                                      .bookingList[index]
-                                                      .hotelImage,
-                                                  height: 100,
-                                                  width: 100,
-                                                  fit: BoxFit.cover,
-                                                )),
-                                    ),
-                                    kwidth10,
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        ksizedbox10,
-                                        Container(
-                                          width: 200,
-                                          child: Text(
-                                            hotelController
-                                                .bookingList[index].hotelName
-                                                .toString(),
-                                            maxLines: 2,
-                                            style:
-                                                const TextStyle(fontSize: 21),
+                  Container(
+                    height: 650,
+                    child: ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: hotelController.bookingList.length,
+                        itemBuilder: (context, index) {
+                          return Card(
+                            child: InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  isLoading = true;
+                                });
+                                Result result = await hotelController
+                                    .getHotelDetails(hotelController
+                                        .bookingList[index].bookingId);
+                                setState(() {
+                                  isLoading = false;
+                                });
+                                dialogBuilder(
+                                    context,
+                                    hotelController.bookingList[index],
+                                    result);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  height: 125,
+                                  width: size.width,
+                                  decoration: BoxDecoration(
+                                    color: kwhite,
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            child: hotelController
+                                                        .bookingList[index]
+                                                        .hotelImage ==
+                                                    "null"
+                                                ? Image.asset(
+                                                    "assets/icons/no-photo.png",
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                  )
+                                                : Image.network(
+                                                    hotelController
+                                                        .bookingList[index]
+                                                        .hotelImage,
+                                                    height: 100,
+                                                    width: 100,
+                                                    fit: BoxFit.cover,
+                                                  )),
+                                      ),
+                                      kwidth10,
+                                      Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          ksizedbox10,
+                                          Container(
+                                            width: 200,
+                                            child: Text(
+                                              hotelController
+                                                  .bookingList[index].hotelName
+                                                  .toString(),
+                                              maxLines: 2,
+                                              style:
+                                                  const TextStyle(fontSize: 21),
+                                            ),
                                           ),
-                                        ),
-                                        Container(
-                                          width: 200,
-                                          child: Text(
-                                            hotelController
-                                                .bookingList[index].place,
-                                            maxLines: 4,
-                                            style: TextStyle(color: kblue),
-                                          ),
-                                        ),
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Booking Date :",
+                                          Container(
+                                            width: 200,
+                                            child: Text(
+                                              hotelController
+                                                  .bookingList[index].place,
                                               maxLines: 4,
                                               style: TextStyle(color: kblue),
                                             ),
-                                            Text(
-                                              hotelController
-                                                  .bookingList[index]
-                                                  .bookingDate,
-                                              maxLines: 4,
-                                              style: TextStyle(color: kgrey),
-                                            ),
-                                          ],
-                                        ),
-                                        ksizedbox10
-                                      ],
-                                    )
-                                  ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "Booking Date :",
+                                                maxLines: 4,
+                                                style: TextStyle(color: kblue),
+                                              ),
+                                              Text(
+                                                hotelController
+                                                    .bookingList[index]
+                                                    .bookingDate,
+                                                maxLines: 4,
+                                                style: TextStyle(color: kgrey),
+                                              ),
+                                            ],
+                                          ),
+                                          ksizedbox10
+                                        ],
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      }),
+                          );
+                        }),
+                  ),
                 if(isLoading)  Container(
                     height: size.height,
                     width: size.width,

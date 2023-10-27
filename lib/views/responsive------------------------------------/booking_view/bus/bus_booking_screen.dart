@@ -48,86 +48,89 @@ class _MobileBusBookingState extends State<MobileBusBooking> {
                   ],
                 ),
               )
-            : ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: busController.bookingHistoryList.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: InkWell(
-                      onTap: () {
-                        dialogBuilder(context,
-                            busBookingData:
-                                busController.bookingHistoryList[index]);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            color: kwhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            children: [
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: ClipRRect(
-                              //       borderRadius: BorderRadius.circular(5),
-                              //       child: Image.network(
-                              //         holidayPackageController.enquiryData[index].packageDetails.image.first,
-                              //         height: 100,
-                              //         width: 100,
-                              //         fit: BoxFit.cover,
-                              //       )),
-                              // ),
-                              kwidth10,
-                              Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ksizedbox10,
-                                  Container(
-                                    width: 200,
-                                    child: Text(
-                                      busController
-                                          .bookingHistoryList[index].busName
-                                          .toString(),
-                                      maxLines: 2,
-                                      style: const TextStyle(fontSize: 21),
+            : Container(
+              height: 650,
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: busController.bookingHistoryList.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: InkWell(
+                        onTap: () {
+                          dialogBuilder(context,
+                              busBookingData:
+                                  busController.bookingHistoryList[index]);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                            width: size.width,
+                            decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Row(
+                              children: [
+                                // Padding(
+                                //   padding: const EdgeInsets.all(8.0),
+                                //   child: ClipRRect(
+                                //       borderRadius: BorderRadius.circular(5),
+                                //       child: Image.network(
+                                //         holidayPackageController.enquiryData[index].packageDetails.image.first,
+                                //         height: 100,
+                                //         width: 100,
+                                //         fit: BoxFit.cover,
+                                //       )),
+                                // ),
+                                kwidth10,
+                                Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ksizedbox10,
+                                    Container(
+                                      width: 200,
+                                      child: Text(
+                                        busController
+                                            .bookingHistoryList[index].busName
+                                            .toString(),
+                                        maxLines: 2,
+                                        style: const TextStyle(fontSize: 21),
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                    width: 200,
-                                    child: Text(
-                                      '${busController.bookingHistoryList[index].fromCityname} to ${busController.bookingHistoryList[index].toCityname}',
-                                      maxLines: 4,
-                                      style: TextStyle(color: kblue),
+                                    Container(
+                                      width: 200,
+                                      child: Text(
+                                        '${busController.bookingHistoryList[index].fromCityname} to ${busController.bookingHistoryList[index].toCityname}',
+                                        maxLines: 4,
+                                        style: TextStyle(color: kblue),
+                                      ),
                                     ),
-                                  ),
-
-                                  Text(
-                                    'Booking Date :${busController.bookingHistoryList[index].bookingDate.split(" ").first}',
-                                    style: const TextStyle(color: Colors.black),
-                                  ),
-                                  // Text(
-                                  //   'Total Person : 5 Members',
-                                  //   style: TextStyle(color: kblue),
-                                  // ),
-                                  // Text(
-                                  //   'Ac Rooms',
-                                  //   style: TextStyle(color: kblue),
-                                  // ),
-                                  ksizedbox10
-                                ],
-                              )
-                            ],
+            
+                                    Text(
+                                      'Booking Date :${busController.bookingHistoryList[index].bookingDate.split(" ").first}',
+                                      style: const TextStyle(color: Colors.black),
+                                    ),
+                                    // Text(
+                                    //   'Total Person : 5 Members',
+                                    //   style: TextStyle(color: kblue),
+                                    // ),
+                                    // Text(
+                                    //   'Ac Rooms',
+                                    //   style: TextStyle(color: kblue),
+                                    // ),
+                                    ksizedbox10
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+            ),
       );
     });
   }
@@ -243,7 +246,10 @@ class _MobileBusBookingState extends State<MobileBusBooking> {
                     ),
                     Text(
                       busBookingData.toCityname,
+                    
+                      
                       style: TextStyle(
+                        
                           fontSize: 15,
                           color: kblue,
                           fontWeight: FontWeight.w500),
@@ -286,7 +292,7 @@ class _MobileBusBookingState extends State<MobileBusBooking> {
                           fontWeight: FontWeight.bold),
                     ),
                     Container(
-                      width: 120,
+                      width: 50,
                       child: Text(
                         busBookingData.busName,
                         style: TextStyle(

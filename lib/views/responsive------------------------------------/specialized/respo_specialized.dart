@@ -786,7 +786,7 @@ class _SpecializedScreenState extends State<RespoSpecialized> {
                       padding: const EdgeInsets.only(left: 10, top: 10),
                       child: Container(
 //alignment: Alignment.center,
-                        height: 110,
+                        height: 140,
                         width: MediaQuery.of(context).size.width * 0.2,
                         color: kgrey.withOpacity(0.1),
                         child: const Column(

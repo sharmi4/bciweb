@@ -43,7 +43,7 @@ class _MobileFlightHomeState extends State<MobileFlightHome> {
                   ],
                 ),
               ) :Container(
-          
+                height: 650,
           child:ListView.builder(
             itemCount: apiflightController.flightBookingHistoyrList.length,
             itemBuilder: (context,index){

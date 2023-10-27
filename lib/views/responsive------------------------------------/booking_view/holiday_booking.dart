@@ -47,107 +47,110 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                   ],
                 ),
               )
-            : ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: holidayPackageController.enquiryData.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: InkWell(
-                      onTap: () {
-                        dialogBuilder(context,
-                            holidayPackageController.enquiryData[index]);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Container(
-                         // height: 125,
-                          width: size.width,
-                          decoration: BoxDecoration(
-                            color: kwhite,
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(5),
-                                    child: Image.network(
-                                      holidayPackageController
-                                          .enquiryData[index]
-                                          .packageDetails
-                                          .image
-                                          .first,
-                                      height: 100,
-                                      width: 100,
-                                      fit: BoxFit.cover,
-                                    )),
-                              ),
-                              kwidth10,
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  ksizedbox10,
-                                  Container(
-                                    width: 200,
-                                    child: Text(
-                                      holidayPackageController
-                                          .enquiryData[index]
-                                          .packageDetails
-                                          .title
-                                          .toString(),
-                                      maxLines: 2,
-                                      style: const TextStyle(fontSize: 21),
+            : Container(
+              height: 650,
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: holidayPackageController.enquiryData.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: InkWell(
+                        onTap: () {
+                          dialogBuilder(context,
+                              holidayPackageController.enquiryData[index]);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Container(
+                           // height: 125,
+                            width: size.width,
+                            decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(5),
+                                      child: Image.network(
+                                        holidayPackageController
+                                            .enquiryData[index]
+                                            .packageDetails
+                                            .image
+                                            .first,
+                                        height: 100,
+                                        width: 100,
+                                        fit: BoxFit.cover,
+                                      )),
+                                ),
+                                kwidth10,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ksizedbox10,
+                                    Container(
+                                      width: 200,
+                                      child: Text(
+                                        holidayPackageController
+                                            .enquiryData[index]
+                                            .packageDetails
+                                            .title
+                                            .toString(),
+                                        maxLines: 2,
+                                        style: const TextStyle(fontSize: 21),
+                                      ),
                                     ),
-                                  ),
-                                   Container(
-                                    width: 200,
-                                    child: Text(
-                                      '₹${holidayPackageController.enquiryData[index].packageDetails.amount}',
-                                      maxLines: 4,
-                                      style: const TextStyle(color: Colors.black),
-                                    ),
-                                  ),
                                      Container(
-                                    width: 200,
-                                    child: Text(
-                                      '${holidayPackageController.enquiryData[index].packageDetails.duration}',
-                                      maxLines: 4,
-                                      style: TextStyle(color: kblue),
+                                      width: 200,
+                                      child: Text(
+                                        '₹${holidayPackageController.enquiryData[index].packageDetails.amount}',
+                                        maxLines: 4,
+                                        style: const TextStyle(color: Colors.black),
+                                      ),
                                     ),
-                                  ),
-                                  
-                                  Container(
-                                    width: 200,
-                                    child: Text(
-                                      '${holidayPackageController.enquiryData[index].packageDetails.location}',
-                                      maxLines: 4,
-                                      style: TextStyle(color: kblue),
+                                       Container(
+                                      width: 200,
+                                      child: Text(
+                                        '${holidayPackageController.enquiryData[index].packageDetails.duration}',
+                                        maxLines: 4,
+                                        style: TextStyle(color: kblue),
+                                      ),
                                     ),
-                                  ),
-                                  // Text(
-                                  //   'Check in : 03:44PM Check Out 03:43 PM',
-                                  //   style: TextStyle(color: kblue),
-                                  // ),
-                                  // Text(
-                                  //   'Total Person : 5 Members',
-                                  //   style: TextStyle(color: kblue),
-                                  // ),
-                                  // Text(
-                                  //   'Ac Rooms',
-                                  //   style: TextStyle(color: kblue),
-                                  // ),
-                                  ksizedbox10
-                                ],
-                              )
-                            ],
+                                    
+                                    Container(
+                                      width: 200,
+                                      child: Text(
+                                        '${holidayPackageController.enquiryData[index].packageDetails.location}',
+                                        maxLines: 4,
+                                        style: TextStyle(color: kblue),
+                                      ),
+                                    ),
+                                    // Text(
+                                    //   'Check in : 03:44PM Check Out 03:43 PM',
+                                    //   style: TextStyle(color: kblue),
+                                    // ),
+                                    // Text(
+                                    //   'Total Person : 5 Members',
+                                    //   style: TextStyle(color: kblue),
+                                    // ),
+                                    // Text(
+                                    //   'Ac Rooms',
+                                    //   style: TextStyle(color: kblue),
+                                    // ),
+                                    ksizedbox10
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+            ),
       );
     });
   }
@@ -204,6 +207,7 @@ class _MobileHolidaysBookingState extends State<MobileHolidaysBooking> {
                       children: [
                         Text(
                           enquiryDatas.packageDetails.title,
+                          maxLines: 2,
                           style: TextStyle(
                               fontSize: 16,
                               color: kblue,

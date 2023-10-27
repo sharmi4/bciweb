@@ -27,84 +27,95 @@ class _OthersBookingsViewState extends State<OthersBookingsView> {
       return Padding(
         padding: const EdgeInsets.only(top: 20),
         child: homeController.othersbookinglist.isEmpty
-            ? const Center(
-                child: Text("No bookings found"),
+            ? Center(
+                child: Column(children:[
+                   Image.asset('assets/images/othersbookingnotavailableimage.png'),
+                    ksizedbox20,
+                    Text('Not Booking In Other Plans',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: kblue
+                    ),)]),
               )
-            : ListView.builder(
-                physics: const BouncingScrollPhysics(),
-                itemCount: homeController.othersbookinglist.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    child: InkWell(
-                      onTap: (){
-                        dialogBuilder(context, 
-                        homeController.othersbookinglist[index].image, 
-                        homeController.othersbookinglist[index].service, 
-                        homeController.othersbookinglist[index].description, 
-                        homeController.othersbookinglist[index].purchasePrice, 
-                        homeController.othersbookinglist[index].quantity
-                        );
-                      },
-                      child: Container(
-                        height: 127,
-                        width: double.infinity,
-                        decoration: BoxDecoration(
-                          color: kwhite,
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(5),
-                                  child: Image.network(
-                                    homeController.othersbookinglist[index].image,
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  )),
-                            ),
-                            kwidth10,
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ksizedbox10,
-                                Text(
-                                  homeController.othersbookinglist[index].service
-                                      .toString(),
-                                  style: const TextStyle(fontSize: 21),
-                                ),
-                                Container(
-                                  width: 250,
-                                  child: Text(
-                                    '${homeController.othersbookinglist[index].description}',
-                                    maxLines: 3,
-                                    style: TextStyle(color: kblue),
+            : Container(
+              height: 650,
+              child: ListView.builder(
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: homeController.othersbookinglist.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      child: InkWell(
+                        onTap: (){
+                          dialogBuilder(context, 
+                          homeController.othersbookinglist[index].image, 
+                          homeController.othersbookinglist[index].service, 
+                          homeController.othersbookinglist[index].description, 
+                          homeController.othersbookinglist[index].purchasePrice, 
+                          homeController.othersbookinglist[index].quantity
+                          );
+                        },
+                        child: Container(
+                          height: 127,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: kwhite,
+                            borderRadius: BorderRadius.circular(5),
+                          ),
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(5),
+                                    child: Image.network(
+                                      homeController.othersbookinglist[index].image,
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.cover,
+                                    )),
+                              ),
+                              kwidth10,
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  ksizedbox10,
+                                  Text(
+                                    homeController.othersbookinglist[index].service
+                                        .toString(),
+                                    style: const TextStyle(fontSize: 21),
                                   ),
-                                ),
-                                // Text(
-                                //   'Check in : 03:44PM Check Out 03:43 PM',
-                                //   style: TextStyle(color: kblue),
-                                // ),
-                                // Text(
-                                //   'Total Person : 5 Members',
-                                //   style: TextStyle(color: kblue),
-                                // ),
-                                // Text(
-                                //   'Ac Rooms',
-                                //   style: TextStyle(color: kblue),
-                                // ),
-                                ksizedbox10
-                              ],
-                            )
-                          ],
+                                  Container(
+                                    width: 250,
+                                    child: Text(
+                                      '${homeController.othersbookinglist[index].description}',
+                                      maxLines: 3,
+                                      style: TextStyle(color: kblue),
+                                    ),
+                                  ),
+                                  // Text(
+                                  //   'Check in : 03:44PM Check Out 03:43 PM',
+                                  //   style: TextStyle(color: kblue),
+                                  // ),
+                                  // Text(
+                                  //   'Total Person : 5 Members',
+                                  //   style: TextStyle(color: kblue),
+                                  // ),
+                                  // Text(
+                                  //   'Ac Rooms',
+                                  //   style: TextStyle(color: kblue),
+                                  // ),
+                                  ksizedbox10
+                                ],
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }),
+                    );
+                  }),
+            ),
       );
     });
   }

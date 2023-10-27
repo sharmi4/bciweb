@@ -31,8 +31,8 @@ class RespoLanding extends StatelessWidget {
               ksizedbox40,
               InkWell(
                 onTap: () {
-                  Get.to(MobileHomeScreenMembers());
-                  //Get.toNamed(Routes.MobLogin);
+                  //Get.to(MobileHomeScreenMembers());
+                  Get.toNamed(Routes.MobLogin);
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20, left: 20),
@@ -72,8 +72,8 @@ class RespoLanding extends StatelessWidget {
               ksizedbox20,
               InkWell(
                 onTap: () async {
-                  Get.to(MobileHomeScreenbusiness());
-                  //Get.to(BussinessLoginScreenRespo());
+                  //Get.to(MobileHomeScreenbusiness());
+                  Get.to(BussinessLoginScreenRespo());
                 },
                 child: Padding(
                   padding: const EdgeInsets.only(right: 20, left: 20),
