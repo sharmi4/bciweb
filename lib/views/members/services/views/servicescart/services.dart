@@ -127,26 +127,28 @@ class _ServicesState extends State<Services> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: homeController.vendorList[index]
-                                                  .profilePicture !=
-                                              null
-                                          ? Image.network(
-                                              homeController.vendorList[index]
-                                                  .profilePicture!,
-                                              //height: 125,
-                                              height: 100,
-                                              width: 150,
-                                              fit: BoxFit.fitHeight,
-                                            )
-                                          : Image.asset(
-                                              "assets/icons/no.jpg",
-                                              //height: 125,
-                                              height: 100,
-                                              width: 150,
-                                              fit: BoxFit.cover,
-                                            ),
+                                    Container(
+                                      height: 130,
+                                      width: 150,
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: homeController.vendorList[index]
+                                                    .profilePicture !=
+                                                null
+                                            ? Image.network(
+                                                homeController.vendorList[index]
+                                                    .profilePicture!,
+                                                //height: 125,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : Image.asset(
+                                                "assets/icons/no.jpg",
+                                                //height: 125,
+                                                height: 100,
+                                                width: 150,
+                                                fit: BoxFit.cover,
+                                              ),
+                                      ),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(left: 15),

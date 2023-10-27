@@ -146,73 +146,73 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                                 fontSize: 17, color: kwhite.withOpacity(0.7)),
                           ),
                           ksizedbox30,
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: InkWell(
-                                  onTap: () {
-                                    // Get.to(BookingFlight());
-                                  },
-                                  child: Container(
-                                    height: 38,
-                                    width: 130,
-                                    decoration: BoxDecoration(
-                                        color: kwhite,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: const Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          Text('BOOK NOW'),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 10),
-                                            child: Icon(Icons.arrow_forward),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: InkWell(
-                                  onTap: () {
-                                    // Get.toNamed('/subscribe');
-                                  },
-                                  child: Container(
-                                    height: 38,
-                                    width: 130,
-                                    decoration: BoxDecoration(
-                                        color: kblue,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            'SUBSCRIBE',
-                                            style: TextStyle(color: kwhite),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: Icon(
-                                              Icons.arrow_forward,
-                                              color: kwhite,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
+                          // Row(
+                          //   children: [
+                          //     Padding(
+                          //       padding: const EdgeInsets.only(left: 30),
+                          //       child: InkWell(
+                          //         onTap: () {
+                          //           // Get.to(BookingFlight());
+                          //         },
+                          //         child: Container(
+                          //           height: 38,
+                          //           width: 130,
+                          //           decoration: BoxDecoration(
+                          //               color: kwhite,
+                          //               borderRadius:
+                          //                   BorderRadius.circular(15)),
+                          //           child: const Padding(
+                          //             padding: EdgeInsets.only(left: 10),
+                          //             child: Row(
+                          //               children: [
+                          //                 Text('BOOK NOW'),
+                          //                 Padding(
+                          //                   padding: EdgeInsets.only(left: 10),
+                          //                   child: Icon(Icons.arrow_forward),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     Padding(
+                          //       padding: const EdgeInsets.only(left: 30),
+                          //       child: InkWell(
+                          //         onTap: () {
+                          //           // Get.toNamed('/subscribe');
+                          //         },
+                          //         child: Container(
+                          //           height: 38,
+                          //           width: 130,
+                          //           decoration: BoxDecoration(
+                          //               color: kblue,
+                          //               borderRadius:
+                          //                   BorderRadius.circular(15)),
+                          //           child: Padding(
+                          //             padding: const EdgeInsets.only(left: 10),
+                          //             child: Row(
+                          //               children: [
+                          //                 Text(
+                          //                   'SUBSCRIBE',
+                          //                   style: TextStyle(color: kwhite),
+                          //                 ),
+                          //                 Padding(
+                          //                   padding:
+                          //                       const EdgeInsets.only(left: 10),
+                          //                   child: Icon(
+                          //                     Icons.arrow_forward,
+                          //                     color: kwhite,
+                          //                   ),
+                          //                 )
+                          //               ],
+                          //             ),
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // )
                         ],
                       ),
                     ),

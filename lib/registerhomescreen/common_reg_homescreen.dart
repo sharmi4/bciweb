@@ -56,7 +56,9 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
     authProfileController.getProfile();
     checkForLoggedInState();
   }
-
+  
+  
+   
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
@@ -136,7 +138,12 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           onPressed: () {
                             reghomeController.reindex(3);
                             reghomeController.update();
-                            Get.toNamed(Routes.Service);
+                            if(isLoggedIn==true){
+                              Get.toNamed(Routes.Service);
+                            }else{
+                               Get.to(LandingScreen());
+                            }
+                         
                           },
                           child: Text(
                             'SERVICE',
@@ -370,38 +377,43 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       }),
                       //   Icon(Icons.expand_more),
                       kwidth10,
-                      GetBuilder<AuthProfileController>(builder: (_) {
-                        return authProfileController.profileData.isNotEmpty
-                            ? authProfileController
-                                        .profileData.first.profilePicture !=
-                                    null
-                                ? InkWell(
-                                    onTap: () {
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  RegisterProfileScreen()));
-                                    },
-                                    child: CircleAvatar(
-                                        radius: 22.0,
-                                        backgroundImage: NetworkImage(
-                                          authProfileController
-                                              .profileData.first.profilePicture,
-                                        )),
-                                  )
-                                //:Text('')
+                      FutureBuilder(
+                        future: Future.delayed(Duration(seconds: 1)),
+                        builder: (c,s) {
+                          return GetBuilder<AuthProfileController>(builder: (_) {
+                            return authProfileController.profileData.isNotEmpty
+                                ? authProfileController
+                                            .profileData.first.profilePicture !=
+                                        null
+                                    ? InkWell(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      RegisterProfileScreen()));
+                                        },
+                                        child: CircleAvatar(
+                                            radius: 22.0,
+                                            backgroundImage: NetworkImage(
+                                              authProfileController
+                                                  .profileData.first.profilePicture,
+                                            )),
+                                      )
+                                    //:Text('')
+                                    : Image.asset(
+                                        'assets/images/nick.png',
+                                        height: 35,
+                                        fit: BoxFit.fitHeight,
+                                      )
+                                //:Text(''); 
                                 : Image.asset(
                                     'assets/images/nick.png',
                                     height: 35,
                                     fit: BoxFit.fitHeight,
-                                  )
-                            //:Text('');
-                            : Image.asset(
-                                'assets/images/nick.png',
-                                height: 35,
-                                fit: BoxFit.fitHeight,
-                              );
-                      })
+                                  );
+                          });
+                        }
+                      )
                     ]),
                   )
                 : Text('')),

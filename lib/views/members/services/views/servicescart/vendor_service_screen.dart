@@ -74,10 +74,11 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
                                         color: Colors.grey.withOpacity(0.5))
                                   ]),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
                                   Container(
-                                      height: 10,
-                                      width: size.width * 0.12,
+                                      height: 120,
+                                      width: 150,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: NetworkImage(homeController.vendorServiceListData[index].image),
@@ -91,8 +92,9 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
                                                 color: Colors.grey.withOpacity(0.5))
                                           ])),
                                   Padding(
-                                    padding: const EdgeInsets.only(left: 15),
+                                    padding: const EdgeInsets.only(left: 15,top: 15),
                                     child: Column(
+                                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         const SizedBox(

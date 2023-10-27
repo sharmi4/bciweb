@@ -1,3 +1,4 @@
+import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
@@ -62,11 +63,22 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
     var size = MediaQuery.of(context).size;
     
     return Scaffold(
+       appBar: PreferredSize(
+        preferredSize:const Size(double.infinity, 110),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+              //BusinessCommonhomeContainer(),
+            ],
+          ),
+          ),
       body: GetBuilder<HotelController>(builder: (_) {
         return ListView(children: [
           Column(
             children: [
-              RegisterCommonContainer(),
+              
               Stack(
                 children: [
                   Container(
@@ -97,12 +109,24 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
               //         ),
               //       )
               //     :
+                        ksizedbox40,
+               hotelController.hotelInfoData.isEmpty?
+               
+                    Center(
+                      child: Container(
+                        child: CircularProgressIndicator(
+                          color: kOrange,
+                        ),
+                      ),
+                    )
+                    :
               Padding(
                 padding: const EdgeInsets.only(left: 20, right: 20, top: 25),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                   
                     Container(
                       // height: 500,
                       width: 700,
@@ -206,7 +230,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                       : Image.network(
                                           hotelController
                                               .hotelInfoData.first.images.first,
-                                          height: 100,
+                                          height: 200,
                                           fit: BoxFit.fitHeight,
                                         ),
                                 )
@@ -448,6 +472,14 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                         ],
                       ),
                     ),
+                    hotelController.searchHotelData.isEmpty?
+                    Container(
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          color: kOrange,
+                        ),
+                      ),
+                    ):
                     Column(
                       children: [
                         Container(
@@ -501,7 +533,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                           child: Text('Base Price'),
                                         ),
                                         Text(
-                                          '₹ 3,550',
+                                          '₹${hotelController.searchHotelData.first.price.roomPrice}',
                                           style: TextStyle(
                                               fontSize: 16,
                                               color: korange,
@@ -527,7 +559,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                 color: kblue),
                                           ),
                                           Text(
-                                            '₹ 744',
+                                            '₹${hotelController.searchHotelData.first.price.totalGstAmount}',
                                             style: TextStyle(
                                                 color: kblue,
                                                 fontSize: 16,
@@ -554,7 +586,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                 color: kblue),
                                           ),
                                           Text(
-                                            '₹ 2,806',
+                                            '₹${hotelController.searchHotelData.first.price.discount}',
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
@@ -581,7 +613,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                 color: kblue),
                                           ),
                                           Text(
-                                            '₹ 573',
+                                            '₹${hotelController.searchHotelData.first.price.tax}',
                                             style: TextStyle(
                                                 fontSize: 16,
                                                 fontWeight: FontWeight.bold,
@@ -668,7 +700,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                                     .bold),
                                                       ),
                                               ),
-                                            ),
+                                            ), 
                                           ),
                                         ],
                                       ),

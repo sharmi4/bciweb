@@ -51,9 +51,14 @@ class _ListCartState extends State<ListCart> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        width: size.width * 0.2,
+                        height: size.height*0.65,
+                        width: size.width * 0.22,
 //height: size.height * 0.5,
-                        child: Image.network(widget.servicedata.image),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(7),
+                          child: Image.network(widget.servicedata.image,
+                          fit: BoxFit.cover,),
+                        ),
                       ),
                       Container(
                         width: size.width * 0.3,
@@ -61,11 +66,11 @@ class _ListCartState extends State<ListCart> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ksizedbox30,
+                          
                             Text(
                               widget.servicedata.title,
                               style: TextStyle(
-                                  fontSize: 50,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   color: kblue),
                             ),
@@ -73,7 +78,7 @@ class _ListCartState extends State<ListCart> {
                             Text(
                               "About",
                               style: TextStyle(
-                                  fontSize: 45,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   color: kblue),
                             ),
@@ -92,7 +97,7 @@ class _ListCartState extends State<ListCart> {
                             Text(
                               'Services',
                               style: TextStyle(
-                                  fontSize: 45,
+                                  fontSize: 30,
                                   fontWeight: FontWeight.bold,
                                   color: kblue),
                             ),
@@ -158,7 +163,7 @@ class _ListCartState extends State<ListCart> {
                             Text(
                               "₹ ${widget.servicedata.saleAmount}",
                               style: TextStyle(
-                                  fontSize: 40,
+                                  fontSize: 35,
                                   fontWeight: FontWeight.bold,
                                   color: kOrange),
                             ),

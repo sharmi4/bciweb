@@ -701,7 +701,7 @@ class _BussHistoryState extends State<BussHistory> {
                           fontWeight: FontWeight.bold),
                     ),
                     Container(
-                      width: 120,
+                      width: 50,
                       child: Text(
                         busBookingData.busName,
                         style: TextStyle(

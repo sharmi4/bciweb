@@ -22,8 +22,8 @@ class HotelBookingDetailModel {
     });
 
     factory HotelBookingDetailModel.fromJson(Map<String, dynamic> json) => HotelBookingDetailModel(
-        userIp: json["UserIp"],
-        searchToken: json["Search_Token"],
+        userIp: json["UserIp"]??"0",
+        searchToken: json["Search_Token"]??"",
         error: Error.fromJson(json["Error"]),
         result: Result.fromJson(json["Result"]),
     );
@@ -46,8 +46,8 @@ class Error {
     });
 
     factory Error.fromJson(Map<String, dynamic> json) => Error(
-        errorCode: json["ErrorCode"],
-        errorMessage: json["ErrorMessage"],
+        errorCode: json["ErrorCode"]??"0",
+        errorMessage: json["ErrorMessage"]??"",
     );
 
     Map<String, dynamic> toJson() => {
@@ -322,33 +322,33 @@ class HotelRoomsDetail {
     });
 
     factory HotelRoomsDetail.fromJson(Map<String, dynamic> json) => HotelRoomsDetail(
-        adultCount: json["AdultCount"],
-        availabilityType: json["AvailabilityType"],
-        childCount: json["ChildCount"],
+        adultCount: json["AdultCount"]??"",
+        availabilityType: json["AvailabilityType"]??"",
+        childCount: json["ChildCount"]??"",
         hotelPassenger: List<HotelPassenger>.from(json["HotelPassenger"].map((x) => HotelPassenger.fromJson(x))),
-        requireAllPaxDetails: json["RequireAllPaxDetails"],
-        roomId: json["RoomId"],
-        roomStatus: json["RoomStatus"],
-        roomIndex: json["RoomIndex"],
-        roomTypeCode: json["RoomTypeCode"],
-        roomDescription: json["RoomDescription"],
-        roomTypeName: json["RoomTypeName"],
-        ratePlanCode: json["RatePlanCode"],
-        ratePlan: json["RatePlan"],
+        requireAllPaxDetails: json["RequireAllPaxDetails"]??"",
+        roomId: json["RoomId"]??"",
+        roomStatus: json["RoomStatus"]??"",
+        roomIndex: json["RoomIndex"]??"",
+        roomTypeCode: json["RoomTypeCode"]??"",
+        roomDescription: json["RoomDescription"]??"",
+        roomTypeName: json["RoomTypeName"]??"",
+        ratePlanCode: json["RatePlanCode"]??"",
+        ratePlan: json["RatePlan"]??"",
         dayRates: List<DayRate>.from(json["DayRates"].map((x) => DayRate.fromJson(x))),
-        isPerStay: json["IsPerStay"],
-        supplierPrice: json["SupplierPrice"],
+        isPerStay: json["IsPerStay"]??"",
+        supplierPrice: json["SupplierPrice"]??"",
         price: Price.fromJson(json["Price"]),
-        roomPromotion: json["RoomPromotion"],
+        roomPromotion: json["RoomPromotion"]??"",
         amenities: List<String>.from(json["Amenities"].map((x) => x)),
         amenity: List<String>.from(json["Amenity"].map((x) => x)),
-        smokingPreference: json["SmokingPreference"],
+        smokingPreference: json["SmokingPreference"]??"",
         bedTypes: List<dynamic>.from(json["BedTypes"].map((x) => x)),
-        hotelSupplements: json["HotelSupplements"],
+        hotelSupplements: json["HotelSupplements"]??"",
         lastCancellationDate: DateTime.parse(json["LastCancellationDate"]),
         cancellationPolicies: List<CancellationPolicy>.from(json["CancellationPolicies"].map((x) => CancellationPolicy.fromJson(x))),
         lastVoucherDate: DateTime.parse(json["LastVoucherDate"]),
-        cancellationPolicy: json["CancellationPolicy"],
+        cancellationPolicy: json["CancellationPolicy"]??"",
         inclusion: List<String>.from(json["Inclusion"].map((x) => x)),
     );
 
@@ -400,9 +400,9 @@ class CancellationPolicy {
     });
 
     factory CancellationPolicy.fromJson(Map<String, dynamic> json) => CancellationPolicy(
-        charge: json["Charge"],
-        chargeType: json["ChargeType"],
-        currency: json["Currency"],
+        charge: json["Charge"]??"",
+        chargeType: json["ChargeType"]??"",
+        currency: json["Currency"]??"",
         fromDate: DateTime.parse(json["FromDate"]),
         toDate: DateTime.parse(json["ToDate"]),
     );
@@ -484,27 +484,27 @@ class HotelPassenger {
     });
 
     factory HotelPassenger.fromJson(Map<String, dynamic> json) => HotelPassenger(
-        age: json["Age"],
-        email: json["Email"],
-        fileDocument: json["FileDocument"],
-        firstName: json["FirstName"],
-        gstCompanyAddress: json["GSTCompanyAddress"],
-        gstCompanyContactNumber: json["GSTCompanyContactNumber"],
-        gstCompanyEmail: json["GSTCompanyEmail"],
-        gstCompanyName: json["GSTCompanyName"],
-        gstNumber: json["GSTNumber"],
-        guardianDetail: json["GuardianDetail"],
-        lastName: json["LastName"],
-        leadPassenger: json["LeadPassenger"],
-        middleName: json["MiddleName"],
-        pan: json["PAN"],
-        passportExpDate: json["PassportExpDate"],
-        passportIssueDate: json["PassportIssueDate"],
-        passportNo: json["PassportNo"],
-        paxId: json["PaxId"],
-        paxType: json["PaxType"],
-        phoneno: json["Phoneno"],
-        title: json["Title"],
+        age: json["Age"]??"",
+        email: json["Email"]??"",
+        fileDocument: json["FileDocument"]??"",
+        firstName: json["FirstName"]??"",
+        gstCompanyAddress: json["GSTCompanyAddress"]??"",
+        gstCompanyContactNumber: json["GSTCompanyContactNumber"]??"",
+        gstCompanyEmail: json["GSTCompanyEmail"]??"",
+        gstCompanyName: json["GSTCompanyName"]??"",
+        gstNumber: json["GSTNumber"]??"",
+        guardianDetail: json["GuardianDetail"]??"",
+        lastName: json["LastName"]??"",
+        leadPassenger: json["LeadPassenger"]??"",
+        middleName: json["MiddleName"]??"",
+        pan: json["PAN"]??"",
+        passportExpDate: json["PassportExpDate"]??"",
+        passportIssueDate: json["PassportIssueDate"]??"",
+        passportNo: json["PassportNo"]??"",
+        paxId: json["PaxId"]??"",
+        paxType: json["PaxType"]??"",
+        phoneno: json["Phoneno"]??"",
+        title: json["Title"]??"",
     );
 
     Map<String, dynamic> toJson() => {
@@ -576,23 +576,23 @@ class Price {
     });
 
     factory Price.fromJson(Map<String, dynamic> json) => Price(
-        currencyCode: json["CurrencyCode"],
+        currencyCode: json["CurrencyCode"]??"",
         roomPrice: json["RoomPrice"]?.toDouble(),
         tax: json["Tax"]?.toDouble(),
-        extraGuestCharge: json["ExtraGuestCharge"],
-        childCharge: json["ChildCharge"],
+        extraGuestCharge: json["ExtraGuestCharge"]??"",
+        childCharge: json["ChildCharge"]??"",
         otherCharges: json["OtherCharges"]?.toDouble(),
-        discount: json["Discount"],
+        discount: json["Discount"]??"",
         publishedPrice: json["PublishedPrice"]?.toDouble(),
         publishedPriceRoundedOff: json["PublishedPriceRoundedOff"],
         offeredPrice: json["OfferedPrice"]?.toDouble(),
-        offeredPriceRoundedOff: json["OfferedPriceRoundedOff"],
-        agentCommission: json["AgentCommission"],
-        agentMarkUp: json["AgentMarkUp"],
+        offeredPriceRoundedOff: json["OfferedPriceRoundedOff"]??"",
+        agentCommission: json["AgentCommission"]??"",
+        agentMarkUp: json["AgentMarkUp"]??"",
         serviceTax: json["ServiceTax"]?.toDouble(),
-        tcs: json["TCS"],
-        tds: json["TDS"],
-        serviceCharge: json["ServiceCharge"],
+        tcs: json["TCS"]??'',
+        tds: json["TDS"]??"",
+        serviceCharge: json["ServiceCharge"]??"",
         totalGstAmount: json["TotalGSTAmount"]?.toDouble(),
         gst: Gst.fromJson(json["GST"]),
     );
@@ -644,14 +644,14 @@ class Gst {
     });
 
     factory Gst.fromJson(Map<String, dynamic> json) => Gst(
-        cgstAmount: json["CGSTAmount"],
-        cgstRate: json["CGSTRate"],
-        cessAmount: json["CessAmount"],
-        cessRate: json["CessRate"],
+        cgstAmount: json["CGSTAmount"]??"",
+        cgstRate: json["CGSTRate"]??"",
+        cessAmount: json["CessAmount"]??"",
+        cessRate: json["CessRate"]??"",
         igstAmount: json["IGSTAmount"]?.toDouble(),
-        igstRate: json["IGSTRate"],
-        sgstAmount: json["SGSTAmount"],
-        sgstRate: json["SGSTRate"],
+        igstRate: json["IGSTRate"]??"",
+        sgstAmount: json["SGSTAmount"]??"",
+        sgstRate: json["SGSTRate"]??"",
         taxableAmount: json["TaxableAmount"]?.toDouble(),
     );
 

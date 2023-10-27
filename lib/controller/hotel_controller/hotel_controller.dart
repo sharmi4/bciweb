@@ -72,6 +72,7 @@ class HotelController extends GetxController {
   RxString hotelSearchKey = "".obs;
   RxString hotelSearchKeyCode = "".obs;
   List<SearchHotelData> searchHotelData = [];
+   List<SearchHotelData> tempSearchHotelData = [];
   searchHotel({
     required String destination,
     required String countryCode,
@@ -100,6 +101,8 @@ class HotelController extends GetxController {
       SearchHotelModel searchHotelModel =
           SearchHotelModel.fromJson(response.data);
       searchHotelData = searchHotelModel.result;
+    tempSearchHotelData = searchHotelModel.result;
+
       if(isMobile==true){
            Get.to(HotelListScreen());
           
@@ -367,6 +370,7 @@ class HotelController extends GetxController {
       GetHotelRoomDetailsApiServices();
   getHotelDetails(String bookingId) async {
     htDetails.Result? result;
+    print(bookingId);
     print('-------------------1111111111111111111111-----------------------');
     dio.Response<dynamic> response = await getHotelRoomDetailsApiServices
         .getHotelRoomDetailsApiServices(userIp: "", bookingId: bookingId);

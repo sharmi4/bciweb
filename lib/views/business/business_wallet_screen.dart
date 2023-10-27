@@ -277,7 +277,7 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
                                     width: 60,
                                     decoration: BoxDecoration(
                                       color:kwhite.withOpacity(0.6),
-                                      boxShadow: <BoxShadow>[
+                                      boxShadow: <BoxShadow>[ 
                                         BoxShadow(
                                           offset: Offset(0.0,0.5),
                                            blurRadius: 1,

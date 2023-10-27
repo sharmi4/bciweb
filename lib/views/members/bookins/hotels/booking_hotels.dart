@@ -27,9 +27,7 @@ class BookingHotels extends StatefulWidget {
 }
 
 class _BookingHotelsState extends State<BookingHotels> {
-
-  
-  Future pickDateRange() async {
+   Future pickDateRange() async {
     DateTimeRange? newDateRange = await showDateRangePicker(
       context: context,
       firstDate: DateTime.now(),
@@ -42,12 +40,11 @@ class _BookingHotelsState extends State<BookingHotels> {
     setState(() => daterange = newDateRange);
   }
 
-  DateTimeRange daterange = DateTimeRange(
-    start: DateTime.now(),
-    end: DateTime.now().add(
-      Duration(days: 1),
-    ),
-  );
+    DateTimeRange daterange = DateTimeRange(
+      start: DateTime.now(),
+      end: DateTime.now().add(Duration(days: 1)));
+
+  
 
   var destinationController = TextEditingController();
   final hotelController = Get.find<HotelController>();
@@ -62,12 +59,21 @@ class _BookingHotelsState extends State<BookingHotels> {
     bool isChecked = false;
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
+         appBar: PreferredSize(
+        preferredSize:const Size(double.infinity, 110),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+              //BusinessCommonhomeContainer(),
+            ],
+          ),
+          ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            RegisterCommonContainer(),
+  
             Stack(
               children: [
                 Container(
@@ -286,7 +292,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                           Spacer(),
                                           Text(
                                             DateFormat('dd-MM-yyyy')
-                                                .format(start),
+                                                .format(end),
                                             style: TextStyle(
                                                 color: kblue, fontSize: 14),
                                           ),

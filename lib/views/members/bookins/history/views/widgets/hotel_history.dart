@@ -357,9 +357,9 @@ class _HotelHistoryState extends State<HotelHistory> {
                         shrinkWrap: true,
                         itemCount: hotelBookingController.bookingList.length,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisSpacing: 10,
-                            mainAxisSpacing: 10,
-                            childAspectRatio: 5,
+                            crossAxisSpacing: 15,
+                            mainAxisSpacing: 15,
+                            childAspectRatio: 4.3,
                             crossAxisCount: 2),
                         itemBuilder: ((context, index) {
                           return InkWell(

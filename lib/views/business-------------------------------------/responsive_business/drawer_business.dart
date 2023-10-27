@@ -170,12 +170,13 @@ class _DrawerBusinessState extends State<DrawerBusiness> {
               children: [
                 TextButton(
                   onPressed: () {
-                    if(isLoggedIn==true){
-                      Get.to(RespoBusinessBookings());
-                    }else{
-                          Get.to(const RespoLanding());
+                    Get.to(RespoBusinessBookings());
+                    // if(isLoggedIn==true){
+                    //   Get.to(RespoBusinessBookings());
+                    // }else{
+                    //       Get.to(const RespoLanding());
                       
-                    }
+                    // }
                  
                   },
                   child: Text(

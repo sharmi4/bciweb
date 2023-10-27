@@ -308,7 +308,7 @@ class _BusinessCommonhomeContainerState
                     authController.isbusinessLogedin.isTrue
                         ? Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 Get.to(const LandingScreen());
                                 // Get.toNamed(Routes.MobileVerification);
@@ -330,7 +330,7 @@ class _BusinessCommonhomeContainerState
                           )
                         : Padding(
                             padding: const EdgeInsets.only(left: 10),
-                            child: InkWell(
+                            child: GestureDetector(
                               onTap: () {
                                 // Get.to(MobileVerificatio());
                                 authController.businesslogoutWeb();

@@ -62,7 +62,7 @@ class _ServicesCartState extends State<ServicesCart> {
                               padding: const EdgeInsets.all(5.0),
                               child: Container(
                                   width: 150,
-                                  height: 130,
+                                  height: 180,
                                   decoration: BoxDecoration(
                                       color: kwhite,
                                       borderRadius: BorderRadius.circular(10),
@@ -74,30 +74,45 @@ class _ServicesCartState extends State<ServicesCart> {
                                       ]),
                                   child: Column(
                                     children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Image.network(
-                                                  homeController
-                                                      .cartListData[index]
-                                                      .image,
-                                                  height: 80,
-                                                  width: 90,
-                                                  fit: BoxFit.cover,
+                                      Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              
+                                              Padding(
+                                                padding: const EdgeInsets.only(top: 20,left: 20),
+                                                child: Container(
+                                                   height: 130,
+                                                    width: 150,
+                                                  child: ClipRRect(
+                                                    borderRadius: BorderRadius.circular(5),
+                                                    child: Image.network(
+                                                      homeController
+                                                          .cartListData[index]
+                                                          .image,
+                                                     
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
                                                 ),
-                                                kwidth10,
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
+                                              ),
+                                              SizedBox(
+                                                width: 30,
+                                              ),
+                                              Column(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top: 5),
+                                                    child: Text(
                                                       homeController
                                                           .cartListData[index]
                                                           .serviceName,
@@ -107,7 +122,11 @@ class _ServicesCartState extends State<ServicesCart> {
                                                           fontWeight:
                                                               FontWeight.w600),
                                                     ),
-                                                    SizedBox(
+                                                  ),
+                                                      
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top: 5),
+                                                    child: SizedBox(
                                                         width: 230,
                                                         child: Text(
                                                           homeController
@@ -116,140 +135,144 @@ class _ServicesCartState extends State<ServicesCart> {
                                                               .description,
                                                           maxLines: 3,
                                                         )),
-                                                    Text(
+                                                  ),
+                                                      
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(top: 5),
+                                                    child: Text(
                                                         "Qty: ${homeController.cartListData[index].quantity}"),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                            // Row(
-                                            //   children: [
-                                            //     Column(
-                                            //       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            //       children: [
-                                            //         InkWell(
-                                            //           onTap: (){
-                                            //             homeController.deleteToCart(serviceid: homeController.cartListData[index].serviceId.toString());
-                                            //           },
-                                            //           child:const Icon(Icons.delete,color: Colors.redAccent,)),
-                                            //         ksizedbox10,
-                                            //         Text(
-                                            //   '₹ ${homeController.cartListData[index].price}',
-                                            //    style: TextStyle(
-                                            //    fontSize: 17.sp,
-                                            //    fontWeight: FontWeight.w600,
-                                            //   color: kyellow),
-                                            // ),
-                                            //       ],
-                                            //     ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                          // Row(
+                                          //   children: [
+                                          //     Column(
+                                          //       mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          //       children: [
+                                          //         InkWell(
+                                          //           onTap: (){
+                                          //             homeController.deleteToCart(serviceid: homeController.cartListData[index].serviceId.toString());
+                                          //           },
+                                          //           child:const Icon(Icons.delete,color: Colors.redAccent,)),
+                                          //         ksizedbox10,
+                                          //         Text(
+                                          //   '₹ ${homeController.cartListData[index].price}',
+                                          //    style: TextStyle(
+                                          //    fontSize: 17.sp,
+                                          //    fontWeight: FontWeight.w600,
+                                          //   color: kyellow),
+                                          // ),
+                                          //       ],
+                                          //     ),
 
-                                            //   ],
-                                            // ),
-                                            Row(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          right: 10, top: 10),
-                                                  child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      InkWell(
-                                                          onTap: () {
-                                                            showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (BuildContext
-                                                                        context) {
-                                                                  return AlertDialog(
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .white,
-                                                                    title: Text(
-                                                                        "Remove Item",
-                                                                        style: TextStyle(
-                                                                            color:
-                                                                                Colors.black)),
-                                                                    content:
-                                                                        Text(
-                                                                      "Are you sure do you want to remove this item?",
+                                          //   ],
+                                          // ),
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.only(
+                                                        right: 10, top: 15),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.end,
+                                                  children: [
+                                                    InkWell(
+                                                        onTap: () {
+                                                          showDialog(
+                                                              context:
+                                                                  context,
+                                                              builder:
+                                                                  (BuildContext
+                                                                      context) {
+                                                                return AlertDialog(
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .white,
+                                                                  title: Text(
+                                                                      "Remove Item",
                                                                       style: TextStyle(
                                                                           color:
-                                                                              Colors.black),
+                                                                              Colors.black)),
+                                                                  content:
+                                                                      Text(
+                                                                    "Are you sure do you want to remove this item?",
+                                                                    style: TextStyle(
+                                                                        color:
+                                                                            Colors.black),
+                                                                  ),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      child:
+                                                                          Text(
+                                                                        "cancel",
+                                                                        style:
+                                                                            TextStyle(color: Colors.grey),
+                                                                      ),
+                                                                      onPressed:
+                                                                          () {
+                                                                        Get.back();
+                                                                        //Get.find<AuthController>().logout();
+                                                                      },
                                                                     ),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        child:
-                                                                            Text(
-                                                                          "cancel",
+                                                                    TextButton(
+                                                                      child: Text(
+                                                                          "Remove",
                                                                           style:
-                                                                              TextStyle(color: Colors.grey),
-                                                                        ),
-                                                                        onPressed:
-                                                                            () {
-                                                                          Get.back();
-                                                                          //Get.find<AuthController>().logout();
-                                                                        },
-                                                                      ),
-                                                                      TextButton(
-                                                                        child: Text(
-                                                                            "Remove",
-                                                                            style:
-                                                                                TextStyle(color: Colors.grey)),
-                                                                        onPressed:
-                                                                            () {
-                                                                          homeController.deleteToCart(
-                                                                              serviceid: homeController.cartListData[index].serviceId.toString());
-                                                                          Get.back();
-                                                                        },
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                });
-                                                            // homeController.deleteToCart(
-                                                            //     serviceid: homeController
-                                                            //         .cartListData[index]
-                                                            //         .serviceId
-                                                            //         .toString());
-                                                          },
-                                                          child: Row(
-                                                            children: [
-                                                              Icon(
-                                                                CupertinoIcons
-                                                                    .delete,
-                                                                color:
-                                                                    Colors.grey,
-                                                                size: 15,
-                                                              ),
-                                                              SizedBox(
-                                                                width: 5,
-                                                              ),
-                                                              Text(
-                                                                "Remove",
-                                                                style: TextStyle(
-                                                                    color: Colors
-                                                                        .grey),
-                                                              )
-                                                            ],
-                                                          )),
-                                                      ksizedbox10,
-                                                      Text(
-                                                        '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
-                                                        style: TextStyle(
-                                                            fontSize: 17,
-                                                            fontWeight:
-                                                                FontWeight.w600,
-                                                            color: kyellow),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                                              TextStyle(color: Colors.grey)),
+                                                                      onPressed:
+                                                                          () {
+                                                                        homeController.deleteToCart(
+                                                                            serviceid: homeController.cartListData[index].serviceId.toString());
+                                                                        Get.back();
+                                                                      },
+                                                                    ),
+                                                                  ],
+                                                                );
+                                                              });
+                                                          // homeController.deleteToCart(
+                                                          //     serviceid: homeController
+                                                          //         .cartListData[index]
+                                                          //         .serviceId
+                                                          //         .toString());
+                                                        },
+                                                        child: Row(
+                                                          children: [
+                                                            Icon(
+                                                              CupertinoIcons
+                                                                  .delete,
+                                                              color:
+                                                                  Colors.grey,
+                                                              size: 15,
+                                                            ),
+                                                            SizedBox(
+                                                              width: 5,
+                                                            ),
+                                                            Text(
+                                                              "Remove",
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .grey),
+                                                            )
+                                                          ],
+                                                        )),
+                                                    ksizedbox10,
+                                                    Text(
+                                                      '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
+                                                      style: TextStyle(
+                                                          fontSize: 17,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          color: kyellow),
+                                                    ),
+                                                  ],
                                                 ),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
                                       )
                                     ],
                                   )),

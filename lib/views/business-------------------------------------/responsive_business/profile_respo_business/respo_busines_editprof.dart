@@ -540,56 +540,67 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
           GetBuilder<ProfileController>(
             builder: (_) {
               return Padding(
-                padding: const EdgeInsets.only(left: 0),
+                padding: const EdgeInsets.only(left: 0,right: 0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Container(
-                        height: 100,
-                        width: 100,
-                        child: profileController.profileData.isEmpty
-                            ? Container(
-                                height: 150,
-                                width: 150,
-                              )
-                            : profileController.profileData.first.adharProof .isEmpty
-                                ? aadharimage != null
-                                    ? Image.memory(aadharimage!)
-                                    : InkWell(
-                                        onTap: () async {
-                                          PickedFile? pickedFile =
-                                              await ImagePicker().getImage(
-                                            source: ImageSource.gallery,
-                                          );
-
-                                          var tempCont =
-                                              await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            aadharimage = tempCont;
-                                          });
-                                        },
-                                        child: Container(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Container(
+                            height: 150,
+                            width: 190,
+                            child:profileController
+                                            .profileData.first.panProof ==
+                                        null &&
+                                    panimage != null
+                                ? panimage != null
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Image.memory(
+                                          panimage,
                                           height: 150,
-                                          width: 150,
-                                          child: GestureDetector(
-                                            onTap: () async {
-                                              PickedFile? pickedFile =
-                                                  await ImagePicker().getImage(
-                                                source: ImageSource.gallery,
-                                              );
+                                          width: 190,
+                                        ),
+                                      )
+                                    : Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[300]),
+                                        height: 150,
+                                        width: 190,
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            PickedFile? pickedFile =
+                                                await ImagePicker().getImage(
+                                              source: ImageSource.gallery,
+                                            );
 
-                                              var tempCont =
-                                                  await pickedFile!.readAsBytes();
-                                              setState(() {
-                                                aadharimage = tempCont;
-                                              });
-                                            },
-                                            child: Text('Upload Aadhar Card',
-                                                style: TextStyle(fontSize: 12)),
+                                            var tempCont =
+                                                await pickedFile!.readAsBytes();
+                                            setState(
+                                              () {
+                                                panimage = tempCont;
+                                              },
+                                            );
+                                          },
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Icon(
+                                                Icons.cloud_upload_outlined,
+                                                color: kgrey,
+                                              ),
+                                              Text(
+                                                'Upload Pan Card',
+                                                style: TextStyle(
+                                                  color: kgrey,
+                                                  fontSize: 16,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
                                       )
-                                : InkWell(
+                                : GestureDetector(
                                     onTap: () async {
                                       PickedFile? pickedFile =
                                           await ImagePicker().getImage(
@@ -598,91 +609,105 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
 
                                       var tempCont =
                                           await pickedFile!.readAsBytes();
+                                      print("---------------------->> chRGES");
+
                                       setState(() {
-                                        aadharimage = tempCont;
+                                        profileController
+                                            .profileData.first.panProof = null;
+                                        panimage = tempCont;
                                       });
                                     },
-                                    child: Image.network(profileController
-                                        .profileData.first.adharProof),
-                                  )),
-
-                    // Container(
-                    //     height: 100,
-                    //     width: 100,
-                    //     child: profileController
-                    //             .profileData.first.adharProof.isEmpty
-                    //         ? aadharimage != null
-                    //             ? Image.memory(aadharimage!)
-                    //             : Container(
-                    //                 height: 150,
-                    //                 width: 150,
-                    //                 child: GestureDetector(
-                    //                   onTap: () async {
-                    //                     PickedFile? pickedFile =
-                    //                         await ImagePicker().getImage(
-                    //                       source: ImageSource.gallery,
-                    //                     );
-
-                    //                     var tempCont =
-                    //                         await pickedFile!.readAsBytes();
-                    //                     setState(() {
-                    //                       aadharimage = tempCont;
-                    //                     });
-                    //                   },
-                    //                   child: Text('Upload Aadhar Card',
-                    //                       style: TextStyle(fontSize: 12)),
-                    //                 ),
-                    //               )
-                    //         : Image.network(
-                    //             profileController.profileData.first.adharProof)),
-                    //
-                    // simage != null
-                    //     ? Container(
-                    //         height: 100, width: 100, child: Image.file(simage!))
-                    //     : InkWell(
-                    //         onTap: () {
-                    //           showModalBottomSheet(
-                    //               context: context,
-                    //               builder: (context) {
-                    //                 return Container(
-                    //                   child: Row(
-                    //                     mainAxisAlignment:
-                    //                         MainAxisAlignment.spaceAround,
-                    //                     children: [
-                    //                       TextButton(
-                    //                           onPressed: () {
-                    //                             spickerimage();
-                    //                           },
-                    //                           child: const Text(
-                    //                             'Choose ur gallery',
-                    //                             style: TextStyle(
-                    //                                 color: Colors.black,
-                    //                                 fontSize: 16),
-                    //                           )),
-                    //                       TextButton(
-                    //                           onPressed: () {
-                    //                             simagepic();
-                    //                           },
-                    //                           child: const Text(
-                    //                             'Choose ur Camera',
-                    //                             style: TextStyle(
-                    //                                 color: Colors.black,
-                    //                                 fontSize: 16),
-                    //                           ))
-                    //                     ],
-                    //                   ),
-                    //                 );
-                    //               });
-                    //         },
-                    //         child: Container(
-                    //             height: 100,
-                    //             width: 100,
-                    //             color: const Color(0xffE4E4E4),
-                    //             child:
-                    //                 Image.asset('assets/images/imageupload.png')),
-                    //       ),
-                  ],
-                ),
+                                    child: Image.network(
+                                        profileController
+                                            .profileData.first.panProof),
+                                  ),
+                          ),
+                    
+                          //    businessprofileController.profileData.isEmpty
+                          // ? Container(
+                          //     height: 20,
+                          //   )
+                          //:
+                          Container(
+                            height: 150,
+                            width: 190,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: profileController
+                                              .profileData.first.adharProof ==
+                                          null &&
+                                      aadharimage != null
+                                  ? aadharimage != null
+                                      ? Image.memory(
+                                          aadharimage,
+                                          height: 150,
+                                          width: 190,
+                                        )
+                                      // : authprofileController.profileData.first.adharProof !=
+                                      //         null
+                                      : Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300]),
+                                          height: 150,
+                                          width: 190,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              PickedFile? pickedFile =
+                                                  await ImagePicker().getImage(
+                                                source: ImageSource.gallery,
+                                              );
+                          
+                                              var tempCont = await pickedFile!
+                                                  .readAsBytes();
+                                              setState(() {
+                                                aadharimage = tempCont;
+                                              });
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.memory(aadharimage),
+                                                Icon(
+                                                  Icons.cloud_upload_outlined,
+                                                  color: kgrey,
+                                                ),
+                                                Text(
+                                                  'Upload Adhaar Card',
+                                                  style: TextStyle(
+                                                    color: kgrey,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                  : GestureDetector(
+                                      onTap: () async {
+                                        PickedFile? pickedFile =
+                                            await ImagePicker().getImage(
+                                          source: ImageSource.gallery,
+                                        );
+                          
+                                        var tempCont =
+                                            await pickedFile!.readAsBytes();
+                                        setState(() {
+                                          profileController.profileData
+                                              .first.adharProof = null;
+                          
+                                          aadharimage = tempCont;
+                                        });
+                                      },
+                                      child: Image.network(
+                                          profileController
+                                              .profileData.first.adharProof),
+                                    ),
+                            ),
+                          ),
+                        ],
+                      ),
               );
             }
           ),
