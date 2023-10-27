@@ -22,7 +22,7 @@ class ProfileSettings extends StatefulWidget {
 
 class _ProfileSettingsState extends State<ProfileSettings> {
   DateTime selectedDate = DateTime.now();
-   _selectDate(BuildContext context) async {
+  _selectDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
@@ -64,7 +64,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   TextfieldTagsController? _controller;
 
   DateTime selectedDate2 = DateTime.now();
-   _selectDate2(BuildContext context) async {
+  _selectDate2(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate2,
@@ -197,7 +197,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
       setState(() {
         selectedGender = authprofileController.profileData.first.gender;
-        print('-------------------->>Gender is--------------->>$selectedGender');
+        print(
+            '-------------------->>Gender is--------------->>$selectedGender');
         isMarried = authprofileController.profileData.first.isMarried == "0"
             ? false
             : true;
@@ -238,109 +239,109 @@ class _ProfileSettingsState extends State<ProfileSettings> {
       padding: const EdgeInsets.only(top: 20),
       child: Column(
         children: [
-          Stack(
-            children: [
+          Stack(children: [
             GetBuilder<AuthProfileController>(builder: (_) {
-              return 
-                GestureDetector(
-                    onTap: () async {
-                      PickedFile? pickedFile =
-                          await ImagePicker().getImage(
-                        source: ImageSource.gallery,
-                      );
+              return GestureDetector(
+                  onTap: () async {
+                    PickedFile? pickedFile = await ImagePicker().getImage(
+                      source: ImageSource.gallery,
+                    );
 
-                      var tempCont = await pickedFile!.readAsBytes();
-                      setState(
-                        () {
-                          imageprofile = tempCont;
-                        },
-                      );
-                      authprofileController
-                          .updateProfilePic(imageprofile);
-                    },
-                    child: imageprofile != null
-                        ? ClipRRect(
-                            borderRadius: BorderRadius.circular(100),
-                            child: Container(
-                              height: 80,
-                              width: 80,
-                              color: kOrange,
-                              child: Image.memory(
-                                imageprofile!,
-                                fit: BoxFit.cover,
-                              ),
+                    var tempCont = await pickedFile!.readAsBytes();
+                    setState(
+                      () {
+                        imageprofile = tempCont;
+                      },
+                    );
+                    authprofileController.updateProfilePic(imageprofile);
+                  },
+                  child: imageprofile != null
+                      ? ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: Container(
+                            height: 80,
+                            width: 80,
+                            color: kOrange,
+                            child: Image.memory(
+                              imageprofile!,
+                              fit: BoxFit.cover,
                             ),
-                           ) :
-                            authprofileController.profileData.first.profilePicture.isEmpty ?
-                            Stack(
-                                    children: [
-                                      //  Image.network(
-                                      //         authprofileController
-                                      //             .profileData
-                                      //             .first
-                                      //             .profilePicture,
-                                      //       ),
-                                      Image.asset('assets/images/prfl.png',height: 120,),
-                                      Positioned(
-                                        left: 85,
-                                        top: 95,
-                                        child: Container(
-                                          height: 25,
-                                          width: 25,
-                                          decoration: BoxDecoration(
-                                            color: kblue,
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                          ),
-                                          child: const Center(
-                                            child: Icon(
-                                              Icons.camera_alt,
-                                              color: Colors.white,
-                                              size: 17,
-                                            ),
-                                          ),
-                                        ),
+                          ),
+                        )
+                      : authprofileController
+                              .profileData.first.profilePicture.isEmpty
+                          ? Stack(
+                              children: [
+                                //  Image.network(
+                                //         authprofileController
+                                //             .profileData
+                                //             .first
+                                //             .profilePicture,
+                                //       ),
+                                Image.asset(
+                                  'assets/images/prfl.png',
+                                  height: 120,
+                                ),
+                                Positioned(
+                                  left: 85,
+                                  top: 95,
+                                  child: Container(
+                                    height: 25,
+                                    width: 25,
+                                    decoration: BoxDecoration(
+                                      color: kblue,
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.white,
+                                        size: 17,
                                       ),
-                                    ],
-                                  ) :
-                                  Stack(
-                                    children: [
-                                      Container(
-                                        height: 80,
-                                        width: 80,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(50),
-                                        ),
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(50),
-                                          child: Image.network(authprofileController.profileData.first.profilePicture)),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Stack(
+                              children: [
+                                Container(
+                                  height: 80,
+                                  width: 80,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
+                                  child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child: Image.network(authprofileController
+                                          .profileData.first.profilePicture)),
+                                ),
+                                Positioned(
+                                  left: 55,
+                                  top: 55,
+                                  child: Container(
+                                    height: 25,
+                                    width: 25,
+                                    decoration: BoxDecoration(
+                                      color: kblue,
+                                      borderRadius: BorderRadius.circular(25),
+                                    ),
+                                    child: const Center(
+                                      child: Icon(
+                                        Icons.camera_alt,
+                                        color: Colors.white,
+                                        size: 15,
                                       ),
-                                      Positioned(
-                                        left: 55,
-                                        top: 55,
-                                        child: Container(
-                                          height: 25,
-                                          width: 25,
-                                          decoration: BoxDecoration(
-                                            color: kblue,
-                                            borderRadius: BorderRadius.circular(25),
-                                          ),
-                                          child: const Center(
-                                            child: Icon(
-                                              Icons.camera_alt,
-                                              color: Colors.white,
-                                              size: 15,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  )
-                            // : Container(
-                            //     color: knavblue,
-                            //     height: 20,
-                            //   )
-                              );
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                  // : Container(
+                  //     color: knavblue,
+                  //     height: 20,
+                  //   )
+                  );
             })
           ]),
           Row(
@@ -897,8 +898,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   Container(
                     height: 180,
                     width: 250,
-                    child: authprofileController
-                            .profileData.first.panProof.isEmpty
+                    child: authprofileController.profileData.first.panProof ==
+                                null &&
+                            panimage != null
                         ? panimage != null
                             ? Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -954,7 +956,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
 
                               var tempCont = await pickedFile!.readAsBytes();
                               setState(() {
-                                aadharimage = tempCont;
+                                panimage = tempCont;
                               });
                             },
                             child: Image.network(authprofileController
@@ -1129,7 +1131,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               motherName: mothernameController.text,
                               occupation: occupationController.text,
                               branch: branchController.text,
-                              children: isMarried?_controller!.getTags:[],
+                              children: isMarried ? _controller!.getTags : [],
                               panNo: panController.text,
                               spouse: spousenameController.text,
                               gender:
@@ -1177,7 +1179,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               occupation: occupationController.text,
                               adharNo: aadhaarController.text,
                               branch: branchController.text,
-                              children: isMarried?_controller!.getTags:[],
+                              children: isMarried ? _controller!.getTags : [],
                               gstNo: gstController.text,
                               weddingDate: wedingnameController.text,
                               panNo: panController.text,

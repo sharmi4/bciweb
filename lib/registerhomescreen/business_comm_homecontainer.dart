@@ -110,23 +110,23 @@ class _BusinessCommonhomeContainerState
                                     : kblue),
                           )),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7),
-                      child: TextButton(
-                          onPressed: () {
-                            reghomeController.reindex(2);
-                            reghomeController.update();
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 7),
+                    //   child: TextButton(
+                    //       onPressed: () {
+                    //         reghomeController.reindex(2);
+                    //         reghomeController.update();
 
-                            Get.toNamed(Routes.SpecializedScreen);
-                          },
-                          child: Text(
-                            'SPECIALIZED',
-                            style: TextStyle(
-                                color: reghomeController.reindex == 2
-                                    ? kOrange
-                                    : kblue),
-                          )),
-                    ),
+                    //         Get.toNamed(Routes.SpecializedScreen);
+                    //       },
+                    //       child: Text(
+                    //         'SPECIALIZED',
+                    //         style: TextStyle(
+                    //             color: reghomeController.reindex == 2
+                    //                 ? kOrange
+                    //                 : kblue),
+                    //       )),
+                    // ),
                     Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
@@ -166,7 +166,7 @@ class _BusinessCommonhomeContainerState
                           onPressed: () {
                             reghomeController.reindex(5);
                             reghomeController.update();
-                            Get.toNamed(Routes.BusinessAddGallery);
+                            Get.toNamed(Routes.BusinessGallery);
                           },
                           child: Text(
                             'GALLERY',
@@ -176,38 +176,37 @@ class _BusinessCommonhomeContainerState
                                     : kblue),
                           )),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7),
-                      child: TextButton(
-                          onPressed: () {
-                            reghomeController.reindex(6);
-                            reghomeController.update();
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 7),
+                    //   child: TextButton(
+                    //       onPressed: () {
+                    //         reghomeController.reindex(6);
+                    //         reghomeController.update();
 
-                            Get.toNamed(Routes.contact_screen);
-                          },
-                          child: Text(
-                            'CONTACT',
-                            style: TextStyle(
-                                color: reghomeController.reindex == 6
-                                    ? kOrange
-                                    : kblue),
-                          )),
-                    ),
+                    //         Get.toNamed(Routes.contact_screen);
+                    //       },
+                    //       child: Text(
+                    //         'CONTACT',
+                    //         style: TextStyle(
+                    //             color: reghomeController.reindex == 6
+                    //                 ? kOrange
+                    //                 : kblue),
+                    //       )),
+                    // ),
                     //if(isLoggedIn==true)
                     Padding(
                       padding: const EdgeInsets.only(left: 7),
                       child: TextButton(
                           onPressed: () {
-                           if(isLoggedIn==true){
-                               reghomeController.reindex(7);
-                            reghomeController.update();
+                            if (isLoggedIn == true) {
+                              reghomeController.reindex(7);
+                              reghomeController.update();
                               Get.toNamed(Routes.BusinessBookingScreen);
-                           }else{
-                            Get.to(const LandingScreen());
-                           }
-                            
-                             //Get.to(Hstory());
-                        
+                            } else {
+                              Get.to(const LandingScreen());
+                            }
+
+                            //Get.to(Hstory());
                           },
                           child: Text(
                             'BOOKINGS',
@@ -357,58 +356,64 @@ class _BusinessCommonhomeContainerState
                 ),
               ),
             ),
-            Obx(() => businessprofileController.isLogedin.isTrue
-                ? Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: Row(children: [
-                      GetBuilder<ProfileController>(builder: (_) {
-                        return businessprofileController.profileData.isNotEmpty
-                            ? Text(businessprofileController
-                                .profileData.first.name)
-                            : Text('');
-                      }),
-                      //   Icon(Icons.expand_more),
-                      kwidth10,
-                      GetBuilder<ProfileController>(
-                        builder: (_) {
-                          return businessprofileController
-                                  .profileData.isNotEmpty
-                              ? businessprofileController
-                                          .profileData.first.profilePicture !=
-                                      null
-                                  ? InkWell(
-                                      onTap: () {
-                                        Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    BusinessRegisterProfileScreen()));
-                                      },
-                                      child: CircleAvatar(
-                                          radius: 22.0,
-                                          backgroundImage: NetworkImage(
-                                            businessprofileController
-                                                .profileData
-                                                .first
-                                                .profilePicture,
-                                          )),
-                                    )
-                                  //:Text('')
+            Obx(
+              () => businessprofileController.isLogedin.isTrue
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Row(
+                        children: [
+                          GetBuilder<ProfileController>(builder: (_) {
+                            return businessprofileController
+                                    .profileData.isNotEmpty
+                                ? Text(businessprofileController
+                                    .profileData.first.name)
+                                : Text('');
+                          }),
+                          //   Icon(Icons.expand_more),
+                          kwidth10,
+                          GetBuilder<ProfileController>(
+                            builder: (_) {
+                              return businessprofileController
+                                      .profileData.isNotEmpty
+                                  ? businessprofileController.profileData.first
+                                              .profilePicture !=
+                                          null
+                                      ? InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        BusinessRegisterProfileScreen()));
+                                          },
+                                          child: CircleAvatar(
+                                            radius: 22.0,
+                                            backgroundImage: NetworkImage(
+                                              businessprofileController
+                                                  .profileData
+                                                  .first
+                                                  .profilePicture,
+                                            ),
+                                          ),
+                                        )
+                                      //:Text('')
+                                      : Image.asset(
+                                          'assets/images/nick.png',
+                                          height: 35,
+                                          fit: BoxFit.fitHeight,
+                                        )
+                                  //:Text('');
                                   : Image.asset(
                                       'assets/images/nick.png',
                                       height: 35,
                                       fit: BoxFit.fitHeight,
-                                    )
-                              //:Text('');
-                              : Image.asset(
-                                  'assets/images/nick.png',
-                                  height: 35,
-                                  fit: BoxFit.fitHeight,
-                                );
-                        },
-                      )
-                    ]),
-                  )
-                : Text('')),
+                                    );
+                            },
+                          )
+                        ],
+                      ),
+                    )
+                  : Text(''),
+            ),
           ],
         ),
       ),

@@ -127,6 +127,7 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
   dynamic imageprofile;
   dynamic aadharimage;
   dynamic panimage;
+   File? simage;
 
   setDefauld() async {
     await businessprofileController.getProfile();
@@ -195,7 +196,8 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
               )
             : Column(
                 children: [
-                  Stack(children: [
+                  Stack(
+                    children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 60, left: 75),
                       child: GetBuilder<AuthProfileController>(builder: (_) {
@@ -723,83 +725,89 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
                           kwidth10,
                           kwidth10,
                           kwidth10,
-                          businessprofileController.profileData.isEmpty
-                              ? Container(
-                                  height: 20,
-                                )
-                              : Container(
-                                  height: 180,
-                                  width: 250,
-                                  child: businessprofileController
+                          //    businessprofileController.profileData.isEmpty
+                          // ? Container(
+                          //     height: 20,
+                          //   )
+                          //:
+                          Container(
+                            height: 180,
+                            width: 250,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: businessprofileController
                                               .profileData.first.adharProof ==
-                                          null
-                                      ? aadharimage != null
-                                          ? Image.memory(aadharimage)
-                                          // : authprofileController.profileData.first.adharProof !=
-                                          //         null
-                                          : Container(
-                                              decoration: BoxDecoration(
-                                                  color: Colors.grey[300]),
-                                              height: 330,
-                                              width: 400,
-                                              child: GestureDetector(
-                                                onTap: () async {
-                                                  PickedFile? pickedFile =
-                                                      await ImagePicker()
-                                                          .getImage(
-                                                    source: ImageSource.gallery,
-                                                  );
+                                          null &&
+                                      aadharimage != null
+                                  ? aadharimage != null
+                                      ? Image.memory(
+                                          aadharimage,
+                                          height: 330,
+                                          width: 400,
+                                        )
+                                      // : authprofileController.profileData.first.adharProof !=
+                                      //         null
+                                      : Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey[300]),
+                                          height: 330,
+                                          width: 400,
+                                          child: GestureDetector(
+                                            onTap: () async {
+                                              PickedFile? pickedFile =
+                                                  await ImagePicker().getImage(
+                                                source: ImageSource.gallery,
+                                              );
 
-                                                  var tempCont =
-                                                      await pickedFile!
-                                                          .readAsBytes();
-                                                  setState(() {
-                                                    aadharimage = tempCont;
-                                                  });
-                                                },
-                                                child: Column(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  children: [
-                                                    Image.memory(aadharimage),
-                                                    Icon(
-                                                      Icons
-                                                          .cloud_upload_outlined,
-                                                      color: kgrey,
-                                                    ),
-                                                    Text(
-                                                      'Upload Adhaar Card',
-                                                      style: TextStyle(
-                                                        color: kgrey,
-                                                        fontSize: 16,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                                    ),
-                                                  ],
+                                              var tempCont = await pickedFile!
+                                                  .readAsBytes();
+                                              setState(() {
+                                                aadharimage = tempCont;
+                                              });
+                                            },
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Image.memory(aadharimage),
+                                                Icon(
+                                                  Icons.cloud_upload_outlined,
+                                                  color: kgrey,
                                                 ),
-                                              ),
-                                            )
-                                      : GestureDetector(
-                                          onTap: () async {
-                                            PickedFile? pickedFile =
-                                                await ImagePicker().getImage(
-                                              source: ImageSource.gallery,
-                                            );
+                                                Text(
+                                                  'Upload Adhaar Card',
+                                                  style: TextStyle(
+                                                    color: kgrey,
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        )
+                                  : GestureDetector(
+                                      onTap: () async {
+                                        PickedFile? pickedFile =
+                                            await ImagePicker().getImage(
+                                          source: ImageSource.gallery,
+                                        );
 
-                                            var tempCont =
-                                                await pickedFile!.readAsBytes();
-                                            setState(() {
-                                              aadharimage = tempCont;
-                                            });
-                                          },
-                                          child: Image.network(
-                                              businessprofileController
-                                                  .profileData
-                                                  .first
-                                                  .adharProof),
-                                        ),
-                                ),
+                                        var tempCont =
+                                            await pickedFile!.readAsBytes();
+                                        setState(() {
+                                          businessprofileController.profileData
+                                              .first.adharProof = null;
+
+                                          aadharimage = tempCont;
+                                        });
+                                      },
+                                      child: Image.network(
+                                          businessprofileController
+                                              .profileData.first.adharProof),
+                                    ),
+                            ),
+                          ),
                         ],
                       ),
 
@@ -932,40 +940,40 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
                                 child: Row(
                                   children: [
                                     InkWell(
-                                      onTap: () {
-                                        print(
-                                            '------------${aadharimage}------adhaar------------------');
-                                        print(
-                                            '------------${panimage}}------pan------------------');
-                                        print(panimage);
-                                        MerchantUpdateModel
-                                            merchantUpdateModel =
-                                            MerchantUpdateModel(
-                                          name: nameController.text,
-                                          email: emailController.text,
-                                          mobile: numberController.text,
-                                          gstNo: gstController.text,
-                                          accountType: accounttype.text,
-                                          address:
-                                              businessaddressController.text,
-                                          alternateMobile:
-                                              alternumberController.text,
-                                          bankAccountName:
-                                              accountholdernameController.text,
-                                          bankAccountNumber:
-                                              bankaccountnumber.text,
-                                          bankName: banknameController.text,
-                                          categoryId: categoryController.text,
-                                          ifscCode: ifscController.text,
-                                          shopImage: imageprofile,
-                                          aadharProof: aadharimage,
-                                          panProof: panimage,
-                                        );
+                                      // onTap: () {
+                                      //   print(
+                                      //       '------------${aadharimage}------adhaar------------------');
+                                      //   print(
+                                      //       '------------${panimage}}------pan------------------');
+                                      //   print(panimage);
+                                      //   MerchantUpdateModel
+                                      //       merchantUpdateModel =
+                                      //       MerchantUpdateModel(
+                                      //     name: nameController.text,
+                                      //     email: emailController.text,
+                                      //     mobile: numberController.text,
+                                      //     gstNo: gstController.text,
+                                      //     accountType: accounttype.text,
+                                      //     address:
+                                      //         businessaddressController.text,
+                                      //     alternateMobile:
+                                      //         alternumberController.text,
+                                      //     bankAccountName:
+                                      //         accountholdernameController.text,
+                                      //     bankAccountNumber:
+                                      //         bankaccountnumber.text,
+                                      //     bankName: banknameController.text,
+                                      //     categoryId: categoryController.text,
+                                      //     ifscCode: ifscController.text,
+                                      //     shopImage: imageprofile,
+                                      //     aadharProof: aadharimage,
+                                      //     panProof: panimage,
+                                      //   );
 
-                                        businessprofileController.updateProfile(
-                                            merchantUpdateModel:
-                                                merchantUpdateModel);
-                                      },
+                                      //   businessprofileController.updateProfile(
+                                      //       merchantUpdateModel:
+                                      //           merchantUpdateModel);
+                                      // },
                                       child: Container(
                                         height: 50,
                                         width:
@@ -1041,7 +1049,8 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
                                           panProof: panimage,
                                         );
 
-                                        print("---------<<>update");
+                                        print(
+                                            "---------<<>update<<>>>-------------");
 
                                         businessprofileController.updateProfile(
                                             merchantUpdateModel:
