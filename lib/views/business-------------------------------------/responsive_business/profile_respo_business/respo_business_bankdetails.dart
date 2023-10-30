@@ -1,7 +1,3 @@
-
-
-
-
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/models/bank_account_no_model.dart';
@@ -11,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-
-
 
 
 class RespoBusinessBankDetails extends StatefulWidget {
@@ -106,7 +100,7 @@ class _RespoBusinessBankDetailsState extends State<RespoBusinessBankDetails> {
       body: ListView(
         children: [
         Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 40),
           child: TextField(
             textCapitalization: TextCapitalization.words,
             controller: bankNameController,
@@ -121,7 +115,7 @@ class _RespoBusinessBankDetailsState extends State<RespoBusinessBankDetails> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
           child: TextField(
             textCapitalization: TextCapitalization.words,
             controller: bankAccountNameController,
@@ -136,7 +130,7 @@ class _RespoBusinessBankDetailsState extends State<RespoBusinessBankDetails> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
           child: TextField(
             controller: accountTypeController,
             // readOnly: true,
@@ -150,7 +144,7 @@ class _RespoBusinessBankDetailsState extends State<RespoBusinessBankDetails> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
           child: TextField(
             controller: bankAccountNumberController,
             // readOnly: true,
@@ -167,7 +161,7 @@ class _RespoBusinessBankDetailsState extends State<RespoBusinessBankDetails> {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+          padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
           child: TextField(
             controller: ifscCodeController,
             // readOnly: true,
@@ -181,6 +175,7 @@ class _RespoBusinessBankDetailsState extends State<RespoBusinessBankDetails> {
                 border: const OutlineInputBorder()),
           ),
         ),
+        ksizedbox30,
     Padding(
       padding: const EdgeInsets.all(15.0),
       child: Obx(

@@ -152,235 +152,244 @@ final fromDateController = TextEditingController();
 
 
 
-      body: Column(
-        children: [ Container(
-                width: MediaQuery.of(context).size.width,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 20, right: 50),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "From Date:",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              _showDatePicker(context);
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(selectdt),
-                                  const Icon(Icons.edit_calendar)
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      ksizedbox10,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            "To Date:",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              _showDatePicker1(context);
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(selectdt1),
-                                  const Icon(Icons.edit_calendar)
-                                ],
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-
-                      // Center(
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(),
-                      //     child: Text(formatDate(_dateTime, [M,',',yyyy,  ],),style: TextStyle(color: kwhite,fontSize: 18) ,),
-                      //   ),
-                      // ),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 5),
-                      //   child: CalenderPicker(
-                      //     DateTime.now().subtract(Duration(days: 50)),
-                      //     initialSelectedDate: DateTime.now(),
-                      //     selectionColor: kOrange,
-                      //     selectedTextColor: kblue,
-                      //     onDateChange: (date) {
-                      //       setState(() {
-                      //         _dateTime = date;
-                      //         serviceController.dateFilterBooking(
-                      //         fromdate: _dateTime.toString(),
-                      //          todate: DateTime(_dateTime.year,_dateTime.month,_dateTime.day +1).toString(),
-                      //            );
-                      //       });
-                      //     },
-                      //   ),
-                      // ),
-                    ],
-                  ),
-                ),
-              ),
-          GetBuilder<HomeServiceController>(builder: (_) {
-            return serviceController.bookingListData.isEmpty
-                ? Center(
+      body: ListView(
+        children:[ Column(
+          children: [ Container(
+            
+                  width: MediaQuery.of(context).size.width,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20, right: 50,top: 20),
                     child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            "assets/icons/noBooking.png",
-                            height: 250,
-                            fit: BoxFit.fitHeight,
-                          ),
-                          ksizedbox20,
-                          Text(
-                            'No Booking History',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: kblue,
-                                fontWeight: FontWeight.w700),
-                          )
-                        ]),
-                  )
-                : ListView.builder(
-                    itemCount: serviceController.bookingListData.length,
-                    shrinkWrap: true,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                             Text(
+                              "From Date:",
+                              style: TextStyle(
+                                  color:kblue,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
                             InkWell(
                               onTap: () {
-                                dialogBuilder(
-                                    context,
-                                    serviceController.bookingListData[index].image,
-                                    serviceController
-                                        .bookingListData[index].service,
-                                    serviceController
-                                        .bookingListData[index].description,
-                                    serviceController
-                                        .bookingListData[index].purchasePrice,
-                                    serviceController
-                                        .bookingListData[index].quantity,
-                                    serviceController
-                                        .bookingListData[index].user.name,
-                                    serviceController
-                                        .bookingListData[index].user.mobile,
-                                    serviceController
-                                        .bookingListData[index].user.email);
+                                _showDatePicker(context);
                               },
                               child: Container(
-                                height: 140,
-                                width: MediaQuery.of(context).size.width,
-                                color: Colors.white,
+                                height: 35,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
                                 child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
                                   children: [
-                                    Container(
-                                      height: 180,
-                                      width: 150,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(
-                                            top: 10,
-                                            left: 5,
-                                            right: 10,
-                                            bottom: 10),
-                                        child: ClipRRect(
-                                            borderRadius: BorderRadius.circular(5),
-                                            child: Image.network(
-                                              serviceController
-                                                  .bookingListData[index].image,
-                                              fit: BoxFit.cover,
-                                            )),
-                                        // child: Image.asset(
-                                        //   bookingimage[index],
-                                        //   fit: BoxFit.contain,
-                                        // ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                        top: 20,
-                                      ),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            serviceController
-                                                .bookingListData[index].service,
-                                            style: TextStyle(
-                                                fontSize: 19,
-                                                fontWeight: FontWeight.bold,
-                                                color: kblue),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.only(top: 6),
-                                            child: Container(
-                                              width: 210,
-                                              child: Text(
-                                                serviceController
-                                                    .bookingListData[index]
-                                                    .description,
-                                                maxLines: 5,
-                                                style: TextStyle(
-                                                    fontSize: 12, color: kgrey),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
+                                    Text(selectdt),
+                                    const Icon(Icons.edit_calendar)
                                   ],
                                 ),
                               ),
                             ),
                           ],
                         ),
-                      );
-                    });
-          }),
-        ],
+                        ksizedbox10,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                             Text(
+                              "To Date:",
+                              style: TextStyle(
+                                  color: kblue,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                _showDatePicker1(context);
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 120,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Text(selectdt1),
+                                    const Icon(Icons.edit_calendar)
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+      
+                        // Center(
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.only(),
+                        //     child: Text(formatDate(_dateTime, [M,',',yyyy,  ],),style: TextStyle(color: kwhite,fontSize: 18) ,),
+                        //   ),
+                        // ),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 5),
+                        //   child: CalenderPicker(
+                        //     DateTime.now().subtract(Duration(days: 50)),
+                        //     initialSelectedDate: DateTime.now(),
+                        //     selectionColor: kOrange,
+                        //     selectedTextColor: kblue,
+                        //     onDateChange: (date) {
+                        //       setState(() {
+                        //         _dateTime = date;
+                        //         serviceController.dateFilterBooking(
+                        //         fromdate: _dateTime.toString(),
+                        //          todate: DateTime(_dateTime.year,_dateTime.month,_dateTime.day +1).toString(),
+                        //            );
+                        //       });
+                        //     },
+                        //   ),
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+                ksizedbox40,
+                ksizedbox40,
+            GetBuilder<HomeServiceController>(builder: (_) {
+              return serviceController.bookingListData.isEmpty
+                  ? Center(
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              height:500,
+                              width: 500,
+                              child: Image.asset(
+                                "assets/icons/noBooking.png",
+                              fit: BoxFit.cover,                      
+                              ),
+                            ),
+                            ksizedbox20,
+                            Text(
+                              'No Booking History',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  color: kblue,
+                                  fontWeight: FontWeight.w700),
+                            )
+                          ]),
+                    )
+                  : ListView.builder(
+                      itemCount: serviceController.bookingListData.length,
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: () {
+                                  dialogBuilder(
+                                      context,
+                                      serviceController.bookingListData[index].image,
+                                      serviceController
+                                          .bookingListData[index].service,
+                                      serviceController
+                                          .bookingListData[index].description,
+                                      serviceController
+                                          .bookingListData[index].purchasePrice,
+                                      serviceController
+                                          .bookingListData[index].quantity,
+                                      serviceController
+                                          .bookingListData[index].user.name,
+                                      serviceController
+                                          .bookingListData[index].user.mobile,
+                                      serviceController
+                                          .bookingListData[index].user.email);
+                                },
+                                child: Container(
+                                  height: 140,
+                                  width: MediaQuery.of(context).size.width,
+                                  color: Colors.white,
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        height: 180,
+                                        width: 150,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              top: 10,
+                                              left: 5,
+                                              right: 10,
+                                              bottom: 10),
+                                          child: ClipRRect(
+                                              borderRadius: BorderRadius.circular(5),
+                                              child: Image.network(
+                                                serviceController
+                                                    .bookingListData[index].image,
+                                                fit: BoxFit.cover,
+                                              )),
+                                          // child: Image.asset(
+                                          //   bookingimage[index],
+                                          //   fit: BoxFit.contain,
+                                          // ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                          top: 20,
+                                        ),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              serviceController
+                                                  .bookingListData[index].service,
+                                              style: TextStyle(
+                                                  fontSize: 19,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kblue),
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 6),
+                                              child: Container(
+                                                width: 210,
+                                                child: Text(
+                                                  serviceController
+                                                      .bookingListData[index]
+                                                      .description,
+                                                  maxLines: 5,
+                                                  style: TextStyle(
+                                                      fontSize: 12, color: kgrey),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      });
+            }),
+          ],
+        ),
+        ]
       ),
     );
   }

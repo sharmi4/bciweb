@@ -1,3 +1,4 @@
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -166,8 +167,12 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                       bottom: 50,
                       child: Center(
                         child: Text(
-                          'Bookings',
-                          style: displayfont,
+                          'BOOKING',
+                          style: TextStyle(
+                            fontSize: 32,
+                            color: kwhite,
+                            fontWeight: FontWeight.bold
+                          ),
                         ),
                       )),
                   Positioned(
@@ -452,7 +457,7 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
             ],
           ),
           ksizedbox30,
-          RegisterCommonBottom()
+          businessRegisterCommonBottom()
         ],
       ),
     );

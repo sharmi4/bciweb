@@ -1,6 +1,8 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/views/business/business_contact_screen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -1394,23 +1396,25 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor: kblue,
                               minimumSize: Size(200, 47)),
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(BusinessContactScreen());
+                          },
                           child: Text(
                             'Contact Us',
                             style: TextStyle(fontSize: 18),
                           )),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 60),
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: kOrange,
-                                minimumSize: Size(200, 47)),
-                            onPressed: () {},
-                            child: Text(
-                              'Book Now',
-                              style: TextStyle(fontSize: 18),
-                            )),
-                      )
+                      // Padding(
+                      //   padding: const EdgeInsets.only(left: 60),
+                      //   child: ElevatedButton(
+                      //       style: ElevatedButton.styleFrom(
+                      //           backgroundColor: kOrange,
+                      //           minimumSize: Size(200, 47)),
+                      //       onPressed: () {},
+                      //       child: Text(
+                      //         'Book Now',
+                      //         style: TextStyle(fontSize: 18),
+                      //       )),
+                      // )
                     ],
                   )
                 ],
@@ -1471,7 +1475,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
               ),
             ),
 
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
           ],
         ),
       ]),

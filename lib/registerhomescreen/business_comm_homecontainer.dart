@@ -176,23 +176,23 @@ class _BusinessCommonhomeContainerState
                                     : kblue),
                           )),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(left: 7),
-                    //   child: TextButton(
-                    //       onPressed: () {
-                    //         reghomeController.reindex(6);
-                    //         reghomeController.update();
+                    Padding(
+                      padding: const EdgeInsets.only(left: 7),
+                      child: TextButton(
+                          onPressed: () {
+                            reghomeController.reindex(6);
+                            reghomeController.update();
 
-                    //         Get.toNamed(Routes.contact_screen);
-                    //       },
-                    //       child: Text(
-                    //         'CONTACT',
-                    //         style: TextStyle(
-                    //             color: reghomeController.reindex == 6
-                    //                 ? kOrange
-                    //                 : kblue),
-                    //       )),
-                    // ),
+                            Get.toNamed(Routes.BusinessContactScreen);
+                          },
+                          child: Text(
+                            'CONTACT',
+                            style: TextStyle(
+                                color: reghomeController.reindex == 6
+                                    ? kOrange
+                                    : kblue),
+                          )),
+                    ),
                     //if(isLoggedIn==true)
                     Padding(
                       padding: const EdgeInsets.only(left: 7),

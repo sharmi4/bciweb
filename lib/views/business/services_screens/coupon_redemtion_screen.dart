@@ -1,3 +1,4 @@
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/views/responsive------------------------------------/booking_view/flight/search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -215,7 +216,7 @@ class _BusinessCouponRedementionScreenState extends State<BusinessCouponRedement
               ],
             ),
                ksizedbox30,
-            RegisterCommonBottom()
+          businessRegisterCommonBottom()
           ]),
     );
   }

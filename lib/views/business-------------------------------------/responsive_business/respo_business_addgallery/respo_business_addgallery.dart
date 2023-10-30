@@ -85,48 +85,51 @@ class _RespoBusinessAddGalleryState extends State<RespoBusinessAddGallery> {
 
 
       
-    body: GetBuilder<ProfileController>(builder: (_) {
-        return profileController.galleryListData.isEmpty
-            ? Container(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset('assets/icons/imgess.jpeg'),
-                      ksizedbox20,
-                      Text('Empty Gallery',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700,
-                        color: kblue
-                      ),
-                      )
-                    ],
-                  ),
-                ),
-              )
-            : Container(
-                child: GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: profileController.galleryListData.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding:
-                          const EdgeInsets.only(left: 10, right: 10, bottom: 5),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: Image.network(
-                          profileController.galleryListData[index].image,
-                          fit: BoxFit.cover,
+    body: Padding(
+      padding: const EdgeInsets.only(top: 20),
+      child: GetBuilder<ProfileController>(builder: (_) {
+          return profileController.galleryListData.isEmpty
+              ? Container(
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('assets/icons/imgess.jpeg'),
+                        ksizedbox20,
+                        Text('Empty Gallery',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: kblue
                         ),
-                      ),
-                    );
-                  },
-                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2, mainAxisSpacing: 10),
-                ),
-              );
-      }),  
+                        )
+                      ],
+                    ),
+                  ),
+                )
+              : Container(
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: profileController.galleryListData.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding:
+                            const EdgeInsets.only(left: 10, right: 10, bottom: 5),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.network(
+                            profileController.galleryListData[index].image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    },
+                    gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2, mainAxisSpacing: 10),
+                  ),
+                );
+        }),
+    ),  
 
       floatingActionButton: FloatingActionButton(
         onPressed: () {

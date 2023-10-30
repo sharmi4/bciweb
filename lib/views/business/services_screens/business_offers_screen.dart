@@ -1,3 +1,4 @@
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/members/services/views/widgets/containors.dart';
 import 'package:date_format/date_format.dart';
@@ -588,7 +589,7 @@ class _BusinessOffersScreenState extends State<BusinessOffersScreen> {
             ],
           ),
              ksizedbox30,
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
         ],
       ),
     );

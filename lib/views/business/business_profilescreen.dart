@@ -1,6 +1,7 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -772,7 +773,7 @@ class _BusinessRegisterProfileScreenState extends State<BusinessRegisterProfileS
 
           ]),
           ksizedbox20,
-          RegisterCommonBottom()
+          businessRegisterCommonBottom()
         ]),
       ),
     );

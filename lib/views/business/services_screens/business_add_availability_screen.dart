@@ -2,6 +2,7 @@
 import 'dart:typed_data';
 
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -196,7 +197,12 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                       bottom: 0,
                       right: 0,
                       child: Center(
-                        child: Text('SERVICE CREATE', style: displayfont),
+                        child: Text('SERVICE CREATE', 
+                        style: TextStyle(
+                          fontSize: 32,
+                          color: kwhite,
+                          fontWeight: FontWeight.bold
+                        )),
                       ),
                     )
                     ],
@@ -1303,7 +1309,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                       height: 55,
                       width: MediaQuery.of(context).size.width*0.31,
                       decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
+                          //borderRadius: BorderRadius.circular(10),
                           color: kblue),
                       alignment: Alignment.center,
                       child: Text(
@@ -1324,7 +1330,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                 ],
               ),
                     ksizedbox30,
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
             ],
           ),
     );

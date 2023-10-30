@@ -47,11 +47,11 @@ class _RespoBusinessCouponredemptionState extends State<RespoBusinessCouponredem
           Row(
             children: [
               Padding(
-                padding: const EdgeInsets.only(left: 20, top: 15),
+                padding: const EdgeInsets.only(left: 20, top: 20),
                 child: Text(
                   'VIEW HISTORY',
                   style: TextStyle(
-                      fontSize: 23, color: kblue, fontWeight: FontWeight.bold),
+                      fontSize: 20, color: kblue, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
@@ -70,7 +70,7 @@ class _RespoBusinessCouponredemptionState extends State<RespoBusinessCouponredem
                           Text(
                             'No Coupons History',
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 22,
                                 color: kblue,
                                 fontWeight: FontWeight.w700),
                           )

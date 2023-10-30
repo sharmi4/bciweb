@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -107,7 +108,7 @@ NAMELEZZ DANCE STUDIO is a renowned dance team, which is available at the club. 
               heading1: 'VIDEO GAMES',
               heading2: 'Dance & Zumba',
             ),
-            RegisterCommonBottom(),
+            businessRegisterCommonBottom(),
           ],
         ),
       ),

@@ -1,5 +1,6 @@
 
 
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -74,7 +75,11 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                               bottom:50,
                               child: Center(
                                 child: Text('BOOKING DETAILS',
-                                   style: displayfont,
+                                   style: TextStyle(
+                                    fontSize: 32,
+                                    color: kwhite,
+                                    fontWeight: FontWeight.bold
+                                   ),
                                                           
                                 ),
                               )),
@@ -274,7 +279,7 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                 ],
               ),
                   ksizedbox30,
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
             ],
           ),
     );

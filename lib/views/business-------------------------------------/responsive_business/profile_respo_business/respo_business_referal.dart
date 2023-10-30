@@ -1,5 +1,3 @@
-
-
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
@@ -43,8 +41,10 @@ class _RespoBusinessReferalState extends State<RespoBusinessReferal> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: ListView(
+          
           physics: const BouncingScrollPhysics(),
           children: [
+            ksizedbox40,
             const Image(
               image: AssetImage(
                 "assets/images/pngwing.com (30).png",

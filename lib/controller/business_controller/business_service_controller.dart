@@ -1,3 +1,5 @@
+import 'package:bciweb/models/support_admin_details_model.dart';
+import 'package:bciweb/services/networks/setting_api_service.dart/support_admin_details_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
@@ -322,5 +324,18 @@ deleteUser() async {
           ));
     }
   }
+    //support admin detail
+  SupportAdminDetailsApiServices supportAdminDetailsApiServices = SupportAdminDetailsApiServices();
+  ContactDetailsData? contactDetailsData;
   
+  supportAdminDetail() async {
+    dio.Response<dynamic> response =
+        await supportAdminDetailsApiServices.supportAdminDetailsApiServices();
+    if (response.statusCode == 200) {
+      SupportAdminModel supportAdminModel =
+          SupportAdminModel.fromJson(response.data);
+      contactDetailsData = supportAdminModel.data;
+    }
+    update();
+  }
 }

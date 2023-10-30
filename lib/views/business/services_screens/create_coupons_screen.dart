@@ -1,6 +1,7 @@
 
 import 'dart:typed_data';
 
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/members/services/views/widgets/containors.dart';
 import 'package:date_format/date_format.dart';
@@ -611,7 +612,7 @@ class _BusinessCreateCouponsScreenState extends State<BusinessCreateCouponsScree
                 ],
               ),
                      ksizedbox30,
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
             ],
           ),
     );

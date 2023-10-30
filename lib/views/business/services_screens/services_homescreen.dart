@@ -1,3 +1,4 @@
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';
@@ -273,7 +274,7 @@ class _BusinessServicesScreenState extends State<BusinessServicesScreen> {
               )
             ]),
                ksizedbox40,
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
               ],
             ),
             ksizedbox40

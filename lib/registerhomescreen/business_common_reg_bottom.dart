@@ -1,5 +1,11 @@
 import 'package:bciweb/registerhomescreen/privacy_policy.dart';
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/views/business-------------------------------------/business_home_screen.dart';
+import 'package:bciweb/views/business/business_about_screen.dart';
+import 'package:bciweb/views/business/business_booking_screen.dart';
+import 'package:bciweb/views/business/business_clubhouse_screen.dart';
+import 'package:bciweb/views/business/business_contact_screen.dart';
+import 'package:bciweb/views/business/services_screens/services_homescreen.dart';
 import 'package:bciweb/views/clubhouse.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,14 +21,14 @@ import '../views/members/contacs/contact_screen.dart';
 
 
 
-class RegisterCommonBottom extends StatefulWidget {
-  const RegisterCommonBottom({super.key});
+class businessRegisterCommonBottom extends StatefulWidget {
+  const businessRegisterCommonBottom({super.key});
 
   @override
-  State<RegisterCommonBottom> createState() => _RegisterCommonBottomState();
+  State<businessRegisterCommonBottom> createState() => _businessRegisterCommonBottomState();
 }
 
-class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
+class _businessRegisterCommonBottomState extends State<businessRegisterCommonBottom> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -88,7 +94,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
               children: [
                ksizedbox20,
                 const Text(
-                  "MENU",
+                  "Menu",
                   textAlign: TextAlign.start,
                   style: TextStyle(
                       color: Color(0xffEF5323),
@@ -100,7 +106,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const MobileHomeScreenMembers());
+                    Get.to(const BusinessHomeScreen());
                   },
                   child:const Text(
                     "Home",
@@ -116,7 +122,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const AboutUsScreen());
+                    Get.to(const BusinessAboutUsScreen());
                   },
                   child:const Text(
                     "About",
@@ -132,7 +138,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const Services());
+                    Get.to(const BusinessServicesScreen());
                   },
                   child:const Text(
                     "Services",
@@ -146,20 +152,25 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 const SizedBox(
                   height: 10,
                 ),
-                const Text(
-                  "Booking",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
+                GestureDetector(
+                  onTap: (){
+                    Get.to(BusinessBookingScreen());
+                  },
+                  child: const Text(
+                    "Booking",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w400),
+                  ),
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const ClubHouse());
+                    Get.to(const BusinessClubHouse());
                   },
                   child:const Text(
                     "Club House",
@@ -175,7 +186,7 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
                 InkWell(
                   onTap: () {
-                    Get.to(const ContactScreen());
+                    Get.to(const BusinessContactScreen());
                   },
                   child:const Text(
                     "Contact",
@@ -317,97 +328,97 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
               ],
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text(
-                  "Booking",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Color(0xffEF5323),
-                      fontSize: 20,
-                      fontWeight: FontWeight.w600),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                GestureDetector(
-                  onTap: (){
-                      Get.to(const BookingFlight());
-                  },
-                  child:const Text(
-                    "Fight Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-                // SizedBox(
-                //   height: 10,
-                // ),
-                // Text(
-                //   "Hotel Booking",
-                //   textAlign: TextAlign.start,
-                //   style: TextStyle(
-                //       color: Colors.white,
-                //       fontSize: 17,
-                //       fontWeight: FontWeight.w400),
-                // ),
-                const SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: (){
-                     Get.to(const BookingTrip());
-                  },
-                  child:const Text(
-                    "Holidays Trip Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: (){
-                      Get.to(const BusBookingMain());
-                  },
-                  child:const Text(
-                    "Bus Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-                 const  SizedBox(
-                  height: 10,
-                ),
-                GestureDetector(
-                  onTap: (){
-                      Get.to(const BookingHotels());
-                  },
-                  child:const  Text(
-                    "Hotel Booking",
-                    textAlign: TextAlign.start,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w400),
-                  ),
-                ),
-              ],
-            ),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.start,
+            //   children: [
+            //     const SizedBox(
+            //       height: 20,
+            //     ),
+            //     const Text(
+            //       "Booking",
+            //       textAlign: TextAlign.start,
+            //       style: TextStyle(
+            //           color: Color(0xffEF5323),
+            //           fontSize: 20,
+            //           fontWeight: FontWeight.w600),
+            //     ),
+            //     const SizedBox(
+            //       height: 15,
+            //     ),
+            //     GestureDetector(
+            //       onTap: (){
+            //           Get.to(const BookingFlight());
+            //       },
+            //       child:const Text(
+            //         "Fight Booking",
+            //         textAlign: TextAlign.start,
+            //         style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 17,
+            //             fontWeight: FontWeight.w400),
+            //       ),
+            //     ),
+            //     // SizedBox(
+            //     //   height: 10,
+            //     // ),
+            //     // Text(
+            //     //   "Hotel Booking",
+            //     //   textAlign: TextAlign.start,
+            //     //   style: TextStyle(
+            //     //       color: Colors.white,
+            //     //       fontSize: 17,
+            //     //       fontWeight: FontWeight.w400),
+            //     // ),
+            //     const SizedBox(
+            //       height: 10,
+            //     ),
+            //     GestureDetector(
+            //       onTap: (){
+            //          Get.to(const BookingTrip());
+            //       },
+            //       child:const Text(
+            //         "Holidays Trip Booking",
+            //         textAlign: TextAlign.start,
+            //         style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 17,
+            //             fontWeight: FontWeight.w400),
+            //       ),
+            //     ),
+            //     const SizedBox(
+            //       height: 10,
+            //     ),
+            //     GestureDetector(
+            //       onTap: (){
+            //           Get.to(const BusBookingMain());
+            //       },
+            //       child:const Text(
+            //         "Bus Booking",
+            //         textAlign: TextAlign.start,
+            //         style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 17,
+            //             fontWeight: FontWeight.w400),
+            //       ),
+            //     ),
+            //      const  SizedBox(
+            //       height: 10,
+            //     ),
+            //     GestureDetector(
+            //       onTap: (){
+            //           Get.to(const BookingHotels());
+            //       },
+            //       child:const  Text(
+            //         "Hotel Booking",
+            //         textAlign: TextAlign.start,
+            //         style: TextStyle(
+            //             color: Colors.white,
+            //             fontSize: 17,
+            //             fontWeight: FontWeight.w400),
+            //       ),
+            //     ),
+            //   ],
+            // ),
             const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

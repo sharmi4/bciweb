@@ -1,4 +1,5 @@
 import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -324,7 +325,7 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                  top: 10,
+                                                  top: 10,left: 18
                                                 ),
                                                 child: Column(
                                                   crossAxisAlignment:
@@ -427,7 +428,7 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                  }),
                      ),
                       ksizedbox30,
-                    RegisterCommonBottom()
+                    businessRegisterCommonBottom()
                 ],
               ),
             ],

@@ -1,10 +1,12 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/controller/business_controller/business_service_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
 
 import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_availability/respo_business_addservices.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_availability/respo_business_updateservice.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,7 +59,8 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
       });
   }
 
-  final servicesController = Get.find<HomeServiceController>();
+  // final servicesController = Get.find<HomeServiceController>();
+   final servicesController = Get.find<BusinessServiceController>();
 
   @override
   void initState() {
@@ -102,7 +105,7 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
         children: [
         Column(
           children: [
-            ksizedbox20,
+            ksizedbox40,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -254,6 +257,7 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                     )),
               ],
             ),
+          ksizedbox30,
             GetBuilder<HomeServiceController>(builder: (_) {
               return servicesController.serviceDataList.isEmpty
                   ?  Container(
@@ -267,7 +271,7 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                           ksizedbox20,
                           Text('No Data Availability',
                           style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 22,
                             color: kblue,
                             fontWeight: FontWeight.w700
                           ),)
@@ -282,12 +286,15 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return Padding(
-                              padding: const EdgeInsets.all(8.0),
+                              padding:  EdgeInsets.all(8.0),
                               child: Stack(children: [
                                 Column(
                                   children: [
                                     InkWell(
                                       onTap: (){
+                                        //  Get.to(() => ResUpdateServicesView(
+                                        //     serviceData: servicesController
+                                        //         .serviceDataList[index]));
                                         //  Get.to(() => UpdateServicesView(
                                         //     serviceData: servicesController
                                         //         .serviceDataList[index]));
@@ -392,9 +399,9 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                                     PopupMenuButton(
                                       // Callback that sets the selected popup menu item.
                                       onSelected: (var item) {
-                                        // Get.off(() => UpdateServicesView(
-                                        //     serviceData: servicesController
-                                        //         .serviceDataList[index]));
+                                        Get.off(() => ResUpdateServicesView(
+                                            serviceData: servicesController
+                                                .serviceDataList[index]));
                                       },
                                       itemBuilder: (BuildContext context) =>
                                           <PopupMenuEntry>[

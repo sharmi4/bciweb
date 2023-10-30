@@ -1,3 +1,4 @@
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
@@ -170,7 +171,7 @@ class _BusinessLastCouponAddedScreenState extends State<BusinessLastCouponAddedS
               );
             }),
                      ksizedbox30,
-            RegisterCommonBottom()
+              businessRegisterCommonBottom()
               ],
             ),
           ),

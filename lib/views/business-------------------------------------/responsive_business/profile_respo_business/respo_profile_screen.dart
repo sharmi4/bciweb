@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_business_bankdetails.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/profile_respo_business/respo_business_referal.dart';
@@ -13,7 +14,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 
 class BusinessProfileRespo extends StatelessWidget {
-  const BusinessProfileRespo({super.key});
+   BusinessProfileRespo({super.key});
 
 
 
@@ -173,43 +174,7 @@ class BusinessProfileRespo extends StatelessWidget {
               ),
             ),
           ),
-          ksizedbox10,
-          Padding(
-            padding: const EdgeInsets.only(left: 10, right: 10),
-            child: Divider(
-              thickness: 1,
-              color: kgrey,
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              // Get.to(const SubscriptionScreen());
-            },
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.subscriptions_rounded,
-                      color: kblue,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10, ),
-                      child: Text(
-                        'Package Subscription',
-                        style: TextStyle(
-                            fontSize: 22,
-                            color: kblue,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
+        
           ksizedbox10,
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
@@ -248,47 +213,73 @@ class BusinessProfileRespo extends StatelessWidget {
             ),
           ),
           ksizedbox10,
-          // Padding(
-          //   padding: const EdgeInsets.only(left: 10, right: 10),
-          //   child: Divider(
-          //     thickness: 1,
-          //     color: kgrey,
-          //   ),
-          // ),
-          // GestureDetector(
-          //   onTap: () {
-          //     // showDialog(
-          //     //   context: context,
-          //     //   builder: (BuildContext context) {
-          //     //     return mAlertItem2;
-          //     //   });
+          Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Divider(
+              thickness: 1,
+              color: kgrey,
+            ),
+          ),
+          GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return mAlertItem2;
+                });
 
-          //     //Get.find<AuthController>().logout();
-          //   },
-          //   child: Container(
-          //     width: MediaQuery.of(context).size.width,
-          //     child: Padding(
-          //       padding: const EdgeInsets.only(left: 20),
-          //       child: Row(
-          //         children: [
-          //           Image.asset('assets/images/settinglogout.png'),
-          //           Padding(
-          //             padding: const EdgeInsets.only(left: 10, top: 6),
-          //             child: Text(
-          //               'LogOut',
-          //               style: TextStyle(
-          //                   fontSize: 22,
-          //                   color: kblue,
-          //                   fontWeight: FontWeight.w500),
-          //             ),
-          //           )
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
+              //Get.find<AuthController>().logout();
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: [
+                    Image.asset('assets/images/settinglogout.png'),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10, top: 6),
+                      child: Text(
+                        'LogOut',
+                        style: TextStyle(
+                            fontSize: 22,
+                            color: kblue,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
+  
+  AlertDialog mAlertItem2 = AlertDialog(
+    backgroundColor: Colors.white,
+    title: Text("Confirmation", style: TextStyle(color: Colors.black)),
+    content: Text(
+      "Are you sure you want to logout?",
+      style: TextStyle(color: Colors.black),
+    ),
+    actions: [
+      TextButton(
+        child: Text(
+          "Yes",
+          style: TextStyle(color: kblue),
+        ),
+        onPressed: () {
+           Get.find<AuthController>().businesslogoutWeb();
+        },
+      ),
+      TextButton(
+        child: Text("No", style: TextStyle(color: kblue)),
+        onPressed: () {
+          Get.back();
+        },
+      ),
+    ],
+  );
 }

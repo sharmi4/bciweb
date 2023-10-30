@@ -1,4 +1,5 @@
 import 'package:bciweb/controller/profile_controller.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/views/business/services_screens/business_withdraw_screen.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
@@ -245,7 +246,7 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
                   Padding(
                     padding: const EdgeInsets.only(left:70,right:70,top:50),
                     child: Container(
-                      height:MediaQuery.of(context).size.height,
+                  
                       
                       decoration:BoxDecoration(
                         color:kwhite,
@@ -435,12 +436,14 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
                                     ],
                                   ),
                                 ),
+                          
                                                       ]
                                   );
                           
                                 });
                               }
                             ),
+                          
                             ]
                           ),
                      
@@ -451,7 +454,7 @@ class _BusinessWalletScreenState extends State<BusinessWalletScreen> {
             }
           ),
           ksizedbox30,
-          RegisterCommonBottom()
+          businessRegisterCommonBottom()
         ],
       ),
     );

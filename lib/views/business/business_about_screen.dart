@@ -1,5 +1,6 @@
 
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/members/common_widget/common_buttom.dart';
 import 'package:flutter/material.dart';
@@ -528,7 +529,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                   children: [
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: kblue,
+                            backgroundColor: kOrange,
                             minimumSize: const Size(200, 47)),
                         onPressed: () {
                           Get.toNamed(Routes.contact_screen);
@@ -537,31 +538,31 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                           'Contact Us',
                           style: TextStyle(fontSize: 18),
                         )),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 60),
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: kOrange,
-                              minimumSize: Size(200, 47)),
-                          onPressed: () async {
-                            Uri url = Uri.parse(
-                                "youtube.com/watch?v=KDjmKFjxXt0");
-                            _launched = _launchInBrowser(url);
-                            _launched!.then((value) {
-                              //print("Current url state-------------------->>${value}");
-                            });
-                          },
-                          child: const Text(
-                            'Book Now',
-                            style: TextStyle(fontSize: 18),
-                          )),
-                    )
+                    // Padding(
+                    //   padding: const EdgeInsets.only(left: 60),
+                    //   child: ElevatedButton(
+                    //       style: ElevatedButton.styleFrom(
+                    //           backgroundColor: kOrange,
+                    //           minimumSize: Size(200, 47)),
+                    //       onPressed: () async {
+                    //         Uri url = Uri.parse(
+                    //             "youtube.com/watch?v=KDjmKFjxXt0");
+                    //         _launched = _launchInBrowser(url);
+                    //         _launched!.then((value) {
+                    //           //print("Current url state-------------------->>${value}");
+                    //         });
+                    //       },
+                    //       child: const Text(
+                    //         'Book Now',
+                    //         style: TextStyle(fontSize: 18),
+                    //       )),
+                    // )
                   ],
                 )
               ],
             ),
           ),
-          RegisterCommonBottom()
+          businessRegisterCommonBottom()
         ],
       ),
     );

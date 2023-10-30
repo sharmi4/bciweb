@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -161,7 +162,12 @@ class _AddServicesViewState extends State<UpdateServicesView> {
                       bottom: 0,
                       right: 0,
                       child: Center(
-                        child: Text('UPDATE SERVICE', style: displayfont),
+                        child: Text('UPDATE SERVICE',
+                         style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: kwhite
+                         )),
                       ),
                     )
                     ],
@@ -1189,20 +1195,25 @@ class _AddServicesViewState extends State<UpdateServicesView> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(left: 20),
-                child: Container(
-                            height: 54,
-                            width: MediaQuery.of(context).size.width*0.25,
-                            decoration: BoxDecoration(
-                              color: kgrey.withOpacity(0.5)
+                child: GestureDetector(
+                  onTap: (){
+                    Get.back();
+                  },
+                  child: Container(
+                              height: 54,
+                              width: MediaQuery.of(context).size.width*0.25,
+                              decoration: BoxDecoration(
+                                color: kgrey.withOpacity(0.5)
+                              ),
+                              child: Center(
+                                child: Text('CANCEL',
+                                style: TextStyle(
+                                       fontSize: 18,
+                                       color: kblue,
+                                       fontWeight: FontWeight.bold
+                                ),)),
                             ),
-                            child: Center(
-                              child: Text('CANCEL',
-                              style: TextStyle(
-                                     fontSize: 18,
-                                     color: kblue,
-                                     fontWeight: FontWeight.bold
-                              ),)),
-                          ),
+                ),
               ),
                           Obx(
             () => Padding(
@@ -1297,7 +1308,8 @@ class _AddServicesViewState extends State<UpdateServicesView> {
             ],
           ),
         
-          ksizedbox20,
+          ksizedbox40,
+          businessRegisterCommonBottom()
         ],
       ),
     );

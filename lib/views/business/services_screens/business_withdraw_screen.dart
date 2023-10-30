@@ -1,5 +1,8 @@
 
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
+import 'package:bciweb/views/business/business_profile/bank_details_screen.dart';
+import 'package:bciweb/views/business/business_profilescreen.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -239,25 +242,33 @@ class _EnterAmountForWithdrawalScreenState
                             fontSize: 19,
                             fontWeight: FontWeight.w600
                           ),),
-                          Container(
-                            height: 40,
-                            width: MediaQuery.of(context).size.width*0.1,
-                            decoration: BoxDecoration(
-                              color: kblue,
-                              borderRadius: BorderRadius.circular(10)
-                            ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text('Add Bank',
-                                style: TextStyle(
-                                  fontSize: 17,
-                                  color: kwhite,
-                                  fontWeight: FontWeight.w600
-                                ),),
-                                Icon(Icons.add_circle,
-                                color: kwhite,)
-                              ],
+                          InkWell(
+                            onTap: (){
+                              Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        BusinessRegisterProfileScreen()));
+                            },
+                            child: Container(
+                              height: 40,
+                              width: MediaQuery.of(context).size.width*0.1,
+                              decoration: BoxDecoration(
+                                color: kblue,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Text('Add Bank',
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: kwhite,
+                                    fontWeight: FontWeight.w600
+                                  ),),
+                                  Icon(Icons.add_circle,
+                                  color: kwhite,)
+                                ],
+                              ),
                             ),
                           )
                         ],
@@ -313,7 +324,7 @@ class _EnterAmountForWithdrawalScreenState
          
            
             ksizedbox30,
-            RegisterCommonBottom()
+             businessRegisterCommonBottom()
          
         ],
       ),

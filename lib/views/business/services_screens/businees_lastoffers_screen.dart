@@ -1,3 +1,4 @@
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -192,7 +193,7 @@ final servicesController = Get.find<BusinessServiceController>();
                     }),
               ),
                  ksizedbox30,
-            RegisterCommonBottom()
+               businessRegisterCommonBottom()
             ]),
           ),
     );

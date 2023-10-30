@@ -55,7 +55,7 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
+                  Center(
                    
                     child: Container(
                       height: 50,
@@ -68,12 +68,12 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
                 ],
               ),
           )
-          : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          : Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
+                    padding: const EdgeInsets.only(top: 15),
+                    child: GestureDetector(
                       onTap: () {
                         profileimage();
                       },
@@ -99,7 +99,7 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
                   )
                 ],
               ),
-              ksizedbox30,
+              ksizedbox40,
               GetBuilder<ProfileController>(builder: (_) {
                 return profileController.galleryListData.isEmpty
                     ? Container(
@@ -134,6 +134,11 @@ class _BusinessAddGalleryState extends State<BusinessAddGallery> {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(10),
                                 child: Container(
+                                  decoration: BoxDecoration(
+                                    boxShadow: <BoxShadow>[
+                                      
+                                    ]
+                                  ),
                                   height: 100,
                                   width: 250,
                                   child: Image.network(

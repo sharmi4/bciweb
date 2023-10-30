@@ -58,6 +58,7 @@ appBar: PreferredSize(
       body: GetBuilder<ProfileController>(builder: (_) {
         return ListView(
           children: [
+            ksizedbox40,
           Column(
             children: [
             Padding(

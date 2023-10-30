@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/registerhomescreen/business_comm_homecontainer.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/views/members/common_widget/business_common_screen.dart';
 
 import 'package:flutter/foundation.dart';
@@ -205,7 +206,7 @@ class _BusinessGalleryState extends State<BusinessGallery> {
                       );
                     })),
               ),
-              RegisterCommonBottom()
+              businessRegisterCommonBottom()
             ],
           ),
         ),

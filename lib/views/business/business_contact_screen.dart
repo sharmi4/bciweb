@@ -1,9 +1,14 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/controller/business_controller/business_service_controller.dart';
+import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:bciweb/registerhomescreen/business_comm_homecontainer.dart';
+import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/views/members/common_widget/business_common_screen.dart';
 import 'package:bciweb/views/members/common_widget/common.dart';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../registerhomescreen/common_reg_homescreen.dart';
@@ -16,10 +21,29 @@ class BusinessContactScreen extends StatefulWidget {
 }
 
 class _BusinessContactScreenState extends State<BusinessContactScreen> {
+
+
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var subjectController = TextEditingController();
   var messageController = TextEditingController();
+
+  var serviceController = Get.find<BusinessServiceController>();
+  var authprofileController = Get.find<AuthProfileController>();
+   final apisettingController = Get.find<ApiSettingController>();
+
+   @override
+   void initState() {
+     super.initState();
+     serviceController.supportAdminDetail();
+     setDefauld();
+   }
+  setDefauld()async{
+  await authprofileController.getProfile();
+  nameController.text=authprofileController.profileData.first.name;
+  emailController.text = authprofileController.profileData.first.email;
+  
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +78,7 @@ class _BusinessContactScreenState extends State<BusinessContactScreen> {
               padding: const EdgeInsets.only(top: 40),
               child: Text(
                 'Get In Touch With Contact Us',
+                
                 style: TextStyle(
                     fontSize: 32, fontWeight: FontWeight.bold, color: kblue),
               ),
@@ -335,20 +360,26 @@ class _BusinessContactScreenState extends State<BusinessContactScreen> {
                           ),
                           Padding(
                               padding: const EdgeInsets.only(top: 30),
-                              child: Container(
-                                height: 42,
-                                width: MediaQuery.of(context).size.width * 0.31,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(5),
-                                    gradient: LinearGradient(colors: [
-                                      kyellow,
-                                      kOrange,
-                                    ])),
-                                child: Center(
-                                  child: Text(
-                                    'Send Message',
-                                    style:
-                                        TextStyle(color: kwhite, fontSize: 16),
+                              child: GestureDetector(
+                                onTap: (){
+                                  apisettingController.createSupport(
+                                    title: subjectController.text, message:messageController.text);
+                                },
+                                child: Container(
+                                  height: 42,
+                                  width: MediaQuery.of(context).size.width * 0.31,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      gradient: LinearGradient(colors: [
+                                        kyellow,
+                                        kOrange,
+                                      ])),
+                                  child: Center(
+                                    child: Text(
+                                      'Send Message',
+                                      style:
+                                          TextStyle(color: kwhite, fontSize: 16),
+                                    ),
                                   ),
                                 ),
                               ))
@@ -360,7 +391,7 @@ class _BusinessContactScreenState extends State<BusinessContactScreen> {
               ),
             ),
             ksizedbox40,
-            RegisterCommonBottom()
+            businessRegisterCommonBottom()
           ],
         ),
       ]),

@@ -16,7 +16,7 @@ class CreateSupportApiService extends BaseApiService {
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(
+      var response = await dio.get(
         createSupportApiUrl,
         options: Options(
             headers: {
