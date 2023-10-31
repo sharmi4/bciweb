@@ -168,7 +168,7 @@ class _PaymentState extends State<Payment> {
                               ],
                             ),
                           ),
-                          child: Text(
+                          child:const Text(
                             'Proceed To Payment',
                             style: TextStyle(
                                 fontSize: 28,
@@ -184,7 +184,7 @@ class _PaymentState extends State<Payment> {
             ),
           ),
           ksizedbox40,
-          RegisterCommonBottom()
+          const RegisterCommonBottom(),
         ],
       ),
     );

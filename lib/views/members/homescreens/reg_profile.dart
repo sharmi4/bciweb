@@ -729,7 +729,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              'Profile Setting',
+                              'Profile Settingpp',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,

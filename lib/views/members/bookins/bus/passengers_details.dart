@@ -685,7 +685,7 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                                     },
                                     child: busController.isLoading.isTrue
                                         ? Container(
-                                            child: Center(
+                                            child:  Center(
                                               child:
                                                   const CircularProgressIndicator(
                                                 color: Colors.white,
@@ -726,7 +726,7 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                 ],
               ),
               ksizedbox30,
-              RegisterCommonBottom()
+              const RegisterCommonBottom()
             ],
           );
         }),

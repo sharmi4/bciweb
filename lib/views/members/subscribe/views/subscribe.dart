@@ -225,7 +225,7 @@ class _SubscribeState extends State<Subscribe> {
                               ),
                             ),
                             child: const Text(
-                              'Subscribe now',
+                              'Subscribe nooow',
                               style: TextStyle(
                                   fontSize: 28,
                                   color: Colors.white,
