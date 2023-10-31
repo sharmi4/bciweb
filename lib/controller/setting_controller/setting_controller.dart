@@ -1,6 +1,8 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/models/setting_model/get_wallet_details.model.dart';
 import 'package:bciweb/models/setting_model/getwallet_details_model.dart';
+import 'package:bciweb/models/support_admin_details_model.dart';
+import 'package:bciweb/services/networks/setting_api_service.dart/support_admin_details_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
@@ -86,7 +88,7 @@ class ApiSettingController extends GetxController {
 
   //create support api
   CreateSupportApiService createSupportApiService = CreateSupportApiService();
-
+    
   createSupport({
     required String title,
     required String message,
@@ -110,7 +112,21 @@ class ApiSettingController extends GetxController {
           ));
     }
   }
+   //support admin details
+  SupportAdminDetailsApiServices supportAdminDetailsApiServices =
+      SupportAdminDetailsApiServices();
+  ContactDetailsData? contactDetailsData;
 
+  supportAdminDetail() async {
+    dio.Response<dynamic> response =
+        await supportAdminDetailsApiServices.supportAdminDetailsApiServices();
+    if (response.statusCode == 200) {
+      SupportAdminModel supportAdminModel =
+          SupportAdminModel.fromJson(response.data);
+      contactDetailsData = supportAdminModel.data;
+    }
+    update();
+  }
   AddTransactionApiService addTransactionApiServices =
       AddTransactionApiService();
 

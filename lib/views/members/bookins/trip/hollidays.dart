@@ -1331,9 +1331,9 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                                   bottom: 10),
                                                           child: IconButton(
                                                             onPressed: () {
-                                                              if (holidaycontroller
-                                                                      .cout ==
-                                                                  1)
+                                                              // if (holidaycontroller
+                                                              //         .cout ==
+                                                              //     0)
                                                                 holidaycontroller
                                                                     .decrement();
                                                               holidaycontroller
@@ -1416,9 +1416,8 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                                   bottom: 10),
                                                           child: IconButton(
                                                               onPressed: () {
-                                                                if (holiday2controller
-                                                                        .cout! ==
-                                                                    1)
+                                                                // if (holiday2controller
+                                                                //         .cout)
                                                                   holiday2controller
                                                                       .decrement();
                                                                 holiday2controller
@@ -1493,9 +1492,9 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                                       children: [
                                                         IconButton(
                                                           onPressed: () {
-                                                            if (holiday3controller
-                                                                    .cout! ==
-                                                                1)
+                                                            // if (holiday3controller
+                                                            //         .cout! ==
+                                                            //     1)
                                                               holiday3controller
                                                                   .decrement();
                                                             holiday3controller

@@ -161,40 +161,112 @@ class BusController extends GetxController {
     }
     update();
   }
+ List<List<SeatMap>> lowerSeatsList = [];
+   List<List<SeatMap>> upperSeatsList = [];
+ generateBusSeats(List<SeatMap> tempSeats) {
+    List<SeatMap> seats =
+        tempSeats.where((element) => element.zIndex == "0").toList();
+    List<SeatMap> seats2 =
+        tempSeats.where((element) => element.zIndex == "1").toList();
 
+    // Arrange seats
+    List<SeatMap> arrangedSeats = arrangeSeats(seats);
+    List<SeatMap> arrangedSeatsAlt = arrangedSeats.reversed.toList();
 
-    generateBusSeats(List<SeatMap> seatMap) {
-    List<int> rowList = [];
+    // List<SeatMap> arrangedSeatsUpper = arrangeSeats(seats2);
+    // List<SeatMap> arrangedSeatsAltUpper = arrangedSeats.reversed.toList();
 
-    for (int k = 0; k < seatMap.length; k++) {
-      rowList.add(int.parse(seatMap[k].row));
+//   // Print the arranged seats
+//   for (var seat in arrangedSeatsAlt) {
+//     String tempRow = seat.row;
+
+//     print("Row: ${seat.row}, Column: ${seat.column}, Seat Number: ${seat.seatNumber}");
+//   }
+
+    List<SeatMap> tempSeatsList = [];
+    List<SeatMap> tempSeatsList1 = [];
+    List<SeatMap> tempSeatsList2 = [];
+    List<SeatMap> tempSeatsList3 = [];
+    List<List<SeatMap>> arrangedList = [];
+
+    for (var seats in arrangedSeatsAlt) {
+      if (seats.row == "3") {
+        tempSeatsList.add(seats);
+      } else if (seats.row == "2") {
+        tempSeatsList1.add(seats);
+      } else if (seats.row == "1") {
+        tempSeatsList2.add(seats);
+      } else if (seats.row == "0") {
+        tempSeatsList3.add(seats);
+      } else {}
     }
 
-    List<int> uniqueList = rowList.toSet().toList();
-
-    // Sort the unique list
-    uniqueList.sort();
-
-    for (int i = 0; i < uniqueList.length; i++) {
-      int rowNumber = uniqueList[i];
-
-      List<SeatMap> tempList = [];
-
-      for (int j = 0; j < seatMap.length; j++) {
-        int tempRowNum = int.parse(seatMap[j].row.toString());
-
-        print(rowNumber == tempRowNum);
-
-        if (rowNumber == tempRowNum) {
-          tempList.add(seatMap[j]);
-        }
-      }
-      print(tempList.length);
-      seatMapList.add(tempList);
-    }
+    arrangedList.add(tempSeatsList);
+    arrangedList.add(tempSeatsList1);
+    arrangedList.add(tempSeatsList2);
+    arrangedList.add(tempSeatsList3);
+    lowerSeatsList = arrangedList;
     update();
   }
+       generateBusSeatsUpper(List<SeatMap> tempSeats) {
+    List<SeatMap> seats =
+        tempSeats.where((element) => element.zIndex == "0").toList();
+    List<SeatMap> seats2 =
+        tempSeats.where((element) => element.zIndex == "1").toList();
 
+    // Arrange seats
+    List<SeatMap> arrangedSeats = arrangeSeats(seats2);
+    List<SeatMap> arrangedSeatsAlt = arrangedSeats.reversed.toList();
+
+    // List<SeatMap> arrangedSeatsUpper = arrangeSeats(seats2);
+    // List<SeatMap> arrangedSeatsAltUpper = arrangedSeats.reversed.toList();
+
+//   // Print the arranged seats
+//   for (var seat in arrangedSeatsAlt) {
+//     String tempRow = seat.row;
+
+//     print("Row: ${seat.row}, Column: ${seat.column}, Seat Number: ${seat.seatNumber}");
+//   }
+
+    List<SeatMap> tempSeatsList = [];
+    List<SeatMap> tempSeatsList1 = [];
+    List<SeatMap> tempSeatsList2 = [];
+    List<SeatMap> tempSeatsList3 = [];
+    List<List<SeatMap>> arrangedList = [];
+
+    for (var seats in arrangedSeatsAlt) {
+      if (seats.row == "3") {
+        tempSeatsList.add(seats);
+      } else if (seats.row == "2") {
+        tempSeatsList1.add(seats);
+      } else if (seats.row == "1") {
+        tempSeatsList2.add(seats);
+      } else if (seats.row == "0") {
+        tempSeatsList3.add(seats);
+      } else {}
+    }
+
+    arrangedList.add(tempSeatsList);
+    arrangedList.add(tempSeatsList1);
+    arrangedList.add(tempSeatsList2);
+    arrangedList.add(tempSeatsList3);
+    upperSeatsList = arrangedList;
+    update();
+  }
+  List<SeatMap> arrangeSeats(List<SeatMap> seats) {
+    // Sort seats based on row, column, and then seat number
+    seats.sort((a, b) {
+      if (a.row != b.row) {
+        return a.row.compareTo(b.row);
+      } else if (a.column != b.column) {
+        return a.column.compareTo(b.column);
+      } else {
+        return a.seatNumber.compareTo(b.seatNumber);
+      }
+    });
+
+    return seats;
+  }
   tempBookBusTicket(
       {required String boardingId,
       required String droppingId,
@@ -231,7 +303,7 @@ class BusController extends GetxController {
       }
     }
   }
-
+     
   busAddPayment({required String refernceNo}) async {
     print('bus add payment 2');
     dio.Response<dynamic> response =

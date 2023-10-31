@@ -117,7 +117,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                     textInputAction: TextInputAction.next,
                     controller: officedoornoController,
                     decoration:const InputDecoration(
-                        hintText: 'Door Number',
+                        hintText: 'Door No',
                         suffixIcon: Icon(Icons.edit),
                         fillColor: Color(0xffF9F8FD),
                         border: OutlineInputBorder()),
@@ -132,7 +132,7 @@ class _ProfileOfficeAddreassState extends State<ProfileOfficeAddreass> {
                     keyboardType: TextInputType.number,
                   controller: officebnameController,
                   decoration:const InputDecoration(
-                      hintText: 'Building Number',
+                      hintText: 'Building Name',
                       suffixIcon: Icon(Icons.edit),
                       fillColor: Color(0xffF9F8FD),
                       border: OutlineInputBorder()),

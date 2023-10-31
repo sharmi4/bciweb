@@ -643,45 +643,45 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                               Obx(
                                 () => InkWell(
                                     onTap: () {
-                                      List<PaxDetailslist> paxDetailslists = [];
+                                      // List<PaxDetailslist> paxDetailslists = [];
 
-                                      for (int a = 0;
-                                          a < widget.busContactmodel.length;
-                                          a++) {
-                                        PaxDetailslist paxDetailslistdata =
-                                            PaxDetailslist(
-                                                age: widget.busContactmodel[a]
-                                                    .ageController.text,
-                                                gender: widget
-                                                            .busContactmodel[a]
-                                                            .gender ==
-                                                        "Male"
-                                                    ? 0
-                                                    : 1,
-                                                isLadies: false,
-                                                paxName: widget
-                                                    .busContactmodel[a]
-                                                    .nameController
-                                                    .text,
-                                                seatNumber: widget
-                                                    .busContactmodel[a].seats);
+                                      // for (int a = 0;
+                                      //     a < widget.busContactmodel.length;
+                                      //     a++) {
+                                      //   PaxDetailslist paxDetailslistdata =
+                                      //       PaxDetailslist(
+                                      //           age: widget.busContactmodel[a]
+                                      //               .ageController.text,
+                                      //           gender: widget
+                                      //                       .busContactmodel[a]
+                                      //                       .gender ==
+                                      //                   "Male"
+                                      //               ? 0
+                                      //               : 1,
+                                      //           isLadies: false,
+                                      //           paxName: widget
+                                      //               .busContactmodel[a]
+                                      //               .nameController
+                                      //               .text,
+                                      //           seatNumber: widget
+                                      //               .busContactmodel[a].seats);
 
-                                        paxDetailslists.add(paxDetailslistdata);
-                                      }
-                                      busController.tempBookBusTicket(
-                                          boardingId: widget.boardingId,
-                                          droppingId: widget.dropingId,
-                                          busData: widget.busData,
-                                          searcKey: widget.searchkey,
-                                          mobileNumber:
-                                              phoneNumberContoller.text,
-                                          customerEmail: emailController.text,
-                                          paxDetailslist: paxDetailslists,
-                                          amount: widget.amount,
-                                          customerName: widget.cusName,
-                                          seatMapKey:
-                                              busController.seatMapKey.value);
-                                      // Get.to(BusbookingSuccesfullScreen());
+                                      //   paxDetailslists.add(paxDetailslistdata);
+                                      // }
+                                      // busController.tempBookBusTicket(
+                                      //     boardingId: widget.boardingId,
+                                      //     droppingId: widget.dropingId,
+                                      //     busData: widget.busData,
+                                      //     searcKey: widget.searchkey,
+                                      //     mobileNumber:
+                                      //         phoneNumberContoller.text,
+                                      //     customerEmail: emailController.text,
+                                      //     paxDetailslist: paxDetailslists,
+                                      //     amount: widget.amount,
+                                      //     customerName: widget.cusName,
+                                      //     seatMapKey:
+                                      //         busController.seatMapKey.value);
+                                      // // Get.to(BusbookingSuccesfullScreen());
                                     },
                                     child: busController.isLoading.isTrue
                                         ? Container(

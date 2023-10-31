@@ -72,16 +72,6 @@ class HomeServiceController extends GetxController {
 
 
 
-
-
-
-
-
-
-
-
-
-
   //add today offers
   AddTodayOffersApiServices addTodayOffersApiServices = AddTodayOffersApiServices();
 AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
@@ -121,10 +111,6 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
 
   }
 
-
-
-
-
   GetServicesByCategoryApiServices getServicesByCategoryApiServices =
       GetServicesByCategoryApiServices();
 
@@ -142,13 +128,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     update();
   }
 
-
-
-
  GetServicesApiServices getServicesApiServices = GetServicesApiServices();
-
-
-
   getServicesByVendor() async {
     dio.Response<dynamic> response =
         await getServicesApiServices.getServicesByVendor(
@@ -163,11 +143,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     }
     update();
   }
-
-
-
-
-
+ 
 
 //list cart
   getCartdetails() async {

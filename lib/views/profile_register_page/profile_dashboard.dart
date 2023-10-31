@@ -202,109 +202,231 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                 ],
               ),
               Padding(
-                          padding: const EdgeInsets.only(left: 100, top: 35),
-                          child: Row(
+                padding: const EdgeInsets.only(left: 100, top: 35),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 160,
+                      width: MediaQuery.of(context).size.width * 0.68,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),
+                          color: kwhite,
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                offset: Offset(0.0, 0.75),
+                                blurRadius: 5,
+                                color: kgrey)
+                          ]),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Container(
-                                height: 160,
-                                width: MediaQuery.of(context).size.width * 0.68,
-                                decoration: BoxDecoration(
-                                    color: kwhite,
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                          color: kgrey,
-                                          blurRadius: 5,
-                                          offset:const Offset(0.0, 0.75))
-                                    ],
-                                    borderRadius: BorderRadius.circular(5)),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 40, top: 10),
                                 child: Column(
                                   children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Padding(
-                                          padding:const  EdgeInsets.only(
-                                              left: 40, top: 25),
-                                child: Column(
-                                      children: [
-                                   CircularPercentIndicator(
-                                       radius: 35.0,
-                                       lineWidth: 5.0,
-                                       animation: true,
-                                       percent: 0.4,
-                                       center:apisettingController.getWalletData.isEmpty ? const Text("") : Text(apisettingController.getWalletData.first.coupon.totalCouponCodes.toString(),
-                                       style: TextStyle(color: kblue,fontWeight: FontWeight.w400,fontSize: 18),),
-                                       circularStrokeCap: CircularStrokeCap.round,
-                                       backgroundColor: kblue,
-                                       progressColor: kOrange,
-                                      ),
-                                      const SizedBox(height: 10,),
-                                      Text('Total',
-                                                style: TextStyle(
-                                                    fontSize: 17, color: kblue),
-                                              ),
+                                    Container(
+                                        height: 110,
+                                        width: 110,
+                                        child: SfCircularChart(
+                                            annotations: <CircularChartAnnotation>[
+                                              CircularChartAnnotation(
+                                                  widget: Container(
+                                                height: 100,
+                                                width: 100,
+                                              )),
+                                              CircularChartAnnotation(
+                                                  widget: Container(
+                                                      child: apisettingController
+                                                              .getWalletData
+                                                              .isEmpty
+                                                          ? Text('')
+                                                          : Text(
+                                                              apisettingController
+                                                                  .getWalletData
+                                                                  .first
+                                                                  .referrals
+                                                                  .totalReferrals
+                                                                  .toString(),
+                                                              style: TextStyle(
+                                                                  color: Color.fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.5),
+                                                                  fontSize:
+                                                                      17))))
                                             ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(top: 25),
-                                          child: Column(
-                                            children: [
-                                              CircularPercentIndicator(
-                                       radius: 35.0,
-                                       lineWidth: 5.0,
-                                       animation: true,
-                                       percent: 0.4,
-                                       center:apisettingController.getWalletData.isEmpty ? const Text("") : Text(apisettingController.getWalletData.first.coupon.todayUsed.toString(),
-                                       style: TextStyle(color: kblue,fontWeight: FontWeight.w400,fontSize: 18),),
-                                       circularStrokeCap: CircularStrokeCap.round,
-                                       backgroundColor: kblue,
-                                       progressColor: kOrange,
+                                            series: <CircularSeries>[
+                                              DoughnutSeries<
+                                                      ChartData,
+                                                      String>(
+                                                  dataSource:
+                                                      chartData,
+                                                  xValueMapper:
+                                                      (ChartData data,
+                                                              _) =>
+                                                          data.x,
+                                                  yValueMapper:
+                                                      (ChartData data,
+                                                              _) =>
+                                                          data.y,
+                                                  // Radius of doughnut
+                                                  radius: '80%')
+                                            ])),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 0, top: 0),
+                                      child: Text(
+                                        'Total',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontSize: 17, color: kblue),
                                       ),
-                                      const SizedBox(height: 10,),
-                                              Text(
-                                                'Used',
-                                                style: TextStyle(
-                                                    fontSize: 17, color: kblue),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(
-                                              right: 60, top: 25),
-                                          child: Column(
-                                            children: [
-                                              CircularPercentIndicator(
-                                       radius: 35.0,
-                                       lineWidth: 5.0,
-                                       animation: true,
-                                       percent: 0.4,
-                                       center:apisettingController.getWalletData.isEmpty ? const Text("") : Text(apisettingController.getWalletData.first.coupon.thisMonthUsed.toString(),
-                                       style: TextStyle(color: kblue,fontWeight: FontWeight.w400,fontSize: 18),),
-                                       circularStrokeCap: CircularStrokeCap.round,
-                                       backgroundColor: kblue,
-                                       progressColor: kOrange,
-                                      ),
-                                      const SizedBox(height: 10,),
-                                              Text(
-                                                'Pending',
-                                                style: TextStyle(
-                                                    fontSize: 17, color: kblue),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ],
                                     ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 10),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        height: 110,
+                                        width: 110,
+                                        child: SfCircularChart(
+                                            annotations: <CircularChartAnnotation>[
+                                              CircularChartAnnotation(
+                                                  widget: Container(
+                                                height: 100,
+                                                width: 100,
+                                              )),
+                                              CircularChartAnnotation(
+                                                  widget: Container(
+                                                      child: apisettingController
+                                                              .getWalletData
+                                                              .isEmpty
+                                                          ? Text('')
+                                                          : Text(
+                                                              apisettingController
+                                                                  .getWalletData
+                                                                  .first
+                                                                  .referrals
+                                                                  .todayReferrals
+                                                                  .toString(),
+                                                              style: TextStyle(
+                                                                  color: Color.fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.5),
+                                                                  fontSize:
+                                                                      17))))
+                                            ],
+                                            series: <CircularSeries>[
+                                              DoughnutSeries<
+                                                      ChartData,
+                                                      String>(
+                                                  dataSource:
+                                                      chartData,
+                                                  xValueMapper:
+                                                      (ChartData data,
+                                                              _) =>
+                                                          data.x,
+                                                  yValueMapper:
+                                                      (ChartData data,
+                                                              _) =>
+                                                          data.y,
+                                                  // Radius of doughnut
+                                                  radius: '80%')
+                                            ])),
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 0),
+                                      child: Text(
+                                        'Used',
+                                        style: TextStyle(
+                                            fontSize: 17, color: kblue),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(right: 60, top: 10),
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        height: 110,
+                                        width: 110,
+                                        child: SfCircularChart(
+                                            annotations: <CircularChartAnnotation>[
+                                              CircularChartAnnotation(
+                                                  widget: Container(
+                                                height: 100,
+                                                width: 100,
+                                              )),
+                                              CircularChartAnnotation(
+                                                  widget: Container(
+                                                      child: apisettingController
+                                                              .getWalletData
+                                                              .isEmpty
+                                                          ? Text('')
+                                                          : Text(
+                                                              apisettingController
+                                                                  .getWalletData
+                                                                  .first
+                                                                  .referrals
+                                                                  .thisMonthReferrals
+                                                                  .toString(),
+                                                              style: TextStyle(
+                                                                  color: Color.fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.5),
+                                                                  fontSize:
+                                                                      17))))
+                                            ],
+                                            series: <CircularSeries>[
+                                              DoughnutSeries<
+                                                      ChartData,
+                                                      String>(
+                                                  dataSource:
+                                                      chartData,
+                                                  xValueMapper:
+                                                      (ChartData data,
+                                                              _) =>
+                                                          data.x,
+                                                  yValueMapper:
+                                                      (ChartData data,
+                                                              _) =>
+                                                          data.y,
+                                                  // Radius of doughnut
+                                                  radius: '80%')
+                                            ])),
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          right: 0, top: 0),
+                                      child: Text(
+                                        'Pending',
+                                        style: TextStyle(
+                                            fontSize: 17, color: kblue),
+                                      ),
+                                    )
                                   ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [

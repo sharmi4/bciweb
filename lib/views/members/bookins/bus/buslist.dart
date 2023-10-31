@@ -61,6 +61,7 @@ class _BusListState extends State<BusList> {
                       GetBuilder<BusController>(
                         builder: (_) {
                           return Row(
+
                             children: [
                               kwidth10,
                               Text('we have got ${busController.busData.length} results')
@@ -80,17 +81,26 @@ class _BusListState extends State<BusList> {
                           Container(
                             width: size.width * 0.2,
                             child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text('Operator').text.semiBold.orange500.make(),
                               ],
                             ),
                           ),
-                          Text('Departure').text.semiBold.orange500.make(),
+                          Container(
+                            width: size.width*0.1,
+                            child: Text('Departure').text.semiBold.orange500.make()),
                           //   Text('Total Duration').text.semiBold.orange500.make(),
-                          Text('Arrival').text.semiBold.orange500.make(),
+                          Container(
+                            width: size.width*0.1,
+                            child: Text('Arrival').text.semiBold.orange500.make()),
                           //   Text('Rating').text.semiBold.orange500.make(),
-                          Text('Price').text.semiBold.orange500.make(),
-                          Text('Select Seats').text.semiBold.orange500.make()
+                          Container(
+                            width: size.width*0.1,
+                            child: Text('Price').text.semiBold.orange500.make()),
+                          Container(
+                            width: size.width*0.1,
+                            child: Text('Select Seats').text.semiBold.orange500.make())
                         ],
                       )
                     ],
@@ -146,8 +156,9 @@ class _BusListState extends State<BusList> {
                                         //   buskey: busController.busData[index].busKey,));
                                       },
                                       child: Container(
+                                        
                                         //  width: size.width * 0.8,
-                                        height: size.height * 0.08,
+                                        height: 115,
                                         decoration: BoxDecoration(
                                           color: kwhite,
                                           boxShadow: [
@@ -169,6 +180,7 @@ class _BusListState extends State<BusList> {
                                             width: 0.2, // Border width
                                           ),
                                         ),
+                                        
                                       ))
                                   : InkWell(
                                       onTap: () {
@@ -185,7 +197,7 @@ class _BusListState extends State<BusList> {
                                       },
                                       child: Container(
                                         //  width: size.width * 0.8,
-                                        height: size.height * 0.08,
+                                    height: 115,
                                         decoration: BoxDecoration(
                                           color: kwhite,
                                           boxShadow: [
@@ -214,6 +226,8 @@ class _BusListState extends State<BusList> {
                                               Container(
                                                 width: size.width * 0.2,
                                                 child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
                                                     Text(busController
                                                             .busData[index]
@@ -236,26 +250,32 @@ class _BusListState extends State<BusList> {
                                                   ],
                                                 ),
                                               ),
-                                              Text(
-                                                busController.busData[index]
-                                                    .departureTime,
-                                              ).text.semiBold.blue900.xl.make(),
+                                              Container(
+                                                width: size.width*0.1,
+                                                child: Text(
+                                                  busController.busData[index]
+                                                      .departureTime,
+                                                ).text.semiBold.blue900.xl.make(),
+                                              ),
                                               // Text('05h  00m')
                                               //     .text
                                               //     .semiBold
                                               //     .blue900
                                               //     .xl
                                               //     .make(),
-                                              Text(busController
-                                                      .busData[index]
-                                                      .droppingDetails
-                                                      .first
-                                                      .droppingTime)
-                                                  .text
-                                                  .semiBold
-                                                  .blue900
-                                                  .xl
-                                                  .make(),
+                                              Container(
+                                                width: size.width*0.1,
+                                                child: Text(busController
+                                                        .busData[index]
+                                                        .droppingDetails
+                                                        .first
+                                                        .droppingTime)
+                                                    .text
+                                                    .semiBold
+                                                    .blue900
+                                                    .xl
+                                                    .make(),
+                                              ),
                                               // Column(
                                               //   mainAxisAlignment:
                                               //       MainAxisAlignment.spaceEvenly,
@@ -284,57 +304,23 @@ class _BusListState extends State<BusList> {
                                                     MainAxisAlignment
                                                         .spaceEvenly,
                                                 children: [
-                                                  Text(
-                                                    "₹ ${busController.busData[index].fareMasters.first.totalAmount.toString()}",
-                                                  )
-                                                      .text
-                                                      .semiBold
-                                                      .blue900
-                                                      .xl
-                                                      .make(),
-                                                  Text('${busController.busData[index].availableSeats.toString()} seats left')
-                                                      .text
-                                                      .xs
-                                                      .make(),
                                                   Container(
-                                                    child: Center(
-                                                        child: Text(
-                                                                '')
-                                                            .text
-                                                            .xs
-                                                            .white
-                                                            .make()),
-                                                    height: 15,
-                                                    width: 90,
-                                                    decoration: BoxDecoration(
-                                                        color: kwhite,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(3)),
-                                                  )
-                                                ],
-                                              ),
-                                              Column(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceEvenly,
-                                                children: [
+                                                    width: size.width*0.1,
+                                                    child: Text(
+                                                      "₹ ${busController.busData[index].fareMasters.first.totalAmount.toString()}",
+                                                    )
+                                                        .text
+                                                        .semiBold
+                                                        .blue900
+                                                        .xl
+                                                        .make(),
+                                                  ),
                                                   Container(
-                                                    child: Center(
-                                                        child:
-                                                            Text('Select Seat')
-                                                                .text
-                                                                .semiBold
-                                                                .sm
-                                                                .white
-                                                                .make()),
-                                                    height: 30,
-                                                    width: 80,
-                                                    decoration: BoxDecoration(
-                                                        color: korange,
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(16)),
+                                                    width: size.width*0.1,
+                                                    child: Text('${busController.busData[index].availableSeats.toString()} seats left')
+                                                        .text
+                                                        .xs
+                                                        .make(),
                                                   ),
                                                   Container(
                                                     child: Center(
@@ -353,6 +339,49 @@ class _BusListState extends State<BusList> {
                                                                 .circular(3)),
                                                   )
                                                 ],
+                                              ),
+                                              Container(
+                                                width: size.width*0.1,
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: [
+                                                    Container(
+                                                      child: Center(
+                                                          child:
+                                                              Text('Select Seat')
+                                                                  .text
+                                                                  .semiBold
+                                                                  .sm
+                                                                  .white
+                                                                  .make()),
+                                                      height: 30,
+                                                      width: 80,
+                                                      decoration: BoxDecoration(
+                                                          color: korange,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(16)),
+                                                    ),
+                                                    Container(
+                                                      child: Center(
+                                                          child: Text(
+                                                                  '')
+                                                              .text
+                                                              .xs
+                                                              .white
+                                                              .make()),
+                                                      height: 15,
+                                                      width: 90,
+                                                      decoration: BoxDecoration(
+                                                          color: kwhite,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(3)),
+                                                    )
+                                                  ],
+                                                ),
                                               )
                                             ]),
                                       ),

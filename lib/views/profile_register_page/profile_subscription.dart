@@ -68,7 +68,7 @@ class _ProfileSubscriptionState extends State<ProfileSubscription> {
                 'SUBSCRIBE',
                 style: TextStyle(
                     letterSpacing: 1,
-                    fontSize: 23,
+                    fontSize: 32,
                     fontWeight: FontWeight.bold,
                     color: kwhite),
               ),
@@ -82,11 +82,35 @@ class _ProfileSubscriptionState extends State<ProfileSubscription> {
               return GetBuilder<AuthProfileController>(builder: (_) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     plansController.subscriptionplan.isEmpty
-                        ? Image.asset('assets/images/si1.png',
-                            height: 200, fit: BoxFit.fitHeight)
+                        ? Padding(
+                          padding: const EdgeInsets.only(left: 50),
+                          child: Container(
+                                  child: Center(
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                            "assets/images/offersnotavailableimage.png"),
+                                        const SizedBox(
+                                          height: 15,
+                                        ),
+                                        Text(
+                                          "No Plans Found",
+                                          style: primaryFont.copyWith(
+                                              color: kblue,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 20),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                        )
                         : Stack(
                             children: [
                                Container(
@@ -185,45 +209,48 @@ class _ProfileSubscriptionState extends State<ProfileSubscription> {
                     ),
                     plansController.subscriptionplan.isEmpty
                         ? const Text("")
-                        : Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                             Text(plansController.subscriptionplan.first.title,
-                             style: TextStyle(
-                              fontSize: 21,
-                              color: kblue,
-                              fontWeight: FontWeight.w600
-                             ),),
-                             ksizedbox10,
-                             Text(
-                                "₹${double.parse(plansController.subscriptionplan.first.saleAmount).toStringAsFixed(2)}",
-                                style: TextStyle(
-                                    fontSize: 21,
-                                    fontWeight: FontWeight.w600,
-                                    color: kOrange),
-                              ),
-                              ksizedbox10,
-                              Text(
-                                  'Subcribe Details:',
+                        : Padding(
+                          padding: const EdgeInsets.only(top: 50),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                               Text(plansController.subscriptionplan.first.title,
+                               style: TextStyle(
+                                fontSize: 21,
+                                color: kblue,
+                                fontWeight: FontWeight.bold
+                               ),),
+                               ksizedbox10,
+                               Text(
+                                  "₹${double.parse(plansController.subscriptionplan.first.saleAmount).toStringAsFixed(2)}",
                                   style: TextStyle(
                                       fontSize: 21,
                                       fontWeight: FontWeight.w600,
-                                      color: Colors.black),
+                                      color: kOrange),
                                 ),
                                 ksizedbox10,
-                            Container(
-                              width:  MediaQuery.of(context).size.width * 0.4,
-                            
-                              child: Text(plansController
-                                  .subscriptionplan.first.planDescription,
-                                  maxLines: 13,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w400
-                                  ),),
-                            ),
-                          ],
+                                Text(
+                                    'Subcribe Details:',
+                                    style: TextStyle(
+                                        fontSize: 21,
+                                        fontWeight: FontWeight.w600,
+                                        color: Colors.black),
+                                  ),
+                                  ksizedbox10,
+                              Container(
+                                width:  MediaQuery.of(context).size.width * 0.4,
+                              
+                                child: Text(plansController
+                                    .subscriptionplan.first.planDescription,
+                                    maxLines: 13,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w400
+                                    ),),
+                              ),
+                            ],
+                          ),
                         ),
                   ],
                 );

@@ -1635,7 +1635,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                                               child: TextField(
                                                  textInputAction: TextInputAction.next,
                                                 controller: firstnameController,
-                                                decoration: InputDecoration(
+                                                decoration: const InputDecoration(
                                                   hintText: 'First Name',
                                                   border: OutlineInputBorder()
                                                 ),
