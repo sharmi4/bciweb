@@ -1,5 +1,6 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
+import 'package:bciweb/views/members/services/vendor_category_list_view_screen.dart';
 import 'package:bciweb/views/members/services/views/servicescart/vendor_service_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -142,10 +143,10 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                   color: Colors.black87),
                             ),
                             ksizedbox20,
-                            if (widget.vendorListModelData.locationAddress !=
-                                null)
+                           // if (widget.vendorListModelData.locationAddress != null)
                               Row(
                                 children: [
+                                  if (widget.vendorListModelData.locationAddress != null)
                                   InkWell(
                                     onTap: () {
                                       launchUrl(Uri.parse(widget
@@ -188,13 +189,54 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                       ),
                                     ),
                                   ),
+                       if (widget.vendorListModelData.videoLink != null)
+                        InkWell(
+                          onTap: () {
+                            launchUrl(
+                                Uri.parse(widget.vendorListModelData.videoLink),
+                                mode: LaunchMode.externalApplication);
+                          },
+                          child: Container(
+                            height: 35,
+                            width: 120,
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                      blurRadius: 2,
+                                      color: Colors.grey.withOpacity(0.5))
+                                ],
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 7, right: 7),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Icon(
+                                    Icons.video_library_outlined,
+                                    color: Colors.red,
+                                    size: 20,
+                                  ),
+                                  Text(
+                                    "Video",
+                                    style: primaryFont.copyWith(
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                        fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
                                 ],
                               ),
                             ksizedbox20,
                             InkWell(
                               onTap: () {
                                 Get.to(
-                                  () => VendorServiceListScreen(
+                                  () => VendorsCategoryListView(
                                       vendorId: widget.vendorListModelData.id
                                           .toString()),
                                 );
@@ -207,7 +249,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                     borderRadius: BorderRadius.circular(10)),
                                 alignment: Alignment.center,
                                 child: Text(
-                                  "View Services",
+                                  "View Services0",
                                   style: primaryFont.copyWith(
                                       fontSize: 16, color: Colors.white),
                                 ),

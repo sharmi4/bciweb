@@ -9,7 +9,9 @@ import '../../../common_widget/common.dart';
 
 class VendorServiceListScreen extends StatefulWidget {
   String vendorId;
-  VendorServiceListScreen({super.key, required this.vendorId});
+  String categoryName;
+  String categoryId;
+  VendorServiceListScreen({super.key, required this.vendorId,required this.categoryId,required this.categoryName});
 
   @override
   State<VendorServiceListScreen> createState() => _VendorServiceListScreenState();
@@ -59,7 +61,8 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
                         shrinkWrap: true,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 2.5, crossAxisCount: 3),
+                                childAspectRatio: 2.5, 
+                                crossAxisCount: 3),
                         itemBuilder: ((context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(10.0),

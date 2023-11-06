@@ -11,7 +11,9 @@ import '../mobile_wdgets/mobile_common_bottom/bottom.dart';
 
 class ResVendorServiceListScreen extends StatefulWidget {
   String vendorId;
-  ResVendorServiceListScreen({super.key, required this.vendorId});
+  String categoryName;
+  String categoryId;
+  ResVendorServiceListScreen({super.key,required this.vendorId,required this.categoryId,required this.categoryName});
 
   @override
   State<ResVendorServiceListScreen> createState() => _ResVendorServiceListScreenState();
@@ -64,7 +66,7 @@ class _ResVendorServiceListScreenState extends State<ResVendorServiceListScreen>
                           return Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Container(
-                              height: 55,
+                              height: 150,
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(20),
@@ -76,8 +78,8 @@ class _ResVendorServiceListScreenState extends State<ResVendorServiceListScreen>
                               child: Row(
                                 children: [
                                   Container(
-                                      height: 10,
-                                      width: size.width * 0.12,
+                                      height: 150,
+                                      width: size.width * 0.3,
                                       decoration: BoxDecoration(
                                           image: DecorationImage(
                                             image: NetworkImage(homeController.vendorServiceListData[index].image),
@@ -157,9 +159,8 @@ class _ResVendorServiceListScreenState extends State<ResVendorServiceListScreen>
                       );
                }
              ),
-
            ksizedbox40,
-            MobileCommonBottom()
+           const MobileCommonBottom(),
           ],
         ),
       ),

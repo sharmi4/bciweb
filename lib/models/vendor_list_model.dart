@@ -87,6 +87,7 @@ class VendorListModelData {
   dynamic bankAccountNumber;
   dynamic ifscCode;
   dynamic shopImage;
+  dynamic videoLink;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -152,6 +153,7 @@ class VendorListModelData {
     required this.shopImage,
     required this.createdAt,
     required this.updatedAt,
+    required this.videoLink,
   });
 
   factory VendorListModelData.fromJson(Map<String, dynamic> json) => VendorListModelData(
@@ -214,6 +216,7 @@ class VendorListModelData {
         bankAccountNumber: json["bank_account_number"],
         ifscCode: json["ifsc_code"],
         shopImage: json["shop_image"],
+        videoLink: json["video_link"],
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -278,6 +281,7 @@ class VendorListModelData {
         "bank_account_number": bankAccountNumber,
         "ifsc_code": ifscCode,
         "shop_image": shopImage,
+        "video_link": videoLink,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
       };

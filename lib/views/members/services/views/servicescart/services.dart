@@ -576,6 +576,8 @@ class _ServicesState extends State<Services> {
                                               vendorId: serviceofferController
                                                   .todayOfferListData[index]
                                                   .vendorId,
+                                              categoryId: "",
+                                              categoryName: "",
                                             ),
                                           );
                                         },

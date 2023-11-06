@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/drawer.dart';
+import 'package:bciweb/views/responsive------------------------------------/respo_services/widgets/mob_coupon_container.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
@@ -39,6 +40,7 @@ class _RespoCouponesState extends State<RespoCoupones> {
   ];
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: PreferredSize(
           child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
@@ -71,7 +73,7 @@ class _RespoCouponesState extends State<RespoCoupones> {
                 ),
               ),
               ksizedbox20,
-              Text(
+              const Text(
                 'ALL COUPONS AVAILABLE',
                 textAlign: TextAlign.center,
                 style: TextStyle(
@@ -83,155 +85,157 @@ class _RespoCouponesState extends State<RespoCoupones> {
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: Container(
-                  
-                  width: 1000,
-               child: GridView.builder(
+                  height: size.height,
+               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: subscripeController.couponsdatalist.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 3,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 7,
-                crossAxisCount: 1), 
                 itemBuilder:(context,index){
-                  return Padding(
-                              padding: const EdgeInsets.only(top: 5, bottom: 5),
-                              child: ClipPath(
-                                clipper: TicketPassClipper(),
-                                child: Container(
-                                    height: 90,
-                                    decoration: BoxDecoration(
-                                        color: colors[Random().nextInt(9)],
-                                        borderRadius: BorderRadius.circular(5)),
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 10,top: 10,right: 10,bottom: 5),
-                                          child: Column(
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Container(
-                                                  width:200,
-                                                  child: Text(
-                                                    subscripeController.couponsdatalist
-                                                        [index].name
-                                                        .toString(),
-                                                    maxLines: 2,
-                                                    style: primaryFont.copyWith(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  )),
-                                         if(subscripeController.couponsdatalist[index].isRedeemed == "1")     Container(
-                                                height: 30,
-                                                width: 85,
-                                                decoration: BoxDecoration(
-                                                    color: const Color.fromARGB(255, 75, 133, 76),
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5)),
-                                                alignment: Alignment.center,
-                                                child: Text(
-                                                  "Redeemed",
-                                                  style: primaryFont.copyWith(
-                                                      color: Colors.white),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 0),
-                                          child: CustomPaint(
-                                              size: const Size(1, double.infinity),
-                                              painter: DashedLineVerticalPainter()),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.only(left: 8,top: 3,bottom: 3),
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Text(
-                                                "Coupon Code :",
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w400),
-                                              ),
-                                              Text(
-                                                 subscripeController.couponsdatalist[index]
-                                                    .couponcode,
-                                                style: primaryFont.copyWith(
-                                                    fontSize: 14,
-                                                    color: Color.fromARGB(255, 235, 145, 10),
-                                                    fontWeight: FontWeight.w500),
-                                              ),
-                                              InkWell(
-                                                onTap: (){
-                                                  FlutterClipboard.copy(
-                                                          subscripeController.couponsdatalist[index]
-                                                              .couponcode)
-                                                      .then(
-                                                    (value) =>
-                                                        Fluttertoast.showToast(
-                                                            msg:
-                                                                "Copy to clipboard",
-                                                            toastLength: Toast
-                                                                .LENGTH_SHORT,
-                                                            gravity: ToastGravity
-                                                                .CENTER,
-                                                            timeInSecForIosWeb: 1,
-                                                            backgroundColor:
-                                                                Colors.white,
-                                                            textColor:
-                                                                Colors.black,
-                                                            fontSize: 16.0),
-                                                    //print("code copied")
-                                                  );
-                                                },
-                                                child: Container(
-                                                  height: 25,
-                                                  width: 90,
-                                                  decoration: BoxDecoration(
-                                                      color: kblue,
-                                                      borderRadius:
-                                                          BorderRadius.circular(4)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                    children: [
-                                                      Text(
-                                                        "Copy",
-                                                        style: primaryFont.copyWith(
-                                                            color: Colors.white,
-                                                            fontWeight:
-                                                                FontWeight.w500),
-                                                      ),
-                                                      const SizedBox(
-                                                        width: 5,
-                                                      ),
-                                                      const Icon(
-                                                        Icons.copy,
-                                                        color: Colors.white,
-                                                        size: 15,
-                                                      )
-                                                    ],
-                                                  ),
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        )
-                                      ],
-                                    )),
-                              ),
-                            );
+                  return MobCouponContainer(
+                    couponCode: subscripeController.couponsdatalist[index].couponcode, 
+                    description: subscripeController.couponsdatalist[index].description, 
+                    image: subscripeController.couponsdatalist[index].image, 
+                    offer: subscripeController.couponsdatalist[index].cId, 
+                    title: subscripeController.couponsdatalist[index].name
+                    );
+                  // return Padding(
+                  //             padding: const EdgeInsets.only(top: 5, bottom: 5),
+                  //             child: ClipPath(
+                  //               clipper: TicketPassClipper(),
+                  //               child: Container(
+                  //                   height: 90,
+                  //                   decoration: BoxDecoration(
+                  //                       color: colors[Random().nextInt(9)],
+                  //                       borderRadius: BorderRadius.circular(5)),
+                  //                   child: Row(
+                  //                     children: [
+                  //                       Padding(
+                  //                         padding: const EdgeInsets.only(left: 10,top: 10,right: 10,bottom: 5),
+                  //                         child: Column(
+                  //                           mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //                           crossAxisAlignment: CrossAxisAlignment.center,
+                  //                           children: [
+                  //                             Container(
+                  //                                 width:200,
+                  //                                 child: Text(
+                  //                                   subscripeController.couponsdatalist
+                  //                                       [index].name
+                  //                                       .toString(),
+                  //                                   maxLines: 2,
+                  //                                   style: primaryFont.copyWith(
+                  //                                       fontSize: 15,
+                  //                                       fontWeight:
+                  //                                           FontWeight.bold),
+                  //                                 )),
+                  //                        if(subscripeController.couponsdatalist[index].isRedeemed == "1")     Container(
+                  //                               height: 30,
+                  //                               width: 85,
+                  //                               decoration: BoxDecoration(
+                  //                                   color: const Color.fromARGB(255, 75, 133, 76),
+                  //                                   borderRadius:
+                  //                                       BorderRadius.circular(
+                  //                                           5)),
+                  //                               alignment: Alignment.center,
+                  //                               child: Text(
+                  //                                 "Redeemed",
+                  //                                 style: primaryFont.copyWith(
+                  //                                     color: Colors.white),
+                  //                               ),
+                  //                             )
+                  //                           ],
+                  //                         ),
+                  //                       ),
+                  //                       const SizedBox(
+                  //                         width: 10,
+                  //                       ),
+                  //                       Padding(
+                  //                         padding: const EdgeInsets.only(left: 0),
+                  //                         child: CustomPaint(
+                  //                             size: const Size(1, double.infinity),
+                  //                             painter: DashedLineVerticalPainter()),
+                  //                       ),
+                  //                       Padding(
+                  //                         padding: const EdgeInsets.only(left: 8,top: 3,bottom: 3),
+                  //                         child: Column(
+                  //                           crossAxisAlignment:
+                  //                               CrossAxisAlignment.start,
+                  //                           mainAxisAlignment:
+                  //                               MainAxisAlignment.spaceAround,
+                  //                           children: [
+                  //                             Text(
+                  //                               "Coupon Code :",
+                  //                               style: primaryFont.copyWith(
+                  //                                   fontSize: 15,
+                  //                                   fontWeight: FontWeight.w400),
+                  //                             ),
+                  //                             Text(
+                  //                                subscripeController.couponsdatalist[index]
+                  //                                   .couponcode,
+                  //                               style: primaryFont.copyWith(
+                  //                                   fontSize: 14,
+                  //                                   color: Color.fromARGB(255, 235, 145, 10),
+                  //                                   fontWeight: FontWeight.w500),
+                  //                             ),
+                  //                             InkWell(
+                  //                               onTap: (){
+                  //                                 FlutterClipboard.copy(
+                  //                                         subscripeController.couponsdatalist[index]
+                  //                                             .couponcode)
+                  //                                     .then(
+                  //                                   (value) =>
+                  //                                       Fluttertoast.showToast(
+                  //                                           msg:
+                  //                                               "Copy to clipboard",
+                  //                                           toastLength: Toast
+                  //                                               .LENGTH_SHORT,
+                  //                                           gravity: ToastGravity
+                  //                                               .CENTER,
+                  //                                           timeInSecForIosWeb: 1,
+                  //                                           backgroundColor:
+                  //                                               Colors.white,
+                  //                                           textColor:
+                  //                                               Colors.black,
+                  //                                           fontSize: 16.0),
+                  //                                   //print("code copied")
+                  //                                 );
+                  //                               },
+                  //                               child: Container(
+                  //                                 height: 25,
+                  //                                 width: 90,
+                  //                                 decoration: BoxDecoration(
+                  //                                     color: kblue,
+                  //                                     borderRadius:
+                  //                                         BorderRadius.circular(4)),
+                  //                                 child: Row(
+                  //                                   mainAxisAlignment:
+                  //                                       MainAxisAlignment.center,
+                  //                                   children: [
+                  //                                     Text(
+                  //                                       "Copy",
+                  //                                       style: primaryFont.copyWith(
+                  //                                           color: Colors.white,
+                  //                                           fontWeight:
+                  //                                               FontWeight.w500),
+                  //                                     ),
+                  //                                     const SizedBox(
+                  //                                       width: 5,
+                  //                                     ),
+                  //                                     const Icon(
+                  //                                       Icons.copy,
+                  //                                       color: Colors.white,
+                  //                                       size: 15,
+                  //                                     )
+                  //                                   ],
+                  //                                 ),
+                  //                               ),
+                  //                             )
+                  //                           ],
+                  //                         ),
+                  //                       )
+                  //                     ],
+                  //                   ),
+                  //                   ),
+                  //             ),
+                  //           );
                 }),
               
                 ),

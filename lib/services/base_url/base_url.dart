@@ -301,4 +301,8 @@ abstract class BaseApiService {
       //get profilebusines api
   final String getbusinesProfileURL =
       "https://www.portal.bcipvtltd.com/api/auth/profile";
+
+  //merchant service category 
+  final String getMerchantCaregoryURL = "https://www.portal.bcipvtltd.com/api/auth/merchant_service_category";
+
 }

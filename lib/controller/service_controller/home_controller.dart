@@ -5,6 +5,7 @@ import 'package:bciweb/models/business_model/createservice_model.dart';
 import 'package:bciweb/models/getCartlistmodel.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/models/setting_model/service_list_model.dart';
+import 'package:bciweb/models/vendor_category_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
 import 'package:bciweb/services/networks/business_service/business_addcoupon_api_service.dart';
 import 'package:bciweb/services/networks/business_service/business_addservice_api_service.dart';
@@ -15,6 +16,7 @@ import 'package:bciweb/services/networks/business_service/getservice_bycategory_
 import 'package:bciweb/services/networks/services/get_services_api_services.dart';
 import 'package:bciweb/services/networks/subscription/add_subscription_api_services.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
+import 'package:bciweb/services/networks/vendor_list_api_services/vendor_category_list_api_service.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
 import 'package:bciweb/views/members/home_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/sucssesful.dart';
@@ -325,8 +327,22 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     update();
   }
 
+  //vendor category service
+  VendorCategoryListAPIServices vendorCategoryListAPIServices = VendorCategoryListAPIServices();
+  List<MerchatCategoryData> merchatCategoryList = [];
 
+  getVendorCategory(String vendorId) async {
+    merchatCategoryList.clear();
+    update();
+    dio.Response<dynamic> response =
+        await vendorCategoryListAPIServices.vendorCategory(vendorId: vendorId);
 
+    if (response.statusCode == 200) {
+      MerhantCategory merhantCategory = MerhantCategory.fromJson(response.data);
+      merchatCategoryList = merhantCategory.data;
+    }
+    update();
+  }
 
 
 
