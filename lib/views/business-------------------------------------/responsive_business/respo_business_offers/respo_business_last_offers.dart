@@ -1,77 +1,75 @@
-import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
+
+import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/business_controller/business_service_controller.dart';
+import 'package:bciweb/controller/service_controller/home_controller.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
+import 'package:custom_clippers/custom_clippers.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../constant/constans.dart';
-import '../../../controller/business_controller/business_service_controller.dart';
-import '../../../registerhomescreen/business_comm_homecontainer.dart';
-import '../../../registerhomescreen/common_reg_bottom.dart';
-import '../../members/common_widget/business_common_screen.dart';
 
-class BusinessLastOffersScreen extends StatefulWidget {
-  const BusinessLastOffersScreen({super.key});
+class LastOffers extends StatefulWidget {
+  const LastOffers({super.key});
 
   @override
-  State<BusinessLastOffersScreen> createState() => _BusinessLastOffersScreenState();
+  State<LastOffers> createState() => _LastOffersState();
 }
 
-class _BusinessLastOffersScreenState extends State<BusinessLastOffersScreen> {
+class _LastOffersState extends State<LastOffers> {
 
-final servicesController = Get.find<BusinessServiceController>();
- @override
+ final servicesController = Get.find<BusinessServiceController>();
+
+  @override
   void initState() {
     // TODO: implement initState
     super.initState();
     servicesController.offerList();
   }
 
+  List lastimage = [
+    'assets/images/lastoffers1.png',
+    'assets/images/lastjewell.png',
+    'assets/images/lastshoe.png',
+    'assets/images/lastlaptop.png',
+    
+  ];
+  List title = [
+    'New Arrival Men Spring \nSummer Cotton Liner \nShirt Slim',
+    'Stunning Temple jewellery \nPieces to Effortless Amp \nUp your Bridal Look',
+    'Hollow Out Men PU Leather \nOxford Formal Shoes -9/9.5',
+    'Best Buy:Apple Macbook \n"12"Display Intel Core i5\n8GB Memory 512GB Flash \nStorage'
+  ];
+  List description = [
+    'Gender: Men Item Type: Shirts \nType: Casual Shirts Material: \nModal,Linen,Cotton Sleeve quare\nStyle: Casual Shirt',
+    'Formerly used to adorn the idols \nof gods and goddesses and latern \nTemple Jewellery has  bride''\ns wedding day look.',
+    'Brand Name: US MART NEW \nYORKUpper Material: Shoes \nMaterial:RubberClosure \nType: Lace-upInsole \nMaterial:',
+    'Shop Apple Macbook® 12" \nDisplay Intel Core i5 8GB Memory \n512GB Flash Storage (Old Model) \nGold at Best Buy. ',
+
+  ];
   @override
   Widget build(BuildContext context) {
-      var size = MediaQuery.of(context).size;
+    var size = MediaQuery.of(context).size;
     return Scaffold(
-       appBar: PreferredSize(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              BusinessCommonScreen(),
-              BusinessCommonhomeContainer(),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 110)),
 
-          body: Padding(
-            padding: const EdgeInsets.only(left: 0,right: 0,top: 20),
-            child: ListView(children: [
-              Container(
-                height: size.height,
-                width: size.width,
-                child: GetBuilder<BusinessServiceController>(builder: (_) {
-                      return servicesController.offerListData.isEmpty ?
-                       Container(
-                        child: Center(
-                          child:Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset('assets/images/businessnoofferslist.png',
-                              //height: 300,
-                              //fit: BoxFit.fitHeight,
-                              ),
-                              ksizedbox20,
-                              Text('No offers Available',
-                              style: TextStyle(
-                                fontSize: 24,
-                                color: kblue,
-                                fontWeight: FontWeight.w700
-                              ),)
-                            ],
-                          ),
-                        ),
-                      ) :
-                        GridView.builder(
-                itemCount: servicesController.offerListData.length,
-                itemBuilder: ((context, index) {
-                  return Column(
+       appBar: PreferredSize(
+        child: AppBarMob(),
+        preferredSize: Size(double.infinity, 40),
+      ),
+      drawer: DrawerBusiness(),
+
+
+      body: GetBuilder<BusinessServiceController>(
+        builder: (_) {
+          return Container(
+           child:   ListView.builder(
+              itemCount: servicesController.offerListData.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
                     children: [
                       InkWell(
                         onTap: () {
@@ -175,19 +173,12 @@ final servicesController = Get.find<BusinessServiceController>();
                       ),
                       
                     ],
-                  );
-                }), gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                childAspectRatio: 2.8,
-                //crossAxisSpacing: 10,
-                //mainAxisSpacing: 10
-                ),);
-                    }),
-              ),
-                 ksizedbox30,
-               businessRegisterCommonBottom()
-            ]),
-          ),
+                  )
+                );
+              }),
+          );
+        }
+      ),
     );
   }
 }

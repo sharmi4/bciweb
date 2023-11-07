@@ -79,7 +79,8 @@ class _GalleryState extends State<RespoGallery> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(drawer:MobileDrawer() ,
+    return Scaffold(
+      drawer:MobileDrawer() ,
       appBar: PreferredSize(
           child: AppBarMob(),
           preferredSize: Size(double.infinity, 40)),

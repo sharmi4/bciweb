@@ -315,7 +315,7 @@ class _MobileDrawerState extends State<MobileDrawer> {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Get.to(const MobileProfileScreen());
+                          Get.offAll(const MobileProfileScreen());
                         },
                         child: GetBuilder<AuthProfileController>(
                           builder: (_) {
@@ -387,9 +387,12 @@ class _MobileDrawerState extends State<MobileDrawer> {
                   ),
                 )
               : const Text(""),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children:[
           authController.isLogedin.isTrue
               ? Padding(
-                  padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+                  padding: const EdgeInsets.only(top: 7,),
                   child: Divider(
                     color: kgrey,
                   ),
@@ -455,6 +458,42 @@ class _MobileDrawerState extends State<MobileDrawer> {
                     ],
                   ),
                 ),
+                  authController.isLogedin.isFalse
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          // Get.offAll(()=> const MemberLoginScreenrespo());
+                          Get.to(const RespoLanding());
+
+                          //    Get.toNamed(Routes.MobLogin);
+
+                          // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MemberLoginScreenrespo()));
+                        },
+                        child: Container(
+                          height: 30,
+                          width: 110,
+                          decoration: BoxDecoration(
+                              gradient:
+                                  LinearGradient(colors: [kyellow, kOrange]),
+                              borderRadius: BorderRadius.circular(8)),
+                          child: Center(
+                            child: Text(
+                              'LogIn',
+                              style: TextStyle(color: kwhite),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : Container(),
+                ]
+              ),
           Padding(
             padding: const EdgeInsets.only(top: 50, left: 20),
             child: Row(children: [

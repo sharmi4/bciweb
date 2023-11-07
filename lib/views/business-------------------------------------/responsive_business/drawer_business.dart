@@ -407,6 +407,40 @@ class _DrawerBusinessState extends State<DrawerBusiness> {
                           ],
                         ),
                       ),
+                       authController.isbusinessLogedin.isFalse
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 100),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              onTap: () {
+                                // Get.offAll(()=> const MemberLoginScreenrespo());
+                                Get.to(RespoLanding());
+          
+                                //    Get.toNamed(Routes.MobLogin);
+          
+                                // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> MemberLoginScreenrespo()));
+                              },
+                              child: Container(
+                                height: 30,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                    gradient:
+                                        LinearGradient(colors: [kyellow, kOrange]),
+                                    borderRadius: BorderRadius.circular(8)),
+                                child: Center(
+                                  child: Text(
+                                    'LogIn',
+                                    style: TextStyle(color: kwhite),
+                                  ),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
+                    : Container()
               ],
             ),
           ),

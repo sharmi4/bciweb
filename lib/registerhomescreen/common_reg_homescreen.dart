@@ -361,7 +361,56 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                 ),
                               ),
                             ),
-                          )
+                          ),
+                          authController.isLogedin == false
+                        ? Padding(
+                            padding: const EdgeInsets.only(left: 7),
+                            child: InkWell(
+                              onTap: () {
+                                Get.to(const LandingScreen());
+                                // Get.toNamed(Routes.MobileVerification);
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 110,
+                                decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        colors: [korange, kyellow]),
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Center(
+                                    child: Text(
+                                  'LogIn',
+                                  style: TextStyle(fontSize: 15, color: kwhite),
+                                )),
+                              ),
+                            ),
+                          ):Container()
+                        // : Padding(
+                        //     padding: const EdgeInsets.only(left: 7),
+                        //     child: InkWell(
+                        //       onTap: () {
+                        //         Get.to(LandingScreen());
+                        //         authController.logoutWeb();
+                        //         //    Get.toNamed(Routes.MobileVerification);
+                        //       },
+                        //       child: Container(
+                        //         height: 35,
+                        //         width: 110,
+                        //         decoration: BoxDecoration(
+                        //             gradient: LinearGradient(
+                        //                 colors: [
+                        //                 korange,kyellow]),
+                        //             borderRadius: BorderRadius.circular(15)),
+                        //         child: Center(
+                        //           child: Text(
+                        //             'Logout',
+                        //             style:
+                        //                 TextStyle(fontSize: 15, color: kwhite),
+                        //           ),
+                        //         ),
+                        //       ),
+                        //     ),
+                        //   )
                   ],
                 ),
               ),

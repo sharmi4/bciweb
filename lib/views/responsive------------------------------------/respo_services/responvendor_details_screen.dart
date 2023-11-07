@@ -54,6 +54,7 @@ class _ResVendorDetailsScreenState extends State<ResVendorDetailsScreen> {
       drawer: MobileDrawer(),
       body: ListView(
         children:[ 
+          ksizedbox10,
             widget.vendorListModelData.profilePicture != null
                 ? ClipRRect(
                     borderRadius: BorderRadius.circular(10),

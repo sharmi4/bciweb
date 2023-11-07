@@ -32,7 +32,7 @@ class ProfileController extends GetxController{
 
    getProfile() async {
     isLoading(true);
-    profileData.clear();
+    //profileData.clear();
     print("-------------->>1");
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
      print("-------------->>2");

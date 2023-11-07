@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/controller/business_controller/business_service_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:bciweb/models/service_model.dart';
 import 'package:bciweb/views/business-------------------------------------/responsive_business/drawer_business.dart';
+import 'package:bciweb/views/business-------------------------------------/responsive_business/respo_business_offers/respo_business_last_offers.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -21,7 +23,7 @@ class RespoBusinessOffers extends StatefulWidget {
 
 class _RespoBusinessOffersState extends State<RespoBusinessOffers> {
   final authController = Get.find<AuthController>();
-  final servicesController = Get.find<HomeServiceController>();
+final servicesController = Get.find<BusinessServiceController>();
 
   var merchantCategory;
   var titleController = TextEditingController();
@@ -573,28 +575,28 @@ class _RespoBusinessOffersState extends State<RespoBusinessOffers> {
                     style: TextStyle(fontSize: 21, color: kwhite),
                   )),
             ),
-            // ksizedbox20,
-            // Padding(
-            //   padding: const EdgeInsets.only(left: 20, right: 20),
-            //   child: ElevatedButton(
-            //       style: ElevatedButton.styleFrom(
-            //           backgroundColor: kyellow,
-            //           minimumSize:
-            //               Size(MediaQuery.of(context).size.width * 0.8, 50)),
-            //       onPressed: () {
-            //         Get.to(const LastOffers());
-            //       },
-            //       child: Row(
-            //         mainAxisAlignment: MainAxisAlignment.center,
-            //         children: [
-            //           Text(
-            //             'Last Offers',
-            //             style: TextStyle(fontSize: 21, color: kwhite),
-            //           ),
-            //          const Icon(Icons.arrow_forward)
-            //         ],
-            //       )),
-            // ),
+            ksizedbox20,
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: kyellow,
+                      minimumSize:
+                          Size(MediaQuery.of(context).size.width * 0.8, 50)),
+                  onPressed: () {
+                    Get.to(const LastOffers());
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'Last Offers',
+                        style: TextStyle(fontSize: 21, color: kwhite),
+                      ),
+                     const Icon(Icons.arrow_forward)
+                    ],
+                  )),
+            ),
             ksizedbox20
           ],
         ),

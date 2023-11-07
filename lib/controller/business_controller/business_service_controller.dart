@@ -68,14 +68,16 @@ class BusinessServiceController extends GetxController{
             "Service Updated Successfully",
             style: primaryFont.copyWith(color: Colors.white),
           ));
-    } else if (response.statusCode == 500) {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong, Please check all the fields",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
-    } else {}
+    }
+    //  else if (response.statusCode == 500) {
+    //   Get.rawSnackbar(
+    //       backgroundColor: Colors.red,
+    //       messageText: Text(
+    //         "Something went wrong, Please check all the fields",
+    //         style: primaryFont.copyWith(color: Colors.white),
+    //       ));
+    // } 
+    else {}
   }
      getServicesByVendor() async {
       await  Get.find<AuthProfileController>().getProfile();
@@ -96,7 +98,20 @@ class BusinessServiceController extends GetxController{
      
     update();
   }
+  //     getServicesByVendor() async {
+  //   dio.Response<dynamic> response =
+  //       await getServicesApiServices.getServicesByVendor(
+  //           vendorId:
+  //               Get.find<ProfileController>().profileData.first.id.toString());
 
+  //   if (response.statusCode == 200) {
+  //     ServiceListModel serviceListModel =
+  //         ServiceListModel.fromJson(response.data);
+
+  //     serviceDataList = serviceListModel.data;
+  //   }
+  //   update();
+  // }
   getServicesByCategory({required String categoryId}) async {
     dio.Response<dynamic> response = await getServicesByCategoryApiServices
         .getServicesByCategory(categoryId: categoryId,vendorId: Get.find<AuthProfileController>().profileData.first.id.toString());
@@ -134,14 +149,16 @@ class BusinessServiceController extends GetxController{
             "Service Created Successfully",
             style: primaryFont.copyWith(color: Colors.white),
           ));
-    } else if (response.statusCode == 500) {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong, Please check all the fields",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
-    } else {}
+    } 
+    // else if (response.statusCode == 500) {
+    //   Get.rawSnackbar(
+    //       backgroundColor: Colors.red,
+    //       messageText: Text(
+    //         "Something went wrong, Please check all the fields",
+    //         style: primaryFont.copyWith(color: Colors.white),
+    //       ));
+    // } 
+    else {}
   }
   AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
      addCoupons({
@@ -170,13 +187,14 @@ class BusinessServiceController extends GetxController{
             "Coupon created successfully",
             style: primaryFont.copyWith(color: Colors.white),
           ));
-      } else {
-         Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      } 
+      else {
+        //  Get.rawSnackbar(
+        //   backgroundColor: Colors.red,
+        //   messageText: Text(
+        //     "Something went wrong",
+        //     style: primaryFont.copyWith(color: Colors.white),
+        //   ));
       }
 
   }
@@ -221,12 +239,12 @@ class BusinessServiceController extends GetxController{
             style: primaryFont.copyWith(color: Colors.white),
           ));
       } else {
-         Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+        //  Get.rawSnackbar(
+        //   backgroundColor: Colors.red,
+        //   messageText: Text(
+        //     "Something went wrong",
+        //     style: primaryFont.copyWith(color: Colors.white),
+        //   ));
       }
 
   }
@@ -256,12 +274,12 @@ class BusinessServiceController extends GetxController{
       bookingListData = getBookingList.data;
 
     } else {
-        Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+        // Get.rawSnackbar(
+        //   backgroundColor: Colors.red,
+        //   messageText: Text(
+        //     "Something went wrong",
+        //     style: primaryFont.copyWith(color: Colors.white),
+        //   ));
     }
     update();
   }
@@ -285,12 +303,12 @@ class BusinessServiceController extends GetxController{
         bookingListData = getDateFBookingList.data;
 
       } else {
-        Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "Something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+        // Get.rawSnackbar(
+        //   backgroundColor: Colors.red,
+        //   messageText: Text(
+        //     "Something went wrong",
+        //     style: primaryFont.copyWith(color: Colors.white),
+        //   ));
     }
     update();
   }

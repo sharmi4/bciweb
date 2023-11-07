@@ -46,8 +46,8 @@ class Error {
     });
 
     factory Error.fromJson(Map<String, dynamic> json) => Error(
-        errorCode: json["ErrorCode"]??"",
-        errorMessage: json["ErrorMessage"]??"",
+        errorCode: json["ErrorCode"],
+        errorMessage: json["ErrorMessage"],
     );
 
     Map<String, dynamic> toJson() => {
@@ -106,28 +106,28 @@ class HotelInfoData {
     });
 
     factory HotelInfoData.fromJson(Map<String, dynamic> json) => HotelInfoData(
-        hotelCode: json["HotelCode"]??"",
-        hotelName: json["HotelName"]??"",
-        starRating: json["StarRating"]??"",
-        hotelUrl: json["HotelURL"]??"",
-        description: json["Description"]??"",
-        attractions: json["Attractions"]??"",
+        hotelCode: json["HotelCode"],
+        hotelName: json["HotelName"],
+        starRating: json["StarRating"],
+        hotelUrl: json["HotelURL"],
+        description: json["Description"] ?? "",
+        attractions: json["Attractions"],
         hotelFacilities: List<String>.from(json["HotelFacilities"].map((x) => x)),
         hotelPolicy: json["HotelPolicy"]??"",
-        specialInstructions: json["SpecialInstructions"]??"",
-         hotelPicture: json["HotelPicture"]??"",
+        specialInstructions: json["SpecialInstructions"],
+        hotelPicture: json["HotelPicture"],
         images: List<String>.from(json["Images"].map((x) => x)),
-        address: json["Address"]??"",
-        countryName: json["CountryName"]??"",
-        pinCode: json["PinCode"]??"",
-        hotelContactNo: json["HotelContactNo"]??"",
-        faxNumber: json["FaxNumber"]??"",
-        email: json["Email"]??"",
-        latitude: json["Latitude"]??"",
-        longitude: json["Longitude"]??"",
-        roomData: json["RoomData"]??"",
-        roomFacilities: json["RoomFacilities"]??"",
-        services: json["Services"]??"",
+        address: json["Address"],
+        countryName: json["CountryName"],
+        pinCode: json["PinCode"],
+        hotelContactNo: json["HotelContactNo"],
+        faxNumber: json["FaxNumber"],
+        email: json["Email"],
+        latitude: json["Latitude"] ?? "",
+        longitude: json["Longitude"] ?? "",
+        roomData: json["RoomData"],
+        roomFacilities: json["RoomFacilities"],
+        services: json["Services"],
     );
 
     Map<String, dynamic> toJson() => {

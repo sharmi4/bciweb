@@ -1,12 +1,12 @@
 // To parse this JSON data, do
 //
-//     final getCouponsModel = getCouponsModelFromJson(jsonString);
+//     final getCouponsList = getCouponsListFromJson(jsonString);
 
 import 'dart:convert';
 
-GetCouponsModel getCouponsModelFromJson(String str) => GetCouponsModel.fromJson(json.decode(str));
+GetCouponsModel getCouponsListFromJson(String str) => GetCouponsModel.fromJson(json.decode(str));
 
-String getCouponsModelToJson(GetCouponsModel data) => json.encode(data.toJson());
+String getCouponsListToJson(GetCouponsModel data) => json.encode(data.toJson());
 
 class GetCouponsModel {
     String message;

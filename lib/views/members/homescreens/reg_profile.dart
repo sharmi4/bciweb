@@ -17,7 +17,7 @@ import '../../profile_register_page/my_account/profile_office_addreas.dart';
 import '../../profile_register_page/my_account/profile_residential_address.dart';
 import '../../profile_register_page/my_account/profile_settings.dart';
 import '../../profile_register_page/profile_dashboard.dart';
-import '../../profile_register_page/profile_offerce.dart';
+import '../../profile_register_page/profile_coupons.dart';
 import '../../profile_register_page/profile_partners.dart';
 import '../../profile_register_page/profile_referal.dart';
 import '../../profile_register_page/profile_register_page.dart';
@@ -281,14 +281,14 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    'assets/icons/profileoffers.png',
+                                    'assets/icons/profilecuopons.png',
                                     height: 20,
                                     fit: BoxFit.fitHeight,
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.only(left: 11),
                                     child: Text(
-                                      'Offers',
+                                      'Coupons',
                                       style: TextStyle(color: kwhite),
                                     ),
                                   ),
@@ -841,7 +841,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             if (reghomeController.proindex.value == 1) 
                const ProfileDashboardScreen(),
             if (reghomeController.proindex.value == 2) 
-               const ProfileOfferceScreen(),
+               const ProfileCouponsScreen(),
             // if (reghomeController.proindex.value == 3)
             //   Container(
             //     width: MediaQuery.of(context).size.width - 195,

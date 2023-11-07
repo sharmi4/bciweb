@@ -388,20 +388,27 @@ class _HotelInfobookingState extends State<HotelInfobooking> {
                                       ),
                                     ),
                                     onPressed: () {
-                                      hotelController.blockroomapi(
-                                          userIp: widget.userIp,
-                                          hotelInfoData: hotelController
-                                              .hotelInfoData.first,
-                                          resultIndex: widget.resultIndex,
-                                          hotelCode: widget.hotelCode,
-                                          hotelName: hotelController
-                                              .hotelInfoData.first.hotelName,
-                                          searchToken: widget.searchToken,
-                                          hotelRoomsDetail: hotelController
-                                              .hotelRoomsData
-                                              .first
-                                              .hotelRoomsDetails
-                                              .first);
+                                     hotelController.initiatePayment(
+                                      amount: hotelController
+                                          .hotelRoomsData
+                                          .first
+                                          .hotelRoomsDetails
+                                          .first
+                                          .price
+                                          .roomPrice,
+                                      userIp: widget.userIp,
+                                      hotelInfoData:
+                                          hotelController.hotelInfoData.first,
+                                      resultIndex: widget.resultIndex,
+                                      hotelCode: widget.hotelCode,
+                                      hotelName: hotelController
+                                          .hotelInfoData.first.hotelName,
+                                      searchToken: widget.searchToken,
+                                      hotelRoomsDetail: hotelController
+                                          .hotelRoomsData
+                                          .first
+                                          .hotelRoomsDetails
+                                          .first);
                                       // Get.to(Sucssesspage());
                                       // Get.to(BusinessGenerate_otp
                                       // ());

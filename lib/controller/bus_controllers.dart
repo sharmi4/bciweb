@@ -1,11 +1,18 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:html';
 
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/models/busbookingmodels/bus_requery_model.dart';
+import 'package:bciweb/models/initiate_payment_model.dart';
+import 'package:bciweb/payment_gateway/phone_pe_bus_booking_model.dart';
+import 'package:bciweb/services/networks/payment_api_services/intiate_payment_api_services.dart';
+import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../constant/constans.dart';
 import '../models/busbookingmodels/bus_booking_history_model.dart';
 import '../models/busbookingmodels/bus_cityList_model.dart';
@@ -68,15 +75,15 @@ class BusController extends GetxController {
       getBusCityList = List<GetBusCityList>.from(
           response.data.map((x) => GetBusCityList.fromJson(x)));
     } else {
-      Get.rawSnackbar(
-        backgroundColor: Colors.red,
-        messageText: Text(
-          "something went wrong ${response.statusCode}",
-          style: primaryFont.copyWith(color: Colors.white),
-        ),
-      );
+     
     }
-    update();
+    update(); // Get.rawSnackbar(
+      //   backgroundColor: Colors.red,
+      //   messageText: Text(
+      //     "something went wrong ${response.statusCode}",
+      //     style: primaryFont.copyWith(color: Colors.white),
+      //   ),
+      // );
   }
 
   //search bus
@@ -115,12 +122,12 @@ class BusController extends GetxController {
       ));
     } }
     else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "something went wrong ${response.statusCode}",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "something went wrong ${response.statusCode}",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
@@ -150,14 +157,15 @@ class BusController extends GetxController {
       seatMap = busSeatMapList.seatMap;
       seatMapKey(busSeatMapList.seatMapKey);
       generateBusSeats(seatMap);
+       generateBusSeatsUpper(seatMap);
     } else {
-      Get.rawSnackbar(
-        backgroundColor: Colors.red,
-        messageText: Text(
-          "something went wrong ${response.statusCode}",
-          style: primaryFont.copyWith(color: Colors.white),
-        ),
-      );
+      // Get.rawSnackbar(
+      //   backgroundColor: Colors.red,
+      //   messageText: Text(
+      //     "something went wrong ${response.statusCode}",
+      //     style: primaryFont.copyWith(color: Colors.white),
+      //   ),
+      // );
     }
     update();
   }
@@ -208,7 +216,7 @@ class BusController extends GetxController {
     lowerSeatsList = arrangedList;
     update();
   }
-       generateBusSeatsUpper(List<SeatMap> tempSeats) {
+ generateBusSeatsUpper(List<SeatMap> tempSeats) {
     List<SeatMap> seats =
         tempSeats.where((element) => element.zIndex == "0").toList();
     List<SeatMap> seats2 =
@@ -267,7 +275,95 @@ class BusController extends GetxController {
 
     return seats;
   }
-  tempBookBusTicket(
+  InitiatePaymentApiServices initiatePaymentApiServices 
+  = InitiatePaymentApiServices();
+
+    initiatePayment(
+      {required double amount, required String bookingRef,
+  }) async {
+    print('------------------------------------------------1111111');
+    await Get.find<AuthProfileController>().getProfile();
+    print('${Get.find<AuthProfileController>().profileData}');
+    dio.Response<dynamic> response =
+        await initiatePaymentApiServices.initiatePayment(
+            userId: Get.find<AuthProfileController>().profileData.first.id,
+            totalAmount: amount.toString(),
+            status: "Bus");
+    print('---------------------------2222222222');
+    if (response.statusCode == 200) {
+      IninitiatePaymentModel ininitiatePaymentModel =
+          IninitiatePaymentModel.fromJson(response.data);
+
+      await launchUrl(Uri.parse(
+          ininitiatePaymentModel.data.instrumentResponse.redirectInfo.url));
+      //st
+      startTimer(
+        ininitiatePaymentModel.data.merchantTransactionId,
+        amount,
+        
+     
+      );
+      print("Payment is over ------------>>");
+    }
+  }
+  Timer? tempTimer;
+  startTimer(var referenceId, var amount ) {
+    print(":::::::::_________________payment strated---------------");
+    tempTimer = Timer.periodic(const Duration(seconds: 6), (timer) async {
+      print("timer working ...");
+      int status = await Get.find<BusController>().checkPhonePeStatus(
+          refernceID: referenceId,
+          amount: amount,
+          bookingRef: referenceId,
+          );
+
+      print(
+          "<<<>>><<<>>><<>>><>><><><><1><><1><------cccccc------><1><><><><><><><><><><><><><><>");
+      print(status);
+
+      if (status == 1) {
+        print("calceld:::::::::::");
+        timer.cancel();
+      } else if (status == 2) {
+        print("calceld:::::::::::");
+        timer.cancel();
+      }
+    });
+  }
+    PaymentResponseApiServices paymentResponseApiServices =
+     PaymentResponseApiServices();
+
+  checkPhonePeStatus(
+      {required String refernceID,
+      required double amount,
+      required String bookingRef
+    }) async {
+
+        int paymentId = 0;
+    dio.Response<dynamic> response = await paymentResponseApiServices
+        .paymentResponseApi(merchantId: refernceID);
+
+    if (response.data["code"] == "PAYMENT_SUCCESS") {
+      paymentId = 1;
+      print("<<<<<<<<payment is Success>>>>>>>>");
+      
+      busAddPayment(refernceNo: bookingRef, price: amount.toStringAsFixed(2));
+    } 
+    else if (response.data["code"] == "PAYMENT_PENDING")
+     {
+       paymentId = 0; 
+      print("<<<<<<<<payment is Failed>>>>>>>>");
+
+      //   Get.to(() => PaymentFailedScreen());
+    }
+    else
+    {
+       paymentId = 2; 
+    }
+
+    return paymentId;
+  }
+ tempBookBusTicket(
       {required String boardingId,
       required String droppingId,
       required Bus busData,
@@ -278,7 +374,6 @@ class BusController extends GetxController {
       required List<PaxDetailslist> paxDetailslist,
       required String amount,
       required String customerName}) async {
-    ;
     dio.Response<dynamic> response =
         await busTempTicketBookingApiService.busTempTicketBooking(
             boardingId: boardingId,
@@ -293,10 +388,24 @@ class BusController extends GetxController {
     if (response.statusCode == 200) {
       if (response.data["Response_Header"]["Error_Desc"] == "SUCCESS") {
         var bookingRefernceNo = response.data["Booking_RefNo"];
+        //  <<-------------------------------------------------------------------------->>
+        initiatePayment(
+            amount: double.parse(amount), bookingRef: bookingRefernceNo);
 
-        busAddPayment(refernceNo: bookingRefernceNo);
-        print('bus temp bookining 1');
-        //booking api;
+        //bypassing payment for booking testing
+
+        // bookBusBypassing(
+        //     amount: double.parse(amount), bookingRef: bookingRefernceNo);
+        //  <<-------------------------------------------------------------------------->>
+
+        // payUseingEaseBuzzSubs(
+        //     amount: amount,
+        //     bookingRef: bookingRefernceNo,
+        //     customerName: customerName.trim().split(" ").first,
+        //     email: customerEmail,
+        //     phone: mobileNumber);
+
+        //booking api
       } else {
         Get.rawSnackbar(
             message: response.data["Error_Desc"], backgroundColor: Colors.red);
@@ -304,7 +413,7 @@ class BusController extends GetxController {
     }
   }
      
-  busAddPayment({required String refernceNo}) async {
+  busAddPayment({required String refernceNo,required String price}) async {
     print('bus add payment 2');
     dio.Response<dynamic> response =
         await busAddPaymentApiServices.addPaymentForBusApiServices(
@@ -358,7 +467,32 @@ class BusController extends GetxController {
       );
     } else {}
   }
-
+   
+     Map<String, String> getArguments(var amount) {
+    var randomStr = DateTime.now().microsecondsSinceEpoch.toString();
+    Map<String, String> map = {
+      'version': "1",
+      'txnRefNo': "ORD$randomStr", // Should change on every request
+      'amount': "$amount",
+      'passCode': 'SVPL4257',
+      'bankId': '000004',
+      'terminalId': '10100781',
+      'merchantId': '101000000000781',
+      'mcc': "4112",
+      'paymentType': 'Pay',
+      'currency': "356",
+      'email': 'manu@gmail.com',
+      'phone': '+917907886767',
+      'hashKey': 'E59CD2BF6F4D86B5FB3897A680E0DD3E',
+      'aesKey': '5EC4A697141C8CE45509EF485EE7D4B1',
+      'payOpt': 'cc',
+      'orderInfo': 'NARUTO00001',
+      'env': 'UAT', //UAT PROD
+      'url': 'https://sandbox.isgpay.com/ISGPay-Genius/request.action',
+    };
+    print("Order is >>>>ORD$randomStr");
+    return map;
+  }
   busTicketDownload({required String refernceNo}) async {
     dio.Response<dynamic> response =
         await busRequieyApiServices.busRequiryApi(refrenceNo: refernceNo);

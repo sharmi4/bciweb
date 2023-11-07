@@ -159,6 +159,7 @@ class _BusSeatsState extends State<BusSeats> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
+            
                               Column(
                                 children: [
                                   Text(
@@ -586,28 +587,21 @@ class _BusSeatsState extends State<BusSeats> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Seat No.").text.xl3.blue900.semiBold.make(),
-                                Container(
-                                  width: 100,
-                                  child: Wrap(
-                                    children: [
-                                      for (int i = 0;
-                                          i < busController.seatIds.length;
-                                          i++)
-                                        Text("${busController.seatIds[i]},")
-                                            .text
-                                            .xl
-                                            .blue900
-                                            .semiBold
-                                            .make(),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                           Row(
+                children: [
+                  Text(
+                    'Seat No  :  ',
+                    style: TextStyle(color:kblue, 
+                    fontSize: 19,
+                    fontWeight: FontWeight.w500),
+                  ),
+                  for (int i = 0; i < seatIds.length; i++)
+                    Text(
+                      '${seatIds[i]},',
+                      style: TextStyle(color: kgrey, fontSize: 19),
+                    ),
+                ],
+              ),
                             Divider(
                               height: 1,
                             ),

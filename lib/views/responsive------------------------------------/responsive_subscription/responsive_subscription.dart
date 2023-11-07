@@ -120,6 +120,7 @@ class _SubscribeState extends State<Subscribe1> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      ksizedbox40,
                       Image.asset("assets/images/offersnotavailableimage.png"),
                       const SizedBox(
                         height: 15,
@@ -139,13 +140,14 @@ class _SubscribeState extends State<Subscribe1> {
                 physics: const BouncingScrollPhysics(),
                 //  crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  ksizedbox40,
                   const Padding(
                     padding: EdgeInsets.only(left: 15),
                     child: Text(
-                      "All Select Membership Cards\nChoose Anything",
+                      "Select All Membership Cards\nChoose Anything",
                       style: TextStyle(
-                          fontSize: 17,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w700,
                           height: 1.4,
                           color: Color(0xff003366)),
                     ),

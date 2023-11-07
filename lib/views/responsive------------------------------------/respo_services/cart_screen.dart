@@ -233,7 +233,7 @@ class _CartScreenState extends State<CartScreen> {
                             child: Center(child:
                                 GetBuilder<HomeServiceController>(builder: (_) {
                               return Text(
-                                'Total : ₹${homeController.getGrandTotal(tcartListData: homeController.cartListData).toStringAsFixed(2)}',
+                                'Total : ₹${servicehomeController.getGrandTotal(tcartListData: servicehomeController.cartListData).toStringAsFixed(2)}',
                                 // homeController.cartListData.totalamount,
       
                                 style: TextStyle(
@@ -250,17 +250,17 @@ class _CartScreenState extends State<CartScreen> {
                         child: InkWell(
                           onTap: () {
                             for (int i = 0;
-                                i < homeController.cartListData.length;
+                                i < servicehomeController.cartListData.length;
                                 i++) {
-                              homeController.addBooking(
+                              servicehomeController.addBooking(
                                   serviceid:
-                                      homeController.cartListData[i].serviceId,
-                                  cartid: homeController.cartListData[i].id
+                                      servicehomeController.cartListData[i].serviceId,
+                                  cartid: servicehomeController.cartListData[i].id
                                       .toString(),
-                                  qty: homeController.cartListData[i].quantity,
+                                  qty: servicehomeController.cartListData[i].quantity,
                                   offerOrCoupon: "",
                                   couponcode: "",
-                                  amount: homeController.cartListData[i].amount);
+                                  amount: servicehomeController.cartListData[i].amount);
                             }
       
                             Get.to(MobileHome());

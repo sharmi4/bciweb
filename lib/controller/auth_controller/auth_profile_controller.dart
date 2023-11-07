@@ -58,6 +58,7 @@ class AuthProfileController extends GetxController {
   RxBool isSubscribed = false.obs;
 
   RxString planid = "".obs;
+  
 
   UpdateBankApiServices updateBankApiServices = UpdateBankApiServices();
 
@@ -80,7 +81,7 @@ class AuthProfileController extends GetxController {
 
 
   getProfile() async {
-    profileData.clear();
+    // profileData.clear();
     isLoading(true);
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
     isLoading(false);
@@ -98,10 +99,13 @@ class AuthProfileController extends GetxController {
   }
 
   updateProfile(
+     
       {required MemberProfileUpdateModel memberProfileUpdateModel}) async {
     isLoading(true);
+    //profileData.clear();
     dio.Response<dynamic> response = await profileUpdateApi.profileUpdate(
         memberProfileUpdateModel: memberProfileUpdateModel);
+       
     isLoading(false);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Get.rawSnackbar(
@@ -115,6 +119,7 @@ class AuthProfileController extends GetxController {
 
   updateRecidencyAddress({required AddressModel residentialAddress}) async {
     isLoading(true);
+    //profileData.clear();
     dio.Response<dynamic> response = await updateResidencialAddressApiServices
         .updateResidencialAddressApi(residentialAddress: residentialAddress);
     isLoading(false);
@@ -129,7 +134,9 @@ class AuthProfileController extends GetxController {
   }
 
   updateOfficalAddress({required AddressModel officialAddress}) async {
+
     isLoading(true);
+    //profileData.clear();
     dio.Response<dynamic> response = await updateOfficialApiServices
         .updateOfficialAddress(officialAddress: officialAddress);
     isLoading(false);
@@ -144,6 +151,7 @@ class AuthProfileController extends GetxController {
   }
 
   updateProfilePic(dynamic image) async {
+    //profileData.clear();
     dio.Response<dynamic> response =
         await profilePIcUpdateApiServices.profilepicUpdate(image: image);
 
@@ -244,14 +252,16 @@ class AuthProfileController extends GetxController {
     };
     return map;
   }
+    // String responseData = "Nothing";
 
   void payforWallet({required double amount}) async {
+    int tempAmount = amount.toInt();
     String? result;
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
-      result =
-          await _isgpayuiPlugin.initiateISGPayUI(getArguments(amount * 100)) ??
-              'Unknown platform version';
+      result = await _isgpayuiPlugin
+              .initiateISGPayUI(getArguments(tempAmount * 100)) ??
+          'Unknown platform version';
     } on PlatformException catch (e) {
       result = e.message;
     }
@@ -260,13 +270,12 @@ class AuthProfileController extends GetxController {
     var responseData = jsonDecode(result!);
     var data = jsonDecode(responseData);
     print("<<----response-data---->>${data.runtimeType}");
-    print(responseData);
     print(data);
     if (data["ResponseCode"] == "00") {
       Get.find<ApiSettingController>()
           .addTransaction(amount: amount.toStringAsFixed(2));
 
-      Get.to(RegisterProfileScreen());
+      Get.to(const RegisterProfileScreen());
 
       //need to give id
       Get.snackbar(
@@ -293,6 +302,55 @@ class AuthProfileController extends GetxController {
           snackPosition: SnackPosition.BOTTOM);
     }
   }
+  // void payforWallet({required double amount}) async {
+  //   String? result;
+  //   // Platform messages may fail, so we use a try/catch PlatformException.
+  //   try {
+  //     result =
+  //         await _isgpayuiPlugin.initiateISGPayUI(getArguments(amount * 100)) ??
+  //             'Unknown platform version';
+  //   } on PlatformException catch (e) {
+  //     result = e.message;
+  //   }
+  //   debugPrint('Result ::: $result');
+
+  //   var responseData = jsonDecode(result!);
+  //   var data = jsonDecode(responseData);
+  //   print("<<----response-data---->>${data.runtimeType}");
+  //   print(responseData);
+  //   print(data);
+  //   if (data["ResponseCode"] == "00") {
+  //     Get.find<ApiSettingController>()
+  //         .addTransaction(amount: amount.toStringAsFixed(2));
+
+  //     Get.to(RegisterProfileScreen());
+
+  //     //need to give id
+  //     Get.snackbar(
+  //       "Payment Successfully Paid",
+  //       "",
+  //       icon: const Icon(Icons.check_circle_outline_outlined,
+  //           color: Colors.white),
+  //       snackPosition: SnackPosition.BOTTOM,
+  //       backgroundColor: Colors.green,
+  //       borderRadius: 20,
+  //       margin: const EdgeInsets.all(15),
+  //       colorText: Colors.white,
+  //       duration: const Duration(seconds: 3),
+  //       isDismissible: true,
+  //       dismissDirection: DismissDirection.horizontal,
+  //       forwardAnimationCurve: Curves.easeOutBack,
+  //     );
+  //   } else {
+  //     Get.closeAllSnackbars();
+  //     Get.snackbar(
+  //         "The last transaction has been cancelled!", "Please try again!",
+  //         colorText: Colors.white,
+  //         backgroundColor: Colors.red,
+  //         snackPosition: SnackPosition.BOTTOM);
+  //   }
+  // }
+
   WithdrawWalletApiServices withdrawWalletApiServices =WithdrawWalletApiServices();
   withdrawAmountFromWallet({required String amount}) async {
     isLoading(true);

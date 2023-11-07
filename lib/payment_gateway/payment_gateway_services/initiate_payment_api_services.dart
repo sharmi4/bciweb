@@ -1,42 +1,35 @@
-import 'dart:convert';
 import 'dart:io';
-
 import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class IntiatePayementApiServices extends BaseApiService {
-  Future initiatePayment({required String url,}) async {
+class InitiatePaymentApiServices extends BaseApiService {
+  Future initiatePayment(
+      {required int userId,
+      required String totalAmount,
+      required String status}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
-      // FormData formData = FormData.fromMap({
-      //   "official_address": jsonEncode({
-      //     "door_no": officialAddress.doorNo,
-      //     "address": officialAddress.address,
-      //     "building_name": officialAddress.buildingName,
-      //     "state": officialAddress.state,
-      //     "city": officialAddress.city,
-      //     "proof_id_no": officialAddress.personalId,
-      //     "pincode": officialAddress.pincode,
-      //   }),
-      // });
-
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");
 
-      var response = await dio.post(url,
-          options: Options(
-              headers: {
-                'Accept': 'application/json',
-                'Authorization': 'Bearer $authtoken'
-              },
-              followRedirects: false,
-              validateStatus: (status) {
-                return status! <= 500;
-              }),
-          );
-      print("::::::::<initiate payent URL>::::::::status code::::::::::");
+      var response = await dio.post(
+        paymentInitiateURL,
+        options: Options(
+          headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer $authtoken'
+          },
+          followRedirects: false,
+          validateStatus: (status) {
+            return status! <= 500;
+          },
+        ),
+        data: {"user_id": "$userId", "amount": totalAmount, "type": status},
+      );
+      print(
+          "::::::::< Subscribe plan details Api >:::$userId:::: : status code :::::::::::::::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

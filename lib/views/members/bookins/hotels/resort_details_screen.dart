@@ -128,6 +128,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                   children: [
                    
                     Container(
+                    
                       // height: 500,
                       width: 700,
                       decoration: BoxDecoration(
@@ -196,6 +197,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                     ),
                                     ksizedbox20,
                                     Container(
+                              
                                       width: 300,
                                       child: Column(
                                         children: [
@@ -445,7 +447,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                   child: hotelController.hotelRoomsData.isEmpty
                                       ? const Text('')
                                       : Container(
-                                          height: 50,
+                                          height: 500,
                                           child: ListView.builder(
                                             physics:
                                                 const NeverScrollableScrollPhysics(),
@@ -712,20 +714,27 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                               Obx(
                                 () => InkWell(
                                   onTap: () {
-                                    hotelController.blockroomapi(
-                                        userIp: widget.userIp,
-                                        hotelInfoData:
-                                            hotelController.hotelInfoData.first,
-                                        resultIndex: widget.resultIndex,
-                                        hotelCode: widget.hotelCode,
-                                        hotelName: hotelController
-                                            .hotelInfoData.first.hotelName,
-                                        searchToken: widget.searchToken,
-                                        hotelRoomsDetail: hotelController
-                                            .hotelRoomsData
-                                            .first
-                                            .hotelRoomsDetails
-                                            .first);
+                                    hotelController.initiatePayment(
+                                      amount: hotelController
+                                          .hotelRoomsData
+                                          .first
+                                          .hotelRoomsDetails
+                                          .first
+                                          .price
+                                          .roomPrice,
+                                      userIp: widget.userIp,
+                                      hotelInfoData:
+                                          hotelController.hotelInfoData.first,
+                                      resultIndex: widget.resultIndex,
+                                      hotelCode: widget.hotelCode,
+                                      hotelName: hotelController
+                                          .hotelInfoData.first.hotelName,
+                                      searchToken: widget.searchToken,
+                                      hotelRoomsDetail: hotelController
+                                          .hotelRoomsData
+                                          .first
+                                          .hotelRoomsDetails
+                                          .first,);
                                   },
                                   child: hotelController.isLoading.isTrue
                                       ? Container(

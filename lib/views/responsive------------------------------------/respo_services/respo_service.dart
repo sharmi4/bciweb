@@ -70,7 +70,7 @@ class _ServicesState extends State<RespoServices> {
                       child: Text(
                         'SERVICES',
                         style: GoogleFonts.lato(
-                            fontSize: 30,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                             color: kwhite),
                       ),
@@ -135,14 +135,17 @@ class _ServicesState extends State<RespoServices> {
                                             child: serviceController.vendorList[index]
                                                         .profilePicture !=
                                                     null
-                                                ? Image.network(
-                                                    serviceController.vendorList[index]
-                                                        .profilePicture!,
-                                                    //height: 125,
-                                                    height: 100,
-                                                    width: 150,
-                                                    fit: BoxFit.fitHeight,
-                                                  )
+                                                ? Container(
+                                                  height: 100,
+                                                  width: 150,
+                                                  child: Image.network(
+                                                      serviceController.vendorList[index]
+                                                          .profilePicture!,
+                                                      //height: 125,
+                                                     
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                )
                                                 : Image.asset(
                                                     "assets/icons/no.jpg",
                                                     //height: 125,

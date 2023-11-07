@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -176,7 +177,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                 padding: const EdgeInsets.only(left: 30),
                                 child: InkWell(
                                   onTap: () {
-                                    Get.toNamed('/subscribe');
+                                  Get.toNamed(Routes.Subscrib);
                                   },
                                   child: Container(
                                     height: 38,

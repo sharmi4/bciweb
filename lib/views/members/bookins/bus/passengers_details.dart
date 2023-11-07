@@ -72,664 +72,662 @@ class _PssengesDetailsState extends State<PssengesDetails> {
   var emailController = TextEditingController();
   var ageController = TextEditingController();
   List<String> seatIds = [];
+  bool isvalue=false;
+  bool creditbool = false;
+  bool netbankbool = false;
+  bool bhimbool = false;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: kwhite,
-      appBar: PreferredSize(
-          child: CommonScreen(), preferredSize: Size(double.infinity, 40)),
-      body: SingleChildScrollView(
-        child: GetBuilder<BusController>(builder: (_) {
-          return Column(
+          appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              CommonScreen(),
               RegisterCommonContainer(),
-              ksizedbox20,
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: size.width * 0.83,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Text('Passengers Details')
-                                  .text
-                                  .bold
-                                  .blue900
-                                  .xl4
-                                  .make(),
-                            ],
+            ],
+          ), preferredSize:const Size(double.infinity, 110)),
+      body: ListView(
+        children: [
+          GetBuilder<BusController>(builder: (_) {
+            return Column(
+              children: [
+               
+                ksizedbox20,
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: size.width * 0.83,
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              children: [
+                                Text('PASSENGERS DETAILS',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  color: kblue,
+                                  fontWeight: FontWeight.w600
+                                ),)
+                                    
+                              ],
+                            ),
                           ),
-                        ),
-                        // ksizedbox10,
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Container(
-                        //     child: Padding(
-                        //       padding: const EdgeInsets.symmetric(horizontal: 10),
-                        //       child: Column(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                        //         children: [
-                        //           Text('Login(to Better offer and Services)')
-                        //               .text
-                        //               .semiBold
-                        //               .blue900
-                        //               .xl2
-                        //               .make(),
-                        //           Row(
-                        //             mainAxisAlignment:
-                        //                 MainAxisAlignment.spaceBetween,
-                        //             children: [
-                        //               Container(
-                        //                 child: TextField(
-                        //                   decoration: InputDecoration(
-                        //                     border: OutlineInputBorder(
-                        //                         borderRadius:
-                        //                             BorderRadius.circular(5)),
-                        //                     hintText: 'Enter Mobile Number',
-                        //                   ),
-                        //                 ),
-                        //                 decoration: BoxDecoration(
-                        //                     //  color: Colors.grey[200],
-                        //                     borderRadius:
-                        //                         BorderRadius.circular(15)),
-                        //                 height: size.height * 0.06,
-                        //                 width: size.width * 0.4,
-                        //               ),
-                        //               Row(
-                        //                 children: [
-                        //                   Container(
-                        //                     child: Center(
-                        //                         child: Text('Sent Otp')
-                        //                             .text
-                        //                             .semiBold
-                        //                             .xl2
-                        //                             .white
-                        //                             .make()),
-                        //                     height: size.height * 0.06,
-                        //                     width: 150,
-                        //                     color: korange,
-                        //                   ),
-                        //                   kwidth10,
-                        //                   Text('OR').text.xl2.make(),
-                        //                   kwidth10,
-                        //                   Container(
-                        //                     child: Center(
-                        //                         child: Text('Gmail Sign in')
-                        //                             .text
-                        //                             .semiBold
-                        //                             .xl2
-                        //                             .white
-                        //                             .make()),
-                        //                     height: size.height * 0.06,
-                        //                     width: 150,
-                        //                     color: kgrey,
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //             ],
-                        //           )
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     decoration: kcontainer,
-                        //     height: size.height * 0.2,
-                        //     width: size.width,
-                        //   ),
-                        // ),
-                        ksizedbox10,
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
+                          // ksizedbox10,
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Container(
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.symmetric(horizontal: 10),
+                          //       child: Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         children: [
+                          //           Text('Login(to Better offer and Services)')
+                          //               .text
+                          //               .semiBold
+                          //               .blue900
+                          //               .xl2
+                          //               .make(),
+                          //           Row(
+                          //             mainAxisAlignment:
+                          //                 MainAxisAlignment.spaceBetween,
+                          //             children: [
+                          //               Container(
+                          //                 child: TextField(
+                          //                   decoration: InputDecoration(
+                          //                     border: OutlineInputBorder(
+                          //                         borderRadius:
+                          //                             BorderRadius.circular(5)),
+                          //                     hintText: 'Enter Mobile Number',
+                          //                   ),
+                          //                 ),
+                          //                 decoration: BoxDecoration(
+                          //                     //  color: Colors.grey[200],
+                          //                     borderRadius:
+                          //                         BorderRadius.circular(15)),
+                          //                 height: size.height * 0.06,
+                          //                 width: size.width * 0.4,
+                          //               ),
+                          //               Row(
+                          //                 children: [
+                          //                   Container(
+                          //                     child: Center(
+                          //                         child: Text('Sent Otp')
+                          //                             .text
+                          //                             .semiBold
+                          //                             .xl2
+                          //                             .white
+                          //                             .make()),
+                          //                     height: size.height * 0.06,
+                          //                     width: 150,
+                          //                     color: korange,
+                          //                   ),
+                          //                   kwidth10,
+                          //                   Text('OR').text.xl2.make(),
+                          //                   kwidth10,
+                          //                   Container(
+                          //                     child: Center(
+                          //                         child: Text('Gmail Sign in')
+                          //                             .text
+                          //                             .semiBold
+                          //                             .xl2
+                          //                             .white
+                          //                             .make()),
+                          //                     height: size.height * 0.06,
+                          //                     width: 150,
+                          //                     color: kgrey,
+                          //                   ),
+                          //                 ],
+                          //               ),
+                          //             ],
+                          //           )
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     decoration: kcontainer,
+                          //     height: size.height * 0.2,
+                          //     width: size.width,
+                          //   ),
+                          // ),
+                          ksizedbox10,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Enter Contact Details (Your Booking Details Will be Sent to your email address and contact no.)',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    fontWeight: FontWeight.w500,
+                                    color: Colors.black
+                                    ),),
+                                        
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      children: [
+                                        Container(
+                                          child: TextField(
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(
+                                                  10),
+                                              FilteringTextInputFormatter
+                                                  .digitsOnly,
+                                              FilteringTextInputFormatter.deny(
+                                                  RegExp(r'\s')),
+                                            ],
+                                            controller: phoneNumberContoller,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              hintText: 'Enter Mobile Number',
+                                            ),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              //  color: Colors.grey[200],
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          height: size.height * 0.06,
+                                          width: size.width * 0.3,
+                                        ),
+                                        kwidth10,
+                                        Container(
+                                          child: TextField(
+                                            controller: emailController,
+                                            decoration: InputDecoration(
+                                              border: OutlineInputBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              hintText: 'Enter Email ID',
+                                            ),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              //  color: Colors.grey[200],
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          height: size.height * 0.06,
+                                          width: size.width * 0.3,
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Checkbox(
+                                          value:this. isvalue, 
+                                          onChanged: ( value){
+                                          setState(() {
+                                            this.isvalue = value!;
+                                          });
+                                          }),
+                                        kwidth10,
+                                        Text('Sent Me booking details before making the booking',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w600
+                                        ),)
+                                            
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                              decoration: kcontainer,
+                              height: size.height * 0.4,
+                              width: size.width,
+                            ),
+                          ),
+                          ksizedbox10,
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                  
+                                    for (int i = 0;
+                                        i < widget.busContactmodel.length;
+                                        i++)
+                                       Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text('Passenger Details').text.xl.semiBold.make(),
+                        Text('Seat No : ${widget.busContactmodel[i].seats}')
+                            .text
+                            .semiBold
+                            .make(),
+                      ],
+                    ),
+                    ksizedbox10,
+                    const Text('NAME').text.bold.gray500.make(),
+                    ksizedbox10,
+                    TextField(
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.name,
+                      controller: widget.busContactmodel[i].nameController,
+                      decoration: const InputDecoration.collapsed(
+                          hintText: "Enter your name"),
+                    ),
+                    ksizedbox10,
+                    Divider(color: kgrey, height: 0.5),
+                    ksizedbox20,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        const Text('GENDER').text.gray500.semiBold.make(),
+                      ],
+                    ),
+                    RadioListTile(
+            title:const Text('Male'),
+            value: 'Male',
+            groupValue: widget.busContactmodel[i].gender,
+            onChanged: (value) {
+              setState(() {
+                widget.busContactmodel[i].gender = value!;
+              });
+            },
+          ),
+          RadioListTile(
+            title:const Text('Female'),
+            value: 'Female',
+            groupValue: widget.busContactmodel[i].gender,
+            onChanged: (value) {
+              setState(() {
+                widget.busContactmodel[i].gender = value!;
+              });
+            },
+          ),
+                    ksizedbox10,
+                    const Text('AGE').text.bold.gray500.make(),
+                    ksizedbox10,
+                    TextField(
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.number,
+                      controller: widget.busContactmodel[i].ageController,
+                      decoration: const InputDecoration.collapsed(hintText: "Enter your age"),
+                    ),
+                  ksizedbox20
+                  ], 
+                ),
+                                          
+                                    // Column(
+                                    //   mainAxisAlignment:
+                                    //       MainAxisAlignment.start,
+                                    //   children: [
+                                    //     Row(
+                                    //       children: [
+                                    //         Container(
+                                    //           child: TextField(
+                                    //             controller: nameController,
+                                    //             decoration: InputDecoration(
+                                    //               border: OutlineInputBorder(
+                                    //                   borderRadius:
+                                    //                       BorderRadius.circular(
+                                    //                           5)),
+                                    //               hintText:
+                                    //                   'Enter Your Full Name',
+                                    //             ),
+                                    //           ),
+                                    //           decoration: BoxDecoration(
+                                    //               //  color: Colors.grey[200],
+                                    //               borderRadius:
+                                    //                   BorderRadius.circular(
+                                    //                       15)),
+                                    //           height: size.height * 0.06,
+                                    //           width: size.width * 0.3,
+                                    //         ),
+                                    //         kwidth10,
+                                    //         Container(
+                                    //           child: TextField(
+                                    //             controller: ageController,
+                                    //             decoration: InputDecoration(
+                                    //               border: OutlineInputBorder(
+                                    //                   borderRadius:
+                                    //                       BorderRadius.circular(
+                                    //                           5)),
+                                    //               hintText: 'Age',
+                                    //             ),
+                                    //           ),
+                                    //           decoration: BoxDecoration(
+                                    //               //  color: Colors.grey[200],
+                                    //               borderRadius:
+                                    //                   BorderRadius.circular(
+                                    //                       15)),
+                                    //           height: size.height * 0.06,
+                                    //           width: 60,
+                                    //         ),
+                                    //         Icon(Icons.person),
+                                    //         const Text('GENDER')
+                                    //             .text
+                                    //             .gray500
+                                    //             .semiBold
+                                    //             .make(),
+                                    //         RadioListTile(
+                                    //           title: const Text('Male'),
+                                    //           value: 'Male',
+                                    //          groupValue: widget
+                                    //              .busContactmodel[i].gender,
+                                    //           onChanged: (value) {
+                                    //             setState(() {
+                                    //               widget.busContactmodel[i]
+                                    //                   .gender = value!;
+                                    //             });
+                                    //           },
+                                    //         ),
+                                    //         Row(
+                                    //           mainAxisAlignment:
+                                    //               MainAxisAlignment
+                                    //                   .spaceBetween,
+                                    //           children: [
+                                    //             const Text('Passenger Details')
+                                    //                 .text
+                                    //                 .xl
+                                    //                 .semiBold
+                                    //                 .make(),
+                                    //            Text('Seat No : ${widget.busContactmodel[i].seats}')
+                                    //                .text
+                                    //                .semiBold
+                                    //                .make(),
+                                    //           ],
+                                    //         ),
+                                    //       ],
+                                    //     ),
+                                    //     ksizedbox10,
+
+                                    //   ],
+                                    // ),
+                                  ],
+                                ),
+                              ),
+                              decoration: kcontainer,
+                              // height: size.height * 0.3,
+                              width: size.width,
+                            ),
+                          ),
+                          ksizedbox10,
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Container(
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.symmetric(horizontal: 10),
+                          //       child: Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         children: [
+                          //           Text('All Coupons Code Available')
+                          //               .text
+                          //               .semiBold
+                          //               .blue900
+                          //               .xl2
+                          //               .make(),
+                          //           Column(
+                          //             mainAxisAlignment: MainAxisAlignment.start,
+                          //             children: [
+                          //               Row(
+                          //                 children: [
+                          //                   Container(
+                          //                     child: TextField(
+                          //                       decoration: InputDecoration(
+                          //                         border: OutlineInputBorder(
+                          //                             borderRadius:
+                          //                                 BorderRadius.circular(5)),
+                          //                         hintText: 'Enter Your Full Name',
+                          //                       ),
+                          //                     ),
+                          //                     decoration: BoxDecoration(
+                          //                         //  color: Colors.grey[200],
+                          //                         borderRadius:
+                          //                             BorderRadius.circular(15)),
+                          //                     height: size.height * 0.06,
+                          //                     width: size.width * 0.3,
+                          //                   ),
+                          //                 ],
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     decoration: kcontainer,
+                          //     height: size.height * 0.2,
+                          //     width: size.width,
+                          //   ),
+                          // ),
+                          ksizedbox10,
+                          // Padding(
+                          //   padding: const EdgeInsets.all(8.0),
+                          //   child: Container(
+                          //     child: Padding(
+                          //       padding: const EdgeInsets.symmetric(horizontal: 10),
+                          //       child: Column(
+                          //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          //         crossAxisAlignment: CrossAxisAlignment.start,
+                          //         children: [
+                          //           Text('All Coupons Code Available')
+                          //               .text
+                          //               .semiBold
+                          //               .blue900
+                          //               .xl2
+                          //               .make(),
+                          //           Column(
+                          //             mainAxisAlignment: MainAxisAlignment.start,
+                          //             children: [
+                          //               Row(
+                          //                 children: [
+                          //                   Container(
+                          //                     child: TextField(
+                          //                       decoration: InputDecoration(
+                          //                         border: OutlineInputBorder(
+                          //                             borderRadius:
+                          //                                 BorderRadius.circular(5)),
+                          //                         hintText: 'Enter Your Full Name',
+                          //                       ),
+                          //                     ),
+                          //                     decoration: BoxDecoration(
+                          //                         //  color: Colors.grey[200],
+                          //                         borderRadius:
+                          //                             BorderRadius.circular(15)),
+                          //                     height: size.height * 0.06,
+                          //                     width: size.width * 0.3,
+                          //                   ),
+                          //                 ],
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ],
+                          //       ),
+                          //     ),
+                          //     decoration: kcontainer,
+                          //     height: size.height * 0.2,
+                          //     width: size.width,
+                          //   ),
+                          // ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
                               child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Text('Enter Contact Details (Your Booking Details Will be Sent to your email address and contact no.)')
-                                      .text
-                                      .semiBold
-                                      .blue900
-                                      .xl2
-                                      .make(),
                                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Container(
-                                        child: TextField(
-                                          inputFormatters: [
-                                            LengthLimitingTextInputFormatter(
-                                                10),
-                                            FilteringTextInputFormatter
-                                                .digitsOnly,
-                                            FilteringTextInputFormatter.deny(
-                                                RegExp(r'\s')),
-                                          ],
-                                          controller: phoneNumberContoller,
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            hintText: 'Enter Mobile Number',
-                                          ),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            //  color: Colors.grey[200],
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        height: size.height * 0.06,
-                                        width: size.width * 0.3,
-                                      ),
                                       kwidth10,
-                                      Container(
-                                        child: TextField(
-                                          controller: emailController,
-                                          decoration: InputDecoration(
-                                            border: OutlineInputBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            hintText: 'Enter Email ID',
-                                          ),
-                                        ),
-                                        decoration: BoxDecoration(
-                                            //  color: Colors.grey[200],
-                                            borderRadius:
-                                                BorderRadius.circular(15)),
-                                        height: size.height * 0.06,
-                                        width: size.width * 0.3,
-                                      ),
+                                      Checkbox(
+                                    
+                                        value: this.creditbool, 
+                                        shape: CircleBorder(),
+                                        onChanged: ( value){
+                                          setState(() {
+                                            this.creditbool= value!;
+                                          });
+                                        }),
+                                      kwidth10,
+                                      Text('CREDIT CARD',
+                                      style: TextStyle(
+                                        fontSize: 17,
+
+                                      ),)
                                     ],
                                   ),
                                   Row(
                                     children: [
-                                      Icon(Icons.check_box),
                                       kwidth10,
-                                      Text('Sent Me booking details before making the booking')
-                                          .text
-                                          .semiBold
-                                          .blue900
-                                          .xl2
-                                          .make(),
+                                    Checkbox(
+                                      shape: CircleBorder(),
+                                      value:this. netbankbool, 
+                                      onChanged: (value){
+                                        this.netbankbool = value!;
+                                      }),
+                                      kwidth10,
+                                      Text('NET BANKING',
+                                      style: TextStyle(
+                                        fontSize: 17
+                                      ),)
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      kwidth10,
+                                      Checkbox(
+                                        shape: CircleBorder(),
+                                        value: this.bhimbool, 
+                                        onChanged: (value){
+                                          setState(() {
+                                            this.bhimbool = value!;
+                                          });
+                                        }),
+                                      kwidth10,
+                                      Text('BHIM',
+                                      style: TextStyle(
+                                        fontSize: 17
+                                      ),)
                                     ],
                                   )
                                 ],
                               ),
+                              width: size.width,
+                              height: size.height * 0.4,
+                              decoration: BoxDecoration(
+                                  border: Border.all(color: Colors.black)),
                             ),
-                            decoration: kcontainer,
-                            height: size.height * 0.3,
-                            width: size.width,
                           ),
-                        ),
-                        ksizedbox10,
-
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('Enter Passenger Details Please review Passenger details before making the booking')
-                                      .text
-                                      .semiBold
-                                      .blue900
-                                      .xl2
-                                      .make(),
-                                  for (int i = 0;
-                                      i < widget.busContactmodel.length;
-                                      i++)
-                                    Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Container(
-                                              child: TextField(
-                                                controller: widget
-                                                    .busContactmodel[i]
-                                                    .nameController,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            5),
-                                                  ),
-                                                  hintText:
-                                                      'Enter Your Full Name',
-                                                ),
-                                              ),
-                                              decoration: BoxDecoration(
-
-                                                  //  color: Colors.grey[200],
-
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15)),
-                                              height: size.height * 0.06,
-                                              width: size.width * 0.3,
-                                            ),
-                                            kwidth10,
-                                            Container(
-                                              child: TextField(
-                                                controller: widget
-                                                    .busContactmodel[i]
-                                                    .ageController,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              5)),
-                                                  hintText: 'Age',
-                                                ),
-                                              ),
-                                              decoration: BoxDecoration(
-                                                  //  color: Colors.grey[200],
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15)),
-                                              height: size.height * 0.06,
-                                              width: 60,
-                                            ),
-                                            kwidth10,
-                                            Icon(Icons.person),
-                                            const Text('GENDER')
-                                                .text
-                                                .gray500
-                                                .semiBold
-                                                .make(),
-                                            kwidth10,
-                                            Text('Seat No : ${widget.busContactmodel[i].seats}')
-                                                .text
-                                                .gray500
-                                                .semiBold
-                                                .make(),
-
-                                            Container(
-                                              width: 150,
-                                              child: RadioListTile(
-                                                title: const Text('Male'),
-                                                value: 'Male',
-                                                groupValue: widget
-                                                    .busContactmodel[i].gender,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    widget.busContactmodel[i]
-                                                        .gender = value!;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-
-                                            Container(
-                                              width: 150,
-                                              child: RadioListTile(
-                                                title: const Text('female'),
-                                                value: 'female',
-                                                groupValue: widget
-                                                    .busContactmodel[i].gender,
-                                                onChanged: (value) {
-                                                  setState(() {
-                                                    widget.busContactmodel[i]
-                                                        .gender = value!;
-                                                  });
-                                                },
-                                              ),
-                                            ),
-
-                                            // RadioListTile(
-                                            //   title: const Text('Male'),
-                                            //   value: 'Male',
-                                            //  groupValue: widget
-                                            //      .busContactmodel[i].gender,
-                                            //   onChanged: (value) {
-                                            //     setState(() {
-                                            //       widget.busContactmodel[i]
-                                            //           .gender = value!;
-                                            //     });
-                                            //   },
-                                            // ),
-                                          ],
-                                        ),
-                                        ksizedbox10,
-                                      ],
-                                    ),
-
-                                  // Column(
-                                  //   mainAxisAlignment:
-                                  //       MainAxisAlignment.start,
-                                  //   children: [
-                                  //     Row(
-                                  //       children: [
-                                  //         Container(
-                                  //           child: TextField(
-                                  //             controller: nameController,
-                                  //             decoration: InputDecoration(
-                                  //               border: OutlineInputBorder(
-                                  //                   borderRadius:
-                                  //                       BorderRadius.circular(
-                                  //                           5)),
-                                  //               hintText:
-                                  //                   'Enter Your Full Name',
-                                  //             ),
-                                  //           ),
-                                  //           decoration: BoxDecoration(
-                                  //               //  color: Colors.grey[200],
-                                  //               borderRadius:
-                                  //                   BorderRadius.circular(
-                                  //                       15)),
-                                  //           height: size.height * 0.06,
-                                  //           width: size.width * 0.3,
-                                  //         ),
-                                  //         kwidth10,
-                                  //         Container(
-                                  //           child: TextField(
-                                  //             controller: ageController,
-                                  //             decoration: InputDecoration(
-                                  //               border: OutlineInputBorder(
-                                  //                   borderRadius:
-                                  //                       BorderRadius.circular(
-                                  //                           5)),
-                                  //               hintText: 'Age',
-                                  //             ),
-                                  //           ),
-                                  //           decoration: BoxDecoration(
-                                  //               //  color: Colors.grey[200],
-                                  //               borderRadius:
-                                  //                   BorderRadius.circular(
-                                  //                       15)),
-                                  //           height: size.height * 0.06,
-                                  //           width: 60,
-                                  //         ),
-                                  //         Icon(Icons.person),
-                                  //         const Text('GENDER')
-                                  //             .text
-                                  //             .gray500
-                                  //             .semiBold
-                                  //             .make(),
-                                  //         RadioListTile(
-                                  //           title: const Text('Male'),
-                                  //           value: 'Male',
-                                  //          groupValue: widget
-                                  //              .busContactmodel[i].gender,
-                                  //           onChanged: (value) {
-                                  //             setState(() {
-                                  //               widget.busContactmodel[i]
-                                  //                   .gender = value!;
-                                  //             });
-                                  //           },
-                                  //         ),
-                                  //         Row(
-                                  //           mainAxisAlignment:
-                                  //               MainAxisAlignment
-                                  //                   .spaceBetween,
-                                  //           children: [
-                                  //             const Text('Passenger Details')
-                                  //                 .text
-                                  //                 .xl
-                                  //                 .semiBold
-                                  //                 .make(),
-                                  //            Text('Seat No : ${widget.busContactmodel[i].seats}')
-                                  //                .text
-                                  //                .semiBold
-                                  //                .make(),
-                                  //           ],
-                                  //         ),
-                                  //       ],
-                                  //     ),
-                                  //     ksizedbox10,
-
-                                  //   ],
-                                  // ),
-                                ],
-                              ),
-                            ),
-                            decoration: kcontainer,
-                            // height: size.height * 0.3,
-                            width: size.width,
-                          ),
-                        ),
-                        ksizedbox10,
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Container(
-                        //     child: Padding(
-                        //       padding: const EdgeInsets.symmetric(horizontal: 10),
-                        //       child: Column(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                        //         children: [
-                        //           Text('All Coupons Code Available')
-                        //               .text
-                        //               .semiBold
-                        //               .blue900
-                        //               .xl2
-                        //               .make(),
-                        //           Column(
-                        //             mainAxisAlignment: MainAxisAlignment.start,
-                        //             children: [
-                        //               Row(
-                        //                 children: [
-                        //                   Container(
-                        //                     child: TextField(
-                        //                       decoration: InputDecoration(
-                        //                         border: OutlineInputBorder(
-                        //                             borderRadius:
-                        //                                 BorderRadius.circular(5)),
-                        //                         hintText: 'Enter Your Full Name',
-                        //                       ),
-                        //                     ),
-                        //                     decoration: BoxDecoration(
-                        //                         //  color: Colors.grey[200],
-                        //                         borderRadius:
-                        //                             BorderRadius.circular(15)),
-                        //                     height: size.height * 0.06,
-                        //                     width: size.width * 0.3,
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     decoration: kcontainer,
-                        //     height: size.height * 0.2,
-                        //     width: size.width,
-                        //   ),
-                        // ),
-                        ksizedbox10,
-                        // Padding(
-                        //   padding: const EdgeInsets.all(8.0),
-                        //   child: Container(
-                        //     child: Padding(
-                        //       padding: const EdgeInsets.symmetric(horizontal: 10),
-                        //       child: Column(
-                        //         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        //         crossAxisAlignment: CrossAxisAlignment.start,
-                        //         children: [
-                        //           Text('All Coupons Code Available')
-                        //               .text
-                        //               .semiBold
-                        //               .blue900
-                        //               .xl2
-                        //               .make(),
-                        //           Column(
-                        //             mainAxisAlignment: MainAxisAlignment.start,
-                        //             children: [
-                        //               Row(
-                        //                 children: [
-                        //                   Container(
-                        //                     child: TextField(
-                        //                       decoration: InputDecoration(
-                        //                         border: OutlineInputBorder(
-                        //                             borderRadius:
-                        //                                 BorderRadius.circular(5)),
-                        //                         hintText: 'Enter Your Full Name',
-                        //                       ),
-                        //                     ),
-                        //                     decoration: BoxDecoration(
-                        //                         //  color: Colors.grey[200],
-                        //                         borderRadius:
-                        //                             BorderRadius.circular(15)),
-                        //                     height: size.height * 0.06,
-                        //                     width: size.width * 0.3,
-                        //                   ),
-                        //                 ],
-                        //               ),
-                        //             ],
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //     decoration: kcontainer,
-                        //     height: size.height * 0.2,
-                        //     width: size.width,
-                        //   ),
-                        // ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                Row(
-                                  children: [
-                                    kwidth10,
-                                    Icon(Icons.check_circle),
-                                    kwidth10,
-                                    Text('CREDIT CARD').text.xl2.normal.make()
-                                  ],
+                                Obx(
+                                  () => InkWell(
+                                      onTap: () {
+                                        List<PaxDetailslist> paxDetailslists = [];
+
+                                        for (int a = 0;
+                                            a < widget.busContactmodel.length;
+                                            a++) {
+                                          PaxDetailslist paxDetailslistdata =
+                                              PaxDetailslist(
+                                                  age: widget.busContactmodel[a]
+                                                      .ageController.text,
+                                                  gender: widget
+                                                              .busContactmodel[a]
+                                                              .gender ==
+                                                          "Male"
+                                                      ? 0
+                                                      : 1,
+                                                  isLadies: false,
+                                                  paxName: widget
+                                                      .busContactmodel[a]
+                                                      .nameController
+                                                      .text,
+                                                  seatNumber: widget
+                                                      .busContactmodel[a].seats);
+
+                                          paxDetailslists.add(paxDetailslistdata);
+                                        }
+                                        busController.tempBookBusTicket(
+                                            boardingId: widget.boardingId,
+                                            droppingId: widget.dropingId,
+                                            busData: widget.busData,
+                                            searcKey: widget.searchkey,
+                                            mobileNumber:
+                                                phoneNumberContoller.text,
+                                            customerEmail: emailController.text,
+                                            paxDetailslist: paxDetailslists,
+                                            amount: widget.amount,
+                                            customerName: widget.cusName,
+                                            seatMapKey:
+                                                busController.seatMapKey.value);
+                                        // Get.to(BusbookingSuccesfullScreen());
+                                      },
+                                      child: busController.isLoading.isTrue
+                                          ? Container(
+                                              child:  Center(
+                                                child:
+                                                    const CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              height: size.height * 0.06,
+                                              width: 190,
+                                              color: korange,
+                                            )
+                                          : Container(
+                                              child: Center(
+                                                  child: Text(
+                                                          'PAY ₹ ${busController.totalAmount.value}')
+                                                      .text
+                                                      .semiBold
+                                                      .xl2
+                                                      .white
+                                                      .make()),
+                                              height: size.height * 0.06,
+                                              width: 190,
+                                              color: korange,
+                                            )),
                                 ),
-                                Row(
-                                  children: [
-                                    kwidth10,
-                                    Icon(Icons.check_circle),
-                                    kwidth10,
-                                    Text('NET BANKING').text.xl2.normal.make()
-                                  ],
-                                ),
-                                Row(
-                                  children: [
-                                    kwidth10,
-                                    Icon(Icons.check_circle),
-                                    kwidth10,
-                                    Text('BHIM').text.xl2.normal.make()
-                                  ],
-                                )
                               ],
                             ),
-                            width: size.width,
-                            height: size.height * 0.4,
-                            decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black)),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Obx(
-                                () => InkWell(
-                                    onTap: () {
-                                      // List<PaxDetailslist> paxDetailslists = [];
-
-                                      // for (int a = 0;
-                                      //     a < widget.busContactmodel.length;
-                                      //     a++) {
-                                      //   PaxDetailslist paxDetailslistdata =
-                                      //       PaxDetailslist(
-                                      //           age: widget.busContactmodel[a]
-                                      //               .ageController.text,
-                                      //           gender: widget
-                                      //                       .busContactmodel[a]
-                                      //                       .gender ==
-                                      //                   "Male"
-                                      //               ? 0
-                                      //               : 1,
-                                      //           isLadies: false,
-                                      //           paxName: widget
-                                      //               .busContactmodel[a]
-                                      //               .nameController
-                                      //               .text,
-                                      //           seatNumber: widget
-                                      //               .busContactmodel[a].seats);
-
-                                      //   paxDetailslists.add(paxDetailslistdata);
-                                      // }
-                                      // busController.tempBookBusTicket(
-                                      //     boardingId: widget.boardingId,
-                                      //     droppingId: widget.dropingId,
-                                      //     busData: widget.busData,
-                                      //     searcKey: widget.searchkey,
-                                      //     mobileNumber:
-                                      //         phoneNumberContoller.text,
-                                      //     customerEmail: emailController.text,
-                                      //     paxDetailslist: paxDetailslists,
-                                      //     amount: widget.amount,
-                                      //     customerName: widget.cusName,
-                                      //     seatMapKey:
-                                      //         busController.seatMapKey.value);
-                                      // // Get.to(BusbookingSuccesfullScreen());
-                                    },
-                                    child: busController.isLoading.isTrue
-                                        ? Container(
-                                            child:  Center(
-                                              child:
-                                                  const CircularProgressIndicator(
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            height: size.height * 0.06,
-                                            width: 190,
-                                            color: korange,
-                                          )
-                                        : Container(
-                                            child: Center(
-                                                child: Text(
-                                                        'PAY ₹ ${busController.totalAmount.value}')
-                                                    .text
-                                                    .semiBold
-                                                    .xl2
-                                                    .white
-                                                    .make()),
-                                            height: size.height * 0.06,
-                                            width: 190,
-                                            color: korange,
-                                          )),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  BussDetails(
-                    boardingId: widget.boardingId,
-                    busData: widget.busData,
-                    dropingId: widget.dropingId,
-                    searchkey: widget.searchkey,
-                    seatIds: seatIds,
-                    amount: busController.totalAmount.value.toStringAsFixed(2),
-                  )
-                ],
-              ),
-              ksizedbox30,
-              const RegisterCommonBottom()
-            ],
-          );
-        }),
+                    BussDetails(
+                      boardingId: widget.boardingId,
+                      busData: widget.busData,
+                      dropingId: widget.dropingId,
+                      searchkey: widget.searchkey,
+                      seatIds: seatIds,
+                      amount: busController.totalAmount.value.toStringAsFixed(2), 
+                      busContactmodel: [],
+                    )
+                  ],
+                ),
+                ksizedbox30,
+                const RegisterCommonBottom()
+              ],
+            );
+          }),
+        ],
       ),
     );
   }

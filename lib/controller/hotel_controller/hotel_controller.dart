@@ -1,7 +1,13 @@
+import 'dart:async';
+
+import 'package:bciweb/models/initiate_payment_model.dart';
+import 'package:bciweb/payment_gateway/payment_gateway_services/initiate_payment_api_services.dart';
+import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../constant/constans.dart';
 import '../../models/hotel_model/block_room_api_model.dart';
 import '../../models/hotel_model/get_hotel_room_model.dart';
@@ -43,16 +49,20 @@ class HotelController extends GetxController {
   RxBool isPageLoading = false.obs;
   List<SearchCityListModel> getHotelCityList = [];
   TempBookingModel? tempBookingModel;
+ RxBool isHotelSearch = false.obs;
 
-  hoteldestination({required String city}) async {
-    dio.Response<dynamic> response =
-        await hoteldestinationapiservice.hoteldestination(city: city.trim());
-
+hoteldestination({required String searchCity}) async {
+    isHotelSearch(true);
+    update();
+    dio.Response<dynamic> response = await hoteldestinationapiservice
+        .hoteldestination(city: searchCity.trim());
+    isHotelSearch(false);
+    update();
     if (response.statusCode == 200) {
       getHotelCityList = List<SearchCityListModel>.from(
           response.data.map((x) => SearchCityListModel.fromJson(x)));
-      print(":::::::::length of the list::::::::::::");
-      print(getHotelCityList.length);
+      print("---------------->>${getHotelCityList.length}");
+      update();
     } else {
       Get.rawSnackbar(
         backgroundColor: Colors.red,
@@ -64,6 +74,30 @@ class HotelController extends GetxController {
     }
     update();
   }
+  // hoteldestination({required String city}) async {
+  //    isHotelSearch(true);
+  //    update();
+  //   dio.Response<dynamic> response =
+  //       await hoteldestinationapiservice.hoteldestination(city: city.trim());
+  //   isHotelSearch(false);
+  //   update();
+  //   if (response.statusCode == 200) {
+  //     getHotelCityList = List<SearchCityListModel>.from(
+  //         response.data.map((x) => SearchCityListModel.fromJson(x)));
+  //     print(":::::::::length of the list::::::::::::");
+  //     print(getHotelCityList.length);
+  //     update();
+  //   } else {
+  //     Get.rawSnackbar(
+  //       backgroundColor: Colors.red,
+  //       messageText: Text(
+  //         "something went wrong ${response.statusCode}",
+  //         style: primaryFont.copyWith(color: Colors.white),
+  //       ),
+  //     );
+  //   }
+  //   update();
+  // }
 
   // hotel search
 
@@ -157,12 +191,12 @@ class HotelController extends GetxController {
           GetHotelRoomModel.fromJson(response.data);
       hotelRoomsData.add(hotelRoomsModel.result);
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "something went wrong",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
@@ -190,12 +224,12 @@ class HotelController extends GetxController {
       HotelInfoModel hotelInfoModel = HotelInfoModel.fromJson(response.data);
       hotelInfoData.add(hotelInfoModel.result);
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "something went wrong",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
@@ -203,8 +237,8 @@ class HotelController extends GetxController {
   //block room
 
   BlockRoomApiService blockroomapiservice = BlockRoomApiService();
-  List<Result> blockroomdata = [];
-
+  
+ List<Result> blockroomdata = [];
   blockroomapi(
       {required String userIp,
       required String resultIndex,
@@ -238,13 +272,13 @@ class HotelController extends GetxController {
       );
     } else {
       isLoading(false);
-      Get.rawSnackbar(
-        backgroundColor: Colors.red,
-        messageText: Text(
-          "something went wrong",
-          style: primaryFont.copyWith(color: Colors.white),
-        ),
-      );
+      // Get.rawSnackbar(
+      //   backgroundColor: Colors.red,
+      //   messageText: Text(
+      //     "something went wrong",
+      //     style: primaryFont.copyWith(color: Colors.white),
+      //   ),
+      // );
     }
     update();
   }
@@ -324,13 +358,13 @@ class HotelController extends GetxController {
             ));
       }
     } else {
-      Get.rawSnackbar(
-        backgroundColor: Colors.red,
-        messageText: Text(
-          "something went wrong",
-          style: primaryFont.copyWith(color: Colors.white),
-        ),
-      );
+      // Get.rawSnackbar(
+      //   backgroundColor: Colors.red,
+      //   messageText: Text(
+      //     "something went wrong",
+      //     style: primaryFont.copyWith(color: Colors.white),
+      //   ),
+      // );
     }
     update();
   }
@@ -356,12 +390,12 @@ class HotelController extends GetxController {
           HotelBookingListModel.fromJson(response.data);
       bookingList = hotelBookingListModel.bookingList;
     } else {
-      Get.rawSnackbar(
-          backgroundColor: Colors.red,
-          messageText: Text(
-            "something went wrong",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       "something went wrong",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
     }
     update();
   }
@@ -385,5 +419,139 @@ class HotelController extends GetxController {
           '----------------------------33333333333333333333333333---------------------------------------');
     }
     return result;
+  }
+
+ 
+       InitiatePaymentApiServices initiatePaymentApiServices 
+        = InitiatePaymentApiServices();
+
+    initiatePayment(
+      {
+      required double amount,
+      required String userIp,
+      required String resultIndex,
+      required String hotelCode,
+      required String hotelName,
+      required String searchToken,
+      required HotelInfoData hotelInfoData,
+      required ht.HotelRoomsDetail hotelRoomsDetail,
+  }) async {
+    print('------------------------------------------------1111111');
+    await Get.find<AuthProfileController>().getProfile();
+    print('${Get.find<AuthProfileController>().profileData}');
+    dio.Response<dynamic> response =
+        await initiatePaymentApiServices.initiatePayment(
+            userId: Get.find<AuthProfileController>().profileData.first.id,
+            totalAmount: amount.toString(),
+            status: "Bus");
+    print('---------------------------2222222222');
+    if (response.statusCode == 200) {
+      IninitiatePaymentModel ininitiatePaymentModel =
+          IninitiatePaymentModel.fromJson(response.data);
+
+      await launchUrl(Uri.parse(
+          ininitiatePaymentModel.data.instrumentResponse.redirectInfo.url));
+      //st
+      // startTimer(
+      //   ininitiatePaymentModel.data.merchantTransactionId,
+      //   amount,
+      //   hotelCode,
+      //   hotelName,
+      //   hotelInfoData,
+      //   searchToken,
+      //   resultIndex,
+      //   hotelRoomsDetail.
+        
+        
+        
+     
+      // );
+      print("Payment is over ------------>>");
+    }
+  }
+  Timer? tempTimer;
+  startTimer(var  refernceID,
+        var amount,
+      var userIp,
+      var resultIndex,
+      var  hotelCode,
+      var  hotelName,
+      var  searchToken,
+       HotelInfoData hotelInfoData,
+       ht.HotelRoomsDetail hotelRoomsDetail ) {
+    print(":::::::::_________________payment strated---------------");
+    tempTimer = Timer.periodic(const Duration(seconds: 6), (timer) async {
+      print("timer working ...");
+      int status = await Get.find<HotelController>().checkPhonePeStatus(
+          refernceID: refernceID,
+          amount: amount,
+          userIp: userIp, 
+          resultIndex: resultIndex, 
+          hotelCode: hotelCode, 
+          hotelName: hotelName,
+           searchToken: searchToken, 
+           hotelInfoData: hotelInfoData, 
+           hotelRoomsDetail: hotelRoomsDetail,
+          );
+
+      print(
+          "<<<>>><<<>>><<>>><>><><><><1><><1><------cccccc------><1><><><><><><><><><><><><><><>");
+      print(status);
+
+      if (status == 1) {
+        print("calceld:::::::::::");
+        timer.cancel();
+      } else if (status == 2) {
+        print("calceld:::::::::::");
+        timer.cancel();
+      }
+    });
+  }
+    PaymentResponseApiServices paymentResponseApiServices =
+     PaymentResponseApiServices();
+
+  checkPhonePeStatus(
+      {required String refernceID,
+      required double amount,
+      required String userIp,
+      required String resultIndex,
+      required String hotelCode,
+      required String hotelName,
+      required String searchToken,
+      required HotelInfoData hotelInfoData,
+      required ht.HotelRoomsDetail hotelRoomsDetail
+    }) async {
+
+        int paymentId = 0;
+    dio.Response<dynamic> response = await paymentResponseApiServices
+        .paymentResponseApi(merchantId: refernceID);
+
+    if (response.data["code"] == "PAYMENT_SUCCESS") {
+      paymentId = 1;
+      print("<<<<<<<<payment is Success>>>>>>>>");
+      
+      
+      blockroomapi(
+          userIp: userIp,
+          hotelInfoData: hotelInfoData,
+          resultIndex: resultIndex,
+          hotelCode: hotelCode,
+          hotelName: hotelName,
+          searchToken: searchToken,
+          hotelRoomsDetail: hotelRoomsDetail);
+    } 
+    else if (response.data["code"] == "PAYMENT_PENDING")
+     {
+       paymentId = 0; 
+      print("<<<<<<<<payment is Failed>>>>>>>>");
+
+      //   Get.to(() => PaymentFailedScreen());
+    }
+    else
+    {
+       paymentId = 2; 
+    }
+
+    return paymentId;
   }
 }

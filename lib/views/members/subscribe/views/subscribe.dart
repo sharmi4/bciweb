@@ -69,9 +69,9 @@ class _SubscribeState extends State<Subscribe> {
                       right: 0,
                       child: Center(
                         child: Text(
-                          'Subscribe',
+                          'SUBSCRIBE',
                           style: GoogleFonts.lato(
-                              fontSize: 80,
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
                               color: kwhite),
                         ),
@@ -86,7 +86,7 @@ class _SubscribeState extends State<Subscribe> {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     color: Color(0xff003366),
-                    fontSize: 35,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold),
               ),
               ksizedbox10,
@@ -109,7 +109,7 @@ class _SubscribeState extends State<Subscribe> {
                   Padding(
                     padding: const EdgeInsets.only(left: 40),
                     child: Container(
-                      height: 500,
+                      height:MediaQuery.of(context).size.height,
                       width: 700,
                       child: GridView.builder(
                           shrinkWrap: true,
@@ -175,7 +175,8 @@ class _SubscribeState extends State<Subscribe> {
                                 text: subscriptionapiController
                                     .plansdataList[temindex].planDescription,
                                 id: subscriptionapiController
-                                    .plansdataList[temindex].id,plansData:  subscriptionapiController.plansdataList[
+                                    .plansdataList[temindex].id,
+                                    plansData:  subscriptionapiController.plansdataList[
                                       temindex],));
                           },
                           child: subscriptionapiController.plansdataList.isEmpty
@@ -225,9 +226,9 @@ class _SubscribeState extends State<Subscribe> {
                               ),
                             ),
                             child: const Text(
-                              'Subscribe nooow',
+                              'Subscribe Now',
                               style: TextStyle(
-                                  fontSize: 28,
+                                  fontSize: 21,
                                   color: Colors.white,
                                   fontWeight: FontWeight.w700),
                             ),

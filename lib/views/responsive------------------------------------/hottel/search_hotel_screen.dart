@@ -102,7 +102,7 @@ class _SerchHotelScreenState extends State<SerchHotelScreen> {
                                             await Future.delayed(const Duration(
                                                 milliseconds: 200));
                                             hotelController.hoteldestination(
-                                                city: value.toString());
+                                                searchCity: value.toString());
                                           }
                                         },
                                         controller: destinationcontrolr,

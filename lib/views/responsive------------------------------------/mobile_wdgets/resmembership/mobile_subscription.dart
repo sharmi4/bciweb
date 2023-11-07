@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/models/get_plansmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -11,6 +12,7 @@ import '../mobile_common_bottom/bottom.dart';
 import 'mobile_payment.dart';
 
 class MobileSubscription extends StatefulWidget { 
+
   // PlansData ? planesdata;
    MobileSubscription({super.key,});
  
@@ -157,7 +159,10 @@ int button=0;
                       Get.to(MobilePayment(image:cardimgae , 
                       htext: subscriptionapiController.plansdataList[temindex].title, 
                       text:subscriptionapiController.plansdataList[temindex].planDescription,
-                      id: subscriptionapiController.plansdataList[temindex].id));
+                      id: subscriptionapiController.plansdataList[temindex].id,
+                       plansData:  subscriptionapiController.plansdataList[
+                                      temindex],
+                       ));
                     },
                     child: subscriptionapiController.plansdataList.isEmpty ? Container(
 

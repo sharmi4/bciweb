@@ -74,9 +74,9 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
                     right: 0,
                     child: Center(
                       child: Text(
-                        'Subscribe',
+                        'SUBSCRIBE',
                         style: GoogleFonts.lato(
-                            fontSize: 80,
+                            fontSize: 40,
                             fontWeight: FontWeight.bold,
                             color: kwhite),
                       ),
@@ -96,7 +96,7 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
             ),
             ksizedbox10,
             const Text(
-              "All Select Membership Cards Choose Anything",
+              "Select All Membership Cards Choose Anything",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 17,
@@ -114,7 +114,7 @@ class _ProfileUpgradeScreenState extends State<ProfileUpgradeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(left: 40),
                   child: Container(
-                    height: 500,
+                    height: MediaQuery.of(context).size.height,
                     width: 600,
                     child: GridView.builder(
                         shrinkWrap: true,

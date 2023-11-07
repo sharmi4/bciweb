@@ -1,5 +1,8 @@
+import 'package:bciweb/controller/plans_controller.dart';
 import 'package:bciweb/controller/subscription_controller/subscription_controller.dart';
+import 'package:bciweb/models/get_plansmodel.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/mobile_common_bottom/bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 //import 'package:google_fonts/google_fonts.dart';
@@ -12,10 +15,17 @@ import '../comomappbar.dart';
 import '../drawer.dart';
 
 class MobilePayment extends StatefulWidget {
-  String image;String htext;String text;
+PlansData plansData;
+  String image;
+  String htext;
+  String text;
   dynamic id;
-   MobilePayment({super.key,required this.image,required this.htext,required this.text,
-   required this.id});
+   MobilePayment({super.key,
+   required this.htext,
+   required this.plansData,
+   this.id,
+   required this.image,
+   required this.text});
 
   @override
   State<MobilePayment> createState() => _MobilePaymentState();
@@ -28,6 +38,7 @@ void initState() {
   subsciptionController.getplansList();
   // setDefault();
 }
+  final planController = Get.find<PlanController>();
   final subsciptionController = Get.find<SubscriptionApiController>();
   @override
   Widget build(BuildContext context) {
@@ -116,40 +127,23 @@ void initState() {
             child: Container(
               child: Column(
                 children: [
-                  TextField(
-                    // controller: _controller,
-
-                    decoration: InputDecoration(
-                        hintText: 'Enter Coupon',
-                        hintStyle: TextStyle(fontSize: 17, color: kgrey),
-                        fillColor: kwhite,
-                        focusColor: kwhite,
-                        isDense: true,
-                        filled: true,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(color: kblue),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        suffixIcon: Container(
-                          child: Center(
-                              child: Text(
-                            'Verify',
-                            style: TextStyle(color: kwhite, fontSize: 17),
-                          )),
-                          width: 120,
-                          height: 50,
-                          decoration: BoxDecoration(
-                              color: kblue,
-                              borderRadius: BorderRadius.circular(10)),
-                        )),
-                  ),
+                 
               
                   ksizedbox40,
                   InkWell(
                     onTap: () {
                      
-                      subsciptionController.addPaymentSubscription(id:widget.id!.toString(),
-                      showpayment: false);
+                       planController.initiatePayment(
+                            id: widget.plansData.id,
+                            amount: double.parse(widget.plansData.saleAmount),
+                            gstPercentage: widget.plansData.gst,
+                            percentageAmount: widget
+                                .plansData.gstPercentageAmount
+                                .toStringAsFixed(2),
+                           
+                            totalAmount:
+                                widget.plansData.totalAmount.toStringAsFixed(2),
+                          );
                       
                      // Get.toNamed('/add-wallet');
                     },
@@ -184,7 +178,7 @@ void initState() {
             ),
           ),
           ksizedbox40,
-          RegisterCommonBottom()
+          MobileCommonBottom()
         ],
       ),
     );

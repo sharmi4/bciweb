@@ -1,6 +1,11 @@
+import 'package:bciweb/controller/subscription_controller/subscription_controller.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/drawer.dart';
+import 'package:clipboard/clipboard.dart';
+import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-
+import 'dart:math'as math;
 import '../../../../../constant/constans.dart';
 import '../../../mobile_wdgets/comomappbar.dart';
 import '../../../res_controller/yours_coupon_controller.dart';
@@ -60,219 +65,169 @@ class _YoursCouponsScreenState extends State<YoursCouponsScreen> {
 
 
  ];
+  final couponController=Get.find<SubscriptionApiController>();
+   @override
+  void initState() {
+    super.initState();
+    couponController.getcouponsList();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: PreferredSize(
-          child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
-          body: Obx(()=>
+       appBar:
+          PreferredSize(child: AppBarMob(), preferredSize: Size.fromHeight(50)),
+      drawer: MobileDrawer(),
+          body:
            ListView(
-             children:[ Container(
-                               
-                                    child: Column(
-                                     children: [
-                                       Padding(
-                                         padding: const EdgeInsets.only(left: 20,top:30),
-                                         child: Row(
-                                           children: [
-                                             InkWell(
-                                               onTap: (){
-                                                 setState(() {
-                                                     couponsContoller.couponindex(0);
-                                                     yoursindex=0;
-                                                     couponsContoller.update();
-                                                     });
-                                               },
-                                               child: Padding(
-                                                 padding: const EdgeInsets.only(left: 10),
-                                                 child: Container(
-                                                   height: 30,
-                                                    width:150,
-                                                   decoration: BoxDecoration(
-                                                      color: yoursindex==0?kyellow:kblue,
-                                                      borderRadius: BorderRadius.circular(5),
-                                                        border: Border.all(
-                                                         color: yoursindex==0? kwhite:kyellow
-                                                        )                                   
-                                                        ),
-                                                        child: Center(child: Text('Other Coupons',
-                                                        style: TextStyle(
-                                                          color: yoursindex==0?kwhite:kwhite,
-                                                        ),)),
-                                                 ),
-                                               ),
-                                             ),
-                                               Padding(
-                                                 padding: const EdgeInsets.only(left:30),
-                                                 child: InkWell(
-                                                   onTap: (){
-                                                     setState(() {
-                                                     couponsContoller.couponindex(1);
-                                                     yoursindex=1;
-                                                     couponsContoller.update();
-                                                     });
-                                                   },
-                                                   child: Container(
-                                                   height: 30,
-                                                    width:150,
-                                                   decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(5),
-                                                        border: yoursindex==1?Border.all(
-                                                         color: kwhite
-                                                        ):null,
-                                                      color: yoursindex==1?kyellow:kblue,
-                                                      
-                                                        ),
-                                                        child: Center(child: Text('Vendor Coupons',
-                                                        style: TextStyle(
-                                                          color: yoursindex==1?kwhite:kwhite,
-                                                        ),)),
-                                                    ),
-                                                 ),
-                                               ),
-                                           ],
-                                         ),
-                                       ),
-                                       if(couponsContoller.couponindex.value==0)
-                                        Container(
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.vertical,
-                                            child: Column(
-                                              children: [
-                                                 Container(
-                                                   child: GridView.builder(
-                                                    
-                                                    shrinkWrap: true,
-                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                                        crossAxisCount: 2,
-                                                        childAspectRatio: 0.6,
-                                                        crossAxisSpacing: 10), 
-                                                        itemCount: 8,
-                                                        itemBuilder:(context, index) {
-                                                          return Padding(
-                                                            padding: const EdgeInsets.only(
-                                                              top: 20,left: 10,right: 10
-                                                            ),
-                                                            child: Container(
-                                                              width: 300,
-                                                              child: Column(
-                                                                children: [
-                                                                  Container(
-                                                                    height: 120,
-                                                                    width: MediaQuery.of(context).size.width,
-                                                                    child: Image.asset(mobilecouponsimage[index],
-                                                                    fit: BoxFit.cover,)),
-                                                                   Row(
-                                                                    children: [
-                                                                      Text(mobilecoupontitle[index],
-                                                                      style: TextStyle(
-                                                                        fontSize: 18,
-                                                                        color: kblue,
-                                                                        fontWeight: FontWeight.bold
-                                                                      ),)
-                                                                    ],
-                                                                   ),
-                                                                   Text(mobilecoupondescription[index],
-                                                                   style: TextStyle(
-                                                                     fontSize: 12,
-                                                                     color: kblue,
-                                                                    
-                                                                   ),),
-                                                                   ksizedbox20,
-                                                                   Row(
-                                                          children: [
-                                                            ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                backgroundColor: kOrange
-                                                              ),
-                                                              onPressed: (){},
-                                                             child: Text('BASISJWSW')),
-                                                          ],
-                                                        )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                                                             ),
-                                                 )
-                                              ],
-                                            ),
-                                          )),
-                                           if(couponsContoller.couponindex.value==1)
-                                        Container(
-                                          child: SingleChildScrollView(
-                                            scrollDirection: Axis.vertical,
-                                            child: Column(
-                                              children: [
-                                                 Container(
-                                                   child: GridView.builder(
-                                                    
-                                                    shrinkWrap: true,
-                                                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                                                        crossAxisCount: 2,
-                                                        childAspectRatio: 0.6,
-                                                        crossAxisSpacing: 10), 
-                                                        itemCount: 8,
-                                                        itemBuilder:(context, index) {
-                                                          return Padding(
-                                                            padding: const EdgeInsets.only(
-                                                              top: 20,left: 10,right: 10
-                                                            ),
-                                                            child: Container(
-                                                              width: 300,
-                                                              child: Column(
-                                                                children: [
-                                                                  Container(
-                                                                    height: 120,
-                                                                    width: MediaQuery.of(context).size.width,
-                                                                    child: Image.asset(mobilevendorimage[index],
-                                                                    fit: BoxFit.cover,)),
-                                                                   Row(
-                                                                    children: [
-                                                                      Text(mobilecoupontitle[index],
-                                                                      style: TextStyle(
-                                                                        fontSize: 18,
-                                                                        color: kblue,
-                                                                        fontWeight: FontWeight.bold
-                                                                      ),)
-                                                                    ],
-                                                                   ),
-                                                                   Text(mobilecoupondescription[index],
-                                                                   style: TextStyle(
-                                                                     fontSize: 12,
-                                                                     color: kblue,
-                                                                    
-                                                                   ),),
-                                                                   ksizedbox20,
-                                                                   Row(
-                                                          children: [
-                                                            ElevatedButton(
-                                                              style: ElevatedButton.styleFrom(
-                                                                backgroundColor: kOrange
-                                                              ),
-                                                              onPressed: (){},
-                                                             child: Text('BASISJWSW')),
-                                                          ],
-                                                        )
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          );
-                                                        },
-                                                                                             ),
-                                                 )
-                                              ],
-                                            ),
-                                          ))
+             children:[
+              ksizedbox40,
+               Padding(
+                 padding: const EdgeInsets.only(left: 20),
+                 child: Row(
+                  children: [
+                    Text('Member Coupon',
+                    style: TextStyle(
+                      fontSize: 22,
+                      color: kblue,
+                      fontWeight: FontWeight.w600
+                    ),)
+                  ],
+                 ),
+               ),
+               GetBuilder<SubscriptionApiController>(builder: (_) {
+        return Container(
+         // height: size.height * 0.55,
+          child: couponController.couponsdatalist.isEmpty
+              ?  Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children:[ 
+                    ksizedbox40,
+                    ksizedbox40,
+                    Image.asset('assets/images/couponnotavailaimage.png',
+                    height: 180,
+                    fit: BoxFit.fitHeight,),
+                  ksizedbox20,
+                  Text('No Coupon Available',
+                  style: TextStyle(
+                    color: kblue,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20
+                  ),)
               
-                                     ],
-                                    ),
+                  ]),
+              )
+              : ListView.builder(
+                shrinkWrap: true,
+                  itemCount: couponController.couponsdatalist.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: CouponCard(
+                        shadow:const Shadow(),
+                        height: 150,
+                        backgroundColor: Colors.white,
+                        curveAxis: Axis.vertical,
+                        firstChild: Container(
+                          decoration: BoxDecoration(
+                              color: Color((math.Random().nextDouble() *
+                                          0xFFFFFF)
+                                      .toInt())
+                                  .withOpacity(1.0)),
+                          child:couponController.couponsdatalist[index].image == "null" ? 
+                          Image.asset("assets/icons/coupon.jpg",fit: BoxFit.cover,) :
+                           Image.network(
+                            couponController.couponsdatalist[index].image,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        secondChild: Padding(
+                           padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Column(
+                            mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                               Text(
+                                couponController
+                                    .couponsdatalist[index].name ?? "Coupon Code:",
+                                textAlign: TextAlign.start,
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                                         ),
+                              Text(
+                                "Coupon code: ${couponController
+                                    .couponsdatalist[index].couponcode}",
+                                style: primaryFont.copyWith(
+                                    fontSize: 14,
+                                    color: Color(
+                                            (math.Random().nextDouble() *
+                                                    0xFFFFFF)
+                                                .toInt())
+                                        .withOpacity(1.0),
+                                    fontWeight: FontWeight.w500),
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  FlutterClipboard.copy(couponController
+                                          .couponsdatalist[index].couponcode)
+                                      .then(
+                                    (value) => Fluttertoast.showToast(
+                                        msg: "Copy to clipboard",
+                                        toastLength: Toast.LENGTH_SHORT,
+                                        gravity: ToastGravity.CENTER,
+                                        timeInSecForIosWeb: 1,
+                                        backgroundColor: Colors.white,
+                                        textColor: Colors.black,
+                                        fontSize: 16.0),
+                                    //print("code copied")
+                                  );
+                                },
+                                child: Container(
+                                  height: 25,
+                                  width: 90,
+                                  decoration: BoxDecoration(
+                                      color: kblue,
+                                      borderRadius:
+                                          BorderRadius.circular(4)),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Copy",
+                                        style: primaryFont.copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      const SizedBox(
+                                        width: 5,
+                                      ),
+                                      const Icon(
+                                        Icons.copy,
+                                        color: Colors.white,
+                                        size: 15,
+                                      ),
+                                    ],
                                   ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+        );
+      }),
                                   
              ]
            ),
-          ),
+          
     );
   }
 }

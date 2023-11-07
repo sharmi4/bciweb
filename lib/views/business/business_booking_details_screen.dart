@@ -107,21 +107,31 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     height: 54,
                                     width: MediaQuery.of(context).size.width*0.25,
                                     decoration: BoxDecoration(
-                                              
+                                   border:Border.all(width: 1,
+                                   color: kgrey)
                                     ),
-                                    child: TextField(
-                                       decoration: InputDecoration(
-                                        hintText: widget.tit,
-                                        hintStyle: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500
-                                        ),
-                                        border: OutlineInputBorder(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,
+                                      left: 5),
+                                      child: Text(widget.tit,
+                                      style: TextStyle(
+                                         fontSize: 17,
+                                         fontWeight: FontWeight.w500
+                                      ),),
+                                    ),
+                                    // child: TextField(
+                                    //    decoration: InputDecoration(
+                                    //     hintText: widget.tit,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder(
 
-                                        )
-                                       ),
+                                    //     )
+                                    //    ),
                                     
-                                    ),
+                                    // ),
                                   ),ksizedbox40,
                                   Text('Customer Name',
                                   style: TextStyle(
@@ -133,19 +143,30 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     height: 54,
                                     width: MediaQuery.of(context).size.width*0.25,
                                     decoration: BoxDecoration(
+                                      border: Border.all(width: 1,
+                                      color: kgrey)
                                     ),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        hintText: widget.cusName,
-                                        hintStyle: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500
-                                        ),
-                                        border: OutlineInputBorder(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,
+                                      left: 5),
+                                      child: Text(widget.cusName,
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500
+                                      ),),
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.cusName,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder(
 
-                                        )
-                                      ),
-                                    )
+                                    //     )
+                                    //   ),
+                                    // )
                                   ),ksizedbox40,
                                   Text('Quantity',
                                   style: TextStyle(
@@ -157,18 +178,30 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     height: 54,
                                     width: MediaQuery.of(context).size.width*0.25,
                                     decoration: BoxDecoration(
-                                    
-                                    ),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        hintText: widget.qty,
-                                        hintStyle: TextStyle(
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.w500
-                                        ),
-                                        border: OutlineInputBorder()
-                                      ),
+                                    border: Border.all(
+                                      width: 1,
+                                      color: kgrey
                                     )
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,
+                                      left: 5),
+                                      child: Text(widget.qty,
+                                      style: TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500
+                                      ),),
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.qty,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder()
+                                    //   ),
+                                    // )
                                   ),
                                   ksizedbox40,
                                   Text('Price',
@@ -181,18 +214,32 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     height: 54,
                                     width: MediaQuery.of(context).size.width*0.25,
                                     decoration: BoxDecoration(
-                                              
+                                              border: Border.all(
+                                                width: 1,
+                                                color: kgrey
+                                              )
                                     ),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        hintText: widget.amt,
-                                        hintStyle: TextStyle(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,
+                                      left: 5),
+                                      child: Text(
+                                        widget.amt,
+                                        style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500
                                         ),
-                                        border: OutlineInputBorder()
                                       ),
-                                    )
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.amt,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder()
+                                    //   ),
+                                    // )
                                   ),
                                   ksizedbox40,
                                   Text('Mobile Number',
@@ -205,18 +252,29 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     height: 54,
                                     width: MediaQuery.of(context).size.width*0.25,
                                     decoration: BoxDecoration(
-                                              
+                                              border: Border.all(width: 1,
+                                              color: kgrey)
                                     ),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        hintText: widget.mobile,
-                                        hintStyle: TextStyle(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,left: 5),
+                                      child: Text(
+                                        widget.mobile,
+                                        style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500
                                         ),
-                                        border: OutlineInputBorder()
                                       ),
-                                    )
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.mobile,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder()
+                                    //   ),
+                                    // )
                                   ),
                                   ksizedbox40,
                                   Text('Email Address',
@@ -229,18 +287,31 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     height: 54,
                                     width: MediaQuery.of(context).size.width*0.25,
                                     decoration: BoxDecoration(
-                                              
+                                              border: Border.all(
+                                                width: 1,
+                                                color: kgrey
+                                              )
                                     ),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                        hintText: widget.email,
-                                        hintStyle: TextStyle(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,left: 5),
+                                      child: Text(
+                                        widget.email,
+                                        style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.w500
                                         ),
-                                        border: OutlineInputBorder()
                                       ),
-                                    )
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.email,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder()
+                                    //   ),
+                                    // )
                                   ),
                         
                                 

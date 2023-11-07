@@ -2,8 +2,10 @@ import 'package:bciweb/models/busbookingmodels/redeemption_Coupons_model.dart';
 import 'package:bciweb/models/business_model/getcouponlist_model.dart';
 import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/models/setting_model/transation_history_model.dart';
+import 'package:bciweb/models/todayoffers_model.dart';
 import 'package:bciweb/services/networks/business_service/lastadd_couponlist_api_service.dart';
 import 'package:bciweb/services/networks/services/authapi_service/delete_user_api_services.dart';
+import 'package:bciweb/services/networks/setting_api_service.dart/fillter_category_api_service.dart';
 import 'package:bciweb/services/networks/transaction_history_api_service.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/coupons_redeemption_api_service.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
@@ -40,7 +42,7 @@ import '../../views/authentication/otp_verification.dart';
 
 
 class AuthController extends GetxController {
-
+   RxInt filterindex = 90909.obs;
   RxBool isbusinessLogedin = false.obs;
   RxBool isLoading = false.obs;
   RxBool isLogedin = false.obs;
@@ -171,6 +173,9 @@ class AuthController extends GetxController {
       );
     }
   }
+
+
+
 
   getOtpFunction({
     required String mobileNumber,
@@ -429,7 +434,32 @@ class AuthController extends GetxController {
     }
     update();
   }
+  //offers filter
+  FilterCategoryApiService filtercategoryapiservice =
+      FilterCategoryApiService();
 
+  List<OffersListModel> offerslistdata = [];
+
+  getoffersfilterCategory({required String categoryid}) async {
+    dio.Response<dynamic> response =
+        await filtercategoryapiservice.filtercategory(categoryId: categoryid);
+    if (response.statusCode == 200) {
+      List<OffersListModel> offerslistModel = List<OffersListModel>.from(
+          response.data.map((x) => OffersListModel.fromJson(x)));
+      // offersListModelFromJson();
+      offerslistdata = offerslistModel;
+      update();
+      Get.back();
+    } else {
+      // Get.rawSnackbar(
+      //     backgroundColor: Colors.red,
+      //     messageText: Text(
+      //       " Offers not available today",
+      //       style: primaryFont.copyWith(color: Colors.white),
+      //     ));
+    }
+    update();
+  }
   GetSubCategoryApiServices getSubCategoryApiServices =
       GetSubCategoryApiServices();
   List<SubCategoryModelList> subCategoryList = [];

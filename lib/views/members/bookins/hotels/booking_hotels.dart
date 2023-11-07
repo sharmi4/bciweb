@@ -193,7 +193,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                             await Future.delayed(const Duration(
                                                 milliseconds: 200));
                                             hotelController.hoteldestination(
-                                                city: value.toString());
+                                                searchCity: value.toString());
                                           }
                                         },
                                         controller: destinationController,
@@ -214,7 +214,8 @@ class _BookingHotelsState extends State<BookingHotels> {
                                       itemBuilder: (context,
                                           SearchCityListModel citymodel) {
                                         return ListTile(
-                                          title: Text(citymodel.destination),
+                                          title: Text(citymodel.destination,
+                                          ),
                                         );
                                       },
                                       itemSeparatorBuilder: (context, index) {
@@ -318,7 +319,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                         padding: const EdgeInsets.all(15.0),
                                         child: Row(
                                           mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                            MainAxisAlignment.spaceAround,
                                           children: [
                                             Column(
                                               crossAxisAlignment:
@@ -363,7 +364,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                                     ),
                                                     SizedBox(
                                                       width: 2,
-                                                    ),
+                                                    ),   
                                                     InkWell(
                                                       onTap: () {
                                                         hotelController

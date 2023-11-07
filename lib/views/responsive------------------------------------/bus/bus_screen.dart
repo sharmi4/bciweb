@@ -1,4 +1,6 @@
 
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/drawer.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,39 +69,44 @@ class _BusScreenState extends State<BusScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer:MobileDrawer() ,
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(220),
-          child: ClipPath(
-            clipper: SinCosineWaveClipper(),
-            child: Container(
-              height: 140,
-              color: kblue,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 22, left: 15, right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: kwhite,
-                          ),
-                        )),
-                    Text(
-                      'Bus Ticket Booking',
-                      style: TextStyle(color: kwhite, fontSize: 20),
-                    ),
-                    Container()
-                  ],
-                ),
-              ),
-            ),
-          )),
+          child: AppBarMob(),
+          preferredSize: Size(double.infinity, 40),
+          ),
+      // appBar: PreferredSize(
+      //     preferredSize: const Size.fromHeight(220),
+      //     child: ClipPath(
+      //       clipper: SinCosineWaveClipper(),
+      //       child: Container(
+      //         height: 140,
+      //         color: kblue,
+      //         child: Padding(
+      //           padding: const EdgeInsets.only(bottom: 22, left: 15, right: 10),
+      //           child: Row(
+      //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //             children: [
+      //               InkWell(
+      //                   onTap: () {
+      //                     Get.back();
+      //                   },
+      //                   child: Padding(
+      //                     padding: const EdgeInsets.only(left: 10),
+      //                     child: Icon(
+      //                       Icons.arrow_back_ios,
+      //                       color: kwhite,
+      //                     ),
+      //                   )),
+      //               Text(
+      //                 'Bus Ticket Booking',
+      //                 style: TextStyle(color: kwhite, fontSize: 20),
+      //               ),
+      //               Container()
+      //             ],
+      //           ),
+      //         ),
+      //       ),
+      //     )),
       body: Column(
         children: [
           const Padding(
@@ -107,13 +114,14 @@ class _BusScreenState extends State<BusScreen> {
             child: Row(
               children: [
                 Text(
-                  'Journey Details',
+                   'Bus Ticket Booking',
+                  //'Journey Details',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                 )
               ],
             ),
           ),
-          ksizedbox10,
+          ksizedbox40,
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20, top: 10),
             child: Obx(

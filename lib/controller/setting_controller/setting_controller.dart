@@ -66,25 +66,19 @@ class ApiSettingController extends GetxController {
     update();
   }
 
-  OurPartnersApiService ourPartnersApiService = OurPartnersApiService();
-  List<OurPartnersData> ourPartnersData = [];
+    //our partners api
+   OurPartnersApiService ourPartnersApiService = OurPartnersApiService();
+   List<OurPartnerData> ourPartnersData = [];
 
-  ourPartner() async {
-    dio.Response<dynamic> response =
-        await ourPartnersApiService.ourPartnersApiService();
-    if (response.statusCode == 200) {
-      OurPartnersList ourPartnersList = OurPartnersList.fromJson(response.data);
-      ourPartnersData = ourPartnersList.data;
-    } else {
-      // Get.rawSnackbar(
-      //     backgroundColor: Colors.red,
-      //     messageText: Text(
-      //       "Something went wrong",
-      //       style: primaryFont.copyWith(color: Colors.white),
-      //     ));
-    }
-    update();
-  }
+   ourPartner() async {
+     
+     dio.Response<dynamic> response = await ourPartnersApiService.ourPartnersApiService();
+     if(response.statusCode == 200){
+        OurPartnersList ourPartnersList = OurPartnersList.fromJson(response.data);
+       ourPartnersData = ourPartnersList.data;
+     } 
+     update();
+   }
 
   //create support api
   CreateSupportApiService createSupportApiService = CreateSupportApiService();

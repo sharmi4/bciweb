@@ -4,6 +4,7 @@ import 'package:bciweb/views/responsive------------------------------------/book
 import 'package:bciweb/views/responsive------------------------------------/booking_view/others_booking.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/drawer.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/mobile_common_bottom/bottom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
@@ -204,7 +205,11 @@ class _MembersBookingCommonContainerState extends State<MembersBookingCommonCont
                            MobileHolidaysBooking(),
 
                            if(historyController.hisindex.value==3)
-                           MobileBusBooking()
+                           MobileBusBooking(),
+
+
+
+                          
         
             ],
           ),

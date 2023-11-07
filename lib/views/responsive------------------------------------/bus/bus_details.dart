@@ -1,5 +1,7 @@
 
 
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/drawer.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 
 import 'package:flutter/material.dart';
@@ -76,155 +78,174 @@ class _BusDetailsScreenState extends State<BusDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        drawer:MobileDrawer() ,
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(220),
-          child: ClipPath(
-            clipper: SinCosineWaveClipper(),
-            child: Container(
-                height: 140,
-                color: kblue,
-                child: Column(
-                  children: [
-                    AppBar(
-                      backgroundColor: kblue,
-                      elevation: 0,
-                      leading: InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: kwhite,
-                          )),
-                      title: Text(
-                        '${widget.fromCityName} - ${widget.toCityName}',
-                        style: TextStyle(color: kwhite, fontSize: 20),
-                      ),
-                      centerTitle: true,
+          child: AppBarMob(),
+          preferredSize: Size(double.infinity, 40),
+          ),
+      // appBar: PreferredSize(
+      //     preferredSize: const Size.fromHeight(220),
+      //     child: ClipPath(
+      //       clipper: SinCosineWaveClipper(),
+      //       child: Container(
+      //           height: 140,
+      //           color: kblue,
+      //           child: Column(
+      //             children: [
+      //               AppBar(
+      //                 backgroundColor: kblue,
+      //                 elevation: 0,
+      //                 leading: InkWell(
+      //                     onTap: () {
+      //                       Get.back();
+      //                     },
+      //                     child: Icon(
+      //                       Icons.arrow_back_ios,
+      //                       color: kwhite,
+      //                     )),
+      //                 title: Text(
+      //                   '${widget.fromCityName} - ${widget.toCityName}',
+      //                   style: TextStyle(color: kwhite, fontSize: 20),
+      //                 ),
+      //                 centerTitle: true,
+      //               ),
+      //             ],
+      //           )),
+      //     )),
+      body: ListView(
+        children:[ Column(
+          children: [
+            ksizedbox40,
+            Text(
+                           '${widget.fromCityName} - ${widget.toCityName}',
+                           style: TextStyle(color:kblue, fontSize: 18,
+                           fontWeight: FontWeight.w500),
                     ),
-                  ],
-                )),
-          )),
-      body: GetBuilder<BusController>(builder: (_) {
-        return ListView.builder(
-            shrinkWrap: true,
-            itemCount: busController.busData.length,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(
-                    left: 20, right: 20, top: 5, bottom: 10),
-                child: InkWell(
-                  onTap: () {
-                    Get.to(() => BusBoardingDetailsScreen(
-                      busData: busController.busData[index],
-                      searcKey: widget.searchKey,
-                    ));
-
-                    //  Get.to(BusSeatsScreen(
-                    //   boardingid: busController.busData[index].boardingDetails.first.boardingId,
-                    //   droppingid: busController.busData[index].droppingDetails.first.droppingId,
-                    //   buskey: busController.busData[index].busKey,));
-                  },
-                  child: Container(
-                    height: 105,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: kwhite,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              offset: const Offset(0.0, 0.75),
-                              blurRadius: 2,
-                              color: kgrey)
-                        ],
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding:
-                          const EdgeInsets.only(top: 0, left: 10, right: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                left: 10, top: 10, bottom: 10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                    ksizedbox20,
+            GetBuilder<BusController>(builder: (_) {
+              return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: busController.busData.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(
+                          left: 20, right: 20, top: 5, bottom: 10),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(() => BusBoardingDetailsScreen(
+                            busData: busController.busData[index],
+                            searcKey: widget.searchKey,
+                          ));
+      
+                          //  Get.to(BusSeatsScreen(
+                          //   boardingid: busController.busData[index].boardingDetails.first.boardingId,
+                          //   droppingid: busController.busData[index].droppingDetails.first.droppingId,
+                          //   buskey: busController.busData[index].busKey,));
+                        },
+                        child: Container(
+                          height: 115,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    offset: const Offset(0.0, 0.75),
+                                    blurRadius: 2,
+                                    color: kgrey)
+                              ],
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(top: 0, left: 10, right: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
-                                  width: 200,
-                                  child: Text(
-                                    busController.busData[index].boardingDetails
-                                        .first.boardingLandmark,
-                                    maxLines: 2,
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 10, top: 10, bottom: 10),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        width: 200,
+                                        child: Text(
+                                          busController.busData[index].boardingDetails
+                                              .first.boardingLandmark,
+                                          maxLines: 2,
+                                        ),
+                                      ),
+                                      //ksizedbox10,
+                                      Container(
+                                        width: 200,
+                                        child: Text(
+                                          busController.busData[index].busType,
+                                          maxLines: 2,
+                                          style: const TextStyle(
+                                              color: Color(0xffAEAEAE)),
+                                        ),
+                                      ),
+                                      //ksizedbox10,
+                                      Row(
+                                        children: [
+                                          Text(
+                                            busController
+                                                .busData[index].departureTime,
+                                            style: const TextStyle(
+                                                color: Color(0xffAEAEAE)),
+                                          ),
+                                          kwidth10,
+                                          const Icon(
+                                            Icons.arrow_forward,
+                                            size: 15,
+                                          ),
+                                          kwidth10,
+                                          Text(
+                                            busController.busData[index]
+                                                .droppingDetails.first.droppingTime,
+                                            style: const TextStyle(
+                                                color: Color(0xffAEAEAE)),
+                                          ),
+                                        ],
+                                      )
+                                    ],
                                   ),
                                 ),
-                                //ksizedbox10,
-                                Container(
-                                  width: 200,
-                                  child: Text(
-                                    busController.busData[index].busType,
-                                    maxLines: 2,
-                                    style: const TextStyle(
-                                        color: Color(0xffAEAEAE)),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "₹ ${busController.busData[index].fareMasters.first.totalAmount.toString()}",
+                                        style: TextStyle(
+                                            color: kOrange,
+                                            fontWeight: FontWeight.w500),
+                                      ),
+                                      const SizedBox(
+                                        height: 5,
+                                      ),
+                                      Text(
+                                        "${busController.busData[index].availableSeats.toString()} Seats",
+                                        style:
+                                            const TextStyle(color: Color(0xffAEAEAE)),
+                                      )
+                                    ],
                                   ),
-                                ),
-                                //ksizedbox10,
-                                Row(
-                                  children: [
-                                    Text(
-                                      busController
-                                          .busData[index].departureTime,
-                                      style: const TextStyle(
-                                          color: Color(0xffAEAEAE)),
-                                    ),
-                                    kwidth10,
-                                    const Icon(
-                                      Icons.arrow_forward,
-                                      size: 15,
-                                    ),
-                                    kwidth10,
-                                    Text(
-                                      busController.busData[index]
-                                          .droppingDetails.first.droppingTime,
-                                      style: const TextStyle(
-                                          color: Color(0xffAEAEAE)),
-                                    ),
-                                  ],
                                 )
                               ],
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "₹ ${busController.busData[index].fareMasters.first.totalAmount.toString()}",
-                                  style: TextStyle(
-                                      color: kOrange,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                const SizedBox(
-                                  height: 5,
-                                ),
-                                Text(
-                                  "${busController.busData[index].availableSeats.toString()} Seats",
-                                  style:
-                                      const TextStyle(color: Color(0xffAEAEAE)),
-                                )
-                              ],
-                            ),
-                          )
-                        ],
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              );
-            });
-      }),
+                    );
+                  });
+            }),
+          ],
+        ),
+        ]
+      ),
     );
   }
 }

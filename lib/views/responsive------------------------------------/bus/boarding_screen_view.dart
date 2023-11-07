@@ -1,4 +1,7 @@
 
+import 'package:bciweb/views/responsive------------------------------------/bus/bus_seating_arrangements_view.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
+import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/drawer.dart';
 import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -38,44 +41,58 @@ class _BusBoardingDetailsScreenState extends State<BusBoardingDetailsScreen> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
+        drawer:MobileDrawer() ,
       appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(220),
-          child: ClipPath(
-            clipper: SinCosineWaveClipper(),
-            child: Container(
-              height: 140,
-              color: kblue,
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 22, left: 15, right: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: kwhite,
-                          ),
-                        )),
-                    Text(
-                      'Bus Boarding ',
-                      style: TextStyle(color: kwhite, fontSize: 20),
-                    ),
-                    Container()
-                  ],
-                ),
-              ),
-            ),
-          )),
+          child: AppBarMob(),
+          preferredSize: Size(double.infinity, 40),
+          ),
+      // appBar: PreferredSize(
+      //     preferredSize: const Size.fromHeight(220),
+      //     child: ClipPath(
+      //       clipper: SinCosineWaveClipper(),
+      //       child: Container(
+      //         height: 140,
+      //         color: kblue,
+      //         child: Padding(
+      //           padding: const EdgeInsets.only(bottom: 22, left: 15, right: 10),
+      //           child: Row(
+      //             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //             children: [
+      //               InkWell(
+      //                   onTap: () {
+      //                     Get.back();
+      //                   },
+      //                   child: Padding(
+      //                     padding: const EdgeInsets.only(left: 10),
+      //                     child: Icon(
+      //                       Icons.arrow_back_ios,
+      //                       color: kwhite,
+      //                     ),
+      //                   )),
+      //               Text(
+      //                 'Bus Boarding ',
+      //                 style: TextStyle(color: kwhite, fontSize: 20),
+      //               ),
+      //               Container()
+      //             ],
+      //           ),
+      //         ),
+      //       ),
+      //     )),
       body: ListView(
         children: [
           const SizedBox(
             height: 20,
           ),
+                         Padding(
+                           padding: const EdgeInsets.only(left: 30),
+                           child: Text(
+                                              'Bus Boarding ',
+                                              style: TextStyle(color: kblue, fontSize: 18,
+                                              fontWeight: FontWeight.w500),
+                                              ),
+                         ),
+                         ksizedbox20,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Container(
@@ -332,7 +349,7 @@ class _BusBoardingDetailsScreenState extends State<BusBoardingDetailsScreen> {
                   message: "Please select droping place",
                   backgroundColor: Colors.red);
             } else {
-              Get.to(() => BusDynamicSeatsScreen(
+              Get.to(() => BusDynamicSeatsScreen2(
                     boardingId: boardingId,
                     busData: widget.busData,
                     dropingId: dropingId,

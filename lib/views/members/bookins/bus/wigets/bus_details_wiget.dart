@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/models/busbookingmodels/bus_contact_details_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -13,6 +14,7 @@ class BussDetails extends StatefulWidget {
   String boardingId;
   String dropingId;
   String searchkey;
+  List<BusContactDetailsModel> busContactmodel;
   List<String> seatIds;
   String amount;
   BussDetails(
@@ -22,6 +24,7 @@ class BussDetails extends StatefulWidget {
       required this.dropingId,
       required this.searchkey,
       required this.amount,
+      required this.busContactmodel,
       required this.seatIds});
 
   @override
@@ -58,7 +61,10 @@ class _BussDetailsState extends State<BussDetails> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(widget.busData.operatorName).text.semiBold.sm.make(),
+                      Container(
+                        width: 130,
+                        child: Text(widget.busData.operatorName,).text.semiBold.sm.make()
+                      ,),
                       Container(
                           width: 120,
                           child: Text(widget.busData.busType)
@@ -69,8 +75,8 @@ class _BussDetailsState extends State<BussDetails> {
                       Row(
                         children: [
                           Text('Seat No.').text.sm.gray500.make(),
-                          for (int i = 0; i < busController.seatIds.length; i++)
-                            Text(' ${busController.seatIds[i].toString()},')
+                          for (int i = 0; i <widget.busContactmodel.length; i++)
+                            Text(' ${widget.busContactmodel[i].seats.toString()},')
                                 .text
                                 .sm
                                 .gray500
@@ -122,29 +128,33 @@ class _BussDetailsState extends State<BussDetails> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Basic Fare (for 2 Seats)').text.gray500.make(),
-                    Text('₹ ${busController.totalAmount.value}').text.make(),
+                    Container(
+                      width: 105,
+                      child: Text('Basic Fare (for 2 Seats)').text.gray500.make()),
+                    Text('₹ ${busController.seatMap.first.fareMaster.basicAmount}').text.make(),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Bus partner GST').text.gray500.make(),
-                    Text('₹ 49.0').text.make(),
+                    Text('₹${busController.seatMap.first.fareMaster.gst}').text.make(),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Service Charge').text.gray500.make(),
-                    Text('₹ 21.0').text.make(),
+                    Text('₹${busController.seatMap.first.fareMaster.serviceFeeAmount}').text.make(),
                   ],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text('Free Cancellaation Charges').text.gray500.make(),
-                    Text('+ ₹ 12.0').text.make(),
+                    Container(
+                      width: 105,
+                      child: Text('Free Cancellaation Charges').text.gray500.make()),
+                    Text(' ₹${busController.seatMap.first.fareMaster.cancellationCharges} ').text.make(),
                   ],
                 ),
                 ksizedbox10,
@@ -156,7 +166,7 @@ class _BussDetailsState extends State<BussDetails> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text('Total Fare').text.gray500.make(),
-                    Text('₹ ${busController.totalAmount.value}').text.make(),
+                    Text('₹ ${busController.seatMap.first.fareMaster.totalAmount}').text.make(),
                   ],
                 ),
                 ksizedbox10

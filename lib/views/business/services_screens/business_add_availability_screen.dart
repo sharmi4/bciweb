@@ -642,7 +642,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                     style: const TextStyle(color: Colors.black54),
                     hint: Text(
                       "GST *",
-                      style: TextStyle(fontSize: 16, color: kblue),
+                      style: TextStyle(fontSize: 16,),
                     ),
                     onChanged: (int? value) {
                       setState(() {
@@ -1313,10 +1313,10 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                           color: kblue),
                       alignment: Alignment.center,
                       child: Text(
-                        "Submit",
+                        "SUMBMIT",
                         style: primaryFont.copyWith(
                             color: Colors.white,
-                            fontSize: 17,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
