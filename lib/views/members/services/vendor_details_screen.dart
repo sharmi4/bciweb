@@ -101,6 +101,19 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                   color: Colors.black54),
                             ),
                             ksizedbox20,
+                             if (widget.vendorListModelData.details != null)
+                    const SizedBox(
+                      height: 20,
+                    ),
+                  if (widget.vendorListModelData.details != null)
+                    Text(
+                      "${widget.vendorListModelData.details ?? ""}",
+                      style: TextStyle(fontSize: 15, color: kblue),
+                    ),
+                    if (widget.vendorListModelData.details != null)
+                  const SizedBox(
+                    height: 20,
+                  ),
                             if (widget.vendorListModelData.address != null)
                               Text(
                                 "${widget.vendorListModelData.address ?? ""}",
@@ -249,7 +262,7 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                     borderRadius: BorderRadius.circular(10)),
                                 alignment: Alignment.center,
                                 child: Text(
-                                  "View Services0",
+                                  "View Services",
                                   style: primaryFont.copyWith(
                                       fontSize: 16, color: Colors.white),
                                 ),
@@ -446,6 +459,17 @@ class _VendorDetailsScreenState extends State<VendorDetailsScreen> {
                                                   backgroundColor: Colors.white,
                                                   title: Column(
                                                     children: [
+                                                      Row(
+                                                        mainAxisAlignment: MainAxisAlignment.end,
+                                                        children: [
+                                                          InkWell(
+                                                            onTap: (){
+                                                              Get.back();
+                                                            },
+                                                            child:Icon(Icons.close,color: kgrey,)),
+                                                        ],
+                                                      ),
+                                                      ksizedbox10,
                                                       Image.network(
                                                           homeController
                                                               .galleryListData[

@@ -184,38 +184,11 @@ var end = DateTime.now();
                                                     ),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.only(left: 10),
+                                              padding: const EdgeInsets.only(left: 15,top: 15,bottom: 15),
                                               child: Column(
                                                 mainAxisAlignment: MainAxisAlignment.center,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: [
-                                                  Row(
-                                                    children: [
-                                                      hotelController.searchHotelData.isEmpty
-                                                          ? Text("")
-                                                          : Text(hotelController
-                                                                  .searchHotelData
-                                                                  .first
-                                                                  .starRating
-                                                                  .toString())
-                                                              .text
-                                                              .white
-                                                              .semiBold
-                                                              .make()
-                                                              .box
-                                                              .blue900
-                                                              .roundedLg
-                                                              .p8
-                                                              .make(),
-                                                      kwidth5,
-                                                      Text('Very Good Raiting')
-                                                          .text
-                                                          .semiBold
-                                                          .blue900
-                                                          .make()
-                                                    ],
-                                                  ),
-                                                  ksizedbox10,
                                                   Text(
                                                     hotelController
                                                         .searchHotelData[index].hotelName,
@@ -224,7 +197,7 @@ var end = DateTime.now();
                                                         fontWeight: FontWeight.bold,
                                                         color: kOrange),
                                                   ),
-                                                  ksizedbox10,
+                                                  ksizedbox20,
                                                   Container(
                                                     width: 420,
                                                     child: Column(
@@ -291,15 +264,15 @@ var end = DateTime.now();
                                                         MainAxisAlignment.spaceAround,
                                                     children: [
                                                       Text('Per Night').text.white.make(),
-                                                      Text('₹ ${hotelController.searchHotelData[index].price.offeredPrice}').text.white.make(),
-                                                      Text('₹ ${hotelController.searchHotelData[index].price.offeredPriceRoundedOff}').text.white.make(),
+                                                      //Text('₹ ${hotelController.searchHotelData[index].price.offeredPrice}').text.white.make(),
+                                                      //Text('₹ ${hotelController.searchHotelData[index].price.offeredPriceRoundedOff}').text.white.make(),
                                                       Text(
                                                         '₹ ${hotelController.searchHotelData[index].price.publishedPrice}',
                                                       ).text.white.make(),
-                                                      Text('Saving ₹${hotelController.searchHotelData[index].price.roomPrice}')
-                                                          .text
-                                                          .white
-                                                          .make(),
+                                                      // Text('Saving ₹${hotelController.searchHotelData[index].price.roomPrice}')
+                                                      //     .text
+                                                      //     .white
+                                                      //     .make(),
                                                       InkWell(
                                                         onTap: () async {
                                                           final prefs =
@@ -323,7 +296,7 @@ var end = DateTime.now();
                                                           padding:
                                                               const EdgeInsets.only(top: 3.5),
                                                           child: Container(
-                                                            height: 18,
+                                                            height: 25,
                                                             width: 90,
                                                             decoration: BoxDecoration(
                                                                 borderRadius:

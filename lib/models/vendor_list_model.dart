@@ -56,6 +56,7 @@ class VendorListModelData {
   String keyStatus;
   dynamic emailVerifiedAt;
   dynamic address;
+  dynamic details;
   dynamic dob;
   dynamic occupation;
   dynamic fatherName;
@@ -120,6 +121,7 @@ class VendorListModelData {
     required this.keyStatus,
     required this.emailVerifiedAt,
     required this.address,
+    required this.details,
     required this.dob,
     required this.occupation,
     required this.fatherName,
@@ -184,7 +186,8 @@ class VendorListModelData {
         keyName: json["Key_name"],
         keyStatus: json["Key_status"]??"",
         emailVerifiedAt: json["email_verified_at"],
-        address: json["address"],
+        address: json["address"]?? "",
+        details: json["details"],
         dob: json["dob"],
         occupation: json["occupation"],
         fatherName: json["father_name"],
@@ -250,6 +253,7 @@ class VendorListModelData {
         "Key_status": keyStatus,
         "email_verified_at": emailVerifiedAt,
         "address": address,
+        "details": details,
         "dob": dob,
         "occupation": occupation,
         "father_name": fatherName,

@@ -32,11 +32,12 @@ class HotelDestinationApiService extends BaseApiService{
         ),
         data: {
            "country":"india",
-       "destination":city,
+           "destination":city,
         }
         
       );
       print(':::::::::<Hotel Destination>::::::::::<status code>::::::::');
+      print(authtoken);
       print(response.statusCode);
       print(response.data);
       responseJson = response;

@@ -18,7 +18,7 @@ class Services extends StatefulWidget {
   State<Services> createState() => _ServicesState();
 }
 
-
+final homeController = Get.find<HomeServiceController>();
 
 CarouselController curouselController = CarouselController();
 
@@ -26,7 +26,7 @@ class _ServicesState extends State<Services> {
   @override
   void initState() {
     super.initState();
-    serviceofferController.getVendorsList();
+    homeController.getVendorsList();
     authController.getservice();
     serviceofferController.gettodayoffersList();
   }
@@ -100,13 +100,13 @@ class _ServicesState extends State<Services> {
             GetBuilder<HomeServiceController>(builder: (_) {
               return Column(
                 children: [
-                  serviceofferController.vendorList.isEmpty
+                  homeController.vendorList.isEmpty
                       ? Image.asset(
                           'assets/icons/Group 39781.png',
                           height: 500,
                         )
                       : GridView.builder(
-                          itemCount: serviceofferController.vendorList.length,
+                          itemCount: homeController.vendorList.length,
                           shrinkWrap: true,
                           gridDelegate:
                               const SliverGridDelegateWithFixedCrossAxisCount(
@@ -132,11 +132,11 @@ class _ServicesState extends State<Services> {
                                       width: 150,
                                       child: ClipRRect(
                                         borderRadius: BorderRadius.circular(15),
-                                        child: serviceofferController.vendorList[index]
+                                        child: homeController.vendorList[index]
                                                     .profilePicture !=
                                                 null
                                             ? Image.network(
-                                                serviceofferController.vendorList[index]
+                                                homeController.vendorList[index]
                                                     .profilePicture!,
                                                 //height: 125,
                                                 fit: BoxFit.cover,
@@ -157,28 +157,34 @@ class _ServicesState extends State<Services> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          const SizedBox(
-                                            height: 10,
-                                          ),
                                           Container(
                                             width: 150,
                                             child: Text(
-                                              serviceofferController
-                                                  .vendorList[index].name,
+                                              homeController.vendorList[index].name,
                                               style: primaryFont.copyWith(
                                                   fontSize: 15,
                                                   fontWeight: FontWeight.bold),
                                             ),
                                           ),
-                                          ksizedbox20,
+                                          Container(
+                                            width: 150,
+                                            child: homeController.vendorList[index].address == "" ? const Text("") :
+                                             Text(
+                                              homeController.vendorList[index].address,
+                                                  maxLines: 2,
+                                              style: primaryFont.copyWith(
+                                                  fontSize: 15,
+                                                  fontWeight: FontWeight.w400),
+                                            ),
+                                          ),
                                           InkWell(
                                             onTap: () {
                                               Get.to(
                                                 VendorDetailsScreen(
                                                   vendorListModelData:
-                                                      serviceofferController
+                                                      homeController
                                                           .vendorList[index],
-                                                  userid: serviceofferController
+                                                  userid: homeController
                                                       .vendorList[index].id
                                                       .toString(),
                                                 ),
@@ -458,7 +464,7 @@ class _ServicesState extends State<Services> {
               textAlign: TextAlign.center,
               style: TextStyle(
                   color: Color(0xff003366),
-                  fontSize: 50,
+                  fontSize: 70,
                   fontWeight: FontWeight.bold),
             ),
             ksizedbox10,
@@ -479,26 +485,6 @@ class _ServicesState extends State<Services> {
               builder: (_) {
                 return Column(
                   children: [
-                     serviceofferController.todayOfferListData.isEmpty?Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset(
-                                'assets/images/offersnotavailableimage.png',
-                                height: 480,
-                                fit: BoxFit.fitHeight,),
-                            ksizedbox30,
-                            Text(
-                              'Member Offers Not Available',
-                              style: TextStyle(
-                                letterSpacing: 0.2,
-                                  fontSize: 20,
-                                  color: kblue,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                      ):
                     GridView.builder(
                       itemCount:
                           serviceofferController.todayOfferListData.length,

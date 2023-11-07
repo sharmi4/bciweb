@@ -68,8 +68,8 @@ class _VendorsListViewState extends State<VendorsCategoryListView> {
                 shrinkWrap: true,
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                                childAspectRatio: 2, 
-                                crossAxisCount: 3),
+                                childAspectRatio: 1, 
+                                crossAxisCount: 5),
                 itemBuilder: (BuildContext context, int index) {
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -93,7 +93,7 @@ class _VendorsListViewState extends State<VendorsCategoryListView> {
                             ));
                       },
                       child: Container(
-                        height: 120,
+                        height: 150,
                         width: 150,
                         decoration: BoxDecoration(
                             color: Colors.white,
@@ -111,7 +111,7 @@ class _VendorsListViewState extends State<VendorsCategoryListView> {
                                   ? Image.network(
                                       homeServiceController
                                           .merchatCategoryList[index].image,
-                                      height: 125,
+                                      height: 180,
                                       width: size.width,
                                       fit: BoxFit.cover,
                                     )
@@ -119,7 +119,7 @@ class _VendorsListViewState extends State<VendorsCategoryListView> {
                                       padding: const EdgeInsets.only(top: 5),
                                       child: Image.asset(
                                         "assets/images/Group 9407.png",
-                                        height: 125,
+                                        height: 180,
                                         width: size.width,
                                         fit: BoxFit.contain,
                                       ),

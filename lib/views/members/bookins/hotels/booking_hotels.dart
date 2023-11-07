@@ -168,7 +168,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               width: size.width * 0.8,
                               decoration: BoxDecoration(
                                 color: kwhite,
-                                borderRadius: BorderRadius.only(
+                                borderRadius:const BorderRadius.only(
                                     topLeft: Radius.zero,
                                     bottomLeft: Radius.circular(15),
                                     topRight: Radius.circular(15),
