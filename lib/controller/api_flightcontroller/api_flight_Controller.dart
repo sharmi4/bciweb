@@ -13,6 +13,8 @@ import '../../models/airport_search_model.dart';
 import '../../models/flight_searchdatamodel.dart';
 import '../../models/get_flight_booking_history.dart';
 import '../../models/pasenger_mode.dart';
+import '../../models/seach_flight_model.dart';
+import '../../services/networks/services/flight_api_searcive/search_flight_api_services.dart';
 import '../../views/responsive------------------------------------/booking_view/flight/par_nyc_screen.dart';
 import '../../services/networks/services/flight_api_searcive/air_add_ssr_api_services.dart';
 import '../../services/networks/services/flight_api_searcive/air_printing_api_services.dart';
@@ -28,7 +30,6 @@ import '../../services/networks/services/flight_api_searcive/get_seat_map_api_se
 class ApiflightsController extends GetxController {
   GetFlightBookingHistoryAPIServices getFlightBookingHistoryAPIServices =
       GetFlightBookingHistoryAPIServices();
-  
 
   RxInt wayIndex = 0.obs;
   RxInt cabinClassIndex = 0.obs;
@@ -53,8 +54,6 @@ class ApiflightsController extends GetxController {
       AirportSearchApiServices();
   List<Map<String, String?>> airports = [];
 
-
-  
   RxBool airPortFound = false.obs;
   RxString origin = "Choose".obs;
   RxString originCountry = "Choose".obs;
@@ -94,13 +93,14 @@ class ApiflightsController extends GetxController {
 
   airSearch(
       {required FlightSearchDataModel flightSearchModel,
-      String airlineCode='',
+      String airlineCode = '',
       required bool ismobilorweb}) async {
     isLoading(true);
     flightList.clear();
     String seachKey = "";
-    dio.Response<dynamic> response = await airSearchApiServices
-        .airSearchApiServices(flightSearchModel: flightSearchModel, airlineCode: airlineCode);
+    dio.Response<dynamic> response =
+        await airSearchApiServices.airSearchApiServices(
+            flightSearchModel: flightSearchModel, airlineCode: airlineCode);
     isLoading(false);
     if (response.data["Response_Header"]["Error_Code"] == "0000") {
       AirSearchModel airSearchModel = AirSearchModel.fromJson(response.data);
@@ -776,9 +776,7 @@ class ApiflightsController extends GetxController {
         href:
             "data:application/octet-stream;charset=utf-16le;base64,${base64.encode(bytes)}")
       ..setAttribute("download", "report.pdf")
-      ..click(
-        
-      );
+      ..click();
 
     //downloadFile(bytes, airReprintModel.airPnrDetails.first.airlinePnr);
   }
@@ -826,7 +824,7 @@ class ApiflightsController extends GetxController {
   //     OpenFile.open(file.path);
   //   }
   // }
-  
+
   // List<FlightBookedData> flightBookingHistoyrList = [];
 
   // getFlightBookingHistory() async {
@@ -845,15 +843,15 @@ class ApiflightsController extends GetxController {
     required Flight flight,
     required String searchKey,
     required String mobileNumber,
-
   }) async {
     String flightKey = "";
     dio.Response<dynamic> response =
         await airRepriceApiServices.airRepriceApiServices(
-            flightSearchModel: flightSearchModel,
-            flight: flight,
-            searchKey: searchKey, 
-            mobileNumber: mobileNumber,);
+      flightSearchModel: flightSearchModel,
+      flight: flight,
+      searchKey: searchKey,
+      mobileNumber: mobileNumber,
+    );
 
     if (response.statusCode == 200) {
       AirRepriceModel airReprintModel = AirRepriceModel.fromJson(response.data);
@@ -862,8 +860,8 @@ class ApiflightsController extends GetxController {
     return flightKey;
   }
 
-AirAddSsrApiServices airAddSsrApiServices =AirAddSsrApiServices();
-   List<SsrDetail> ssrDetailsList = []; 
+  AirAddSsrApiServices airAddSsrApiServices = AirAddSsrApiServices();
+  List<SsrDetail> ssrDetailsList = [];
 
   getFightSSRDetails({
     required String flightKey,
@@ -883,8 +881,9 @@ AirAddSsrApiServices airAddSsrApiServices =AirAddSsrApiServices();
     update();
   }
 
-  AirGetSeatMapApiServices airGetSeatMapApiServices = AirGetSeatMapApiServices();
-    List<SeatRow> airSeatMapsList = [];
+  AirGetSeatMapApiServices airGetSeatMapApiServices =
+      AirGetSeatMapApiServices();
+  List<SeatRow> airSeatMapsList = [];
   Future<bool> getSeatMapApiServises({
     required String searchKey,
     required String flightKey,
@@ -906,27 +905,45 @@ AirAddSsrApiServices airAddSsrApiServices =AirAddSsrApiServices();
 
     return isSeatMapAvailable;
   }
-  AirCancelApiServices  airCancelApiServices = AirCancelApiServices();
 
-    airCancelTicket({required String refernceNo}) async {
+  AirCancelApiServices airCancelApiServices = AirCancelApiServices();
+
+  airCancelTicket({required String refernceNo}) async {
     dio.Response<dynamic> response = await airRePrintingServices
         .airRePrintingApi(clientReferneNo: "", refrenceNo: refernceNo);
 
     if (response.statusCode == 200) {
       AirReprintModel airReprintModel = AirReprintModel.fromJson(response.data);
-       
-  dio.Response<dynamic> cancelresponse = await airCancelApiServices.airCancelApiServices(
-    Airlinepnr: airReprintModel.airPnrDetails.first.airlinePnr, 
-    Refno: refernceNo, 
-    Cancelcode: airReprintModel.airPnrDetails.first.crsCode,
-     ReqRemarks: airReprintModel.remark, 
-     CancellationType: airReprintModel.airPnrDetails.first.crsPnr, 
-     Imeinumber: '64654546546546');
-    if(cancelresponse.statusCode==200){
-         Get.rawSnackbar(
-          message: "Cancellation sucessfully ", 
-          backgroundColor: Colors.green);
-    }
+
+      dio.Response<dynamic> cancelresponse =
+          await airCancelApiServices.airCancelApiServices(
+              Airlinepnr: airReprintModel.airPnrDetails.first.airlinePnr,
+              Refno: refernceNo,
+              Cancelcode: airReprintModel.airPnrDetails.first.crsCode,
+              ReqRemarks: airReprintModel.remark,
+              CancellationType: airReprintModel.airPnrDetails.first.crsPnr,
+              Imeinumber: '64654546546546');
+      if (cancelresponse.statusCode == 200) {
+        Get.rawSnackbar(
+            message: "Cancellation sucessfully ",
+            backgroundColor: Colors.green);
+      }
     } else {}
+  }
+
+  SearchFlightApiServices searchFlightApiServices = SearchFlightApiServices();
+
+  List<FlightSearchModel> searchlistsearchList = [];
+  Future flighsearch({required String city}) async {
+    dio.Response<dynamic> response =
+        await searchFlightApiServices.searchflightapi(city: city);
+    if (response.statusCode == 200) {
+      
+List<FlightSearchModel> flightSearchModel =
+           List<FlightSearchModel>.from(
+       response.data.map((x) => FlightSearchModel.fromJson(x)));
+        await searchFlightApiServices.searchflightapi(city: city);
+        searchlistsearchList =flightSearchModel;
+    }
   }
 }

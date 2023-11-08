@@ -162,6 +162,16 @@ class Flight {
         "Segments": List<dynamic>.from(segments.map((x) => x.toJson())),
         "TravelDate": travelDate,
       };
+
+  @override
+  int get hashCode => airlineCode.hashCode ^ travelDate.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is Flight &&
+          runtimeType == other.runtimeType &&
+          airlineCode == other.airlineCode;
 }
 
 class Fare {
@@ -196,16 +206,16 @@ class Fare {
   factory Fare.fromJson(Map<String, dynamic> json) => Fare(
         fareDetails: List<FareDetail>.from(
             json["FareDetails"].map((x) => FareDetail.fromJson(x))),
-        fareType: json["FareType"],
-        fareId: json["Fare_Id"]??"",
-        fareKey: json["Fare_Key"]??"",
-        foodOnboard: json["Food_onboard"],
-        gstMandatory: json["GSTMandatory"],
+        fareType: json["FareType"] ?? 0,
+        fareId: json["Fare_Id"] ?? "",
+        fareKey: json["Fare_Key"] ?? "",
+        foodOnboard: json["Food_onboard"] ?? "",
+        gstMandatory: json["GSTMandatory"] ?? false,
         lastFewSeats: json["LastFewSeats"],
-        productClass: json["ProductClass"],
+        productClass: json["ProductClass"] ?? "",
         promptMessage: json["PromptMessage"],
-        refundable: json["Refundable"],
-        seatsAvailable: json["Seats_Available"],
+        refundable: json["Refundable"] ?? true,
+        seatsAvailable: json["Seats_Available"] ?? "",
         warning: json["Warning"],
       );
 
@@ -225,13 +235,13 @@ class Fare {
       };
 }
 
-class FareDetail {     
+class FareDetail {
   double airportTaxAmount;
   List<AirportTax> airportTaxes;
   dynamic basicAmount;
   List<Charge>? cancellationCharges;
   String currencyCode;
-  List<FareClass> fareClasses;       
+  List<FareClass> fareClasses;
   FreeBaggage freeBaggage;
   dynamic gst;
   dynamic grossCommission;
@@ -268,17 +278,23 @@ class FareDetail {
 
   factory FareDetail.fromJson(Map<String, dynamic> json) => FareDetail(
         airportTaxAmount: json["AirportTax_Amount"]?.toDouble(),
-        airportTaxes: List<AirportTax>.from(
-            json["AirportTaxes"].map((x) => AirportTax.fromJson(x))),
+        airportTaxes: json["AirportTaxes"] == null
+            ? []
+            : List<AirportTax>.from(
+                json["AirportTaxes"].map((x) => AirportTax.fromJson(x))),
         basicAmount: json["Basic_Amount"],
         cancellationCharges: json["CancellationCharges"] == null
             ? []
             : List<Charge>.from(
                 json["CancellationCharges"]!.map((x) => Charge.fromJson(x))),
         currencyCode: json["Currency_Code"],
-        fareClasses: List<FareClass>.from(
-            json["FareClasses"].map((x) => FareClass.fromJson(x))),
-        freeBaggage: FreeBaggage.fromJson(json["Free_Baggage"]),
+        fareClasses: json["FareClasses"] == null
+            ? []
+            : List<FareClass>.from(
+                json["FareClasses"].map((x) => FareClass.fromJson(x))),
+        freeBaggage: json["Free_Baggage"] == null
+            ? FreeBaggage(checkInBaggage: "-", handBaggage: "-")
+            : FreeBaggage.fromJson(json["Free_Baggage"]),
         gst: json["GST"],
         grossCommission: json["Gross_Commission"],
         netCommission: json["Net_Commission"],
@@ -448,7 +464,7 @@ class FreeBaggage {
 
   factory FreeBaggage.fromJson(Map<String, dynamic> json) => FreeBaggage(
         checkInBaggage: json["Check_In_Baggage"] ?? "",
-        handBaggage: json["Hand_Baggage"]?? "",
+        handBaggage: json["Hand_Baggage"] ?? "",
       );
 
   Map<String, dynamic> toJson() => {
@@ -503,11 +519,11 @@ class Segment {
         airlineCode: json["Airline_Code"] ?? "",
         airlineName: json["Airline_Name"] ?? "",
         arrivalDateTime: json["Arrival_DateTime"] ?? "",
-      departureDateTime: json["Departure_DateTime"] ?? "",
+        departureDateTime: json["Departure_DateTime"] ?? "",
         destination: json["Destination"] ?? "",
         destinationCity: json["Destination_City"] ?? "",
         destinationTerminal: json["Destination_Terminal"] ?? "",
-        duration: json["Duration"] ??"",
+        duration: json["Duration"] ?? "",
         flightNumber: json["Flight_Number"] ?? "",
         legIndex: json["Leg_Index"] ?? "",
         operatedBy: json["OperatedBy"] ?? "",

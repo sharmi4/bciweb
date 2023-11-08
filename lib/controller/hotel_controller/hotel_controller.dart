@@ -33,7 +33,7 @@ import '../../services/networks/hotel_api_service/store_hotel_booking_data_api.d
 import '../../services/networks/hotel_api_service/successful_screen.dart';
 import '../../views/members/bookins/hotels/hotel_search_list.dart';
 import '../auth_controller/auth_profile_controller.dart';
-import '../profile_controller.dart';
+
 
 class HotelController extends GetxController {
   HotelDestinationApiService hoteldestinationapiservice =

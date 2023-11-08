@@ -305,4 +305,10 @@ abstract class BaseApiService {
   //merchant service category 
   final String getMerchantCaregoryURL = "https://www.portal.bcipvtltd.com/api/auth/merchant_service_category";
 
+
+
+//saerch flightsearch api
+final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_city_search_get";
+
+
 }

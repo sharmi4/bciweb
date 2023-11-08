@@ -26,10 +26,7 @@ import '../../views/members/homescreens/reg_profile.dart';
 import '../setting_controller/setting_controller.dart';
 import 'auth_controller.dart';
 
-
-
 class AuthProfileController extends GetxController {
-  
   GetProfileApiServices getProfileApiServices = GetProfileApiServices();
   GenerateReferralCodeApiService generateReferralCodeApiService =
       GenerateReferralCodeApiService();
@@ -50,7 +47,6 @@ class AuthProfileController extends GetxController {
 
   List<CategoryData> categoryList = [];
 
-
   RxBool isLoading = false.obs;
 
   RxBool isLogedin = false.obs;
@@ -58,7 +54,6 @@ class AuthProfileController extends GetxController {
   RxBool isSubscribed = false.obs;
 
   RxString planid = "".obs;
-  
 
   UpdateBankApiServices updateBankApiServices = UpdateBankApiServices();
 
@@ -69,16 +64,16 @@ class AuthProfileController extends GetxController {
     );
     isLoading(false);
     if (response.statusCode == 200 || response.statusCode == 201) {
-     // Get.off(() => HomeBottomnavigationBar());
+      // Get.off(() => HomeBottomnavigationBar());
       Get.rawSnackbar(
-          backgroundColor: Colors.green,
-          messageText: Text(
-            "Bank Account updated",
-            style: primaryFont.copyWith(color: Colors.white),
-          ));
+        backgroundColor: Colors.green,
+        messageText: Text(
+          "Bank Account updated",
+          style: primaryFont.copyWith(color: Colors.white),
+        ),
+      );
     }
   }
-
 
   getProfile() async {
     // profileData.clear();
@@ -99,13 +94,12 @@ class AuthProfileController extends GetxController {
   }
 
   updateProfile(
-     
       {required MemberProfileUpdateModel memberProfileUpdateModel}) async {
     isLoading(true);
     //profileData.clear();
     dio.Response<dynamic> response = await profileUpdateApi.profileUpdate(
         memberProfileUpdateModel: memberProfileUpdateModel);
-       
+
     isLoading(false);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Get.rawSnackbar(
@@ -134,7 +128,6 @@ class AuthProfileController extends GetxController {
   }
 
   updateOfficalAddress({required AddressModel officialAddress}) async {
-
     isLoading(true);
     //profileData.clear();
     dio.Response<dynamic> response = await updateOfficialApiServices
@@ -252,7 +245,7 @@ class AuthProfileController extends GetxController {
     };
     return map;
   }
-    // String responseData = "Nothing";
+  // String responseData = "Nothing";
 
   void payforWallet({required double amount}) async {
     int tempAmount = amount.toInt();
@@ -351,7 +344,8 @@ class AuthProfileController extends GetxController {
   //   }
   // }
 
-  WithdrawWalletApiServices withdrawWalletApiServices =WithdrawWalletApiServices();
+  WithdrawWalletApiServices withdrawWalletApiServices =
+      WithdrawWalletApiServices();
   withdrawAmountFromWallet({required String amount}) async {
     isLoading(true);
     dio.Response<dynamic> response = await withdrawWalletApiServices
@@ -367,18 +361,17 @@ class AuthProfileController extends GetxController {
       Get.toNamed(Routes.BusinessWalletScreen);
     } else {
       Get.rawSnackbar(
-        message:response.data["error"],
+        message: response.data["error"],
         backgroundColor: Colors.red,
       );
     }
   }
 
-
-
-    //support admin detail
-  SupportAdminDetailsApiServices supportAdminDetailsApiServices = SupportAdminDetailsApiServices();
+  //support admin detail
+  SupportAdminDetailsApiServices supportAdminDetailsApiServices =
+      SupportAdminDetailsApiServices();
   ContactDetailsData? contactDetailsData;
-  
+
   supportAdminDetail() async {
     dio.Response<dynamic> response =
         await supportAdminDetailsApiServices.supportAdminDetailsApiServices();
@@ -389,5 +382,4 @@ class AuthProfileController extends GetxController {
     }
     update();
   }
-
 }

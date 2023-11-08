@@ -1,6 +1,7 @@
 import 'package:bciweb/controller/api_flightcontroller/api_flight_Controller.dart';
 import 'package:bciweb/controller/flaight_show_controller.dart';
 import 'package:bciweb/controller/flaightdate_controller.dart';
+import 'package:bciweb/models/seach_flight_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -9,8 +10,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:date_format/date_format.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/flaight _controller.dart';
-import '../../../../models/airport_search_model.dart';
-import '../../../../models/busbookingmodels/bus_cityList_model.dart';
 import '../../../../models/flight_searchdatamodel.dart';
 import '../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
@@ -20,10 +19,8 @@ import '../history/views/history.dart';
 import '../hotels/booking_hotels.dart';
 import '../trip/trip_booking.dart';
 import 'options_booking.dart';
-import 'package:date_format/date_format.dart';
 
 class BookingFlight extends StatefulWidget {
-  
   const BookingFlight({super.key});
 
   @override
@@ -131,8 +128,8 @@ class _BookingFlightState extends State<BookingFlight> {
   setDefault() async {
     apiflightController.adultsCount(1);
     apiflightController.childsCount(0);
-    apiflightController.seachAirport(keyWord: '');
-      WidgetsBinding.instance.addPostFrameCallback((timings) {
+
+    WidgetsBinding.instance.addPostFrameCallback((timings) {
       apiflightController.airports.clear();
       apiflightController.airPortFound(false);
       apiflightController.update();
@@ -332,264 +329,285 @@ class _BookingFlightState extends State<BookingFlight> {
                                             ],
                                           ),
                                         ),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  //  color: Colors.grey[200],
-                                                  borderRadius:
-                                                      BorderRadius.circular(15)),
-                                              height: size.height * 0.06,
-                                              width: size.width * 0.13,
-                                              child:
-                                                  TypeAheadField<Map<String, String?>>(
-                                                getImmediateSuggestions: true,
-                                                textFieldConfiguration:
-                                                    TextFieldConfiguration(
-                                                  controller: faligsearch2Controller,
-                                                  onChanged: (value) async {
-                                                    if (value.length > 1) {
-                                                    
-                                                      Get.find<ApiflightsController>()
-                                                          .seachAirport(
-                                                              keyWord: value.toString());
-                                                    }
-                                                  },
-                                                  
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          border:
-                                                              OutlineInputBorder(),
-                                                          hintText:
-                                                              'Any Airport City',
-                                                              hintStyle: TextStyle(
-                                                              fontSize: 14)),
-                                                ),
-                                                suggestionsCallback:
-                                                    (String pattern) async {
-                                                  return apiflightController
-                                                      .airports
-                                                      .where(
-                                                        (item) => item["name"].toString()
-                                                            .toLowerCase()
-                                                            .startsWith(
-                                                              pattern
-                                                                  .toLowerCase(),
-                                                            ),
-                                                      ).toList();
-                                                },
-                                                itemBuilder: (context,
-                                                    Map<String, String?> citymodel) {
-                                                  return ListTile(
-                                                    title:
-                                                        Text(citymodel["name"].toString()),
-                                                  );
-                                                },
-                                                itemSeparatorBuilder:
-                                                    (context, index) {
-                                                  return const Divider();
-                                                },
-                                                onSuggestionSelected:
-                                                    (Map<String, String?> citymodel) {
-                                                  print("bording selected");
-                                            
-                                                 faligsearch2Controller.text= apiflightController.origin(
-                                                     apiflightController.airports.isNotEmpty?
-                                                      apiflightController
-                                                          .airports.first["iata"]:"");
-                                                 faligsearch2Controller.text= apiflightController
-                                                      .originFullName(
-                                                        apiflightController.airports.isNotEmpty?
-                                                          apiflightController
-                                                              .airports.first
-                                                              ['name']:"");
-
-                                                faligsearch2Controller.text=  apiflightController
-                                                      .originCountry(
-                                                        apiflightController.airports.isNotEmpty?
-                                                          apiflightController
-                                                              .airports.first
-                                                              ['country']:"");
-                                                  // Bordingcontrolr.text =
-                                                  //     citymodel.cityName;
-                                                  // apiflightController.fromCity(
-                                                  //     citymodel.cityName);
-                                                  // busController.fromcityId(
-                                                  //     citymodel.cityId);
-                                                },
-                                              ),
-                                            ),
-                                        Icon(Icons.compare_arrows_sharp),
-                                      
-                                            // Padding(
-                                            //   padding: const EdgeInsets.only(
-                                            //       left: 15, right: 15),
-                                            //   child: InkWell(
-                                            //     onTap: () {
-                                            //      apiflightController.origin(
-                                            //           apiflightController
-                                            //               .airports[i].iata);
-                                            //       apiflightController
-                                            //           .originFullName(
-                                            //               apiflightController
-                                            //                   .airports[i]
-                                            //                   .name);
-
-                                            //       apiflightController
-                                            //           .originCountry(
-                                            //               apiflightController
-                                            //                   .airports[i]
-                                            //                   .country);
-
-                                            //       Get.back();
-                                            //     },
-                                            //     child: Row(
-                                            //       mainAxisAlignment:
-                                            //           MainAxisAlignment
-                                            //               .spaceBetween,
-                                            //       children: [
-                                            //         Container(
-                                            //           width:
-                                            //               MediaQuery.of(context)
-                                            //                       .size
-                                            //                       .width *
-                                            //                   0.2,
-                                            //           child: Row(
-                                            //             mainAxisAlignment:
-                                            //                 MainAxisAlignment
-                                            //                     .spaceBetween,
-                                            //             children: [
-                                            //               ElevatedButton(
-                                            //                 style: ElevatedButton
-                                            //                     .styleFrom(
-                                            //                         minimumSize:
-                                            //                             const Size(
-                                            //                                 30,
-                                            //                                 25),
-                                            //                         backgroundColor:
-                                            //                             kblue),
-                                            //                 onPressed: () {},
-                                            //                 child: Text(
-                                            //                   apiflightController
-                                            //                       .airports[i]
-                                            //                       .iata,
-                                            //                 ),
-                                            //               ),
-                                            //             ],
-                                            //           ),
-                                            //         ),
-                                            //         Container(
-                                            //           width:
-                                            //               MediaQuery.of(context)
-                                            //                       .size
-                                            //                       .width *
-                                            //                   0.4,
-                                            //           child: Text(
-                                            //             apiflightController
-                                            //                 .airports[i].name,
-                                            //             style: TextStyle(
-                                            //                 fontSize: 15),
-                                            //           ),
-                                            //         ),
-                                            //         Container(
-                                            //             width: MediaQuery.of(
-                                            //                         context)
-                                            //                     .size
-                                            //                     .width *
-                                            //                 0.1,
-                                            //             child: Text(
-                                            //                 apiflightController
-                                            //                     .airports[i].,
-                                            //                 style: TextStyle(
-                                            //                     fontSize:
-                                            //                         15)))
-                                            //       ],
-                                            //     ),
-                                            //   ),
-                                            // ),
-                                        
                                         Container(
-                                              decoration: BoxDecoration(
-                                                  //  color: Colors.grey[200],
-                                                  borderRadius:
-                                                      BorderRadius.circular(15)),
-                                              height: size.height * 0.06,
-                                              width: size.width * 0.13,
-                                              child:
-                                                  TypeAheadField<Map<String, String?>>(
-                                                getImmediateSuggestions: true,
-                                                textFieldConfiguration:
-                                                    TextFieldConfiguration(
-                                                      onTap: (){
-                                                        faligsearchController.text;
-                                                      },
-                                                  controller: faligsearchController,
-                                                  onChanged: (value) async {
-                                                    if (value.length > 1) {
-                                                      Get.find<ApiflightsController>()
-                                                          .seachAirport(
-                                                              keyWord: value.toString());
-                                                    }
-                                                  },
-                                                  
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          border:
-                                                              OutlineInputBorder(),
-                                                          hintText:
-                                                              'Any Airport City',
-                                                              hintStyle: TextStyle(
-                                                              fontSize: 14)),
-                                                ),
-                                                suggestionsCallback:
-                                                    (String pattern) async {
-                                                  return apiflightController
-                                                      .airports
-                                                      .where(
-                                                        (item) => item["name"].toString()
-                                                            .toLowerCase()
-                                                            .startsWith(
-                                                              pattern
-                                                                  .toLowerCase(),
-                                                            ),
-                                                      ).toList();
-                                                },
-                                                itemBuilder: (context,
-                                                    Map<String, String?> citymodel) {
-                                                  return ListTile(
-                                                    title:
-                                                        Text(citymodel["name"].toString()),
-                                                  );
-                                                },
-                                                itemSeparatorBuilder:
-                                                    (context, index) {
-                                                  return const Divider();
-                                                },
-                                                onSuggestionSelected:
-                                                    (Map<String, String?> citymodel) {
-                                                  print("bording selected");
-                                            
-                                                 faligsearchController.text= apiflightController.origin(
+                                          decoration: BoxDecoration(
+                                              //  color: Colors.grey[200],
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          height: size.height * 0.06,
+                                          width: size.width * 0.13,
+                                          child:
+                                              TypeAheadField<FlightSearchModel>(
+                                            getImmediateSuggestions: true,
+                                            textFieldConfiguration:
+                                                TextFieldConfiguration(
+                                              controller:
+                                                  faligsearch2Controller,
+                                              onChanged: (value) async {
+                                                if (value.length > 1) {
+                                                  Get.find<
+                                                          ApiflightsController>()
+                                                      .flighsearch(
+                                                          city:
+                                                              value.toString());
+                                                }
+                                              },
+                                              decoration: const InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText:
+                                                      'Any Airport City',
+                                                  hintStyle:
+                                                      TextStyle(fontSize: 14)),
+                                            ),
+                                            suggestionsCallback:
+                                                (String pattern) async {
+                                              return apiflightController
+                                                  .searchlistsearchList
+                                                  .where(
+                                                    (item) => item.airportName
+                                                        .toString()
+                                                        .toLowerCase()
+                                                        .startsWith(
+                                                          pattern.toLowerCase(),
+                                                        ),
+                                                  )
+                                                  .toList();
+                                            },
+                                            itemBuilder: (context,
+                                                FlightSearchModel citymodel) {
+                                              return ListTile(
+                                                title: Text(citymodel
+                                                    .airportName
+                                                    .toString()),
+                                              );
+                                            },
+                                            itemSeparatorBuilder:
+                                                (context, index) {
+                                              return const Divider();
+                                            },
+                                            onSuggestionSelected:
+                                                (FlightSearchModel citymodel) {
+                                              print("bording selected");
+
+                                              faligsearch2Controller.text =
+                                                  apiflightController.origin(
                                                       apiflightController
-                                                          .airports.first["iata"]);
-                                                 faligsearchController.text= apiflightController
+                                                          .searchlistsearchList
+                                                          .first
+                                                          .airportcode);
+                                              faligsearch2Controller.text =
+                                                  apiflightController
                                                       .originFullName(
                                                           apiflightController
-                                                              .airports.first
-                                                              ['name']);
+                                                              .searchlistsearchList
+                                                              .first
+                                                              .airportName);
 
-                                                faligsearchController.text=  apiflightController
+                                              faligsearchController.text =
+                                                  apiflightController
+                                                      .searchlistsearchList
+                                                      .first
+                                                      .airportcode;
+
+                                              faligsearch2Controller.text =
+                                                  apiflightController
                                                       .originCountry(
                                                           apiflightController
-                                                              .airports.first
-                                                              ['country']);
-                                                  // Bordingcontrolr.text =
-                                                  //     citymodel.cityName;
-                                                  // apiflightController.fromCity(
-                                                  //     citymodel.cityName);
-                                                  // busController.fromcityId(
-                                                  //     citymodel.cityId);
-                                                },
-                                              ),
+                                                              .searchlistsearchList
+                                                              .first
+                                                              .airportcode);
+                                              // Bordingcontrolr.text =
+                                              //     citymodel.cityName;
+                                              // apiflightController.fromCity(
+                                              //     citymodel.cityName);
+                                              // busController.fromcityId(
+                                              //     citymodel.cityId);
+                                            },
+                                          ),
+                                        ),
+                                        Icon(Icons.compare_arrows_sharp),
+
+                                        // Padding(
+                                        //   padding: const EdgeInsets.only(
+                                        //       left: 15, right: 15),
+                                        //   child: InkWell(
+                                        //     onTap: () {
+                                        //      apiflightController.origin(
+                                        //           apiflightController
+                                        //               .airports[i].iata);
+                                        //       apiflightController
+                                        //           .originFullName(
+                                        //               apiflightController
+                                        //                   .airports[i]
+                                        //                   .name);
+
+                                        //       apiflightController
+                                        //           .originCountry(
+                                        //               apiflightController
+                                        //                   .airports[i]
+                                        //                   .country);
+
+                                        //       Get.back();
+                                        //     },
+                                        //     child: Row(
+                                        //       mainAxisAlignment:
+                                        //           MainAxisAlignment
+                                        //               .spaceBetween,
+                                        //       children: [
+                                        //         Container(
+                                        //           width:
+                                        //               MediaQuery.of(context)
+                                        //                       .size
+                                        //                       .width *
+                                        //                   0.2,
+                                        //           child: Row(
+                                        //             mainAxisAlignment:
+                                        //                 MainAxisAlignment
+                                        //                     .spaceBetween,
+                                        //             children: [
+                                        //               ElevatedButton(
+                                        //                 style: ElevatedButton
+                                        //                     .styleFrom(
+                                        //                         minimumSize:
+                                        //                             const Size(
+                                        //                                 30,
+                                        //                                 25),
+                                        //                         backgroundColor:
+                                        //                             kblue),
+                                        //                 onPressed: () {},
+                                        //                 child: Text(
+                                        //                   apiflightController
+                                        //                       .airports[i]
+                                        //                       .iata,
+                                        //                 ),
+                                        //               ),
+                                        //             ],
+                                        //           ),
+                                        //         ),
+                                        //         Container(
+                                        //           width:
+                                        //               MediaQuery.of(context)
+                                        //                       .size
+                                        //                       .width *
+                                        //                   0.4,
+                                        //           child: Text(
+                                        //             apiflightController
+                                        //                 .airports[i].name,
+                                        //             style: TextStyle(
+                                        //                 fontSize: 15),
+                                        //           ),
+                                        //         ),
+                                        //         Container(
+                                        //             width: MediaQuery.of(
+                                        //                         context)
+                                        //                     .size
+                                        //                     .width *
+                                        //                 0.1,
+                                        //             child: Text(
+                                        //                 apiflightController
+                                        //                     .airports[i].,
+                                        //                 style: TextStyle(
+                                        //                     fontSize:
+                                        //                         15)))
+                                        //       ],
+                                        //     ),
+                                        //   ),
+                                        // ),
+
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              //  color: Colors.grey[200],
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          height: 55,
+                                          width: size.width * 0.13,
+                                          child:
+                                              TypeAheadField<FlightSearchModel>(
+                                            getImmediateSuggestions: true,
+                                            textFieldConfiguration:
+                                                TextFieldConfiguration(
+                                              onTap: () {
+                                                faligsearchController.text;
+                                              },
+                                              controller: faligsearchController,
+                                              onChanged: (value) async {
+                                                if (value.length > 1) {
+                                                  Get.find<
+                                                          ApiflightsController>()
+                                                      .flighsearch(
+                                                          city:
+                                                              value.toString());
+                                                }
+                                              },
+                                              decoration: const InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText: 'Any Airport City',
+                                                  hintStyle:
+                                                      TextStyle(fontSize: 14)),
                                             ),
+                                            suggestionsCallback:
+                                                (String pattern) async {
+                                              return apiflightController
+                                                  .searchlistsearchList
+                                                  .where(
+                                                    (item) => item.airportName
+                                                        .toString()
+                                                        .toLowerCase()
+                                                        .startsWith(
+                                                          pattern.toLowerCase(),
+                                                        ),
+                                                  )
+                                                  .toList();
+                                            },
+                                            itemBuilder: (context,
+                                                FlightSearchModel citymodel) {
+                                              return ListTile(
+                                                title: Text(citymodel
+                                                    .airportName
+                                                    .toString()),
+                                              );
+                                            },
+                                            itemSeparatorBuilder:
+                                                (context, index) {
+                                              return const Divider();
+                                            },
+                                            onSuggestionSelected:
+                                                (FlightSearchModel citymodel) {
+                                              print("bording selected");
+
+                                              faligsearchController.text =
+                                                  apiflightController.origin(
+                                                      apiflightController
+                                                          .searchlistsearchList
+                                                          .first
+                                                          .airportcode);
+                                              faligsearchController.text =
+                                                  apiflightController
+                                                      .originFullName(
+                                                          apiflightController
+                                                              .searchlistsearchList
+                                                              .first
+                                                              .airportName);
+
+                                              faligsearchController.text =
+                                                  apiflightController
+                                                      .searchlistsearchList
+                                                      .first
+                                                      .airportcode;
+                                              apiflightController.originCountry(
+                                                  apiflightController
+                                                      .searchlistsearchList
+                                                      .first
+                                                      .airportcode);
+                                              // Bordingcontrolr.text =
+                                              //     citymodel.cityName;
+                                              // apiflightController.fromCity(
+                                              //     citymodel.cityName);
+                                              // busController.fromcityId(
+                                              //     citymodel.cityId);
+                                            },
+                                          ),
+                                        ),
                                         Container(
                                           height: 40,
                                           width: MediaQuery.of(context)
@@ -980,19 +998,13 @@ class _BookingFlightState extends State<BookingFlight> {
                                     gradient: LinearGradient(
                                         colors: [kOrange, kyellow])),
                                 child: GestureDetector(
-                                  onTap: () {
-                                    flaightshowController.flaightshowindex(1);
-                                    flaightshowController.update();
-                                    print('............');
-                                  },
-                                  child: Center(
-                                      child: Text(
-                                    'SEARCH',
-                                    style:
-                                        TextStyle(color: kwhite, fontSize: 16),
-                                    textAlign: TextAlign.center,
-                                  )),
-                                ),
+                                    onTap: () {
+                                      flaightshowController.flaightshowindex(1);
+                                      flaightshowController.update();
+                                      print('............');
+                                    },
+                                    child: Center(
+                                        child: CircularProgressIndicator(backgroundColor: kyellow,color: kOrange,))),
                               )
                             : Container(
                                 height: 40,
@@ -1004,47 +1016,47 @@ class _BookingFlightState extends State<BookingFlight> {
                                         colors: [kOrange, kyellow])),
                                 child: GestureDetector(
                                   onTap: () {
-                                     int domORIntl = 0;
+                                    int domORIntl = 0;
 
-                          if (apiflightController.originCountry.value ==
-                              apiflightController
-                                  .destinationCountry) {
-                            domORIntl = 0;
-                          } else {
-                            domORIntl = 1;
-                          }
+                                    if (apiflightController
+                                            .originCountry.value ==
+                                        apiflightController
+                                            .destinationCountry) {
+                                      domORIntl = 0;
+                                    } else {
+                                      domORIntl = 1;
+                                    }
 
-                          print("-----------------> going to search <---------------");
+                                    print(
+                                        "-----------------> going to search <---------------");
                                     flaightshowController.flaightshowindex(1);
                                     flaightshowController.update();
-                                    FlightSearchDataModel flightSearchDataModel =
-                                       FlightSearchDataModel(
-                                  adultsCount: apiflightController
-                                      .adultsCount.value,
-                                  cabinClass: apiflightController
-                                      .cabinClassIndex.value,
-                                  fromName: apiflightController
-                                      .originFullName.value,
-                                  toName: apiflightController
-                                      .destinationFullName.value,
-                                  childCount: apiflightController
-                                      .childsCount.value,
-                                  depatureDate: apiflightController
-                                      .depatureDate,
-                                  fromIata: apiflightController
-                                      .origin.value,
-                                  isOneWayOrRoundTrip: apiflightController
-                                      .wayIndex.value,
-                                  fromCountry:
-                                      apiflightController
-                                          .originCountry.value,
-                                  toCountry: apiflightController
-                                      .destinationCountry.value,
-                                  returnDate:
-                                      apiflightController.returnDate,
-                                  isDomOrINTL: domORIntl,
-                                  toIata: apiflightController
-                                      .destination.value);
+                                    FlightSearchDataModel flightSearchDataModel = FlightSearchDataModel(
+                                        adultsCount: apiflightController
+                                            .adultsCount.value,
+                                        cabinClass: apiflightController
+                                            .cabinClassIndex.value,
+                                        fromName: apiflightController
+                                            .originFullName.value,
+                                        toName: apiflightController
+                                            .destinationFullName.value,
+                                        childCount: apiflightController
+                                            .childsCount.value,
+                                        depatureDate:
+                                            apiflightController.depatureDate,
+                                        fromIata:
+                                            apiflightController.origin.value,
+                                        isOneWayOrRoundTrip:
+                                            apiflightController.wayIndex.value,
+                                        fromCountry: apiflightController
+                                            .originCountry.value,
+                                        toCountry: apiflightController
+                                            .destinationCountry.value,
+                                        returnDate:
+                                            apiflightController.returnDate,
+                                        isDomOrINTL: domORIntl,
+                                        toIata: apiflightController
+                                            .destination.value);
 
                                     apiflightController.airSearch(
                                         flightSearchModel:
@@ -1496,7 +1508,7 @@ class _BookingFlightState extends State<BookingFlight> {
                               //     )
                               //   ],
                               // ),
-                            
+
                               // Padding(
                               //   padding:
                               //       const EdgeInsets.only(top: 20, left: 10),
@@ -1561,7 +1573,7 @@ class _BookingFlightState extends State<BookingFlight> {
                               //           ),
                               //         ],
                               //       ),
-                                 
+
                               //     ],
                               //   ),
                               // ),
@@ -1995,7 +2007,6 @@ class _BookingFlightState extends State<BookingFlight> {
                                       ],
                                     ),
                                   ),
-                                 
                                 ],
                               ),
                               ksizedbox20,
@@ -2783,14 +2794,17 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                                 korange),
                                                                         onPressed:
                                                                             () {
-                                                                                int domORIntl = 0;
+                                                                          int domORIntl =
+                                                                              0;
 
-                                                                         if (apiflightController.originCountry.value ==
+                                                                          if (apiflightController.originCountry.value ==
                                                                               apiflightController.destinationCountry.value) {
-                                                                              domORIntl = 0;
-                                                                              } else {
-                                                                              domORIntl = 1;
-                                                                              }
+                                                                            domORIntl =
+                                                                                0;
+                                                                          } else {
+                                                                            domORIntl =
+                                                                                1;
+                                                                          }
                                                                           Get.offAll(
                                                                               BookingOptionsScreen(
                                                                             flight:
@@ -2805,12 +2819,14 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                                 fromIata: apiflightController.origin.value,
                                                                                 isOneWayOrRoundTrip: apiflightController.wayIndex.value,
                                                                                 returnDate: apiflightController.returnDate,
-                                                                                toIata: apiflightController.destination.value, 
-                                                                                fromCountry: apiflightController.originCountry.value, 
+                                                                                toIata: apiflightController.destination.value,
+                                                                                fromCountry: apiflightController.originCountry.value,
                                                                                 isDomOrINTL: domORIntl,
-                                                                                 toCountry: apiflightController.destinationCountry.value), 
-                                                                                 flightKey: '', 
-                                                                                 seachKey: '',
+                                                                                toCountry: apiflightController.destinationCountry.value),
+                                                                            flightKey:
+                                                                                '',
+                                                                            seachKey:
+                                                                                '',
                                                                           ));
                                                                         },
                                                                         child: Text(
@@ -2835,24 +2851,33 @@ class _BookingFlightState extends State<BookingFlight> {
                                               child: Row(
                                                 children: [
                                                   InkWell(
-                                                    onTap: (){
-                                                      apiflightController.showdetails(1);
-                                                      apiflightController.update();
-                                                     
+                                                    onTap: () {
+                                                      apiflightController
+                                                          .showdetails(1);
+                                                      apiflightController
+                                                          .update();
                                                     },
-                                                    onDoubleTap: (){
-                                                      apiflightController.showdetails(0);
-                                                      apiflightController.update();
+                                                    onDoubleTap: () {
+                                                      apiflightController
+                                                          .showdetails(0);
+                                                      apiflightController
+                                                          .update();
                                                     },
-                                                   
-                                                    child:apiflightController.showdetails.value==0?Text('Show details',
-                                                    style: TextStyle(
-                                                      fontSize: 12,
-                                                      color:korange
-                                                    ),) :Text('Hide details',
-                                                        style: TextStyle(
-                                                            fontSize: 12,
-                                                            color: korange)),
+                                                    child: apiflightController
+                                                                .showdetails
+                                                                .value ==
+                                                            0
+                                                        ? Text(
+                                                            'Show details',
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: korange),
+                                                          )
+                                                        : Text('Hide details',
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                color:
+                                                                    korange)),
                                                   ),
                                                 ],
                                               ),
@@ -2869,261 +2894,243 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 ],
                                               ),
                                             ),
-                                            if(apiflightController.showdetails.value==1)
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 20, left: 20, right: 20),
-                                              child: Container(
-                                                width: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    MediaQuery.of(context)
-                                                            .size
-                                                            .width *
-                                                        0.28,
-                                                decoration: BoxDecoration(
-                                                    color: kwhite,
-                                                    border: Border.all(
-                                                        color: kgrey)),
-                                                child: Column(
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .start,
-                                                    children: [
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                    .only(
-                                                                left: 20,
-                                                                top: 10),
-                                                                
-                                                        child: Row(children: [
-                                                        
-                                                          Text(
-                                                              '${apiflightController.originCountry} → ${apiflightController.destinationCountry} ${formatDate(apiflightController.depatureDate, [DD,'-',mm,'-',yyyy])}',
-                                                              style: TextStyle(
-                                                                  fontSize: 12))
-                                                        ]),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(top: 10),
-                                                        child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        left:
-                                                                            20),
-                                                                child: Image.asset(
-                                                                    'assets/images/bookingflaight.png',
-                                                                    height: 35,
-                                                                    fit: BoxFit
-                                                                        .fitHeight),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            40),
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                        '${apiflightController.flightList[index].segments.first.originCity} ${apiflightController.flightList[index].segments.first.departureDateTime.split(' ').last}',
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                15,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            color: kblue)),
-                                                                    Padding(
-                                                                      padding: const EdgeInsets
-                                                                              .only(
-                                                                          top:
-                                                                              5),
-                                                                      child: Text(
-                                                                          formatDate(
-                                                                              apiflightController.splitdate(apiflightController.flightList[index].segments.first.departureDateTime.split(' ').first),
-                                                                              [
-                                                                                DD,
-                                                                                ',',
-                                                                                dd,
-                                                                                ' ',
-                                                                                MM,
-                                                                                ' ',
-                                                                                yyyy,
-                                                                                ''
-                                                                              ]),
-                                                                          style:
-                                                                              TextStyle(fontSize: 12)),
-                                                                    )
-                                                                  ],
+                                            if (apiflightController
+                                                    .showdetails.value ==
+                                                1)
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    top: 20,
+                                                    left: 20,
+                                                    right: 20),
+                                                child: Container(
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width -
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.28,
+                                                  decoration: BoxDecoration(
+                                                      color: kwhite,
+                                                      border: Border.all(
+                                                          color: kgrey)),
+                                                  child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 20,
+                                                                  top: 10),
+                                                          child: Row(children: [
+                                                            Text(
+                                                                '${apiflightController.originCountry} → ${apiflightController.destinationCountry} ${formatDate(apiflightController.depatureDate, [
+                                                                      DD,
+                                                                      '-',
+                                                                      mm,
+                                                                      '-',
+                                                                      yyyy
+                                                                    ])}',
+                                                                style: TextStyle(
+                                                                    fontSize:
+                                                                        12))
+                                                          ]),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  top: 10),
+                                                          child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      left: 20),
+                                                                  child: Image.asset(
+                                                                      'assets/images/bookingflaight.png',
+                                                                      height:
+                                                                          35,
+                                                                      fit: BoxFit
+                                                                          .fitHeight),
                                                                 ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            40),
-                                                                child: Column(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Icon(Icons
-                                                                          .schedule_outlined),
-                                                                      Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(top: 5),
-                                                                        child: Text(
-                                                                            apiflightController.flightList[index].segments.first.duration,
-                                                                            style: TextStyle(fontSize: 12)),
-                                                                      )
-                                                                    ]),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top:
-                                                                            40),
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                      CrossAxisAlignment
-                                                                          .start,
-                                                                  children: [
-                                                                    Text(
-                                                                        '${apiflightController.flightList[index].segments.first.destination} ${apiflightController.flightList[index].segments.first.arrivalDateTime.split(' ').last}',
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                15,
-                                                                            fontWeight:
-                                                                                FontWeight.bold,
-                                                                            color: kblue)),
-                                                                    Padding(
-                                                                      padding: const EdgeInsets
-                                                                              .only(
-                                                                          top:
-                                                                              5),
-                                                                      child: Text(
-                                                                          formatDate(
-                                                                              apiflightController.splitdate(apiflightController.flightList[index].segments.first.arrivalDateTime.split(' ').first),
-                                                                              [
-                                                                                DD,
-                                                                                ',',
-                                                                                dd,
-                                                                                ' ',
-                                                                                MM,
-                                                                                ' ',
-                                                                                yyyy
-                                                                              ]),
-                                                                          style:
-                                                                              TextStyle(fontSize: 12)),
-                                                                    )
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        right:
-                                                                            60,
-                                                                        top:
-                                                                            50),
-                                                                child: Column(
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 40),
+                                                                  child: Column(
                                                                     crossAxisAlignment:
                                                                         CrossAxisAlignment
                                                                             .start,
                                                                     children: [
                                                                       Text(
-                                                                        'Baggage',
-                                                                        style: TextStyle(
-                                                                            fontSize:
-                                                                                17,
-                                                                            color:
-                                                                                kblue,
-                                                                            fontWeight:
-                                                                                FontWeight.bold),
-                                                                      ),
-                                                                      Padding(
-                                                                        padding:
-                                                                            const EdgeInsets.only(top: 3),
-                                                                        child: Text(
-                                                                            'Check In Baggage: ${apiflightController.flightList[index].fares.last.fareDetails.last.freeBaggage.checkInBaggage}',
-                                                                            style:
-                                                                                TextStyle(fontSize: 13, color: kblue)),
-                                                                      ),
+                                                                          '${apiflightController.flightList[index].segments.first.originCity} ${apiflightController.flightList[index].segments.first.departureDateTime.split(' ').last}',
+                                                                          style: TextStyle(
+                                                                              fontSize: 15,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              color: kblue)),
                                                                       Padding(
                                                                         padding:
                                                                             const EdgeInsets.only(top: 5),
                                                                         child: Text(
-                                                                            'Hand Baggage: ${apiflightController.flightList[index].fares.last.fareDetails.last.freeBaggage.handBaggage}',
+                                                                            formatDate(apiflightController.splitdate(apiflightController.flightList[index].segments.first.departureDateTime.split(' ').first), [
+                                                                              DD,
+                                                                              ',',
+                                                                              dd,
+                                                                              ' ',
+                                                                              MM,
+                                                                              ' ',
+                                                                              yyyy,
+                                                                              ''
+                                                                            ]),
                                                                             style:
-                                                                                TextStyle(
-                                                                              fontSize: 13,
-                                                                              color: kblue,
-                                                                            )),
+                                                                                TextStyle(fontSize: 12)),
                                                                       )
-                                                                    ]),
-                                                              )
-                                                            ]),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .only(left: 20),
-                                                        child: Row(children: [
-                                                          Column(
-                                                            crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                            children: [
-                                                              Text(
-                                                                  'Indigo airline',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          12)),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top: 4),
-                                                                child: Text(
-                                                                    'Indigo-23',
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 40),
+                                                                  child: Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Icon(Icons
+                                                                            .schedule_outlined),
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(top: 5),
+                                                                          child: Text(
+                                                                              apiflightController.flightList[index].segments.first.duration,
+                                                                              style: TextStyle(fontSize: 12)),
+                                                                        )
+                                                                      ]),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 40),
+                                                                  child: Column(
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .start,
+                                                                    children: [
+                                                                      Text(
+                                                                          '${apiflightController.flightList[index].segments.first.destination} ${apiflightController.flightList[index].segments.first.arrivalDateTime.split(' ').last}',
+                                                                          style: TextStyle(
+                                                                              fontSize: 15,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              color: kblue)),
+                                                                      Padding(
+                                                                        padding:
+                                                                            const EdgeInsets.only(top: 5),
+                                                                        child: Text(
+                                                                            formatDate(apiflightController.splitdate(apiflightController.flightList[index].segments.first.arrivalDateTime.split(' ').first), [
+                                                                              DD,
+                                                                              ',',
+                                                                              dd,
+                                                                              ' ',
+                                                                              MM,
+                                                                              ' ',
+                                                                              yyyy
+                                                                            ]),
+                                                                            style:
+                                                                                TextStyle(fontSize: 12)),
+                                                                      )
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      right: 60,
+                                                                      top: 50),
+                                                                  child: Column(
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .start,
+                                                                      children: [
+                                                                        Text(
+                                                                          'Baggage',
+                                                                          style: TextStyle(
+                                                                              fontSize: 17,
+                                                                              color: kblue,
+                                                                              fontWeight: FontWeight.bold),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(top: 3),
+                                                                          child: Text(
+                                                                              'Check In Baggage: ${apiflightController.flightList[index].fares.last.fareDetails.last.freeBaggage.checkInBaggage}',
+                                                                              style: TextStyle(fontSize: 13, color: kblue)),
+                                                                        ),
+                                                                        Padding(
+                                                                          padding:
+                                                                              const EdgeInsets.only(top: 5),
+                                                                          child: Text(
+                                                                              'Hand Baggage: ${apiflightController.flightList[index].fares.last.fareDetails.last.freeBaggage.handBaggage}',
+                                                                              style: TextStyle(
+                                                                                fontSize: 13,
+                                                                                color: kblue,
+                                                                              )),
+                                                                        )
+                                                                      ]),
+                                                                )
+                                                              ]),
+                                                        ),
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .only(
+                                                                  left: 20),
+                                                          child: Row(children: [
+                                                            Column(
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .start,
+                                                              children: [
+                                                                Text(
+                                                                    'Indigo airline',
                                                                     style: TextStyle(
                                                                         fontSize:
                                                                             12)),
-                                                              ),
-                                                              Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .only(
-                                                                        top: 4),
-                                                                child: Text(
-                                                                    'Economy',
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            12)),
-                                                              )
-                                                            ],
-                                                          ),
-                                                        ]),
-                                                      ),
-                                                      ksizedbox10,
-                                                    ]),
-                                              ),
-                                            )
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 4),
+                                                                  child: Text(
+                                                                      'Indigo-23',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12)),
+                                                                ),
+                                                                Padding(
+                                                                  padding: const EdgeInsets
+                                                                          .only(
+                                                                      top: 4),
+                                                                  child: Text(
+                                                                      'Economy',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              12)),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ]),
+                                                        ),
+                                                        ksizedbox10,
+                                                      ]),
+                                                ),
+                                              )
                                           ],
                                         );
                                       });
@@ -4211,4 +4218,3 @@ class _BookingFlightState extends State<BookingFlight> {
     );
   }
 }
-
