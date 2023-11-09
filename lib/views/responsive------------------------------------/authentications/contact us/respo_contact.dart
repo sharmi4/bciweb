@@ -1,13 +1,11 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/comomappbar.dart';
-import 'package:bciweb/views/members/common_widget/common.dart';
-import 'package:bciweb/views/members/common_widget/commoncontainer.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/setting_controller/setting_controller.dart';
-import '../../../../registerhomescreen/common_reg_bottom.dart';
-import '../../../../registerhomescreen/common_reg_homescreen.dart';
+
 import '../../mobile_wdgets/drawer.dart';
 import '../../mobile_wdgets/mobile_common_bottom/bottom.dart';
 

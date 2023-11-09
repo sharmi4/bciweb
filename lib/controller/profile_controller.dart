@@ -1,4 +1,3 @@
-
 import 'package:bciweb/models/member_profile.dart';
 import 'package:bciweb/services/networks/business_service/business_withdraw_api_service.dart';
 import 'package:flutter/material.dart';
@@ -17,35 +16,36 @@ import '../services/networks/business_service/business_profilepicupdate_api_serv
 import '../services/networks/business_service/get_gallery_api_service.dart';
 import '../views/business/business_profile/accout_profile.dart';
 
+class ProfileController extends GetxController {
+  RxInt profileindex = 0.obs;
 
+  RxInt isWalletOrNot = 0.obs;
 
-class ProfileController extends GetxController{
-  RxInt profileindex =0.obs;
   RxBool isLogedin = false.obs;
-  RxInt businessprofileindex =0.obs; 
+  RxInt businessprofileindex = 0.obs;
 
   RxBool isLoading = false.obs;
 
-  BusinessGetProfileApiServices getProfileApiServices = BusinessGetProfileApiServices();
-    List<BusinessUser> profileData = [];
-    //  List<MemberUser>memberprofiledata=[];
+  BusinessGetProfileApiServices getProfileApiServices =
+      BusinessGetProfileApiServices();
+  List<BusinessUser> profileData = [];
+  //  List<MemberUser>memberprofiledata=[];
 
-   getProfile() async {
+  getProfile() async {
     isLoading(true);
     //profileData.clear();
     print("-------------->>1");
     dio.Response<dynamic> response = await getProfileApiServices.getProfile();
-     print("-------------->>2");
+    print("-------------->>2");
     isLoading(false);
     if (response.statusCode == 200) {
-
       BusinessProfileModel profileModel =
           BusinessProfileModel.fromJson(response.data);
       print("-------------->>3");
       profileData.add(profileModel.user);
       isLogedin(true);
     }
-      //fcmtoken
+    //fcmtoken
 
     // } else if (response.statusCode == 401) {
     //   Get.snackbar("Please login again", "",
@@ -55,9 +55,10 @@ class ProfileController extends GetxController{
     //   Get.find<AuthController>().logout();
     // }
   }
+
   UpdateBankApiServices updateBankApiServices = UpdateBankApiServices();
-  
-   updateBankAccount({required UpdateBankModel merchantUpdateModel}) async {
+
+  updateBankAccount({required UpdateBankModel merchantUpdateModel}) async {
     isLoading(true);
     dio.Response<dynamic> response = await updateBankApiServices.updateBank(
       merchantUpdateModel: merchantUpdateModel,
@@ -73,12 +74,13 @@ class ProfileController extends GetxController{
           ));
     }
   }
+
   AddGalleryApiServices addgalleryapi = AddGalleryApiServices();
 
   addgalleryApiServices({required dynamic imageprofiletemp}) async {
     isLoading(true);
     dio.Response<dynamic> response =
-        await addgalleryapi.addgalleryApiServices(gallery:imageprofiletemp );
+        await addgalleryapi.addgalleryApiServices(gallery: imageprofiletemp);
     isLoading(false);
     if (response.statusCode == 200 || response.statusCode == 201) {
       Get.rawSnackbar(
@@ -90,8 +92,10 @@ class ProfileController extends GetxController{
       );
     }
   }
-  ProfileUpdateApiServices profileUpdateApiServices = ProfileUpdateApiServices();
-  
+
+  ProfileUpdateApiServices profileUpdateApiServices =
+      ProfileUpdateApiServices();
+
   updateProfile({required MerchantUpdateModel merchantUpdateModel}) async {
     isLoading(true);
     dio.Response<dynamic> response =
@@ -109,15 +113,17 @@ class ProfileController extends GetxController{
           ));
     }
   }
-  BusinessprofilepicUpdateApiService businessprofilepicupdateapiservice =BusinessprofilepicUpdateApiService();
- updateProfilePic(dynamic image) async {
+
+  BusinessprofilepicUpdateApiService businessprofilepicupdateapiservice =
+      BusinessprofilepicUpdateApiService();
+  updateProfilePic(dynamic image) async {
     dio.Response<dynamic> response =
         await businessprofilepicupdateapiservice.profilepicUpdate(image: image);
 
     getProfile();
   }
 
-   //get GALLERY
+  //get GALLERY
 
   GetGalleryApiServices getgalleryApiService = GetGalleryApiServices();
   List<GalleryListModel> galleryListData = [];
@@ -126,7 +132,7 @@ class ProfileController extends GetxController{
     print("---------------------------------->>> user id = ${userid}");
     dio.Response<dynamic> response =
         await getgalleryApiService.getgalleryApiServices(userid: userid);
-        isLoading(false);
+    isLoading(false);
     if (response.statusCode == 200) {
       GetGalleryModel getGalleryList = GetGalleryModel.fromJson(response.data);
       galleryListData = getGalleryList.data;
@@ -140,7 +146,6 @@ class ProfileController extends GetxController{
     }
     update();
   }
-
 
   WithdrawWalletApiServices withdrawWalletApiServices =
       WithdrawWalletApiServices();
@@ -162,11 +167,9 @@ class ProfileController extends GetxController{
       //     ));
     } else {
       Get.rawSnackbar(
-        message:response.data["error"],
+        message: response.data["error"],
         backgroundColor: Colors.red,
       );
     }
   }
-
-
 }

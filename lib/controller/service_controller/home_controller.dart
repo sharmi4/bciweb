@@ -14,6 +14,7 @@ import 'package:bciweb/services/networks/business_service/business_getbookinglis
 import 'package:bciweb/services/networks/business_service/business_todayoffers_api_service.dart';
 import 'package:bciweb/services/networks/business_service/getservice_bycategory_api_service.dart';
 import 'package:bciweb/services/networks/services/get_services_api_services.dart';
+import 'package:bciweb/services/networks/services/update_quantity_api_service.dart';
 import 'package:bciweb/services/networks/subscription/add_subscription_api_services.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_category_list_api_service.dart';
@@ -521,4 +522,19 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     }
   }
 
+
+
+
+
+  //update quantity
+  UpdateQuantityAPIServices updateQuantityAPIServices = UpdateQuantityAPIServices();
+
+  updateQuantity({required String cartid,required String quantity}) async {
+     dio.Response<dynamic> response = await updateQuantityAPIServices.updateQuantityData(
+      cartid: cartid, quantity: quantity);
+      if(response.statusCode == 200){
+
+      }
+      update();
+  }
 }

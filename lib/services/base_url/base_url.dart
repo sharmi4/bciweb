@@ -311,4 +311,7 @@ abstract class BaseApiService {
 final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_city_search_get";
 
 
+
+   //update quantity
+   final String updateQuantityApiUrl = "https://www.portal.bcipvtltd.com/api/auth/updateCart";  
 }

@@ -1,10 +1,11 @@
 import 'package:bciweb/controller/seat_controller.dart';
 import 'package:bciweb/models/air_search_model.dart';
 import 'package:bciweb/models/flight_searchdatamodel.dart';
-import 'package:bciweb/views/members/bookins/flight/payment_screen.dart';
+
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 import '../../../../constant/constans.dart';
 import '../../../../registerhomescreen/common_reg_homescreen.dart';
