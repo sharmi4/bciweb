@@ -297,7 +297,9 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/add_subscription_plan";
 
 
-
+  //our coupons api
+  final String couponsApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/getUserCoupons";
       //get profilebusines api
   final String getbusinesProfileURL =
       "https://www.portal.bcipvtltd.com/api/auth/profile";

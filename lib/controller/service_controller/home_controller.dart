@@ -19,7 +19,6 @@ import 'package:bciweb/services/networks/subscription/add_subscription_api_servi
 import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_service_api.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_category_list_api_service.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
-import 'package:bciweb/views/members/home_screen.dart';
 import 'package:bciweb/views/business-------------------------------------/sucssesful.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,7 +26,6 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../constant/constans.dart';
-
 import '../../models/get_gallery_model.dart';
 import '../../models/todayoffers_model.dart';
 import '../../views/responsive------------------------------------/mobile_body/cart_divertion.dart';
@@ -39,29 +37,34 @@ import '../../services/networks/services/get_cart_service.dart';
 import '../../services/networks/services/get_gallery_apiservice.dart';
 import '../../services/networks/services/today_offers_apiservice.dart';
 
-class HomeServiceController extends GetxController {
-  RxBool isSubscribed = false.obs;
 
+
+
+
+class HomeServiceController extends GetxController {
+
+
+
+
+  RxBool isSubscribed = false.obs;
   RxBool isLoading = false.obs;
   GetCartListApiServices getCartListApiServices = GetCartListApiServices();
-
-  List<Datum> cartListData = [];
+  List<CartListData> cartListData = [];
   List<OffersListModel> todayofferslist = [];
-  
-  //service data list
+    //service data list
   List<ServiceData> serviceDataList = [];
   
 
-  double getGrandTotal({required List<Datum> tcartListData}) {
+  double getGrandTotal() {
     double grandTotal = 0.0;
 
     print(
-        "--------------${tcartListData.length}<<-----Riyas ikka------->>${tcartListData.length}-----------");
+        "--------------${cartListData.length}<<-----Riyas ikka------->>${cartListData.length}-----------");
     print(grandTotal);
 
-    for (var i = 0; i < tcartListData.length; i++) {
-      double amount = double.parse(tcartListData[i].amount);
-      int qty = int.parse(tcartListData[i].quantity);
+    for (var i = 0; i < cartListData.length; i++) {
+      double amount = double.parse(cartListData[i].amount);
+      int qty = int.parse(cartListData[i].quantity);
       double tempTotalAmount = amount * qty;
 
       grandTotal = grandTotal + tempTotalAmount;
@@ -369,6 +372,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     }
     update();
   }
+
 
 
 

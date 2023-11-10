@@ -233,7 +233,7 @@ class _CartScreenState extends State<CartScreen> {
                             child: Center(child:
                                 GetBuilder<HomeServiceController>(builder: (_) {
                               return Text(
-                                'Total : ₹${servicehomeController.getGrandTotal(tcartListData: servicehomeController.cartListData).toStringAsFixed(2)}',
+                                'Total : ₹${servicehomeController.getGrandTotal().toStringAsFixed(2)}',
                                 // homeController.cartListData.totalamount,
       
                                 style: TextStyle(

@@ -1,5 +1,6 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/views/members/widgets/alert_box_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -75,28 +76,31 @@ class _ServicesCartState extends State<ServicesCart> {
                                   child: Column(
                                     children: [
                                       Row(
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
                                           Row(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             children: [
-                                              
                                               Padding(
-                                                padding: const EdgeInsets.only(top: 20,left: 20),
+                                                padding: const EdgeInsets.only(
+                                                    top: 20, left: 20),
                                                 child: Container(
-                                                   height: 130,
-                                                    width: 150,
+                                                  height: 130,
+                                                  width: 150,
                                                   child: ClipRRect(
-                                                    borderRadius: BorderRadius.circular(5),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            5),
                                                     child: Image.network(
                                                       homeController
                                                           .cartListData[index]
                                                           .image,
-                                                     
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -106,12 +110,16 @@ class _ServicesCartState extends State<ServicesCart> {
                                                 width: 30,
                                               ),
                                               Column(
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Padding(
-                                                    padding: const EdgeInsets.only(top: 5),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 5),
                                                     child: Text(
                                                       homeController
                                                           .cartListData[index]
@@ -123,9 +131,10 @@ class _ServicesCartState extends State<ServicesCart> {
                                                               FontWeight.w600),
                                                     ),
                                                   ),
-                                                      
                                                   Padding(
-                                                    padding: const EdgeInsets.only(top: 5),
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 5),
                                                     child: SizedBox(
                                                         width: 230,
                                                         child: Text(
@@ -136,128 +145,186 @@ class _ServicesCartState extends State<ServicesCart> {
                                                           maxLines: 3,
                                                         )),
                                                   ),
-                                                      
                                                   Row(
                                                     children: [
                                                       Padding(
-                                                        padding: const EdgeInsets.only(top: 5),
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .only(top: 5),
                                                         child: Text(
                                                             "Qty: ${homeController.cartListData[index].quantity}"),
                                                       ),
-                                                  Container(
-                                                  height: 25,
-                                                  width: 75,
-                                                  decoration: BoxDecoration(
-                                                     border: Border.all(color: Colors.black54),
-                                                   ),
-                                                  child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    children: [
-                                                    InkWell(
-                                                      onTap: () {
-                                                        if(homeController.cartListData[index].quantity == 1){
-                                                          showDialog(
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return AlertDialog(
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      title: Text("Remove Item",
-                                                          // style: boldTextStyle(
-                                                          //     color: Colors
-                                                          //         .black)
-                                                                  ),
-                                                      content: Text(
-                                                        "Are you sure you want to remove this item?",
-                                                        // style:
-                                                        //     secondaryTextStyle(
-                                                        //         color: Colors
-                                                        //             .black),
+                                                      Container(
+                                                        height: 25,
+                                                        width: 75,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          border: Border.all(
+                                                              color: Colors
+                                                                  .black54),
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          children: [
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  if (homeController
+                                                                          .cartListData[
+                                                                              index]
+                                                                          .quantity.toString() ==
+                                                                      '1') {
+                                                                    showDialog(
+                                                                        context:
+                                                                            context,
+                                                                        builder:
+                                                                            (BuildContext
+                                                                                context) {
+                                                                          return AlertDialog(
+                                                                            backgroundColor:
+                                                                                Colors.white,
+                                                                            title:
+                                                                                Text(
+                                                                              "Remove Item",
+                                                                              // style: boldTextStyle(
+                                                                              //     color: Colors
+                                                                              //         .black)
+                                                                            ),
+                                                                            content:
+                                                                                Text(
+                                                                              "Are you sure you want to remove this item?",
+                                                                              // style:
+                                                                              //     secondaryTextStyle(
+                                                                              //         color: Colors
+                                                                              //             .black),
+                                                                            ),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                child: Text(
+                                                                                  "cancel",
+                                                                                  //    style:
+                                                                                  // primaryTextStyle(
+                                                                                  //     color: Colors
+                                                                                  //         .grey),
+                                                                                ),
+                                                                                onPressed: () {
+                                                                                  Get.back();
+                                                                                  //Get.find<AuthController>().logout();
+                                                                                },
+                                                                              ),
+                                                                              TextButton(
+                                                                                child: Text(
+                                                                                  "Remove",
+                                                                                  // style: primaryTextStyle(
+                                                                                  //     color: Colors
+                                                                                  //         .grey)
+                                                                                ),
+                                                                                onPressed: () {
+                                                                                  Get.back();
+                                                                                  homeController.deleteToCart(serviceid: homeController.cartListData[index].serviceId.toString());
+                                                                                },
+                                                                              ),
+                                                                            ],
+                                                                          );
+                                                                        });
+                                                                  } else {
+                                                                    var quantity = homeController
+                                                                        .cartListData[
+                                                                            index]
+                                                                        .quantity
+                                                                        .toString();
+                                                                    int tempQty =
+                                                                        int.parse(
+                                                                            quantity);
+                                                                    homeController
+                                                                        .cartListData[
+                                                                            index]
+                                                                        .quantity = (tempQty -
+                                                                            1)
+                                                                        .toString();
+                                                                    homeController.updateQuantity(
+                                                                        cartid: homeController
+                                                                            .cartListData[
+                                                                                index]
+                                                                            .id
+                                                                            .toString(),
+                                                                        quantity: homeController
+                                                                            .cartListData[index]
+                                                                            .quantity
+                                                                            .toString());
+                                                                    homeController
+                                                                        .update();
+                                                                  }
+                                                                },
+                                                                child:
+                                                                    const Icon(
+                                                                  Icons.remove,
+                                                                  size: 20,
+                                                                )),
+                                                            Container(
+                                                              height: 25,
+                                                              width: 25,
+                                                              color:
+                                                                  Colors.orange,
+                                                              child: Center(
+                                                                child: Text(
+                                                                  homeController
+                                                                      .cartListData[
+                                                                          index]
+                                                                      .quantity
+                                                                      .toString(),
+                                                                  //homeController.adult.value.toString(),
+                                                                  style: const TextStyle(
+                                                                      color: Colors
+                                                                          .white),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            InkWell(
+                                                                onTap: () {
+                                                                  //homeController.adult++;
+                                                                  var quantity = homeController
+                                                                      .cartListData[
+                                                                          index]
+                                                                      .quantity
+                                                                      .toString();
+                                                                  int tempQty =
+                                                                      int.parse(
+                                                                          quantity);
+                                                                  homeController
+                                                                      .cartListData[
+                                                                          index]
+                                                                      .quantity = (tempQty +
+                                                                          1)
+                                                                      .toString();
+                                                                  homeController.updateQuantity(
+                                                                      cartid: homeController
+                                                                          .cartListData[
+                                                                              index]
+                                                                          .id
+                                                                          .toString(),
+                                                                      quantity: homeController
+                                                                          .cartListData[
+                                                                              index]
+                                                                          .quantity
+                                                                          .toString());
+                                                                  homeController
+                                                                      .update();
+                                                                },
+                                                                child:
+                                                                    const Icon(
+                                                                  Icons.add,
+                                                                  size: 20,
+                                                                )),
+                                                          ],
+                                                        ),
                                                       ),
-                                                      actions: [
-                                                        TextButton(
-                                                          child: Text(
-                                                            "cancel",
-                                                        //    style:
-                                                                // primaryTextStyle(
-                                                                //     color: Colors
-                                                                //         .grey),
-                                                          ),
-                                                          onPressed: () {
-                                                            Get.back();
-                                                            //Get.find<AuthController>().logout();
-                                                          },
-                                                        ),
-                                                        TextButton(
-                                                          child: Text("Remove",
-                                                              // style: primaryTextStyle(
-                                                              //     color: Colors
-                                                              //         .grey)
-                                                                      ),
-                                                          onPressed: () {
-                                                            Get.back();
-                                                            homeController.deleteToCart(
-                                                                serviceid: homeController
-                                                                    .cartListData[
-                                                                        index]
-                                                                    .serviceId
-                                                                    .toString());
-                                                          },
-                                                        ),
-                                                      ],
-                                                    );
-                                                  });
-                                                 } else {
-                                                    var quantity = homeController.cartListData[index].quantity.toString();
-                                                        int tempQty = int.parse(quantity);
-                                                        homeController.cartListData[index].quantity = (tempQty - 1).toString();
-                                                        homeController.updateQuantity(
-                                                          cartid: homeController.cartListData[index].id.toString(), 
-                                                          quantity: homeController.cartListData[index].quantity.toString()
-                                                        );
-                                                        homeController.update();
-                                                 }
-                                                        
-                                                      },
-                                                     child: const Icon(
-                                                    Icons.remove,
-                                                      size: 20,
-                                                     )),
-                                                     Container(
-                                                       height: 25,
-                                                       width: 25,
-                                                       color: Colors.orange,
-                                                       child: Center(
-                                                       child: Text(homeController.cartListData[index].quantity.toString(),
-                                                          //homeController.adult.value.toString(),
-                                                       style: const TextStyle(color: Colors.white),
-                                                         ),
-                                                       ),
-                                                     ),
-                                                     InkWell(
-                                                       onTap: () {
-                                                          //homeController.adult++;
-                                                        var quantity = homeController.cartListData[index].quantity.toString();
-                                                        int tempQty = int.parse(quantity);
-                                                        homeController.cartListData[index].quantity = (tempQty+1).toString() ;
-                                                        homeController.updateQuantity(
-                                                          cartid: homeController.cartListData[index].id.toString(), 
-                                                          quantity: homeController.cartListData[index].quantity.toString()
-                                                        );
-                                                        homeController.update();
-                                                       },
-                                                       child: const Icon(
-                                                         Icons.add,
-                                                          size: 20,
-                                                        )),
-                                                      ],
-                                                    ),
-                                                 ),  ],
+                                                    ],
                                                   ),
                                                 ],
                                               ),
-                                            ],
+                                       ],
                                           ),
                                           // Row(
                                           //   children: [
@@ -282,106 +349,151 @@ class _ServicesCartState extends State<ServicesCart> {
 
                                           //   ],
                                           // ),
-                                          Row(
-                                            children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.only(
-                                                        right: 10, top: 15),
-                                                child: Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    InkWell(
-                                                        onTap: () {
-                                                          showDialog(
-                                                              context:
-                                                                  context,
-                                                              builder:
-                                                                  (BuildContext
-                                                                      context) {
-                                                                return AlertDialog(
-                                                                  backgroundColor:
-                                                                      Colors
-                                                                          .white,
-                                                                  title: Text(
-                                                                      "Remove Item",
-                                                                      style: TextStyle(
-                                                                          color:
-                                                                              Colors.black)),
-                                                                  content:
-                                                                      Text(
-                                                                    "Are you sure do you want to remove this item?",
-                                                                    style: TextStyle(
-                                                                        color:
-                                                                            Colors.black),
-                                                                  ),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      child:
-                                                                          Text(
-                                                                        "cancel",
-                                                                        style:
-                                                                            TextStyle(color: Colors.grey),
-                                                                      ),
-                                                                      onPressed:
-                                                                          () {
-                                                                        Get.back();
-                                                                        //Get.find<AuthController>().logout();
-                                                                      },
-                                                                    ),
-                                                                    TextButton(
-                                                                      child: Text(
-                                                                          "Remove",
-                                                                          style:
-                                                                              TextStyle(color: Colors.grey)),
-                                                                      onPressed:
-                                                                          () {
-                                                                        homeController.deleteToCart(
-                                                                            serviceid: homeController.cartListData[index].serviceId.toString());
-                                                                        Get.back();
-                                                                      },
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              });
-                                                          // homeController.deleteToCart(
-                                                          //     serviceid: homeController
-                                                          //         .cartListData[index]
-                                                          //         .serviceId
-                                                          //         .toString());
-                                                        },
-                                                        child: Row(
-                                                          children: [
-                                                            Icon(
-                                                              CupertinoIcons
-                                                                  .delete,
-                                                              color:
-                                                                  Colors.grey,
-                                                              size: 15,
-                                                            ),
-                                                            SizedBox(
-                                                              width: 5,
-                                                            ),
-                                                            Text(
-                                                              "Remove",
-                                                              style: TextStyle(
-                                                                  color: Colors
-                                                                      .grey),
-                                                            )
-                                                          ],
-                                                        )),
-                                                    ksizedbox10,
-                                                    Text(
-                                                      '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
-                                                      style: TextStyle(
-                                                          fontSize: 17,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                          color: kyellow),
-                                                    ),
-                                                  ],
+                                          Column(
+                                            children: [Padding(
+                                                padding: const EdgeInsets.only(
+                                                  left: 10,
+                                                  right: 5,
                                                 ),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    if (homeController
+                                                        .cartListData[index]
+                                                        .isSelected) {
+                                                      homeController
+                                                          .cartListData[index]
+                                                          .isSelected = false;
+                                                      homeController.update();
+                                                    } else {
+                                                      homeController
+                                                          .cartListData[index]
+                                                          .isSelected = true;
+                                                      homeController.update();
+                                                    }
+                                                  },
+                                                  child: Container(
+                                                    height: 25,
+                                                    width: 25,
+                                                    decoration: BoxDecoration(
+                                                      color: homeController
+                                                                  .cartListData[
+                                                                      index]
+                                                                  .isSelected ==
+                                                              true
+                                                          ? Colors.green
+                                                          : Colors.white,
+                                                      border: Border.all(
+                                                          color: Colors.grey),
+                                                    ),
+                                                    child: const Center(
+                                                        child: Icon(
+                                                      Icons.check,
+                                                      color: Colors.white,
+                                                    )),
+                                                  ),
+                                                ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        right: 10, top: 15),
+                                                    child: Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.end,
+                                                      children: [
+                                                        InkWell(
+                                                            onTap: () {
+                                                              showDialog(
+                                                                  context: context,
+                                                                  builder:
+                                                                      (BuildContext
+                                                                          context) {
+                                                                    return AlertDialog(
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .white,
+                                                                      title: Text(
+                                                                          "Remove Item",
+                                                                          style: TextStyle(
+                                                                              color:
+                                                                                  Colors.black)),
+                                                                      content: Text(
+                                                                        "Are you sure do you want to remove this item?",
+                                                                        style: TextStyle(
+                                                                            color: Colors
+                                                                                .black),
+                                                                      ),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          child:
+                                                                              Text(
+                                                                            "cancel",
+                                                                            style: TextStyle(
+                                                                                color:
+                                                                                    Colors.grey),
+                                                                          ),
+                                                                          onPressed:
+                                                                              () {
+                                                                            Get.back();
+                                                                            //Get.find<AuthController>().logout();
+                                                                          },
+                                                                        ),
+                                                                        TextButton(
+                                                                          child: Text(
+                                                                              "Remove",
+                                                                              style:
+                                                                                  TextStyle(color: Colors.grey)),
+                                                                          onPressed:
+                                                                              () {
+                                                                            homeController.deleteToCart(
+                                                                                serviceid:
+                                                                                    homeController.cartListData[index].serviceId.toString());
+                                                                            Get.back();
+                                                                          },
+                                                                        ),
+                                                                      ],
+                                                                    );
+                                                                  });
+                                                              // homeController.deleteToCart(
+                                                              //     serviceid: homeController
+                                                              //         .cartListData[index]
+                                                              //         .serviceId
+                                                              //         .toString());
+                                                            },
+                                                            child: Row(
+                                                              children: [
+                                                                Icon(
+                                                                  CupertinoIcons
+                                                                      .delete,
+                                                                  color:
+                                                                      Colors.grey,
+                                                                  size: 15,
+                                                                ),
+                                                                SizedBox(
+                                                                  width: 5,
+                                                                ),
+                                                                Text(
+                                                                  "Remove",
+                                                                  style: TextStyle(
+                                                                      color: Colors
+                                                                          .grey),
+                                                                )
+                                                              ],
+                                                            )),
+                                                        ksizedbox10,
+                                                        Text(
+                                                          '₹ ${double.parse(homeController.cartListData[index].amount).toStringAsFixed(2)}',
+                                                          style: TextStyle(
+                                                              fontSize: 17,
+                                                              fontWeight:
+                                                                  FontWeight.w600,
+                                                              color: kyellow),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
                                             ],
                                           ),
@@ -425,7 +537,7 @@ class _ServicesCartState extends State<ServicesCart> {
                           child: Center(child:
                               GetBuilder<HomeServiceController>(builder: (_) {
                             return Text(
-                              'Total : ₹${homeController.getGrandTotal(tcartListData: homeController.cartListData).toStringAsFixed(2)}',
+                              'Total : ₹${homeController.getGrandTotal().toStringAsFixed(2)}',
                               // homeController.cartListData.totalamount,
 
                               style: TextStyle(
@@ -441,6 +553,31 @@ class _ServicesCartState extends State<ServicesCart> {
                       padding: const EdgeInsets.all(8),
                       child: InkWell(
                         onTap: () {
+
+
+
+
+  if (homeController.cartListData.isNotEmpty) {
+                                    if (homeController.getGrandTotal() > 0) {
+                                      var tempAmount =
+                                          homeController.getGrandTotal();
+                                      // profileController.payFromCart(tempAmount);
+                                      paymentBottomSheet(context, tempAmount);
+                                    } else {
+                                      Get.rawSnackbar(
+                                          message:
+                                              "Please select any service to continue",
+                                          backgroundColor: Colors.black);
+                                    }
+                                  } else {
+                                    Get.rawSnackbar(
+                                        message: "No Booking found",
+                                        backgroundColor: Colors.red);
+                                  }
+
+
+
+
 //  var tempAmount = homeController.getGrandTotal(tcartListData: []);
                           profileController.payFromCart(100);
 

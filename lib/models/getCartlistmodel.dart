@@ -10,8 +10,8 @@ GetCartList getCartListFromJson(String str) =>
 String getCartListToJson(GetCartList data) => json.encode(data.toJson());
 
 class GetCartList {
-  bool status;
-  List<Datum> data;
+  dynamic status;
+  List<CartListData> data;
 
   GetCartList({
     required this.status,
@@ -20,7 +20,8 @@ class GetCartList {
 
   factory GetCartList.fromJson(Map<String, dynamic> json) => GetCartList(
         status: json["status"],
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: List<CartListData>.from(
+            json["data"].map((x) => CartListData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -29,11 +30,11 @@ class GetCartList {
       };
 }
 
-class Datum {
+class CartListData {
   int id;
-  String userId;
-  String serviceId;
-  String quantity;
+  dynamic userId;
+  dynamic serviceId;
+  dynamic quantity;
   DateTime createdAt;
   DateTime updatedAt;
   String serviceName;
@@ -41,36 +42,39 @@ class Datum {
   String price;
   String amount;
   String description;
+  String bookDateTime;
+  bool isSelected;
 
-  Datum({
+  CartListData({
     required this.id,
     required this.userId,
     required this.serviceId,
     required this.quantity,
-    required this.amount,
     required this.createdAt,
     required this.updatedAt,
     required this.serviceName,
     required this.image,
     required this.price,
+    required this.amount,
     required this.description,
+    required this.bookDateTime,
+    required this.isSelected,
   });
 
-  factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-        id: json["id"],
-        userId: json["user_id"],
-        serviceId: json["service_id"],
-        quantity: json["quantity"],
-        createdAt: DateTime.parse(json["created_at"]),
-        updatedAt: DateTime.parse(json["updated_at"]),
-        serviceName: json["service_name"],
-        image: json["image"],
-        price: json["price"],
-        amount: json["amount"],
-        description: json["description"],
-      );
-
- 
+  factory CartListData.fromJson(Map<String, dynamic> json) => CartListData(
+      id: json["id"] ?? 0,
+      userId: json["user_id"] ?? "",
+      serviceId: json["service_id"] ?? "",
+      quantity: json["quantity"] ?? "",
+      createdAt: DateTime.parse(json["created_at"]),
+      updatedAt: DateTime.parse(json["updated_at"]),
+      serviceName: json["service_name"] ?? "",
+      image: json["image"] ?? "",
+      price: json["price"] ?? "",
+      amount: json["amount"] ?? "",
+      description: json["description"] ?? "",
+      bookDateTime: json["book_date_time"] ?? "",
+      isSelected: true);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -83,5 +87,6 @@ class Datum {
         "image": image,
         "price": price,
         "description": description,
+        "book_date_time": bookDateTime
       };
 }

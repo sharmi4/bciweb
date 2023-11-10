@@ -1,4 +1,5 @@
 import 'package:bciweb/models/get_coupons_model.dart';
+import 'package:bciweb/services/networks/our_coupons_api_service.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/resmembership/mobile_paymentsucess.dart';
 import 'package:bciweb/services/networks/get_coupons_api_service.dart';
 import 'package:bciweb/services/networks/subscription/get_payment_apiservice.dart';
@@ -10,6 +11,7 @@ import '../../constant/constans.dart';
 import '../../models/get_plansdetails_model.dart';
 import '../../models/get_plansmodel.dart';
 import '../../models/other_bookingmodel.dart';
+import '../../models/redeemed_coupons_model.dart';
 import '../../services/networks/othersbooking_api_service.dart';
 import '../../services/networks/subscription/get_plan_details_apiservice.dart';
 import '../../services/networks/subscription/get_planlist_api_service.dart';
@@ -21,7 +23,7 @@ class SubscriptionApiController extends GetxController{
    GetCouponsApiService getcouponesAPiService = GetCouponsApiService();
    GetOthersBookingApiService getOthersbookingApiService = GetOthersBookingApiService();
    GetPlansDetailsApiServices getPlansdetailsApiService=GetPlansDetailsApiServices();
-  
+      RxInt couponindex = 0.obs;
      RxInt index = 0.obs;
   final authprofileController=Get.find<AuthProfileController>();
     List<PlansData> plansdataList = [];
@@ -72,7 +74,7 @@ class SubscriptionApiController extends GetxController{
        getcouponsList() async {
     dio.Response<dynamic> response = await getcouponesAPiService.getcoupons();
     if (response.statusCode == 200) {
-      GetCouponsModel couponsModel = GetCouponsModel.fromJson(response.data); 
+      GetCouponsList couponsModel = GetCouponsList.fromJson(response.data); 
       couponsdatalist=couponsModel.data;
     }
     update();
@@ -99,4 +101,44 @@ class SubscriptionApiController extends GetxController{
     }
     update();
   }
+
+
+
+  //coupons list
+  OurCouponsApiServices ourCouponsApiServices = OurCouponsApiServices();
+  // RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
+  List<CouponsData> couponsData = [];
+  List<CouponsData> tempcouponsData = [];
+  List<CouponsData> categorycouponsData = [];
+  List<CouponsRedeemedData> redeemcouponsData = [];
+
+  getCoupons() async {
+    dio.Response<dynamic> response =
+        await ourCouponsApiServices.ourCouponsApiServices();
+    if (response.statusCode == 200) {
+      GetCouponsList getCouponsList = GetCouponsList.fromJson(response.data);
+      couponsData = getCouponsList.data;
+      tempcouponsData = getCouponsList.data;
+      List<String> categoyNames = [];
+      categorycouponsData = [];
+      getCouponsList.data.forEach((element) {
+        if (categoyNames.contains(element.name) == false) {
+          categorycouponsData.add(element);
+          categoyNames.add(element.name);
+        }
+      });
+
+      couponsData.shuffle();
+      update();
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+
 }
