@@ -326,4 +326,14 @@ final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_c
 
   final String viewCreditStatementURL =
       "https://www.portal.bcipvtltd.com/api/auth/view_statement";
+
+   final String partialBookingURL = 
+   'https://www.portal.bcipvtltd.com/api/auth/partial_booking';   
+
+   final String partialBookingHistory = 
+   'https://www.portal.bcipvtltd.com/api/auth/partial_booking_history';
+
+    //merchant coupon list
+  final String merchantCouponApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_coupons_list";
 }

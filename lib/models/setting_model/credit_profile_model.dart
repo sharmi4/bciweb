@@ -27,12 +27,12 @@ class CreditProfileModel {
 
   factory CreditProfileModel.fromJson(Map<String, dynamic> json) =>
       CreditProfileModel(
-        creditLimit: json["credit_limit"],
-        usedLimit: json["used_limit"],
-        pendingLimit: json["pending_limit"],
-        totalPaidAmountCurrentMonth: json["total_paid_amount_current_month"],
+        creditLimit: json["credit_limit"].toString(),
+        usedLimit: json["used_limit"].toString(),
+        pendingLimit: json["pending_limit"].toString(),
+        totalPaidAmountCurrentMonth: json["total_paid_amount_current_month"].toString(),
         totalUnpaidAmountCurrentMonth:
-            json["total_unpaid_amount_current_month"],
+            json["total_unpaid_amount_current_month"].toString(),
       );
 
   Map<String, dynamic> toJson() => {

@@ -1,4 +1,6 @@
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/subscription_controller/subscription_controller.dart';
+import 'package:bciweb/views/members/services/views/coupons.dart';
 import 'package:clipboard/clipboard.dart';
 import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +20,7 @@ class ProfileCouponsScreen extends StatefulWidget {
 }
 
 class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
+
   final couponController = Get.find<SubscriptionApiController>();
   @override
   void initState() {
@@ -28,6 +31,7 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Padding(
       padding: const EdgeInsets.only(top: 50),
       child: Container(
@@ -54,7 +58,7 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                           child: Text('Your Coupons',
                               textAlign: TextAlign.start,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600,
                                   color: kwhite)),
                         ),
@@ -80,7 +84,7 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                           child: Text('Merchent Coupons',
                               textAlign: TextAlign.start,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600,
                                   color: kwhite)),
                         ),
@@ -106,7 +110,7 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                           child: Text('Redeemed Coupons',
                               textAlign: TextAlign.start,
                               style: TextStyle(
-                                  fontSize: 20,
+                                  fontSize: 17,
                                   fontWeight: FontWeight.w600,
                                   color: kwhite)),
                         ),
@@ -123,12 +127,9 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
 
   if( couponController.couponindex==0)
                          
-                        
-                       
-
-
               GetBuilder<SubscriptionApiController>(builder: (_) {
                 return Container(
+                  width: size.width*0.8,
                   // height: size.height * 0.55,
                   child: couponController.couponsdatalist.isEmpty
                       ? Center(
@@ -150,14 +151,14 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                                 )
                               ]),
                         )
-                      : ListView.builder(
+                      : GridView.builder(
                   shrinkWrap: true,
                   itemCount: couponController.categorycouponsData.length,
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: const EdgeInsets.all(15),
                         child: Container(
-                          width: double.infinity,
+                          width: size.width*0.5,
                           decoration: BoxDecoration(
                               color: kwhite,
                               borderRadius: BorderRadius.circular(10),
@@ -227,21 +228,20 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                               //       fontWeight: FontWeight.bold,
                               //       color: kblue),
                               // ),
+                              
                               Padding(
                                 padding: const EdgeInsets.all(10.0),
                                 child: InkWell(
-                                  // onTap: () {
-                                  //   Get.to(() => CouponsListScreen(
-                                  //         category: couponController
-                                  //             .categorycouponsData[index].name,
-                                  //       ));
-                                  // },
+                                  onTap: () {
+                                    Get.to(() => Coupones()
+                                        );
+                                  },
                                   child: Container(
                                     height: 40,
                                     width: double.infinity,
                                     decoration: BoxDecoration(
                                       color: kyellow,
-                                      borderRadius: BorderRadius.circular(1),
+                                      borderRadius: BorderRadius.circular(4),
                                     ),
                                     child: Center(
                                       child: Text(
@@ -257,10 +257,376 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                             ],
                           ),
                         ));
-                  },
+                  }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    ),
                 ),
                 );
               }),
+
+              if(couponController.couponindex.value==1)
+              Container(
+                child: Column(
+                  children: [
+                    GetBuilder<SubscriptionApiController>(builder: (_) {
+        return Container(
+          //height: size.height * 0.55,
+          child: couponController.merchantCouponData.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/couponnotavailaimage.png',
+                        height: 180,
+                        fit: BoxFit.fitHeight,
+                      ),
+                      ksizedbox20,
+                      Text(
+                        'No Coupon Available',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: kblue),
+                      )
+                    ],
+                  ),
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: couponController.merchantCouponData.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 3,
+                                  color: kgrey.withOpacity(0.6),
+                                ),
+                              ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              couponController
+                                          .merchantCouponData[index].image ==
+                                      "null"
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.asset(
+                                        "assets/icons/coupon.jpg",
+                                        height: 120,
+                                        width: size.width,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image(
+                                        image: NetworkImage(couponController
+                                            .merchantCouponData[index].image),
+                                        height: 120,
+                                        width: size.width,
+                                        fit: BoxFit.fill,
+                                      )),
+                              const SizedBox(
+                                height: 7,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  couponController.merchantCouponData[index].title,
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 7,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  couponController.merchantCouponData[index].description,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: kgrey),
+                                ),
+                              ),
+                              // Text(
+                              //   profileController.couponsData[index].,
+                              //   style: TextStyle(
+                              //       fontSize: 20,
+                              //       fontWeight: FontWeight.bold,
+                              //       color: kblue),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  height: 40,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: kyellow,
+                                    borderRadius: BorderRadius.circular(1),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 15, right: 15),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Coupon Code: ",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kblue),
+                                            ),
+                                            Text(
+                                              couponController
+                                                  .merchantCouponData[index]
+                                                  .couponCode,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kwhite),
+                                            ),
+                                          ],
+                                        ),
+                                        InkWell(
+                                          onTap: (){
+                                            FlutterClipboard.copy(
+                                                    couponController.merchantCouponData[index].couponCode.toString())
+                                                .then(
+                                              (value) => Fluttertoast.showToast(
+                                                  msg: "Copy to clipboard",
+                                                  toastLength:
+                                                      Toast.LENGTH_SHORT,
+                                                  gravity: ToastGravity.CENTER,
+                                                  timeInSecForIosWeb: 1,
+                                                  backgroundColor: Colors.white,
+                                                  textColor: Colors.black,
+                                                  fontSize: 16.0),
+                                              //print("code copied")
+                                            );
+                                          },
+                                          child: Container(
+                                            height: 30,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              color: kblue,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "Copy",
+                                                style: primaryFont.copyWith(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ));
+                  },
+                ),
+        );
+      }),
+                  ],
+                ),
+              ),
+              if(couponController.couponindex.value==2)
+              Container(
+                child: Column(
+                  children: [
+               GetBuilder<SubscriptionApiController>(builder: (_) {
+        return Container(
+          //height: size.height * 0.55,
+          child: couponController.redeemcouponsData.isEmpty
+              ? Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/couponnotavailaimage.png',
+                        height: 180,
+                        fit: BoxFit.fitHeight,
+                      ),
+                      ksizedbox20,
+                      Text(
+                        'No Coupon Available',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: kblue),
+                      )
+                    ],
+                  ),
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: couponController.redeemcouponsData.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 3,
+                                  color: kgrey.withOpacity(0.6),
+                                ),
+                              ]),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              couponController
+                                          .redeemcouponsData[index].image ==
+                                      "null"
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.asset(
+                                        "assets/icons/coupon.jpg",
+                                        height: 120,
+                                        width: size.width,
+                                        fit: BoxFit.fill,
+                                      ),
+                                    )
+                                  : ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image(
+                                        image: NetworkImage(couponController
+                                            .redeemcouponsData[index].image),
+                                        height: 120,
+                                        width: size.width,
+                                        fit: BoxFit.fill,
+                                      )),
+                              const SizedBox(
+                                height: 7,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  couponController.redeemcouponsData[index]
+                                          .coupon.name ??
+                                      "",
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 7,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(
+                                  couponController.redeemcouponsData[index]
+                                      .coupon.description,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400,
+                                      color: kgrey),
+                                ),
+                              ),
+                              // Text(
+                              //   profileController.couponsData[index].,
+                              //   style: TextStyle(
+                              //       fontSize: 20,
+                              //       fontWeight: FontWeight.bold,
+                              //       color: kblue),
+                              // ),
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Container(
+                                  height: 40,
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                    color: kyellow,
+                                    borderRadius: BorderRadius.circular(1),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 15, right: 15),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "Coupon Code: ",
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kblue),
+                                            ),
+                                            Text(
+                                              couponController
+                                                  .redeemcouponsData[index]
+                                                  .couponcode,
+                                              style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: kwhite),
+                                            ),
+                                          ],
+                                        ),
+                                        Container(
+                                          height: 30,
+                                          width: 100,
+                                          decoration: BoxDecoration(
+                                            color: Colors.green,
+                                            borderRadius:
+                                                BorderRadius.circular(25),
+                                          ),
+                                          child: Center(
+                                            child: Text(
+                                              "Redeemed",
+                                              style: primaryFont.copyWith(
+                                                  color: Colors.white),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ));
+                  },
+                ),
+        );
+      }),
+                  ],
+                ),
+              )
             ],
           );
         }),

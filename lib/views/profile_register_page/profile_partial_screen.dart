@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,13 @@ class ProfilePartialScreen extends StatefulWidget {
 }
 
 class _ProfilePartialScreenState extends State<ProfilePartialScreen> {
+  @override
+  void initState() {
+    super.initState();
+    settingController.getPartialBooking();
+    settingController.getCreditProfile();
+    //settingController.partialBookingHistory(partialamountid: settingController.partialbookinghistorylist.first.partialId);
+  }
 
   final settingController = Get.find<ApiSettingController>();
   bool hotelbool = false;
@@ -61,146 +69,157 @@ class _ProfilePartialScreenState extends State<ProfilePartialScreen> {
                     ksizedbox30,
                     Padding(
                       padding: const EdgeInsets.only(left: 40,right: 40),
-                      child: Container(
-                        height: 250,
-                        width:size.width ,
-
-                        decoration: BoxDecoration(
-                          color: kwhite,
-                          boxShadow: <BoxShadow>[
-                            BoxShadow(
-                              offset: Offset(0.0, 0.75),
-                              blurRadius: 5,
-                              color: kgrey
-                            )
-                          ]
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 15,right: 15),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Column(
-                                  
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Plan Name',
-                                      style: TextStyle(
-                                        color: kblue
-                                      ),),
-                                      Text('Platinum',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500
-                                      ),)
-                                    ],
-                                  ),
-                                                                    Column(
-                                  
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Plan Amount',
-                                      style: TextStyle(
-                                        color: kblue
-                                      ),),
-                                      Text('₹ 15,000',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500
-                                      ),)
-                                    ],
-                                  ),
-                                ],
+                      child: GetBuilder<ApiSettingController>(
+                        builder: (_) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: settingController.partialbookinglist.length,
+                            itemBuilder: (context, index) {
+                              return  Container(
+                              height: 250,
+                              width:size.width ,
+                          
+                              decoration: BoxDecoration(
+                                color: kwhite,
+                                boxShadow: <BoxShadow>[
+                                  BoxShadow(
+                                    offset: Offset(0.0, 0.75),
+                                    blurRadius: 5,
+                                    color: kgrey
+                                  )
+                                ]
                               ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              child: Padding(
+                                padding: const EdgeInsets.only(left: 15,right: 15),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Paid',
-                                      style: TextStyle(
-                                        color: kblue
-                                      ),),
-                                      Text('₹ 10,700',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500
-                                      ),)
-                                    ],
-                              ), Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Unpaid',
-                                      style: TextStyle(
-                                        color: kblue
-                                      ),),
-                                      Text('₹ 10,700',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500
-                                      ),)
-                                    ],
-                              ),
-                              
-                                  ],
-                                ),
-                                Divider(),
-                              
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Status',
-                                    style: TextStyle(
-                                      color: kblue
-                                    ),),
-                                    Container(
-                                      height: 25,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        color:Colors.yellow[200],
-                                          boxShadow: <BoxShadow>[
-                                                BoxShadow(
-                                                  offset: Offset(0.0, 0.75),
-                                                  color: kgrey,
-                                                
-                                                )
-                                              ],
-                                              borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Column(
+                                        
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Plan Name',
+                                            style: TextStyle(
+                                              color: kblue
+                                            ),),
+                                            Text(settingController.partialbookinglist[index].planTitle,
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500
+                                            ),)
+                                          ],
+                                        ),
+                                                                          Column(
+                                        
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Plan Amount',
+                                            style: TextStyle(
+                                              color: kblue
+                                            ),),
+                                            Text('₹${settingController.partialbookinglist[index].planAmount}',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500
+                                            ),)
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
-                                          Container(
-                                            height: 10,
-                                            width: 10,
-                                            decoration: BoxDecoration(
-                                            
-                                              color: kOrange,
-                                              shape: BoxShape.circle
-                                            ),
-                                          ),
-                                          Text('Pending',
+                                          Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Paid',
+                                            style: TextStyle(
+                                              color: kblue
+                                            ),),
+                                            Text('₹${settingController.partialbookinglist[index].collectedAmount}',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500
+                                            ),)
+                                          ],
+                                    ), Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text('Unpaid',
+                                            style: TextStyle(
+                                              color: kblue
+                                            ),),
+                                            Text('₹${settingController.calculateUnPaid(double.parse(settingController.partialbookinglist[index].planAmount), double.parse(settingController.partialbookinglist[index].collectedAmount))}',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500
+                                            ),)
+                                          ],
+                                    ),
+                                    
+                                        ],
+                                      ),
+                                      Divider(),
+                                    
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('Status',
                                           style: TextStyle(
                                             color: kblue
                                           ),),
+                                          Container(
+                                            height: 25,
+                                            width: 100,
+                                            decoration: BoxDecoration(
+                                              color:Colors.yellow[200],
+                                                boxShadow: <BoxShadow>[
+                                                      BoxShadow(
+                                                        offset: Offset(0.0, 0.75),
+                                                        color: kgrey,
+                                                      
+                                                      )
+                                                    ],
+                                                    borderRadius: BorderRadius.circular(5),
+                                            ),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                Container(
+                                                  height: 10,
+                                                  width: 10,
+                                                  decoration: BoxDecoration(
+                                                  
+                                                    color: kOrange,
+                                                    shape: BoxShape.circle
+                                                  ),
+                                                ),
+                                                Text(settingController.partialbookinglist[index].status,
+                                                style: TextStyle(
+                                                  color: kblue
+                                                ),),
+                                              ],
+                                            ),
+                                          )
                                         ],
-                                      ),
-                                    )
+                                      )
                                   ],
-                                )
-                            ],
-                          ),
-                        ),
+                                ),
+                              ),
+                            );
+                            },
+                            
+                          );
+                        }
                       ),
                     ),
                     
@@ -219,10 +238,10 @@ class _ProfilePartialScreenState extends State<ProfilePartialScreen> {
                       ),
                     ),
                     ksizedbox30,
-                    Padding(
+                       Padding(
                       padding: const EdgeInsets.only(left: 40,right: 40),
                       child: Container(
-                        height: 180,
+                          height: 500,
                         width:size.width ,
 
                         decoration: BoxDecoration(
@@ -237,176 +256,111 @@ class _ProfilePartialScreenState extends State<ProfilePartialScreen> {
                         ),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 15,right: 15),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                      
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  Checkbox(
-                                                    shape: CircleBorder(),
-                                                    value:hotelbool, 
-                                                  onChanged:(value){
-                                                    setState(() {
-                                                      hotelbool = value!;
-                                                    });
-                                                  }),
-                                                   Container(
-                                            height:20,
-                                            width: 1.5,
-                                            color: kgrey,
-                                          ),
-                                                ],
-                                              ),
-                                              Column(
+                          child: GetBuilder<ApiSettingController>(
+                            builder: (_) {
+                              return ListView.builder(
+                                shrinkWrap: true,
+                                itemCount: settingController.partialbookinghistorylist.length,
+                                itemBuilder: ( context, index) {
+                                        return Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                        ksizedbox20,            
+                                    Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                              
+                                          children: [
+                                            Column(
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               children: [
-                                                Text('Payment 1',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: kblue
-                                                ),),
-                                                Text('Remaining Amount',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: kblue
-                                                ),)
-                                              ],
-                                            ),
-                                            ],
-                                          ),
-                                         
-                                            Row(
-                                              children: [
-                                                Column(
+                                                Row(
                                                   children: [
-                                                    Checkbox(
-                                                    shape: CircleBorder(),
-                                                    value:flightbool, 
-                                          onChanged:(value){
-                                                    setState(() {
-                                                      flightbool = value!;
-                                                    });
-                                          }),
-                                           Container(
-                                            height:20,
-                                            width: 1.5,
-                                            color: kgrey,
-                                          ),
+                                                    Column(
+                                                      children: [
+                                                                const Icon(
+                                                      Icons.check_circle_rounded,
+                                                      size: 20,
+                                                      color: Colors.green,
+                                                    ),
+                                                         Container(
+                                                  height:30,
+                                                  width: 1.5,
+                                                  color: kgrey,
+                                                ),
+                                                      ],
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets.only(left: 10),
+                                                      child: Column(
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(settingController.partialbookinghistorylist[index].planTitle,
+                                                        style: TextStyle(
+                                                          
+                                                          fontWeight: FontWeight.w500,
+                                                          color: kblue
+                                                        ),),
+                                                        Text("Paid on ${formatDate(settingController.partialbookinghistorylist[index].updatedAt, [
+                                                                 dd,
+                                                                " ",
+                                                                M,
+                                                                " ",
+                                                                yyyy
+                                                              ])}",
+                                                        style: TextStyle(
+                                                    
+                                                          color: kblue
+                                                        ),),
+                                                        Text(settingController.partialbookinghistorylist[index].planAmount,
+                                                        style: TextStyle(
+                                                          fontSize: 13,
+                                                          color: kblue
+                                                        ),)
+                                                      ],
+                                                                                                      ),
+                                                    ),
                                                   ],
                                                 ),
-                                           Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text('Payment 2',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500,
-                                                  color: kblue
-                                                ),),
-                                                Text('paid on 03 Nov,2023',
-                                                style: TextStyle(
-                                                  fontSize: 13,
-                                                  color: kblue
-                                                ),)
-                                              ],
-                                            ),
-                                              ],
-                                            ),
-                                         
-                                          Row(
-                                            children: [
-                                              Checkbox(
-                                                focusColor: Color(0xff4BAE4F)
-                                                //MaterialStatePropertyAll(Color(0xff4BAE4F)),
-                                              ,
-                                                shape: CircleBorder(),
-                                                value:busbool, 
-                                              onChanged:(value){
-                                                setState(() {
-                                                  busbool = value!;
-                                                });
-                                              }),
-                                               Row(
-                                                 children: [
-                                                   Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                    Text('Payment 3',
-                                                    style: TextStyle(
-                                                      fontSize: 13,
-                                                      fontWeight: FontWeight.w500,
-                                                      color: kblue
-                                                    ),),
-                                                    Text('paid on 03 Oct,2023',
-                                                    style: TextStyle(
-                                                      fontSize: 13,
-                                                      color: kblue
-                                                    ),)
-                                              ],
-                                            ),
-                                                 ],
-                                               ),
                                                
-                                            ],
-                                          ),
-                                        ],
-                                      ),
-                                    
-                                    ],
-                                  ),
-                                
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          ksizedbox10,
-                                          Text('₹ 50,700',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: kblue,
-                                            fontWeight: FontWeight.w500
-                                          ),),
-                                          ksizedbox20,
-                                          Text('₹ 1,700',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color: kblue,
-                                            fontWeight: FontWeight.w500
-                                          ),),
-                                          ksizedbox20,
-                                          Text('₹ 1,700',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            color:kblue,
-                                            fontWeight: FontWeight.w500
-                                          ),),
-                                        ],
-                                      )
-                                ],
-                              ),
-                            
-                            ],
+                                               
+                                              
+                                              ],
+                                            ),
+                                          
+                                          ],
+                                        ),
+                                      
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                ksizedbox10,
+                                                Text('₹${settingController.creditTransactionsList[index].amount}',
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  color: Colors.pink,
+                                                  fontWeight: FontWeight.w500
+                                                ),),
+                                                
+                                              ],
+                                            )
+                                      ],
+                                    ),
+                                     Divider()
+                                  ],
+                                );
+                                  },
+                               
+                              );
+                            }
                           ),
                         ),
                       ),
                     ),
-                    ksizedbox40,
-                      RegisterCommonBottom()
         ],
        ),
     );

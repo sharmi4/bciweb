@@ -1,38 +1,24 @@
-import 'dart:math';
-import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/subscription_controller/subscription_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
+import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:clipboard/clipboard.dart';
-import 'package:custom_clippers/custom_clippers.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import '../../../../constant/constans.dart';
-import '../../../../controller/subscription_controller/subscription_controller.dart';
-import '../../common_widget/common.dart';
 
-
-class Coupones extends StatefulWidget {
-  const Coupones({super.key});
+class MerchantCouponsListScreen extends StatefulWidget {
+  const MerchantCouponsListScreen({super.key});
 
   @override
-  State<Coupones> createState() => _CouponesState();
+  State<MerchantCouponsListScreen> createState() => _MerchantCouponsListScreenState();
 }
 
-class _CouponesState extends State<Coupones> {
+class _MerchantCouponsListScreenState extends State<MerchantCouponsListScreen> {
   final subscripeController=Get.find<SubscriptionApiController>();
   @override
-  void initState() {
-    super.initState();
-    subscripeController.getcouponsList();
-  }
-   List colors = [const Color(0xffFCE2E2),const Color(0xffE4E4E4),
-  const Color(0xffF8AC61),const Color(0xff8DC6FF),
-   const Color(0xffEDD076), const Color(0xfff06292), 
-   const Color(0xFFFFF59D), const Color(0xff396DB4), const Color(0xFFFFCDD2),
-  ];
-  @override
   Widget build(BuildContext context) {
-    var size=MediaQuery.of(context).size;
+     var size=MediaQuery.of(context).size;
     return Scaffold(
        appBar: PreferredSize(
           child: Column(
@@ -47,35 +33,35 @@ class _CouponesState extends State<Coupones> {
 
         child: GetBuilder<SubscriptionApiController>(builder: (_) {
         return Container(
-          // height: size.height * 0.55,
-          child: subscripeController.couponsData.isEmpty
+          //height: size.height * 0.55,
+          child: subscripeController.merchantCouponData.isEmpty
               ? Center(
                   child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/couponnotavailaimage.png',
-                          height: 180,
-                          fit: BoxFit.fitHeight,
-                        ),
-                        ksizedbox20,
-                        Text(
-                          'No Coupon Available',
-                          style: TextStyle(
-                              color: kblue,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
-                        )
-                      ]),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'assets/images/couponnotavailaimage.png',
+                        height: 180,
+                        fit: BoxFit.fitHeight,
+                      ),
+                      ksizedbox20,
+                      Text(
+                        'No Coupon Available',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                            color: kblue),
+                      )
+                    ],
+                  ),
                 )
-              : GridView.builder(
+              : ListView.builder(
                   shrinkWrap: true,
-                  itemCount: subscripeController.couponsData.length,
+                  itemCount: subscripeController.merchantCouponData.length,
                   itemBuilder: (context, index) {
                     return Padding(
                         padding: const EdgeInsets.all(15),
                         child: Container(
-                        
                           width: double.infinity,
                           decoration: BoxDecoration(
                               color: kwhite,
@@ -89,7 +75,8 @@ class _CouponesState extends State<Coupones> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              subscripeController.couponsData[index].image ==
+                              subscripeController
+                                          .merchantCouponData[index].image ==
                                       "null"
                                   ? ClipRRect(
                                       borderRadius: BorderRadius.circular(10),
@@ -104,7 +91,7 @@ class _CouponesState extends State<Coupones> {
                                       borderRadius: BorderRadius.circular(10),
                                       child: Image(
                                         image: NetworkImage(subscripeController
-                                            .couponsData[index].image),
+                                            .merchantCouponData[index].image),
                                         height: 120,
                                         width: size.width,
                                         fit: BoxFit.fill,
@@ -116,7 +103,7 @@ class _CouponesState extends State<Coupones> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
-                                  subscripeController.couponsData[index].name,
+                                  subscripeController.merchantCouponData[index].title,
                                   style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -129,8 +116,7 @@ class _CouponesState extends State<Coupones> {
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 10),
                                 child: Text(
-                                  subscripeController
-                                      .couponsData[index].description,
+                                  subscripeController.merchantCouponData[index].description,
                                   style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
@@ -171,8 +157,8 @@ class _CouponesState extends State<Coupones> {
                                             ),
                                             Text(
                                               subscripeController
-                                                  .couponsData[index]
-                                                  .couponcode,
+                                                  .merchantCouponData[index]
+                                                  .couponCode,
                                               style: TextStyle(
                                                   fontSize: 14,
                                                   fontWeight: FontWeight.bold,
@@ -181,11 +167,9 @@ class _CouponesState extends State<Coupones> {
                                           ],
                                         ),
                                         InkWell(
-                                          onTap: () {
+                                          onTap: (){
                                             FlutterClipboard.copy(
-                                                    subscripeController
-                                                        .couponsData[index]
-                                                        .couponcode)
+                                                    subscripeController.merchantCouponData[index].couponCode.toString())
                                                 .then(
                                               (value) => Fluttertoast.showToast(
                                                   msg: "Copy to clipboard",
@@ -203,12 +187,16 @@ class _CouponesState extends State<Coupones> {
                                             height: 30,
                                             width: 100,
                                             decoration: BoxDecoration(
-                                              color: kwhite,
+                                              color: kblue,
                                               borderRadius:
                                                   BorderRadius.circular(25),
                                             ),
-                                            child: const Center(
-                                              child: Text("Copy"),
+                                            child: Center(
+                                              child: Text(
+                                                "Copy",
+                                                style: primaryFont.copyWith(
+                                                    color: Colors.white),
+                                              ),
                                             ),
                                           ),
                                         ),
@@ -220,9 +208,7 @@ class _CouponesState extends State<Coupones> {
                             ],
                           ),
                         ));
-                  }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 1.4),
+                  },
                 ),
         );
       }),

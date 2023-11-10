@@ -4,13 +4,17 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
+import 'package:bciweb/models/setting_model/credit_partial_model.dart';
 import 'package:bciweb/models/setting_model/credit_profile_model.dart';
 import 'package:bciweb/models/setting_model/credit_statement_model.dart';
 import 'package:bciweb/models/setting_model/get_wallet_details.model.dart';
 import 'package:bciweb/models/setting_model/getwallet_details_model.dart';
+import 'package:bciweb/models/setting_model/partail_booking_history_model.dart';
 import 'package:bciweb/models/support_admin_details_model.dart';
 import 'package:bciweb/payment_gateway/payment_gateway_services/initiate_payment_api_services.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/get_credit_profile_api_services.dart';
+import 'package:bciweb/services/networks/creditcard_api_service.dart/get_partialbooking_api_service.dart';
+import 'package:bciweb/services/networks/creditcard_api_service.dart/partial_booking_history_api_service.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/pay_credit_api_services.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/user_credit_points_api_dart.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/view_credit_statement.dart';
@@ -207,7 +211,7 @@ class ApiSettingController extends GetxController {
       CreditProfileModel creditProfileModel =
           CreditProfileModel.fromJson(response.data);
 
-      creditLimit(creditProfileModel.creditLimit);
+      creditLimit(creditProfileModel.creditLimit.toString());
       usedLimit(creditProfileModel.usedLimit);
       pendingLimit(creditProfileModel.pendingLimit);
       totalPaidAmountCurrentMonth(
@@ -355,5 +359,44 @@ class ApiSettingController extends GetxController {
     }
 
     return paymentId;
+  }
+
+ GetPartialBookingApiService  getPartialBookingApiService =
+ GetPartialBookingApiService();
+
+    List<PartialAmount> partialbookinglist=[];
+   
+   getPartialBooking()async{
+    dio.Response<dynamic> response = await getPartialBookingApiService.getPartialdata();
+    if(response.statusCode==200){
+CreditPartialModel creditpartialModel = CreditPartialModel.fromJson(response.data);
+partialbookinglist= creditpartialModel.partialAmount;
+         
+    }
+    update();
+   }
+   
+   PartialBookingHistoryApiService getPartialBookingHistoryApiService =
+    PartialBookingHistoryApiService();
+  List<PartialData>partialbookinghistorylist=[];
+ partialBookingHistory({
+    required String partialamountid,
+  }) async {
+    dio.Response<dynamic> response =
+        await getPartialBookingHistoryApiService.PartialBookingHistory(
+          partial_id: partialamountid);
+
+    if (response.statusCode == 200) {
+  PartialBookingHistoryModel partialBookingHistoryModel = 
+  PartialBookingHistoryModel.fromJson(response.data);
+   partialbookinghistorylist = partialBookingHistoryModel.data;
+
+    }
+    update();
+  }
+  calculateUnPaid(double planAmount, double paidAmount) {
+    double remainingAmount = planAmount - paidAmount;
+
+    return remainingAmount.toStringAsFixed(0);
   }
 }

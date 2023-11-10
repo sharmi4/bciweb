@@ -1,5 +1,8 @@
+import 'package:bciweb/models/business_model/merchant_coupon_list_model.dart';
 import 'package:bciweb/models/get_coupons_model.dart';
+import 'package:bciweb/services/networks/business_service/merchant_coupon_list_api_service.dart';
 import 'package:bciweb/services/networks/our_coupons_api_service.dart';
+import 'package:bciweb/services/networks/services/catogory_api_service/redeem_coupons_api_services.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/resmembership/mobile_paymentsucess.dart';
 import 'package:bciweb/services/networks/get_coupons_api_service.dart';
 import 'package:bciweb/services/networks/subscription/get_payment_apiservice.dart';
@@ -106,7 +109,7 @@ class SubscriptionApiController extends GetxController{
 
   //coupons list
   OurCouponsApiServices ourCouponsApiServices = OurCouponsApiServices();
-  // RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
+   RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
   List<CouponsData> couponsData = [];
   List<CouponsData> tempcouponsData = [];
   List<CouponsData> categorycouponsData = [];
@@ -140,5 +143,47 @@ class SubscriptionApiController extends GetxController{
     }
     update();
   }
+  //merchant coupon list
+  MerchantCouponListAPIServices merchantCouponListAPIServices =
+      MerchantCouponListAPIServices();
+  List<MerchantCouponData> merchantCouponData = [];
 
+  merchantCoupon() async {
+    dio.Response<dynamic> response =
+        await merchantCouponListAPIServices.merchantCouponList();
+    if (response.statusCode == 200) {
+      MerchantCouponList merchantCouponList =
+          MerchantCouponList.fromJson(response.data);
+      merchantCouponData = merchantCouponList.data;
+    }
+    update();
+  }
+    // service coupons list
+  RedeemCouponApiServices userredeemCouponApiServices =
+      RedeemCouponApiServices();
+  List<CouponsData> servicecouponsData = [];
+
+  getuserCoupones(
+      {required String couponcode,
+      required String serviceId,
+      required String amount,
+      required String vendorId}) async {
+    dio.Response<dynamic> response =
+        await redeemCouponApiServices.redeemCouponApiServices(
+            couponcode: couponcode,
+          );
+    if (response.statusCode == 200) {
+      GetCouponsList getCouponsList = GetCouponsList.fromJson(response.data);
+      couponsData = getCouponsList.data;
+    } else {
+      Get.rawSnackbar(
+        backgroundColor: Colors.red,
+        messageText: Text(
+          response.data["message"],
+          style: primaryFont.copyWith(color: Colors.white),
+        ),
+      );
+    }
+    update();
+  }
 }
