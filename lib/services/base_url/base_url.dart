@@ -305,8 +305,6 @@ abstract class BaseApiService {
   //merchant service category 
   final String getMerchantCaregoryURL = "https://www.portal.bcipvtltd.com/api/auth/merchant_service_category";
 
-
-
 //saerch flightsearch api
 final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_city_search_get";
 
@@ -314,4 +312,16 @@ final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_c
 
    //update quantity
    final String updateQuantityApiUrl = "https://www.portal.bcipvtltd.com/api/auth/updateCart";  
+//-- Credit Api --//
+  final String getCreditProfileURL =
+      "https://www.portal.bcipvtltd.com/api/auth/credit_profile";
+
+  final String useCreditPointsURL =
+      "https://www.portal.bcipvtltd.com/api/auth/use_credit";
+
+  final String payCreditPointsURL =
+      "https://www.portal.bcipvtltd.com/api/auth/pay_credit";
+
+  final String viewCreditStatementURL =
+      "https://www.portal.bcipvtltd.com/api/auth/view_statement";
 }

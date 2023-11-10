@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/views/business/services_screens/addservice_timeslot_screen.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -558,7 +559,8 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                       hintText: selectdt,
                                       suffixIcon: InkWell(
                                         onTap: (){
-                                            _showDatePicker(context);
+                                          Get.to(AddserviceTimeslotScreen());
+                                            //_showDatePicker(context);
                                         },
                                         child: Icon(Icons.date_range)),
                                       border: OutlineInputBorder(

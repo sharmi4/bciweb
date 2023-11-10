@@ -158,6 +158,35 @@ class _DrawerBusinessState extends State<DrawerBusiness> {
               ],
             ),
           ),
+          //   Padding(
+          //   padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
+          //   child: Divider(
+          //     color: kgrey,
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 30, left: 10),
+          //   child: Row(
+          //     children: [
+          //       TextButton(
+          //         onPressed: () {
+          //           Get.to(CreateCouponsScreen());
+          //           // if(isLoggedIn==true){
+          //           //   Get.to(RespoBusinessBookings());
+          //           // }else{
+          //           //       Get.to(const RespoLanding());
+                      
+          //           // }
+                 
+          //         },
+          //         child: Text(
+          //           'CREATE COUPON',
+          //           style: TextStyle(fontSize: 16, color: kwhite),
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.only(top: 7, left: 10, right: 10),
             child: Divider(

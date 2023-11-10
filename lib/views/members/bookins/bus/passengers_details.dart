@@ -563,74 +563,7 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                           //     width: size.width,
                           //   ),
                           // ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Row(
-                                    children: [
-                                      kwidth10,
-                                      Checkbox(
-                                    
-                                        value: this.creditbool, 
-                                        shape: CircleBorder(),
-                                        onChanged: ( value){
-                                          setState(() {
-                                            this.creditbool= value!;
-                                          });
-                                        }),
-                                      kwidth10,
-                                      Text('CREDIT CARD',
-                                      style: TextStyle(
-                                        fontSize: 17,
-
-                                      ),)
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      kwidth10,
-                                    Checkbox(
-                                      shape: CircleBorder(),
-                                      value:this. netbankbool, 
-                                      onChanged: (value){
-                                        this.netbankbool = value!;
-                                      }),
-                                      kwidth10,
-                                      Text('NET BANKING',
-                                      style: TextStyle(
-                                        fontSize: 17
-                                      ),)
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      kwidth10,
-                                      Checkbox(
-                                        shape: CircleBorder(),
-                                        value: this.bhimbool, 
-                                        onChanged: (value){
-                                          setState(() {
-                                            this.bhimbool = value!;
-                                          });
-                                        }),
-                                      kwidth10,
-                                      Text('BHIM',
-                                      style: TextStyle(
-                                        fontSize: 17
-                                      ),)
-                                    ],
-                                  )
-                                ],
-                              ),
-                              width: size.width,
-                              height: size.height * 0.4,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.black)),
-                            ),
-                          ),
+                        
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(

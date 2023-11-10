@@ -2,6 +2,9 @@ import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
+import 'package:bciweb/views/profile_register_page/profile_credit_screen.dart';
+import 'package:bciweb/views/profile_register_page/profile_partial_screen.dart';
+import 'package:bciweb/views/profile_register_page/profile_statement_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
@@ -20,7 +23,7 @@ import '../../profile_register_page/profile_dashboard.dart';
 import '../../profile_register_page/profile_coupons.dart';
 import '../../profile_register_page/profile_partners.dart';
 import '../../profile_register_page/profile_referal.dart';
-import '../../profile_register_page/profile_register_page.dart';
+import '../../profile_register_page/profile_wallet.dart';
 import '../../profile_register_page/profile_subscription.dart';
 import '../../profile_register_page/profile_support.dart';
 import '../../profile_register_page/profile_upgrage.dart';
@@ -598,14 +601,148 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
-
-                  Padding(
+                     Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
                       children: [
                         InkWell(
                           onTap: () {
                             reghomeController.proindex(10);
+                            reghomeController.update();
+
+                            //Get.offAll(LandingScreen());
+                          },
+                          child: Container(
+                            width: 195,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: BorderDirectional(
+                                    bottom: BorderSide(color: kwhite)),
+                                color: reghomeController.proindex == 10
+                                    ? kblue
+                                    : kyellow),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/cirlewallet.png',
+                                    height: 20,
+                                    fit: BoxFit.fitHeight,
+                                    color: kwhite,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 11),
+                                    child: Text(
+                                      'Credit',
+                                      style: TextStyle(color: kwhite),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                     Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            reghomeController.proindex(11);
+                            reghomeController.update();
+
+                            //Get.offAll(LandingScreen());
+                          },
+                          child: Container(
+                            width: 195,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: BorderDirectional(
+                                    bottom: BorderSide(color: kwhite)),
+                                color: reghomeController.proindex == 11
+                                    ? kblue
+                                    : kyellow),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/cirlewallet.png',
+                                    height: 20,
+                                    fit: BoxFit.fitHeight,
+                                    color: kwhite,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 11),
+                                    child: Text(
+                                      'Partial',
+                                      style: TextStyle(color: kwhite),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                     Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            reghomeController.proindex(12);
+                            reghomeController.update();
+
+                            //Get.offAll(LandingScreen());
+                          },
+                          child: Container(
+                            width: 195,
+                            height: 40,
+                            decoration: BoxDecoration(
+                                border: BorderDirectional(
+                                    bottom: BorderSide(color: kwhite)),
+                                color: reghomeController.proindex == 12
+                                    ? kblue
+                                    : kyellow),
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 18),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'assets/images/cirlewallet.png',
+                                    height: 20,
+                                    fit: BoxFit.fitHeight,
+                                    color: kwhite,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 11),
+                                    child: Text(
+                                      'Statement',
+                                      style: TextStyle(color: kwhite),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: Row(
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            reghomeController.proindex(13);
                             reghomeController.update();
                             showDialog(
                     context: context,
@@ -686,7 +823,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             decoration: BoxDecoration(
                                 border: BorderDirectional(
                                     bottom: BorderSide(color: kwhite)),
-                                color: reghomeController.proindex == 10
+                                color: reghomeController.proindex == 13
                                     ? kblue
                                     : kyellow),
                             child: Padding(
@@ -729,7 +866,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 20, top: 20),
                             child: Text(
-                              'Profile Settingpp',
+                              'Profile Setting',
                               style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
@@ -934,7 +1071,10 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             if (reghomeController.proindex.value == 6) const ProfilePartners(),
             if (reghomeController.proindex.value == 7) const ProfileUpgradeScreen(),
             if (reghomeController.proindex.value == 8) const ProfileSupport(),
-            if (reghomeController.proindex.value == 9) const ProfileWalletScreen()
+            if (reghomeController.proindex.value == 9) const ProfileWalletScreen(),
+            if(reghomeController.proindex.value==10) ProfileCreditScreen(),
+            if(reghomeController.proindex.value==11)ProfilePartialScreen(),
+            if(reghomeController.proindex.value==12)ProfileStatementScreen(),
           ]),
           ksizedbox20,
           const RegisterCommonBottom()

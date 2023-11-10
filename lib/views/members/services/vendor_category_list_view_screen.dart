@@ -2,6 +2,7 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
+import 'package:bciweb/registerhomescreen/common_reg_homescreen.dart';
 import 'package:bciweb/views/members/common_widget/common.dart';
 import 'package:bciweb/views/members/services/views/servicescart/vendor_service_screen.dart';
 import 'package:custom_clippers/custom_clippers.dart';
@@ -41,9 +42,15 @@ class _VendorsListViewState extends State<VendorsCategoryListView> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-       appBar:const PreferredSize(
-         preferredSize: Size(double.infinity, 40),
-          child: CommonScreen(),),
+        appBar: PreferredSize(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              CommonScreen(),
+              RegisterCommonContainer(),
+            ],
+          ),
+          preferredSize: const Size(double.infinity, 110)),
       body: GetBuilder<HomeController>(builder: (_) {
         return homeServiceController.merchatCategoryList.isEmpty
             ? Center(

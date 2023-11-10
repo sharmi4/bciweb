@@ -25,9 +25,9 @@ class IninitiatePaymentModel {
 
   factory IninitiatePaymentModel.fromJson(Map<String, dynamic> json) =>
       IninitiatePaymentModel(
-        success: json["success"],
-        code: json["code"],
-        message: json["message"],
+        success: json["success"]??"",
+        code: json["code"]??"",
+        message: json["message"]??"",
         data: Data.fromJson(json["data"]),
       );
 
@@ -51,8 +51,8 @@ class Data {
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        merchantId: json["merchantId"],
-        merchantTransactionId: json["merchantTransactionId"],
+        merchantId: json["merchantId"]??"",
+        merchantTransactionId: json["merchantTransactionId"]??"",
         instrumentResponse:
             InstrumentResponse.fromJson(json["instrumentResponse"]),
       );
@@ -75,7 +75,7 @@ class InstrumentResponse {
 
   factory InstrumentResponse.fromJson(Map<String, dynamic> json) =>
       InstrumentResponse(
-        type: json["type"],
+        type: json["type"]??"",
         redirectInfo: RedirectInfo.fromJson(json["redirectInfo"]),
       );
 
@@ -95,7 +95,7 @@ class RedirectInfo {
   });
 
   factory RedirectInfo.fromJson(Map<String, dynamic> json) => RedirectInfo(
-        url: json["url"],
+        url: json["url"]??"",
         method: json["method"],
       );
 

@@ -62,120 +62,140 @@ class _LastOffersState extends State<LastOffers> {
 
       body: GetBuilder<BusinessServiceController>(
         builder: (_) {
-          return Container(
-           child:   ListView.builder(
-              itemCount: servicesController.offerListData.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          // Get.to(() => VendorViewOffers(
-                          //       vendorId: homeController
-                          //           .todayOfferListData[index].vendorId,
-                          //     ));
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 10,right: 10),
-                          child: Container(
-                            height: 150,
-                          width: size.width*0.6,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: <BoxShadow>[
-                                BoxShadow(
-                                  offset: Offset(0.0, 0.75),
-                                  blurRadius:5,
-                                  color: kgrey
-                                )
-                              ]
-                            ),
+          return Column(
+            children: [
+              ksizedbox40,
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Row(
+                  children: [
+                    Text('LAST OFFERS',
+                  
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w700,
+                      color: kblue
+                    ),),
+                  ],
+                ),
+              ),
+              ksizedbox40,
+              Container(
+               child:   ListView.builder(
+                  itemCount: servicesController.offerListData.length,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              // Get.to(() => VendorViewOffers(
+                              //       vendorId: homeController
+                              //           .todayOfferListData[index].vendorId,
+                              //     ));
+                            },
                             child: Padding(
-                              padding: const EdgeInsets.only(left: 0),
-                              child: Row(
-                                //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 20),
-                                    child: Container(
-                                      height: 130,
-                                      width: 120,
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
-                                        child: Image.network(
-                                          servicesController.offerListData[index].image,
-                                                                        
-                                          fit: BoxFit.cover,
+                              padding: const EdgeInsets.only(left: 10,right: 10),
+                              child: Container(
+                                height: 150,
+                            
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                  boxShadow: <BoxShadow>[
+                                    BoxShadow(
+                                      offset: Offset(0.0, 0.75),
+                                      blurRadius:5,
+                                      color: kgrey
+                                    )
+                                  ]
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(left: 0),
+                                  child: Row(
+                                    //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 20),
+                                        child: Container(
+                                          height: 130,
+                                          width: 120,
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(10),
+                                            child: Image.network(
+                                              servicesController.offerListData[index].image,
+                                                                            
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 15, top:10 ),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                        
+                                          children: [
+                                            Container(
+                                              width: 150,
+                                              child: Text(
+                                                servicesController
+                                                    .offerListData[index].title,
+                                                style: primaryFont.copyWith(
+                                                    fontSize: 16,
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Container(
+                                                 width: 150,
+                                              child: Text(
+                                                "Discount value : ₹${servicesController.offerListData[index].discountValue}",
+                                                style: primaryFont.copyWith(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black54),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            Container(
+                                                 width: 150,
+                                              child: Text(
+                                                "Ends on : ${formatDate(servicesController.offerListData[index].endsAt, [
+                                                      dd,
+                                                      "-",
+                                                      mm,
+                                                      "-",
+                                                      yyyy
+                                                    ])}",
+                                                style: primaryFont.copyWith(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                    color: Colors.black54),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15, top:10 ),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                    
-                                      children: [
-                                        Container(
-                                          width: 250,
-                                          child: Text(
-                                            servicesController
-                                                .offerListData[index].title,
-                                            style: primaryFont.copyWith(
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                             width: 250,
-                                          child: Text(
-                                            "Discount value : ₹${servicesController.offerListData[index].discountValue}",
-                                            style: primaryFont.copyWith(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.black54),
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                             width: 250,
-                                          child: Text(
-                                            "Ends on : ${formatDate(servicesController.offerListData[index].endsAt, [
-                                                  dd,
-                                                  "-",
-                                                  mm,
-                                                  "-",
-                                                  yyyy
-                                                ])}",
-                                            style: primaryFont.copyWith(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w500,
-                                                color: Colors.black54),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                      
-                    ],
-                  )
-                );
-              }),
+                          
+                        ],
+                      )
+                    );
+                  }),
+              ),
+            ],
           );
         }
       ),
