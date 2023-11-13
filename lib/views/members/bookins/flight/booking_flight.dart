@@ -329,103 +329,95 @@ class _BookingFlightState extends State<BookingFlight> {
                                             ],
                                           ),
                                         ),
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              //  color: Colors.grey[200],
-                                              borderRadius:
-                                                  BorderRadius.circular(15)),
-                                          height: size.height * 0.06,
-                                          width: size.width * 0.13,
-                                          child:
-                                              TypeAheadField<FlightSearchModel>(
-                                            getImmediateSuggestions: true,
-                                            textFieldConfiguration:
-                                                TextFieldConfiguration(
-                                              controller:
-                                                  faligsearch2Controller,
-                                              onChanged: (value) async {
-                                                if (value.length > 1) {
-                                                  Get.find<
-                                                          ApiflightsController>()
-                                                      .flighsearch(
-                                                          city:
-                                                              value.toString());
-                                                }
-                                              },
-                                              decoration: const InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  hintText:
-                                                      'Any Airport City',
-                                                  hintStyle:
-                                                      TextStyle(fontSize: 14)),
-                                            ),
-                                            suggestionsCallback:
-                                                (String pattern) async {
-                                              return apiflightController
-                                                  .searchlistsearchList
-                                                  .where(
-                                                    (item) => item.airportName
-                                                        .toString()
-                                                        .toLowerCase()
-                                                        .startsWith(
-                                                          pattern.toLowerCase(),
-                                                        ),
-                                                  )
-                                                  .toList();
-                                            },
-                                            itemBuilder: (context,
-                                                FlightSearchModel citymodel) {
-                                              return ListTile(
-                                                title: Text(citymodel
-                                                    .airportName
-                                                    .toString()),
-                                              );
-                                            },
-                                            itemSeparatorBuilder:
-                                                (context, index) {
-                                              return const Divider();
-                                            },
-                                            onSuggestionSelected:
-                                                (FlightSearchModel citymodel) {
-                                              print("bording selected");
-
-                                              faligsearch2Controller.text =
-                                                  apiflightController.origin(
-                                                      apiflightController
-                                                          .searchlistsearchList
-                                                          .first
-                                                          .airportcode);
-                                              faligsearch2Controller.text =
-                                                  apiflightController
-                                                      .originFullName(
-                                                          apiflightController
-                                                              .searchlistsearchList
-                                                              .first
-                                                              .airportName);
-
-                                              faligsearchController.text =
-                                                  apiflightController
+                                        GetBuilder<ApiflightsController>(
+                                            builder: (_) {
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                  //  color: Colors.grey[200],
+                                                  borderRadius:
+                                                      BorderRadius.circular(15)),
+                                              height: size.height * 0.06,
+                                              width: size.width * 0.13,
+                                              child:
+                                                  TypeAheadField<FlightSearchModel>(
+                                                getImmediateSuggestions: true,
+                                                textFieldConfiguration:
+                                                    TextFieldConfiguration(
+                                                  controller:
+                                                      faligsearch2Controller,
+                                                  onChanged: (value) async {
+                                                    if (value.length > 1) {
+                                                      Get.find<
+                                                              ApiflightsController>()
+                                                          .flighsearch(
+                                                              city:
+                                                                  value.toString());
+                                                    }
+                                                  },
+                                                  decoration: const InputDecoration(
+                                                      border: OutlineInputBorder(),
+                                                      hintText:
+                                                          'Any Airport City',
+                                                      hintStyle:
+                                                          TextStyle(fontSize: 14)),
+                                                ),
+                                                suggestionsCallback:
+                                                    (String pattern) async {
+                                                  return apiflightController
                                                       .searchlistsearchList
-                                                      .first
-                                                      .airportcode;
+                                                      .where(
+                                                        (item) => item.city
+                                                            .toString()
+                                                            .toLowerCase()
+                                                            .startsWith(
+                                                              pattern.toLowerCase(),
+                                                            ),
+                                                      )
+                                                      .toList();
+                                                },
+                                                itemBuilder: (context,
+                                                    FlightSearchModel citymodel) {
+                                                  return ListTile(
+                                                    title: Text(citymodel
+                                                        .city
+                                                        .toString()),
+                                                  );
+                                                },
+                                                itemSeparatorBuilder:
+                                                    (context, index) {
+                                                  return const Divider();
+                                                },
+                                                onSuggestionSelected:
+                                                    (FlightSearchModel citymodel) {
+                                                  print("bording selected");
 
-                                              faligsearch2Controller.text =
-                                                  apiflightController
-                                                      .originCountry(
-                                                          apiflightController
-                                                              .searchlistsearchList
-                                                              .first
-                                                              .airportcode);
-                                              // Bordingcontrolr.text =
-                                              //     citymodel.cityName;
-                                              // apiflightController.fromCity(
-                                              //     citymodel.cityName);
-                                              // busController.fromcityId(
-                                              //     citymodel.cityId);
-                                            },
-                                          ),
+                                                 
+                                                      apiflightController.origin(
+                                                          citymodel.airportcode);
+                                               
+                                                      apiflightController
+                                                          .originFullName(
+                                                              citymodel.city);
+
+                                                  faligsearch2Controller.text =
+                                                      citymodel.city;
+
+                                                 
+                                                      apiflightController
+                                                          .originCountry(
+                                                              citymodel.countrycode);
+                                                  // Bordingcontrolr.text =
+                                                  //     citymodel.cityName;
+                                                  // apiflightController.fromCity(
+                                                  //     citymodel.cityName);
+                                                  // busController.fromcityId(
+                                                  //     citymodel.cityId);
+                                                },
+                                              ),
+                                            );
+                                          }
                                         ),
-                                        Icon(Icons.compare_arrows_sharp),
+                                       const Icon(Icons.compare_arrows_sharp),
 
                                         // Padding(
                                         //   padding: const EdgeInsets.only(
@@ -514,99 +506,91 @@ class _BookingFlightState extends State<BookingFlight> {
                                         //   ),
                                         // ),
 
-                                        Container(
-                                          decoration: BoxDecoration(
-                                              //  color: Colors.grey[200],
-                                              borderRadius:
-                                                  BorderRadius.circular(15)),
-                                          height: 55,
-                                          width: size.width * 0.13,
-                                          child:
-                                              TypeAheadField<FlightSearchModel>(
-                                            getImmediateSuggestions: true,
-                                            textFieldConfiguration:
-                                                TextFieldConfiguration(
-                                              onTap: () {
-                                                faligsearchController.text;
-                                              },
-                                              controller: faligsearchController,
-                                              onChanged: (value) async {
-                                                if (value.length > 1) {
-                                                  Get.find<
-                                                          ApiflightsController>()
-                                                      .flighsearch(
-                                                          city:
-                                                              value.toString());
-                                                }
-                                              },
-                                              decoration: const InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  hintText: 'Any Airport City',
-                                                  hintStyle:
-                                                      TextStyle(fontSize: 14)),
-                                            ),
-                                            suggestionsCallback:
-                                                (String pattern) async {
-                                              return apiflightController
-                                                  .searchlistsearchList
-                                                  .where(
-                                                    (item) => item.airportName
-                                                        .toString()
-                                                        .toLowerCase()
-                                                        .startsWith(
-                                                          pattern.toLowerCase(),
-                                                        ),
-                                                  )
-                                                  .toList();
-                                            },
-                                            itemBuilder: (context,
-                                                FlightSearchModel citymodel) {
-                                              return ListTile(
-                                                title: Text(citymodel
-                                                    .airportName
-                                                    .toString()),
-                                              );
-                                            },
-                                            itemSeparatorBuilder:
-                                                (context, index) {
-                                              return const Divider();
-                                            },
-                                            onSuggestionSelected:
-                                                (FlightSearchModel citymodel) {
-                                              print("bording selected");
+                                        GetBuilder<ApiflightsController>(
+                                          builder: (_) {
+                                            return Container(
+                                              decoration: BoxDecoration(
+                                                  //  color: Colors.grey[200],
+                                                  borderRadius:
+                                                      BorderRadius.circular(15)),
+                                              height: 55,
+                                              width: size.width * 0.13,
+                                              child:
+                                                  TypeAheadField<FlightSearchModel>(
+                                                getImmediateSuggestions: true,
+                                                textFieldConfiguration:
+                                                    TextFieldConfiguration(
+                                                  onTap: () {
+                                                    // faligsearchController.text;
+                                                  },
+                                                  controller: faligsearchController,
+                                                  onChanged: (value) async {
+                                                    if (value.length > 1) {
+                                                      Get.find<
+                                                              ApiflightsController>()
+                                                          .flighsearch(
+                                                              city:
+                                                                  value.toString());
+                                                    }
+                                                  },
+                                                  decoration: const InputDecoration(
+                                                      border: OutlineInputBorder(),
+                                                      hintText: 'Any Airport City',
+                                                      hintStyle:
+                                                          TextStyle(fontSize: 14)),
+                                                ),
+                                                suggestionsCallback:
+                                                    (String pattern) async {
+                                                  return apiflightController
+                                                      .searchlistsearchList
+                                                      .where(
+                                                        (item) => item.city
+                                                            .toString()
+                                                            .toLowerCase()
+                                                            .startsWith(
+                                                              pattern.toLowerCase(),
+                                                            ),
+                                                      )
+                                                      .toList();
+                                                },
+                                                itemBuilder: (context,
+                                                    FlightSearchModel citymodel) {
+                                                  return ListTile(
+                                                    title: Text(citymodel
+                                                        .city
+                                                        .toString()),
+                                                  );
+                                                },
+                                                itemSeparatorBuilder:
+                                                    (context, index) {
+                                                  return const Divider();
+                                                },
+                                                onSuggestionSelected:
+                                                    (FlightSearchModel citymodel) {
+                                                  print("bording selected");
 
-                                              faligsearchController.text =
-                                                  apiflightController.origin(
+                                               
+                                                      apiflightController.destination(
+                                                          citymodel.airportcode);
+                                               
                                                       apiflightController
-                                                          .searchlistsearchList
-                                                          .first
-                                                          .airportcode);
-                                              faligsearchController.text =
-                                                  apiflightController
-                                                      .originFullName(
-                                                          apiflightController
-                                                              .searchlistsearchList
-                                                              .first
-                                                              .airportName);
+                                                          .destinationFullName(
+                                                              citymodel.city);
 
-                                              faligsearchController.text =
-                                                  apiflightController
-                                                      .searchlistsearchList
-                                                      .first
-                                                      .airportcode;
-                                              apiflightController.originCountry(
-                                                  apiflightController
-                                                      .searchlistsearchList
-                                                      .first
-                                                      .airportcode);
-                                              // Bordingcontrolr.text =
-                                              //     citymodel.cityName;
-                                              // apiflightController.fromCity(
-                                              //     citymodel.cityName);
-                                              // busController.fromcityId(
-                                              //     citymodel.cityId);
-                                            },
-                                          ),
+                                                  faligsearchController.text =
+                                                      citymodel.city;
+                                                  apiflightController.destinationCountry(
+                                                      citymodel.countrycode);
+                                                  // Bordingcontrolr.text =
+                                                  //     citymodel.cityName;
+                                                  // apiflightController.fromCity(
+                                                  //     citymodel.cityName);
+                                                  // busController.fromcityId(
+                                                  //     citymodel.cityId);
+                                                },
+                                              ),
+                                            );
+                                          }
                                         ),
                                         Container(
                                           height: 40,
@@ -1926,7 +1910,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                   });
                                                 }),
                                             Text(
-                                              'Air India(6)',
+                                              'Air India',
                                             )
                                           ],
                                         ),
@@ -1942,7 +1926,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                         airline2 = value!;
                                                       });
                                                     }),
-                                                Text('Air Asia(2)')
+                                                Text('Air Asia')
                                               ],
                                             ),
                                           ],
@@ -1956,7 +1940,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     airline3 = value!;
                                                   });
                                                 }),
-                                            Text('Go First(1)')
+                                            Text('Go First')
                                           ],
                                         ),
                                         Row(
@@ -1969,7 +1953,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     airline4 = value!;
                                                   });
                                                 }),
-                                            Text('IndiGo(23)')
+                                            Text('IndiGo')
                                           ],
                                         ),
                                         Row(
@@ -1982,7 +1966,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     airline5 = value!;
                                                   });
                                                 }),
-                                            Text('SpiceJet(1)')
+                                            Text('SpiceJet')
                                           ],
                                         ),
                                         Row(
@@ -1999,7 +1983,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                         airline6 = value!;
                                                       });
                                                     }),
-                                                Text('Vistara(6)'),
+                                                Text('Vistara'),
                                               ],
                                             ),
                                           ],
@@ -2020,7 +2004,7 @@ class _BookingFlightState extends State<BookingFlight> {
                             Padding(
                               padding: const EdgeInsets.only(top: 25, left: 20),
                               child: Text(
-                                'Flights from ${apiflightController.originCountry} to ${apiflightController.destinationCountry}',
+                                'Flights from ${apiflightController.origin} to ${apiflightController.destination}',
                                 style: TextStyle(
                                     letterSpacing: 1,
                                     fontSize: 24,
@@ -2452,14 +2436,14 @@ class _BookingFlightState extends State<BookingFlight> {
                                     color: kwhite,
                                     boxShadow: <BoxShadow>[
                                       BoxShadow(
-                                          offset: Offset(0.0, 0.75),
+                                          offset: const Offset(0.0, 0.75),
                                           blurRadius: 5,
                                           color: kgrey)
                                     ]),
                                 child: GetBuilder<ApiflightsController>(
                                     builder: (_) {
                                   return ListView.builder(
-                                      physics: NeverScrollableScrollPhysics(),
+                                      physics: const NeverScrollableScrollPhysics(),
                                       shrinkWrap: true,
                                       itemCount:
                                           apiflightController.flightList.length,

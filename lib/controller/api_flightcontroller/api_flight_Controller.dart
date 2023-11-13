@@ -939,11 +939,12 @@ class ApiflightsController extends GetxController {
         await searchFlightApiServices.searchflightapi(city: city);
     if (response.statusCode == 200) {
       
-List<FlightSearchModel> flightSearchModel =
+           List<FlightSearchModel> flightSearchModel =
            List<FlightSearchModel>.from(
        response.data.map((x) => FlightSearchModel.fromJson(x)));
         await searchFlightApiServices.searchflightapi(city: city);
         searchlistsearchList =flightSearchModel;
+        update();
     }
   }
 }
