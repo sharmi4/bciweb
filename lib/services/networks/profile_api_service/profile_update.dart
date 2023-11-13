@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:bciweb/models/child_dob_model.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -8,6 +9,7 @@ import '../../base_url/base_url.dart';
 class ProfileUpdateApiServices extends BaseApiService {
   Future profileUpdate({
     required MemberProfileUpdateModel memberProfileUpdateModel,
+    required List<ChildDetailsModel> childDetailsList,
   }) async {
     dynamic responseJson;
     try {

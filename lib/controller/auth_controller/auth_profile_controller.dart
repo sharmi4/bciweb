@@ -99,6 +99,7 @@ class AuthProfileController extends GetxController {
     isLoading(true);
     //profileData.clear();
     dio.Response<dynamic> response = await profileUpdateApi.profileUpdate(
+        childDetailsList: childDetailsList,
         memberProfileUpdateModel: memberProfileUpdateModel);
 
     isLoading(false);
@@ -383,4 +384,7 @@ class AuthProfileController extends GetxController {
     }
     update();
   }
+
+
+  
 }

@@ -1,4 +1,5 @@
 import 'dart:html';
+import 'package:bciweb/models/child_dob_model.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -146,12 +147,51 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   var subMobileController = TextEditingController();
   var panController = TextEditingController();
   var aadhaarController = TextEditingController();
-  var gstController = TextEditingController();
+  var spusedobController = TextEditingController();
 
   dynamic selectedGender = '';
   dynamic imageprofile;
   dynamic aadharimage;
   dynamic panimage;
+
+  DateTime date = DateTime.now();
+
+  _selectChildDateofBrth(BuildContext context, int index) async {
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: date,
+      initialDatePickerMode: DatePickerMode.day,
+      initialEntryMode: DatePickerEntryMode.calendarOnly,
+      firstDate: DateTime(1910),
+      locale: const Locale('en', 'IN'),
+      lastDate: DateTime.now(),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: kblue, // <-- SEE HERE
+              onPrimary: Colors.white, // <-- SEE HERE
+              onSurface: Colors.blueAccent, // <-- SEE HERE
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(
+                primary: kblue, // button text color
+              ),
+            ),
+          ),
+          child: child!,
+        );
+      },
+    );
+
+    if (picked != null)
+      setState(() {
+        date = picked;
+        authprofileController.childDetailsList[index].dateOfBirthController
+            .text = formatDate(date, [dd, "/", mm, "/", yyyy]);
+        authprofileController.update();
+      });
+  }
 
   setDefauld() async {
     await authprofileController.getProfile();
@@ -171,7 +211,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
           authprofileController.profileData.first.qualification;
       fathernameController.text =
           authprofileController.profileData.first.fatherName;
-      gstController.text = authprofileController.profileData.first.gstNo;
+      spusedobController.text = authprofileController.profileData.first.gstNo;
       panController.text = authprofileController.profileData.first.panNo;
       aadhaarController.text = authprofileController.profileData.first.aadharNo;
       mothernameController.text =
@@ -207,6 +247,32 @@ class _ProfileSettingsState extends State<ProfileSettings> {
             : true;
         // aadharimage = authprofileController.profileData.first.adharProof;
       });
+
+      authprofileController.childDetailsList.clear();
+      for (var names in authprofileController.profileData.first.children) {
+        ChildDetailsModel childDetailsModel = ChildDetailsModel(
+            dateOfBirthController: TextEditingController(
+              text: names.dob,
+            ),
+            nameController: TextEditingController(
+              text: names.childName,
+            ),
+            dob: names.dob,
+            isNew: false,
+            name: names.childName);
+
+        authprofileController.childDetailsList.add(childDetailsModel);
+        authprofileController.update();
+      }
+
+      if (authprofileController.childDetailsList.isEmpty) {
+        ChildDetailsModel childDetailsModel = ChildDetailsModel(
+          dateOfBirthController: TextEditingController(),
+          nameController: TextEditingController(),
+        );
+        authprofileController.childDetailsList.add(childDetailsModel);
+        authprofileController.update();
+      }
     }
   }
 
@@ -687,9 +753,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                         TextField(
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.phone,
-                          controller: gstController,
+                          controller: spusedobController,
                           decoration: const InputDecoration(
-                              hintText: 'Gst No',
+                              hintText: 'Spouse DOB',
                               suffixIcon: Icon(Icons.edit),
                               fillColor: Color(0xffF9F8FD),
                               border: OutlineInputBorder()),
@@ -729,167 +795,146 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 70, right: 50, top: 0, bottom: 30),
-                  child: Container(
-                    child: Column(
-                      children: [
-                        if (isMarried == true)
-                          TextFieldTags(
-                            textfieldTagsController: _controller,
-                            initialTags: const [],
-                            textSeparators: const [','],
-                            // letterCase: LetterCase.normal,
-                            validator: (String tag) {
-                              if (tag == 'php') {
-                                return 'No, please just no';
-                              } else if (_controller!.getTags!.contains(tag)) {
-                                return 'you already entered that';
-                              }
-                              return null;
-                            },
-                            inputfieldBuilder: (context, tec, fn, error,
-                                onChanged, onSubmitted) {
-                              return ((context, sc, tags, onTagDelete) {
-                                return Padding(
-                                  padding: const EdgeInsets.only(top: 10.0),
-                                  child: TextField(
-                                    controller: tec,
-                                    focusNode: fn,
-                                    decoration: InputDecoration(
-                                      isDense: true,
-                                      border: const OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color:
-                                              Color.fromARGB(255, 74, 137, 92),
-                                          width: 3.0,
-                                        ),
-                                      ),
-                                      // focusedBorder: const OutlineInputBorder(
-                                      //   borderSide: BorderSide(
-                                      //     color: Color.fromARGB(255, 74, 137, 92),
-                                      //     width: 3.0,
-                                      //   ),
-                                      // ),
-                                      //helperText: 'No Of Children',
-                                      // helperStyle: TextStyle(
-                                      //   color: kblue,
-                                      // ),
-                                      hintText: _controller!.hasTags
-                                          ? ''
-                                          : "Children Name",
-                                      errorText: error,
-                                      prefixIconConstraints: BoxConstraints(
-                                          maxWidth: _distanceToField! * 0.74),
-                                      prefixIcon: tags.isNotEmpty
-                                          ? SingleChildScrollView(
-                                              controller: sc,
-                                              scrollDirection: Axis.horizontal,
-                                              child: Row(
-                                                  children:
-                                                      tags.map((String tag) {
-                                                return Container(
-                                                  decoration:
-                                                      const BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                      Radius.circular(20.0),
-                                                    ),
-                                                    color: Color.fromARGB(
-                                                        255, 74, 80, 137),
-                                                  ),
-                                                  margin: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 5.0),
-                                                  padding: const EdgeInsets
-                                                      .symmetric(
-                                                      horizontal: 10.0,
-                                                      vertical: 5.0),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      InkWell(
-                                                        child: Text(
-                                                          '$tag',
-                                                          style:
-                                                              const TextStyle(
-                                                                  color: Colors
-                                                                      .white),
-                                                        ),
-                                                        onTap: () {
-                                                          print(
-                                                              "$tag selected");
-                                                        },
-                                                      ),
-                                                      const SizedBox(
-                                                          width: 4.0),
-                                                      InkWell(
-                                                        child: const Icon(
-                                                          Icons.cancel,
-                                                          size: 14.0,
-                                                          color: Color.fromARGB(
-                                                              255,
-                                                              233,
-                                                              233,
-                                                              233),
-                                                        ),
-                                                        onTap: () {
-                                                          onTagDelete(tag);
-                                                        },
-                                                      )
-                                                    ],
-                                                  ),
-                                                );
-                                              }).toList()),
-                                            )
-                                          : null,
-                                    ),
-                                    onChanged: onChanged,
-                                    onSubmitted: onSubmitted,
-                                  ),
-                                );
-                              });
-                            },
-                          ),
-                      ],
+                  child: TextField(
+                    //textInputAction: TextInputAction.next,
+                    controller: aadhaarController,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      LengthLimitingTextInputFormatter(12),
+                      FilteringTextInputFormatter.digitsOnly,
+                      FilteringTextInputFormatter.deny(RegExp(r'\s')),
+                    ],
+                    decoration: const InputDecoration(
+                      hintText: 'Aadhaar No',
+                      suffixIcon: Icon(Icons.edit),
+                      fillColor: Color(0xffF9F8FD),
+                      border: OutlineInputBorder(),
                     ),
                   ),
                 ),
               ),
             ],
           ),
-          ksizedbox10,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 40, bottom: 30),
-                child: Container(
-                  width: 435,
-                  child: Column(
-                    children: [
-                      TextField(
-                        //textInputAction: TextInputAction.next,
-                        controller: aadhaarController,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
-                          LengthLimitingTextInputFormatter(12),
-                          FilteringTextInputFormatter.digitsOnly,
-                          FilteringTextInputFormatter.deny(RegExp(r'\s')),
+       
+
+          GetBuilder<AuthProfileController>(
+            builder: (_) {
+              return Column(
+                children: [
+                  for (int i = 0;
+                      i < authprofileController.childDetailsList.length;
+                      i++)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40, right: 70, top: 0, bottom: 30),
+                              child: TextField(
+                                controller: authprofileController
+                                    .childDetailsList[i].nameController,
+                                readOnly: !authprofileController
+                                    .childDetailsList[i].isNew,
+                                decoration: InputDecoration(
+                                  //    isCollapsed: true,
+                                  //  isDense: true,
+                                  fillColor: const Color(0xffF9F8FD),
+                                  border: const OutlineInputBorder(),
+                                  hintText: "Child Name",
+                                  // hintStyle:
+                                  //     TextStyle(
+                                  //   color: kblue,
+                                  //   fontWeight:
+                                  //       FontWeight
+                                  //           .w400,
+                                  // )
+                                ),
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 40, right: 70, top: 0, bottom: 30),
+                              child: TextField(
+                                controller: authprofileController
+                                    .childDetailsList[i].dateOfBirthController,
+                                readOnly: true,
+                                onTap: () {
+                                  if (authprofileController
+                                      .childDetailsList[i].isNew) {
+                                    _selectChildDateofBrth(context, i);
+                                  }
+                                },
+                                decoration: InputDecoration(
+                                  fillColor: const Color(0xffF9F8FD),
+                                  border: const OutlineInputBorder(),
+                                  hintText: "Date Of Birth",
+                                ),
+                              ),
+                            ),
+                          ),
+                          i == 0
+                              ? Padding(
+                                padding: const EdgeInsets.only(
+                      left: 40, right: 70, top: 0, bottom: 30),
+                                child: IconButton(
+                                    onPressed: () {
+                                      ChildDetailsModel childDetailsModel =
+                                          ChildDetailsModel(
+                                        dateOfBirthController:
+                                            TextEditingController(),
+                                        nameController: TextEditingController(),
+                                      );
+                                      authprofileController.childDetailsList
+                                          .add(childDetailsModel);
+                                      authprofileController.update();
+                                    },
+                                    icon: Padding(
+                                      padding: const EdgeInsets.only(
+                      left: 40, right: 70, top: 0, bottom: 30),
+                                      child: Icon(
+                                        Icons.add_box_rounded,
+                                        //     color: kblue,
+                                      ),
+                                    )),
+                              )
+                              : authprofileController
+                                      .childDetailsList[i].isNew
+                                  ? IconButton(
+                                      onPressed: () {
+                                        // ChildDetailsModel
+                                        //     childDetailsModel =
+                                        //     ChildDetailsModel(
+                                        //   dateOfBirthController:
+                                        //       TextEditingController(),
+                                        //   nameController:
+                                        //       TextEditingController(),
+                                        // );
+                                        authprofileController.childDetailsList
+                                            .removeAt(i);
+
+                                        authprofileController.update();
+                                      },
+                                      icon: Icon(
+                                        Icons.remove_circle_outline_rounded,
+                                        // color: kblue,
+                                      ))
+                                  : Container()
                         ],
-                        decoration: const InputDecoration(
-                          hintText: 'Aadhaar No',
-                          suffixIcon: Icon(Icons.edit),
-                          fillColor: Color(0xffF9F8FD),
-                          border: OutlineInputBorder(),
-                        ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+                    ),
+                ],
+              );
+            },
           ),
+
+          ksizedbox10,
+
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -1138,7 +1183,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                   selectedGender == "Male" ? "Male" : "Female",
                               adharNo: aadhaarController.text,
                               alternateMob: alternumberController.text,
-                              gstNo: gstController.text,
+                              gstNo: spusedobController.text,
                               adharproofimg: aadharimage,
                               panproofimg: panimage,
                               qualification: qualificationController.text,
@@ -1180,7 +1225,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               adharNo: aadhaarController.text,
                               branch: branchController.text,
                               children: isMarried ? _controller!.getTags : [],
-                              gstNo: gstController.text,
+                              gstNo: spusedobController.text,
                               weddingDate: wedingnameController.text,
                               panNo: panController.text,
                               qualification: qualificationController.text,

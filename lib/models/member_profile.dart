@@ -49,42 +49,44 @@ class MemberProfileModel {
 
 class MemberUser {
   int id;
-  dynamic roleId;
-  dynamic name;
-  dynamic email;
-  dynamic mobile;
-  dynamic isVerrifiedMobile;
-  dynamic otp;
-  dynamic referralCode;
+  String roleId;
+  String userId;
+  String name;
+  String email;
+  String mobile;
+  String isVerrifiedMobile;
+  String otp;
+  String referralCode;
   dynamic referredBy;
   dynamic walletAmount;
   dynamic category;
   dynamic subCategory;
-  dynamic alternateMobile;
-  dynamic gstNo;
-  dynamic adharProof;
-  dynamic panProof;
-  dynamic profilePicture;
+  String alternateMobile;
+  String gstNo;
+  String adharProof;
+  String panProof;
+  String profilePicture;
   dynamic clientSecret;
   dynamic clientId;
   dynamic keyName;
-  dynamic keyStatus;
+  String keyStatus;
   dynamic emailVerifiedAt;
   dynamic address;
-  dynamic dob;
-  dynamic occupation;
-  dynamic fatherName;
-  dynamic motherName;
+  String dob;
+  String spouseDob;
+  String occupation;
+  String fatherName;
+  String motherName;
   dynamic isMarried;
   ResidentialAddress residentialAddress;
   OfficialAddress officialAddress;
-  dynamic panNo;
-  dynamic aadharNo;
+  String panNo;
+  String aadharNo;
   dynamic bio;
   dynamic pincode;
   dynamic city;
   dynamic state;
-  dynamic status;
+  String status;
   dynamic gender;
   dynamic spouse;
   dynamic noOfChild;
@@ -92,7 +94,7 @@ class MemberUser {
   dynamic weddingDate;
   dynamic memberType;
   dynamic branch;
-  dynamic qualification;
+  String qualification;
   dynamic doorNo;
   dynamic bciShareType;
   dynamic bciShareAmount;
@@ -104,69 +106,77 @@ class MemberUser {
   dynamic shopImage;
   DateTime createdAt;
   DateTime updatedAt;
+  String creditPayDate;
+  String rewardPoints;
+  List<Child> children;
 
-  MemberUser({
-    required this.id,
-    required this.roleId,
-    required this.name,
-    required this.email,
-    required this.mobile,
-    required this.isVerrifiedMobile,
-    required this.otp,
-    required this.referralCode,
-    this.referredBy,
-    this.walletAmount,
-    this.category,
-    this.subCategory,
-    required this.alternateMobile,
-    required this.gstNo,
-    required this.adharProof,
-    required this.panProof,
-    required this.profilePicture,
-    this.clientSecret,
-    this.clientId,
-    this.keyName,
-    required this.keyStatus,
-    this.emailVerifiedAt,
-    this.address,
-    required this.dob,
-    required this.occupation,
-    required this.fatherName,
-    required this.motherName,
-    this.isMarried,
-    required this.residentialAddress,
-    required this.officialAddress,
-    required this.panNo,
-    required this.aadharNo,
-    this.bio,
-    this.pincode,
-    this.city,
-    this.state,
-    required this.status,
-    this.gender,
-    this.spouse,
-    this.noOfChild,
-    required this.childName,
-    this.weddingDate,
-    this.memberType,
-    this.branch,
-    required this.qualification,
-    this.doorNo,
-    this.bciShareType,
-    this.bciShareAmount,
-    this.bankName,
-    this.bankAccountName,
-    this.accountType,
-    this.bankAccountNumber,
-    this.ifscCode,
-    this.shopImage,
-    required this.createdAt,
-    required this.updatedAt,
-  });
+  MemberUser(
+      {required this.id,
+      required this.roleId,
+      required this.userId,
+      required this.name,
+      required this.email,
+      required this.mobile,
+      required this.isVerrifiedMobile,
+      required this.otp,
+      required this.referralCode,
+      this.referredBy,
+      this.walletAmount,
+      this.category,
+      this.subCategory,
+      required this.alternateMobile,
+      required this.gstNo,
+      required this.adharProof,
+      required this.panProof,
+      required this.profilePicture,
+      this.clientSecret,
+      this.clientId,
+      this.keyName,
+      required this.keyStatus,
+      this.emailVerifiedAt,
+      this.address,
+      required this.dob,
+      required this.spouseDob,
+      required this.occupation,
+      required this.fatherName,
+      required this.motherName,
+      this.isMarried,
+      required this.residentialAddress,
+      required this.officialAddress,
+      required this.panNo,
+      required this.aadharNo,
+      this.bio,
+      this.pincode,
+      this.city,
+      this.state,
+      required this.status,
+      this.gender,
+      this.spouse,
+      this.noOfChild,
+      required this.childName,
+      this.weddingDate,
+      this.memberType,
+      this.branch,
+      required this.qualification,
+      this.doorNo,
+      this.bciShareType,
+      this.bciShareAmount,
+      this.bankName,
+      this.bankAccountName,
+      this.accountType,
+      this.bankAccountNumber,
+      this.ifscCode,
+      this.shopImage,
+      required this.createdAt,
+      required this.updatedAt,
+      required this.creditPayDate,
+      required this.children,
+      required this.rewardPoints});
 
   factory MemberUser.fromJson(Map<String, dynamic> json) => MemberUser(
         id: json["id"] ?? 0,
         roleId: json["role_id"] ?? "",
+        userId: json["user_id"] ?? "",
         name: json["name"] ?? "",
         email: json["email"] ?? "",
         mobile: json["mobile"] ?? "",
@@ -174,7 +184,7 @@ class MemberUser {
         otp: json["otp"] ?? "",
         referralCode: json["referral_code"] ?? "",
         referredBy: json["referred_by"] ?? "",
-        walletAmount: json["wallet_amount"] ?? "",
+        walletAmount: json["wallet_amount"] ?? "0.0",
         category: json["category"] ?? "",
         subCategory: json["sub_category"] ?? "",
         alternateMobile: json["alternate_mobile"] ?? "",
@@ -189,10 +199,11 @@ class MemberUser {
         emailVerifiedAt: json["email_verified_at"] ?? "",
         address: json["address"] ?? "",
         dob: json["dob"] ?? "",
+        spouseDob: json["wife_dob"] ?? "",
         occupation: json["occupation"] ?? "",
         fatherName: json["father_name"] ?? "",
         motherName: json["mother_name"] ?? "",
-        isMarried: json["is_married"] ?? "",
+        isMarried: json["is_married"],
         residentialAddress: json["residential_address"] == null
             ? ResidentialAddress(
                 doorNo: "",
@@ -240,6 +251,10 @@ class MemberUser {
         shopImage: json["shop_image"] ?? "",
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
+        creditPayDate: json["credit_pay_date"] ?? "",
+        rewardPoints: json["reward_points"] ?? "",
+        children:
+            List<Child>.from(json["children"].map((x) => Child.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -381,5 +396,44 @@ class ResidentialAddress {
         "city": city,
         "personal_id": personalId,
         "pincode": pincode,
+      };
+}
+
+
+
+
+class Child {
+  int id;
+  String userId;
+  String childName;
+  String dob;
+  DateTime createdAt;
+  DateTime updatedAt;
+
+  Child({
+    required this.id,
+    required this.userId,
+    required this.childName,
+    required this.dob,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Child.fromJson(Map<String, dynamic> json) => Child(
+        id: json["id"],
+        userId: json["user_id"],
+        childName: json["child_name"],
+        dob: json["dob"],
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "user_id": userId,
+        "child_name": childName,
+        "dob": dob,
+        "created_at": createdAt.toIso8601String(),
+        "updated_at": updatedAt.toIso8601String(),
       };
 }
