@@ -8,7 +8,8 @@ class InitiatePaymentApiServices extends BaseApiService {
   Future initiatePayment(
       {required int userId,
       required String totalAmount,
-      required String status}) async {
+      required String status
+      }) async {
     dynamic responseJson;
     try {
       var dio = Dio();

@@ -31,11 +31,13 @@ import '../auth_controller/auth_profile_controller.dart';
 class BusinessServiceController extends GetxController{
   RxInt Containerindex =0.obs;
   RxBool bookingregister = false.obs;
+  RxInt filteringIndex = 99.obs;
 
    //coupon redeemption api
   BusinessCouponsRedeemptionApiService couponsRedeemptionApiService =
       BusinessCouponsRedeemptionApiService();
   List<CouponRedeemptionData> couponRedeemptionData = [];
+    List<CouponsListData> tempaddedCouponList = [];
   
     redeemptionCoupon() async {
     dio.Response<dynamic> response =
@@ -169,10 +171,12 @@ class BusinessServiceController extends GetxController{
     required String endsat,
     required dynamic discountValue,
     required String claimUser,
+    required String buyAmt,
   }) async {
     dio.Response<dynamic> response = await addCouponsApiServices.addCouponsApiServices(
       image: image, 
       title: title, 
+       buyAmt: buyAmt,
       category: category, 
       startsat: startsat, 
       endsat: endsat, 
@@ -208,6 +212,7 @@ class BusinessServiceController extends GetxController{
       GetCouponListModel redeemtioncouponsListModel =
           GetCouponListModel.fromJson(response.data);
       addedCouponList = redeemtioncouponsListModel.posts;
+          tempaddedCouponList = redeemtioncouponsListModel.posts;
     }
     update();
   }

@@ -15,6 +15,7 @@ class AddCouponsApiServices extends BaseApiService {
     required dynamic discountValue,
     required String description,
     required String merchantId,
+    required String buyAmt,
   }) async {
     dynamic responseJson;
      
@@ -32,7 +33,8 @@ class AddCouponsApiServices extends BaseApiService {
         "coupon_amount": discountValue,
         "description": description,
         "merchant": merchantId,
-        "buy_amount": discountValue
+        "buy_amount": buyAmt
+        
       });
 
       print(formData.fields);

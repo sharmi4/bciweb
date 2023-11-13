@@ -21,7 +21,11 @@ class ProfileCouponsScreen extends StatefulWidget {
 
 class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
 
+  
   final couponController = Get.find<SubscriptionApiController>();
+
+
+
   @override
   void initState() {
     super.initState();

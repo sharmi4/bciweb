@@ -562,7 +562,8 @@ class _ServicesCartState extends State<ServicesCart> {
                                       var tempAmount =
                                           homeController.getGrandTotal();
                                       // profileController.payFromCart(tempAmount);
-                                      paymentBottomSheet(context, tempAmount);
+                                      paymentBottomSheet(context, tempAmount,homeController.cartListData.first.id
+                                              .toString());
                                     } else {
                                       Get.rawSnackbar(
                                           message:
@@ -579,7 +580,7 @@ class _ServicesCartState extends State<ServicesCart> {
 
 
 //  var tempAmount = homeController.getGrandTotal(tcartListData: []);
-                          profileController.payFromCart(100);
+                        //  profileController.payFromCart(100);
 
                           // for (int i = 0;
                           //     i < homeController.cartListData.length;

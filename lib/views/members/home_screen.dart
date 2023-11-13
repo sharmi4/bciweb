@@ -1,5 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/home_controller.dart';
+import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/members/widgets/alert_box_widgets.dart';
@@ -19,9 +20,9 @@ class MemberHomeScreen extends StatefulWidget {
   @override
   State<MemberHomeScreen> createState() => _MemberHomeScreenState();
 }
-
+ 
 class _MemberHomeScreenState extends State<MemberHomeScreen> {
-  final _homeController = Get.find<HomeController>();
+  final _homeController = Get.find<HomeServiceController>();
 
   final authProfileController = Get.find<AuthProfileController>();
 
@@ -150,7 +151,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                 padding: const EdgeInsets.only(left: 30),
                                 child: InkWell(
                                   onTap: () {
-                                   paymentBottomSheet(context,34);
+                                   paymentBottomSheet(context,32,'');
                                   },
                                   child: Container(
                                     height: 38,

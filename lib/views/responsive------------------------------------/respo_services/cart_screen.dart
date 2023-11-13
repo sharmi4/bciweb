@@ -260,7 +260,7 @@ class _CartScreenState extends State<CartScreen> {
                                   qty: servicehomeController.cartListData[i].quantity,
                                   offerOrCoupon: "",
                                   couponcode: "",
-                                  amount: servicehomeController.cartListData[i].amount);
+                                  amount: servicehomeController.cartListData[i].amount, bookDateTime: '');
                             }
       
                             Get.to(MobileHome());

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:bciweb/models/bank_account_no_model.dart';
 import 'package:bciweb/models/business_user_profile.dart';
 import 'package:bciweb/models/category_model.dart';
+import 'package:bciweb/models/child_dob_model.dart';
 import 'package:bciweb/models/support_admin_details_model.dart';
 import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/services/networks/profile_api_service/update_bank_account_api_services.dart';
@@ -42,7 +43,7 @@ class AuthProfileController extends GetxController {
       ProfilePIcUpdateApiServices();
 
   List<MemberUser> profileData = [];
-
+  List<ChildDetailsModel> childDetailsList = [];
   List<BusinessUser> bussinessprofileData = [];
 
   List<CategoryData> categoryList = [];

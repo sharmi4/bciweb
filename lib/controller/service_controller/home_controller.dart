@@ -218,7 +218,8 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
       required String qty,
       required String offerOrCoupon,
       required String couponcode,
-      required String amount}) async {
+      required String amount,
+       required String bookDateTime}) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await addBookingApiServices.addBookingApiServices(
@@ -424,6 +425,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     required String endsat,
     required String discountValue,
     required String claimUser,
+    required String buyAmt,
   }) async {
     dio.Response<dynamic> response = await addCouponsApiServices.addCouponsApiServices(
       image: image, 
@@ -433,7 +435,7 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
       endsat: endsat, 
       discountValue: discountValue, 
       merchantId: Get.find<ProfileController>().profileData.first.id.toString(),
-      description: claimUser,);
+      description: claimUser, buyAmt: buyAmt,);
       if(response.statusCode == 201){
          Get.back();
          Get.rawSnackbar(

@@ -1,4 +1,5 @@
 import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
+import 'package:bciweb/views/business/services_screens/coupon_filder_widget/coupon_filter_widget.dart';
 import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,7 @@ class _BusinessLastCouponAddedScreenState extends State<BusinessLastCouponAddedS
     // TODO: implement initState
     super.initState();
     businessserviceController.addedCouponsList();
+    
   }
 
   var businessserviceController = Get.find<BusinessServiceController>();
@@ -41,7 +43,23 @@ class _BusinessLastCouponAddedScreenState extends State<BusinessLastCouponAddedS
           body: Padding(
             padding: const EdgeInsets.only(top: 20),
             child: ListView(
-              children: [
+              children: [  Padding(
+                      padding: const EdgeInsets.only(right: 15),
+                      child: Row(mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            child: IconButton(
+                                onPressed: () {
+                                 showAlertDialog(context);
+                                },
+                                icon:  Icon(
+                                  Icons.filter_alt_outlined,
+                                  color: kblue,
+                                )),
+                          ),
+                      SizedBox(width: 20,)  ],
+                      ),
+                    ),
                 
                     GetBuilder<BusinessServiceController>(builder: (_) {
               return Container(

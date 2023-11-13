@@ -19,11 +19,13 @@ class Payment extends StatefulWidget {
   dynamic id;
   Payment(
       {super.key,
+
       required this.plansData,
       required this.image,
       required this.htext,
       required this.text,
-      required this.id});
+      required this.id
+      });
 
   @override
   State<Payment> createState() => _PaymentState();

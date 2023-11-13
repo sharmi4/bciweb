@@ -36,7 +36,7 @@ class _RespoBusinessCreateCouponsState extends State<RespoBusinessCreateCoupons>
   var discountValueController = TextEditingController();
   final startatController = TextEditingController();
   final endatController = TextEditingController();
-
+  var couponlimitController = TextEditingController();
   File? image;
 
   DateTime date1 = DateTime.now();
@@ -325,7 +325,7 @@ var size=MediaQuery.of(context).size;
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5),
                         borderSide: const BorderSide(color: Color(0xff707070))),
-                    hintText: "Coupon Amount",
+                    hintText: "Coupon Amountt",
                     hintStyle: TextStyle(
                       color: kblue,
                       fontWeight: FontWeight.w400,
@@ -334,6 +334,41 @@ var size=MediaQuery.of(context).size;
             ),
 
             ksizedbox10,
+             Padding(
+              padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+              child: TextFormField(
+                controller: couponlimitController,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                 keyboardType: TextInputType.phone,
+                // validator: (value) {
+                //   if (value!.isEmpty) {
+                //     return "Title Can't be Empty";
+                //   }
+                //   return null;
+                // },
+                decoration: InputDecoration(
+                    fillColor: Colors.white,
+                    filled: true,
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xff707070))),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xff707070))),
+                    isCollapsed: false,
+                    isDense: true,
+                    contentPadding:
+                        const EdgeInsets.only(top: 18, bottom: 18, left: 15),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5),
+                        borderSide: const BorderSide(color: Color(0xff707070))),
+                    hintText: "Coupon Limit",
+                    hintStyle: TextStyle(
+                      color: kblue,
+                      fontWeight: FontWeight.w400,
+                    )),
+              ),
+            ),ksizedbox10,
             Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: Row(
@@ -530,7 +565,7 @@ var size=MediaQuery.of(context).size;
                         startsat: selectdt,
                         endsat: selectdt1,
                         discountValue: discountValueController.text,
-                        claimUser: descriptionController.text,
+                        claimUser: descriptionController.text, buyAmt: '',
                       );
                     } else {
                       Get.rawSnackbar(

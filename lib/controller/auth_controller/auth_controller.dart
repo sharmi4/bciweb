@@ -20,7 +20,6 @@ import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../constant/constans.dart';
-import '../../models/busbookingmodels/category_model.dart';
 import '../../models/business_model/merchants_register_model.dart';
 import '../../models/create_account_model.dart';
 import '../../models/service_model.dart';
@@ -35,7 +34,6 @@ import '../../services/networks/services/catogory_api_service/sub_category_api_s
 import '../../services/networks/services/register_referal_api_service.dart';
 import '../../services/networks/setting_api_service.dart/get_referalgenerate_api_service.dart';
 import '../../views/authentication/Verification_done.dart';
-import '../../views/authentication/business_authentication/business_generate_otp_screen.dart';
 import '../../views/authentication/business_authentication/business_otp_verification.dart';
 import '../../views/authentication/generate_otp_screen.dart';
 import '../../views/authentication/otp_verification.dart';
@@ -47,6 +45,7 @@ class AuthController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isLogedin = false.obs;
   RxInt bookingindex = 0.obs;
+    RxInt filteringIndex = 99.obs;
   List<CategoryData> categoryList = [];
 
   MemberRegisterApiservices memberRegisterApiservices =
@@ -543,6 +542,7 @@ deleteUser() async {
       CouponsRedeemptionApiService();
   List<CouponRedeemptionData> couponRedeemptionData = [];
   List<CouponsListData> addedCouponList = [];
+    List<CouponsListData> tempaddedCouponList = [];
 
   AdeedCouponListApiService addedCouponsServices = AdeedCouponListApiService();
 

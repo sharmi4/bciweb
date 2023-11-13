@@ -1,13 +1,16 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/plans_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-paymentBottomSheet(BuildContext context, double amount) {
+  final planController = Get.find<PlanController>();
+paymentBottomSheet(BuildContext context, double amount,String servicesId) {
   showDialog(
    
     context: context,
     builder: (context) {
+      
       return AlertDialog(
       
         title: Padding(
@@ -164,16 +167,34 @@ paymentBottomSheet(BuildContext context, double amount) {
                   padding: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
-                      if (Get.find<ProfileController>().isWalletOrNot.value ==
-                          0) {
-                        // Get.find<ProfileController>()
-                        //     .initiatePayment(amount: amount);
-                      } else {
-                        // Get.find<ProfileController>().payFromWallet(
-                        //     amount: amount.toStringAsFixed(2));
-                      }
-                      Get.back();
-                    },
+                          if (Get.find<PlanController>()
+                                  .isWalletOrNot
+                                  .value ==
+                              0) {
+                            Get.find<PlanController>()
+                                .initiatePayment(amount: amount, id: 2, gstPercentage: '', percentageAmount: '', totalAmount: '');
+                          }
+                           else if (Get.find<PlanController>()
+                                  .isWalletOrNot
+                                  .value ==
+                              1)
+                               {
+                            Get.find<PlanController>().payFromWallet(
+                                amount: amount.toStringAsFixed(2));
+                          } 
+                          //else 
+                          //if (Get.find<ProfileController>()
+                          //         .isWalletOrNot
+                          //         .value ==
+                          //     2) {
+                          //   Get.find<ProfileController>().useCredit(
+                          //     creditAmount: amount.toStringAsFixed(2),
+                          //      creditFor: "booking",
+                          //      creditForId: servicesId
+                          //      );
+                          // }
+                          Get.back();
+                        },
                     child: Container(
                       height: 40,
                       decoration: BoxDecoration(
