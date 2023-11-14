@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
@@ -79,11 +80,50 @@ class _BusinessAddAvailabilityScreenState
     "-",
     dd,
   ]);
-  dynamic imageprofile;
+ 
   String selectdt1 = formatDate(
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
       [yyyy, "-", mm, "-", dd]);
 
+       List<Widget> itemPhotosWidgetList = <Widget>[];
+
+  final ImagePicker _picker = ImagePicker();
+  File? file;
+  List<XFile>? photo = <XFile>[];
+  List<XFile> itemImagesList = <XFile>[];
+var bytes;
+
+  addImage() {
+    for (var bytes in photo!) {
+      itemPhotosWidgetList.add(Padding(
+        padding: const EdgeInsets.all(1.0),
+        child: Container(
+          height: 90.0,
+          child: AspectRatio(
+            aspectRatio: 16 / 9,
+            child: Container(
+              child: 
+                 
+                  Image.file(
+                      File(bytes.path),
+                    ),
+            ),
+          ),
+        ),
+      ));
+    }
+  }
+
+   pickPhotoFromGallery() async {
+    photo = await _picker.pickMultiImage();
+    if (photo != null) {
+      setState(() {
+        itemImagesList = itemImagesList + photo!;
+        addImage();
+        photo!.clear();
+      });
+    }
+  }
   _showDatePicker(BuildContext context) async {
     DateTime? picked = await showDatePicker(
         context: context,
@@ -167,6 +207,10 @@ class _BusinessAddAvailabilityScreenState
       //     todate: selectdt1);
     }
   }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -411,31 +455,25 @@ class _BusinessAddAvailabilityScreenState
                         ksizedbox20,
                       ],
                     ),
+
+
+                    
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 150,
                       ),
                       child: InkWell(
                         onTap: () async {
-                          PickedFile? pickedFile = await ImagePicker().getImage(
-                            source: ImageSource.gallery,
-                          );
-
-                          var tempCont = await pickedFile!.readAsBytes();
-                          setState(
-                            () {
-                              imageprofile = tempCont;
-                            },
-                          );
+   pickPhotoFromGallery();
                         },
                         child: Container(
                           height: 235,
                           width: 250,
                           decoration: const BoxDecoration(
                               color: Color.fromARGB(255, 232, 232, 232)),
-                          child: imageprofile != null
+                          child: bytes != null
                               ? Image.memory(
-                                  imageprofile!,
+                                  bytes!,
                                   fit: BoxFit.cover,
                                 )
                               : Column(
@@ -457,7 +495,7 @@ class _BusinessAddAvailabilityScreenState
                                             MainAxisAlignment.center,
                                         children: [
                                           Text(
-                                            'Product Image',
+                                            'Product Imagee',
                                             style: TextStyle(
                                                 fontSize: 18, color: kblue),
                                           ),
@@ -485,9 +523,9 @@ class _BusinessAddAvailabilityScreenState
               ),
               ksizedbox30,
               Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0),
+                padding: const EdgeInsets.only(left: 110, right: 0),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 14),
@@ -543,41 +581,6 @@ class _BusinessAddAvailabilityScreenState
                       ),
                     ),
                     ksizedbox30,
-
-
-
-
-
-                    Padding(
-                        padding: const EdgeInsets.only(right: 60),
-                        child: InkWell(onTap: (){Get.to(TimeSlotScreen());},
-                          child: Container(
-                            height: 40,
-                            width: MediaQuery.of(context).size.width*0.25,
-                            decoration: BoxDecoration(
-                              color: korange,
-                                border: Border.all(color: kOrange, width: 1),
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Time Slot',
-                                    style: TextStyle(fontSize: 16, color: kwhite),
-                                  ),
-                                ),
-                                ksizedbox10,
-                                kwidth10,
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 5),
-                                  child:Icon(Icons.add_circle_outline,
-                                  color: kwhite,)
-                                )
-                              ],
-                            )),
-                        ),),
                   ],
                 ),
               ),
@@ -1168,158 +1171,7 @@ class _BusinessAddAvailabilityScreenState
                   ),
                 ),
               ksizedbox40,
-              Padding(
-                padding: const EdgeInsets.only(right: 55),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(Routes.BusinessLastCouponAddedScreen);
-                      },
-                      child: Container(
-                        height: 54,
-                        width: MediaQuery.of(context).size.width * 0.31,
-                        decoration:
-                            BoxDecoration(color: kgrey.withOpacity(0.5)),
-                        child: Center(
-                            child: Text(
-                          'LAST COUPON',
-                          style: TextStyle(
-                              fontSize: 18,
-                              color: kblue,
-                              fontWeight: FontWeight.bold),
-                        )),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 33),
-                      child: Obx(
-                        () => businessserviceController.isLoading.isTrue
-                            ? Container(
-                                height: 55,
-                                width: MediaQuery.of(context).size.width * 0.31,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: kblue),
-                                alignment: Alignment.center,
-                                child: const CircularProgressIndicator(
-                                  color: Colors.white,
-                                ),
-                              )
-                            : InkWell(
-                                onTap: () {
-                                  List<Amenty> listTags = [];
 
-                                  var tagsList = _controller!.getTags;
-
-                                  for (var i = 0; i < tagsList!.length; i++) {
-                                    listTags.add(Amenty(value: tagsList[i]));
-                                  }
-                                  print('::::::::::::here.category data:::::');
-                                  print(merchantCategory);
-
-                                  CategoryData categoryModel =
-                                      merchantCategory as CategoryData;
-                                  print('values::::::::::::::::');
-                                  print('actualamount');
-                                  print(actualAmountController.text);
-                                  print('listtag');
-                                  print(listTags);
-                                  print('category');
-                                  print(categoryModel);
-                                  print('description');
-                                  print(descriptionController.text);
-                                  print('serviceimage');
-                                  print(imageprofile);
-                                  print('saleamount');
-                                  print(saleAmountController.text);
-                                  print('servicetitle');
-                                  print(serviceTitleController.text);
-                                  print('gst');
-                                  print(gstController.text);
-                                  print('cgst');
-                                  print(cgstController.text);
-                                  print('unit');
-                                  print(unitController.text);
-                                  print('sgst');
-                                  print(sgstController.text);
-                                  print('start');
-                                  print(selectdt);
-                                  print('end');
-                                  print(selectdt1);
-                                  print('quantity');
-                                  print(quantityController.text);
-                                  print('amenties');
-                                  print(amentiesController.text);
-
-                                  CreateServiceModel createServiceModel =
-                                      CreateServiceModel(
-                                          offerPercentage: offerPercentageController
-                                                  .text.isEmpty
-                                              ? null
-                                              : offerPercentageController.text,
-                                          actualAmount:
-                                              actualAmountController.text,
-                                          amenities: listTags,
-                                          // share: shareValue,
-                                          booking: authController
-                                                  .isGstAvailable.isTrue
-                                              ? "1"
-                                              : "0",
-                                          // bvcAmount: bvcAmountController.text,
-                                          category: categoryModel.id.toString(),
-                                          description:
-                                              descriptionController.text,
-                                          image: imageprofile,
-                                          isCouponsAvailable:
-                                              isCouponEligible ? "1" : "0",
-                                          isOfferAvailable:
-                                              isOfferEligible ? "1" : "0",
-                                          saleAmount: saleAmountController.text,
-                                          title: serviceTitleController.text,
-                                          couponAmount: couponAmountController
-                                                  .text.isEmpty
-                                              ? null
-                                              : couponAmountController.text,
-                                          offerAmount:
-                                              offerAmountController.text.isEmpty
-                                                  ? null
-                                                  : offerAmountController.text,
-                                          unit: unitController.text,
-                                          cgst: cgstPercentage,
-                                          sgst: sgstPercentage,
-                                          endTime: selectdt,
-                                          startTime: selectdt1,
-                                          quantity: quantityController.text);
-
-                                  print('nosucherror');
-
-                                  businessserviceController.addServices(
-                                      createServiceModel: createServiceModel);
-                                },
-                                child: Container(
-                                  height: 55,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.31,
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: kblue),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "SUMBMIT",
-                                    style: primaryFont.copyWith(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
               ksizedbox40
             ],
           ),
