@@ -117,7 +117,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: <BoxShadow>[
                             BoxShadow(
-                                offset: Offset(0.0, 0.75),
+                                offset:const Offset(0.0, 0.75),
                                 blurRadius: 5,
                                 color: kgrey)
                           ]),
@@ -125,7 +125,7 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                         padding: const EdgeInsets.only(left: 10),
                         child: Row(
                           children: [
-                            Image(
+                           const Image(
                               image: AssetImage(
                                 'assets/images/cirlewallet.png',
                               ),
@@ -146,6 +146,89 @@ class _ProfileDashboardScreenState extends State<ProfileDashboardScreen> {
                                         ? const Text("0")
                                         : Text(
                                             '₹ ${authprofileController.profileData.first.walletAmount}',
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: kblue,
+                                                fontWeight: FontWeight.bold),
+                                          )
+
+                                // apisettingController
+                                //         .getWalletData.isEmpty
+                                //     ? Text(
+                                //         '',
+                                //         textAlign: TextAlign.end,
+                                //         style: TextStyle(
+                                //           fontSize: 17,
+                                //           color: kblue,
+                                //         ),
+                                //       )
+                                //     : Text(''),
+                                ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 13),
+                              child: CircleAvatar(
+                                radius: 15,
+                                backgroundColor: kblue,
+                                child: Icon(
+                                  Icons.chevron_right,
+                                  color: kwhite,
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 100, top: 32),
+                child: Row(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: MediaQuery.of(context).size.width * 0.68,
+                      decoration: BoxDecoration(
+                          color: kwhite,
+                          border: Border.all(color: kblue),
+                          borderRadius: BorderRadius.circular(5),
+                          boxShadow: <BoxShadow>[
+                            BoxShadow(
+                                offset:const Offset(0.0, 0.75),
+                                blurRadius: 5,
+                                color: kgrey)
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [
+                            const Image(
+                              image: AssetImage(
+                                'assets/images/cirlewallet.png',
+                              ),
+                              fit: BoxFit.fitHeight,
+                              height: 30,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 30),
+                              child: Text(
+                                'Referral Amount',
+                                style: TextStyle(fontSize: 17, color: kblue),
+                              ),
+                            ),
+                            Padding(
+                                padding: const EdgeInsets.only(left: 550),
+                                child:
+                                    apisettingController.getWalletData.isEmpty
+                                        ? const Text("0")
+                                        : Text(
+                                            '₹ ${apisettingController
+                                                                  .getWalletData
+                                                                  .first
+                                                                  .referrals
+                                                                  .todayReferrals
+                                                                  .toString()}',
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 color: kblue,

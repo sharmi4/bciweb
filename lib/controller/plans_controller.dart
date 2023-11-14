@@ -226,4 +226,6 @@ class PlanController extends GetxController {
 
     // print(response);
   }
+
+  
 }

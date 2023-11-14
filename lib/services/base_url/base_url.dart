@@ -325,6 +325,8 @@ abstract class BaseApiService {
   final String viewCreditStatementURL =
       "https://www.portal.bcipvtltd.com/api/auth/view_statement";
 
+  //partial 
+
   final String partialBookingURL =
       'https://www.portal.bcipvtltd.com/api/auth/partial_booking';
 
@@ -346,4 +348,6 @@ abstract class BaseApiService {
 
   final String addFlightBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/add_flight_booking_history";
+
+      
 }

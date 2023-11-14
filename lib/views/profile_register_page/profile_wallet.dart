@@ -149,10 +149,50 @@ class _ProfileWalletScreenState extends State<ProfileWalletScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left:50,right:42,top:50),
+                        padding: const EdgeInsets.only(top: 20,bottom: 20,left: 48,right: 40),
                         child: Container(
-                          height:MediaQuery.of(context).size.height,
-                          
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10), color: kblue),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Reward points",
+                                  style: primaryFont.copyWith(
+                                      color: Colors.white,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Row(
+                                  children: [
+                                    Image.asset(
+                                      "assets/icons/reward_coin.png",
+                                      height: 17,
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                   if(authprofileController.profileData.isNotEmpty) Text(
+                                      authprofileController.profileData.first.rewardPoints,
+                                      style: primaryFont.copyWith(
+                                          color: Colors.white,
+                                          fontSize: 15,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left:50,right:42,),
+                        child: Container(
+                          height:MediaQuery.of(context).size.height * 1.9,
                           decoration:BoxDecoration(
                             color:kwhite,
                             boxShadow: <BoxShadow>[

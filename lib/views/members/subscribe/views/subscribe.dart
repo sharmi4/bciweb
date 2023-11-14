@@ -81,7 +81,7 @@ class _SubscribeState extends State<Subscribe> {
                 ),
               ),
               ksizedbox30,
-              Text(
+              const Text(
                 'Select Membership',
                 textAlign: TextAlign.center,
                 style: TextStyle(
