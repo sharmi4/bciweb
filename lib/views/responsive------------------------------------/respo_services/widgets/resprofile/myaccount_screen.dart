@@ -1082,7 +1082,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                                       qualificationController
                                                           .text,
                                                   weddingDate:
-                                                      wedingnameController.text,
+                                                      wedingnameController.text, spousedateOfBirth: '',
                                                 );
 
                                                 authprofileController.updateProfile(
@@ -1148,7 +1148,7 @@ class _MyAccountScreenState extends State<MyAccountScreen> {
                                                       qualificationController
                                                           .text,
                                                   weddingDate:
-                                                      wedingnameController.text,
+                                                      wedingnameController.text, spousedateOfBirth: '',
                                                 );
 
                                                 authprofileController.updateProfile(

@@ -1,10 +1,10 @@
 import 'dart:io';
+
 import 'package:bciweb/models/child_dob_model.dart';
+import 'package:bciweb/models/member%20profileupdate.dart';
+import 'package:bciweb/services/base_url/base_url.dart';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../../models/member profileupdate.dart';
-import '../../base_url/base_url.dart';
 
 class ProfileUpdateApiServices extends BaseApiService {
   Future profileUpdate({
@@ -23,6 +23,7 @@ class ProfileUpdateApiServices extends BaseApiService {
         "mother_name": memberProfileUpdateModel.motherName,
         "is_married": memberProfileUpdateModel.isMarried,
         "dob": memberProfileUpdateModel.dateOfBirth,
+        "wife_dob": memberProfileUpdateModel.spousedateOfBirth,
         "qualification": memberProfileUpdateModel.qualification,
         "alternate_mobile": memberProfileUpdateModel.alternateMob,
         "pan_no": memberProfileUpdateModel.panNo,
@@ -31,23 +32,23 @@ class ProfileUpdateApiServices extends BaseApiService {
         "gender": memberProfileUpdateModel.gender,
         "branch": memberProfileUpdateModel.branch,
         "spouse": memberProfileUpdateModel.spouse,
-        "child_name": memberProfileUpdateModel.children,
+        for (var i = 0; i < memberProfileUpdateModel.children!.length; i++)
+          "child_name[$i]": memberProfileUpdateModel.children![i],
         "wedding_date": memberProfileUpdateModel.weddingDate,
-       
-
-
-        if (memberProfileUpdateModel.adharproofimg != null)
-          "adhar_proof": MultipartFile.fromBytes(
+        if (memberProfileUpdateModel.adharproofimg != "null")
+          "adhar_proof": await MultipartFile.fromFile(
               memberProfileUpdateModel.adharproofimg,
-              filename: "profile_pic"),
-
-        if (memberProfileUpdateModel.panproofimg !=null)
-          "pan_proof": MultipartFile.fromBytes(
+              filename: "adhar_proof"),
+        if (memberProfileUpdateModel.panproofimg != "null")
+          "pan_proof": await MultipartFile.fromFile(
               memberProfileUpdateModel.panproofimg,
               filename: "pan_proof"),
-
-        // if(memberProfileUpdateModel.adharproofimg != "null") "adhar_proof": await MultipartFile.fromFile(memberProfileUpdateModel.adharproofimg, filename: "adhar_proof"),
-        // if(memberProfileUpdateModel.panproofimg != "null") "pan_proof": await MultipartFile.fromFile(memberProfileUpdateModel.panproofimg, filename: "pan_proof"),
+        for (int i = 0; i < childDetailsList.where((element) => element.isNew).toList().length; i++)
+          "child_name[$i]": childDetailsList[i].nameController.text,
+        for (int i = 0; i < childDetailsList.where((element) => element.isNew)
+                    .toList()
+                    .length; i++)
+          "dob[$i]": childDetailsList[i].dateOfBirthController.text,
       });
 
       final prefs = await SharedPreferences.getInstance();
@@ -64,7 +65,8 @@ class ProfileUpdateApiServices extends BaseApiService {
                 return status! <= 500;
               }),
           data: formData);
-      print("::::::::<profile update URL>::::::::status code::::::::::");
+      print(
+          "::::::::<profile update URL>::::::::status code:::::::::${memberProfileUpdateModel.gender}:");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

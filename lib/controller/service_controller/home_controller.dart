@@ -5,6 +5,7 @@ import 'package:bciweb/models/business_model/createservice_model.dart';
 import 'package:bciweb/models/getCartlistmodel.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/models/setting_model/service_list_model.dart';
+import 'package:bciweb/models/time_slot_models.dart';
 import 'package:bciweb/models/vendor_category_list_model.dart';
 import 'package:bciweb/models/vendor_list_model.dart';
 import 'package:bciweb/services/networks/business_service/business_addcoupon_api_service.dart';
@@ -42,6 +43,32 @@ import '../../services/networks/services/today_offers_apiservice.dart';
 
 
 class HomeServiceController extends GetxController {
+
+
+ RxInt isExpand = 999.obs;
+
+  List<TimeSlotModels> sunTimeSlot = [];
+  List<TimeSlotModels> monTimeSlot = [];
+  List<TimeSlotModels> tueTimeSlot = [];
+  List<TimeSlotModels> wedTimeSlot = [];
+  List<TimeSlotModels> thuTimeSlot = [];
+  List<TimeSlotModels> friTimeSlot = [];
+  List<TimeSlotModels> satTimeSlot = [];
+
+
+setDefaultSlots() {
+    isExpand(999);
+    sunTimeSlot.clear();
+    monTimeSlot.clear();
+    tueTimeSlot.clear();
+    wedTimeSlot.clear();
+    thuTimeSlot.clear();
+    friTimeSlot.clear();
+    satTimeSlot.clear();
+    update();
+  }
+
+
 
 
 

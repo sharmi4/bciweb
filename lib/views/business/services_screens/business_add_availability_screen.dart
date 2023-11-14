@@ -559,7 +559,7 @@ class _BusinessAddAvailabilityScreenState extends State<BusinessAddAvailabilityS
                                       hintText: selectdt,
                                       suffixIcon: InkWell(
                                         onTap: (){
-                                          Get.to(AddserviceTimeslotScreen());
+                                          Get.to(TimeSlotScreen());
                                             //_showDatePicker(context);
                                         },
                                         child: Icon(Icons.date_range)),

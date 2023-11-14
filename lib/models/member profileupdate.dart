@@ -6,6 +6,7 @@ class MemberProfileUpdateModel {
   String fatherName;
   String motherName;
   String dateOfBirth;
+  String spousedateOfBirth;
   dynamic isMarried;
   String qualification;
   String gender;
@@ -16,8 +17,8 @@ class MemberProfileUpdateModel {
   String branch;
   String spouse;
   String alternateMob;
-  dynamic adharproofimg;
-  dynamic panproofimg;
+  String adharproofimg;
+  String panproofimg;
   List<String>? children;
 
 
@@ -29,6 +30,7 @@ class MemberProfileUpdateModel {
       required this.motherName,
       required this.mobile,
       required this.dateOfBirth,
+      required this.spousedateOfBirth,
       required this.isMarried,
       required this.qualification,
       required this.adharNo,

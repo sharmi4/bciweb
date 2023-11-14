@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:textfield_tags/textfield_tags.dart';
+
 import 'package:velocity_x/velocity_x.dart';
 import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_profile_controller.dart';
@@ -62,7 +62,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   File? image;
   File? image2;
 
-  TextfieldTagsController? _controller;
+  //TextfieldTagsController? _controller;
 
   DateTime selectedDate2 = DateTime.now();
   _selectDate2(BuildContext context) async {
@@ -120,6 +120,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   var wedingnameController = TextEditingController();
   var spousenameController = TextEditingController();
   var dateofbirthController = TextEditingController();
+  var wifedateOfBirthController = TextEditingController();
   var childrensController = TextEditingController();
   var referalCOntroller = TextEditingController();
   var subDescriptionController = TextEditingController();
@@ -281,7 +282,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     super.initState();
     setDefauld();
 
-    _controller = TextfieldTagsController();
+    // _controller = TextfieldTagsController();
   }
 
   double? _distanceToField;
@@ -296,7 +297,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
   @override
   void dispose() {
     super.dispose();
-    _controller!.dispose();
+    // _controller!.dispose();
   }
 
   @override
@@ -815,7 +816,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               ),
             ],
           ),
-       
 
           GetBuilder<AuthProfileController>(
             builder: (_) {
@@ -880,31 +880,34 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           ),
                           i == 0
                               ? Padding(
-                                padding: const EdgeInsets.only(
-                      left: 40, right: 70, top: 0, bottom: 30),
-                                child: IconButton(
-                                    onPressed: () {
-                                      ChildDetailsModel childDetailsModel =
-                                          ChildDetailsModel(
-                                        dateOfBirthController:
-                                            TextEditingController(),
-                                        nameController: TextEditingController(),
-                                      );
-                                      authprofileController.childDetailsList
-                                          .add(childDetailsModel);
-                                      authprofileController.update();
-                                    },
-                                    icon: Padding(
-                                      padding: const EdgeInsets.only(
-                      left: 40, right: 70, top: 0, bottom: 30),
-                                      child: Icon(
-                                        Icons.add_box_rounded,
-                                        //     color: kblue,
-                                      ),
-                                    )),
-                              )
-                              : authprofileController
-                                      .childDetailsList[i].isNew
+                                  padding: const EdgeInsets.only(
+                                      left: 40, right: 70, top: 0, bottom: 30),
+                                  child: IconButton(
+                                      onPressed: () {
+                                        ChildDetailsModel childDetailsModel =
+                                            ChildDetailsModel(
+                                          dateOfBirthController:
+                                              TextEditingController(),
+                                          nameController:
+                                              TextEditingController(),
+                                        );
+                                        authprofileController.childDetailsList
+                                            .add(childDetailsModel);
+                                        authprofileController.update();
+                                      },
+                                      icon: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 40,
+                                            right: 70,
+                                            top: 0,
+                                            bottom: 30),
+                                        child: Icon(
+                                          Icons.add_box_rounded,
+                                          //     color: kblue,
+                                        ),
+                                      )),
+                                )
+                              : authprofileController.childDetailsList[i].isNew
                                   ? IconButton(
                                       onPressed: () {
                                         // ChildDetailsModel
@@ -1167,27 +1170,63 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                             print(panimage);
                             MemberProfileUpdateModel memberProfileUpdateModel =
                                 MemberProfileUpdateModel(
-                              name: nameController.text,
-                              email: emailController.text,
-                              dateOfBirth: dateofbirthController.text,
-                              fatherName: fathernameController.text,
+                              name: nameController.text.isEmpty
+                                  ? ""
+                                  : nameController.text,
+                              email: emailController.text.isEmpty
+                                  ? ""
+                                  : emailController.text,
+                              dateOfBirth: dateofbirthController.text.isEmpty
+                                  ? ""
+                                  : dateofbirthController.text,
+                              spousedateOfBirth:
+                                  wifedateOfBirthController.text.isEmpty
+                                      ? ""
+                                      : wifedateOfBirthController.text,
+                              fatherName: fathernameController.text.isEmpty
+                                  ? ""
+                                  : fathernameController.text,
                               isMarried: isMarried == true ? "1" : "0",
-                              mobile: numberController.text,
-                              motherName: mothernameController.text,
-                              occupation: occupationController.text,
-                              branch: branchController.text,
-                              children: isMarried ? _controller!.getTags : [],
-                              panNo: panController.text,
-                              spouse: spousenameController.text,
+                              mobile: numberController.text.isEmpty
+                                  ? ""
+                                  : numberController.text,
+                              motherName: mothernameController.text.isEmpty
+                                  ? ""
+                                  : mothernameController.text,
+                              occupation: occupationController.text.isEmpty
+                                  ? ""
+                                  : occupationController.text,
+                              branch: branchController.text.isEmpty
+                                  ? ""
+                                  : branchController.text,
+                              children: [],
+                              panNo: panController.text.isEmpty
+                                  ? ""
+                                  : panController.text,
+                              spouse: spousenameController.text.isEmpty
+                                  ? ""
+                                  : spousenameController.text,
                               gender:
                                   selectedGender == "Male" ? "Male" : "Female",
-                              adharNo: aadhaarController.text,
-                              alternateMob: alternumberController.text,
-                              gstNo: spusedobController.text,
-                              adharproofimg: aadharimage,
-                              panproofimg: panimage,
-                              qualification: qualificationController.text,
-                              weddingDate: wedingnameController.text,
+                              adharNo: aadhaarController.text.isEmpty
+                                  ? ""
+                                  : aadhaarController.text,
+                              alternateMob: alternumberController.text.isEmpty
+                                  ? ""
+                                  : alternumberController.text,
+                              gstNo: spusedobController.text.isEmpty
+                                  ? ""
+                                  : spusedobController.text,
+                              adharproofimg:
+                                  aadharimage.isEmpty ? "" : aadharimage,
+                              panproofimg: panimage.isEmpty ? "" : panimage,
+                              qualification:
+                                  qualificationController.text.isEmpty
+                                      ? ""
+                                      : qualificationController.text,
+                              weddingDate: wedingnameController.text.isEmpty
+                                  ? ""
+                                  : wedingnameController.text,
                             );
 
                             authprofileController.updateProfile(
@@ -1214,27 +1253,63 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           onPressed: () {
                             MemberProfileUpdateModel memberProfileUpdateModel =
                                 MemberProfileUpdateModel(
-                              name: nameController.text,
-                              email: emailController.text,
-                              dateOfBirth: dateofbirthController.text,
-                              fatherName: fathernameController.text,
+                             name: nameController.text.isEmpty
+                                  ? ""
+                                  : nameController.text,
+                              email: emailController.text.isEmpty
+                                  ? ""
+                                  : emailController.text,
+                              dateOfBirth: dateofbirthController.text.isEmpty
+                                  ? ""
+                                  : dateofbirthController.text,
+                              spousedateOfBirth:
+                                  wifedateOfBirthController.text.isEmpty
+                                      ? ""
+                                      : wifedateOfBirthController.text,
+                              fatherName: fathernameController.text.isEmpty
+                                  ? ""
+                                  : fathernameController.text,
                               isMarried: isMarried == true ? "1" : "0",
-                              mobile: numberController.text,
-                              motherName: mothernameController.text,
-                              occupation: occupationController.text,
-                              adharNo: aadhaarController.text,
-                              branch: branchController.text,
-                              children: isMarried ? _controller!.getTags : [],
-                              gstNo: spusedobController.text,
-                              weddingDate: wedingnameController.text,
-                              panNo: panController.text,
-                              qualification: qualificationController.text,
-                              spouse: spousenameController.text,
-                              alternateMob: alternumberController.text,
+                              mobile: numberController.text.isEmpty
+                                  ? ""
+                                  : numberController.text,
+                              motherName: mothernameController.text.isEmpty
+                                  ? ""
+                                  : mothernameController.text,
+                              occupation: occupationController.text.isEmpty
+                                  ? ""
+                                  : occupationController.text,
+                              branch: branchController.text.isEmpty
+                                  ? ""
+                                  : branchController.text,
+                              children: [],
+                              panNo: panController.text.isEmpty
+                                  ? ""
+                                  : panController.text,
+                              spouse: spousenameController.text.isEmpty
+                                  ? ""
+                                  : spousenameController.text,
                               gender:
                                   selectedGender == "Male" ? "Male" : "Female",
-                              adharproofimg: aadharimage,
-                              panproofimg: panimage,
+                              adharNo: aadhaarController.text.isEmpty
+                                  ? ""
+                                  : aadhaarController.text,
+                              alternateMob: alternumberController.text.isEmpty
+                                  ? ""
+                                  : alternumberController.text,
+                              gstNo: spusedobController.text.isEmpty
+                                  ? ""
+                                  : spusedobController.text,
+                              adharproofimg:
+                                  aadharimage.isEmpty ? "" : aadharimage,
+                              panproofimg: panimage.isEmpty ? "" : panimage,
+                              qualification:
+                                  qualificationController.text.isEmpty
+                                      ? ""
+                                      : qualificationController.text,
+                              weddingDate: wedingnameController.text.isEmpty
+                                  ? ""
+                                  : wedingnameController.text,
                             );
 
                             authprofileController.updateProfile(
