@@ -6,7 +6,7 @@ abstract class BaseApiService {
   //category
   final String categoryApiUrl = "https://www.portal.bcipvtltd.com/api/category";
 
-   //sub category URL
+  //sub category URL
   final String subCategoryURL =
       "https://www.portal.bcipvtltd.com/api/sub_category";
 
@@ -79,18 +79,19 @@ abstract class BaseApiService {
   final String airSearchUrl =
       "https://www.portal.bcipvtltd.com/api/auth/flight_search";
 
-  final String airportSearch = "https://www.portal.bcipvtltd.com/api/flight_city_search";
-  
+  final String airportSearch =
+      "https://www.portal.bcipvtltd.com/api/flight_city_search";
+
   final String airCancelApiURL =
       "https://www.portal.bcipvtltd.com/api/auth/air_ticket_cancellation";
 
-    final String airGetSsrURL =
+  final String airGetSsrURL =
       "https://www.portal.bcipvtltd.com/api/auth/air_get_ssr";
 
-       final String airGetSeatMap =
+  final String airGetSeatMap =
       "https://www.portal.bcipvtltd.com/api/auth/air_get_seat_map";
-      
-        final String airRepricingUrl =
+
+  final String airRepricingUrl =
       "https://www.portal.bcipvtltd.com/api/auth/air_reprice";
 
   //----------- holidays bookings ---------------//
@@ -136,7 +137,7 @@ abstract class BaseApiService {
   final String addBusBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/add_bus_booking_history";
   final String airAddPayment =
-      "https://www.portal.bcipvtltd.com/api/auth/add_payment"; 
+      "https://www.portal.bcipvtltd.com/api/auth/add_payment";
 
   final String getBusBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/get_bus_booking_history";
@@ -158,8 +159,8 @@ abstract class BaseApiService {
   // "https://www.portal.bcipvtltd.com/api/auth/getpartners";
 
   final String createSupportApiUrl =
-  "https://www.portal.bcipvtltd.com/api/get/app/support/details";
-     // "https://www.portal.bcipvtltd.com/api/auth/create_ticket";
+      "https://www.portal.bcipvtltd.com/api/get/app/support/details";
+  // "https://www.portal.bcipvtltd.com/api/auth/create_ticket";
 
   final String registerreferalURL =
       "https://www.portal.bcipvtltd.com/api/auth/generateReferralregister";
@@ -221,10 +222,10 @@ abstract class BaseApiService {
   final String transactionHistoryApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/transaction_history";
 
-       // add today offers
+  // add today offers
   final String addCouponsURL =
       "https://www.portal.bcipvtltd.com/api/auth/vendor_coupon";
-        // add today offers
+  // add today offers
   final String addedCouponListURL =
       "https://www.portal.bcipvtltd.com/api/auth/vendor_coupon_list";
 
@@ -236,54 +237,51 @@ abstract class BaseApiService {
   final String getGalleryURI =
       "https://www.portal.bcipvtltd.com/api/auth/get_gallery";
 
-  //support admin details 
-  final String supportAdminDetailsApiUrl = "https://portal.bcipvtltd.com/api/get/app/support/details"; 
+  //support admin details
+  final String supportAdminDetailsApiUrl =
+      "https://portal.bcipvtltd.com/api/get/app/support/details";
 
-   //vendor redeemption coupons
+  //vendor redeemption coupons
   final String redeemprtionCouponsApiUrl =
-      "https://www.portal.bcipvtltd.com/api/auth/vedorRedeemCoupons";   
+      "https://www.portal.bcipvtltd.com/api/auth/vedorRedeemCoupons";
 
-   //Add services
+  //Add services
   final String addServicesURL =
-      "https://www.portal.bcipvtltd.com/api/auth/merchant_create_service";  
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_create_service";
 
-       // add today offers
+  // add today offers
   final String addTodayOffersApiUrl =
-      "https://www.portal.bcipvtltd.com/api/auth/merchant_offers";  
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_offers";
 
-     //vendor offer list
+  //vendor offer list
   final String vendorOfferListApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list";
-       //withdraw amount
+  //withdraw amount
   final String withdrawAmountURL =
-      "https://www.portal.bcipvtltd.com/api/auth/withdraw_wallet";   
+      "https://www.portal.bcipvtltd.com/api/auth/withdraw_wallet";
 
-     //get booking list
+  //get booking list
   final String bookingListApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/vendor_booking_list";
-      
-      //add gallery
+
+  //add gallery
   final String addGallery =
-      "https://www.portal.bcipvtltd.com/api/auth/user_gallery";   
-    //  "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list"; 
+      "https://www.portal.bcipvtltd.com/api/auth/user_gallery";
+  //  "https://www.portal.bcipvtltd.com/api/auth/vendor_offers_list";
 
-
- final String deleteUserURL =
-  "https://portal.bcipvtltd.com/api/auth/delete_user";  
-
-
+  final String deleteUserURL =
+      "https://portal.bcipvtltd.com/api/auth/delete_user";
 
   //Get notification_list
   final String notificationlistURL =
       "https://www.portal.bcipvtltd.com/api/auth/notification_list";
 
-
-    //get Services
+  //get Services
   final String getServicesURL =
       "https://www.portal.bcipvtltd.com/api/auth/service_list";
 
-    // final String deleteUserURL = "https://portal.bcipvtltd.com/api/auth/delete_user"; 
-    
+  // final String deleteUserURL = "https://portal.bcipvtltd.com/api/auth/delete_user";
+
   //support admin details
   final String paymentInitiateURL =
       "https://www.portal.bcipvtltd.com/api/pay_phonepay";
@@ -296,24 +294,24 @@ abstract class BaseApiService {
   final String addPlanUrl =
       "https://www.portal.bcipvtltd.com/api/auth/add_subscription_plan";
 
-
   //our coupons api
   final String couponsApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/getUserCoupons";
-      //get profilebusines api
+  //get profilebusines api
   final String getbusinesProfileURL =
       "https://www.portal.bcipvtltd.com/api/auth/profile";
 
-  //merchant service category 
-  final String getMerchantCaregoryURL = "https://www.portal.bcipvtltd.com/api/auth/merchant_service_category";
+  //merchant service category
+  final String getMerchantCaregoryURL =
+      "https://www.portal.bcipvtltd.com/api/auth/merchant_service_category";
 
 //saerch flightsearch api
-final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_city_search_get";
+  final String searchflightURL =
+      "https://www.portal.bcipvtltd.com/api/auth/flight_city_search_get";
 
-
-
-   //update quantity
-   final String updateQuantityApiUrl = "https://www.portal.bcipvtltd.com/api/auth/updateCart";  
+  //update quantity
+  final String updateQuantityApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/updateCart";
 //-- Credit Api --//
   final String getCreditProfileURL =
       "https://www.portal.bcipvtltd.com/api/auth/credit_profile";
@@ -327,13 +325,25 @@ final String searchflightURL="https://www.portal.bcipvtltd.com/api/auth/flight_c
   final String viewCreditStatementURL =
       "https://www.portal.bcipvtltd.com/api/auth/view_statement";
 
-   final String partialBookingURL = 
-   'https://www.portal.bcipvtltd.com/api/auth/partial_booking';   
+  final String partialBookingURL =
+      'https://www.portal.bcipvtltd.com/api/auth/partial_booking';
 
-   final String partialBookingHistory = 
-   'https://www.portal.bcipvtltd.com/api/auth/partial_booking_history';
+  final String partialBookingHistoryURL =
+      "https://www.portal.bcipvtltd.com/api/auth/partial_booking_history";
 
-    //merchant coupon list
+  final String collectPartialAmountURL =
+      "https://www.portal.bcipvtltd.com/api/auth/store_partialAmount";
+
+  final String partialBookingHistory =
+      'https://www.portal.bcipvtltd.com/api/auth/partial_booking_history';
+
+  //merchant coupon list
   final String merchantCouponApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/merchant_coupons_list";
+
+  final String airTicketBookingUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/air_temp_booking";
+
+  final String addFlightBookingHistoryURL =
+      "https://www.portal.bcipvtltd.com/api/auth/add_flight_booking_history";
 }

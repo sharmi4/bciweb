@@ -159,7 +159,7 @@ class _BusinessRegisterHomeScreenState
                     ],
                   ),
                 ),
-                Positioned(
+                const Positioned(
                   top: 150,
                   left: 370,
                   child: Column(
@@ -169,14 +169,14 @@ class _BusinessRegisterHomeScreenState
                         style: TextStyle(fontSize: 17),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 6),
+                        padding:  EdgeInsets.only(top: 6),
                         child: Text(
                           'looking for in a membership. Here are some general tips to help you find a',
                           style: TextStyle(fontSize: 17),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 6),
+                        padding:  EdgeInsets.only(top: 6),
                         child: Text(
                           'membership that suits your needs:',
                           style: TextStyle(fontSize: 17),

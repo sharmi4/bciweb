@@ -1140,11 +1140,11 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: kblue,
-                                  minimumSize: Size(200, 45),
+                                  minimumSize: const Size(200, 45),
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15))),
                               onPressed: () {},
-                              child: Text(
+                              child:const Text(
                                 'Click Now',
                                 style: TextStyle(fontSize: 20),
                               ))

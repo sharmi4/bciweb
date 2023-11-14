@@ -1,9 +1,19 @@
 import 'dart:convert';
 import 'dart:html';
+import 'package:bciweb/controller/profile_controller.dart';
+import 'package:bciweb/models/flight_pax_model.dart';
+import 'package:bciweb/models/initiate_payment_model.dart';
+import 'package:bciweb/services/networks/add_flight_booking_history.dart';
+import 'package:bciweb/services/networks/air_add_payment_api_services.dart';
+import 'package:bciweb/services/networks/air_ticket_booking_api_services.dart';
+import 'package:bciweb/services/networks/payment_api_services/intiate_payment_api_services.dart';
+import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
+import 'package:bciweb/views/payment_views/payment_processing_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:pdf/pdf.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../models/air_get_ssr_model.dart';
 import '../../models/air_repricing_model.dart';
 import '../../models/air_reprint_model.dart';
@@ -107,6 +117,7 @@ class ApiflightsController extends GetxController {
       flightList = airSearchModel.tripDetails.first.flights;
       seachKey = airSearchModel.searchKey;
       tempSearchKey(seachKey);
+      update();
     }
 
     if (ismobilorweb) {
@@ -938,13 +949,221 @@ class ApiflightsController extends GetxController {
     dio.Response<dynamic> response =
         await searchFlightApiServices.searchflightapi(city: city);
     if (response.statusCode == 200) {
-      
-           List<FlightSearchModel> flightSearchModel =
-           List<FlightSearchModel>.from(
-       response.data.map((x) => FlightSearchModel.fromJson(x)));
-        await searchFlightApiServices.searchflightapi(city: city);
-        searchlistsearchList =flightSearchModel;
-        update();
+      List<FlightSearchModel> flightSearchModel = List<FlightSearchModel>.from(
+          response.data.map((x) => FlightSearchModel.fromJson(x)));
+      await searchFlightApiServices.searchflightapi(city: city);
+      searchlistsearchList = flightSearchModel;
+      update();
     }
+  }
+
+  InitiatePaymentApiServices initiatePaymentApiServices =
+      InitiatePaymentApiServices();
+
+  PaymentResponseApiServices paymentResponseApiServices =
+      PaymentResponseApiServices();
+
+  initiatePayment(
+      {required double amount, required BookingModel bookingModel}) async {
+    dio.Response<dynamic> response =
+        await initiatePaymentApiServices.initiatePayment(
+            userId: Get.find<ProfileController>().profileData.first.id,
+            totalAmount: amount.toStringAsFixed(2),
+            status: "flight");
+
+    if (response.statusCode == 200) {
+      IninitiatePaymentModel ininitiatePaymentModel =
+          IninitiatePaymentModel.fromJson(response.data);
+
+      launchUrl(Uri.parse(
+          ininitiatePaymentModel.data.instrumentResponse.redirectInfo.url));
+
+      Get.to(() => PaymentProcessingView(
+            amount: amount,
+            bookingModel: bookingModel,
+            referenceId: ininitiatePaymentModel.data.merchantTransactionId,
+          ));
+    }
+  }
+
+  checkPhonePeStatus(
+      {required String refernceID,
+      required double amount,
+      required BookingModel bookingModel}) async {
+    dio.Response<dynamic> response = await paymentResponseApiServices
+        .paymentResponseApi(merchantId: refernceID);
+
+    int status = 0;
+
+    if (response.data["code"] == "PAYMENT_SUCCESS") {
+      status = 1;
+      print("<<<<<<<<payment is Success>>>>>>>>");
+      //need to give id
+      String transactionId = "";
+      // Get.to(() => const FlightLoadingPage());
+
+      // bookAirTicket(bookingModel: bookingModel, transactionId: transactionId);
+
+      airAddPayment(refernceNo: refernceID, transactionId: transactionId);
+    } else {
+      print("<<<<<<<<payment is Failed>>>>>>>>");
+
+      // Get.to(() => PaymentFailedScreen());
+    }
+
+    return status;
+  }
+
+  AirTicketBookingApiServices airTicketBookingApiServices =
+      AirTicketBookingApiServices();
+
+  AirAddPaymentApiServices airAddPaymentApiServices =
+      AirAddPaymentApiServices();
+
+  // AirRePrintingServices airRePrintingServices = AirRePrintingServices();
+
+  bookAirTicket(
+      {required BookingModel bookingModel,
+      required double amount,
+      required String transactionId}) async {
+    dio.Response<dynamic> response = await airTicketBookingApiServices
+        .airTicketBookingApiServices(bookingModel: bookingModel);
+
+    print(
+        "<<<..........------------ Booking response ----------.........>>>> ");
+
+    print(response.statusCode);
+    print(response.data);
+
+    if (response.statusCode == 200) {
+      print(
+          "<<<..........------------Air ticket booked ----------.........>>>> ");
+
+      print(response.data["Booking_RefNo"]);
+
+      // airAddPayment(
+      //     refernceNo: response.data["Booking_RefNo"],
+      //     transactionId: transactionId);
+      isLoading(false);
+
+      initiatePayment(amount: amount, bookingModel: bookingModel);
+    }
+  }
+
+  airAddPayment(
+      {required String refernceNo, required String transactionId}) async {
+    dio.Response<dynamic> response =
+        await airAddPaymentApiServices.addPaymentApiServices(
+            clientReferneNo: "Testing Team", refrenceNo: refernceNo);
+
+    if (response.statusCode == 200) {
+      airReprint(refernceNo: refernceNo, transactionId: transactionId);
+      Get.rawSnackbar(
+          message: "Payment Added Success", backgroundColor: Colors.green);
+    } else {}
+  }
+
+  AddFlightBookingHistoryAPIServices addFlightBookingHistoryAPIServices =
+      AddFlightBookingHistoryAPIServices();
+
+  addFlightBookingHistoy(
+      {required String invoiceNumber,
+      required String remark,
+      required String fromCityCode,
+      required String toCityCode,
+      required String fromCityName,
+      required String toCityName,
+      required String bookingRefNo,
+      required String airlineCode,
+      required String date,
+      required String price,
+      required String transactionId}) async {
+    dio.Response<dynamic> response =
+        await addFlightBookingHistoryAPIServices.addFlightBookingAPIServices(
+            airlineCode: airlineCode,
+            bookingRefNo: bookingRefNo,
+            date: date,
+            fromCityCode: fromCityCode,
+            fromCityName: fromCityName,
+            invoiceNumber: invoiceNumber,
+            remark: remark,
+            toCityCode: toCityCode,
+            price: price,
+            transactionId: price,
+            toCityName: toCityName);
+
+    if (response.statusCode == 201) {}
+  }
+
+  airReprint(
+      {required String refernceNo, required String transactionId}) async {
+    dio.Response<dynamic> response = await airRePrintingServices
+        .airRePrintingApi(clientReferneNo: "", refrenceNo: refernceNo);
+
+    if (response.statusCode == 200) {
+      AirReprintModel airReprintModel = AirReprintModel.fromJson(response.data);
+      addFlightBookingHistoy(
+          invoiceNumber: airReprintModel.invoiceNumber,
+          remark: airReprintModel.remark,
+          fromCityCode:
+              airReprintModel.airPnrDetails.first.flights.first.origin,
+          toCityCode:
+              airReprintModel.airPnrDetails.first.flights.first.destination,
+          fromCityName:
+              airReprintModel.airPnrDetails.first.flights.first.origin,
+          toCityName:
+              airReprintModel.airPnrDetails.first.flights.first.destination,
+          bookingRefNo: airReprintModel.bookingRefNo,
+          price: airReprintModel.airPnrDetails.first.flights.first.fares.first
+              .fareDetails.first.totalAmount
+              .toString(),
+          transactionId: transactionId,
+          airlineCode:
+              airReprintModel.airPnrDetails.first.flights.first.airlineCode,
+          date: airReprintModel.bookingDateTime);
+      // Get.off(() => (
+      //       airReprintModel: airReprintModel,
+      //       refNo: refernceNo,
+      //     ));
+    } else {}
+  }
+
+  createBooking({required double amount, required BookingModel bookingModel}) {
+    print("<<<<<<<<payment is Success>>>>>>>>");
+    //need to give id
+    String transactionId = "";
+    // Get.to(() => const FlightLoadingPage());
+    isLoading(true);
+
+    bookAirTicket(
+        bookingModel: bookingModel,
+        transactionId: transactionId,
+        amount: amount);
+  }
+
+  Map<String, String> getArguments(var amount) {
+    var randomStr = DateTime.now().microsecondsSinceEpoch.toString();
+    Map<String, String> map = {
+      "version": "1",
+      "txnRefNo": "ORD$randomStr", // Should change on every request
+      "amount": "$amount",
+      "passCode": "KHKZ7396",
+      "bankId": "000004",
+      "terminalId": "10043345",
+      "merchantId": "120000000043345",
+      "mcc": "4722",
+      "paymentType": "Pay",
+      "currency": "356",
+      // 'email': "manu@gmail.com",
+      // 'phone': '+918157868855',
+      "hashKey": "3EB5718FB544D878AFEF33F28D2ABB79",
+      "aesKey": "DA4247F2A35302A10CE1933FCBDFFA48",
+      "payOpt": "",
+      "orderInfo": "NARUTO00001",
+      "returnURL": "https://www.portal.bcipvtltd.com/api/auth/add_transaction",
+      "env": "PROD", //UAT PROD
+      "url": "https://isgpay.com/ISGPay-Genius/request.action",
+    };
+    return map;
   }
 }

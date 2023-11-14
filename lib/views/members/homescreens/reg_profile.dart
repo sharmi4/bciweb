@@ -44,9 +44,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
   final profileController = Get.find<ProfileController>();
   final subscripeController = Get.find<SubscriptionApiController>();
   final seriveoffersController = Get.find<HomeServiceController>();
- var dobController = TextEditingController();
-
- 
+  var dobController = TextEditingController();
 
   final plansController = Get.find<SubscriptionApiController>();
 
@@ -84,7 +82,6 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     'assets/images/partnerimage5.png',
     'assets/images/partnerimage6.png'
   ];
-
 
   AlertDialog mAlertItem2 = AlertDialog(
     backgroundColor: Colors.white,
@@ -163,10 +160,8 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
           ),
           preferredSize: const Size(double.infinity, 110)),
       body: Obx(
-        () => ListView(
-          primary: true,
-          scrollDirection: Axis.vertical,
-          children: [
+        () =>
+            ListView(primary: true, scrollDirection: Axis.vertical, children: [
           // RegisterCommonContainer(),
 
           Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -219,7 +214,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(top: 20), 
+                    padding: const EdgeInsets.only(top: 20),
                     child: Row(
                       children: [
                         InkWell(
@@ -358,7 +353,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             decoration: BoxDecoration(
                                 border: BorderDirectional(
                                     bottom: BorderSide(color: kwhite)),
-                                color:  reghomeController.proindex == 4
+                                color: reghomeController.proindex == 4
                                     ? kblue
                                     : kyellow),
                             child: Padding(
@@ -601,7 +596,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
-                     Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
                       children: [
@@ -646,7 +641,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
-                     Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
                       children: [
@@ -691,7 +686,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
-                     Padding(
+                  Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
                       children: [
@@ -745,76 +740,82 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                             reghomeController.proindex(13);
                             reghomeController.update();
                             showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        backgroundColor: Colors.white,
-                        title: Column(
-                          children: [
-                            Image.asset('assets/images/logoutimage.png'),
-                            const Text("Comeback Soon!",
-                                style: TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black)),
-                          ],
-                        ),
-                        content:const Text(
-                          "Are you sure want to logout?",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 17,
-                          ),
-                        ),
-                        actions: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Container(
-                                  height: 40,
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                      // ignore: unrelated_type_equality_checks
-                                      color: kwhite),
-                                  child: Center(
-                                      child: Text("Cancel",
-                                          style: TextStyle(
-                                              color: kOrange))),
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  // authController.logoutindex(1);
-                                  // authController.update();
-                                  Get.find<AuthController>().logoutWeb();
-                                },
-                                child: Container(
-                                  height: 40,
-                                  width: 120,
-                                  decoration: BoxDecoration(
-                                      color: kOrange,
-                                      borderRadius: BorderRadius.circular(5)),
-                                  child: Center(
-                                    child: Text(
-                                      "Logout",
-                                      style:TextStyle(color: kwhite),
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    backgroundColor: Colors.white,
+                                    title: Column(
+                                      children: [
+                                        Image.asset(
+                                            'assets/images/logoutimage.png'),
+                                        const Text("Comeback Soon!",
+                                            style: TextStyle(
+                                                fontSize: 25,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black)),
+                                      ],
                                     ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          ksizedbox10
-                        ],
-                      );
-                    });
+                                    content: const Text(
+                                      "Are you sure want to logout?",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 17,
+                                      ),
+                                    ),
+                                    actions: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                              height: 40,
+                                              width: 120,
+                                              decoration: BoxDecoration(
+                                                  // ignore: unrelated_type_equality_checks
+                                                  color: kwhite),
+                                              child: Center(
+                                                  child: Text("Cancel",
+                                                      style: TextStyle(
+                                                          color: kOrange))),
+                                            ),
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              // authController.logoutindex(1);
+                                              // authController.update();
+                                              Get.find<AuthController>()
+                                                  .logoutWeb();
+                                            },
+                                            child: Container(
+                                              height: 40,
+                                              width: 120,
+                                              decoration: BoxDecoration(
+                                                  color: kOrange,
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              child: Center(
+                                                child: Text(
+                                                  "Logout",
+                                                  style:
+                                                      TextStyle(color: kwhite),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      ksizedbox10
+                                    ],
+                                  );
+                                });
                             //Get.offAll(LandingScreen());
                           },
                           child: Container(
@@ -896,7 +897,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                         ),
                       ),
                       if (profileController.profileindex.value == 0)
-                         const ProfileSettings(),
+                        const ProfileSettings(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -968,17 +969,17 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                         ),
                       ),
                       if (profileController.profileindex.value == 1)
-                         const ProfileOfficeAddreass(),
+                        const ProfileOfficeAddreass(),
                       if (profileController.profileindex.value == 2)
-                         const ProfileResidentialAddressScreen()
+                        const ProfileResidentialAddressScreen()
                     ],
                   ),
                 ),
               ),
-            if (reghomeController.proindex.value == 1) 
-               const ProfileDashboardScreen(),
-            if (reghomeController.proindex.value == 2) 
-               const ProfileCouponsScreen(),
+            if (reghomeController.proindex.value == 1)
+              const ProfileDashboardScreen(),
+            if (reghomeController.proindex.value == 2)
+              const ProfileCouponsScreen(),
             // if (reghomeController.proindex.value == 3)
             //   Container(
             //     width: MediaQuery.of(context).size.width - 195,
@@ -1066,15 +1067,19 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             //       ],
             //     ),
             //   ),
-            if (reghomeController.proindex.value == 4) const ProfileSubscription(),
+            if (reghomeController.proindex.value == 4)
+              const ProfileSubscription(),
             if (reghomeController.proindex.value == 5) const ProfileReferal(),
             if (reghomeController.proindex.value == 6) const ProfilePartners(),
-            if (reghomeController.proindex.value == 7) const ProfileUpgradeScreen(),
+            if (reghomeController.proindex.value == 7)
+              const ProfileUpgradeScreen(),
             if (reghomeController.proindex.value == 8) const ProfileSupport(),
-            if (reghomeController.proindex.value == 9) const ProfileWalletScreen(),
-            if(reghomeController.proindex.value==10) ProfileCreditScreen(),
-            if(reghomeController.proindex.value==11)ProfilePartialScreen(),
-            if(reghomeController.proindex.value==12)ProfileStatementScreen(),
+            if (reghomeController.proindex.value == 9)
+              const ProfileWalletScreen(),
+            if (reghomeController.proindex.value == 10) ProfileCreditScreen(),
+            if (reghomeController.proindex.value == 11) ProfilePartialScreen(),
+            if (reghomeController.proindex.value == 12)
+              ProfileStatementScreen(),
           ]),
           ksizedbox20,
           const RegisterCommonBottom()

@@ -4,7 +4,8 @@ import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
-import 'package:bciweb/models/setting_model/credit_partial_model.dart';
+import 'package:bciweb/models/partial_booking_data_model.dart';
+// import 'package:bciweb/models/setting_model/credit_partial_model.dart';
 import 'package:bciweb/models/setting_model/credit_profile_model.dart';
 import 'package:bciweb/models/setting_model/credit_statement_model.dart';
 import 'package:bciweb/models/setting_model/get_wallet_details.model.dart';
@@ -18,12 +19,16 @@ import 'package:bciweb/services/networks/creditcard_api_service.dart/partial_boo
 import 'package:bciweb/services/networks/creditcard_api_service.dart/pay_credit_api_services.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/user_credit_points_api_dart.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/view_credit_statement.dart';
+import 'package:bciweb/services/networks/partial_payment_api_services/collect_partial_payment.dart';
+import 'package:bciweb/services/networks/partial_payment_api_services/partial_payment_api_services.dart';
+import 'package:bciweb/services/networks/partial_payment_api_services/partial_payment_history_api_services.dart';
 import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
 import 'package:bciweb/services/networks/setting_api_service.dart/support_admin_details_api_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:url_launcher/url_launcher.dart';
+import '../../models/partial_payment_history_model.dart';
 import '../../models/setting_model/ourpartnerlist_model.dart';
 import '../../models/setting_model/transation_history_model.dart';
 import '../../services/networks/setting_api_service.dart/addtransaction_api_service.dart';
@@ -40,11 +45,7 @@ class ApiSettingController extends GetxController {
 
   List<GetwalletDetails> getWalletData = [];
 
-
   RxInt index = 0.obs;
-
-
-
 
   getwalletList() async {
     getWalletData.clear();
@@ -84,23 +85,23 @@ class ApiSettingController extends GetxController {
     update();
   }
 
-    //our partners api
-   OurPartnersApiService ourPartnersApiService = OurPartnersApiService();
-   List<OurPartnerData> ourPartnersData = [];
+  //our partners api
+  OurPartnersApiService ourPartnersApiService = OurPartnersApiService();
+  List<OurPartnerData> ourPartnersData = [];
 
-   ourPartner() async {
-     
-     dio.Response<dynamic> response = await ourPartnersApiService.ourPartnersApiService();
-     if(response.statusCode == 200){
-        OurPartnersList ourPartnersList = OurPartnersList.fromJson(response.data);
-       ourPartnersData = ourPartnersList.data;
-     } 
-     update();
-   }
+  ourPartner() async {
+    dio.Response<dynamic> response =
+        await ourPartnersApiService.ourPartnersApiService();
+    if (response.statusCode == 200) {
+      OurPartnersList ourPartnersList = OurPartnersList.fromJson(response.data);
+      ourPartnersData = ourPartnersList.data;
+    }
+    update();
+  }
 
   //create support api
   CreateSupportApiService createSupportApiService = CreateSupportApiService();
-    
+
   createSupport({
     required String title,
     required String message,
@@ -124,7 +125,8 @@ class ApiSettingController extends GetxController {
           ));
     }
   }
-   //support admin details
+
+  //support admin details
   SupportAdminDetailsApiServices supportAdminDetailsApiServices =
       SupportAdminDetailsApiServices();
   ContactDetailsData? contactDetailsData;
@@ -139,6 +141,7 @@ class ApiSettingController extends GetxController {
     }
     update();
   }
+
   AddTransactionApiService addTransactionApiServices =
       AddTransactionApiService();
 
@@ -212,7 +215,7 @@ class ApiSettingController extends GetxController {
           CreditProfileModel.fromJson(response.data);
 
       creditLimit(creditProfileModel.creditLimit.toString());
-      usedLimit(creditProfileModel.usedLimit);
+      usedLimit(creditProfileModel.pendingLimit);
       pendingLimit(creditProfileModel.pendingLimit);
       totalPaidAmountCurrentMonth(
           creditProfileModel.totalPaidAmountCurrentMonth);
@@ -264,20 +267,19 @@ class ApiSettingController extends GetxController {
   }
 
   InitiatePaymentApiServices initiatePaymentApiServices =
-  InitiatePaymentApiServices();
-   initiatePayment(
-      {required double amount,
-    
+      InitiatePaymentApiServices();
+  initiatePayment({
+    required double amount,
   }) async {
     print('------------------------------------------------1111111');
     var userId = 0;
-  //   print(Get.find<ProfileController>().profileData);
-  //   if (Get.find<ProfileController>().profileData.isNotEmpty) {
-  //     userId = Get.find<ProfileController>().profileData.first.id;
-  //   } else {
-  //     await Get.find<ProfileController>().getProfile();
-  //     userId = Get.find<ProfileController>().profileData.first.id;
-  //   }
+    //   print(Get.find<ProfileController>().profileData);
+    //   if (Get.find<ProfileController>().profileData.isNotEmpty) {
+    //     userId = Get.find<ProfileController>().profileData.first.id;
+    //   } else {
+    //     await Get.find<ProfileController>().getProfile();
+    //     userId = Get.find<ProfileController>().profileData.first.id;
+    //   }
     await Get.find<AuthProfileController>().getProfile();
     print('${Get.find<AuthProfileController>().profileData}');
     dio.Response<dynamic> response =
@@ -296,10 +298,7 @@ class ApiSettingController extends GetxController {
       // startTimer(
       //   ininitiatePaymentModel.data.merchantTransactionId,
       //   amount,
-        
-      
 
-     
       // );
       print("Payment is over ------------>>");
     }
@@ -311,8 +310,7 @@ class ApiSettingController extends GetxController {
 //       print("timer working ...");
 //       int status = await Get.find<ApiSettingController>().checkPhonePeStatus(
 //           amount: amount, refernceID: ,
-          
-          
+
 //           );
 
   //     print(
@@ -328,72 +326,124 @@ class ApiSettingController extends GetxController {
   //     }
   //   });
   // }
-    PaymentResponseApiServices paymentResponseApiServices =
+  PaymentResponseApiServices paymentResponseApiServices =
       PaymentResponseApiServices();
 
-     checkPhonePeStatus(
-      {required String refernceID,
-      required double amount,
-      required int id,
-    }) async {
-
-        int paymentId = 0;
+  checkPhonePeStatus({
+    required String refernceID,
+    required double amount,
+    required int id,
+  }) async {
+    int paymentId = 0;
     dio.Response<dynamic> response = await paymentResponseApiServices
         .paymentResponseApi(merchantId: refernceID);
 
     if (response.data["code"] == "PAYMENT_SUCCESS") {
       paymentId = 1;
       print("<<<<<<<<payment is Success>>>>>>>>");
-  
-    } 
-    else if (response.data["code"] == "PAYMENT_PENDING")
-     {
-       paymentId = 0; 
+    } else if (response.data["code"] == "PAYMENT_PENDING") {
+      paymentId = 0;
       print("<<<<<<<<payment is Failed>>>>>>>>");
 
       //   Get.to(() => PaymentFailedScreen());
-    }
-    else
-    {
-       paymentId = 2; 
+    } else {
+      paymentId = 2;
     }
 
     return paymentId;
   }
 
- GetPartialBookingApiService  getPartialBookingApiService =
- GetPartialBookingApiService();
+  GetPartialBookingApiService getPartialBookingApiService =
+      GetPartialBookingApiService();
 
-    List<PartialAmount> partialbookinglist=[];
-   
-   getPartialBooking()async{
-    dio.Response<dynamic> response = await getPartialBookingApiService.getPartialdata();
-    if(response.statusCode==200){
-CreditPartialModel creditpartialModel = CreditPartialModel.fromJson(response.data);
-partialbookinglist= creditpartialModel.partialAmount;
-         
+  PartialPaymentHistoryApiServices partialPaymentHistoryApiServices =
+      PartialPaymentHistoryApiServices();
+
+  PartialPaymentApiServices partialPaymentApiServices =
+      PartialPaymentApiServices();
+
+  CollectPartialPaymentyApiServices collectPartialPaymentyApiServices =
+      CollectPartialPaymentyApiServices();
+
+  List<PartialAmount> partialAmountdataList = [];
+  List<PartialPaymentHistoryData> partialAmountHistoryList = [];
+  RxBool isLoading = false.obs;
+
+  getPartialPaymentDatas() async {
+    isLoading(true);
+    dio.Response<dynamic> response =
+        await partialPaymentApiServices.partialPayment();
+    isLoading(false);
+    if (response.statusCode == 200) {
+      if (response.data["message"] == "No records found for the user") {
+        // Get.off(() => QucikPaymentScreen());
+      } else {
+        PartialAmountModel partialAmountModel =
+            PartialAmountModel.fromJson(response.data);
+        partialAmountdataList.clear();
+        partialAmountdataList.add(partialAmountModel.partialAmount);
+        getPartialPaymentDataHistory(
+            partialID: partialAmountModel.partialAmount.id.toString());
+        update();
+      }
     }
-    update();
-   }
-   
-   PartialBookingHistoryApiService getPartialBookingHistoryApiService =
-    PartialBookingHistoryApiService();
-  List<PartialData>partialbookinghistorylist=[];
- partialBookingHistory({
+  }
+
+  getPartialPaymentDataHistory({required String partialID}) async {
+    dio.Response<dynamic> response = await partialPaymentHistoryApiServices
+        .partialPaymentHistory(partialID: partialID);
+
+    if (response.statusCode == 200) {
+      PartialPaymentHistoryModel partialPaymentHistoryModel =
+          PartialPaymentHistoryModel.fromJson(response.data);
+      partialAmountHistoryList = partialPaymentHistoryModel.data;
+      update();
+    }
+  }
+
+  collectPartialAmount({
+    required int customerId,
+    required String saleAmount,
+    required String planId,
+    required String collectedDate,
+    required String collectedAmount,
+    required String status,
+  }) async {
+    dio.Response<dynamic> response =
+        await collectPartialPaymentyApiServices.collectPartialPayment(
+            collectedAmount: collectedAmount,
+            collectedDate: collectedDate,
+            customerId: customerId,
+            planId: planId,
+            saleAmount: saleAmount,
+            status: "Pending");
+
+    if (response.statusCode == 200) {
+      // Get.rawSnackbar(
+      //     message: response.data["message"], backgroundColor: Colors.green);
+    }
+  }
+
+  List<PartialAmount> partialbookinglist = [];
+
+  PartialBookingHistoryApiService getPartialBookingHistoryApiService =
+      PartialBookingHistoryApiService();
+  List<PartialData> partialbookinghistorylist = [];
+  partialBookingHistory({
     required String partialamountid,
   }) async {
     dio.Response<dynamic> response =
         await getPartialBookingHistoryApiService.PartialBookingHistory(
-          partial_id: partialamountid);
+            partial_id: partialamountid);
 
     if (response.statusCode == 200) {
-  PartialBookingHistoryModel partialBookingHistoryModel = 
-  PartialBookingHistoryModel.fromJson(response.data);
-   partialbookinghistorylist = partialBookingHistoryModel.data;
-
+      PartialBookingHistoryModel partialBookingHistoryModel =
+          PartialBookingHistoryModel.fromJson(response.data);
+      partialbookinghistorylist = partialBookingHistoryModel.data;
     }
     update();
   }
+
   calculateUnPaid(double planAmount, double paidAmount) {
     double remainingAmount = planAmount - paidAmount;
 

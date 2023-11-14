@@ -80,7 +80,8 @@ class _BookingFlightState extends State<BookingFlight> {
         lastDate: DateTime(2101));
     if (picked != null && picked != flaightselectedDate) {
       setState(() {
-        flaightselectedDate = picked;
+        apiflightController.returnDate = picked;
+        apiflightController.update();
         falightdobController.text =
             '${flaightselectedDate.day}-${flaightselectedDate.month}-${flaightselectedDate.year}';
       });
@@ -95,7 +96,8 @@ class _BookingFlightState extends State<BookingFlight> {
         lastDate: DateTime(2101));
     if (picked != null && picked != flaight2selectedDate) {
       setState(() {
-        flaight2selectedDate = picked;
+        apiflightController.depatureDate = picked;
+        apiflightController.update();
         falight2dobController.text =
             '${flaight2selectedDate.day}-${flaight2selectedDate.month}-${flaight2selectedDate.year}';
       });
@@ -255,7 +257,7 @@ class _BookingFlightState extends State<BookingFlight> {
                               width: size.width * 0.88,
                               decoration: BoxDecoration(
                                   color: kwhite,
-                                  borderRadius: BorderRadius.only(
+                                  borderRadius: const BorderRadius.only(
                                       topLeft: Radius.zero,
                                       bottomLeft: Radius.circular(15),
                                       topRight: Radius.circular(15),
@@ -268,67 +270,163 @@ class _BookingFlightState extends State<BookingFlight> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        Container(
-                                          height: 40,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.12,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(color: kgrey),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 10),
-                                                child: Text(dropvalue2),
-                                              ),
-                                              PopupMenuButton(
-                                                child: Icon(Icons
-                                                    .arrow_drop_down_sharp),
-                                                itemBuilder: (context) => [
-                                                  PopupMenuItem(
-                                                      value: 'One Way',
-                                                      child: Text(
-                                                        'One Way',
-                                                        style: TextStyle(
-                                                            fontSize: 14),
-                                                      )),
-                                                  PopupMenuItem(
-                                                    value: 'Round Way ',
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          'Round Way',
-                                                          style: TextStyle(
-                                                              fontSize: 13),
-                                                        ),
-                                                      ],
-                                                    ),
+                                       Container(
+                                        child: Column(
+                                          children: [
+                                            Container(
+                                              width: 100,
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                children: [
+                                                  Text("One Way",style: primaryFont.copyWith(
+                                                    color: Colors.black
+                                                  ),),
+                                                  const SizedBox(
+                                                    width: 10,
                                                   ),
+                                                  InkWell(
+                                                    onTap: (){
+                                                        apiflightController
+                                                            .onwayOrTwoWay(0);
+                                                    },
+                                                    child: Container(
+                                                      height: 20,
+                                                      width: 20,
+                                                      decoration:  BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(30),
+                                                       border: Border.all( color: kblue)
+                                                      ),
+                                                      child: apiflightController
+                                                            .onwayOrTwoWay.value == 0 ?   Padding(
+                                                              padding: const EdgeInsets.all(5.0),
+                                                              child: Container(
+                                                               height: 15,
+                                                               width: 15,
+                                                               decoration:  BoxDecoration(
+                                                                 borderRadius: BorderRadius.circular(30),
+                                                                color: kblue
+                                                                 ),
+                                                                 ),
+                                                            ): Container(
+                                                      width: 10,
+                                                    ),
+                                                    ),
+                                                  )
                                                 ],
-                                                onSelected: (value) {
-                                                  if (value == "One Way") {
-                                                    apiflightController
-                                                        .onwayOrTwoWay(0);
-                                                  } else {
-                                                    apiflightController
-                                                        .onwayOrTwoWay(1);
-                                                  }
-
-                                                  setState(() {
-                                                    dropvalue2 =
-                                                        value.toString();
-                                                  });
-                                                },
                                               ),
-                                            ],
-                                          ),
+                                            ),
+                                            ksizedbox10,
+                                             Container(
+                                                width: 100,
+                                               child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Text("Round trip",style: primaryFont.copyWith(
+                                                    color: Colors.black
+                                                  ),),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                  InkWell(
+                                                    onTap: (){
+                                                      apiflightController
+                                                            .onwayOrTwoWay(1);
+                                                    },
+                                                    child: Container(
+                                                      height: 20,
+                                                      width: 20,
+                                                      decoration:  BoxDecoration(
+                                                        borderRadius: BorderRadius.circular(30),
+                                                       border: Border.all( color: kblue)
+                                                      ),
+                                                      child: apiflightController
+                                                            .onwayOrTwoWay.value == 1 ?   Padding(
+                                                              padding: const EdgeInsets.all(5.0),
+                                                              child: Container(
+                                                               height: 15,
+                                                               width: 15,
+                                                               decoration:  BoxDecoration(
+                                                                 borderRadius: BorderRadius.circular(30),
+                                                                color: kblue
+                                                               ),
+                                                              ),
+                                                            ): Container(
+                                                      width: 10,
+                                                    ),
+                                                    ),
+                                                  )
+                                                ],
+                                            ),
+                                             ),
+                                          ],
                                         ),
+                                       ),
+
+                                        // Container(
+                                        //   height: 40,
+                                        //   width: MediaQuery.of(context)
+                                        //           .size
+                                        //           .width *
+                                        //       0.12,
+                                        //   decoration: BoxDecoration(
+                                        //       border: Border.all(color: kgrey),
+                                        //       borderRadius:
+                                        //           BorderRadius.circular(5)),
+                                        //   child: Row(
+                                        //     mainAxisAlignment:
+                                        //         MainAxisAlignment.spaceBetween,
+                                        //     children: [
+                                        //       Padding(
+                                        //         padding: const EdgeInsets.only(
+                                        //             left: 10),
+                                        //         child: Text(dropvalue2),
+                                        //       ),
+                                        //       PopupMenuButton(
+                                        //         child:  Icon(Icons
+                                        //             .arrow_drop_down_sharp),
+                                        //             initialValue: "One Way",
+                                                  
+                                        //         itemBuilder: (context) => [
+                                        //           PopupMenuItem(
+                                        //               value: 'One Way',
+                                        //               child: Text(
+                                        //                 'One Way',
+                                        //                 style: TextStyle(
+                                        //                     fontSize: 14),
+                                        //               )),
+                                        //           PopupMenuItem(
+                                        //             value: 'Round Way ',
+                                        //             child: Row(
+                                        //               children: [
+                                        //                 Text(
+                                        //                   'Round Way',
+                                        //                   style: TextStyle(
+                                        //                       fontSize: 13),
+                                        //                 ),
+                                        //               ],
+                                        //             ),
+                                        //           ),
+                                        //         ],
+                                        //         onSelected: (value) {
+                                        //           if (value == "One Way") {
+                                                    // apiflightController
+                                                    //     .onwayOrTwoWay(0);
+                                        //           } else {
+                                        //             apiflightController
+                                        //                 .onwayOrTwoWay(1);
+                                        //           }
+
+                                        //           setState(() {
+                                        //             dropvalue2 =
+                                        //                 value.toString();
+                                        //           });
+                                        //         },
+                                        //       ),
+                                        //     ],
+                                        //   ),
+                                        // ),
                                         GetBuilder<ApiflightsController>(
                                             builder: (_) {
                                             return Container(
@@ -347,6 +445,9 @@ class _BookingFlightState extends State<BookingFlight> {
                                                       faligsearch2Controller,
                                                   onChanged: (value) async {
                                                     if (value.length > 1) {
+                                                    await Future.delayed(const Duration(
+                                                     milliseconds: 500
+                                                    ));
                                                       Get.find<
                                                               ApiflightsController>()
                                                           .flighsearch(
@@ -391,7 +492,6 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     (FlightSearchModel citymodel) {
                                                   print("bording selected");
 
-                                                 
                                                       apiflightController.origin(
                                                           citymodel.airportcode);
                                                
@@ -513,7 +613,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                   //  color: Colors.grey[200],
                                                   borderRadius:
                                                       BorderRadius.circular(15)),
-                                              height: 55,
+                                              height: 45,
                                               width: size.width * 0.13,
                                               child:
                                                   TypeAheadField<FlightSearchModel>(
@@ -592,232 +692,333 @@ class _BookingFlightState extends State<BookingFlight> {
                                             );
                                           }
                                         ),
-                                        Container(
-                                          height: 40,
-                                          width: MediaQuery.of(context)
-                                                  .size
-                                                  .width *
-                                              0.12,
-                                          decoration: BoxDecoration(
-                                              border: Border.all(color: kgrey),
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: Container(
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceAround,
-                                                children: [
-                                                  Text(
-                                                      '${formatDate(apiflightController.depatureDate, [
-                                                        dd,
-                                                        "/",
-                                                        mm,
-                                                        '/',
-                                                        yyyy
-                                                      ])}'),
-                                                  IconButton(
-                                                      onPressed: () {
-                                                        _flaight2selectDate(
-                                                            context);
-                                                      },
-                                                      icon: Icon(Icons
-                                                          .date_range_outlined))
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        if (apiflightController.onwayOrTwoWay ==
-                                            1)
-                                          Container(
-                                            height: 40,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.12,
-                                            decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: kgrey),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            child: Container(
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                    left: 5),
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceAround,
-                                                  children: [
-                                                    Text(
-                                                        '${formatDate(apiflightController.returnDate, [
-                                                          dd,
-                                                          "/",
-                                                          mm,
-                                                          '/',
-                                                          yyyy
-                                                        ])}'),
-                                                    IconButton(
-                                                        onPressed: () {
-                                                          _flaightselectDate(
-                                                              context);
-                                                        },
-                                                        icon: Icon(Icons
-                                                            .date_range_outlined))
-                                                  ],
+                                        GetBuilder<ApiflightsController>(
+                                          builder: (_) {
+                                            return Container(
+                                              height: 40,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.12,
+                                              decoration: BoxDecoration(
+                                                  border: Border.all(color: kgrey),
+                                                  borderRadius:
+                                                      BorderRadius.circular(5)),
+                                              child: Container(
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 5),
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: [
+                                                      Text(
+                                                          formatDate(apiflightController.depatureDate, [
+                                                            dd,
+                                                            "/",
+                                                            mm,
+                                                            '/',
+                                                            yyyy
+                                                          ])),
+                                                      IconButton(
+                                                          onPressed: () {
+                                                            _flaight2selectDate(
+                                                                context);
+                                                          },
+                                                          icon: const Icon(Icons
+                                                              .date_range_outlined))
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        Container(
-                                            height: 40,
-                                            width: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.12,
-                                            decoration: BoxDecoration(
-                                                border:
-                                                    Border.all(color: kgrey),
-                                                borderRadius:
-                                                    BorderRadius.circular(5)),
-                                            alignment: Alignment.center,
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Padding(
-                                                    padding:
-                                                        const EdgeInsets.only(
-                                                            left: 10),
-                                                    child: Text(dropvalue1),
+                                            );
+                                          }
+                                        ),
+                                        // ignore: unrelated_type_equality_checks
+                                        if (apiflightController.onwayOrTwoWay.value ==
+                                            1)
+                                          GetBuilder<ApiflightsController>(
+                                          builder: (_) {
+                                              return Container(
+                                                height: 40,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.12,
+                                                decoration: BoxDecoration(
+                                                    border:
+                                                        Border.all(color: kgrey),
+                                                    borderRadius:
+                                                        BorderRadius.circular(5)),
+                                                child: Container(
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.only(
+                                                        left: 5),
+                                                    child: Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      children: [
+                                                        Text(
+                                                            '${formatDate(apiflightController.returnDate, [
+                                                              dd,
+                                                              "/",
+                                                              mm,
+                                                              '/',
+                                                              yyyy
+                                                            ])}'),
+                                                        IconButton(
+                                                            onPressed: () {
+                                                              _flaightselectDate(
+                                                                  context);
+                                                            },
+                                                            icon: const Icon(Icons
+                                                                .date_range_outlined))
+                                                      ],
+                                                    ),
                                                   ),
-                                                  PopupMenuButton(
-                                                    child: Icon(Icons
-                                                        .arrow_drop_down_sharp),
-                                                    itemBuilder: (context) => [
-                                                      PopupMenuItem(
-                                                          value: '01 Traveller',
-                                                          child: Text(
-                                                            '01 Traveller',
-                                                            style: TextStyle(
-                                                                fontSize: 14),
-                                                          )),
-                                                      PopupMenuItem(
-                                                        value:
-                                                            'Adults ${apiflightController.adultsCount.value}',
-                                                        child: Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .spaceBetween,
-                                                          children: [
-                                                            Row(
+                                                ),
+                                              );
+                                            }
+                                          ),
+//                                           Column(
+//                                             children: [
+//                                               Row(
+//                                               mainAxisAlignment:
+//                                                   MainAxisAlignment.spaceBetween,
+//                                               children: [
+//                                                 Row(
+//                                                   children: [
+//                                                     Text(
+//                                                         '${apiflightController.adultsCount.value}'),
+//                                                     Text(
+//                                                       'Adults',
+//                                                       style:
+//                                                           TextStyle(fontSize: 13),
+//                                                     ),
+//                                                   ],
+//                                                 ),
+//                                                 Row(
+//                                                   children: [
+//                                                     IconButton(
+//                                                         onPressed: () {
+//                                                           apiflightController
+//                                                               .decreaseAdultCount();
+//                                                           apiflightController
+//                                                               .update();
+//                                                         },
+//                                                         icon: Icon(Icons
+//                                                             .do_not_disturb_on_outlined)),
+//                                                     Obx(() => Text(
+//                                                           '${apiflightController.adultsCount.value}',
+//                                                           style: TextStyle(
+//                                                               fontSize: 14),
+//                                                         )),
+//                                                     IconButton(
+//                                                         onPressed: () {
+//                                                           apiflightController
+//                                                               .increaseAdultCount();
+//                                                           apiflightController
+//                                                               .update();
+//                                                         },
+//                                                         icon:const Icon(Icons
+//                                                             .add_circle_outline_outlined))
+//                                                   ],
+//                                                 ),
+//                                               ],
+//                                         ),
+//                                         ksizedbox10,
+//                                         //child count
+// Row(
+//                                                             mainAxisAlignment:
+//                                                                 MainAxisAlignment
+//                                                                     .spaceBetween,
+//                                                             children: [
+//                                                               Text(
+//                                                                 'Children (2-12 yrs)',
+//                                                                 style: TextStyle(
+//                                                                     fontSize:
+//                                                                         14),
+//                                                               ),
+//                                                               Row(
+//                                                                 children: [
+//                                                                   IconButton(
+//                                                                       onPressed:
+//                                                                           () {
+//                                                                         apiflightController
+//                                                                             .decreaseChildCount();
+//                                                                         apiflightController
+//                                                                             .update();
+//                                                                       },
+//                                                                       icon: Icon(
+//                                                                           Icons
+//                                                                               .do_not_disturb_on_outlined)),
+//                                                                   Obx(
+//                                                                       () =>
+//                                                                           Text(
+//                                                                             '${apiflightController.childsCount.value}',
+//                                                                             style:
+//                                                                                 TextStyle(fontSize: 14),
+//                                                                           )),
+//                                                                   IconButton(
+//                                                                       onPressed:
+//                                                                           () {
+//                                                                         apiflightController
+//                                                                             .increaseChildCount();
+//                                                                         apiflightController
+//                                                                             .update();
+//                                                                       },
+//                                                                       icon: const Icon(
+//                                                                           Icons
+//                                                                               .add_circle_outline_outlined))
+//                                                                 ],
+//                                                               ),
+//                                                             ],
+//                                                           )
+//                                             ],
+//                                           ),
+                                        GetBuilder<ApiflightsController>(
+                                          builder: (_) {
+                                            return Container(
+                                                height: 40,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.12,
+                                                decoration: BoxDecoration(
+                                                    border:
+                                                        Border.all(color: kgrey),
+                                                    borderRadius:
+                                                        BorderRadius.circular(5)),
+                                                alignment: Alignment.center,
+                                                child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 10),
+                                                        child: Text(dropvalue1),
+                                                      ),
+                                                      PopupMenuButton(
+                                                        child: const Icon(Icons
+                                                            .arrow_drop_down_sharp),
+                                                        itemBuilder: (context) => [
+                                                          PopupMenuItem(
+                                                            value:  'Adults ${apiflightController.adultsCount.value}',
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
                                                               children: [
-                                                                Text(
-                                                                    '${apiflightController.adultsCount.value}'),
-                                                                Text(
-                                                                  'Adults',
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          13),
+                                                                Row(
+                                                                  children: [
+                                                                    Text('${apiflightController.adultsCount.value}'),
+                                                                      const Text(
+                                                                      'Adults',
+                                                                      style: TextStyle(
+                                                                          fontSize:
+                                                                              13),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  children: [
+                                                                    IconButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          apiflightController
+                                                                              .decreaseAdultCount();
+                                                                          apiflightController
+                                                                              .update();
+                                                                        },
+                                                                        icon: Icon(Icons
+                                                                            .do_not_disturb_on_outlined)),
+                                                                    Obx(() => Text(
+                                                                          '${apiflightController.adultsCount.value}',
+                                                                          style: TextStyle(
+                                                                              fontSize:
+                                                                                  14),
+                                                                        )),
+                                                                    IconButton(
+                                                                        onPressed:
+                                                                            () {
+                                                                          apiflightController
+                                                                              .increaseAdultCount();
+                                                                          apiflightController
+                                                                              .update();
+                                                                        },
+                                                                        icon: Icon(Icons
+                                                                            .add_circle_outline_outlined))
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
-                                                            Row(
-                                                              children: [
-                                                                IconButton(
-                                                                    onPressed:
-                                                                        () {
-                                                                      apiflightController
-                                                                          .decreaseAdultCount();
-                                                                      apiflightController
-                                                                          .update();
-                                                                    },
-                                                                    icon: Icon(Icons
-                                                                        .do_not_disturb_on_outlined)),
-                                                                Obx(() => Text(
-                                                                      '${apiflightController.adultsCount.value}',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              14),
-                                                                    )),
-                                                                IconButton(
-                                                                    onPressed:
-                                                                        () {
-                                                                      apiflightController
-                                                                          .increaseAdultCount();
-                                                                      apiflightController
-                                                                          .update();
-                                                                    },
-                                                                    icon: Icon(Icons
-                                                                        .add_circle_outline_outlined))
-                                                              ],
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                      PopupMenuItem(
-                                                          value:
-                                                              'Children (2-12 yrs)',
-                                                          child: Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceBetween,
-                                                            children: [
-                                                              Text(
-                                                                'Children (2-12 yrs)',
-                                                                style: TextStyle(
-                                                                    fontSize:
-                                                                        14),
-                                                              ),
-                                                              Row(
+                                                          ),
+                                                          PopupMenuItem(
+                                                              value:
+                                                                  'Children (2-12 yrs)',
+                                                              child: Row(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
                                                                 children: [
-                                                                  IconButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        apiflightController
-                                                                            .decreaseChildCount();
-                                                                        apiflightController
-                                                                            .update();
-                                                                      },
-                                                                      icon: Icon(
-                                                                          Icons
-                                                                              .do_not_disturb_on_outlined)),
-                                                                  Obx(
-                                                                      () =>
-                                                                          Text(
-                                                                            '${apiflightController.childsCount.value}',
-                                                                            style:
-                                                                                TextStyle(fontSize: 14),
-                                                                          )),
-                                                                  IconButton(
-                                                                      onPressed:
-                                                                          () {
-                                                                        apiflightController
-                                                                            .increaseChildCount();
-                                                                        apiflightController
-                                                                            .update();
-                                                                      },
-                                                                      icon: Icon(
-                                                                          Icons
-                                                                              .add_circle_outline_outlined))
+                                                                  const Text(
+                                                                    'Children (2-12 yrs)',
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            14),
+                                                                  ),
+                                                                  Row(
+                                                                    children: [
+                                                                      IconButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            apiflightController
+                                                                                .decreaseChildCount();
+                                                                            apiflightController
+                                                                                .update();
+                                                                          },
+                                                                          icon: Icon(
+                                                                              Icons
+                                                                                  .do_not_disturb_on_outlined)),
+                                                                      Obx(
+                                                                          () =>
+                                                                              Text(
+                                                                                '${apiflightController.childsCount.value}',
+                                                                                style:
+                                                                                    TextStyle(fontSize: 14),
+                                                                              )),
+                                                                      IconButton(
+                                                                          onPressed:
+                                                                              () {
+                                                                            apiflightController
+                                                                                .increaseChildCount();
+                                                                            apiflightController
+                                                                                .update();
+                                                                          },
+                                                                          icon: const Icon(
+                                                                              Icons
+                                                                                  .add_circle_outline_outlined))
+                                                                    ],
+                                                                  ),
                                                                 ],
+                                                              )
                                                               ),
-                                                            ],
-                                                          )),
-                                                    ],
-                                                    onSelected: (value) {
-                                                      setState(() {
-                                                        dropvalue1 =
-                                                            value.toString();
-                                                      });
-                                                    },
-                                                  ),
-                                                ])),
+                                                        ],
+                                                        onSelected: (value) {
+                                                          setState(() {
+                                                            dropvalue1 =
+                                                                value.toString();
+                                                          });
+                                                        },
+                                                      ),
+                                                    ]));
+                                          }
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -988,7 +1189,10 @@ class _BookingFlightState extends State<BookingFlight> {
                                       print('............');
                                     },
                                     child: Center(
-                                        child: CircularProgressIndicator(backgroundColor: kyellow,color: kOrange,))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: CircularProgressIndicator(backgroundColor: kyellow,color: kOrange,),
+                                        ))),
                               )
                             : Container(
                                 height: 40,
@@ -1005,7 +1209,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                     if (apiflightController
                                             .originCountry.value ==
                                         apiflightController
-                                            .destinationCountry) {
+                                            .destinationCountry.value) {
                                       domORIntl = 0;
                                     } else {
                                       domORIntl = 1;
@@ -1117,7 +1321,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Non Stop (17)',
+                                            'Non Stop',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1146,7 +1350,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Prenoon Deparature (17)',
+                                            'Prenoon Deparature',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1175,7 +1379,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'IndiGo (23)',
+                                            'IndiGo',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1204,7 +1408,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Vistara (6)',
+                                            'Vistara',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1232,8 +1436,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                                   airIndia = value!;
                                                 });
                                               }),
-                                          Text(
-                                            'Air India(6)',
+                                         const Text(
+                                            'Air India',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1261,8 +1465,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                                   spiceJet = value!;
                                                 });
                                               }),
-                                          Text(
-                                            'SpiceJet (1)',
+                                         const Text(
+                                            'SpiceJet',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1291,7 +1495,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Go First (1)',
+                                            'Go First',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1320,7 +1524,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Air Asia (2)',
+                                            'Air Asia',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1349,7 +1553,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Late Departures (9)',
+                                            'Late Departures ',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1378,7 +1582,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                 });
                                               }),
                                           Text(
-                                            'Morning Depratures(2)',
+                                            'Morning Depratures',
                                             style: TextStyle(fontSize: 13),
                                           )
                                         ],
@@ -1387,61 +1591,61 @@ class _BookingFlightState extends State<BookingFlight> {
                                   ],
                                 ),
                               ),
+                              // Container(
+                              //   width: MediaQuery.of(context).size.width * 0.25,
+                              //   child: Row(
+                              //     mainAxisAlignment:
+                              //         MainAxisAlignment.spaceBetween,
+                              //     children: [
+                              //       Padding(
+                              //         padding: const EdgeInsets.only(left: 10),
+                              //         child: Row(
+                              //           children: [
+                              //             Checkbox(
+                              //                 checkColor: kblue,
+                              //                 activeColor: kwhite,
+                              //                 value: stop,
+                              //                 onChanged: (value) {
+                              //                   setState(() {
+                              //                     stop = value!;
+                              //                   });
+                              //                 }),
+                              //             Text(
+                              //               '1 Stop (22)',
+                              //               style: TextStyle(fontSize: 13),
+                              //             )
+                              //           ],
+                              //         ),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
                               Container(
                                 width: MediaQuery.of(context).size.width * 0.25,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          Checkbox(
-                                              checkColor: kblue,
-                                              activeColor: kwhite,
-                                              value: stop,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  stop = value!;
-                                                });
-                                              }),
-                                          Text(
-                                            '1 Stop (22)',
-                                            style: TextStyle(fontSize: 13),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                width: MediaQuery.of(context).size.width * 0.25,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          Checkbox(
-                                              checkColor: kblue,
-                                              activeColor: kwhite,
-                                              value: refundable,
-                                              onChanged: (value) {
-                                                setState(() {
-                                                  refundable = value!;
-                                                });
-                                              }),
-                                          Text(
-                                            'Refundable Fares (39)',
-                                            style: TextStyle(fontSize: 13),
-                                          )
-                                        ],
-                                      ),
-                                    ),
+                                    // Padding(
+                                    //   padding: const EdgeInsets.only(left: 10),
+                                    //   child: Row(
+                                    //     children: [
+                                    //       Checkbox(
+                                    //           checkColor: kblue,
+                                    //           activeColor: kwhite,
+                                    //           value: refundable,
+                                    //           onChanged: (value) {
+                                    //             setState(() {
+                                    //               refundable = value!;
+                                    //             });
+                                    //           }),
+                                    //       Text(
+                                    //         'Refundable Fares',
+                                    //         style: TextStyle(fontSize: 13),
+                                    //       )
+                                    //     ],
+                                    //   ),
+                                    // ),
                                   ],
                                 ),
                               ),
@@ -2465,7 +2669,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                         CrossAxisAlignment
                                                             .start,
                                                     children: [
-                                                      Text(
+                                                   const Text(
                                                         'Sorted By:',
                                                         style: TextStyle(
                                                             fontSize: 14),
@@ -2474,7 +2678,8 @@ class _BookingFlightState extends State<BookingFlight> {
                                                         padding:
                                                             const EdgeInsets
                                                                 .only(top: 20),
-                                                        child: Row(children: [
+                                                        child: Row(
+                                                          children: [
                                                           Image.asset(
                                                             'assets/images/bookingflaight.png',
                                                             height: 35,
@@ -2540,7 +2745,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(
+                                                      const  Text(
                                                           'Departure',
                                                           style: TextStyle(
                                                               fontSize: 14),
@@ -2603,7 +2808,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                           CrossAxisAlignment
                                                               .start,
                                                       children: [
-                                                        Text(
+                                                       const Text(
                                                           'Duration',
                                                           style: TextStyle(
                                                               fontSize: 14),
@@ -2623,9 +2828,9 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                       .flightList[
                                                                           index]
                                                                       .segments
-                                                                      .first
+                                                                      .last
                                                                       .duration,
-                                                                  style: TextStyle(
+                                                                  style: const TextStyle(
                                                                       fontSize:
                                                                           12)),
                                                               Padding(
@@ -2650,14 +2855,14 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                             .segments
                                                                             .length ==
                                                                         1
-                                                                    ? Text(
+                                                                    ? const Text(
                                                                         'Non stop',
                                                                         style: TextStyle(
                                                                             color: Color(
                                                                                 0xff8C8AAF)))
                                                                     : Text(
                                                                         '${apiflightController.flightList[index].segments.length - 1} stop,via ${apiflightController.flightList[index].segments.first.destinationCity}',
-                                                                        style: TextStyle(
+                                                                        style: const TextStyle(
                                                                             fontSize:
                                                                                 12)),
                                                               )
@@ -2696,7 +2901,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                       .flightList[
                                                                           index]
                                                                       .segments
-                                                                      .first
+                                                                      .last
                                                                       .arrivalDateTime
                                                                       .split(
                                                                           " ")
@@ -2719,7 +2924,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                         .flightList[
                                                                             index]
                                                                         .segments
-                                                                        .first
+                                                                        .last
                                                                         .destination,
                                                                     style: TextStyle(
                                                                         fontSize:
@@ -2826,46 +3031,46 @@ class _BookingFlightState extends State<BookingFlight> {
                                               ),
                                             ),
                                             ksizedbox10,
-                                            Divider(
+                                            const  Divider(
                                               thickness: 1,
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 20, top: 10),
-                                              child: Row(
-                                                children: [
-                                                  InkWell(
-                                                    onTap: () {
-                                                      apiflightController
-                                                          .showdetails(1);
-                                                      apiflightController
-                                                          .update();
-                                                    },
-                                                    onDoubleTap: () {
-                                                      apiflightController
-                                                          .showdetails(0);
-                                                      apiflightController
-                                                          .update();
-                                                    },
-                                                    child: apiflightController
-                                                                .showdetails
-                                                                .value ==
-                                                            0
-                                                        ? Text(
-                                                            'Show details',
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                color: korange),
-                                                          )
-                                                        : Text('Hide details',
-                                                            style: TextStyle(
-                                                                fontSize: 12,
-                                                                color:
-                                                                    korange)),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
+                                            // Padding(
+                                            //   padding: const EdgeInsets.only(
+                                            //       left: 20, top: 10),
+                                            //   child: Row(
+                                            //     children: [
+                                            //       InkWell(
+                                            //         onTap: () {
+                                            //           apiflightController
+                                            //               .showdetails(1);
+                                            //           apiflightController
+                                            //               .update();
+                                            //         },
+                                            //         onDoubleTap: () {
+                                            //           apiflightController
+                                            //               .showdetails(0);
+                                            //           apiflightController
+                                            //               .update();
+                                            //         },
+                                            //         child: apiflightController
+                                            //                     .showdetails
+                                            //                     .value ==
+                                            //                 0
+                                            //             ? Text(
+                                            //                 'Show details',
+                                            //                 style: TextStyle(
+                                            //                     fontSize: 12,
+                                            //                     color: korange),
+                                            //               )
+                                            //             : Text('Hide details',
+                                            //                 style: TextStyle(
+                                            //                     fontSize: 12,
+                                            //                     color:
+                                            //                         korange)),
+                                            //       ),
+                                            //     ],
+                                            //   ),
+                                            // ),
                                             Padding(
                                               padding: const EdgeInsets.only(
                                                   left: 20),
@@ -3027,8 +3232,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                               ' ',
                                                                               yyyy
                                                                             ]),
-                                                                            style:
-                                                                                TextStyle(fontSize: 12)),
+                                                                            style:  const  TextStyle(fontSize: 12)),
                                                                       )
                                                                     ],
                                                                   ),
@@ -3071,46 +3275,46 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                 )
                                                               ]),
                                                         ),
-                                                        Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                      .only(
-                                                                  left: 20),
-                                                          child: Row(children: [
-                                                            Column(
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                Text(
-                                                                    'Indigo airline',
-                                                                    style: TextStyle(
-                                                                        fontSize:
-                                                                            12)),
-                                                                Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      top: 4),
-                                                                  child: Text(
-                                                                      'Indigo-23',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12)),
-                                                                ),
-                                                                Padding(
-                                                                  padding: const EdgeInsets
-                                                                          .only(
-                                                                      top: 4),
-                                                                  child: Text(
-                                                                      'Economy',
-                                                                      style: TextStyle(
-                                                                          fontSize:
-                                                                              12)),
-                                                                )
-                                                              ],
-                                                            ),
-                                                          ]),
-                                                        ),
+                                                        // Padding(
+                                                        //   padding:
+                                                        //       const EdgeInsets
+                                                        //               .only(
+                                                        //           left: 20),
+                                                        //   child: Row(children: [
+                                                        //     Column(
+                                                        //       crossAxisAlignment:
+                                                        //           CrossAxisAlignment
+                                                        //               .start,
+                                                        //       children: [
+                                                        //         Text(
+                                                        //             'Indigo airline',
+                                                        //             style: TextStyle(
+                                                        //                 fontSize:
+                                                        //                     12)),
+                                                        //         Padding(
+                                                        //           padding: const EdgeInsets
+                                                        //                   .only(
+                                                        //               top: 4),
+                                                        //           child: Text(
+                                                        //               'Indigo-23',
+                                                        //               style: TextStyle(
+                                                        //                   fontSize:
+                                                        //                       12)),
+                                                        //         ),
+                                                        //         Padding(
+                                                        //           padding: const EdgeInsets
+                                                        //                   .only(
+                                                        //               top: 4),
+                                                        //           child: Text(
+                                                        //               'Economy',
+                                                        //               style: TextStyle(
+                                                        //                   fontSize:
+                                                        //                       12)),
+                                                        //         )
+                                                        //       ],
+                                                        //     ),
+                                                        //   ]),
+                                                        // ),
                                                         ksizedbox10,
                                                       ]),
                                                 ),
