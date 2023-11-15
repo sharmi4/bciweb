@@ -284,6 +284,7 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                         child: GridView.builder(
                             itemCount: serviceController.serviceDataList.length,
                             shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -314,10 +315,12 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                                       bottom: 10),
                                                   child: ClipRRect(
                                                     borderRadius: BorderRadius.circular(4),
-                                                    child: Image.network(
+                                                    child:serviceController
+                                                          .serviceDataList[index]
+                                                          .images.isEmpty?Image.asset('assets/icons/imgess.jpeg', fit: BoxFit.cover,): Image.network(
                                                       serviceController
                                                           .serviceDataList[index]
-                                                          .image,
+                                                          .images.first,
                                                       fit: BoxFit.cover,
                                                     ),
                                                   ),
@@ -422,8 +425,8 @@ class _BusinessAvailabilityScreenState extends State<BusinessAvailabilityScreen>
                                 ]),
                               );
                             }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount:2 ,
-                              childAspectRatio: 3.5),),
+                              crossAxisCount:3 ,
+                              childAspectRatio:2.5),),
                                          );
                                  }),
                      ),

@@ -113,7 +113,7 @@ class _AddServicesViewState extends State<ResUpdateServicesView> {
     //   sgstPercentage = widget.serviceData.sgst != null
     //       ? int.parse(widget.serviceData.sgst)
     //       : null;
-          productImage = widget.serviceData.image;
+          productImage = widget.serviceData.images;
     // });
   }
 

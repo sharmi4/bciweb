@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../../../models/business_model/createservice_model.dart';
 import '../../base_url/base_url.dart';
 
@@ -16,9 +15,10 @@ class UpdateServicesApiServices extends BaseApiService {
           createServiceModel.amenities.map((element) => element.toJson()));
       print(createServiceModel.image);
       FormData formData = FormData.fromMap({
-        if (createServiceModel.image != "null")
-          "image": await MultipartFile.fromFile(createServiceModel.image,
-              filename: createServiceModel.image.split("/").last),
+        for (int i = 0; i < createServiceModel.image!.length; i++)
+          "image[$i]":  MultipartFile.fromBytes(
+              createServiceModel.image![i],
+              filename: 'image'),
         "title": createServiceModel.title,
         if (createServiceModel.category != "null")
           "category": createServiceModel.category.toString(),

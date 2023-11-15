@@ -45,7 +45,7 @@ class ServiceData {
     dynamic isBooking;
     dynamic status;
     List<Amenty>? amenties;
-    dynamic image;
+       List<String> images;
     DateTime createdAt;
     DateTime updatedAt;
     
@@ -71,7 +71,7 @@ class ServiceData {
         required this.isBooking,
         required this.status,
         this.amenties,
-        required this.image,
+        required this.images,
         required this.createdAt,
         required this.updatedAt,
     });
@@ -94,7 +94,7 @@ class ServiceData {
         status: json["status"]??"",
         amenties: json["amenties"] == null ? [] :
          List<Amenty>.from(json["amenties"]!.map((x) => Amenty.fromJson(x))),
-        image: json["image"],
+        images:json["images"] == null ? [] : List<String>.from(json["images"].map((x) => x)),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
           sgst: json["cgst"],
@@ -122,7 +122,7 @@ class ServiceData {
         "unit": unit,
         "status": status,
         "amenties": amenties == null ? [] : List<dynamic>.from(amenties!.map((x) => x.toJson())),
-        "image": image,
+        "image": images,
         "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt.toIso8601String(),
 

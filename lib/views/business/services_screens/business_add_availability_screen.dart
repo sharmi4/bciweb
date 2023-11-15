@@ -5,6 +5,7 @@ import 'package:bciweb/views/business/services_screens/addservice_timeslot_scree
 
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -31,6 +32,60 @@ class BusinessAddAvailabilityScreen extends StatefulWidget {
 
 class _BusinessAddAvailabilityScreenState
     extends State<BusinessAddAvailabilityScreen> {
+
+
+
+  TimeOfDay selectedTime = TimeOfDay(hour: 00, minute: 00);
+
+  String? _hour, _minute, _time;
+
+  Future<Null> _startTime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null)
+      setState(() {
+        selectedTime = picked;
+        _hour = selectedTime.hour.toString();
+        _minute = selectedTime.minute.toString();
+        _time = _hour! + ' : ' + _minute!;
+        // _startTimeController.text = _time!;
+        _startTimeController.text = formatDate(
+            DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
+            [hh, ':', nn, " ", am]).toString();
+        print(_hour);
+        startTime = "${_hour}:${_minute}";
+      });
+  }
+
+  Future<Null> _endtime(BuildContext context) async {
+    final TimeOfDay? picked = await showTimePicker(
+      context: context,
+      initialTime: selectedTime,
+    );
+    if (picked != null)
+      setState(() {
+        selectedTime = picked;
+        _hour = selectedTime.hour.toString();
+        _minute = selectedTime.minute.toString();
+        _time = _hour! + ' : ' + _minute!;
+        _endtimeController.text = _time!;
+        _endtimeController.text = formatDate(
+            DateTime(2019, 08, 1, selectedTime.hour, selectedTime.minute),
+            [hh, ':', nn, " ", am]).toString();
+        endTime = "${_hour}:${_minute}";
+      });
+  }
+
+
+
+
+
+
+
+
+
   List<int> gstPercentageList = [5, 12, 18, 28];
 
   var gstPercentage;
@@ -60,6 +115,8 @@ class _BusinessAddAvailabilityScreenState
   var sgstController = TextEditingController();
   var gstController = TextEditingController();
   var amentiesController = TextEditingController();
+    TextEditingController _endtimeController = TextEditingController();
+  TextEditingController _startTimeController = TextEditingController();
   @override
   void initState() {
     // TODO: implement initState
@@ -67,22 +124,24 @@ class _BusinessAddAvailabilityScreenState
     _controller = TextfieldTagsController();
     authController.getCategoryList();
     authController.getSubCategoryList();
+
+     _startTimeController.text = formatDate(
+        DateTime(2019, 08, 1, DateTime.now().hour, DateTime.now().minute),
+        [hh, ':', nn, " ", am]).toString();
+    _endtimeController.text = formatDate(
+        DateTime(2019, 08, 1, DateTime.now().hour, DateTime.now().minute),
+        [hh, ':', nn, " ", am]).toString();
   }
 
   DateTime date1 = DateTime.now();
   DateTime date = DateTime.now();
+dynamic startTime, endTime;
 
-  String selectdt = formatDate(DateTime.now(), [
-    yyyy,
-    "-",
-    mm,
-    "-",
-    dd,
-  ]);
 
-  String selectdt1 = formatDate(
-      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
-      [yyyy, "-", mm, "-", dd]);
+
+
+
+
 
   List<Widget> itemPhotosWidgetList = <Widget>[];
 
@@ -133,18 +192,7 @@ class _BusinessAddAvailabilityScreenState
           );
         }));
 
-    if (picked != null) {
-      setState(() {
-        date1 = picked;
-        selectdt = formatDate(date1, [
-          yyyy,
-          "-",
-          mm,
-          "-",
-          dd,
-        ]);
-      });
-    }
+
   }
 
   final authController = Get.find<AuthController>();
@@ -173,21 +221,7 @@ class _BusinessAddAvailabilityScreenState
           );
         }));
 
-    if (picked != null) {
-      setState(() {
-        date = picked;
-        selectdt1 = formatDate(date, [
-          yyyy,
-          "-",
-          mm,
-          "-",
-          dd,
-        ]);
-      });
-      // serviceController.dateFilterBooking(
-      //     fromdate: selectdt,
-      //     todate: selectdt1);
-    }
+    
   }
 
   @override
@@ -445,22 +479,80 @@ class _BusinessAddAvailabilityScreenState
                           width: 250,
                           decoration: const BoxDecoration(
                               color: Color.fromARGB(255, 232, 232, 232)),
-                          child: images != null
+                          child: images!.isNotEmpty
                               ? GridView.builder(
-                                  shrinkWrap: true,
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3),
+                          itemCount: images!.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Stack(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(8),
+                                    child: StreamBuilder<Object>(
+                                        stream: null,
+                                        builder: (context, snapshot) {
+                                          return Stack(
+                                            children: [
+                                               Image.memory(
+                                                 images![index],
+                                                height: 100,
+                                                width: 100,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ],
+                                          );
+                                        }),
                                   ),
-                                  itemCount: images!.length,
-                                  itemBuilder: (context, index) {
-                                    return Image.memory(
-                                      images![index],
-                                      width: 300,
-                                      height: 300,
-                                    );
-                                  },
-                                )
+                                  Positioned(
+                                      left: 70,
+                                      child: InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              images?.removeAt(index);
+                                            });
+                                          },
+                                          child: Container(
+                                            height: 30,
+                                            width: 30,
+                                            decoration: BoxDecoration(
+                                              color: kwhite,
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                      topRight:
+                                                          Radius.circular(8),
+                                                      bottomLeft:
+                                                          Radius.circular(8)),
+                                            ),
+                                            child: const Icon(
+                                              CupertinoIcons.delete,
+                                              color: Colors.grey,
+                                            ),
+                                          ))),
+                                ],
+                              ),
+                            );
+                          })
+                              
+                              
+                              // GridView.builder(
+                              //     shrinkWrap: true,
+                              //     gridDelegate:
+                              //         SliverGridDelegateWithFixedCrossAxisCount(
+                              //       crossAxisCount: 3,
+                              //     ),
+                              //     itemCount: images!.length,
+                              //     itemBuilder: (context, index) {
+                              //       return Image.memory(
+                              //         images![index],
+                              //         width: 300,
+                              //         height: 300,
+                              //       );
+                              //     },
+                              //   )
                               : Column(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceAround,
@@ -503,42 +595,11 @@ class _BusinessAddAvailabilityScreenState
                     //   ),
                     // ),
                     ksizedbox30,
-
-
                   ],
                 ),
               ),
 
- Padding(
-                        padding: const EdgeInsets.only(right: 60),
-                        child: InkWell(onTap: (){Get.to(TimeSlotScreen());},
-                          child: Container(
-                            height: 40,
-                            width: MediaQuery.of(context).size.width*0.25,
-                            decoration: BoxDecoration(
-                              color: korange,
-                                border: Border.all(color: kOrange, width: 1),
-                                borderRadius: BorderRadius.circular(8)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 5),
-                                  child: Text(
-                                    'Time Slot',
-                                    style: TextStyle(fontSize: 16, color: kwhite),
-                                  ),
-                                ),
-                                ksizedbox10,
-                                kwidth10,
-                                Padding(
-                                  padding: const EdgeInsets.only(right: 5),
-                                  child:Icon(Icons.add_circle_outline,
-                                  color: kwhite,)
-                                )
-                              ],
-                            )),
-                        ),),
+              
 
               ksizedbox30,
               Padding(
@@ -611,22 +672,37 @@ class _BusinessAddAvailabilityScreenState
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(left: 10),
-                      child: Container(
-                        height: 54,
-                        width: MediaQuery.of(context).size.width * 0.25,
-                        decoration: BoxDecoration(),
-                        child: TextField(
-                          controller: enddateController,
-                          decoration: InputDecoration(
-                              suffixIcon: InkWell(
-                                  onTap: () {
-                                    _showDatePicker1(context);
-                                  },
-                                  child: Icon(Icons.date_range)),
-                              hintText: selectdt1,
-                              border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: kblue))),
-                        ),
+                      child: InkWell(
+                        onTap: () {
+                          Get.to(TimeSlotScreen());
+                        },
+                        child: Container(
+                            height: 40,
+                            width: MediaQuery.of(context).size.width * 0.25,
+                            decoration: BoxDecoration(
+                                color: korange,
+                                border: Border.all(color: kOrange, width: 1),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    'Time Slot',
+                                    style: TextStyle(fontSize: 16, color: kwhite),
+                                  ),
+                                ),
+                                ksizedbox10,
+                                kwidth10,
+                                Padding(
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: Icon(
+                                      Icons.add_circle_outline,
+                                      color: kwhite,
+                                    ))
+                              ],
+                            )),
                       ),
                     ),
                     ksizedbox30,
@@ -1143,135 +1219,130 @@ class _BusinessAddAvailabilityScreenState
                       ),
                     ),
                   ],
-                ),
+                ),ksizedbox40,
 
+              Padding(
+                padding: const EdgeInsets.only(left: 33),
+                child: Obx(
+                  () => businessserviceController.isLoading.isTrue
+                      ? Container(
+                          height: 55,
+                          width: MediaQuery.of(context).size.width * 0.31,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: kblue),
+                          alignment: Alignment.center,
+                          child: const CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : InkWell(
+                          onTap: () {
+                            List<Amenty> listTags = [];
 
- Padding(
-                      padding: const EdgeInsets.only(left: 33),
-                      child: Obx(
-                        () => businessserviceController.isLoading.isTrue
-                            ? Container(
-                                height: 55,
-                                width: MediaQuery.of(context).size.width * 0.31,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: kblue),
-                                alignment: Alignment.center,
-                                child: const CircularProgressIndicator(
+                            var tagsList = _controller!.getTags;
+
+                            for (var i = 0; i < tagsList!.length; i++) {
+                              listTags.add(Amenty(value: tagsList[i]));
+                            }
+                            print('::::::::::::here.category data:::::');
+                            print(merchantCategory);
+
+                            CategoryData categoryModel =
+                                merchantCategory as CategoryData;
+                            print('values::::::::::::::::');
+                            print('actualamount');
+                            print(actualAmountController.text);
+                            print('listtag');
+                            print(listTags);
+                            print('category');
+                            print(categoryModel);
+                            print('description');
+                            print(descriptionController.text);
+                            print('serviceimage');
+                            print(images);
+                            print('saleamount');
+                            print(saleAmountController.text);
+                            print('servicetitle');
+                            print(serviceTitleController.text);
+                            print('gst');
+                            print(gstController.text);
+                            print('cgst');
+                            print(cgstController.text);
+                            print('unit');
+                            print(unitController.text);
+                            print('sgst');
+                            print(sgstController.text);
+                            print('start');
+                          //  print(selectdt);
+                            print('end');
+                       //     print(selectdt1);
+                            print('quantity');
+                            print(quantityController.text);
+                            print('amenties');
+                            print(amentiesController.text);
+
+                            CreateServiceModel createServiceModel =
+                                CreateServiceModel(
+                                    offerPercentage:
+                                        offerPercentageController.text.isEmpty
+                                            ? null
+                                            : offerPercentageController.text,
+                                    actualAmount: actualAmountController.text,
+                                    amenities: listTags,
+                                    // share: shareValue,
+                                    booking:
+                                        authController.isGstAvailable.isTrue
+                                            ? "1"
+                                            : "0",
+                                    // bvcAmount: bvcAmountController.text,
+                                    category: categoryModel.id.toString(),
+                                    description: descriptionController.text,
+                                    image: images,
+                                    isCouponsAvailable:
+                                        isCouponEligible ? "1" : "0",
+                                    isOfferAvailable:
+                                        isOfferEligible ? "1" : "0",
+                                    saleAmount: saleAmountController.text,
+                                    title: serviceTitleController.text,
+                                    couponAmount:
+                                        couponAmountController.text.isEmpty
+                                            ? null
+                                            : couponAmountController.text,
+                                    offerAmount:
+                                        offerAmountController.text.isEmpty
+                                            ? null
+                                            : offerAmountController.text,
+                                    unit: unitController.text,
+                                    cgst: cgstPercentage,
+                                    sgst: sgstPercentage,
+                                    endTime: startTime,
+                                    startTime: endTime,
+                                    quantity: quantityController.text);
+
+                            print('nosucherror');
+
+                            businessserviceController.addServices(
+                                createServiceModel: createServiceModel);
+                          },
+                          child: Container(
+                            height: 55,
+                            width: MediaQuery.of(context).size.width * 0.31,
+                            decoration: BoxDecoration(
+                                //borderRadius: BorderRadius.circular(10),
+                                color: kblue),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "SUMBMIT",
+                              style: primaryFont.copyWith(
                                   color: Colors.white,
-                                ),
-                              )
-                            : InkWell(
-                                onTap: () {
-                                  List<Amenty> listTags = [];
-
-                                  var tagsList = _controller!.getTags;
-
-                                  for (var i = 0; i < tagsList!.length; i++) {
-                                    listTags.add(Amenty(value: tagsList[i]));
-                                  }
-                                  print('::::::::::::here.category data:::::');
-                                  print(merchantCategory);
-
-                                  CategoryData categoryModel =
-                                      merchantCategory as CategoryData;
-                                  print('values::::::::::::::::');
-                                  print('actualamount');
-                                  print(actualAmountController.text);
-                                  print('listtag');
-                                  print(listTags);
-                                  print('category');
-                                  print(categoryModel);
-                                  print('description');
-                                  print(descriptionController.text);
-                                  print('serviceimage');
-                                  print(images);
-                                  print('saleamount');
-                                  print(saleAmountController.text);
-                                  print('servicetitle');
-                                  print(serviceTitleController.text);
-                                  print('gst');
-                                  print(gstController.text);
-                                  print('cgst');
-                                  print(cgstController.text);
-                                  print('unit');
-                                  print(unitController.text);
-                                  print('sgst');
-                                  print(sgstController.text);
-                                  print('start');
-                                  print(selectdt);
-                                  print('end');
-                                  print(selectdt1);
-                                  print('quantity');
-                                  print(quantityController.text);
-                                  print('amenties');
-                                  print(amentiesController.text);
-
-                                  CreateServiceModel createServiceModel =
-                                      CreateServiceModel(
-                                          offerPercentage: offerPercentageController
-                                                  .text.isEmpty
-                                              ? null
-                                              : offerPercentageController.text,
-                                          actualAmount:
-                                              actualAmountController.text,
-                                          amenities: listTags,
-                                          // share: shareValue,
-                                          booking: authController
-                                                  .isGstAvailable.isTrue
-                                              ? "1"
-                                              : "0",
-                                          // bvcAmount: bvcAmountController.text,
-                                          category: categoryModel.id.toString(),
-                                          description:
-                                              descriptionController.text,
-                                          image: images,
-                                          isCouponsAvailable:
-                                              isCouponEligible ? "1" : "0",
-                                          isOfferAvailable:
-                                              isOfferEligible ? "1" : "0",
-                                          saleAmount: saleAmountController.text,
-                                          title: serviceTitleController.text,
-                                          couponAmount: couponAmountController
-                                                  .text.isEmpty
-                                              ? null
-                                              : couponAmountController.text,
-                                          offerAmount:
-                                              offerAmountController.text.isEmpty
-                                                  ? null
-                                                  : offerAmountController.text,
-                                          unit: unitController.text,
-                                          cgst: cgstPercentage,
-                                          sgst: sgstPercentage,
-                                          endTime: selectdt,
-                                          startTime: selectdt1,
-                                          quantity: quantityController.text);
-
-                                  print('nosucherror');
-
-                                  businessserviceController.addServices(
-                                      createServiceModel: createServiceModel);
-                                },
-                                child: Container(
-                                  height: 55,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.31,
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: kblue),
-                                  alignment: Alignment.center,
-                                  child: Text(
-                                    "SUMBMIT",
-                                    style: primaryFont.copyWith(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                      ),
-                    ),
-                 
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
+                ),
+              ),
 
               if (isCouponEligible)
                 Padding(

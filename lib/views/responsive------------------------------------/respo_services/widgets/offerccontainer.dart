@@ -63,7 +63,7 @@ class _Respooffers_containerState extends State<Respooffers_container> {
                     padding: const EdgeInsets.all(10),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(10),
-                      child: Image.network(authController.dataList[index].image,
+                      child: Image.network(authController.dataList[index].images.first,
                       fit: BoxFit.fitHeight,height: 150)),
                   ),
                   kwidth10,

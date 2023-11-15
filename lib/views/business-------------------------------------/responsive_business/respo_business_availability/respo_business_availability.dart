@@ -319,7 +319,7 @@ class _RespoBusinessAvailabilityState extends State<RespoBusinessAvailability> {
                                                   child: Image.network(
                                                     servicesController
                                                         .serviceDataList[index]
-                                                        .image,
+                                                        .images.first,
                                                     fit: BoxFit.cover,
                                                   ),
                                                 ),
