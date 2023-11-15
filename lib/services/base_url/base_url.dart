@@ -349,5 +349,9 @@ abstract class BaseApiService {
   final String addFlightBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/add_flight_booking_history";
 
+      //changes
+  final String serviceDetailsURL =
+      "https://www.portal.bcipvtltd.com/api/auth/service_details";  
+
       
 }

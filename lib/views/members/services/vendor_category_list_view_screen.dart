@@ -51,7 +51,7 @@ class _VendorsListViewState extends State<VendorsCategoryListView> {
             ],
           ),
           preferredSize: const Size(double.infinity, 110)),
-      body: GetBuilder<HomeController>(builder: (_) {
+      body: GetBuilder<HomeServiceController>(builder: (_) {
         return homeServiceController.merchatCategoryList.isEmpty
             ? Center(
                 child: Column(

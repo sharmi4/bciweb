@@ -1,6 +1,7 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/setting_controller/setting_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
+import 'package:bciweb/views/profile_register_page/partial_statement_screen.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -227,8 +228,8 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
                           InkWell(
                             onTap: () {
                               settingController.initiatePayment(
-                                  amount: double.parse(settingController
-                                      .totalUnpaidAmountCurrentMonth.value));
+                                  amount: double.parse(settingController.
+                                  covertAmountToInt(settingController.totalUnpaidAmountCurrentMonth.value)));
                             },
                             child: Container(
                               height: 40,
@@ -244,19 +245,24 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 15,
                           ),
-                          Container(
-                            height: 40,
-                            width: 200,
-                            decoration: BoxDecoration(
-                                color: kblue,
-                                borderRadius: BorderRadius.circular(12)),
-                            child: Center(
-                              child: Text(
-                                'View Statement',
-                                style: TextStyle(color: kwhite),
+                          InkWell(
+                            onTap: (){
+                              Get.to(const PartialStatementScreen());
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 200,
+                              decoration: BoxDecoration(
+                                  color: kblue,
+                                  borderRadius: BorderRadius.circular(12)),
+                              child: Center(
+                                child: Text(
+                                  'View Statement',
+                                  style: TextStyle(color: kwhite),
+                                ),
                               ),
                             ),
                           )
@@ -288,7 +294,7 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
               width: size.width,
               decoration: BoxDecoration(color: kwhite, boxShadow: <BoxShadow>[
                 BoxShadow(
-                    offset: Offset(0.0, 0.75), blurRadius: 5, color: kgrey)
+                    offset:const Offset(0.0, 0.75), blurRadius: 5, color: kgrey)
               ]),
               child: Padding(
                 padding: const EdgeInsets.only(left: 15, right: 15),
@@ -326,7 +332,7 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
                                               ),
                                             ],
                                           ),
-                                          SizedBox(
+                                          const SizedBox(
                                             width: 10,
                                           ),
                                           Column(
@@ -343,6 +349,22 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
                                                     fontWeight: FontWeight.w500,
                                                     color: kblue),
                                               ),
+                                              settingController.creditTransactionsList[index].isPaid == "2" ? 
+                                              Text("Credited on ${formatDate(settingController.creditTransactionsList[index].createdAt, [
+                                                                dd,
+                                                                " ",
+                                                                M,
+                                                                " ",
+                                                                yyyy
+                                                              ])}",
+                                                          style: const TextStyle(
+                                                              fontSize: 14,
+                                                              color: Color(
+                                                                  0xFF05406E),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w400),
+                                                        ) :
                                               Text(
                                                 "Paid on ${formatDate(settingController.creditTransactionsList[index].createdAt, [
                                                       dd,
@@ -353,7 +375,7 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
                                                     ])}",
                                                 style: TextStyle(
                                                     fontSize: 13, color: kblue),
-                                              )
+                                              )  
                                             ],
                                           ),
                                         ],
@@ -372,7 +394,13 @@ class _ProfileCreditScreenState extends State<ProfileCreditScreen> {
                                     '₹${settingController.creditTransactionsList[index].amount}',
                                     style: TextStyle(
                                         fontSize: 18,
-                                        color: Colors.pink,
+                                        color: settingController
+                                                      .creditTransactionsList[
+                                                          index]
+                                                      .isPaid ==
+                                                  "2"
+                                              ? Colors.green
+                                              : Colors.pink,
                                         fontWeight: FontWeight.w500),
                                   ),
                                 ],

@@ -1,11 +1,15 @@
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
+import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:bciweb/views/members/services/views/servicescart/servicescart.dart';
+import 'package:date_format/date_format.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../constant/constans.dart';
 import '../../../../../controller/redeem_controller/redeem_controller.dart';
 import '../../../../../controller/service_controller/home_controller.dart';
+import '../../../../../models/service_detail_list_model.dart';
 import '../../../../../registerhomescreen/common_reg_bottom.dart';
 import '../../../../../registerhomescreen/common_reg_homescreen.dart';
 import '../../../common_widget/common.dart';
@@ -27,11 +31,20 @@ class _ListCartState extends State<ListCart> {
 
   final profileControllerss = Get.find<RedeemController>();
 
+  var selectedValue;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    homeController.getServicesDetails(servicesId: widget.servicedata.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: PreferredSize(
+      appBar:const PreferredSize(
         child: CommonScreen(),
         preferredSize: Size(double.infinity, 40),
       ),
@@ -50,15 +63,65 @@ class _ListCartState extends State<ListCart> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        height: size.height*0.65,
-                        width: size.width * 0.22,
-//height: size.height * 0.5,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(7),
-                          child: Image.network(widget.servicedata.image,
-                          fit: BoxFit.cover,),
+                      Column(
+                        children: [
+                          Container(
+                            height: size.height*0.65,
+                            width: size.width * 0.22,
+                             //height: size.height * 0.5,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(7),
+                              child: Image.network(widget.servicedata.images.first,
+                              fit: BoxFit.cover,),
+                            ),
+                          ),
+                          ksizedbox10,
+          Container(
+            height: 80,
+            child: GetBuilder<HomeController>(builder: (_) {
+              return GridView.builder(
+                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3),
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemCount: widget.servicedata.images.length,
+                  itemBuilder: (context, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 10),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: InkWell(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    backgroundColor: Colors.white,
+                                    title: Column(
+                                      children: [
+                                        Image.network(widget
+                                            .servicedata.images[index]),
+                                      ],
+                                    ),
+                                  );
+                                });
+                          },
+                          child: Image.network(
+                            widget.servicedata.images[index],
+                            height: 50,
+                            width: 80,
+                            fit: BoxFit.cover,
+                          ),
                         ),
+                      ),
+                    );
+                  });
+            }),
+          ),
+                        ],
                       ),
                       Container(
                         width: size.width * 0.3,
@@ -130,7 +193,7 @@ class _ListCartState extends State<ListCart> {
                             ksizedbox40,
                             InkWell(
                               onTap: () {
-                                Get.to(ServicesCart());
+                                Get.to(const ServicesCart());
                               },
                               child: Container(
                                 height: 40,
@@ -139,11 +202,11 @@ class _ListCartState extends State<ListCart> {
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child: Center(
+                                child:const Center(
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
-                                    children: const [
+                                    children: [
                                       Text(
                                         "View Cart",
                                         style: TextStyle(
@@ -160,15 +223,122 @@ class _ListCartState extends State<ListCart> {
                               ),
                             ),
                             ksizedbox40,
-                            Text(
-                              "₹ ${widget.servicedata.saleAmount}",
-                              style: TextStyle(
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold,
-                                  color: kOrange),
+                           Row(
+                  children: [
+                    Text(
+                      "₹${widget.servicedata.actualAmount}",
+                      style:const TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.lineThrough,
+                          color: Colors.grey),
+                    ),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Text(
+                      "₹${widget.servicedata.saleAmount}",
+                      style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: korange),
+                    ),
+                  ],
+                ),
+               ksizedbox40,
+               GetBuilder<HomeServiceController>(builder: (_) {
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (homeController.slotDetailList.isNotEmpty)
+                        Text(
+                          'Time Slot',
+                          style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: kblue),
+                        ),
+                      ksizedbox10,
+                      if (homeController.slotDetailList.isNotEmpty)
+                        DropdownButtonFormField2<SlotDetail>(
+                          isExpanded: true,
+                          decoration: InputDecoration(
+                            // Add Horizontal padding using menuItemStyleData.padding so it matches
+                            // the menu padding when button's width is not specified.
+                            contentPadding:
+                                const EdgeInsets.symmetric(vertical: 16),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
                             ),
-                            ksizedbox40,
-                            ksizedbox40,
+                            // Add more decoration..
+                          ),
+                          hint: const Text(
+                            'Select Your Time slot',
+                            style: TextStyle(fontSize: 14),
+                          ),
+                          items: homeController.slotDetailList
+                              .map((item) => DropdownMenuItem<SlotDetail>(
+                                    value: item,
+                                    child: Text(
+                                      "${item.weekday} ${formatDate(DateTime(2023, 1, 1, int.parse(item.endTime.split(":").first)), [
+                                            hh,
+                                            ":",
+                                            nn,
+                                            " ",
+                                            am
+                                          ])}-${formatDate(DateTime(2023, 1, 1, int.parse(item.startTime.split(":").first)), [
+                                            hh,
+                                            ":",
+                                            nn,
+                                            " ",
+                                            am
+                                          ])}",
+                                      style: const TextStyle(
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                  ))
+                              .toList(),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'Please select Time slot.';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            //Do something when selected item is changed.
+                            setState(() {
+                              selectedValue = value;
+                            });
+                          },
+                          onSaved: (value) {
+                            setState(() {
+                              selectedValue = value;
+                            });
+                          },
+                          buttonStyleData: const ButtonStyleData(
+                            padding: EdgeInsets.only(right: 8),
+                          ),
+                          iconStyleData: const IconStyleData(
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black45,
+                            ),
+                            iconSize: 24,
+                          ),
+                          dropdownStyleData: DropdownStyleData(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                          ),
+                          menuItemStyleData: const MenuItemStyleData(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                          ),
+                        ),
+                    ],
+                  );
+                }),
+                ksizedbox20,
                             TextField(
                               controller: redeemCouponcontroller,
                               decoration: InputDecoration(

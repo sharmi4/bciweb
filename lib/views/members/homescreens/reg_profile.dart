@@ -4,7 +4,7 @@ import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/views/authentication/landing_screen.dart';
 import 'package:bciweb/views/profile_register_page/profile_credit_screen.dart';
 import 'package:bciweb/views/profile_register_page/profile_partial_screen.dart';
-import 'package:bciweb/views/profile_register_page/profile_statement_screen.dart';
+import 'package:bciweb/views/profile_register_page/partial_statement_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
@@ -1124,7 +1124,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             if (reghomeController.proindex.value == 10) const ProfileCreditScreen(),
             if (reghomeController.proindex.value == 11) const ProfilePartialScreen(),
             if (reghomeController.proindex.value == 12) const PartialPaymentScreen(),
-            if (reghomeController.proindex.value == 13) const ProfileStatementScreen(),
+            if (reghomeController.proindex.value == 13) const PartialStatementScreen(),
           ]),
           ksizedbox20,
           const RegisterCommonBottom()

@@ -28,7 +28,9 @@ import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import '../../constant/constans.dart';
 import '../../models/get_gallery_model.dart';
+import '../../models/service_detail_list_model.dart';
 import '../../models/todayoffers_model.dart';
+import '../../services/networks/vendor_list_api_services/get_service_list_api_service.dart';
 import '../../views/responsive------------------------------------/mobile_body/cart_divertion.dart';
 import '../../services/networks/services/add_to_cart_api_service.dart';
 import '../../services/networks/services/catogory_api_service/add_booking_api_services.dart';
@@ -359,6 +361,33 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
     update();
   }
 
+  //vendor service list in categoy 
+
+  List<GetServiceListData> tempVendorServiceListData = [];
+  vendorServiceListbyCategory(String vendorId, String category) async {
+    dio.Response<dynamic> response = await vendorServiceListApiServices
+        .vendorServiceListApiServices(vendorId: vendorId);
+
+    if (response.statusCode == 200) {
+      GetServiceList getServiceList = GetServiceList.fromJson(response.data);
+      vendorServiceListData = getServiceList.data
+          .where((element) => element.categoryId.toString() == category)
+          .toList();
+
+      tempVendorServiceListData = getServiceList.data
+          .where((element) => element.categoryId.toString() == category)
+          .toList();
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
+    }
+    update();
+  }
+
   //vendor category service
   VendorCategoryListAPIServices vendorCategoryListAPIServices = VendorCategoryListAPIServices();
   List<MerchatCategoryData> merchatCategoryList = [];
@@ -402,7 +431,22 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
   }
 
 
+   GetServicesDetailsServices getServicesDetailsServices =
+      GetServicesDetailsServices();
 
+  List<SlotDetail> slotDetailList = [];
+
+  getServicesDetails({required int servicesId}) async {
+    dio.Response<dynamic> response = await getServicesDetailsServices
+        .getServiceDetails(serviceId: servicesId);
+
+    if (response.statusCode == 200) {
+      ServiceDetailsModel vendorListModel =
+          ServiceDetailsModel.fromJson(response.data);
+      slotDetailList = vendorListModel.slotDetail;
+    }
+    update();
+  }
 
 
 

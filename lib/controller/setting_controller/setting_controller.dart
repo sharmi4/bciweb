@@ -266,6 +266,12 @@ class ApiSettingController extends GetxController {
     }
   }
 
+  String covertAmountToInt(String amount) {
+    int intValue = int.parse(amount.replaceAll(',', '').split('.')[0]);
+
+    return intValue.toString();
+  }
+
   InitiatePaymentApiServices initiatePaymentApiServices =
       InitiatePaymentApiServices();
   initiatePayment({

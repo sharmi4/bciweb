@@ -24,7 +24,7 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    homeController.vendorServiceList(widget.vendorId);
+    homeController.vendorServiceListbyCategory(widget.vendorId, widget.categoryId);
   }
 
   @override
@@ -76,84 +76,171 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
                                         blurRadius: 2.5,
                                         color: Colors.grey.withOpacity(0.5))
                                   ]),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              child: Stack(
                                 children: [
-                                  Container(
-                                      height: 120,
-                                      width: 150,
-                                      decoration: BoxDecoration(
-                                          image: DecorationImage(
-                                            image: NetworkImage(homeController.vendorServiceListData[index].image),
-                                            fit: BoxFit.fill,
-                                          ),
-                                          //     color: Colors.red,
-                                          borderRadius: BorderRadius.circular(20),
-                                          boxShadow: [
-                                            BoxShadow(
-                                                blurRadius: 2.5,
-                                                color: Colors.grey.withOpacity(0.5))
-                                          ])),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 15,top: 15),
-                                    child: Column(
-                                     // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        const SizedBox(
-                                          height: 10,
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                    children: [
+                                       homeController.vendorServiceListData[index]
+                                        .images.isEmpty
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.asset(
+                                          "assets/images/Group 9407.png",
+                                          height: 125,
+                                          width: 150,
+                                          fit: BoxFit.cover,
                                         ),
-                                        Text(
-                                          homeController.vendorServiceListData[index].title,
-                                          overflow: TextOverflow.ellipsis,
-                                          style: primaryFont.copyWith(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
+                                      )
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(15),
+                                        child: Image.network(
+                                          homeController
+                                              .vendorServiceListData[index]
+                                              .images
+                                              .first,
+                                          height: 125,
+                                          width: 150,
+                                          fit: BoxFit.cover,
                                         ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Container(
-                                            width: size.width * 0.15,
-                                            child: Text(homeController.vendorServiceListData[index].description,
-                                              maxLines: 3,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(left: 15,top: 15),
+                                        child: Column(
+                                         // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            
+                                            Text(
+                                              homeController.vendorServiceListData[index].title,
+                                              overflow: TextOverflow.ellipsis,
                                               style: primaryFont.copyWith(
-                                                  fontSize: 13,
-                                                  fontWeight: FontWeight.w500),
-                                            )),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        InkWell(
-                                          onTap: () {
-                                            Get.to(ListCart(
-                                              servicedata: homeController.vendorServiceListData[index],
-                                            ));
-                                          },
-                                          child: Container(
-                                            height: 35,
-                                            decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(10),
-                                              color: kblue,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
                                             ),
-                                            alignment: Alignment.center,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 10, right: 10),
-                                              child: Text(
-                                                "Click now",
-                                                style: primaryFont.copyWith(
-                                                    color: Colors.white,
-                                                    fontSize: 16,
-                                                    fontWeight: FontWeight.bold),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            Container(
+                                                width: size.width * 0.15,
+                                                child: Text(homeController.vendorServiceListData[index].description,
+                                                  maxLines: 3,
+                                                  style: primaryFont.copyWith(
+                                                      fontSize: 13,
+                                                      fontWeight: FontWeight.w500),
+                                                )),
+                                                const SizedBox(
+                                                 height: 5,
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          "Actual price",
+                                                          style: primaryFont.copyWith(
+                                                              color: kOrange,
+                                                              fontSize: 12,
+                                                              fontWeight: FontWeight.bold),
+                                                        ),
+                                                        Text(
+                                                          "₹${homeController.vendorServiceListData[index].actualAmount}",
+                                                          style: primaryFont.copyWith(
+                                                              decoration:
+                                                                  TextDecoration.lineThrough,
+                                                              color: Colors.grey,
+                                                              fontSize: 12,
+                                                              fontWeight: FontWeight.bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    const SizedBox(width: 15,),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment.start,
+                                                      children: [
+                                                        Text(
+                                                          "BCI price",
+                                                          style: primaryFont.copyWith(
+                                                              color: kOrange,
+                                                              fontSize: 12,
+                                                              fontWeight: FontWeight.bold),
+                                                        ),
+                                                        Text(
+                                                          "₹${homeController.vendorServiceListData[index].saleAmount}",
+                                                          style: primaryFont.copyWith(
+                                                              color: kblue,
+                                                              fontSize: 12,
+                                                              fontWeight: FontWeight.bold),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                            const SizedBox(
+                                              height: 10,
+                                            ),
+                                            InkWell(
+                                              onTap: () {
+                                                Get.to(ListCart(
+                                                  servicedata: homeController.vendorServiceListData[index],
+                                                ));
+                                              },
+                                              child: Container(
+                                                height: 35,
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  color: kblue,
+                                                ),
+                                                alignment: Alignment.center,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      left: 10, right: 10),
+                                                  child: Text(
+                                                    "Click now",
+                                                    style: primaryFont.copyWith(
+                                                        color: Colors.white,
+                                                        fontSize: 16,
+                                                        fontWeight: FontWeight.bold),
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        )
-                                      ],
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                     
+                                    ],
+                                  ),
+                                   if (homeController
+                                  .vendorServiceListData[index].isRecomended ==
+                              "1")
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.grey.withOpacity(0.4),
+                              ),
+                              child: Center(
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                       color: kwhite,
+                                      borderRadius: BorderRadius.circular(5)
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: Text(
+                                         "All slots are filled",
+                                          style: primaryFont.copyWith(color: Colors.red),
+                                                                      ),
                                     ),
                                   )
+                              ),
+                            )
                                 ],
                               ),
                             ),

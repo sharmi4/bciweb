@@ -4,8 +4,7 @@
 
 import 'dart:convert';
 
-import 'package:bciweb/models/service_model.dart';
-
+import '../holiday_packages_models/recommentedlist_model.dart';
 
 GetServiceList getServiceListFromJson(String str) =>
     GetServiceList.fromJson(json.decode(str));
@@ -44,9 +43,11 @@ class GetServiceListData {
   String saleAmount;
   String description;
   String isBooking;
+  String isRecomended;
   dynamic status;
   List<Amenty> amenties;
   String image;
+  List<String> images;
   DateTime createdAt;
   DateTime updatedAt;
 
@@ -64,8 +65,10 @@ class GetServiceListData {
     required this.status,
     required this.amenties,
     required this.image,
+    required this.images,
     required this.createdAt,
     required this.updatedAt,
+    required this.isRecomended,
   });
 
   factory GetServiceListData.fromJson(Map<String, dynamic> json) =>
@@ -74,6 +77,7 @@ class GetServiceListData {
         categoryId: json["category_id"] ?? "",
         vendorId: json["vendor_id"] ?? "",
         title: json["title"] ?? "",
+        isRecomended: json["is_recomended"] ?? "0",
         quantity: json["quantity"] ?? "",
         actualAmount: json["actual_amount"] ?? "",
         bvcAmount: json["bvc_amount"] ?? "",
@@ -86,6 +90,9 @@ class GetServiceListData {
             : List<Amenty>.from(
                 json["amenties"]!.map((x) => Amenty.fromJson(x))),
         image: json["image"] ?? "",
+        images: json["images"] == null
+            ? []
+            : List<String>.from(json["images"].map((x) => x)),
         createdAt: DateTime.parse(json["created_at"]),
         updatedAt: DateTime.parse(json["updated_at"]),
       );
@@ -108,5 +115,3 @@ class GetServiceListData {
         "updated_at": updatedAt.toIso8601String(),
       };
 }
-
-

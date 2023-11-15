@@ -90,6 +90,7 @@ dependencies:
   image_picker_web: ^3.1.1
   selectable: ^0.3.0
   
+  dropdown_button2: ^2.3.9
  
  
  
