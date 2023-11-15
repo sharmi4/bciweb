@@ -11,7 +11,7 @@ import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:selectable/selectable.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'package:date_format/date_format.dart';
@@ -185,70 +185,72 @@ var end = DateTime.now();
                                             ),
                                             Padding(
                                               padding: const EdgeInsets.only(left: 15,top: 15,bottom: 15),
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                crossAxisAlignment: CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    hotelController
-                                                        .searchHotelData[index].hotelName,
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight: FontWeight.bold,
-                                                        color: kOrange),
-                                                  ),
-                                                  ksizedbox20,
-                                                  Container(
-                                                    width: 420,
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment.start,
-                                                      children: [
-                                                        Text(
-                                                          hotelController
-                                                              .searchHotelData[index]
-                                                              .hotelAddress,
-                                                          style: TextStyle(
-                                                              fontSize: 15, color: kblue),
-                                                        ),
-                                                      ],
+                                              child: Selectable(
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      hotelController
+                                                          .searchHotelData[index].hotelName,
+                                                      style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: kOrange),
                                                     ),
-                                                  ),
-                                                  // ksizedbox10,
-                                                  // InkWell(
-                                                  //   onTap: () async {
-                                                  //     final prefs = await SharedPreferences
-                                                  //         .getInstance();
-                                                  //     var searchtocken =
-                                                  //         prefs.getString("searchtocken");
-                                                  //     Get.to(ResortBooking(
-                                                  //         hotelcode: hotelController
-                                                  //             .searchHotelData[index]
-                                                  //             .hotelCode,
-                                                  //         resultIndex: hotelController
-                                                  //             .searchHotelData[index]
-                                                  //             .resultIndex
-                                                  //             .toString(),
-                                                  //         searchtoken: searchtocken ?? "",
-                                                  //         userIp: '122.160.83.78'));
-                                                  //     hotelController.update();
-                                                  //   },
-                                                  //   child: Container(
-                                                  //     height: 30,
-                                                  //     width: 120,
-                                                  //     decoration: BoxDecoration(
-                                                  //         color: kOrange,
-                                                  //         borderRadius:
-                                                  //             BorderRadius.circular(5)),
-                                                  //     child: Center(
-                                                  //       child: Text(
-                                                  //         'Couple  Friendly',
-                                                  //         style: TextStyle(color: kwhite),
-                                                  //       ),
-                                                  //     ),
-                                                  //   ),
-                                                  // )
-                                                ],
+                                                    ksizedbox20,
+                                                    Container(
+                                                      width: 420,
+                                                      child: Column(
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment.start,
+                                                        children: [
+                                                          Text(
+                                                            hotelController
+                                                                .searchHotelData[index]
+                                                                .hotelAddress,
+                                                            style: TextStyle(
+                                                                fontSize: 15, color: kblue),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    // ksizedbox10,
+                                                    // InkWell(
+                                                    //   onTap: () async {
+                                                    //     final prefs = await SharedPreferences
+                                                    //         .getInstance();
+                                                    //     var searchtocken =
+                                                    //         prefs.getString("searchtocken");
+                                                    //     Get.to(ResortBooking(
+                                                    //         hotelcode: hotelController
+                                                    //             .searchHotelData[index]
+                                                    //             .hotelCode,
+                                                    //         resultIndex: hotelController
+                                                    //             .searchHotelData[index]
+                                                    //             .resultIndex
+                                                    //             .toString(),
+                                                    //         searchtoken: searchtocken ?? "",
+                                                    //         userIp: '122.160.83.78'));
+                                                    //     hotelController.update();
+                                                    //   },
+                                                    //   child: Container(
+                                                    //     height: 30,
+                                                    //     width: 120,
+                                                    //     decoration: BoxDecoration(
+                                                    //         color: kOrange,
+                                                    //         borderRadius:
+                                                    //             BorderRadius.circular(5)),
+                                                    //     child: Center(
+                                                    //       child: Text(
+                                                    //         'Couple  Friendly',
+                                                    //         style: TextStyle(color: kwhite),
+                                                    //       ),
+                                                    //     ),
+                                                    //   ),
+                                                    // )
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                             Spacer(),

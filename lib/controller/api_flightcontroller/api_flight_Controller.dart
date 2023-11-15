@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:html';
 import 'package:bciweb/controller/profile_controller.dart';
+import 'package:bciweb/models/flight_passenger_model.dart';
 import 'package:bciweb/models/flight_pax_model.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
 import 'package:bciweb/services/networks/add_flight_booking_history.dart';
@@ -58,6 +59,8 @@ class ApiflightsController extends GetxController {
   RxBool isreturnDateDateSelected = false.obs;
 
   RxBool isLoading = false.obs;
+
+  List<FlightPassengerModel> flightPassengerList = [];
 
   AirSearchApiServices airSearchApiServices = AirSearchApiServices();
   AirportSearchApiServices airportSearchApiServices =

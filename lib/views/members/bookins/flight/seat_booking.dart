@@ -30,7 +30,7 @@ class FlaightSeatsBookingScreen extends StatefulWidget {
 class _FlaightSeatsBookingScreenState extends State<FlaightSeatsBookingScreen> {
   @override
   Widget build(BuildContext context) {
-    final seatController=Get.find<SeatController>();
+    final seatController = Get.find<SeatController>();
     return Scaffold(
         appBar: PreferredSize(
           child: CommonScreen(), preferredSize: Size(double.infinity, 40)),

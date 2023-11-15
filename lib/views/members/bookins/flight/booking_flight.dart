@@ -935,11 +935,12 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                           apiflightController
                                                                               .update();
                                                                         },
-                                                                        icon: Icon(Icons
-                                                                            .do_not_disturb_on_outlined)),
+                                                                        icon: const Icon(Icons
+                                                                            .do_not_disturb_on_outlined),
+                                                                            ),
                                                                     Obx(() => Text(
                                                                           '${apiflightController.adultsCount.value}',
-                                                                          style: TextStyle(
+                                                                          style: const TextStyle(
                                                                               fontSize:
                                                                                   14),
                                                                         )),
@@ -951,7 +952,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                                           apiflightController
                                                                               .update();
                                                                         },
-                                                                        icon: Icon(Icons
+                                                                        icon: const Icon(Icons
                                                                             .add_circle_outline_outlined))
                                                                   ],
                                                                 ),
@@ -1216,7 +1217,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                     }
 
                                     print(
-                                        "-----------------> going to search <---------------");
+                                        "<<----------------->>- going to search -<<--------------->>");
                                     flaightshowController.flaightshowindex(1);
                                     flaightshowController.update();
                                     FlightSearchDataModel flightSearchDataModel = FlightSearchDataModel(
@@ -1279,7 +1280,7 @@ class _BookingFlightState extends State<BookingFlight> {
                               color: kwhite,
                               boxShadow: <BoxShadow>[
                                 BoxShadow(
-                                    offset: Offset(0.0, 0.75),
+                                    offset: const Offset(0.0, 0.75),
                                     blurRadius: 5,
                                     color: kgrey)
                               ]),
@@ -2077,9 +2078,9 @@ class _BookingFlightState extends State<BookingFlight> {
                               //     ],
                               //   ),
                               // ),
-                              Padding(
+                            const  Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 10, top: 20),
+                                     EdgeInsets.only(left: 10, top: 20),
                                 child: Row(
                                   children: [
                                     Text(
@@ -2113,7 +2114,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                     airline1 = value!;
                                                   });
                                                 }),
-                                            Text(
+                                            const Text(
                                               'Air India',
                                             )
                                           ],
@@ -2130,7 +2131,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                                         airline2 = value!;
                                                       });
                                                     }),
-                                                Text('Air Asia')
+                                               const Text('Air Asia')
                                               ],
                                             ),
                                           ],

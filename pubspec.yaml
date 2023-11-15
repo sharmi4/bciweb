@@ -88,6 +88,8 @@ dependencies:
   flutter_svg_image: ^1.1.0+1
   flutter_svg: ^2.0.9
   image_picker_web: ^3.1.1
+  selectable: ^0.3.0
+  
  
  
  
