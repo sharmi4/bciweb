@@ -17,8 +17,8 @@ class MemberProfileUpdateModel {
   String branch;
   String spouse;
   String alternateMob;
-  String adharproofimg;
-  String panproofimg;
+  dynamic adharproofimg;
+  dynamic panproofimg;
   List<String>? children;
 
 

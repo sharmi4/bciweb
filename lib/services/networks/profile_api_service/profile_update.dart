@@ -32,15 +32,13 @@ class ProfileUpdateApiServices extends BaseApiService {
         "gender": memberProfileUpdateModel.gender,
         "branch": memberProfileUpdateModel.branch,
         "spouse": memberProfileUpdateModel.spouse,
-        for (var i = 0; i < memberProfileUpdateModel.children!.length; i++)
-          "child_name[$i]": memberProfileUpdateModel.children![i],
         "wedding_date": memberProfileUpdateModel.weddingDate,
         if (memberProfileUpdateModel.adharproofimg != "null")
-          "adhar_proof": await MultipartFile.fromFile(
+          "adhar_proof":  MultipartFile.fromBytes(
               memberProfileUpdateModel.adharproofimg,
               filename: "adhar_proof"),
         if (memberProfileUpdateModel.panproofimg != "null")
-          "pan_proof": await MultipartFile.fromFile(
+          "pan_proof":  MultipartFile.fromBytes(
               memberProfileUpdateModel.panproofimg,
               filename: "pan_proof"),
         for (int i = 0; i < childDetailsList.where((element) => element.isNew).toList().length; i++)
@@ -50,6 +48,9 @@ class ProfileUpdateApiServices extends BaseApiService {
                     .length; i++)
           "dob[$i]": childDetailsList[i].dateOfBirthController.text,
       });
+
+      print(formData);
+      
 
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");

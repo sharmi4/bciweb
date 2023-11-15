@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 import 'package:get/get.dart';
 import 'package:flutter_dash/flutter_dash.dart';
+import 'package:url_launcher/url_launcher.dart';
 //import 'package:bciweb/registerhomescreen/common_reg_appbar';
 
 import '../registerhomescreen/common_reg_bottom.dart';
@@ -1100,10 +1101,29 @@ class _BusinessRegisterHomeScreenState
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 150, top: 20),
-                          child: Image.asset(
-                            'assets/images/playgoogle.png',
-                            height: 150,
-                            fit: BoxFit.fitHeight,
+                          child: Column(
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                   launchUrl(Uri.parse("https://play.google.com/store/apps/details?id=com.memberapp.bci"));
+                                },
+                                child: Image.asset(
+                                  'assets/icons/MaskGroup26.png',
+                                   height: 70,
+                                   fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                              InkWell(
+                                onTap: (){
+                                  launchUrl(Uri.parse("https://apps.apple.com/in/app/bci-member/id6466208765"));
+                                },
+                                child: Image.asset(
+                                  'assets/icons/MaskGroup25.png',
+                                   height: 70,
+                                   fit: BoxFit.fitHeight,
+                                ),
+                              ),
+                            ],
                           ),
                         )
                       ],

@@ -262,25 +262,25 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      children: [
-                                        Checkbox(
-                                          value:this. isvalue, 
-                                          onChanged: ( value){
-                                          setState(() {
-                                            this.isvalue = value!;
-                                          });
-                                          }),
-                                        kwidth10,
-                                        Text('Sent Me booking details before making the booking',
-                                        style: TextStyle(
-                                          fontSize: 18,
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w600
-                                        ),)
+                                    // Row(
+                                    //   children: [
+                                    //     Checkbox(
+                                    //       value:this. isvalue, 
+                                    //       onChanged: ( value){
+                                    //       setState(() {
+                                    //         this.isvalue = value!;
+                                    //       });
+                                    //       }),
+                                    //     kwidth10,
+                                    //     Text('Sent Me booking details before making the booking',
+                                    //     style: TextStyle(
+                                    //       fontSize: 18,
+                                    //       color: Colors.black,
+                                    //       fontWeight: FontWeight.w600
+                                    //     ),)
                                             
-                                      ],
-                                    )
+                                    //   ],
+                                    // )
                                   ],
                                 ),
                               ),

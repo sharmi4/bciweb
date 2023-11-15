@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_super_html_viewer/flutter_super_html_viewer.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import '../../../../constant/constans.dart';
 import '../../../../controller/hotel_controller/hotel_controller.dart';
@@ -48,6 +49,19 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
   var lastname2Controller = TextEditingController();
   var emailController = TextEditingController();
   var numberController = TextEditingController();
+
+
+  void launchGoogleMaps(String name) async {
+    final url = 'https://www.google.com/maps/search/?api=1&query=$name';
+
+    // "google.navigation:q=$latitude,$longitude&mode=d";
+
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch Google Maps';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -157,7 +171,9 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                           ksizedbox10,
                                           TextButton.icon(
                                               onPressed: () {
-                                                
+                                                launchGoogleMaps( hotelController
+                                          .hotelInfoData.first.hotelName + ","+hotelController
+                                          .hotelInfoData.first.pinCode);
                                               },
                                               icon: const Icon(
                                                 Icons.location_on,
@@ -546,14 +562,14 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                               crossAxisAlignment:
                                                   CrossAxisAlignment.start,
                                               children: [
-                                                Text(
-                                                  '1 Room x 1 Night',
-                                                  style: TextStyle(
-                                                      fontSize: 15,
-                                                      color: kblue,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
+                                                // Text(
+                                                //   '1 Room x 1 Night',
+                                                //   style: TextStyle(
+                                                //       fontSize: 15,
+                                                //       color: kblue,
+                                                //       fontWeight:
+                                                //           FontWeight.bold),
+                                                // ),
                                                 Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment
@@ -566,7 +582,14 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                       child: Text('Base Price'),
                                                     ),
                                                     Text(
-                                                      '₹${hotelController.searchHotelData.first.price.roomPrice}',
+                                                      '₹${hotelController
+                                                                        .hotelRoomsData
+                                                                        .first
+                                                                        .hotelRoomsDetails
+                                                                        .first
+                                                                        .price
+                                                                        .roomPrice
+                                                                        .toString()}',
                                                       style: TextStyle(
                                                           fontSize: 16,
                                                           color: korange,
@@ -590,7 +613,7 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                             .spaceBetween,
                                                     children: [
                                                       Text(
-                                                        'Total Discount',
+                                                        'Total Gst',
                                                         style: TextStyle(
                                                             fontSize: 15,
                                                             fontWeight:
@@ -598,7 +621,14 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                             color: kblue),
                                                       ),
                                                       Text(
-                                                        '₹${hotelController.searchHotelData.first.price.totalGstAmount}',
+                                                        '₹${hotelController
+                                                                        .hotelRoomsData
+                                                                        .first
+                                                                        .hotelRoomsDetails
+                                                                        .first
+                                                                        .price
+                                                                        .totalGstAmount
+                                                                        .toString()}',
                                                         style: TextStyle(
                                                             color: kblue,
                                                             fontSize: 16,
@@ -632,7 +662,14 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                             color: kblue),
                                                       ),
                                                       Text(
-                                                        '₹${hotelController.searchHotelData.first.price.discount}',
+                                                        '₹${hotelController
+                                                                        .hotelRoomsData
+                                                                        .first
+                                                                        .hotelRoomsDetails
+                                                                        .first
+                                                                        .price
+                                                                        .discount
+                                                                        .toString()}',
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             fontWeight:
@@ -665,7 +702,13 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                             color: kblue),
                                                       ),
                                                       Text(
-                                                        '₹${hotelController.searchHotelData.first.price.tax}',
+                                                        '₹${hotelController
+                                                                        .hotelRoomsData
+                                                                        .first
+                                                                        .hotelRoomsDetails
+                                                                        .first
+                                                                        .price
+                                                                        .tax}',
                                                         style: TextStyle(
                                                             fontSize: 16,
                                                             fontWeight:
@@ -706,36 +749,36 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                       ),
                                                       InkWell(
                                                         onTap: () {
-                                                          hotelController.blockroomapi(
-                                                              userIp:
-                                                                  widget.userIp,
-                                                              hotelInfoData:
-                                                                  hotelController
-                                                                      .hotelInfoData
-                                                                      .first,
-                                                              resultIndex: widget
-                                                                  .resultIndex,
-                                                              hotelCode: widget
-                                                                  .hotelCode,
-                                                              hotelName:
-                                                                  hotelController
-                                                                      .hotelInfoData
-                                                                      .first
-                                                                      .hotelName,
-                                                              searchToken: widget
-                                                                  .searchToken,
-                                                              hotelRoomsDetail:
-                                                                  hotelController
-                                                                      .hotelRoomsData
-                                                                      .first
-                                                                      .hotelRoomsDetails
-                                                                      .first
-                                                              // hotelController
-                                                              //     .hotelRoomsData
-                                                              //     .first
-                                                              //     .hotelRoomsDetails
-                                                              //     .first
-                                                              );
+                                                          // hotelController.blockroomapi(
+                                                          //     userIp:
+                                                          //         widget.userIp,
+                                                          //     hotelInfoData:
+                                                          //         hotelController
+                                                          //             .hotelInfoData
+                                                          //             .first,
+                                                          //     resultIndex: widget
+                                                          //         .resultIndex,
+                                                          //     hotelCode: widget
+                                                          //         .hotelCode,
+                                                          //     hotelName:
+                                                          //         hotelController
+                                                          //             .hotelInfoData
+                                                          //             .first
+                                                          //             .hotelName,
+                                                          //     searchToken: widget
+                                                          //         .searchToken,
+                                                          //     hotelRoomsDetail:
+                                                          //         hotelController
+                                                          //             .hotelRoomsData
+                                                          //             .first
+                                                          //             .hotelRoomsDetails
+                                                          //             .first
+                                                          //     // hotelController
+                                                          //     //     .hotelRoomsData
+                                                          //     //     .first
+                                                          //     //     .hotelRoomsDetails
+                                                          //     //     .first
+                                                          //     );
                                                         },
                                                         child: Container(
                                                           height: 50,

@@ -1471,7 +1471,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                               ),
                               InkWell(
                                 onTap: (){
-                                  launchUrl(Uri.parse("https://www.portal.bcipvtltd.com/api/response_phonepay"));
+                                  launchUrl(Uri.parse("https://apps.apple.com/in/app/bci-member/id6466208765"));
                                 },
                                 child: Image.asset(
                                   'assets/icons/MaskGroup25.png',

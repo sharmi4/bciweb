@@ -1338,7 +1338,7 @@ class _BusinesHomeRespoState extends State<BusinesHomeRespo> {
                             ),
                             InkWell(
                               onTap: (){
-                                launchUrl(Uri.parse("https://apps.apple.com/app/id6466208765"));
+                                launchUrl(Uri.parse("hhttps://apps.apple.com/in/app/bci-member/id6466208765"));
                               },
                               child: Image.asset(
                                 'assets/icons/MaskGroup25.png',

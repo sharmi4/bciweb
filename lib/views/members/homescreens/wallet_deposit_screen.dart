@@ -314,8 +314,8 @@ Future<void> _showAlertDialogcancel() async {
                         onTap: (){
                           print('add transaction');
                           
-                          authprofileController.payforWallet(
-                            amount: double.parse(amountController.text));
+                          // authprofileController.payforWallet(
+                          //   amount: double.parse(amountController.text));
                         
                         },
                         child: Container(

@@ -1393,8 +1393,8 @@ final authController=Get.find<AuthController>();
                                 ),
                               ),
                               Padding(
-                                padding:const EdgeInsets.only(left: 0, top: 10),
-                                child: Column(
+                          padding: const EdgeInsets.only(left: 150, top: 20),
+                          child: Column(
                             children: [
                               InkWell(
                                 onTap: (){
@@ -1402,23 +1402,23 @@ final authController=Get.find<AuthController>();
                                 },
                                 child: Image.asset(
                                   'assets/icons/MaskGroup26.png',
-                                   height: 50,
+                                   height: 70,
                                    fit: BoxFit.fitHeight,
                                 ),
                               ),
                               InkWell(
                                 onTap: (){
-                                  launchUrl(Uri.parse("https://apps.apple.com/app/id6466208765"));
+                                  launchUrl(Uri.parse("https://apps.apple.com/in/app/bci-member/id6466208765"));
                                 },
                                 child: Image.asset(
                                   'assets/icons/MaskGroup25.png',
-                                   height: 50,
+                                   height: 70,
                                    fit: BoxFit.fitHeight,
                                 ),
                               ),
                             ],
                           ),
-                              )
+                        )
                             ],
                           ),
                         ),

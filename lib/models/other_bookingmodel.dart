@@ -54,10 +54,10 @@ class Datum {
         paymentId: json["payment_id"],
         quantity: json["quantity"],
         purchasePrice: json["purchase_price"],
-        status: json["status"],
-        service: json["service"],
-        image: json["image"],
-        description: json["description"],
+        status: json["status"] ?? "",
+        service: json["service"]?? "" ,
+        image: json["image"] ?? "",
+        description: json["description"]?? "",
     );
 
     Map<String, dynamic> toJson() => {

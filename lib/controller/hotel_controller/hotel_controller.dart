@@ -452,25 +452,23 @@ hoteldestination({required String searchCity}) async {
       await launchUrl(Uri.parse(
           ininitiatePaymentModel.data.instrumentResponse.redirectInfo.url));
       //st
-      // startTimer(
-      //   ininitiatePaymentModel.data.merchantTransactionId,
-      //   amount,
-      //   hotelCode,
-      //   hotelName,
-      //   hotelInfoData,
-      //   searchToken,
-      //   resultIndex,
-      //   hotelRoomsDetail.
-        
-        
-        
-     
-      // );
+      startTimer(
+        ininitiatePaymentModel.data.merchantTransactionId,
+        amount,
+        userIp,
+        resultIndex,
+        hotelCode,
+        hotelName,
+        searchToken,
+       hotelInfoData,
+         hotelRoomsDetail,
+      );
       print("Payment is over ------------>>");
     }
   }
   Timer? tempTimer;
-  startTimer(var  refernceID,
+  startTimer(
+    var  refernceID,
         var amount,
       var userIp,
       var resultIndex,
@@ -493,7 +491,6 @@ hoteldestination({required String searchCity}) async {
            hotelInfoData: hotelInfoData, 
            hotelRoomsDetail: hotelRoomsDetail,
           );
-
       print(
           "<<<>>><<<>>><<>>><>><><><><1><><1><------cccccc------><1><><><><><><><><><><><><><><>");
       print(status);
