@@ -1141,11 +1141,11 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                           .childDetailsList[i].nameController,
                                       readOnly: !authprofileController
                                           .childDetailsList[i].isNew,
-                                      decoration: InputDecoration(
+                                      decoration: const InputDecoration(
                                         //    isCollapsed: true,
                                         //  isDense: true,
-                                        fillColor: const Color(0xffF9F8FD),
-                                        border: const OutlineInputBorder(),
+                                        fillColor:  Color(0xffF9F8FD),
+                                        border:  OutlineInputBorder(),
                                         hintText: "Child Name",
                                         // hintStyle:
                                         //     TextStyle(
@@ -1173,9 +1173,9 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                                           _selectChildDateofBrth(context, i);
                                         }
                                       },
-                                      decoration: InputDecoration(
-                                        fillColor: const Color(0xffF9F8FD),
-                                        border: const OutlineInputBorder(),
+                                      decoration: const InputDecoration(
+                                        fillColor:  Color(0xffF9F8FD),
+                                        border:  OutlineInputBorder(),
                                         hintText: "Date Of Birth",
                                       ),
                                     ),
@@ -1218,7 +1218,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                   
                                               authprofileController.update();
                                             },
-                                            icon: Icon(
+                                            icon: const Icon(
                                               Icons.remove_circle_outline_rounded,
                                               // color: kblue,
                                             ))

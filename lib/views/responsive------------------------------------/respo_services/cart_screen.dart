@@ -249,19 +249,19 @@ class _CartScreenState extends State<CartScreen> {
                         padding: const EdgeInsets.all(8),
                         child: InkWell(
                           onTap: () {
-                            for (int i = 0;
-                                i < servicehomeController.cartListData.length;
-                                i++) {
-                              servicehomeController.addBooking(
-                                  serviceid:
-                                      servicehomeController.cartListData[i].serviceId,
-                                  cartid: servicehomeController.cartListData[i].id
-                                      .toString(),
-                                  qty: servicehomeController.cartListData[i].quantity,
-                                  offerOrCoupon: "",
-                                  couponcode: "",
-                                  amount: servicehomeController.cartListData[i].amount, bookDateTime: '');
-                            }
+                            // for (int i = 0;
+                            //     i < servicehomeController.cartListData.length;
+                            //     i++) {
+                            //   servicehomeController.addBooking(
+                            //       serviceid:
+                            //           servicehomeController.cartListData[i].serviceId,
+                            //       cartid: servicehomeController.cartListData[i].id
+                            //           .toString(),
+                            //       qty: servicehomeController.cartListData[i].quantity,
+                            //       offerOrCoupon: "",
+                            //       couponcode: "",
+                            //       amount: servicehomeController.cartListData[i].amount, bookDateTime: '');
+                            // }
       
                             Get.to(MobileHome());
                           },

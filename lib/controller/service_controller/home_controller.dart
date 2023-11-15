@@ -248,6 +248,8 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
       required String offerOrCoupon,
       required String couponcode,
       required String amount,
+      required String debitFrom,
+      required String referenceId,
        required String bookDateTime}) async {
     isLoading(true);
     dio.Response<dynamic> response =
@@ -257,6 +259,8 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
             qty: qty,
             offerOrCoupon: offerOrCoupon,
             couponcode: couponcode,
+            debitFrom: debitFrom,
+            referenceId: referenceId,
             amount: amount);
     isLoading(false);
     if (response.statusCode == 200) {

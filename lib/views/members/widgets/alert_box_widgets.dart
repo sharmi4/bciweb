@@ -126,7 +126,7 @@ paymentBottomSheet(BuildContext context, double amount,String servicesId) {
                           onTap: () {
                             final profileCn = Get.find<ProfileController>();
 
-                            profileCn.isWalletOrNot(1);
+                            profileCn.isWalletOrNot(2);
                           },
                           child: Text("Payment from Credit",
                               style: primaryFont.copyWith(
@@ -136,7 +136,7 @@ paymentBottomSheet(BuildContext context, double amount,String servicesId) {
                           onTap: () {
                             final profileCn = Get.find<ProfileController>();
 
-                            profileCn.isWalletOrNot(1);
+                            profileCn.isWalletOrNot(2);
                           },
                           child: Container(
                             height: 25,
@@ -153,7 +153,7 @@ paymentBottomSheet(BuildContext context, double amount,String servicesId) {
                                   color: Get.find<ProfileController>()
                                               .isWalletOrNot
                                               .value ==
-                                          1
+                                          2
                                       ? kblue
                                       : Colors.white),
                             ),
@@ -167,32 +167,56 @@ paymentBottomSheet(BuildContext context, double amount,String servicesId) {
                   padding: const EdgeInsets.all(15.0),
                   child: InkWell(
                     onTap: () {
-                          if (Get.find<PlanController>()
+                          // if (Get.find<PlanController>()
+                          //         .isWalletOrNot
+                          //         .value ==
+                          //     0) {
+                          //   Get.find<PlanController>()
+                          //       .initiatePayment(amount: amount, id: 2, gstPercentage: '', percentageAmount: '', totalAmount: '');
+                          // }
+                          //  else if (Get.find<PlanController>()
+                          //         .isWalletOrNot
+                          //         .value ==
+                          //     1)
+                          //      {
+                          //   Get.find<PlanController>().payFromWallet(
+                          //       amount: amount.toStringAsFixed(2));
+                          // } 
+                          // //else 
+                          // //if (Get.find<ProfileController>()
+                          // //         .isWalletOrNot
+                          // //         .value ==
+                          // //     2) {
+                          // //   Get.find<ProfileController>().useCredit(
+                          // //     creditAmount: amount.toStringAsFixed(2),
+                          // //      creditFor: "booking",
+                          // //      creditForId: servicesId
+                          // //      );
+                          // // }
+                          // Get.back();
+
+                           if (Get.find<ProfileController>()
+                                  .isWalletOrNot
+                                  .value ==
+                              3) {
+                            Get.find<PlanController>()
+                                .initiatePayment(amount: amount, id: 2, gstPercentage: '', percentageAmount: '', totalAmount: '');
+                          } else if (Get.find<ProfileController>()
                                   .isWalletOrNot
                                   .value ==
                               0) {
-                            Get.find<PlanController>()
-                                .initiatePayment(amount: amount, id: 2, gstPercentage: '', percentageAmount: '', totalAmount: '');
-                          }
-                           else if (Get.find<PlanController>()
-                                  .isWalletOrNot
-                                  .value ==
-                              1)
-                               {
                             Get.find<PlanController>().payFromWallet(
                                 amount: amount.toStringAsFixed(2));
-                          } 
-                          //else 
-                          //if (Get.find<ProfileController>()
-                          //         .isWalletOrNot
-                          //         .value ==
-                          //     2) {
-                          //   Get.find<ProfileController>().useCredit(
-                          //     creditAmount: amount.toStringAsFixed(2),
-                          //      creditFor: "booking",
-                          //      creditForId: servicesId
-                          //      );
-                          // }
+                          } else if (Get.find<ProfileController>()
+                                  .isWalletOrNot
+                                  .value ==
+                              2) {
+                            Get.find<PlanController>().useCredit(
+                                creditAmount: amount.toStringAsFixed(2),
+                                creditFor: "booking",
+
+                                creditForId: servicesId);
+                          }
                           Get.back();
                         },
                     child: Container(

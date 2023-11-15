@@ -8,6 +8,7 @@ import 'package:bciweb/models/get_plansmodel.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
 import 'package:bciweb/payment_gateway/payment_gateway_view/payment_view.dart';
 import 'package:bciweb/services/networks/business_service/business_withdraw_api_service.dart';
+import 'package:bciweb/services/networks/creditcard_api_service.dart/user_credit_points_api_dart.dart';
 
 import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
 import 'package:dio/dio.dart';
@@ -190,6 +191,8 @@ class PlanController extends GetxController {
               qty: homeController.cartListData[i].quantity.toString(),
               offerOrCoupon: "",
               couponcode: "",
+              debitFrom: "wallet",
+              referenceId: respone.data["data"]["transaction_id"],
               amount: homeController.cartListData[i].price,
               bookDateTime: homeController.cartListData[i].bookDateTime);
         }
@@ -225,6 +228,56 @@ class PlanController extends GetxController {
     }
 
     // print(response);
+  }
+ UseCreditPointsApiServices useCreditPointsApiServices =
+      UseCreditPointsApiServices();
+
+   useCredit({
+    required String creditAmount,
+    required String creditFor,
+    required String creditForId,
+  }) async {
+    final homeController = Get.find<HomeServiceController>();
+    dio.Response<dynamic> response =
+        await useCreditPointsApiServices.useCreditPointsApi(
+            creditAmount: creditAmount,
+            creditFor: creditFor,
+            creditForId: creditForId);
+
+    if (response.statusCode == 200) {
+      // Get.to(() => const FlightLoadingPage());
+      print(">>-------------->>---------->>");
+      for (int i = 0; i < homeController.cartListData.length; i++) {
+        if (homeController.cartListData[i].isSelected) {
+          homeController.addBooking(
+              serviceid: homeController.cartListData[i].serviceId.toString(),
+              cartid: homeController.cartListData[i].id.toString(),
+              qty: homeController.cartListData[i].quantity.toString(),
+              offerOrCoupon: "",
+              couponcode: "",
+              debitFrom: "credit",
+              referenceId: response.data["data"]["refrence_id"],
+              amount: homeController.cartListData[i].price,
+              bookDateTime: homeController.cartListData[i].bookDateTime);
+        }
+
+       Get.snackbar(
+        "Payment Successfully Paid",
+        "",
+        icon: const Icon(Icons.check_circle_outline_outlined,
+            color: Colors.white),
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green,
+        borderRadius: 20,
+        margin: const EdgeInsets.all(15),
+        colorText: Colors.white,
+        duration: const Duration(seconds: 3),
+        isDismissible: true,
+        dismissDirection: DismissDirection.horizontal,
+        forwardAnimationCurve: Curves.easeOutBack,
+      );
+      }
+    }
   }
 
   

@@ -186,17 +186,21 @@ var end = DateTime.now();
                                             Padding(
                                               padding: const EdgeInsets.only(left: 15,top: 15,bottom: 15),
                                               child: Selectable(
+                                                showSelection: true,
                                                 child: Column(
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      hotelController
-                                                          .searchHotelData[index].hotelName,
-                                                      style: TextStyle(
-                                                          fontSize: 20,
-                                                          fontWeight: FontWeight.bold,
-                                                          color: kOrange),
+                                                    Selectable(
+                                                showSelection: true,
+                                                      child: Text(
+                                                        hotelController
+                                                            .searchHotelData[index].hotelName,
+                                                        style: TextStyle(
+                                                            fontSize: 20,
+                                                            fontWeight: FontWeight.bold,
+                                                            color: kOrange),
+                                                      ),
                                                     ),
                                                     ksizedbox20,
                                                     Container(
@@ -205,12 +209,15 @@ var end = DateTime.now();
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment.start,
                                                         children: [
-                                                          Text(
-                                                            hotelController
-                                                                .searchHotelData[index]
-                                                                .hotelAddress,
-                                                            style: TextStyle(
-                                                                fontSize: 15, color: kblue),
+                                                          Selectable(
+                                                           showSelection: true,
+                                                            child: Text(
+                                                              hotelController
+                                                                  .searchHotelData[index]
+                                                                  .hotelAddress,
+                                                              style: TextStyle(
+                                                                  fontSize: 15, color: kblue),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

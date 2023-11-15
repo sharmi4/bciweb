@@ -11,7 +11,9 @@ class AddBookingApiServices extends BaseApiService {
     required String qty,
     required String offerOrCoupon,
     required String couponcode,
-    required String amount
+    required String amount,
+    required String debitFrom,
+      required String referenceId
     }) async {
     dynamic responseJson;
     try {
@@ -36,7 +38,9 @@ class AddBookingApiServices extends BaseApiService {
               "quantity":qty,
               "offer_or_coupon": "offer",
               "coupon_code": couponcode,
-              "amount": amount
+              "amount": amount,
+               "debit_from": debitFrom,
+               "refrence_id": referenceId
             }
       );
       print("::::::::<Add booking Api Services Api>::::::::status code::::::::::");

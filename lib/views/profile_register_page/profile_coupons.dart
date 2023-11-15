@@ -76,6 +76,7 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                     kwidth10,
                     InkWell(
                       onTap: () {
+                        Get.find<SubscriptionApiController>().merchantCoupon();
                         setState(() {
                           couponController.couponindex(1);
                           couponController.update();
@@ -102,6 +103,7 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                     kwidth10,
                     InkWell(
                       onTap: () {
+                        // Get.find<SubscriptionApiController>().get
                         setState(() {
                           couponController.couponindex(2);
                           couponController.update();
@@ -261,7 +263,8 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                             ],
                           ),
                         ));
-                  }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  },
+                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
                     mainAxisSpacing: 12,
                     crossAxisSpacing: 12,
@@ -298,8 +301,12 @@ class _ProfileCouponsScreenState extends State<ProfileCouponsScreen> {
                     ],
                   ),
                 )
-              : ListView.builder(
+              : GridView.builder(
                   shrinkWrap: true,
+                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: 1.5
+                    ),
                   itemCount: couponController.merchantCouponData.length,
                   itemBuilder: (context, index) {
                     return Padding(
