@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import '../../constant/constans.dart';
 import '../../controller/business_controller/business_service_controller.dart';
 import '../../registerhomescreen/business_comm_homecontainer.dart';
-import '../../registerhomescreen/common_reg_bottom.dart';
+
 import '../members/common_widget/business_common_screen.dart';
 import 'business_booking_details_screen.dart';
 
@@ -121,9 +121,16 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    serviceController.getBooking();
-    serviceController.update();
-    serviceController.dateFilterBooking(fromdate: selectdt, todate: selectdt1);
+    getfuctions();
+  }
+
+  getfuctions() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      serviceController.getBooking();
+      serviceController.update();
+      serviceController.dateFilterBooking(
+          fromdate: selectdt, todate: selectdt1);
+    });
   }
 
   @override
@@ -169,10 +176,9 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                         child: Text(
                           'BOOKING',
                           style: TextStyle(
-                            fontSize: 32,
-                            color: kwhite,
-                            fontWeight: FontWeight.bold
-                          ),
+                              fontSize: 32,
+                              color: kwhite,
+                              fontWeight: FontWeight.bold),
                         ),
                       )),
                   Positioned(
@@ -392,14 +398,15 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                                                 right: 10,
                                                 bottom: 10),
                                             child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(5),
-                                                child: Image.network(
-                                                  serviceController
-                                                      .bookingListData[index]
-                                                      .image,
-                                                  fit: BoxFit.cover,
-                                                )),
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              child: Image.network(
+                                                serviceController
+                                                    .bookingListData[index]
+                                                    .image,
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
                                             // child: Image.asset(
                                             //   bookingimage[index],
                                             //   fit: BoxFit.contain,
@@ -423,23 +430,65 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                                                     fontWeight: FontWeight.bold,
                                                     color: kblue),
                                               ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 6),
-                                                child: Container(
-                                                  width: 210,
-                                                  child: Text(
-                                                    serviceController
-                                                        .bookingListData[index]
-                                                        .description,
-                                                    maxLines: 5,
-                                                    style: TextStyle(
-                                                        fontSize: 12,
-                                                        color: kgrey),
-                                                  ),
-                                                ),
-                                              ),
-                                            ],
+                                              // Padding(
+                                              //   padding: const EdgeInsets.only(
+                                              //       top: 6),
+                                              //   child: Container(
+                                              //     width: 210,
+                                              //     child: Text(
+                                              //       serviceController
+                                              //           .bookingListData[index]
+                                              //           .description,
+                                              //       maxLines: 5,
+                                              //       style: TextStyle(
+                                              //           fontSize: 12,
+                                              //           color: kgrey),
+                                              //     ),
+                                              //   ),
+                                              // ),
+                                          Padding(
+                                        padding: const EdgeInsets.only(top: 6),
+                                        child: Container(
+                                          width: 210,
+                                          child: Text(
+                                            serviceController
+                                                .bookingListData[index]
+                                                .description,
+                                            maxLines: 5,
+                                            style: TextStyle(
+                                                fontSize: 12, color: kgrey),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 6),
+                                        child: Container(
+                                          width: 210,
+                                          child: Text(
+                                            "₹${serviceController.bookingListData[index].purchasePrice} x ${serviceController.bookingListData[index].quantity}",
+                                            maxLines: 5,
+                                            style: TextStyle(
+                                                fontSize: 12, color: kgrey),
+                                          ),
+                                        ),
+                                      ),
+                                      if (serviceController
+                                              .bookingListData[index].status ==
+                                          "pending")
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 6),
+                                          child: Container(
+                                            width: 210,
+                                            child: const Text(
+                                              "Cancelled",
+                                              maxLines: 5,
+                                              style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.red),
+                                            ),
+                                          ),
+                                        ),   ],
                                           ),
                                         )
                                       ],
@@ -451,7 +500,7 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                           );
                         },
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 3.5),
+                            crossAxisCount: 3, childAspectRatio: 2.5),
                       );
               }),
             ],

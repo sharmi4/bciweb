@@ -130,34 +130,36 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
    File? simage;
 
   setDefauld() async {
-    await businessprofileController.getProfile();
+   WidgetsBinding.instance.addPostFrameCallback((timeStamp) async{
+     await businessprofileController.getProfile();
 
     if (businessprofileController.profileData.isNotEmpty) {
-      nameController.text = businessprofileController.profileData.first.name;
+      nameController.text = businessprofileController.profileData.first.name??"";
       numberController.text =
-          businessprofileController.profileData.first.mobile;
+          businessprofileController.profileData.first.mobile??"";
       alternumberController.text =
-          businessprofileController.profileData.first.alternateMobile;
-      emailController.text = businessprofileController.profileData.first.email;
+          businessprofileController.profileData.first.alternateMobile??"";
+      emailController.text = businessprofileController.profileData.first.email??"";
       categoryController.text =
-          businessprofileController.profileData.first.category;
-      gstController.text = businessprofileController.profileData.first.gstNo;
+          businessprofileController.profileData.first.category??"";
+      gstController.text = businessprofileController.profileData.first.gstNo??"";
       bankaccountnumber.text =
-          businessprofileController.profileData.first.bankAccountNumber;
+          businessprofileController.profileData.first.bankAccountNumber??"";
       banknameController.text =
-          businessprofileController.profileData.first.bankName;
+          businessprofileController.profileData.first.bankName??"";
       accountholdernameController.text =
-          businessprofileController.profileData.first.bankAccountName;
+          businessprofileController.profileData.first.bankAccountName??"";
       accounttype.text =
-          businessprofileController.profileData.first.accountType;
+          businessprofileController.profileData.first.accountType??"";
       businessaddressController.text =
-          businessprofileController.profileData.first.address;
+          businessprofileController.profileData.first.address??"";
       ifscController.text =
-          businessprofileController.profileData.first.ifscCode;
+          businessprofileController.profileData.first.ifscCode??"";
       mapurlController.text = businessprofileController
           .profileData.first.locationAddress
-          .toString();
+          .toString()??"";
     }
+   });
   }
 
   @override
@@ -940,40 +942,7 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
                                 child: Row(
                                   children: [
                                     InkWell(
-                                      // onTap: () {
-                                      //   print(
-                                      //       '------------${aadharimage}------adhaar------------------');
-                                      //   print(
-                                      //       '------------${panimage}}------pan------------------');
-                                      //   print(panimage);
-                                      //   MerchantUpdateModel
-                                      //       merchantUpdateModel =
-                                      //       MerchantUpdateModel(
-                                      //     name: nameController.text,
-                                      //     email: emailController.text,
-                                      //     mobile: numberController.text,
-                                      //     gstNo: gstController.text,
-                                      //     accountType: accounttype.text,
-                                      //     address:
-                                      //         businessaddressController.text,
-                                      //     alternateMobile:
-                                      //         alternumberController.text,
-                                      //     bankAccountName:
-                                      //         accountholdernameController.text,
-                                      //     bankAccountNumber:
-                                      //         bankaccountnumber.text,
-                                      //     bankName: banknameController.text,
-                                      //     categoryId: categoryController.text,
-                                      //     ifscCode: ifscController.text,
-                                      //     shopImage: imageprofile,
-                                      //     aadharProof: aadharimage,
-                                      //     panProof: panimage,
-                                      //   );
-
-                                      //   businessprofileController.updateProfile(
-                                      //       merchantUpdateModel:
-                                      //           merchantUpdateModel);
-                                      // },
+                                     
                                       child: Container(
                                         height: 50,
                                         width:
@@ -1044,7 +1013,7 @@ class _BusinessProfileSettingsState extends State<BusinessProfileSettings> {
                                           ifscCode: ifscController.text.isEmpty
                                               ? ""
                                               : ifscController.text,
-                                          shopImage: imageprofile ?? "",
+                                         
                                           aadharProof: aadharimage,
                                           panProof: panimage,
                                         );

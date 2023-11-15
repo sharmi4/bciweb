@@ -26,17 +26,14 @@ class ProfileUpdateApiServices extends BaseApiService {
         "bank_account_number": merchantUpdateModel.bankAccountNumber,
         "location_address": merchantUpdateModel.locationAddress,
         "ifsc_code": merchantUpdateModel.ifscCode,
-        if (merchantUpdateModel.shopImage != "null")
-          "shop_image": await MultipartFile.fromFile(
-              merchantUpdateModel.shopImage,
-              filename: "shopImage"),
-        if (merchantUpdateModel.aadharProof != null)
-          "adhar_proof": await MultipartFile.fromFile(
-              merchantUpdateModel.aadharProof.path,
+      
+       if (merchantUpdateModel.aadharProof != null)
+          "adhar_proof":  MultipartFile.fromBytes(
+              merchantUpdateModel.aadharProof,
               filename: "aadhar"),
-        if (merchantUpdateModel.panProof != null)
-          "pan_proof": await MultipartFile.fromFile(
-              merchantUpdateModel.panProof.path,
+       if (merchantUpdateModel.panProof != null)
+          "pan_proof":  MultipartFile.fromBytes(
+              merchantUpdateModel.panProof,
               filename: "pancard"),
       });
 

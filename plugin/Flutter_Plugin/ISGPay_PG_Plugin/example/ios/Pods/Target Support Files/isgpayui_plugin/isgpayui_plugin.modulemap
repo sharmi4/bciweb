@@ -1,0 +1,6 @@
+framework module isgpayui_plugin {
+  umbrella header "isgpayui_plugin-umbrella.h"
+
+  export *
+  module * { export * }
+}

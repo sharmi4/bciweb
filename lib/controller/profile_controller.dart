@@ -111,7 +111,7 @@ class ProfileController extends GetxController {
     );
     isLoading(false);
     if (response.statusCode == 200 || response.statusCode == 201) {
-      Get.off(() => const BusinessProfileSettings());
+      // Get.off(() => const BusinessProfileSettings());
       Get.rawSnackbar(
           backgroundColor: Colors.green,
           messageText: Text(

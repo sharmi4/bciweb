@@ -13,10 +13,10 @@ class MerchantUpdateModel {
   String bankAccountNumber;
   String accountType;
   String ifscCode;
-  String shopImage;
   dynamic aadharProof;
   dynamic panProof;
   dynamic locationAddress;
+  dynamic videoLink;
   
 
   MerchantUpdateModel({
@@ -32,9 +32,10 @@ class MerchantUpdateModel {
     required this.bankAccountNumber,
     required this.bankName,
     required this.ifscCode,
-    required this.shopImage,
+
      this.aadharProof,
      this.panProof,
      this.locationAddress,
+    this.videoLink,
   });
 }

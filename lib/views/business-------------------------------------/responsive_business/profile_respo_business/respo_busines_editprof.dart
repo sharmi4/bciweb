@@ -809,8 +809,8 @@ class _RespoBusinessEditProfileState extends State<RespoBusinessEditProfile> {
                                       bankAccountNumberController.text,
                                   bankName: bankNameController.text,
                                   ifscCode: ifscCodeController.text,
-                                  shopImage:
-                                      simage == null ? "null" : simage!.path,
+                                  // shopImage:
+                                  //     simage == null ? "null" : simage!.path,
                                   locationAddress: mapUrlController.text,
                                   aadharProof: image,
                                   panProof: image2);
