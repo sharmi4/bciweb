@@ -1,25 +1,24 @@
-import 'dart:io';
-import 'dart:typed_data';
-
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/models/business_model/createservice_model.dart';
 import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
-import 'package:bciweb/routes/app_pages.dart';
 import 'package:bciweb/views/business/services_screens/addservice_timeslot_screen.dart';
+
 import 'package:date_format/date_format.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:image_picker_web/image_picker_web.dart';
+
 import 'package:textfield_tags/textfield_tags.dart';
 
 import '../../../constant/constans.dart';
 import '../../../controller/auth_controller/auth_controller.dart';
 import '../../../controller/business_controller/business_service_controller.dart';
-import '../../../models/business_model/createservice_model.dart';
+
 import '../../../models/category_model.dart';
 import '../../../registerhomescreen/business_comm_homecontainer.dart';
-import '../../../registerhomescreen/common_reg_bottom.dart';
+
 import '../../members/common_widget/business_common_screen.dart';
 
 class BusinessAddAvailabilityScreen extends StatefulWidget {
@@ -80,50 +79,36 @@ class _BusinessAddAvailabilityScreenState
     "-",
     dd,
   ]);
- 
+
   String selectdt1 = formatDate(
       DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day),
       [yyyy, "-", mm, "-", dd]);
 
-       List<Widget> itemPhotosWidgetList = <Widget>[];
+  List<Widget> itemPhotosWidgetList = <Widget>[];
 
-  final ImagePicker _picker = ImagePicker();
-  File? file;
-  List<XFile>? photo = <XFile>[];
-  List<XFile> itemImagesList = <XFile>[];
-var bytes;
+  List<Uint8List>? images = [];
 
-  addImage() {
-    for (var bytes in photo!) {
-      itemPhotosWidgetList.add(Padding(
-        padding: const EdgeInsets.all(1.0),
-        child: Container(
-          height: 90.0,
-          child: AspectRatio(
-            aspectRatio: 16 / 9,
-            child: Container(
-              child: 
-                 
-                  Image.file(
-                      File(bytes.path),
-                    ),
-            ),
-          ),
-        ),
-      ));
-    }
-  }
+  Future<void> loadAssets() async {
+    try {
+      List<Uint8List>? bytesFromPicker =
+          await ImagePickerWeb.getMultiImagesAsBytes();
 
-   pickPhotoFromGallery() async {
-    photo = await _picker.pickMultiImage();
-    if (photo != null) {
-      setState(() {
-        itemImagesList = itemImagesList + photo!;
-        addImage();
-        photo!.clear();
+      bytesFromPicker!.forEach((element) {
+        setState(() {
+          images!.add(element);
+        });
       });
+
+      print("---------------->> ");
+
+      print(images!.length);
+    } on Exception catch (e) {
+      // Handle exception
     }
+
+    if (!mounted) return;
   }
+
   _showDatePicker(BuildContext context) async {
     DateTime? picked = await showDatePicker(
         context: context,
@@ -159,9 +144,6 @@ var bytes;
           dd,
         ]);
       });
-      // serviceController.dateFilterBooking(
-      //     fromdate: selectdt,
-      //     todate: selectdt1);
     }
   }
 
@@ -207,10 +189,6 @@ var bytes;
       //     todate: selectdt1);
     }
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -456,25 +434,32 @@ var bytes;
                       ],
                     ),
 
-
-                    
                     Padding(
                       padding: const EdgeInsets.only(
                         left: 150,
                       ),
                       child: InkWell(
-                        onTap: () async {
-   pickPhotoFromGallery();
-                        },
+                        onTap: loadAssets,
                         child: Container(
                           height: 235,
                           width: 250,
                           decoration: const BoxDecoration(
                               color: Color.fromARGB(255, 232, 232, 232)),
-                          child: bytes != null
-                              ? Image.memory(
-                                  bytes!,
-                                  fit: BoxFit.cover,
+                          child: images != null
+                              ? GridView.builder(
+                                  shrinkWrap: true,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                  ),
+                                  itemCount: images!.length,
+                                  itemBuilder: (context, index) {
+                                    return Image.memory(
+                                      images![index],
+                                      width: 300,
+                                      height: 300,
+                                    );
+                                  },
                                 )
                               : Column(
                                   mainAxisAlignment:
@@ -518,9 +503,43 @@ var bytes;
                     //   ),
                     // ),
                     ksizedbox30,
+
+
                   ],
                 ),
               ),
+
+ Padding(
+                        padding: const EdgeInsets.only(right: 60),
+                        child: InkWell(onTap: (){Get.to(TimeSlotScreen());},
+                          child: Container(
+                            height: 40,
+                            width: MediaQuery.of(context).size.width*0.25,
+                            decoration: BoxDecoration(
+                              color: korange,
+                                border: Border.all(color: kOrange, width: 1),
+                                borderRadius: BorderRadius.circular(8)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    'Time Slot',
+                                    style: TextStyle(fontSize: 16, color: kwhite),
+                                  ),
+                                ),
+                                ksizedbox10,
+                                kwidth10,
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 5),
+                                  child:Icon(Icons.add_circle_outline,
+                                  color: kwhite,)
+                                )
+                              ],
+                            )),
+                        ),),
+
               ksizedbox30,
               Padding(
                 padding: const EdgeInsets.only(left: 110, right: 0),
@@ -1125,6 +1144,134 @@ var bytes;
                     ),
                   ],
                 ),
+
+
+ Padding(
+                      padding: const EdgeInsets.only(left: 33),
+                      child: Obx(
+                        () => businessserviceController.isLoading.isTrue
+                            ? Container(
+                                height: 55,
+                                width: MediaQuery.of(context).size.width * 0.31,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: kblue),
+                                alignment: Alignment.center,
+                                child: const CircularProgressIndicator(
+                                  color: Colors.white,
+                                ),
+                              )
+                            : InkWell(
+                                onTap: () {
+                                  List<Amenty> listTags = [];
+
+                                  var tagsList = _controller!.getTags;
+
+                                  for (var i = 0; i < tagsList!.length; i++) {
+                                    listTags.add(Amenty(value: tagsList[i]));
+                                  }
+                                  print('::::::::::::here.category data:::::');
+                                  print(merchantCategory);
+
+                                  CategoryData categoryModel =
+                                      merchantCategory as CategoryData;
+                                  print('values::::::::::::::::');
+                                  print('actualamount');
+                                  print(actualAmountController.text);
+                                  print('listtag');
+                                  print(listTags);
+                                  print('category');
+                                  print(categoryModel);
+                                  print('description');
+                                  print(descriptionController.text);
+                                  print('serviceimage');
+                                  print(images);
+                                  print('saleamount');
+                                  print(saleAmountController.text);
+                                  print('servicetitle');
+                                  print(serviceTitleController.text);
+                                  print('gst');
+                                  print(gstController.text);
+                                  print('cgst');
+                                  print(cgstController.text);
+                                  print('unit');
+                                  print(unitController.text);
+                                  print('sgst');
+                                  print(sgstController.text);
+                                  print('start');
+                                  print(selectdt);
+                                  print('end');
+                                  print(selectdt1);
+                                  print('quantity');
+                                  print(quantityController.text);
+                                  print('amenties');
+                                  print(amentiesController.text);
+
+                                  CreateServiceModel createServiceModel =
+                                      CreateServiceModel(
+                                          offerPercentage: offerPercentageController
+                                                  .text.isEmpty
+                                              ? null
+                                              : offerPercentageController.text,
+                                          actualAmount:
+                                              actualAmountController.text,
+                                          amenities: listTags,
+                                          // share: shareValue,
+                                          booking: authController
+                                                  .isGstAvailable.isTrue
+                                              ? "1"
+                                              : "0",
+                                          // bvcAmount: bvcAmountController.text,
+                                          category: categoryModel.id.toString(),
+                                          description:
+                                              descriptionController.text,
+                                          image: images,
+                                          isCouponsAvailable:
+                                              isCouponEligible ? "1" : "0",
+                                          isOfferAvailable:
+                                              isOfferEligible ? "1" : "0",
+                                          saleAmount: saleAmountController.text,
+                                          title: serviceTitleController.text,
+                                          couponAmount: couponAmountController
+                                                  .text.isEmpty
+                                              ? null
+                                              : couponAmountController.text,
+                                          offerAmount:
+                                              offerAmountController.text.isEmpty
+                                                  ? null
+                                                  : offerAmountController.text,
+                                          unit: unitController.text,
+                                          cgst: cgstPercentage,
+                                          sgst: sgstPercentage,
+                                          endTime: selectdt,
+                                          startTime: selectdt1,
+                                          quantity: quantityController.text);
+
+                                  print('nosucherror');
+
+                                  businessserviceController.addServices(
+                                      createServiceModel: createServiceModel);
+                                },
+                                child: Container(
+                                  height: 55,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.31,
+                                  decoration: BoxDecoration(
+                                      //borderRadius: BorderRadius.circular(10),
+                                      color: kblue),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    "SUMBMIT",
+                                    style: primaryFont.copyWith(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                      ),
+                    ),
+                 
 
               if (isCouponEligible)
                 Padding(
