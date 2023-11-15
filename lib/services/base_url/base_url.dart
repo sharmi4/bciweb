@@ -10,6 +10,9 @@ abstract class BaseApiService {
   final String subCategoryURL =
       "https://www.portal.bcipvtltd.com/api/sub_category";
 
+
+  final String bookingCancelrefundApi =
+      "https://www.portal.bcipvtltd.com/api/auth/booking_cancelation";
   //login url
   // final String getOtpUrl = "https://www.portal.bcipvtltd.com/api/category";
   final String getOtpUrl = "https://www.portal.bcipvtltd.com/api/get_otp";

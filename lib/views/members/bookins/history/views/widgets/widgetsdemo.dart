@@ -1,3 +1,4 @@
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -875,7 +876,7 @@ class _index4State extends State<index4> {
   }
 
   final subscriptionapiController = Get.find<SubscriptionApiController>();
-  Future<void> dialogBuilder(BuildContext context, String img, String tit,
+  Future<void> dialogBuilder(BuildContext context,String service,int id,String status, String img, String tit,
       String date, String amt, String qty) {
     return showDialog<void>(
       context: context,
@@ -885,231 +886,526 @@ class _index4State extends State<index4> {
         return Padding(
           padding: const EdgeInsets.only(top: 30),
           child: AlertDialog(
-            title: Container(
-              height: 400,
-              width: 300,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    children: [
-                      GestureDetector(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: kblue,
-                            size: 15,
-                          )),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Tourist Details',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: [
-                      Image.network(
+            title:  Container(
+            height: 400,
+            width: 300,
+            color: Colors.white,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Row(
+                  children: [
+                    Icon(
+                      Icons.arrow_back_ios,
+                      color: kblue,
+                      size: 15,
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Details',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  children: [
+                    Container(
+                      height: 50,
+                      width: 60,
+                      child: Image.network(
                         img,
                         height: 50,
                         width: 60,
                         fit: BoxFit.cover,
                       ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            tit,
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: kblue,
-                                fontWeight: FontWeight.bold),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Text(
-                            'Date : 17/30/34',
-                            style: TextStyle(
-                                fontSize: 12,
-                                color: kblue,
-                                fontWeight: FontWeight.w500),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Place',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                         service,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        // Text(
+                        //   'Date : ${formatDate(DateTime.now(), [
+                        //         dd,
+                        //         "/",
+                        //         mm,
+                        //         "/",
+                        //         yyyy
+                        //       ])}',
+                        //   style: TextStyle(
+                        //       fontSize: 12,
+                        //       color: kblue,
+                        //       fontWeight: FontWeight.w500),
+                        // ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'Date',
+                //       style: TextStyle(
+                //           fontSize: 16,
+                //           color: kblue,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     Text(
+                //       formatDate(bookingData.,
+                //                    [dd ,'-',mm,'-',yyyy]),
+                //       style: TextStyle(
+                //           fontSize: 15,
+                //           color: kblue,
+                //           fontWeight: FontWeight.w500),
+                //     ),
+                //   ],
+                // ),
+                // const Divider(
+                //   thickness: 1,
+                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Description',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Container(
+                      width: 100,
+                      child: Text(
                         tit,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                             fontSize: 15,
-                            color: kblue,
+                            color: kgrey,
                             fontWeight: FontWeight.w500),
                       ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'quantity',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      qty,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kgrey,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'Adult',
+                //       style: TextStyle(
+                //           fontSize: 16,
+                //           color: kblue,
+                //           fontWeight: FontWeight.bold),
+                //     ),
+                //     Text(
+                //       '10',
+                //       style: TextStyle(
+                //           fontSize: 15,
+                //           color: kgrey,
+                //           fontWeight: FontWeight.w500),
+                //     ),
+                //   ],
+                // ),
+                // const Divider(
+                //   thickness: 1,
+                // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Status',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      status,
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: kgrey,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Price',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.green,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "₹ ${amt}",
+                      style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.green,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                const Divider(
+                  thickness: 1,
+                ),
+                if (status == "completed")
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        'Date',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
+                      InkWell(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  backgroundColor: Colors.white,
+                                  title: Text("Cancel Booking",
+                                      style:
+                                          TextStyle(fontWeight: FontWeight.w800,color: Colors.black)),
+                                  content: Text(
+                                    "Are you sure you want to Cancel?",
+                                    style:
+                                        TextStyle(color: Colors.black),
+                                  ),
+                                  actions: [
+                                    TextButton(
+                                      child: Text(
+                                        "Yes",
+                                        style: TextStyle(fontWeight: FontWeight.w500,color: kblue),
+                                      ),
+                                      onPressed: () {
+                                        Get.back();
+                                        print(id);
+                                        Get.find<AuthProfileController>()
+                                            .cancelRefundApi(
+                                          userId: Get.find<AuthProfileController>()
+                                              .profileData
+                                              .first
+                                              .id
+                                              .toString(),
+                                          amount: amt,
+                                          type: "booking",
+                                          bookingId: id.toString(),
+                                        );
+                                      },
+                                    ),
+                                    TextButton(
+                                      child: Text("No",
+                                          style:
+                                              TextStyle(fontWeight: FontWeight.w500,color: kblue)),
+                                      onPressed: () {
+                                        Get.back();
+                                      },
+                                    ),
+                                  ],
+                                );
+                              });
+                        },
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.red,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                      Text(
-                        '19/06/23',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kblue,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Trip',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '03.54 PM',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kblue,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Country',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'India',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kblue,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Adult',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '10',
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kblue,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Quantity',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        qty,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kblue,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
                       const Text(
-                        'Price',
+                        "",
                         style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        amt,
-                        style: const TextStyle(
                             fontSize: 15,
                             color: Colors.green,
                             fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
-                ],
-              ),
+              ],
             ),
+          ),
+
+
+
+
+            // Container(
+            //   height: 400,
+            //   width: 300,
+            //   color: Colors.white,
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.spaceAround,
+            //     children: [
+            //       Row(
+            //         children: [
+            //           GestureDetector(
+            //               onTap: () {
+            //                 Get.back();
+            //               },
+            //               child: Icon(
+            //                 Icons.arrow_back_ios,
+            //                 color: kblue,
+            //                 size: 15,
+            //               )),
+            //           const SizedBox(
+            //             width: 10,
+            //           ),
+            //           Text(
+            //             'Tourist Details',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //         ],
+            //       ),
+            //       const SizedBox(
+            //         height: 5,
+            //       ),
+            //       Row(
+            //         children: [
+            //           Image.network(
+            //             img,
+            //             height: 50,
+            //             width: 60,
+            //             fit: BoxFit.cover,
+            //           ),
+            //           const SizedBox(
+            //             width: 10,
+            //           ),
+            //           Column(
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             children: [
+            //               Text(
+            //                 tit,
+            //                 style: TextStyle(
+            //                     fontSize: 16,
+            //                     color: kblue,
+            //                     fontWeight: FontWeight.bold),
+            //               ),
+            //               const SizedBox(
+            //                 height: 5,
+            //               ),
+            //               Text(
+            //                 'Date : 17/30/34',
+            //                 style: TextStyle(
+            //                     fontSize: 12,
+            //                     color: kblue,
+            //                     fontWeight: FontWeight.w500),
+            //               ),
+            //             ],
+            //           ),
+            //         ],
+            //       ),
+            //       const SizedBox(
+            //         height: 5,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'Place',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             tit,
+            //             style: TextStyle(
+            //                 fontSize: 15,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //       const Divider(
+            //         thickness: 1,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'Date',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             '19/06/23',
+            //             style: TextStyle(
+            //                 fontSize: 15,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //       const Divider(
+            //         thickness: 1,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'Trip',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             '03.54 PM',
+            //             style: TextStyle(
+            //                 fontSize: 15,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //       const Divider(
+            //         thickness: 1,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'Country',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             'India',
+            //             style: TextStyle(
+            //                 fontSize: 15,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //       const Divider(
+            //         thickness: 1,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'Adult',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             '10',
+            //             style: TextStyle(
+            //                 fontSize: 15,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //       const Divider(
+            //         thickness: 1,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           Text(
+            //             'Quantity',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             qty,
+            //             style: TextStyle(
+            //                 fontSize: 15,
+            //                 color: kblue,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //       const Divider(
+            //         thickness: 1,
+            //       ),
+            //       Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: [
+            //           const Text(
+            //             'Price',
+            //             style: TextStyle(
+            //                 fontSize: 16,
+            //                 color: Colors.green,
+            //                 fontWeight: FontWeight.bold),
+            //           ),
+            //           Text(
+            //             amt,
+            //             style: const TextStyle(
+            //                 fontSize: 15,
+            //                 color: Colors.green,
+            //                 fontWeight: FontWeight.w500),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
           ),
         );
       },
@@ -1145,6 +1441,12 @@ class _index4State extends State<index4> {
                         onTap: () {
                           dialogBuilder(
                               context,
+                               subscriptionapiController
+                                  .othersbookinglist[index].service,
+                                   subscriptionapiController
+                                  .othersbookinglist[index].id,
+                                   subscriptionapiController
+                                  .othersbookinglist[index].status,
                               subscriptionapiController
                                   .othersbookinglist[index].image,
                               subscriptionapiController

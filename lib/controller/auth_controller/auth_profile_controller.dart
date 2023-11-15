@@ -5,6 +5,8 @@ import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/models/child_dob_model.dart';
 import 'package:bciweb/models/support_admin_details_model.dart';
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/services/networks/calncellation_api_services/booking_cancel_refund_api_services.dart';
+import 'package:bciweb/services/networks/calncellation_api_services/cancel_booking_confirmation_screen.dart';
 import 'package:bciweb/services/networks/profile_api_service/update_bank_account_api_services.dart';
 import 'package:bciweb/services/networks/setting_api_service.dart/support_admin_details_api_service.dart';
 import 'package:flutter/material.dart';
@@ -75,6 +77,35 @@ class AuthProfileController extends GetxController {
       );
     }
   }
+
+
+  BookingCancelRefundAPIServices bookingCancelRefundAPIServices =
+      BookingCancelRefundAPIServices();
+ cancelRefundApi({
+    required String userId,
+    required String amount,
+    required String type,
+    required String bookingId,
+  }) async {
+    dio.Response<dynamic> response =
+        await bookingCancelRefundAPIServices.bookingCancelRefundApiServices(
+      userId: userId,
+      amount: amount,
+      type: type,
+      bookingId: bookingId,
+    );
+
+    if (response.statusCode == 200) {
+      if (type == "booking") {
+        Get.rawSnackbar(
+            message: "Booking Cancelled", backgroundColor: Colors.green);
+      }
+
+      Get.off(() => const BookingCancelled());
+    }
+  }
+
+
 
   getProfile() async {
     // profileData.clear();
