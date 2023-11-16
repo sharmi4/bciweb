@@ -8,7 +8,8 @@ import '../../base_url/base_url.dart';
 
 class StoreHotelBookingApiServices extends BaseApiService {
   Future storeHotelBooking({
-    required HotelBookingStroreData hotelBookingStoreData
+    required HotelBookingStroreData hotelBookingStoreData,
+    required String  searchToken
   }) async {
     dynamic responseJson;
     try {
@@ -42,7 +43,8 @@ class StoreHotelBookingApiServices extends BaseApiService {
             "confirmation_no": hotelBookingStoreData.confirmationNo,
             "is_price_changed": hotelBookingStoreData.isPriceChanged,
             "is_cancel_policy_changed": hotelBookingStoreData.isCancelPolicyChanged,
-            "price": hotelBookingStoreData.price
+            "price": hotelBookingStoreData.price,
+            "search_token": searchToken
           });
       print(
           "::::::::<hotel store Services Api>:::::::::");

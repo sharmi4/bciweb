@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bciweb/models/initiate_payment_model.dart';
 import 'package:bciweb/payment_gateway/payment_gateway_services/initiate_payment_api_services.dart';
+import 'package:bciweb/services/networks/hotel_api_service/hotel_cancelation_api_services.dart';
 import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -34,7 +35,6 @@ import '../../services/networks/hotel_api_service/successful_screen.dart';
 import '../../views/members/bookins/hotels/hotel_search_list.dart';
 import '../auth_controller/auth_profile_controller.dart';
 
-
 class HotelController extends GetxController {
   HotelDestinationApiService hoteldestinationapiservice =
       HotelDestinationApiService();
@@ -49,9 +49,9 @@ class HotelController extends GetxController {
   RxBool isPageLoading = false.obs;
   List<SearchCityListModel> getHotelCityList = [];
   TempBookingModel? tempBookingModel;
- RxBool isHotelSearch = false.obs;
+  RxBool isHotelSearch = false.obs;
 
-hoteldestination({required String searchCity}) async {
+  hoteldestination({required String searchCity}) async {
     isHotelSearch(true);
     update();
     dio.Response<dynamic> response = await hoteldestinationapiservice
@@ -106,17 +106,16 @@ hoteldestination({required String searchCity}) async {
   RxString hotelSearchKey = "".obs;
   RxString hotelSearchKeyCode = "".obs;
   List<SearchHotelData> searchHotelData = [];
-   List<SearchHotelData> tempSearchHotelData = [];
-  searchHotel({
-    required String destination,
-    required String countryCode,
-    required int child,
-    required int adult,
-    required String checkindate,
-    required String checkoutdate,
-    required String roomsno,
-    required bool isMobile
-  }) async {
+  List<SearchHotelData> tempSearchHotelData = [];
+  searchHotel(
+      {required String destination,
+      required String countryCode,
+      required int child,
+      required int adult,
+      required String checkindate,
+      required String checkoutdate,
+      required String roomsno,
+      required bool isMobile}) async {
     isLoading(true);
     dio.Response<dynamic> response =
         await searchhotelapiservice.searchhotelapiservice(
@@ -135,22 +134,22 @@ hoteldestination({required String searchCity}) async {
       SearchHotelModel searchHotelModel =
           SearchHotelModel.fromJson(response.data);
       searchHotelData = searchHotelModel.result;
-    tempSearchHotelData = searchHotelModel.result;
+      tempSearchHotelData = searchHotelModel.result;
 
-      if(isMobile==true){
-           Get.to(HotelListScreen());
-          
-      }else{
-           Get.to(HotelSearchList(
-        adult: adult, 
-        checkindate: checkindate, 
-        checkoutdate:checkoutdate, 
-        countryCode: countryCode,
-      destination: destination,
-      roomsno: roomsno,
-      child: child,));
-      print(response.data);
-      update();
+      if (isMobile == true) {
+        Get.to(HotelListScreen());
+      } else {
+        Get.to(HotelSearchList(
+          adult: adult,
+          checkindate: checkindate,
+          checkoutdate: checkoutdate,
+          countryCode: countryCode,
+          destination: destination,
+          roomsno: roomsno,
+          child: child,
+        ));
+        print(response.data);
+        update();
       }
       if (response.data["Error_Code"] == "0001") {
         Get.rawSnackbar(
@@ -160,7 +159,6 @@ hoteldestination({required String searchCity}) async {
             style: primaryFont.copyWith(color: Colors.white),
           ),
         );
-      
       }
     }
 
@@ -237,8 +235,8 @@ hoteldestination({required String searchCity}) async {
   //block room
 
   BlockRoomApiService blockroomapiservice = BlockRoomApiService();
-  
- List<Result> blockroomdata = [];
+
+  List<Result> blockroomdata = [];
   blockroomapi(
       {required String userIp,
       required String resultIndex,
@@ -301,7 +299,7 @@ hoteldestination({required String searchCity}) async {
         await hotelbookingapiservice.hotelBookingApiServices(
             hotelCode: hotelCode,
             hotelName: hotelName,
-            hotelRoomsDetail:hotelRoomsDetail,
+            hotelRoomsDetail: hotelRoomsDetail,
             resultIndex: resultIndex,
             searchToken: searchToken,
             emailId: profileController.profileData.first.email,
@@ -343,10 +341,12 @@ hoteldestination({required String searchCity}) async {
             userName: profileController.profileData.first.name.toString());
         print(
             "<<----------------After booking model------------------------>>");
-        storeHotlBookingData(hotelBookingStoreData: hotelBookingStroreData);
+        storeHotlBookingData(
+            hotelBookingStoreData: hotelBookingStroreData,
+            searchToken: searchToken);
         print(
             "<<----------------after storing model------------------------>>");
-            print(response.statusMessage);
+        print(response.statusMessage);
 
         Get.off(() => const SucssesFullsceen());
       } else {
@@ -370,9 +370,12 @@ hoteldestination({required String searchCity}) async {
   }
 
   storeHotlBookingData(
-      {required HotelBookingStroreData hotelBookingStoreData}) async {
-    dio.Response<dynamic> response = await storeHotelBookingApiServices
-        .storeHotelBooking(hotelBookingStoreData: hotelBookingStoreData);
+      {required HotelBookingStroreData hotelBookingStoreData,
+      required String searchToken}) async {
+    dio.Response<dynamic> response =
+        await storeHotelBookingApiServices.storeHotelBooking(
+            hotelBookingStoreData: hotelBookingStoreData,
+            searchToken: searchToken);
 
     if (response.statusCode == 200) {}
   }
@@ -417,24 +420,22 @@ hoteldestination({required String searchCity}) async {
       result = hotelBookingDetailModel.result;
       print(
           '----------------------------33333333333333333333333333---------------------------------------');
-    }
+    };
     return result;
   }
 
- 
-       InitiatePaymentApiServices initiatePaymentApiServices 
-        = InitiatePaymentApiServices();
+  InitiatePaymentApiServices initiatePaymentApiServices =
+      InitiatePaymentApiServices();
 
-    initiatePayment(
-      {
-      required double amount,
-      required String userIp,
-      required String resultIndex,
-      required String hotelCode,
-      required String hotelName,
-      required String searchToken,
-      required HotelInfoData hotelInfoData,
-      required ht.HotelRoomsDetail hotelRoomsDetail,
+  initiatePayment({
+    required double amount,
+    required String userIp,
+    required String resultIndex,
+    required String hotelCode,
+    required String hotelName,
+    required String searchToken,
+    required HotelInfoData hotelInfoData,
+    required ht.HotelRoomsDetail hotelRoomsDetail,
   }) async {
     print('------------------------------------------------1111111');
     await Get.find<AuthProfileController>().getProfile();
@@ -460,37 +461,38 @@ hoteldestination({required String searchCity}) async {
         hotelCode,
         hotelName,
         searchToken,
-       hotelInfoData,
-         hotelRoomsDetail,
+        hotelInfoData,
+        hotelRoomsDetail,
       );
       print("Payment is over ------------>>");
     }
   }
+
   Timer? tempTimer;
   startTimer(
-    var  refernceID,
-        var amount,
+      var refernceID,
+      var amount,
       var userIp,
       var resultIndex,
-      var  hotelCode,
-      var  hotelName,
-      var  searchToken,
-       HotelInfoData hotelInfoData,
-       ht.HotelRoomsDetail hotelRoomsDetail ) {
+      var hotelCode,
+      var hotelName,
+      var searchToken,
+      HotelInfoData hotelInfoData,
+      ht.HotelRoomsDetail hotelRoomsDetail) {
     print(":::::::::_________________payment strated---------------");
     tempTimer = Timer.periodic(const Duration(seconds: 6), (timer) async {
       print("timer working ...");
       int status = await Get.find<HotelController>().checkPhonePeStatus(
-          refernceID: refernceID,
-          amount: amount,
-          userIp: userIp, 
-          resultIndex: resultIndex, 
-          hotelCode: hotelCode, 
-          hotelName: hotelName,
-           searchToken: searchToken, 
-           hotelInfoData: hotelInfoData, 
-           hotelRoomsDetail: hotelRoomsDetail,
-          );
+        refernceID: refernceID,
+        amount: amount,
+        userIp: userIp,
+        resultIndex: resultIndex,
+        hotelCode: hotelCode,
+        hotelName: hotelName,
+        searchToken: searchToken,
+        hotelInfoData: hotelInfoData,
+        hotelRoomsDetail: hotelRoomsDetail,
+      );
       print(
           "<<<>>><<<>>><<>>><>><><><><1><><1><------cccccc------><1><><><><><><><><><><><><><><>");
       print(status);
@@ -504,8 +506,9 @@ hoteldestination({required String searchCity}) async {
       }
     });
   }
-    PaymentResponseApiServices paymentResponseApiServices =
-     PaymentResponseApiServices();
+
+  PaymentResponseApiServices paymentResponseApiServices =
+      PaymentResponseApiServices();
 
   checkPhonePeStatus(
       {required String refernceID,
@@ -516,18 +519,15 @@ hoteldestination({required String searchCity}) async {
       required String hotelName,
       required String searchToken,
       required HotelInfoData hotelInfoData,
-      required ht.HotelRoomsDetail hotelRoomsDetail
-    }) async {
-
-        int paymentId = 0;
+      required ht.HotelRoomsDetail hotelRoomsDetail}) async {
+    int paymentId = 0;
     dio.Response<dynamic> response = await paymentResponseApiServices
         .paymentResponseApi(merchantId: refernceID);
 
     if (response.data["code"] == "PAYMENT_SUCCESS") {
       paymentId = 1;
       print("<<<<<<<<payment is Success>>>>>>>>");
-      
-      
+
       blockroomapi(
           userIp: userIp,
           hotelInfoData: hotelInfoData,
@@ -536,19 +536,39 @@ hoteldestination({required String searchCity}) async {
           hotelName: hotelName,
           searchToken: searchToken,
           hotelRoomsDetail: hotelRoomsDetail);
-    } 
-    else if (response.data["code"] == "PAYMENT_PENDING")
-     {
-       paymentId = 0; 
+    } else if (response.data["code"] == "PAYMENT_PENDING") {
+      paymentId = 0;
       print("<<<<<<<<payment is Failed>>>>>>>>");
 
       //   Get.to(() => PaymentFailedScreen());
-    }
-    else
-    {
-       paymentId = 2; 
+    } else {
+      paymentId = 2;
     }
 
     return paymentId;
+  }
+
+  HotelCancelApiServices hotelCancelApiServices = HotelCancelApiServices();
+
+  cancelMyHotelBooking(
+      {required String searchToken,
+      required String bookingId,
+      required String amount}) async {
+    dio.Response<dynamic> response = await hotelCancelApiServices.cancelHotel(
+        searchToken: searchToken, bookingId: bookingId);
+
+    if (response.statusCode == 200) {
+      Get.rawSnackbar(
+          message: "Hotel Booking cancelled", backgroundColor: Colors.green);
+      Get.find<AuthProfileController>().cancelRefundApi(
+          userId:
+              Get.find<AuthProfileController>().profileData.first.id.toString(),
+          amount: amount,
+          type: "hotel",
+          bookingId: bookingId);
+    } else {
+      Get.rawSnackbar(
+          message: "Hotel Can't be cancelled", backgroundColor: Colors.black);
+    }
   }
 }

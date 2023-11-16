@@ -140,7 +140,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
     }
   }
 
-
   bool isMarried = false;
   bool isUnmarried = false;
   int offersindex = 0;
@@ -298,7 +297,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               text: names.childName,
             ),
             dob: names.dob,
-            isNew: false,
+            isNew: true,
             name: names.childName);
 
         authprofileController.childDetailsList.add(childDetailsModel);
@@ -710,11 +709,10 @@ class _ProfileSettingsState extends State<ProfileSettings> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-               Expanded(
+              Expanded(
                 child: Padding(
-                   padding: const EdgeInsets.only(
+                  padding: const EdgeInsets.only(
                       left: 40, right: 70, top: 0, bottom: 30),
-               
                   child: TextField(
                     //textInputAction: TextInputAction.next,
                     controller: aadhaarController,
@@ -735,29 +733,30 @@ class _ProfileSettingsState extends State<ProfileSettings> {
               ),
               Expanded(
                 child: Padding(
-                   padding: const EdgeInsets.only(
-                      left: 70, right: 50, top: 0, bottom: 30),
-                  child: !isMarried? Container(
+                    padding: const EdgeInsets.only(
+                        left: 70, right: 50, top: 0, bottom: 30),
+                    child: !isMarried
+                        ? Container(
                             width: 55,
                             height: 55,
-                          ) : TextField(
-                      textInputAction: TextInputAction.next,
-                      controller: wedingnameController,
-                      // keyboardType: TextInputType.datetime,
-                      readOnly: true,
-                      decoration: InputDecoration(
-                          hintText: 'Wedding Date',
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              _selectDate2(context);
-                            },
-                            icon: const Icon(Icons.edit),
-                          ),
-                          fillColor: const Color(0xffF9F8FD),
-                          border: const OutlineInputBorder())) 
-                ),
+                          )
+                        : TextField(
+                            textInputAction: TextInputAction.next,
+                            controller: wedingnameController,
+                            // keyboardType: TextInputType.datetime,
+                            readOnly: true,
+                            decoration: InputDecoration(
+                                hintText: 'Wedding Date',
+                                suffixIcon: IconButton(
+                                  onPressed: () {
+                                    _selectDate2(context);
+                                  },
+                                  icon: const Icon(Icons.edit),
+                                ),
+                                fillColor: const Color(0xffF9F8FD),
+                                border: const OutlineInputBorder()))),
               ),
-              
+
               //
             ],
           ),
@@ -794,27 +793,28 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 70, right: 50, top: 0, bottom: 30),
-                  child: !isMarried? Container(
-                            width: 55,
-                            height: 55,
-                          ) : Container(
-                    child: Column(
-                      children: [
-                        TextField(
-                          textInputAction: TextInputAction.next,
-                          controller: spousenameController,
-                          decoration: const InputDecoration(
-                              hintText: 'Spouse Name',
-                              suffixIcon: Icon(Icons.edit),
-                              fillColor: Color(0xffF9F8FD),
-                              border: OutlineInputBorder()),
+                  child: !isMarried
+                      ? Container(
+                          width: 55,
+                          height: 55,
+                        )
+                      : Container(
+                          child: Column(
+                            children: [
+                              TextField(
+                                textInputAction: TextInputAction.next,
+                                controller: spousenameController,
+                                decoration: const InputDecoration(
+                                    hintText: 'Spouse Name',
+                                    suffixIcon: Icon(Icons.edit),
+                                    fillColor: Color(0xffF9F8FD),
+                                    border: OutlineInputBorder()),
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ),
                 ),
               ),
-              
             ],
           ),
 
@@ -831,7 +831,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
                           hintText: 'State',
-                         
                           fillColor: const Color(0xffF9F8FD),
                           border: const OutlineInputBorder())),
                 ),
@@ -840,34 +839,35 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                 child: Padding(
                   padding: const EdgeInsets.only(
                       left: 70, right: 50, top: 0, bottom: 30),
-                  child:  !isMarried? Container(
-                            width: 55,
-                            height: 55,
-                          ) : Container(
-                    child: Column(
-                      children: [
-                        TextField(
-                          textInputAction: TextInputAction.next,
-                          keyboardType: TextInputType.phone,
-                          onTap: (){
-                          _selectDateWifeDob(context);
-                          },
-                          controller: spusedobController,
-                          decoration:  InputDecoration(
-                              hintText: 'Spouse DOB',
-                               suffixIcon: IconButton(
-                            onPressed: () {
-                              _selectDateWifeDob(context);
-                            },
-                            icon: const Icon(Icons.edit),
+                  child: !isMarried
+                      ? Container(
+                          width: 55,
+                          height: 55,
+                        )
+                      : Container(
+                          child: Column(
+                            children: [
+                              TextField(
+                                textInputAction: TextInputAction.next,
+                                keyboardType: TextInputType.phone,
+                                onTap: () {
+                                  _selectDateWifeDob(context);
+                                },
+                                controller: spusedobController,
+                                decoration: InputDecoration(
+                                    hintText: 'Spouse DOB',
+                                    suffixIcon: IconButton(
+                                      onPressed: () {
+                                        _selectDateWifeDob(context);
+                                      },
+                                      icon: const Icon(Icons.edit),
+                                    ),
+                                    fillColor: Color(0xffF9F8FD),
+                                    border: OutlineInputBorder()),
+                              ),
+                            ],
                           ),
-                           
-                              fillColor: Color(0xffF9F8FD),
-                              border: OutlineInputBorder()),
                         ),
-                      ],
-                    ),
-                  ),
                 ),
               ),
             ],
@@ -882,354 +882,425 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 40),
                       child: Column(
-                                      children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Text('GENDER').text.gray500.semiBold.make(),
-                        ],
-                      ),
-                      RadioListTile(
-                        title: const Text('Male'),
-                        value: 'Male',
-                        groupValue: selectedGender,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedGender = value!;
-                          });
-                        },
-                      ),
-                      RadioListTile(
-                        title: const Text('Female'),
-                        value: 'Female',
-                        groupValue: selectedGender,
-                        onChanged: (value) {
-                          setState(() {
-                            selectedGender = value!;
-                          });
-                        },
-                      ),
-                      ksizedbox20,
-                       
-                       Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text("Aadhar Image"),
-                                ksizedbox10,
-                                Container(
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.grey.withOpacity(0.5)
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                     aadharimage != null
-                                  ? InkWell(
-                                    onTap: () async{
-                                      PickedFile? pickedFile =
-                                        await ImagePicker().getImage(
-                                      source: ImageSource.gallery,
-                                    );
-
-                                    var tempCont =
-                                        await pickedFile!.readAsBytes();
-                                    setState(() {
-                                      aadharimage = tempCont;
-                                    });
-                                    },
-                                    child: Image.memory(aadharimage))
-                                  // : authprofileController.profileData.first.adharProof !=
-                                  //         null
-                                  : authprofileController
-                                      .profileData.first.adharProof.isEmpty ? Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.grey[300]),
-                                      height: 330,
-                                      width: 400,
-                                      child: GestureDetector(
-                                        onTap: () async {
-                                          PickedFile? pickedFile =
-                                              await ImagePicker().getImage(
-                                            source: ImageSource.gallery,
-                                          );
-
-                                          var tempCont =
-                                              await pickedFile!.readAsBytes();
-                                          setState(() {
-                                            aadharimage = tempCont;
-                                          });
-                                        },
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.cloud_upload_outlined,
-                                              color: kgrey,
-                                            ),
-                                            Text(
-                                              'Upload Adhaar Card',
-                                              style: TextStyle(
-                                                color: kgrey,
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    )
-                              : GestureDetector(
-                                  onTap: () async {
-                                    PickedFile? pickedFile =
-                                        await ImagePicker().getImage(
-                                      source: ImageSource.gallery,
-                                    );
-
-                                    var tempCont =
-                                        await pickedFile!.readAsBytes();
-                                    setState(() {
-                                      aadharimage = tempCont;
-                                    });
-                                  },
-                                  child: Image.network(authprofileController
-                                      .profileData.first.adharProof),
-                                ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              const Text('GENDER').text.gray500.semiBold.make(),
+                            ],
                           ),
-                          kwidth10,
-                           Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text("Pan Card Image"),
-                                ksizedbox10,
-                                Container(
-                                  height: 200,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.grey.withOpacity(0.5)
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                  
-                            panimage != null
-                        ?  Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () async {
-                                    PickedFile? pickedFile =
-                                        await ImagePicker().getImage(
-                                      source: ImageSource.gallery,
-                                    );
-
-                                    var tempCont =
-                                        await pickedFile!.readAsBytes();
-                                    setState(() {
-                                      panimage = tempCont;
-                                    });
-                                  },
-                                  child: Image.memory(
-                                    panimage,
-                                    height: 330,
-                                    width: 400,
-                                  ),
-                                ),
-                              )
-                            : authprofileController
-                                .profileData.first.panProof.isEmpty ? Container(
-                                decoration:
-                                    BoxDecoration(color: Colors.grey[300]),
-                                height: 330,
-                                width: 400,
-                                child: GestureDetector(
-                                  onTap: () async {
-                                    PickedFile? pickedFile =
-                                        await ImagePicker().getImage(
-                                      source: ImageSource.gallery,
-                                    );
-
-                                    var tempCont =
-                                        await pickedFile!.readAsBytes();
-                                    setState(() {
-                                      panimage = tempCont;
-                                    });
-                                  },
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Icon(
-                                        Icons.cloud_upload_outlined,
-                                        color: kgrey,
-                                      ),
-                                      Text(
-                                        'Upload Pan Card',
-                                        style: TextStyle(
-                                          color: kgrey,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              )
-                        : GestureDetector(
-                            onTap: () async {
-                              try {
-  PickedFile? pickedFile =
-      await ImagePicker().getImage(
-    source: ImageSource.gallery,
-  );
-  
-  var tempCont = await pickedFile!.readAsBytes();
-  setState(() {
-    panimage = tempCont;
-  });
-} on Exception catch (e) {
-  // TODO
-  print(e);
-}
+                          RadioListTile(
+                            title: const Text('Male'),
+                            value: 'Male',
+                            groupValue: selectedGender,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedGender = value!;
+                              });
                             },
-                            child: Image.network(authprofileController
-                                .profileData.first.panProof),
-                          )
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
                           ),
-                        ],
-                       )
+                          RadioListTile(
+                            title: const Text('Female'),
+                            value: 'Female',
+                            groupValue: selectedGender,
+                            onChanged: (value) {
+                              setState(() {
+                                selectedGender = value!;
+                              });
+                            },
+                          ),
+                          ksizedbox20,
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text("Aadhar Image"),
+                                    ksizedbox10,
+                                    Container(
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.grey.withOpacity(0.5)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          aadharimage != null
+                                              ? InkWell(
+                                                  onTap: () async {
+                                                    PickedFile? pickedFile =
+                                                        await ImagePicker()
+                                                            .getImage(
+                                                      source:
+                                                          ImageSource.gallery,
+                                                    );
 
-                                      ],
+                                                    var tempCont =
+                                                        await pickedFile!
+                                                            .readAsBytes();
+                                                    setState(() {
+                                                      aadharimage = tempCont;
+                                                    });
+                                                  },
+                                                  child:
+                                                      Image.memory(aadharimage))
+                                              // : authprofileController.profileData.first.adharProof !=
+                                              //         null
+                                              : authprofileController
+                                                      .profileData
+                                                      .first
+                                                      .adharProof
+                                                      .isEmpty
+                                                  ? Container(
+                                                      decoration: BoxDecoration(
+                                                          color:
+                                                              Colors.grey[300]),
+                                                      height: 330,
+                                                      width: 400,
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          PickedFile?
+                                                              pickedFile =
+                                                              await ImagePicker()
+                                                                  .getImage(
+                                                            source: ImageSource
+                                                                .gallery,
+                                                          );
+
+                                                          var tempCont =
+                                                              await pickedFile!
+                                                                  .readAsBytes();
+                                                          setState(() {
+                                                            aadharimage =
+                                                                tempCont;
+                                                          });
+                                                        },
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .cloud_upload_outlined,
+                                                              color: kgrey,
+                                                            ),
+                                                            Text(
+                                                              'Upload Adhaar Card',
+                                                              style: TextStyle(
+                                                                color: kgrey,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : GestureDetector(
+                                                      onTap: () async {
+                                                        PickedFile? pickedFile =
+                                                            await ImagePicker()
+                                                                .getImage(
+                                                          source: ImageSource
+                                                              .gallery,
+                                                        );
+
+                                                        var tempCont =
+                                                            await pickedFile!
+                                                                .readAsBytes();
+                                                        setState(() {
+                                                          aadharimage =
+                                                              tempCont;
+                                                        });
+                                                      },
+                                                      child: Image.network(
+                                                          authprofileController
+                                                              .profileData
+                                                              .first
+                                                              .adharProof),
+                                                    ),
+                                        ],
+                                      ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                              kwidth10,
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text("Pan Card Image"),
+                                    ksizedbox10,
+                                    Container(
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.grey.withOpacity(0.5)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          panimage != null
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: InkWell(
+                                                    onTap: () async {
+                                                      PickedFile? pickedFile =
+                                                          await ImagePicker()
+                                                              .getImage(
+                                                        source:
+                                                            ImageSource.gallery,
+                                                      );
+
+                                                      var tempCont =
+                                                          await pickedFile!
+                                                              .readAsBytes();
+                                                      setState(() {
+                                                        panimage = tempCont;
+                                                      });
+                                                    },
+                                                    child: Image.memory(
+                                                      panimage,
+                                                      height: 330,
+                                                      width: 400,
+                                                    ),
+                                                  ),
+                                                )
+                                              : authprofileController
+                                                      .profileData
+                                                      .first
+                                                      .panProof
+                                                      .isEmpty
+                                                  ? Container(
+                                                      decoration: BoxDecoration(
+                                                          color:
+                                                              Colors.grey[300]),
+                                                      height: 330,
+                                                      width: 400,
+                                                      child: GestureDetector(
+                                                        onTap: () async {
+                                                          PickedFile?
+                                                              pickedFile =
+                                                              await ImagePicker()
+                                                                  .getImage(
+                                                            source: ImageSource
+                                                                .gallery,
+                                                          );
+
+                                                          var tempCont =
+                                                              await pickedFile!
+                                                                  .readAsBytes();
+                                                          setState(() {
+                                                            panimage = tempCont;
+                                                          });
+                                                        },
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .cloud_upload_outlined,
+                                                              color: kgrey,
+                                                            ),
+                                                            Text(
+                                                              'Upload Pan Card',
+                                                              style: TextStyle(
+                                                                color: kgrey,
+                                                                fontSize: 16,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    )
+                                                  : GestureDetector(
+                                                      onTap: () async {
+                                                        try {
+                                                          PickedFile?
+                                                              pickedFile =
+                                                              await ImagePicker()
+                                                                  .getImage(
+                                                            source: ImageSource
+                                                                .gallery,
+                                                          );
+
+                                                          var tempCont =
+                                                              await pickedFile!
+                                                                  .readAsBytes();
+                                                          setState(() {
+                                                            panimage = tempCont;
+                                                          });
+                                                        } on Exception catch (e) {
+                                                          // TODO
+                                                          print(e);
+                                                        }
+                                                      },
+                                                      child: Image.network(
+                                                          authprofileController
+                                                              .profileData
+                                                              .first
+                                                              .panProof),
+                                                    )
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
-                    child:  !isMarried? Container(
+                    child: !isMarried
+                        ? Container(
                             width: 55,
                             height: 55,
-                          ) : Column(
-                      children: [
-                        for (int i = 0;
-                            i < authprofileController.childDetailsList.length;
-                            i++)
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10,left: 40),
-                            child: Row(
-                              
-                              children: [
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 30, right: 10, top: 0, bottom: 30),
-                                    child: TextField(
-                                      controller: authprofileController
-                                          .childDetailsList[i].nameController,
-                                      readOnly: !authprofileController
-                                          .childDetailsList[i].isNew,
-                                      decoration: const InputDecoration(
-                                        //    isCollapsed: true,
-                                        //  isDense: true,
-                                        fillColor:  Color(0xffF9F8FD),
-                                        border:  OutlineInputBorder(),
-                                        hintText: "Child Name",
-                                        // hintStyle:
-                                        //     TextStyle(
-                                        //   color: kblue,
-                                        //   fontWeight:
-                                        //       FontWeight
-                                        //           .w400,
-                                        // )
+                          )
+                        : Column(
+                            children: [
+                              for (int i = 0;
+                                  i <
+                                      authprofileController
+                                          .childDetailsList.length;
+                                  i++)
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 10, left: 40),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 30,
+                                              right: 10,
+                                              top: 0,
+                                              bottom: 30),
+                                          child: TextField(
+                                            controller: authprofileController
+                                                .childDetailsList[i]
+                                                .nameController,
+                                            readOnly: !authprofileController
+                                                .childDetailsList[i].isNew,
+                                            decoration: const InputDecoration(
+                                              //    isCollapsed: true,
+                                              //  isDense: true,
+                                              fillColor: Color(0xffF9F8FD),
+                                              border: OutlineInputBorder(),
+                                              hintText: "Child Name",
+                                              // hintStyle:
+                                              //     TextStyle(
+                                              //   color: kblue,
+                                              //   fontWeight:
+                                              //       FontWeight
+                                              //           .w400,
+                                              // )
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 10, right: 10, top: 0, bottom: 30),
-                                    child: TextField(
-                                      controller: authprofileController
-                                          .childDetailsList[i].dateOfBirthController,
-                                      readOnly: true,
-                                      onTap: () {
-                                        if (authprofileController
-                                            .childDetailsList[i].isNew) {
-                                          _selectChildDateofBrth(context, i);
-                                        }
-                                      },
-                                      decoration: const InputDecoration(
-                                        fillColor:  Color(0xffF9F8FD),
-                                        border:  OutlineInputBorder(),
-                                        hintText: "Date Of Birth",
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                i == 0
-                                    ? Padding(
-                                      padding: const EdgeInsets.only(bottom: 30),
-                                      child: IconButton(
-                                          onPressed: () {
-                                            ChildDetailsModel childDetailsModel =
-                                                ChildDetailsModel(
-                                              dateOfBirthController:
-                                                  TextEditingController(),
-                                              nameController:
-                                                  TextEditingController(),
-                                            );
-                                            authprofileController.childDetailsList
-                                                .add(childDetailsModel);
-                                            authprofileController.update();
-                                          },
-                                          icon: const Icon(
-                                            Icons.add_box_rounded,
-                                            //     color: kblue,
-                                          )),
-                                    )
-                                    : authprofileController.childDetailsList[i].isNew
-                                        ? IconButton(
-                                            onPressed: () {
-                                              // ChildDetailsModel
-                                              //     childDetailsModel =
-                                              //     ChildDetailsModel(
-                                              //   dateOfBirthController:
-                                              //       TextEditingController(),
-                                              //   nameController:
-                                              //       TextEditingController(),
-                                              // );
-                                              authprofileController.childDetailsList
-                                                  .removeAt(i);
-                  
-                                              authprofileController.update();
+                                      Expanded(
+                                        flex: 2,
+                                        child: Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10,
+                                              right: 10,
+                                              top: 0,
+                                              bottom: 30),
+                                          child: TextField(
+                                            controller: authprofileController
+                                                .childDetailsList[i]
+                                                .dateOfBirthController,
+                                            readOnly: true,
+                                            onTap: () {
+                                              if (authprofileController
+                                                  .childDetailsList[i].isNew) {
+                                                _selectChildDateofBrth(
+                                                    context, i);
+                                              }
                                             },
-                                            icon: const Icon(
-                                              Icons.remove_circle_outline_rounded,
-                                              // color: kblue,
-                                            ))
-                                        : Container(
-                                          width: 40,
-                                        )
-                              ],
-                            ),
+                                            decoration: const InputDecoration(
+                                              fillColor: Color(0xffF9F8FD),
+                                              border: OutlineInputBorder(),
+                                              hintText: "Date Of Birth",
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      i == 0
+                                          ? Padding(
+                                              padding: const EdgeInsets.only(
+                                                  bottom: 30),
+                                              child: IconButton(
+                                                  onPressed: () {
+                                                    ChildDetailsModel
+                                                        childDetailsModel =
+                                                        ChildDetailsModel(
+                                                      dateOfBirthController:
+                                                          TextEditingController(),
+                                                      nameController:
+                                                          TextEditingController(),
+                                                    );
+                                                    authprofileController
+                                                        .childDetailsList
+                                                        .add(childDetailsModel);
+                                                    authprofileController
+                                                        .update();
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons.add_box_rounded,
+                                                    //     color: kblue,
+                                                  )),
+                                            )
+                                          : authprofileController
+                                                  .childDetailsList[i].isNew
+                                              ? IconButton(
+                                                  onPressed: () {
+                                                    // ChildDetailsModel
+                                                    //     childDetailsModel =
+                                                    //     ChildDetailsModel(
+                                                    //   dateOfBirthController:
+                                                    //       TextEditingController(),
+                                                    //   nameController:
+                                                    //       TextEditingController(),
+                                                    // );
+                                                    authprofileController
+                                                        .childDetailsList
+                                                        .removeAt(i);
+
+                                                    authprofileController
+                                                        .update();
+                                                  },
+                                                  icon: const Icon(
+                                                    Icons
+                                                        .remove_circle_outline_rounded,
+                                                    // color: kblue,
+                                                  ))
+                                              : Container(
+                                                  width: 40,
+                                                )
+                                    ],
+                                  ),
+                                ),
+                            ],
                           ),
-                      ],
-                    ),
                   ),
                 ],
               );
@@ -1241,7 +1312,6 @@ class _ProfileSettingsState extends State<ProfileSettings> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-             
               Container(
                 width: 500,
                 // child: Column(
@@ -1375,8 +1445,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               gstNo: spusedobController.text.isEmpty
                                   ? ""
                                   : spusedobController.text,
-                              adharproofimg:aadharimage ?? "null" ,
-                              panproofimg:panimage ?? "null",
+                              adharproofimg: aadharimage ?? "null",
+                              panproofimg: panimage ?? "null",
                               qualification:
                                   qualificationController.text.isEmpty
                                       ? ""
@@ -1410,7 +1480,7 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                           onPressed: () {
                             MemberProfileUpdateModel memberProfileUpdateModel =
                                 MemberProfileUpdateModel(
-                             name: nameController.text.isEmpty
+                              name: nameController.text.isEmpty
                                   ? ""
                                   : nameController.text,
                               email: emailController.text.isEmpty
@@ -1457,11 +1527,8 @@ class _ProfileSettingsState extends State<ProfileSettings> {
                               gstNo: gstnoController.text.isEmpty
                                   ? ""
                                   : gstnoController.text,
-                             
                               adharproofimg: aadharimage ?? "null",
-                                              
-                              panproofimg:  panimage ?? "null",
-                                                
+                              panproofimg: panimage ?? "null",
                               qualification:
                                   qualificationController.text.isEmpty
                                       ? ""

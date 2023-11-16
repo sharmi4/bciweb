@@ -36,6 +36,7 @@ class _HotelHistoryState extends State<HotelHistory> {
       throw 'Could not launch Google Maps';
     }
   }
+
   bool isLoading = false;
   Future<void> dialogBuilder(
       BuildContext context, BookingList bookingData, Result result) {
@@ -331,6 +332,67 @@ class _HotelHistoryState extends State<HotelHistory> {
                     ),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      '',
+                      style: TextStyle(
+                          fontSize: 16,
+                          color: kblue,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: Colors.white,
+                                title: Text("Cancel Booking",
+                                    style: TextStyle(color: Colors.black)),
+                                content: Text(
+                                  "Are you sure you want to Cancel?",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text(
+                                      "Yes",
+                                      style: TextStyle(color: kblue),
+                                    ),
+                                    onPressed: () {
+                                      Get.back();
+                                      hotelBookingController
+                                          .cancelMyHotelBooking(
+                                              bookingId:
+                                                  bookingData.bookingRefNo,
+                                              amount: bookingData.price,
+                                              searchToken:
+                                                  bookingData.searchKey);
+                                      Get.back();
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text("No",
+                                        style: TextStyle(color: kblue)),
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                      },
+                      child: Container(
+                        height: 50,
+                        width: 70,
+                        alignment: Alignment.center,
+                        child: const Text("Cancel"),
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
           ),
@@ -346,8 +408,11 @@ class _HotelHistoryState extends State<HotelHistory> {
         return Column(
           children: [
             hotelBookingController.bookingList.isEmpty
-                ?  Center(
-                    child: Image.asset('assets/icons/Group 39781.png',height: 500,),
+                ? Center(
+                    child: Image.asset(
+                      'assets/icons/Group 39781.png',
+                      height: 500,
+                    ),
                   )
                 : Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -460,16 +525,19 @@ class _HotelHistoryState extends State<HotelHistory> {
                     ),
                   ),
             ksizedbox40,
-         if(isLoading)  Container(
-                    height: 300,
-                    width: 300,
-                    decoration:
-                        const BoxDecoration(color: Color.fromARGB(22, 0, 0, 0)),
-                    child: Center(
-                        child: CircularProgressIndicator(
-                      color: kOrange,
-                    ),),
-                  )  ],
+            if (isLoading)
+              Container(
+                height: 300,
+                width: 300,
+                decoration:
+                    const BoxDecoration(color: Color.fromARGB(22, 0, 0, 0)),
+                child: Center(
+                  child: CircularProgressIndicator(
+                    color: kOrange,
+                  ),
+                ),
+              )
+          ],
         );
       },
     );

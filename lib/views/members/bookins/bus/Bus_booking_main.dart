@@ -160,7 +160,7 @@ class _BusBookingMainState extends State<BusBookingMain> {
                                 },
                                 child: bookingbutton(
                                   size: size,
-                                  text: 'TRIP',
+                                  text: 'HOLIDAYS',
                                   colorr: kblue,
                                 ),
                               ),

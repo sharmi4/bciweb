@@ -8,6 +8,7 @@ import 'package:bciweb/models/get_plansmodel.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
 import 'package:bciweb/payment_gateway/payment_gateway_view/payment_view.dart';
 import 'package:bciweb/services/networks/business_service/business_withdraw_api_service.dart';
+import 'package:bciweb/services/networks/business_service/withdraw_from_api_services.dart';
 import 'package:bciweb/services/networks/creditcard_api_service.dart/user_credit_points_api_dart.dart';
 
 import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
@@ -49,15 +50,14 @@ class PlanController extends GetxController {
       print("<<<<<<<<payment is Success>>>>>>>>");
 
       Get.find<HomeServiceController>().addSubscription(
-         //   planId: planId,
+          //   planId: planId,
           customerId: Get.find<ProfileController>().profileData.first.id,
           paymentMenthod: "5",
           utrNumber: "",
-           gstPercentage: gstPercentage,
-           percentageAmount: percentageAmount,
+          gstPercentage: gstPercentage,
+          percentageAmount: percentageAmount,
           amount: amount.toStringAsFixed(2),
-          totalAmount: totalAmount
-          );
+          totalAmount: totalAmount);
     } else if (response.data["code"] == "PAYMENT_PENDING") {
       paymentId = 0;
       print("<<<<<<<<payment is Failed>>>>>>>>");
@@ -93,13 +93,8 @@ class PlanController extends GetxController {
       await launchUrl(Uri.parse(
           ininitiatePaymentModel.data.instrumentResponse.redirectInfo.url));
       //st
-      startTimer(ininitiatePaymentModel.data.merchantTransactionId, amount,
-          id,
-          gstPercentage,
-          percentageAmount,
-          totalAmount
-
-          );
+      startTimer(ininitiatePaymentModel.data.merchantTransactionId, amount, id,
+          gstPercentage, percentageAmount, totalAmount);
       print("Payment is over ------------>>");
     }
   }
@@ -108,7 +103,7 @@ class PlanController extends GetxController {
   startTimer(
     var referenceId,
     var amount,
-   var id,
+    var id,
     var gstpercentage,
     var persentageamount,
     var totalamount,
@@ -170,19 +165,20 @@ class PlanController extends GetxController {
     update();
   }
 
-
-
-    WithdrawWalletApiServices withdrawWalletApiServices =
+  WithdrawWalletApiServices withdrawWalletApiServices =
       WithdrawWalletApiServices();
+
+  PayFromWalletApiServices payFromWalletApiServices =
+      PayFromWalletApiServices();
 
   payFromWallet({required String amount}) async {
     final homeController = Get.find<HomeServiceController>();
 
-    dio.Response<dynamic> respone = await withdrawWalletApiServices
-        .withdrawWalletApiServices(amount: amount);
+    dio.Response<dynamic> respone = await payFromWalletApiServices
+        .payFromwWalletApiServices(amount: amount);
 
     if (respone.statusCode == 200) {
-  //    Get.to(() => const FlightLoadingPage());
+      //    Get.to(() => const FlightLoadingPage());
       print(">>-------------->>---------->>");
       for (int i = 0; i < homeController.cartListData.length; i++) {
         if (homeController.cartListData[i].isSelected) {
@@ -230,10 +226,11 @@ class PlanController extends GetxController {
 
     // print(response);
   }
- UseCreditPointsApiServices useCreditPointsApiServices =
+
+  UseCreditPointsApiServices useCreditPointsApiServices =
       UseCreditPointsApiServices();
 
-   useCredit({
+  useCredit({
     required String creditAmount,
     required String creditFor,
     required String creditForId,
@@ -262,31 +259,29 @@ class PlanController extends GetxController {
               bookDateTime: homeController.cartListData[i].bookDateTime);
         }
 
-       Get.snackbar(
-        "Payment Successfully Paid",
-        "",
-        icon: const Icon(Icons.check_circle_outline_outlined,
-            color: Colors.white),
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: Colors.green,
-        borderRadius: 20,
-        margin: const EdgeInsets.all(15),
-        colorText: Colors.white,
-        duration: const Duration(seconds: 3),
-        isDismissible: true,
-        dismissDirection: DismissDirection.horizontal,
-        forwardAnimationCurve: Curves.easeOutBack,
-      );
+        Get.snackbar(
+          "Payment Successfully Paid",
+          "",
+          icon: const Icon(Icons.check_circle_outline_outlined,
+              color: Colors.white),
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: Colors.green,
+          borderRadius: 20,
+          margin: const EdgeInsets.all(15),
+          colorText: Colors.white,
+          duration: const Duration(seconds: 3),
+          isDismissible: true,
+          dismissDirection: DismissDirection.horizontal,
+          forwardAnimationCurve: Curves.easeOutBack,
+        );
       }
     }
   }
 
-
- SubRedeemCouponApiServices subRedeemCouponApiServices =
+  SubRedeemCouponApiServices subRedeemCouponApiServices =
       SubRedeemCouponApiServices();
 
-
-   redeemSubscriptionCoupon({required String couponcode}) async {
+  redeemSubscriptionCoupon({required String couponcode}) async {
     String tempAmount = "0";
     dio.Response<dynamic> response =
         await subRedeemCouponApiServices.subRedeemCouponApiServices(
@@ -306,6 +301,4 @@ class PlanController extends GetxController {
 
     return tempAmount;
   }
-
-  
 }

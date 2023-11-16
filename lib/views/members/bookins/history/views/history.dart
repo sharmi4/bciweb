@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 
 import 'package:bciweb/views/members/bookins/history/views/widgets/hotel_history.dart';
 
@@ -88,7 +89,7 @@ class _HistoryState extends State<History> {
                                   colorr: kblue,
                                 ),
                               ),
-                               InkWell(
+                              InkWell(
                                 onTap: () {
                                   Get.to(BusBookingMain());
                                 },
@@ -104,7 +105,7 @@ class _HistoryState extends State<History> {
                                 },
                                 child: bookingbutton(
                                   size: size,
-                                  text: 'TRIP',
+                                  text: 'HOLIDAYS',
                                   colorr: kblue,
                                 ),
                               ),
@@ -118,8 +119,7 @@ class _HistoryState extends State<History> {
                               //     colorr: kblue,
                               //   ),
                               // ),
-                              
-                             
+
                               InkWell(
                                 onTap: () {
                                   Get.to(History());
@@ -448,7 +448,7 @@ class _BussHistoryState extends State<BussHistory> {
                                                   .gray500
                                                   .semiBold
                                                   .make(),
-                                              Text('Conformed')
+                                              Text('')
                                                   .text
                                                   .gray500
                                                   .semiBold
@@ -767,6 +767,74 @@ class _BussHistoryState extends State<BussHistory> {
                         ),
                       ),
                     )
+                  ],
+                ),
+
+                const Divider(
+                  thickness: 1,
+                ),
+
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                backgroundColor: Colors.white,
+                                title: const Text("Cancel Booking",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w800,
+                                        color: Colors.black)),
+                                content: const Text(
+                                  "Are you sure you want to Cancel?",
+                                  style: TextStyle(color: Colors.black),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    child: Text(
+                                      "Yes",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          color: kblue),
+                                    ),
+                                    onPressed: () {
+                                      Get.back();
+                                      busController.cancelMyBus(
+                                          refernceNo:
+                                              busBookingData.bookingRefno);
+                                    },
+                                  ),
+                                  TextButton(
+                                    child: Text("No",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            color: kblue)),
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                  ),
+                                ],
+                              );
+                            });
+                      },
+                      child: const Text(
+                        'Cancel Booking',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.red,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    const Text(
+                      "",
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.green,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
               ],

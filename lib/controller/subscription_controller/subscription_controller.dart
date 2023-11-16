@@ -3,6 +3,7 @@ import 'package:bciweb/models/get_coupons_model.dart';
 import 'package:bciweb/services/networks/business_service/merchant_coupon_list_api_service.dart';
 import 'package:bciweb/services/networks/our_coupons_api_service.dart';
 import 'package:bciweb/services/networks/services/catogory_api_service/redeem_coupons_api_services.dart';
+import 'package:bciweb/services/networks/services/catogory_api_service/redeemed_coupons_api_services.dart';
 import 'package:bciweb/views/responsive------------------------------------/mobile_wdgets/resmembership/mobile_paymentsucess.dart';
 import 'package:bciweb/services/networks/get_coupons_api_service.dart';
 import 'package:bciweb/services/networks/subscription/get_payment_apiservice.dart';
@@ -192,6 +193,27 @@ class SubscriptionApiController extends GetxController {
           style: primaryFont.copyWith(color: Colors.white),
         ),
       );
+    }
+    update();
+  }
+
+  RedeemedCouponsCouponApiServices redeemedCouponsCouponApiServices =
+      RedeemedCouponsCouponApiServices();
+
+  redeemgetCoupons() async {
+    dio.Response<dynamic> response =
+        await redeemedCouponsCouponApiServices.redeemedCouponApiServices();
+    if (response.statusCode == 200) {
+      RedeemedCouponsModel getCouponsList =
+          RedeemedCouponsModel.fromJson(response.data);
+      redeemcouponsData = getCouponsList.data;
+    } else {
+      Get.rawSnackbar(
+          backgroundColor: Colors.red,
+          messageText: Text(
+            response.data["message"],
+            style: primaryFont.copyWith(color: Colors.white),
+          ));
     }
     update();
   }

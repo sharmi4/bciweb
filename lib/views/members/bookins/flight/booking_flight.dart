@@ -221,7 +221,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                     },
                                     child: bookingbutton(
                                       size: size,
-                                      text: 'TRIP',
+                                      text: 'HOLIDAYS',
                                       colorr: kblue,
                                     ),
                                   ),

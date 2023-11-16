@@ -14,6 +14,10 @@ class ProfileUpdateApiServices extends BaseApiService {
     dynamic responseJson;
     try {
       var dio = Dio();
+
+      List<ChildDetailsModel> tempChildDetailsList =
+          childDetailsList.where((element) => element.isNew == true).toList();
+
       FormData formData = FormData.fromMap({
         "name": memberProfileUpdateModel.name,
         "mobile": memberProfileUpdateModel.mobile,
@@ -34,23 +38,20 @@ class ProfileUpdateApiServices extends BaseApiService {
         "spouse": memberProfileUpdateModel.spouse,
         "wedding_date": memberProfileUpdateModel.weddingDate,
         if (memberProfileUpdateModel.adharproofimg != "null")
-          "adhar_proof":  MultipartFile.fromBytes(
+          "adhar_proof": MultipartFile.fromBytes(
               memberProfileUpdateModel.adharproofimg,
               filename: "adhar_proof"),
         if (memberProfileUpdateModel.panproofimg != "null")
-          "pan_proof":  MultipartFile.fromBytes(
+          "pan_proof": MultipartFile.fromBytes(
               memberProfileUpdateModel.panproofimg,
               filename: "pan_proof"),
-        for (int i = 0; i < childDetailsList.where((element) => element.isNew).toList().length; i++)
-          "child_name[$i]": childDetailsList[i].nameController.text,
-        for (int i = 0; i < childDetailsList.where((element) => element.isNew)
-                    .toList()
-                    .length; i++)
-          "dob[$i]": childDetailsList[i].dateOfBirthController.text,
+        for (int i = 0; i < tempChildDetailsList.length; i++)
+          "child_name[$i]": tempChildDetailsList[i].nameController.text,
+        for (int i = 0; i < tempChildDetailsList.length; i++)
+          "child_dob[$i]": tempChildDetailsList[i].dateOfBirthController.text,
       });
 
       print(formData);
-      
 
       final prefs = await SharedPreferences.getInstance();
       String? authtoken = prefs.getString("auth_token");

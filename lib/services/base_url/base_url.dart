@@ -10,7 +10,6 @@ abstract class BaseApiService {
   final String subCategoryURL =
       "https://www.portal.bcipvtltd.com/api/sub_category";
 
-
   final String bookingCancelrefundApi =
       "https://www.portal.bcipvtltd.com/api/auth/booking_cancelation";
   //login url
@@ -263,6 +262,10 @@ abstract class BaseApiService {
   final String withdrawAmountURL =
       "https://www.portal.bcipvtltd.com/api/auth/withdraw_wallet";
 
+  //buy from wallet
+  final String withdrawFromWalletAmountURL =
+      "https://www.portal.bcipvtltd.com/api/auth/withdrawAmount";
+
   //get booking list
   final String bookingListApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/vendor_booking_list";
@@ -328,7 +331,7 @@ abstract class BaseApiService {
   final String viewCreditStatementURL =
       "https://www.portal.bcipvtltd.com/api/auth/view_statement";
 
-  //partial 
+  //partial
 
   final String partialBookingURL =
       'https://www.portal.bcipvtltd.com/api/auth/partial_booking';
@@ -352,13 +355,25 @@ abstract class BaseApiService {
   final String addFlightBookingHistoryURL =
       "https://www.portal.bcipvtltd.com/api/auth/add_flight_booking_history";
 
-      //changes
+  //changes
   final String serviceDetailsURL =
-      "https://www.portal.bcipvtltd.com/api/auth/service_details";  
+      "https://www.portal.bcipvtltd.com/api/auth/service_details";
 
-      
-
-        //coupons redeem api --//
+  //coupons redeem api --//
   final String subRedeemCouponsApiUrl =
       "https://www.portal.bcipvtltd.com/api/auth/subscriptionCoupon";
+
+ //user redeemded coupon
+  final String userRedeemCoupons =
+      "https://www.portal.bcipvtltd.com/api/auth/userRedeemCoupons";
+
+
+  final String busBookingCancelationURL =
+      "http://api.etrav.in/BusHost/BusAPIService.svc/JSONService/Bus_Cancellation";
+
+  final String busBookingCancelationChargeURL =
+      "http://api.etrav.in/BusHost/BusAPIService.svc/JSONService/Bus_CancellationCharge";
+
+   final String hotelBookingCancelationURL =
+      "https://www.portal.bcipvtltd.com/api/auth/cancel_request";
 }

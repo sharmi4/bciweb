@@ -115,7 +115,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               ),
 
  InkWell(
-                                onTap: () {
+    onTap: () {
                                   Get.to(BusBookingMain());
                                 },
                                 child: bookingbutton(
@@ -132,7 +132,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                 },
                                 child: bookingbutton(
                                   size: size,
-                                  text: 'TRIP',
+                                  text: 'HOLIDAYS',
                                   colorr: kblue,
                                 ),
                               ),

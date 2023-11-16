@@ -866,9 +866,9 @@ class _ResortDetailsScreenState extends State<ResortDetailsScreen> {
                                                         width: 300,
                                                         decoration: BoxDecoration(
                                                             color: kOrange),
-                                                        child: Center(
+                                                        child: const Center(
                                                           child:
-                                                              const CupertinoActivityIndicator(
+                                                               CupertinoActivityIndicator(
                                                             color: Colors.white,
                                                           ),
                                                         ),
