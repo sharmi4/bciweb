@@ -1,12 +1,9 @@
-
-
-
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/services/networks/services/catogory_api_service/unreddem_coupons_Api_service.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
-
 
 import '../../models/member_profile.dart';
 
@@ -15,15 +12,15 @@ import '../../services/networks/services/catogory_api_service/redeem_coupons_api
 //import '../services/network/profile_api_services/update_residencial_address_api_services.dart';
 
 class RedeemController extends GetxController {
- // GetProfileApiServices getProfileApiServices = GetProfileApiServices();
+  // GetProfileApiServices getProfileApiServices = GetProfileApiServices();
   //ProfileUpdateApiServices profileUpdateApi = ProfileUpdateApiServices();
- // UpdateResidencialAddressApiServices updateResidencialAddressApiServices =
-   //   UpdateResidencialAddressApiServices();
- // UpdateOfficialApiServices updateOfficialApiServices =
-   //   UpdateOfficialApiServices();
+  // UpdateResidencialAddressApiServices updateResidencialAddressApiServices =
+  //   UpdateResidencialAddressApiServices();
+  // UpdateOfficialApiServices updateOfficialApiServices =
+  //   UpdateOfficialApiServices();
 
- // ProfilePIcUpdateApiServices profilePIcUpdateApiServices =
-   //   ProfilePIcUpdateApiServices();
+  // ProfilePIcUpdateApiServices profilePIcUpdateApiServices =
+  //   ProfilePIcUpdateApiServices();
 
   List<MemberUser> profileData = [];
 
@@ -119,14 +116,24 @@ class RedeemController extends GetxController {
   //   update();
   // }
 
- // redeem coupon
+  // redeem coupon
   RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
 
-  UnRedeemCouponApiServices  unRedeemCouponApiServices = UnRedeemCouponApiServices();
+  UnRedeemCouponApiServices unRedeemCouponApiServices =
+      UnRedeemCouponApiServices();
 
-  redeemCoupon({required String couponcode, required String serviceId}) async {
-    dio.Response<dynamic> response = await redeemCouponApiServices
-        .redeemCouponApiServices(couponcode: couponcode);
+  redeemCoupon(
+      {required String couponcode,
+      required String serviceId,
+      required String requestAmount,
+      required String vendorId}) async {
+    dio.Response<dynamic> response =
+        await redeemCouponApiServices.redeemCouponApiServices(
+            couponcode: couponcode,
+            planId: int.parse(Get.find<AuthProfileController>().planid.value),
+            requestAmount: requestAmount,
+            serviceId: serviceId,
+            vendorId: vendorId);
     if (response.statusCode == 200) {
       Get.rawSnackbar(
           message: response.data["message"], backgroundColor: Colors.green);
@@ -141,10 +148,9 @@ class RedeemController extends GetxController {
 
     return response.data["amount"].toString();
   }
-  
 
-    
-   unRedeemCoupon({required String couponcode, required String serviceId}) async {
+  unRedeemCoupon(
+      {required String couponcode, required String serviceId}) async {
     dio.Response<dynamic> response = await unRedeemCouponApiServices
         .unRedeemCouponApiServices(couponcode: couponcode);
     if (response.statusCode == 200) {
@@ -163,7 +169,7 @@ class RedeemController extends GetxController {
   }
   //easebuzz
 
- // static MethodChannel _channel = MethodChannel('easebuzz');
+  // static MethodChannel _channel = MethodChannel('easebuzz');
 //  EaseBuzzTokenApiService easeBuzzApi = EaseBuzzTokenApiService();
 
   // payUseingEaseBuzz(
@@ -174,7 +180,6 @@ class RedeemController extends GetxController {
   //     required String email,
   //     required String phone,
   //     required dynamic status,
-      
 
   //     }) async {
   //   Get.find<ProfileController>().getProfile();
@@ -197,15 +202,15 @@ class RedeemController extends GetxController {
   //   print(payment_response);
   //   isLoading(false);
   //   if (payment_response["result"] == "payment_successfull") {
-        
+
   //       final homeController = Get.find<HomeController>();
   //        for(int i = 0; i < homeController.cartListData.length; i++){
   //               homeController.addBooking(
-  //               serviceid: homeController.cartListData[i].serviceId, 
+  //               serviceid: homeController.cartListData[i].serviceId,
   //               cartid: homeController.cartListData[i].id.toString(),
-  //               qty: homeController.cartListData[i].quantity, 
-  //               offerOrCoupon: "", 
-  //               couponcode: "", 
+  //               qty: homeController.cartListData[i].quantity,
+  //               offerOrCoupon: "",
+  //               couponcode: "",
   //               amount: homeController.cartListData[i].price
   //               );
   //             }

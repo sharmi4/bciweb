@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/controller/reg_profile_controller.dart';
 import 'package:bciweb/models/initiate_payment_model.dart';
 import 'package:bciweb/models/partial_booking_data_model.dart';
 // import 'package:bciweb/models/setting_model/credit_partial_model.dart';
@@ -381,8 +382,11 @@ class ApiSettingController extends GetxController {
         await partialPaymentApiServices.partialPayment();
     isLoading(false);
     if (response.statusCode == 200) {
-      if (response.data["message"] == "No records found for the user") {
+      if (response.data["message"] == "No records found for the user" ||
+          response.data["message"] == "No pending records found") {
         // Get.off(() => QucikPaymentScreen());
+        Get.find<RegisterProfileController>().proindex(12);
+        Get.find<RegisterProfileController>().update();
       } else {
         PartialAmountModel partialAmountModel =
             PartialAmountModel.fromJson(response.data);

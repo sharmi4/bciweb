@@ -56,7 +56,7 @@ class _PartialPaymentScreenState extends State<PartialPaymentScreen> {
     return GetBuilder<SubscriptionApiController>(builder: (_) {
       return Container(
         // width:double.infinity,
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height + 1000,
         width: MediaQuery.of(context).size.width - 195,
         child: ListView(
           //  crossAxisAlignment: CrossAxisAlignment.start,

@@ -71,151 +71,164 @@ class _ProfilePartialScreenState extends State<ProfilePartialScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 40, right: 40),
             child: GetBuilder<ApiSettingController>(builder: (_) {
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: settingController.partialAmountdataList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    height: 250,
-                    width: size.width,
-                    decoration: BoxDecoration(
-                        color: kwhite,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                              offset: Offset(0.0, 0.75),
-                              blurRadius: 5,
-                              color: kgrey)
-                        ]),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Plan Name',
-                                    style: TextStyle(color: kblue),
-                                  ),
-                                  Text(
-                                    settingController
-                                        .partialAmountdataList[index].planTitle,
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Plan Amount',
-                                    style: TextStyle(color: kblue),
-                                  ),
-                                  Text(
-                                    '₹${settingController.partialAmountdataList[index].planAmount}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Paid',
-                                    style: TextStyle(color: kblue),
-                                  ),
-                                  Text(
-                                    '₹${settingController.partialAmountdataList[index].collectedAmount}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500),
-                                  )
-                                ],
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Unpaid',
-                                    style: TextStyle(color: kblue),
-                                  ),
-                                  Text(
-                                    '₹${settingController.calculateUnPaid(double.parse(settingController.partialAmountdataList[index].planAmount), double.parse(settingController.partialAmountdataList[index].collectedAmount))}',
-                                    style: TextStyle(
-                                        fontSize: 18,
-                                        color: kblue,
-                                        fontWeight: FontWeight.w500),
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          Divider(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                'Status',
-                                style: TextStyle(color: kblue),
-                              ),
-                              Container(
-                                height: 25,
-                                width: 100,
-                                decoration: BoxDecoration(
-                                  color: Colors.yellow[200],
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                      offset: Offset(0.0, 0.75),
-                                      color: kgrey,
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Row(
+              return settingController.isLoading.isTrue
+                  ? const Center(
+                      child: CircularProgressIndicator(),
+                    )
+                  : ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: settingController.partialAmountdataList.length,
+                      itemBuilder: (context, index) {
+                        return Container(
+                          height: 250,
+                          width: size.width,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                    offset: Offset(0.0, 0.75),
+                                    blurRadius: 5,
+                                    color: kgrey)
+                              ]),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 15, right: 15),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Container(
-                                      height: 10,
-                                      width: 10,
-                                      decoration: BoxDecoration(
-                                          color: kOrange,
-                                          shape: BoxShape.circle),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Plan Name',
+                                          style: TextStyle(color: kblue),
+                                        ),
+                                        Text(
+                                          settingController
+                                              .partialAmountdataList[index]
+                                              .planTitle,
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
                                     ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Plan Amount',
+                                          style: TextStyle(color: kblue),
+                                        ),
+                                        Text(
+                                          '₹${settingController.partialAmountdataList[index].planAmount}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Paid',
+                                          style: TextStyle(color: kblue),
+                                        ),
+                                        Text(
+                                          '₹${settingController.partialAmountdataList[index].collectedAmount}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Unpaid',
+                                          style: TextStyle(color: kblue),
+                                        ),
+                                        Text(
+                                          '₹${settingController.calculateUnPaid(double.parse(settingController.partialAmountdataList[index].planAmount), double.parse(settingController.partialAmountdataList[index].collectedAmount))}',
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: kblue,
+                                              fontWeight: FontWeight.w500),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Divider(),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
                                     Text(
-                                      settingController
-                                          .partialAmountdataList[index].status,
+                                      'Status',
                                       style: TextStyle(color: kblue),
                                     ),
+                                    Container(
+                                      height: 25,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        color: Colors.yellow[200],
+                                        boxShadow: <BoxShadow>[
+                                          BoxShadow(
+                                            offset: Offset(0.0, 0.75),
+                                            color: kgrey,
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.circular(5),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Container(
+                                            height: 10,
+                                            width: 10,
+                                            decoration: BoxDecoration(
+                                                color: kOrange,
+                                                shape: BoxShape.circle),
+                                          ),
+                                          Text(
+                                            settingController
+                                                .partialAmountdataList[index]
+                                                .status,
+                                            style: TextStyle(color: kblue),
+                                          ),
+                                        ],
+                                      ),
+                                    )
                                   ],
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  );
-                },
-              );
+                                )
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    );
             }),
           ),
           ksizedbox30,

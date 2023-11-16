@@ -9,19 +9,12 @@ import '../controller/auth_controller/auth_profile_controller.dart';
 import '../controller/reg_home_controller.dart';
 import '../views/authentication/landing_screen.dart';
 
-
-
-
-
 class RegisterCommonContainer extends StatefulWidget {
   RegisterCommonContainer({super.key});
-
-
 
   @override
   State<RegisterCommonContainer> createState() =>
       _RegisterCommonContainerState();
-
 }
 
 class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
@@ -56,9 +49,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
     authProfileController.getProfile();
     checkForLoggedInState();
   }
-  
-  
-   
+
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
 
@@ -138,12 +129,11 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                           onPressed: () {
                             reghomeController.reindex(3);
                             reghomeController.update();
-                            if(isLoggedIn==true){
+                            if (isLoggedIn == true) {
                               Get.toNamed(Routes.Service);
-                            }else{
-                               Get.to(LandingScreen());
+                            } else {
+                              Get.to(LandingScreen());
                             }
-                         
                           },
                           child: Text(
                             'SERVICE',
@@ -203,29 +193,26 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                         ),
                       ),
                     ),
-                   
-                      Padding(
-                        padding: const EdgeInsets.only(left: 7),
-                        child: TextButton(
-                            onPressed: () {
-                               if (isLoggedIn == true){
-                                       reghomeController.reindex(7);
+                    Padding(
+                      padding: const EdgeInsets.only(left: 7),
+                      child: TextButton(
+                          onPressed: () {
+                            if (isLoggedIn == true) {
+                              reghomeController.reindex(7);
                               reghomeController.update();
                               Get.toNamed(Routes.BOOKINGS);
-                               }else{
-                                Get.to(LandingScreen());
-                               }
-                           
-                              //  Get.to(Hstory());
-                            },
-                            child: Text(
-                              'BOOKINGS',
-                              style: TextStyle(
-                                  color: reghomeController.reindex == 7
-                                      ? kOrange
-                                      : kblue),
-                            )),
-                      )
+                            } else {
+                              Get.to(LandingScreen());
+                            }
+                          },
+                          child: Text(
+                            'BOOKINGS',
+                            style: TextStyle(
+                                color: reghomeController.reindex == 7
+                                    ? kOrange
+                                    : kblue),
+                          )),
+                    )
                   ],
                 ),
               ),
@@ -235,28 +222,28 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                 padding: const EdgeInsets.only(left: 0),
                 child: Row(
                   children: [
-                  //   InkWell(
-                  //     onTap: () {
-                  //  //     Get.offAll(BusinesHomeRespo());
-                  //     },
-                  //     child: Container(
-                  //       height: 30,
-                  //       width: 30, 
-                  //       decoration: BoxDecoration(
-                  //           color: kwhite,
-                  //           shape: BoxShape.circle,
-                  //           boxShadow: <BoxShadow>[
-                  //             BoxShadow(
-                  //                 offset: Offset(0.0, 0.75),
-                  //                 blurRadius: 2,
-                  //                 color: kgrey)
-                  //           ]),
-                  //       child: Icon(
-                  //         Icons.search,
-                  //         color: kblue,
-                  //       ),
-                  //     ),
-                  //   ),
+                    //   InkWell(
+                    //     onTap: () {
+                    //  //     Get.offAll(BusinesHomeRespo());
+                    //     },
+                    //     child: Container(
+                    //       height: 30,
+                    //       width: 30,
+                    //       decoration: BoxDecoration(
+                    //           color: kwhite,
+                    //           shape: BoxShape.circle,
+                    //           boxShadow: <BoxShadow>[
+                    //             BoxShadow(
+                    //                 offset: Offset(0.0, 0.75),
+                    //                 blurRadius: 2,
+                    //                 color: kgrey)
+                    //           ]),
+                    //       child: Icon(
+                    //         Icons.search,
+                    //         color: kblue,
+                    //       ),
+                    //     ),
+                    //   ),
                     // Padding(
                     //   padding: const EdgeInsets.only(left: 10),
                     //   child: GestureDetector(
@@ -349,8 +336,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                 width: 110,
                                 decoration: BoxDecoration(
                                     gradient: LinearGradient(
-                                        colors: [
-                                        korange,kyellow]),
+                                        colors: [korange, kyellow]),
                                     borderRadius: BorderRadius.circular(15)),
                                 child: Center(
                                   child: Text(
@@ -362,7 +348,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                               ),
                             ),
                           ),
-                          authController.isLogedin == false
+                    authController.isLogedin == false
                         ? Padding(
                             padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
@@ -384,33 +370,34 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                                 )),
                               ),
                             ),
-                          ):Container()
-                        // : Padding(
-                        //     padding: const EdgeInsets.only(left: 7),
-                        //     child: InkWell(
-                        //       onTap: () {
-                        //         Get.to(LandingScreen());
-                        //         authController.logoutWeb();
-                        //         //    Get.toNamed(Routes.MobileVerification);
-                        //       },
-                        //       child: Container(
-                        //         height: 35,
-                        //         width: 110,
-                        //         decoration: BoxDecoration(
-                        //             gradient: LinearGradient(
-                        //                 colors: [
-                        //                 korange,kyellow]),
-                        //             borderRadius: BorderRadius.circular(15)),
-                        //         child: Center(
-                        //           child: Text(
-                        //             'Logout',
-                        //             style:
-                        //                 TextStyle(fontSize: 15, color: kwhite),
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   )
+                          )
+                        : Container()
+                    // : Padding(
+                    //     padding: const EdgeInsets.only(left: 7),
+                    //     child: InkWell(
+                    //       onTap: () {
+                    //         Get.to(LandingScreen());
+                    //         authController.logoutWeb();
+                    //         //    Get.toNamed(Routes.MobileVerification);
+                    //       },
+                    //       child: Container(
+                    //         height: 35,
+                    //         width: 110,
+                    //         decoration: BoxDecoration(
+                    //             gradient: LinearGradient(
+                    //                 colors: [
+                    //                 korange,kyellow]),
+                    //             borderRadius: BorderRadius.circular(15)),
+                    //         child: Center(
+                    //           child: Text(
+                    //             'Logout',
+                    //             style:
+                    //                 TextStyle(fontSize: 15, color: kwhite),
+                    //           ),
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   )
                   ],
                 ),
               ),
@@ -427,42 +414,45 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                       //   Icon(Icons.expand_more),
                       kwidth10,
                       FutureBuilder(
-                        future: Future.delayed(Duration(seconds: 1)),
-                        builder: (c,s) {
-                          return GetBuilder<AuthProfileController>(builder: (_) {
-                            return authProfileController.profileData.isNotEmpty
-                                ? authProfileController
-                                            .profileData.first.profilePicture !=
-                                        null
-                                    ? InkWell(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      RegisterProfileScreen()));
-                                        },
-                                        child: CircleAvatar(
-                                            radius: 22.0,
-                                            backgroundImage: NetworkImage(
-                                              authProfileController
-                                                  .profileData.first.profilePicture,
-                                            )),
-                                      )
-                                    //:Text('')
-                                    : Image.asset(
-                                        'assets/images/nick.png',
-                                        height: 35,
-                                        fit: BoxFit.fitHeight,
-                                      )
-                                //:Text(''); 
-                                : Image.asset(
-                                    'assets/images/nick.png',
-                                    height: 35,
-                                    fit: BoxFit.fitHeight,
-                                  );
-                          });
-                        }
-                      )
+                          future: Future.delayed(Duration(seconds: 1)),
+                          builder: (c, s) {
+                            return GetBuilder<AuthProfileController>(
+                                builder: (_) {
+                              return authProfileController
+                                      .profileData.isNotEmpty
+                                  ? authProfileController.profileData.first
+                                              .profilePicture !=
+                                          null
+                                      ? InkWell(
+                                          onTap: () {
+                                            Navigator.of(context).push(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        RegisterProfileScreen()));
+                                          },
+                                          child: CircleAvatar(
+                                              radius: 22.0,
+                                              backgroundImage: NetworkImage(
+                                                authProfileController
+                                                    .profileData
+                                                    .first
+                                                    .profilePicture,
+                                              )),
+                                        )
+                                      //:Text('')
+                                      : Image.asset(
+                                          'assets/images/nick.png',
+                                          height: 35,
+                                          fit: BoxFit.fitHeight,
+                                        )
+                                  //:Text('');
+                                  : Image.asset(
+                                      'assets/images/nick.png',
+                                      height: 35,
+                                      fit: BoxFit.fitHeight,
+                                    );
+                            });
+                          })
                     ]),
                   )
                 : Text('')),

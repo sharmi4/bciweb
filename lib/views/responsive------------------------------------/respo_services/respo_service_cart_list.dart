@@ -34,7 +34,7 @@ class _ResListCartState extends State<ResListCart> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-       appBar: PreferredSize(
+      appBar: PreferredSize(
           child: AppBarMob(), preferredSize: Size(double.infinity, 40)),
       drawer: MobileDrawer(),
       body: SingleChildScrollView(
@@ -193,7 +193,11 @@ class _ResListCartState extends State<ResListCart> {
                                                             .text,
                                                     serviceId: widget
                                                         .servicedata.id
-                                                        .toString());
+                                                        .toString(),
+                                                    requestAmount:
+                                                        tempSaleAmount,
+                                                    vendorId: widget
+                                                        .servicedata.vendorId);
 
                                         double tAmount = double.parse(amount);
                                         double tempSaleAmounz =
@@ -484,11 +488,10 @@ class _ResListCartState extends State<ResListCart> {
                   //       fontWeight: FontWeight.bold,
                   //       color: kOrange),
                   // ),
-                
                 ],
               ),
             ),
-          ksizedbox40,
+            ksizedbox40,
             MobileCommonBottom()
           ],
         ),

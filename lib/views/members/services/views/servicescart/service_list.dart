@@ -44,7 +44,7 @@ class _ListCartState extends State<ListCart> {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar:const PreferredSize(
+      appBar: const PreferredSize(
         child: CommonScreen(),
         preferredSize: Size(double.infinity, 40),
       ),
@@ -66,61 +66,89 @@ class _ListCartState extends State<ListCart> {
                       Column(
                         children: [
                           Container(
-                            height: size.height*0.65,
+                            height: size.height * 0.65,
                             width: size.width * 0.22,
-                             //height: size.height * 0.5,
+                            //height: size.height * 0.5,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(7),
-                              child: Image.network(widget.servicedata.images.first,
-                              fit: BoxFit.cover,),
+                              child: widget.servicedata.images.isEmpty
+                                  ? Image.asset(
+                                      "assets/images/Group 9407.png",
+                                      fit: BoxFit.cover,
+                                    )
+                                  : Image.network(
+                                      widget.servicedata.images.first,
+                                      fit: BoxFit.cover,
+                                    ),
                             ),
                           ),
                           ksizedbox10,
-          Container(
-            height: 80,
-            child: GetBuilder<HomeController>(builder: (_) {
-              return GridView.builder(
-                  gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: widget.servicedata.images.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(left: 10, right: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: InkWell(
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    backgroundColor: Colors.white,
-                                    title: Column(
-                                      children: [
-                                        Image.network(widget
-                                            .servicedata.images[index]),
-                                      ],
-                                    ),
-                                  );
-                                });
-                          },
-                          child: Image.network(
-                            widget.servicedata.images[index],
-                            height: 50,
-                            width: 80,
-                            fit: BoxFit.cover,
+                          Container(
+                            height: 200,
+                            width: size.width * 0.22,
+                            child: GetBuilder<HomeController>(builder: (_) {
+                              return GridView.builder(
+                                  gridDelegate:
+                                      const SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                  ),
+                                  scrollDirection: Axis.vertical,
+                                  shrinkWrap: true,
+                                  itemCount: widget.servicedata.images.length,
+                                  itemBuilder: (context, index) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 10, right: 10),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: InkWell(
+                                          onTap: () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return AlertDialog(
+                                                    shape:
+                                                        RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                    backgroundColor:
+                                                        Colors.white,
+                                                    title: Column(
+                                                      children: [
+                                                        Container(
+                                                          height:
+                                                              size.height * 0.5,
+                                                          width:
+                                                              size.width * 0.5,
+                                                          child: Image.network(
+                                                              widget.servicedata
+                                                                      .images[
+                                                                  index]),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                });
+                                          },
+                                          child: Container(
+                                            height: 50,
+                                            width: 80,
+                                            child: Image.network(
+                                              widget.servicedata.images[index],
+                                              height: 50,
+                                              width: 80,
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            }),
                           ),
-                        ),
-                      ),
-                    );
-                  });
-            }),
-          ),
                         ],
                       ),
                       Container(
@@ -129,7 +157,6 @@ class _ListCartState extends State<ListCart> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                          
                             Text(
                               widget.servicedata.title,
                               style: TextStyle(
@@ -202,7 +229,7 @@ class _ListCartState extends State<ListCart> {
                                   color: Colors.green,
                                   borderRadius: BorderRadius.circular(5),
                                 ),
-                                child:const Center(
+                                child: const Center(
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -223,122 +250,128 @@ class _ListCartState extends State<ListCart> {
                               ),
                             ),
                             ksizedbox40,
-                           Row(
-                  children: [
-                    Text(
-                      "₹${widget.servicedata.actualAmount}",
-                      style:const TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.w500,
-                          decoration: TextDecoration.lineThrough,
-                          color: Colors.grey),
-                    ),
-                    const SizedBox(
-                      width: 5,
-                    ),
-                    Text(
-                      "₹${widget.servicedata.saleAmount}",
-                      style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: korange),
-                    ),
-                  ],
-                ),
-               ksizedbox40,
-               GetBuilder<HomeServiceController>(builder: (_) {
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if (homeController.slotDetailList.isNotEmpty)
-                        Text(
-                          'Time Slot',
-                          style: TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                              color: kblue),
-                        ),
-                      ksizedbox10,
-                      if (homeController.slotDetailList.isNotEmpty)
-                        DropdownButtonFormField2<SlotDetail>(
-                          isExpanded: true,
-                          decoration: InputDecoration(
-                            // Add Horizontal padding using menuItemStyleData.padding so it matches
-                            // the menu padding when button's width is not specified.
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 16),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(15),
+                            Row(
+                              children: [
+                                Text(
+                                  "₹${widget.servicedata.actualAmount}",
+                                  style: const TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.w500,
+                                      decoration: TextDecoration.lineThrough,
+                                      color: Colors.grey),
+                                ),
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Text(
+                                  "₹${widget.servicedata.saleAmount}",
+                                  style: TextStyle(
+                                      fontSize: 26,
+                                      fontWeight: FontWeight.bold,
+                                      color: korange),
+                                ),
+                              ],
                             ),
-                            // Add more decoration..
-                          ),
-                          hint: const Text(
-                            'Select Your Time slot',
-                            style: TextStyle(fontSize: 14),
-                          ),
-                          items: homeController.slotDetailList
-                              .map((item) => DropdownMenuItem<SlotDetail>(
-                                    value: item,
-                                    child: Text(
-                                      "${item.weekday} ${formatDate(DateTime(2023, 1, 1, int.parse(item.endTime.split(":").first)), [
-                                            hh,
-                                            ":",
-                                            nn,
-                                            " ",
-                                            am
-                                          ])}-${formatDate(DateTime(2023, 1, 1, int.parse(item.startTime.split(":").first)), [
-                                            hh,
-                                            ":",
-                                            nn,
-                                            " ",
-                                            am
-                                          ])}",
-                                      style: const TextStyle(
-                                        fontSize: 14,
+                            ksizedbox40,
+                            GetBuilder<HomeServiceController>(builder: (_) {
+                              return Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  if (homeController.slotDetailList.isNotEmpty)
+                                    Text(
+                                      'Time Slot',
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                          color: kblue),
+                                    ),
+                                  ksizedbox10,
+                                  if (homeController.slotDetailList.isNotEmpty)
+                                    DropdownButtonFormField2<SlotDetail>(
+                                      isExpanded: true,
+                                      decoration: InputDecoration(
+                                        // Add Horizontal padding using menuItemStyleData.padding so it matches
+                                        // the menu padding when button's width is not specified.
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 16),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        // Add more decoration..
+                                      ),
+                                      hint: const Text(
+                                        'Select Your Time slot',
+                                        style: TextStyle(fontSize: 14),
+                                      ),
+                                      items: homeController.slotDetailList
+                                          .map((item) =>
+                                              DropdownMenuItem<SlotDetail>(
+                                                value: item,
+                                                child: Text(
+                                                  "${item.weekday} ${formatDate(DateTime(2023, 1, 1, int.parse(item.endTime.split(":").first)), [
+                                                        hh,
+                                                        ":",
+                                                        nn,
+                                                        " ",
+                                                        am
+                                                      ])}-${formatDate(DateTime(2023, 1, 1, int.parse(item.startTime.split(":").first)), [
+                                                        hh,
+                                                        ":",
+                                                        nn,
+                                                        " ",
+                                                        am
+                                                      ])}",
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                  ),
+                                                ),
+                                              ))
+                                          .toList(),
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return 'Please select Time slot.';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (value) {
+                                        //Do something when selected item is changed.
+                                        setState(() {
+                                          selectedValue = value;
+                                        });
+                                      },
+                                      onSaved: (value) {
+                                        setState(() {
+                                          selectedValue = value;
+                                        });
+                                      },
+                                      buttonStyleData: const ButtonStyleData(
+                                        padding: EdgeInsets.only(right: 8),
+                                      ),
+                                      iconStyleData: const IconStyleData(
+                                        icon: Icon(
+                                          Icons.arrow_drop_down,
+                                          color: Colors.black45,
+                                        ),
+                                        iconSize: 24,
+                                      ),
+                                      dropdownStyleData: DropdownStyleData(
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                      ),
+                                      menuItemStyleData:
+                                          const MenuItemStyleData(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 16),
                                       ),
                                     ),
-                                  ))
-                              .toList(),
-                          validator: (value) {
-                            if (value == null) {
-                              return 'Please select Time slot.';
-                            }
-                            return null;
-                          },
-                          onChanged: (value) {
-                            //Do something when selected item is changed.
-                            setState(() {
-                              selectedValue = value;
-                            });
-                          },
-                          onSaved: (value) {
-                            setState(() {
-                              selectedValue = value;
-                            });
-                          },
-                          buttonStyleData: const ButtonStyleData(
-                            padding: EdgeInsets.only(right: 8),
-                          ),
-                          iconStyleData: const IconStyleData(
-                            icon: Icon(
-                              Icons.arrow_drop_down,
-                              color: Colors.black45,
-                            ),
-                            iconSize: 24,
-                          ),
-                          dropdownStyleData: DropdownStyleData(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                            ),
-                          ),
-                          menuItemStyleData: const MenuItemStyleData(
-                            padding: EdgeInsets.symmetric(horizontal: 16),
-                          ),
-                        ),
-                    ],
-                  );
-                }),
-                ksizedbox20,
+                                ],
+                              );
+                            }),
+                            ksizedbox20,
                             TextField(
                               controller: redeemCouponcontroller,
                               decoration: InputDecoration(
@@ -366,7 +399,11 @@ class _ListCartState extends State<ListCart> {
                                                             .text,
                                                     serviceId: widget
                                                         .servicedata.id
-                                                        .toString());
+                                                        .toString(),
+                                                    requestAmount:
+                                                        tempSaleAmount,
+                                                    vendorId: widget
+                                                        .servicedata.vendorId);
 
                                         double tAmount = double.parse(amount);
                                         double tempSaleAmounz =
@@ -411,7 +448,7 @@ class _ListCartState extends State<ListCart> {
                                       //      couponcode: redeemCouponcontroller.text);
                                       // },
                                       // child: Center(
-                                      child: Center(
+                                      child: const Center(
                                         child: Text(
                                           'Redeem Now',
                                           style: TextStyle(

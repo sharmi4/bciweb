@@ -20,78 +20,84 @@ import '../../services/networks/subscription/get_plan_details_apiservice.dart';
 import '../../services/networks/subscription/get_planlist_api_service.dart';
 import '../auth_controller/auth_profile_controller.dart';
 
-class SubscriptionApiController extends GetxController{
-   GetPlansApiServices getPlansApiServices = GetPlansApiServices();
-   AddPaymentApiServices addpaymentApiService = AddPaymentApiServices();
-   GetCouponsApiService getcouponesAPiService = GetCouponsApiService();
-   GetOthersBookingApiService getOthersbookingApiService = GetOthersBookingApiService();
-   GetPlansDetailsApiServices getPlansdetailsApiService=GetPlansDetailsApiServices();
-      RxInt couponindex = 0.obs;
-     RxInt index = 0.obs;
-  final authprofileController=Get.find<AuthProfileController>();
-    List<PlansData> plansdataList = [];
-    List<CouponsData> couponsdatalist=[];
+class SubscriptionApiController extends GetxController {
+  GetPlansApiServices getPlansApiServices = GetPlansApiServices();
+  AddPaymentApiServices addpaymentApiService = AddPaymentApiServices();
+  GetCouponsApiService getcouponesAPiService = GetCouponsApiService();
+  GetOthersBookingApiService getOthersbookingApiService =
+      GetOthersBookingApiService();
+  GetPlansDetailsApiServices getPlansdetailsApiService =
+      GetPlansDetailsApiServices();
+  RxInt couponindex = 0.obs;
+  RxInt index = 0.obs;
+  final authprofileController = Get.find<AuthProfileController>();
+  List<PlansData> plansdataList = [];
+  List<CouponsData> couponsdatalist = [];
 
-    List<Datum>othersbookinglist=[];
-     List<Plan> subscriptionplan=[];
+  List<Datum> othersbookinglist = [];
+  List<Plan> subscriptionplan = [];
 
-   getplansList() async {
+  getplansList() async {
     dio.Response<dynamic> response = await getPlansApiServices.getPlans();
     if (response.statusCode == 200) {
       PlansModel plansModel = PlansModel.fromJson(response.data);
       plansdataList = plansModel.data;
     }
-     print(response.data);
-     print(response.statusMessage);
+    print(response.data);
+    print(response.statusMessage);
     update();
   }
 
-  addPaymentSubscription({required dynamic id,required bool showpayment,})async{
+  addPaymentSubscription({
+    required dynamic id,
+    required bool showpayment,
+  }) async {
     await authprofileController.getProfile();
     print(showpayment);
-    dio.Response<dynamic>response=await addpaymentApiService.addPaymentFuction(
-      userid:authprofileController.profileData.first.id.toString(),
-      planid:id
-    );
-    if(response.statusCode==200){
-      if(showpayment==true){
-           Get.to(PaymentSucess());
-      } else{
+    dio.Response<dynamic> response =
+        await addpaymentApiService.addPaymentFuction(
+            userid: authprofileController.profileData.first.id.toString(),
+            planid: id);
+    if (response.statusCode == 200) {
+      if (showpayment == true) {
+        Get.to(PaymentSucess());
+      } else {
         Get.to(MobilePaymentSuccess());
       }
 
-      // showpayment == true ? Get.to(PaymentSucess()) :Get.to(MobilePaymentSuccess()); 
-     
-    }  else{
-       Get.rawSnackbar(
+      // showpayment == true ? Get.to(PaymentSucess()) :Get.to(MobilePaymentSuccess());
+    } else {
+      Get.rawSnackbar(
           backgroundColor: Colors.red,
           messageText: Text(
             "Invalid Payment",
             style: primaryFont.copyWith(color: Colors.white),
-          )); 
-      
+          ));
     }
     update();
   }
 
-       getcouponsList() async {
+  getcouponsList() async {
     dio.Response<dynamic> response = await getcouponesAPiService.getcoupons();
     if (response.statusCode == 200) {
-      GetCouponsList couponsModel = GetCouponsList.fromJson(response.data); 
-      couponsdatalist=couponsModel.data;
+      GetCouponsList couponsModel = GetCouponsList.fromJson(response.data);
+      couponsdatalist = couponsModel.data;
     }
     update();
   }
 
   getothersBookingList() async {
-    dio.Response<dynamic> response = await getOthersbookingApiService.getOthersBooking();
+    dio.Response<dynamic> response =
+        await getOthersbookingApiService.getOthersBooking();
     if (response.statusCode == 200) {
-    OtherbookingModel   otherbookingModel = OtherbookingModel.fromJson(response.data); 
-      othersbookinglist=otherbookingModel.data;
+      OtherbookingModel otherbookingModel =
+          OtherbookingModel.fromJson(response.data);
+      othersbookinglist = otherbookingModel.data;
     }
     update();
   }
-   getPlanDetails({required dynamic id}) async {
+
+  getPlanDetails({required dynamic id}) async {
     subscriptionplan.clear();
     dio.Response<dynamic> response =
         await getPlansdetailsApiService.getPlansDetails(planId: id);
@@ -105,11 +111,9 @@ class SubscriptionApiController extends GetxController{
     update();
   }
 
-
-
   //coupons list
   OurCouponsApiServices ourCouponsApiServices = OurCouponsApiServices();
-   RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
+  RedeemCouponApiServices redeemCouponApiServices = RedeemCouponApiServices();
   List<CouponsData> couponsData = [];
   List<CouponsData> tempcouponsData = [];
   List<CouponsData> categorycouponsData = [];
@@ -143,6 +147,7 @@ class SubscriptionApiController extends GetxController{
     }
     update();
   }
+
   //merchant coupon list
   MerchantCouponListAPIServices merchantCouponListAPIServices =
       MerchantCouponListAPIServices();
@@ -158,7 +163,8 @@ class SubscriptionApiController extends GetxController{
     }
     update();
   }
-    // service coupons list
+
+  // service coupons list
   RedeemCouponApiServices userredeemCouponApiServices =
       RedeemCouponApiServices();
   List<CouponsData> servicecouponsData = [];
@@ -171,7 +177,10 @@ class SubscriptionApiController extends GetxController{
     dio.Response<dynamic> response =
         await redeemCouponApiServices.redeemCouponApiServices(
             couponcode: couponcode,
-          );
+            planId: int.parse(Get.find<AuthProfileController>().planid.value),
+            requestAmount: amount,
+            serviceId: serviceId,
+            vendorId: vendorId);
     if (response.statusCode == 200) {
       GetCouponsList getCouponsList = GetCouponsList.fromJson(response.data);
       couponsData = getCouponsList.data;

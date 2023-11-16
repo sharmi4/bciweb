@@ -153,15 +153,14 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size(double.infinity, 110),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const CommonScreen(),
-              RegisterCommonContainer(),
-            ],
-          ),
-          
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const CommonScreen(),
+            RegisterCommonContainer(),
+          ],
+        ),
+      ),
       body: Obx(
         () =>
             ListView(primary: true, scrollDirection: Axis.vertical, children: [
@@ -624,7 +623,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    'assets/images/cirlewallet.png',
+                                    'assets/images/credit.png',
                                     height: 20,
                                     fit: BoxFit.fitHeight,
                                     color: kwhite,
@@ -669,7 +668,7 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                               child: Row(
                                 children: [
                                   Image.asset(
-                                    'assets/images/cirlewallet.png',
+                                    'assets/images/partial_view.png',
                                     height: 20,
                                     fit: BoxFit.fitHeight,
                                     color: kwhite,
@@ -689,96 +688,96 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
                       ],
                     ),
                   ),
-                   Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            reghomeController.proindex(12);
-                            reghomeController.update();
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 20),
+                  //   child: Row(
+                  //     children: [
+                  //       InkWell(
+                  //         onTap: () {
+                  //           reghomeController.proindex(12);
+                  //           reghomeController.update();
 
-                            //Get.offAll(LandingScreen());
-                          },
-                          child: Container(
-                            width: 195,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: BorderDirectional(
-                                    bottom: BorderSide(color: kwhite)),
-                                color: reghomeController.proindex == 12
-                                    ? kblue
-                                    : kyellow),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 18),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/cirlewallet.png',
-                                    height: 20,
-                                    fit: BoxFit.fitHeight,
-                                    color: kwhite,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 11),
-                                    child: Text(
-                                      'Partial Payment',
-                                      style: TextStyle(color: kwhite),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: Row(
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            reghomeController.proindex(13);
-                            reghomeController.update();
+                  //           //Get.offAll(LandingScreen());
+                  //         },
+                  //         child: Container(
+                  //           width: 195,
+                  //           height: 40,
+                  //           decoration: BoxDecoration(
+                  //               border: BorderDirectional(
+                  //                   bottom: BorderSide(color: kwhite)),
+                  //               color: reghomeController.proindex == 12
+                  //                   ? kblue
+                  //                   : kyellow),
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.only(left: 18),
+                  //             child: Row(
+                  //               children: [
+                  //                 Image.asset(
+                  //                   'assets/images/partial_view.png',
+                  //                   height: 20,
+                  //                   fit: BoxFit.fitHeight,
+                  //                   color: kwhite,
+                  //                 ),
+                  //                 Padding(
+                  //                   padding: const EdgeInsets.only(left: 11),
+                  //                   child: Text(
+                  //                     'Partial Payment',
+                  //                     style: TextStyle(color: kwhite),
+                  //                   ),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(top: 20),
+                  //   child: Row(
+                  //     children: [
+                  //       InkWell(
+                  //         onTap: () {
+                  //           reghomeController.proindex(13);
+                  //           reghomeController.update();
 
-                            //Get.offAll(LandingScreen());
-                          },
-                          child: Container(
-                            width: 195,
-                            height: 40,
-                            decoration: BoxDecoration(
-                                border: BorderDirectional(
-                                    bottom: BorderSide(color: kwhite)),
-                                color: reghomeController.proindex == 13
-                                    ? kblue
-                                    : kyellow),
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 18),
-                              child: Row(
-                                children: [
-                                  Image.asset(
-                                    'assets/images/cirlewallet.png',
-                                    height: 20,
-                                    fit: BoxFit.fitHeight,
-                                    color: kwhite,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 11),
-                                    child: Text(
-                                      'Statement',
-                                      style: TextStyle(color: kwhite),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  //           //Get.offAll(LandingScreen());
+                  //         },
+                  //         child: Container(
+                  //           width: 195,
+                  //           height: 40,
+                  //           decoration: BoxDecoration(
+                  //               border: BorderDirectional(
+                  //                   bottom: BorderSide(color: kwhite)),
+                  //               color: reghomeController.proindex == 13
+                  //                   ? kblue
+                  //                   : kyellow),
+                  //           child: Padding(
+                  //             padding: const EdgeInsets.only(left: 18),
+                  //             child: Row(
+                  //               children: [
+                  //                 Image.asset(
+                  //                   'assets/images/cirlewallet.png',
+                  //                   height: 20,
+                  //                   fit: BoxFit.fitHeight,
+                  //                   color: kwhite,
+                  //                 ),
+                  //                 Padding(
+                  //                   padding: const EdgeInsets.only(left: 11),
+                  //                   child: Text(
+                  //                     'Statement',
+                  //                     style: TextStyle(color: kwhite),
+                  //                   ),
+                  //                 ),
+                  //               ],
+                  //             ),
+                  //           ),
+                  //         ),
+                  //       )
+                  //     ],
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Row(
@@ -1115,16 +1114,23 @@ class _RegisterProfileScreenState extends State<RegisterProfileScreen> {
             //       ],
             //     ),
             //   ),
-            if (reghomeController.proindex.value == 4) const ProfileSubscription(),
+            if (reghomeController.proindex.value == 4)
+              const ProfileSubscription(),
             if (reghomeController.proindex.value == 5) const ProfileReferal(),
             if (reghomeController.proindex.value == 6) const ProfilePartners(),
-            if (reghomeController.proindex.value == 7) const ProfileUpgradeScreen(),
+            if (reghomeController.proindex.value == 7)
+              const ProfileUpgradeScreen(),
             if (reghomeController.proindex.value == 8) const ProfileSupport(),
-            if (reghomeController.proindex.value == 9) const ProfileWalletScreen(),
-            if (reghomeController.proindex.value == 10) const ProfileCreditScreen(),
-            if (reghomeController.proindex.value == 11) const ProfilePartialScreen(),
-            if (reghomeController.proindex.value == 12) const PartialPaymentScreen(),
-            if (reghomeController.proindex.value == 13) const PartialStatementScreen(),
+            if (reghomeController.proindex.value == 9)
+              const ProfileWalletScreen(),
+            if (reghomeController.proindex.value == 10)
+              const ProfileCreditScreen(),
+            if (reghomeController.proindex.value == 11)
+              const ProfilePartialScreen(),
+            if (reghomeController.proindex.value == 12)
+              const PartialPaymentScreen(),
+            if (reghomeController.proindex.value == 13)
+              const PartialStatementScreen(),
           ]),
           ksizedbox20,
           const RegisterCommonBottom()
