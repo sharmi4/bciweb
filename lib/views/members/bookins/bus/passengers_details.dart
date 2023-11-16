@@ -570,8 +570,21 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Obx(
-                                  () => InkWell(
+                                  () => busController.isLoading.isTrue
+                                          ? Container(
+                                              child:  Center(
+                                                child:
+                                                    const CircularProgressIndicator(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                              height: size.height * 0.06,
+                                              width: 190,
+                                              color: korange,
+                                            )
+                                          : InkWell(
                                       onTap: () {
+                                        busController.isLoading(true);
                                         List<PaxDetailslist> paxDetailslists = [];
 
                                         for (int a = 0;
@@ -612,19 +625,7 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                                                 busController.seatMapKey.value);
                                         // Get.to(BusbookingSuccesfullScreen());
                                       },
-                                      child: busController.isLoading.isTrue
-                                          ? Container(
-                                              child:  Center(
-                                                child:
-                                                    const CircularProgressIndicator(
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                              height: size.height * 0.06,
-                                              width: 190,
-                                              color: korange,
-                                            )
-                                          : Container(
+                                      child: Container(
                                               child: Center(
                                                   child: Text(
                                                           'PAY ₹ ${busController.totalAmount.value}')
@@ -644,15 +645,15 @@ class _PssengesDetailsState extends State<PssengesDetails> {
                         ],
                       ),
                     ),
-                    BussDetails(
-                      boardingId: widget.boardingId,
-                      busData: widget.busData,
-                      dropingId: widget.dropingId,
-                      searchkey: widget.searchkey,
-                      seatIds: seatIds,
-                      amount: busController.totalAmount.value.toStringAsFixed(2), 
-                      busContactmodel: [],
-                    )
+                    // BussDetails(
+                    //   boardingId: widget.boardingId,
+                    //   busData: widget.busData,
+                    //   dropingId: widget.dropingId,
+                    //   searchkey: widget.searchkey,
+                    //   seatIds: seatIds,
+                    //   amount: busController.totalAmount.value.toStringAsFixed(2), 
+                    //   busContactmodel: [],
+                    // )
                   ],
                 ),
                 ksizedbox30,

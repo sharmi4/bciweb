@@ -274,11 +274,11 @@ class _FlaightPaymentScreenState extends State<FlaightPaymentScreen> {
                                     style:
                                         TextStyle(fontSize: 20, color: kblue),
                                   ),
-                                  if (Get.find<ProfileController>()
+                                  if (Get.find<AuthProfileController>()
                                       .profileData
                                       .isNotEmpty)
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 40),
+                                      padding: const EdgeInsets.only(top: 8),
                                       child: Text(
                                           Get.find<AuthProfileController>()
                                               .profileData
@@ -289,18 +289,14 @@ class _FlaightPaymentScreenState extends State<FlaightPaymentScreen> {
                                       .profileData
                                       .isNotEmpty)
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 20),
+                                      padding: const EdgeInsets.only(top: 8),
                                       child: Row(
                                         children: [
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: Text(Get.find<
-                                                    AuthProfileController>()
-                                                .profileData
-                                                .first
-                                                .mobile),
-                                          )
+                                          Text(Get.find<
+                                                  AuthProfileController>()
+                                              .profileData
+                                              .first
+                                              .mobile)
                                         ],
                                       ),
                                     )

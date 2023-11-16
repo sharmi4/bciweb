@@ -88,6 +88,16 @@ class _HistoryState extends State<History> {
                                   colorr: kblue,
                                 ),
                               ),
+                               InkWell(
+                                onTap: () {
+                                  Get.to(BusBookingMain());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'BUS',
+                                  colorr: kblue,
+                                ),
+                              ),
                               InkWell(
                                 onTap: () {
                                   Get.to(BookingTrip());
@@ -108,6 +118,8 @@ class _HistoryState extends State<History> {
                               //     colorr: kblue,
                               //   ),
                               // ),
+                              
+                             
                               InkWell(
                                 onTap: () {
                                   Get.to(History());
@@ -116,16 +128,6 @@ class _HistoryState extends State<History> {
                                   size: size,
                                   text: 'HISTORY',
                                   colorr: korange,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BusBookingMain());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'Bus',
-                                  colorr: kblue,
                                 ),
                               ),
                             ],
@@ -137,6 +139,15 @@ class _HistoryState extends State<History> {
                               borderRadius: BorderRadius.circular(10)),
                         ),
                         Container(
+                          height: 140,
+                          width: size.width * 0.9,
+                          decoration: BoxDecoration(
+                              color: kwhite,
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.zero,
+                                  bottomLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
+                                  bottomRight: Radius.circular(15))),
                           child: Obx(
                             () => Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -269,15 +280,6 @@ class _HistoryState extends State<History> {
                               ],
                             ),
                           ),
-                          height: 140,
-                          width: size.width * 0.9,
-                          decoration: BoxDecoration(
-                              color: kwhite,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.zero,
-                                  bottomLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                  bottomRight: Radius.circular(15))),
                         ),
                         Spacer()
                       ],

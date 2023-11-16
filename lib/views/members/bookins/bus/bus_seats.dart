@@ -160,7 +160,7 @@ class _BusSeatsState extends State<BusSeats> {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
             
-                              Column(
+                           if(busController.upperSeatsList.isNotEmpty)   Column(
                                 children: [
                                   Text(
                                     "Upper birth",
@@ -631,7 +631,7 @@ class _BusSeatsState extends State<BusSeats> {
                                 ),
                                 Column(
                                   children: [
-                                    Text("INR ${busController.totalAmount.value} ")
+                                    Text("INR ${busController.totalAmount.value.toStringAsFixed(2)} ")
                                         .text
                                         .xl2
                                         .blue900

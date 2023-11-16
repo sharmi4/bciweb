@@ -63,6 +63,7 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
   var items = ['+91', '+1', '+54', '+44'];
   var gender = ['Male', 'Female'];
   var issuedcountry = ['Albania', 'Algeria'];
+
   DateTime bookingselectedDate = DateTime.now();
   Future<void> _bookingselectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -2151,19 +2152,23 @@ class _BookingOptionsScreenState extends State<BookingOptionsScreen> {
                             : InkWell(
                                 onTap: () async {
                                   apiflightController.update();
-
-                                  PaxDetails paxDetails = PaxDetails(
-                                      firstName: firstnameController.text,
-                                      gender: genderController.text == "Male"
-                                          ? 0
-                                          : 1,
-                                      lastName: lastnameController.text,
-                                      title: genderController.text == "Male"
+                                List<PaxDetails> paxDetailsList = [];
+                                  for(int i =0;i< apiflightController
+                                              .flightPassengerList.length;i++){
+                                                PaxDetails paxDetails = PaxDetails(
+                                      firstName: apiflightController
+                                              .flightPassengerList[i].firstNameController.text,
+                                      gender: apiflightController
+                                              .flightPassengerList[i].gender,
+                                      lastName: apiflightController
+                                              .flightPassengerList[i].lastNameController.text,
+                                      title: apiflightController
+                                              .flightPassengerList[i].gender == 0
                                           ? "Mr"
                                           : "Mrs");
-                                  List<PaxDetails> paxDetailsList = [
-                                    paxDetails
-                                  ];
+                                          paxDetailsList.add(paxDetails);
+                                              }
+                                  
                                   String flightKey = await apiflightController
                                       .getFlightRepricing(
                                     flightSearchModel:

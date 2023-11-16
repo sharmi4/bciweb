@@ -64,11 +64,9 @@ class _HotelSearchListState extends State<HotelSearchList> {
         _searchResult.add(searchController);
       }
     });
-   
-    
-
-    
-    setState(() {});
+    setState(() {
+      
+    });
   }
   _getFilteredList() {
     print("searching .........${searchController.text}");

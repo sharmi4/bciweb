@@ -357,4 +357,8 @@ abstract class BaseApiService {
       "https://www.portal.bcipvtltd.com/api/auth/service_details";  
 
       
+
+        //coupons redeem api --//
+  final String subRedeemCouponsApiUrl =
+      "https://www.portal.bcipvtltd.com/api/auth/subscriptionCoupon";
 }

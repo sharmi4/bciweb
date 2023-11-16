@@ -113,6 +113,19 @@ class _BookingHotelsState extends State<BookingHotels> {
                                   colorr: korange,
                                 ),
                               ),
+
+ InkWell(
+                                onTap: () {
+                                  Get.to(BusBookingMain());
+                                },
+                                child: bookingbutton(
+                                  size: size,
+                                  text: 'BUS',
+                                  colorr: kblue,
+                                ),
+                              ),
+
+
                               InkWell(
                                 onTap: () {
                                   Get.to(BookingTrip());
@@ -143,16 +156,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                                   colorr: kblue,
                                 ),
                               ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BusBookingMain());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'Bus',
-                                  colorr: kblue,
-                                ),
-                              ),
+                             
                             ],
                           ),
                           height: 60,

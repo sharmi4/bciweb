@@ -41,6 +41,9 @@ class _PaymentState extends State<Payment> {
     // setDefault();
   }
 
+
+  var redeemCouponController = TextEditingController();
+
   final planController = Get.find<PlanController>();
 
   final subsciptionController = Get.find<SubscriptionApiController>();
@@ -96,6 +99,16 @@ class _PaymentState extends State<Payment> {
                           fontSize: 28,
                           fontWeight: FontWeight.w600),
                     ),
+                    ksizedbox10,
+                    Text(
+                      "₹ ${widget.plansData.saleAmount}",
+                      textAlign: TextAlign.start,
+                      style: TextStyle(
+                          color: kblue,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    
                     ksizedbox20,
                     Text(
                       widget.text,
@@ -130,7 +143,93 @@ class _PaymentState extends State<Payment> {
                   //       ),
                   // ),
 
-                  ksizedbox40,
+                  ksizedbox20,
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                     children: [
+                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                           Text(
+                            'Promo Code',
+                            style: TextStyle(
+                                fontSize: 16.5, color: kblue, fontWeight: FontWeight.w500),
+            ),
+            ksizedbox10,
+            Container(
+               width: 500,
+              child: TextField(
+                controller: redeemCouponController,
+                decoration: InputDecoration(
+                  disabledBorder: const OutlineInputBorder(
+                              borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                  bottomRight: Radius.circular(10))),
+                  hintText: 'Enter Your Coupon code',
+                  fillColor: kwhite,
+                  focusColor: kwhite,
+                  isDense: true,
+                  filled: true,
+                  suffixIcon: Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Container(
+                              height: 20,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                color: kblue,
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: InkWell(
+                                onTap: () async {
+                                  String tempSaleAmount =
+                                      widget.plansData.totalAmount.toString();
+            
+                                  String amount =
+                                      await planController.redeemSubscriptionCoupon(
+                                          couponcode: redeemCouponController.text);
+            
+                                  double tAmount = double.parse(amount);
+                                  double tempSaleAmounz = double.parse(tempSaleAmount);
+            
+                                  if (tAmount < tempSaleAmounz) {
+                                    double totalAmountTobeAdded =
+                                        tempSaleAmounz - tAmount;
+            
+                                    setState(() {
+                                      widget.plansData.totalAmount = totalAmountTobeAdded;
+                                    });
+                                  } else {
+                                    Get.rawSnackbar(
+                                        message:
+                                            "Coupon is not applicable for this subscription",
+                                        backgroundColor: Colors.red);
+                                  }
+                                },
+                                child: Center(
+                                  child: Text(
+                                    'Redeem Now',
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ),
+                            ),
+                  ),
+                  border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+                         ],
+                       ),
+                     ],
+                   ),     
+                  ksizedbox20,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

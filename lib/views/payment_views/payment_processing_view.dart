@@ -14,11 +14,13 @@ class PaymentProcessingView extends StatefulWidget {
   double amount;
   BookingModel bookingModel;
   String referenceId;
+  String bookingId;
 
   PaymentProcessingView({
     required this.amount,
     required this.bookingModel,
     required this.referenceId,
+    required this.bookingId,
   });
 
   @override
@@ -70,6 +72,7 @@ class _PaymentProcessingViewState extends State<PaymentProcessingView> {
       int status = await airFlightController.checkPhonePeStatus(
           refernceID: widget.referenceId,
           amount: widget.amount,
+          bookingId: widget.bookingId,
           bookingModel: widget.bookingModel);
 
       print(
@@ -79,14 +82,15 @@ class _PaymentProcessingViewState extends State<PaymentProcessingView> {
       if (status == 1) {
         timer.cancel();
         successCallback();
-      } else if (status == 400) {
-        print("calceld:::::::::::");
-        timer.cancel();
-        Get.back();
-      } else if (timerSeconds < 35) {
-        timer.cancel();
-        getBackToPaymentProcessing();
       }
+      //  else if (status == 400) {
+      //   print("calceld:::::::::::");
+      //   timer.cancel();
+      //   Get.back();
+      // } else if (timerSeconds < 35) {
+      //   timer.cancel();
+      //   getBackToPaymentProcessing();
+      // }
     });
   }
 

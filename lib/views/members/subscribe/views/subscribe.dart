@@ -194,8 +194,8 @@ class _SubscribeState extends State<Subscribe> {
                         ),
                         InkWell(
                           onTap: () {
-                             print("-------------------->>${temindex}");
-                            print("-------------------->>${subscriptionapiController
+                          print("-------------------->>${temindex}");
+                          print("-------------------->>${subscriptionapiController
                                     .plansdataList}");
                             Get.to(Payment(
                                 image: subscriptionapiController

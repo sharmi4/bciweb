@@ -11,6 +11,7 @@ import 'package:bciweb/services/networks/business_service/business_withdraw_api_
 import 'package:bciweb/services/networks/creditcard_api_service.dart/user_credit_points_api_dart.dart';
 
 import 'package:bciweb/services/networks/payment_api_services/payment_status_api_services.dart';
+import 'package:bciweb/services/networks/subscription/sub_redeem_coupons_services.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -278,6 +279,32 @@ class PlanController extends GetxController {
       );
       }
     }
+  }
+
+
+ SubRedeemCouponApiServices subRedeemCouponApiServices =
+      SubRedeemCouponApiServices();
+
+
+   redeemSubscriptionCoupon({required String couponcode}) async {
+    String tempAmount = "0";
+    dio.Response<dynamic> response =
+        await subRedeemCouponApiServices.subRedeemCouponApiServices(
+      couponcode: couponcode,
+    );
+    if (response.statusCode == 200) {
+      tempAmount = response.data["amount"].toString();
+      Get.rawSnackbar(
+          message: response.data["message"], backgroundColor: Colors.green);
+    } else if (response.statusCode == 400) {
+      Get.rawSnackbar(
+          message: response.data["error"], backgroundColor: Colors.red);
+    } else {
+      Get.rawSnackbar(
+          message: response.data["error"], backgroundColor: Colors.red);
+    }
+
+    return tempAmount;
   }
 
   

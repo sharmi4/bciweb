@@ -293,7 +293,7 @@ class BusController extends GetxController {
     if (response.statusCode == 200) {
       IninitiatePaymentModel ininitiatePaymentModel =
           IninitiatePaymentModel.fromJson(response.data);
-
+      isLoading(false);
       await launchUrl(Uri.parse(
           ininitiatePaymentModel.data.instrumentResponse.redirectInfo.url));
       //st

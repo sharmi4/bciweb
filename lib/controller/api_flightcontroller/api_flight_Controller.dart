@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:html';
+import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/profile_controller.dart';
 import 'package:bciweb/models/flight_passenger_model.dart';
 import 'package:bciweb/models/flight_pax_model.dart';
@@ -954,10 +955,11 @@ class ApiflightsController extends GetxController {
     if (response.statusCode == 200) {
       List<FlightSearchModel> flightSearchModel = List<FlightSearchModel>.from(
           response.data.map((x) => FlightSearchModel.fromJson(x)));
-      await searchFlightApiServices.searchflightapi(city: city);
       searchlistsearchList = flightSearchModel;
+      
       update();
     }
+    update();
   }
 
   InitiatePaymentApiServices initiatePaymentApiServices =
@@ -967,10 +969,11 @@ class ApiflightsController extends GetxController {
       PaymentResponseApiServices();
 
   initiatePayment(
-      {required double amount, required BookingModel bookingModel}) async {
+      {required double amount, required BookingModel bookingModel,required String refernceId}) async {
+        await  Get.find<AuthProfileController>().getProfile();
     dio.Response<dynamic> response =
         await initiatePaymentApiServices.initiatePayment(
-            userId: Get.find<ProfileController>().profileData.first.id,
+            userId: Get.find<AuthProfileController>().profileData.first.id,
             totalAmount: amount.toStringAsFixed(2),
             status: "flight");
 
@@ -985,6 +988,7 @@ class ApiflightsController extends GetxController {
             amount: amount,
             bookingModel: bookingModel,
             referenceId: ininitiatePaymentModel.data.merchantTransactionId,
+            bookingId: refernceId,
           ));
     }
   }
@@ -992,6 +996,7 @@ class ApiflightsController extends GetxController {
   checkPhonePeStatus(
       {required String refernceID,
       required double amount,
+      required String bookingId,
       required BookingModel bookingModel}) async {
     dio.Response<dynamic> response = await paymentResponseApiServices
         .paymentResponseApi(merchantId: refernceID);
@@ -1007,7 +1012,7 @@ class ApiflightsController extends GetxController {
 
       // bookAirTicket(bookingModel: bookingModel, transactionId: transactionId);
 
-      airAddPayment(refernceNo: refernceID, transactionId: transactionId);
+      airAddPayment(refernceNo: bookingId, transactionId: transactionId);
     } else {
       print("<<<<<<<<payment is Failed>>>>>>>>");
 
@@ -1049,7 +1054,7 @@ class ApiflightsController extends GetxController {
       //     transactionId: transactionId);
       isLoading(false);
 
-      initiatePayment(amount: amount, bookingModel: bookingModel);
+      initiatePayment(amount: amount, bookingModel: bookingModel,refernceId: response.data["Booking_RefNo"]);
     }
   }
 

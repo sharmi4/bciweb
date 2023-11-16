@@ -1,6 +1,7 @@
 import 'package:bciweb/views/business/business_contact_screen.dart';
 import 'package:bciweb/views/business/business_gallery_screen.dart';
 import 'package:bciweb/views/business/business_profile/business_gallery.dart';
+import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
 import 'package:bciweb/views/responsive------------------------------------/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/responsive------------------------------------/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/routes/app_pages.dart';
@@ -137,7 +138,7 @@ class RouteGenerator {
             widget: Subscribe(), routeName: settings.name);
 
       case Routes.BOOKINGS:
-        return _GeneratePageRoute(widget: History(), routeName: settings.name);
+        return _GeneratePageRoute(widget: BookingFlight(), routeName: settings.name);
 
       case Routes.MobileVerification:
         return _GeneratePageRoute(
