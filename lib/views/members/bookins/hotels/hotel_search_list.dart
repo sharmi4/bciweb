@@ -152,16 +152,26 @@ var end = DateTime.now();
                           child: GetBuilder<HotelController>(
                             builder: (_) {
                               return ListView.builder(
-                                physics: NeverScrollableScrollPhysics(),
+                                physics:const NeverScrollableScrollPhysics(),
                                   shrinkWrap: true,
                                   itemCount: hotelController.searchHotelData.length,
                                   itemBuilder: (context, index) {
                                     return hotelController.searchHotelData.isEmpty?
-                                    Text('No Found Data'):
+                                    const Text('No Found Data'):
                                      Padding(
                                       padding: const EdgeInsets.all(15.0),
                                       child: Container(
-                                        
+                                        height: 200,
+                                        width: size.width * 0.6,
+                                        decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(14),
+                                            color: kwhite,
+                                            boxShadow:const [
+                                               BoxShadow(
+                                                color: Color.fromARGB(255, 186, 182, 182),
+                                                blurRadius: 20.0,
+                                              ),
+                                            ]),
                                         child: Row(
                                           children: [
                                             kwidth10,
@@ -191,16 +201,17 @@ var end = DateTime.now();
                                                   mainAxisAlignment: MainAxisAlignment.center,
                                                   crossAxisAlignment: CrossAxisAlignment.start,
                                                   children: [
-                                                    Selectable(
-                                                showSelection: true,
-                                                      child: Text(
-                                                        hotelController
-                                                            .searchHotelData[index].hotelName,
-                                                        style: TextStyle(
-                                                            fontSize: 20,
-                                                            fontWeight: FontWeight.bold,
-                                                            color: kOrange),
-                                                      ),
+                                                    SelectableText(
+                                                      hotelController.searchHotelData[index].hotelName,
+                                                       style: TextStyle(
+                                                          fontSize: 20,
+                                                          fontWeight: FontWeight.bold,
+                                                          color: kOrange,
+                                                          ),
+                                                          showCursor: true,
+                                                          cursorWidth: 2,
+                                                          cursorColor: kblue,
+                                                          cursorRadius:const Radius.circular(5),
                                                     ),
                                                     ksizedbox20,
                                                     Container(
@@ -209,61 +220,30 @@ var end = DateTime.now();
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment.start,
                                                         children: [
-                                                          Selectable(
-                                                           showSelection: true,
-                                                            child: Text(
-                                                              hotelController
-                                                                  .searchHotelData[index]
-                                                                  .hotelAddress,
-                                                              style: TextStyle(
-                                                                  fontSize: 15, color: kblue),
-                                                            ),
+                                                          SelectableText(
+                                                            hotelController.searchHotelData[index].hotelAddress,
+                                                            style: TextStyle(
+                                                                fontSize: 15, color: kblue),
+                                                                showCursor: true,
+                                                                cursorWidth: 2,
+                                                                cursorColor: korange,
+                                                                enableInteractiveSelection: true,
+                                                                cursorRadius:const Radius.circular(5),
                                                           ),
                                                         ],
                                                       ),
                                                     ),
-                                                    // ksizedbox10,
-                                                    // InkWell(
-                                                    //   onTap: () async {
-                                                    //     final prefs = await SharedPreferences
-                                                    //         .getInstance();
-                                                    //     var searchtocken =
-                                                    //         prefs.getString("searchtocken");
-                                                    //     Get.to(ResortBooking(
-                                                    //         hotelcode: hotelController
-                                                    //             .searchHotelData[index]
-                                                    //             .hotelCode,
-                                                    //         resultIndex: hotelController
-                                                    //             .searchHotelData[index]
-                                                    //             .resultIndex
-                                                    //             .toString(),
-                                                    //         searchtoken: searchtocken ?? "",
-                                                    //         userIp: '122.160.83.78'));
-                                                    //     hotelController.update();
-                                                    //   },
-                                                    //   child: Container(
-                                                    //     height: 30,
-                                                    //     width: 120,
-                                                    //     decoration: BoxDecoration(
-                                                    //         color: kOrange,
-                                                    //         borderRadius:
-                                                    //             BorderRadius.circular(5)),
-                                                    //     child: Center(
-                                                    //       child: Text(
-                                                    //         'Couple  Friendly',
-                                                    //         style: TextStyle(color: kwhite),
-                                                    //       ),
-                                                    //     ),
-                                                    //   ),
-                                                    // )
                                                   ],
                                                 ),
                                               ),
                                             ),
-                                            Spacer(),
+                                            const Spacer(),
                                             Padding(
                                               padding: const EdgeInsets.all(8.0),
                                               child: Container(
+                                                color: kblue,
+                                                width: size.width * 0.12,
+                                                height: size.height,
                                                 child: Padding(
                                                   padding: const EdgeInsets.all(15.0),
                                                   child: Column(
@@ -272,7 +252,7 @@ var end = DateTime.now();
                                                     mainAxisAlignment:
                                                         MainAxisAlignment.spaceAround,
                                                     children: [
-                                                      Text('Per Night').text.white.make(),
+                                                      const Text('Per Night').text.white.make(),
                                                       //Text('₹ ${hotelController.searchHotelData[index].price.offeredPrice}').text.white.make(),
                                                       //Text('₹ ${hotelController.searchHotelData[index].price.offeredPriceRoundedOff}').text.white.make(),
                                                       Text(
@@ -324,26 +304,10 @@ var end = DateTime.now();
                                                     ],
                                                   ),
                                                 ),
-                                                color: kblue,
-                                                width: size.width * 0.12,
-                                                height: size.height,
                                               ),
                                             )
                                           ],
                                         ),
-                                        decoration: new BoxDecoration(
-                                            borderRadius: BorderRadius.circular(14),
-                                            color: kwhite,
-                                            boxShadow: [
-                                              new BoxShadow(
-                                                color: Color.fromARGB(255, 186, 182, 182),
-                                                blurRadius: 20.0,
-                                              ),
-                                            ]),
-                                            height: 200,
-                                               // width:500,
-                                        width: size.width * 0.6,
-                                        // height: 1000,
                                       ),
                                     );
                                   },
@@ -351,50 +315,6 @@ var end = DateTime.now();
                             }
                           ),
                         ),
-              //   Padding(
-              //      padding: const EdgeInsets.only(top: 20,left: 10,right: 10,),
-              //      child: GetBuilder<HotelController>(
-              //        builder: (_) {
-              //          return Container(
-              //   decoration: BoxDecoration(
-              //           color: Colors.white,
-              //     borderRadius: BorderRadius.circular(10),
-              //   ),
-              //   height: 55,
-              //   width: size.width * 0.68,
-              //   child: TextFormField(
-              //     controller: searchController,
-              //     decoration: InputDecoration(
-              //           hintText: "Search for hotels",
-              //           border: OutlineInputBorder(
-              //             borderRadius: BorderRadius.circular(10)
-              //           )
-              //     ),
-              //   )
-              // );
-              //        }
-              //      ),
-              //                ),
-              //                ksizedbox20,
-              //   GetBuilder<HotelController>(builder: (_) {
-          
-              // return hotelController.searchHotelData.isEmpty?Text('No Found Data'): Padding(
-              //     padding: const EdgeInsets.all(15.0),
-              //     child: hotelController.isLoading.isTrue
-              //         ? Container(
-              //             child: const CircularProgressIndicator(
-              //               color: Colors.yellow,
-              //             ),
-              //           )
-              //         : Container(
-                         
-              //             // color: kblue,
-              //             //  height: 500,
-              //             child: 
-              //           ),
-                
-              // );
-              //   }),
               ]
             ),
           ),
