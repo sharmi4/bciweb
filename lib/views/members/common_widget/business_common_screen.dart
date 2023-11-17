@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constant/constans.dart';
 
@@ -65,27 +66,50 @@ class BusinessCommonScreen extends StatelessWidget {
                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                     Text('Follow Us :',style: TextStyle(color: kwhite,fontSize: 15),),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Image.asset('assets/images/facebook.png',height: 15,fit: BoxFit.fitHeight,),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Image.asset('assets/images/twitter.png',fit: BoxFit.fitHeight,height: 15,),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Image.asset('assets/images/linkedin.png',height: 15,fit: BoxFit.fitHeight,),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Image.asset('assets/images/instagram.png',height: 15,fit: BoxFit.fitHeight,),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: Image.asset('assets/images/whatsappimage.png',height: 15,fit: BoxFit.fitHeight,),
-                    )
-                
+                     Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: InkWell(
+                                    onTap: () {
+                                      launchUrl(Uri.parse(
+                                          "https://www.facebook.com/benzclubinternational"));
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/facebook.png',
+                                      height: 15,
+                                      fit: BoxFit.fitHeight,
+                                    )),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: InkWell(
+                                    onTap: () {
+                                      launchUrl(Uri.parse(
+                                          "https://www.facebook.com/benzeclubinternational"));
+                                    },
+                                    child: InkWell(
+                                        onTap: () {
+                                          launchUrl(Uri.parse(
+                                              "https://twitter.com/happybcigroup"));
+                                        },
+                                        child: Image.asset(
+                                          'assets/images/twitter.png',
+                                          fit: BoxFit.fitHeight,
+                                          height: 15,
+                                        ))),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 20),
+                                child: InkWell(
+                                    onTap: () {
+                                      launchUrl(Uri.parse(
+                                          "https://www.instagram.com/benzeclubinternational"));
+                                    },
+                                    child: Image.asset(
+                                      'assets/images/instagram.png',
+                                      height: 15,
+                                      fit: BoxFit.fitHeight,
+                                    )),
+                              ),
                   ]),
  ),
                   ],

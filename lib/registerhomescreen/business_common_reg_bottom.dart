@@ -9,6 +9,7 @@ import 'package:bciweb/views/business/services_screens/services_homescreen.dart'
 import 'package:bciweb/views/clubhouse.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../constant/constans.dart';
 import '../views/responsive------------------------------------/responsive_homescreen/responsive_homescreen.dart';
 import '../views/members/bookins/bus/Bus_booking_main.dart';
@@ -19,26 +20,28 @@ import '../views/members/services/views/servicescart/services.dart';
 import '../views/members/about/about_screens.dart';
 import '../views/members/contacs/contact_screen.dart';
 
-
-
 class businessRegisterCommonBottom extends StatefulWidget {
   const businessRegisterCommonBottom({super.key});
 
   @override
-  State<businessRegisterCommonBottom> createState() => _businessRegisterCommonBottomState();
+  State<businessRegisterCommonBottom> createState() =>
+      _businessRegisterCommonBottomState();
 }
 
-class _businessRegisterCommonBottomState extends State<businessRegisterCommonBottom> {
+class _businessRegisterCommonBottomState
+    extends State<businessRegisterCommonBottom> {
   @override
   Widget build(BuildContext context) {
     return Container(
       color: kblue,
       child: Padding(
-        padding:const EdgeInsets.only(top: 20,bottom: 20),
-        child: Row(crossAxisAlignment: CrossAxisAlignment.start,
+        padding: const EdgeInsets.only(top: 20, bottom: 20),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Column(mainAxisAlignment: MainAxisAlignment.start,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Image(
@@ -65,15 +68,33 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                 ),
                 Row(
                   children: [
-                    Image(image: AssetImage("assets/images/facebook.png")),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(Uri.parse(
+                              "https://www.facebook.com/benzeclubinternational"));
+                        },
+                        child: Image(
+                            image: AssetImage("assets/images/facebook.png"))),
                     SizedBox(
                       width: 20,
                     ),
-                    Image(image: AssetImage("assets/images/twitter.png")),
+                    InkWell(
+                         onTap: () {
+                          launchUrl(
+                              Uri.parse("https://twitter.com/happybcigroup"));
+                        },
+                        child: Image(
+                            image: AssetImage("assets/images/twitter.png"))),
                     SizedBox(
                       width: 20,
                     ),
-                    Image(image: AssetImage("assets/icons/eyeicon.png")),
+                    InkWell(
+                        onTap: () {
+                          launchUrl(Uri.parse(
+                              "https://www.instagram.com/benzeclubinternational"));
+                        },
+                        child: Image(
+                            image: AssetImage("assets/icons/eyeicon.png"))),
                   ],
                 ),
                 SizedBox(
@@ -89,10 +110,11 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                 ),
               ],
             ),
-            Column(mainAxisAlignment: MainAxisAlignment.start,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-               ksizedbox20,
+                ksizedbox20,
                 const Text(
                   "Menu",
                   textAlign: TextAlign.start,
@@ -108,7 +130,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const BusinessHomeScreen());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Home",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -124,7 +146,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const BusinessAboutUsScreen());
                   },
-                  child:const Text(
+                  child: const Text(
                     "About",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -140,7 +162,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const BusinessServicesScreen());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Services",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -153,7 +175,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   height: 10,
                 ),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     Get.to(BusinessBookingScreen());
                   },
                   child: const Text(
@@ -172,7 +194,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const BusinessClubHouse());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Club House",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -188,7 +210,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const BusinessContactScreen());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Contact",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -197,8 +219,8 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                         fontWeight: FontWeight.w400),
                   ),
                 ),
-              ksizedbox20,
-               ],
+                ksizedbox20,
+              ],
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -221,7 +243,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const PrivacyPolicy());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Disclaimer",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -237,7 +259,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const Disclimer());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Privacy",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -253,8 +275,9 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.toNamed(Routes.Cancelation);
                   },
-                  child:const Text('Refund and Cancellation Policy',
-                  //  "REFUND AND CANCELLATION POLICY",
+                  child: const Text(
+                    'Refund and Cancellation Policy',
+                    //  "REFUND AND CANCELLATION POLICY",
                     textAlign: TextAlign.start,
                     style: TextStyle(
                         color: Colors.white,
@@ -269,7 +292,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const Service());
                   },
-                  child:const Text(
+                  child: const Text(
                     "Service Agreement",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -285,7 +308,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const Tc());
                   },
-                  child:const Text(
+                  child: const Text(
                     "T & C",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -301,7 +324,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const Representation());
                   },
-                  child:const  Text(
+                  child: const Text(
                     "Representation",
                     textAlign: TextAlign.start,
                     style: TextStyle(
@@ -317,7 +340,7 @@ class _businessRegisterCommonBottomState extends State<businessRegisterCommonBot
                   onTap: () {
                     Get.to(const Faq());
                   },
-                  child:const Text(
+                  child: const Text(
                     "FAQ",
                     textAlign: TextAlign.start,
                     style: TextStyle(

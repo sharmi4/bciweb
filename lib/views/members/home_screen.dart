@@ -3,6 +3,7 @@ import 'package:bciweb/controller/home_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:bciweb/registerhomescreen/common_reg_bottom.dart';
 import 'package:bciweb/routes/app_pages.dart';
+import 'package:bciweb/views/members/bookins/history/views/history.dart';
 import 'package:bciweb/views/members/widgets/alert_box_widgets.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -63,15 +64,33 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                       items: [
                         {
                           "image": 'assets/images/homeflaight.png',
-                          "name": "TEMPLES OF\nKNOWLEDGE",
+                          "name": "FLIGHT",
                           "image_large": "assets/images/sliders/Slider.jpg",
-                          "ad": "1",
+                          "ad": "Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.",
                         },
                         {
                           "image": "assets/images/slider01.jpg",
-                          "name": "TEMPLES OF\nBAKTHI",
+                          "name": "CLUB HOUSE",
                           "image_large": "assets/images/sliders/Slider2.jpg",
-                          "ad": "1",
+                          "ad": "At [Your Booking Club], we've made it our mission to simplify and elevate your booking experience. Whether it's securing tickets to the hottest events or reserving the perfect venue for your special occasion, we've got you covered",
+                        },
+                               {
+                          "image": "assets/images/img2.png",
+                          "name": "HOLIDAY",
+                          "image_large": "assets/images/sliders/Slider2.jpg",
+                          "ad": "Dreaming of a memorable vacation? Look no further! At Your Holiday Booking Platform, we're dedicated to turning your travel dreams into reality.",
+                        },
+                               {
+                          "image": "assets/images/img1.png",
+                          "name": "HOTEL",
+                          "image_large": "assets/images/sliders/Slider2.jpg",
+                          "ad": "Planning your next getaway? At Your Hotel Booking Platform, we're here to make your stay extraordinary. Discover, book, and experience the finest hotels at your fingertips.",
+                        },
+                               {
+                          "image": "assets/images/1mg3.png",
+                          "name": "BUS",
+                          "image_large": "assets/images/sliders/Slider2.jpg",
+                          "ad": "At Your Bus Booking Service, we're here to make your travel experience smoother, whether it's for business, leisure, or anything in between. Discover the simplicity of booking your bus tickets online with us.",
                         },
                       ].map(
                         (i) {
@@ -92,7 +111,138 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                     height: 600,
                                     color: Colors.black38.withOpacity(0.3),
                                   ),
-                                ],
+                                 Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15, right: 15),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              GestureDetector(
+                                                onTap: () {
+                                                  Get.to(BookingFlight());
+                                                },
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      'BOOK',
+                                                      style: TextStyle(
+                                                          color: kOrange,
+                                                          fontSize: 45),
+                                                    ),
+                                                    Text(
+                                                      ' YOUR ${i["name"]}',
+                                                      style: TextStyle(
+                                                          fontSize: 45,
+                                                          color: kwhite),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          ksizedbox30,
+                                          Container(width: 500,
+                                            child: Text(
+                                              '${i["ad"]}',
+                                              style: TextStyle(
+                                                  fontSize: 17,
+                                                  color: kwhite.withOpacity(0.7)),
+                                            ),
+                                          ),
+                                          ksizedbox30,
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 30),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Get.to(History());
+                                                    // paymentBottomSheet(context,32,'');
+                                                  },
+                                                  child: Container(
+                                                    height: 38,
+                                                    width: 130,
+                                                    decoration: BoxDecoration(
+                                                        color: kwhite,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15)),
+                                                    child: const Padding(
+                                                      padding: EdgeInsets.only(
+                                                          left: 10),
+                                                      child: Row(
+                                                        children: [
+                                                          Text('BOOK NOW'),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 10),
+                                                            child: Icon(Icons
+                                                                .arrow_forward),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: const EdgeInsets.only(
+                                                    left: 30),
+                                                child: InkWell(
+                                                  onTap: () {
+                                                    Get.toNamed(
+                                                        Routes.Subscrib);
+                                                  },
+                                                  child: Container(
+                                                    height: 38,
+                                                    width: 130,
+                                                    decoration: BoxDecoration(
+                                                        color: kblue,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15)),
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            'SUBSCRIBE',
+                                                            style: TextStyle(
+                                                                color: kwhite),
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .only(
+                                                                    left: 10),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .arrow_forward,
+                                                              color: kwhite,
+                                                            ),
+                                                          )
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ) ],
                               );
                             },
                           );
@@ -108,114 +258,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                       ),
                     ),
                   ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15, right: 15),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Get.to(BookingFlight());
-                                },
-                                child: Row(
-                                  children: [
-                                    Text(
-                                      'BOOK',
-                                      style: TextStyle(
-                                          color: kOrange, fontSize: 45),
-                                    ),
-                                    Text(
-                                      ' YOUR FLIGHT',
-                                      style: TextStyle(
-                                          fontSize: 45, color: kwhite),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          ksizedbox30,
-                          Text(
-                            'Learn what is a Flight Itinerary for visa, why do Embassies \nask for it and How you can Reserve a Flight Ticket \nwithout Paying for the actual Travel Ticket.',
-                            style: TextStyle(
-                                fontSize: 17, color: kwhite.withOpacity(0.7)),
-                          ),
-                          ksizedbox30,
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: InkWell(
-                                  onTap: () {
-                                   paymentBottomSheet(context,32,'');
-                                  },
-                                  child: Container(
-                                    height: 38,
-                                    width: 130,
-                                    decoration: BoxDecoration(
-                                        color: kwhite,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: const Padding(
-                                      padding: EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          Text('BOOK NOW'),
-                                          Padding(
-                                            padding: EdgeInsets.only(left: 10),
-                                            child: Icon(Icons.arrow_forward),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(left: 30),
-                                child: InkWell(
-                                  onTap: () {
-                                  Get.toNamed(Routes.Subscrib);
-                                  },
-                                  child: Container(
-                                    height: 38,
-                                    width: 130,
-                                    decoration: BoxDecoration(
-                                        color: kblue,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    child: Padding(
-                                      padding: const EdgeInsets.only(left: 10),
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            'SUBSCRIBE',
-                                            style: TextStyle(color: kwhite),
-                                          ),
-                                          Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 10),
-                                            child: Icon(
-                                              Icons.arrow_forward,
-                                              color: kwhite,
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  )
+                
                 ],
               ),
             ),
