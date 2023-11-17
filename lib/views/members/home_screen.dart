@@ -47,7 +47,10 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
             ],
           ),
           ),
-      body: ListView(children: [
+      body: ListView(
+        primary: true,
+
+        children: [
         Column(
           children: [
             // RegisterCommonContainer(),
@@ -72,7 +75,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           "image": "assets/images/slider01.jpg",
                           "name": "CLUB HOUSE",
                           "image_large": "assets/images/sliders/Slider2.jpg",
-                          "ad": "At [Your Booking Club], we've made it our mission to simplify and elevate your booking experience. Whether it's securing tickets to the hottest events or reserving the perfect venue for your special occasion, we've got you covered",
+                          "ad": "At Your Booking Club, we've made it our mission to simplify and elevate your booking experience. Whether it's securing tickets to the hottest events or reserving the perfect venue for your special occasion, we've got you covered",
                         },
                                {
                           "image": "assets/images/img2.png",
@@ -273,7 +276,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
               width: size.width * 0.7,
               child: Column(
                 children: [
-                  Text(
+                  SelectableText(
                     'Benze Club International invites one and all of you to join our First-of-its-kind HOSPITALITY HUB-BCI, an Elite Global Network of verified-prestigious members & verified true merchants.We are also expanding our tie-up-affiliations to global, where Members can transact and get offers & discounts from all leading INDIAN-INTERNATIONAL brands in Hotels, Restaurants, Clubs, Resorts, Theme parks, service apartments, Super markets,Textiles, Jewellery, adventure sports and explore a new world of family Entertainment and Hospitality. We are having our club houses at Chennai Bolleneni Hill side-Sholinganallur-OMR, Chennai-Anna Nagar, Trichy, Ottanchathiram, Kovai, Kodaikanal...We are in the process of expanding our network to Pan India-Global with tie-ups with all other leading brands of hotels, clubs, resorts & restaurants; We are having our overseas offices in UAE.',
                     style: TextStyle(
                         fontSize: 18,
@@ -317,13 +320,13 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                   right: 0,
                   child: Column(
                     children: [
-                      Text(
+                      SelectableText(
                         'To find the best membership programs, it"s important to consider what you"re ',
                         style: TextStyle(fontSize: 17),
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 6),
-                        child: Text(
+                        child: SelectableText(
                           'looking for in a membership. Here are some general tips to help you find a',
                           style: TextStyle(fontSize: 17),
                         ),
@@ -354,7 +357,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                               children: [
                                 Image.asset('assets/images/apartmentimage.png'),
                                 ksizedbox10,
-                                Text(
+                                SelectableText(
                                   'HOTELS & SERVICES',
                                   style: TextStyle(
                                       color: kblue,
@@ -362,7 +365,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 ksizedbox10,
-                                const Text(
+                                const SelectableText(
                                     'BCI Prestigious Members Can Access our \nAmazing Discounts Coupons @ Our \nAssociate Hotels / Resorts / Spas / \nSaloons / Services Apartments / Marriage \nHalls / Tours & Travels.'),
                               ],
                             ),
@@ -380,7 +383,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 ksizedbox10,
-                                const Text(
+                                const SelectableText(
                                     'BCI Prestigious Members Can Access\nour Amazing Discounts Coupons @ Our\nAssociate Provision / Restaurant /\nJewellery / Textile / Complimentary\nCoupon.'),
                               ],
                             ),
@@ -430,14 +433,14 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                       ),
                       const Padding(
                         padding: EdgeInsets.only(top: 20, left: 210),
-                        child: Text(
+                        child: SelectableText(
                           'Since 2 Decade BCI INDIA Is Servicing In India"s \nfirst family entertainment club, Have about 45000 \nMembers. Now We Are Providing New And Vibrate \nManagement Is Excited To Offer Our Members The \nBest Multi-Clubbing Experience Of Life Time.',
                           style: TextStyle(fontSize: 15),
                         ),
                       ),
                       const Padding(
                         padding: EdgeInsets.only(top: 40, left: 210),
-                        child: Text(
+                        child: SelectableText(
                           'BCI INDIA in the Google play store makes world of \nopportunities and services, offers, value added mutual \nbenefits to members & vendors. Now we are \nExpanding Our Business Operations All over India, we \nare estimating about 1 Million Members to subscribe \nwithin Couple of Years, in The Way Of All Digital, Social, \nMedia, Member 2 Member, Vendors 2 Members & Etc.',
                           style: TextStyle(fontSize: 15),
                         ),
@@ -485,7 +488,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                         color: kOrange,
                       ),
                       ksizedbox40,
-                      Text(
+                      SelectableText(
                         'Adding booking services to your website or app can help streamline your business \n         and make it easier for your customers to book your services',
                         style: TextStyle(fontSize: 17, color: kwhite),
                       ),
@@ -515,7 +518,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                     const Padding(
                                       padding: EdgeInsets.only(
                                           left: 10, top: 15),
-                                      child: Text(
+                                      child: SelectableText(
                                         'Online booking hotels is the process \nof reserving a room or multiple rooms at a hotel for a specific period of time, usually for a vacation, business trip, \nor other travel purposes.',
                                         style: TextStyle(fontSize: 12),
                                       ),
@@ -561,7 +564,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       const Padding(
                                         padding: EdgeInsets.only(
                                             left: 10, top: 15),
-                                        child: Text(
+                                        child: SelectableText(
                                           'World-class service refers to exceptional and unparalleled service quality that sets a business apart from its competitors.',
                                           style: TextStyle(fontSize: 12),
                                         ),
@@ -608,7 +611,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                                       const Padding(
                                         padding: EdgeInsets.only(
                                             left: 10, top: 15),
-                                        child: Text(
+                                        child: SelectableText(
                                           'A best price guarantee is a promise made by a business or service provider to offer the lowest possible price for their product or service.',
                                           style: TextStyle(fontSize: 12),
                                         ),
@@ -884,7 +887,7 @@ class _MemberHomeScreenState extends State<MemberHomeScreen> {
                           padding: const EdgeInsets.only(left: 145, top: 20),
                           child: Container(
                             width: size.width * 0.3,
-                            child: Text(
+                            child: SelectableText(
                               'Starting a business requires financial investment. Consider the  potential costs, profits, and funding options for your business.',
                               style: TextStyle(
                                   fontSize: 20,

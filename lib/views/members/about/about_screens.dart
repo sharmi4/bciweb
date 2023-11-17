@@ -94,7 +94,7 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                             width: size.width * 0.4,
                             child: Column(
                               children: [
-                                Text(
+                                SelectableText(
                                   '''"BENZE CLUB INTERNATIONAL - One of the pioneers in the
 Hospitality-Family entertainment industry." 
 Formerly Benze Vaccations Club with around 50000 members, We are now transformed to BCI, with a Rejuvenated-empowered Board of directors and progressing towards a 6 digit membership inthe Year 2023 with a strong Marketing, Technical,CRM, Media & PR teams.''',
@@ -130,7 +130,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    SelectableText(
                       "The Perfect membership\nFor You & Your Family",
                       textAlign: TextAlign.start,
                       style: TextStyle(
@@ -142,7 +142,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                     const SizedBox(
                       height: 10,
                     ),
-                    Text(
+                    SelectableText(
                       "Look into what benefits are included with\nthe membership. Does it offer discounts on\nproducts or services that you regularly use?\nDoes it provide access to exclusive events\nor experiences?",
                       textAlign: TextAlign.start,
                       style: TextStyle(
@@ -339,7 +339,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                       ),
                     ),
                     ksizedbox20,
-                    Text(
+                    SelectableText(
                       'Special coupons are promotional discounts offered by businesses to encourage \ncustomers to make a purchase or use their services. These coupons may be available \nin various forms such as printed coupons, digital coupons, or promo codes.',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 17, height: 2),
@@ -516,7 +516,7 @@ Formerly Benze Vaccations Club with around 50000 members, We are now transformed
                   ),
                 ),
                 ksizedbox20,
-                Text(
+                SelectableText(
                   'Unforgettable subscription Experiences \nGet Your Guide',
                   textAlign: TextAlign.center,
                   style: TextStyle(

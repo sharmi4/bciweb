@@ -146,7 +146,7 @@ class AddServicesApiServices extends BaseApiService {
         "start_time": createServiceModel.startTime,
         "end_time": createServiceModel.endTime,
 
-   "is_recomended": createServiceModel.available,
+           "is_recomended": createServiceModel.available,
         for (int i = 0; i < tempTimeSlotsList.length; i++)
           "weekdays[$i]": tempTimeSlotsList[i].weedDay,
         for (int i = 0; i < tempTimeSlotsList.length; i++)

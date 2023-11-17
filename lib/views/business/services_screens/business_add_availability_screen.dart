@@ -91,6 +91,7 @@ class _BusinessAddAvailabilityScreenState
   var gstPercentage;
   var cgstPercentage;
   var sgstPercentage;
+    bool available = true;
 
   bool isOfferEligible = false;
   bool isCouponEligible = false;
@@ -603,7 +604,7 @@ dynamic startTime, endTime;
 
               ksizedbox30,
               Padding(
-                padding: const EdgeInsets.only(left: 110, right: 0),
+                padding: const EdgeInsets.only(left: 100, right: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -705,6 +706,9 @@ dynamic startTime, endTime;
                             )),
                       ),
                     ),
+
+
+                  
                     ksizedbox30,
                     Padding(
                       padding: const EdgeInsets.only(right: 60),
@@ -758,6 +762,31 @@ dynamic startTime, endTime;
                           ),
                         );
                       }),
+                    ),
+                  ],
+                ),
+              ),
+              ksizedbox20,
+                Padding(
+                padding: const EdgeInsets.only(left: 110, right: 15),
+                child: Row(
+                  children: [
+                    Text(
+                      "Service Available",
+                      style: TextStyle(
+                          color: kblue,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Switch(
+                      activeColor: kOrange,
+                      activeTrackColor: kblue,
+                      value: available,
+                      onChanged: (bool value) {
+                        setState(() {
+                          available = value;
+                        });
+                      },
                     ),
                   ],
                 ),
@@ -1296,6 +1325,7 @@ dynamic startTime, endTime;
                                             ? "1"
                                             : "0",
                                     // bvcAmount: bvcAmountController.text,
+                                      available: available ? "0" : "1",
                                     category: categoryModel.id.toString(),
                                     description: descriptionController.text,
                                     image: images,
