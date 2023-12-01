@@ -124,7 +124,8 @@ class _VendorServiceListScreenState extends State<VendorServiceListScreen> {
                                             Container(
                                                 width: size.width * 0.15,
                                                 child: Text(homeController.vendorServiceListData[index].description,
-                                                  maxLines: 3,
+                                                  maxLines: 1,
+                                                  overflow: TextOverflow.ellipsis,
                                                   style: primaryFont.copyWith(
                                                       fontSize: 13,
                                                       fontWeight: FontWeight.w500),

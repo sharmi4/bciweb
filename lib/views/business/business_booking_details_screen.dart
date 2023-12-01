@@ -18,6 +18,7 @@ class BusinessBookingDetailsScreen extends StatefulWidget {
       String cusName;
       String mobile; 
       String email;
+      String timeSlot;
    BusinessBookingDetailsScreen({super.key,
    required this.amt,
    required this.cusName,
@@ -26,6 +27,7 @@ class BusinessBookingDetailsScreen extends StatefulWidget {
    required this.img,
    required this.mobile,
    required this.qty,
+   required this.timeSlot,
    required this.tit});
 
   @override
@@ -168,6 +170,42 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     //   ),
                                     // )
                                   ),ksizedbox40,
+                                  Text('Time Slot',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold
+                                  ),),
+                                  ksizedbox20,
+                                   Container(
+                                    height: 54,
+                                    width: MediaQuery.of(context).size.width*0.25,
+                                    decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: kgrey
+                                    )
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,
+                                      left: 5),
+                                      child: Text(widget.timeSlot,
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500
+                                      ),),
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.qty,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder()
+                                    //   ),
+                                    // )
+                                  ),
+                                  ksizedbox40,
                                   Text('Quantity',
                                   style: TextStyle(
                                     fontSize: 20,
@@ -326,7 +364,8 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                      child: Image.network(
                                        widget.img,
                                        fit: BoxFit.fitHeight,
-                                       height: 500,
+                                       height: 300,
+                                       width: 500,
                                                       ),
                                    ),
                                    ]

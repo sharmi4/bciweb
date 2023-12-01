@@ -339,6 +339,8 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                                         amt: serviceController
                                             .bookingListData[index]
                                             .purchasePrice,
+                                            timeSlot:serviceController
+                                            .bookingListData[index].user.bookingDate ,
                                         cusName: serviceController
                                             .bookingListData[index].user.name,
                                         des: serviceController

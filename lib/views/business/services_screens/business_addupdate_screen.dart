@@ -620,7 +620,7 @@ class _AddServicesViewState extends State<UpdateServicesView> {
           ksizedbox20,
 
           Padding(
-            padding: const EdgeInsets.only(left: 190, right: 15),
+            padding: const EdgeInsets.only(left: 180, right: 15),
             child: Row(
               children: [
                 Container(
