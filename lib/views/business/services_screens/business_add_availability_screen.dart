@@ -1349,11 +1349,9 @@ dynamic startTime, endTime;
                                     endTime: startTime,
                                     startTime: endTime,
                                     quantity: quantityController.text);
-
-                            print('nosucherror');
-
-                            businessserviceController.addServices(
-                                createServiceModel: createServiceModel);
+                                     print('nosucherror');
+                                     businessserviceController.addServices(
+                                     createServiceModel: createServiceModel);
                           },
                           child: Container(
                             height: 55,
@@ -1363,7 +1361,7 @@ dynamic startTime, endTime;
                                 color: kblue),
                             alignment: Alignment.center,
                             child: Text(
-                              "SUMBMIT",
+                              "SUBMIT",
                               style: primaryFont.copyWith(
                                   color: Colors.white,
                                   fontSize: 18,

@@ -508,6 +508,11 @@ class _ListCartState extends State<ListCart> {
                                     child: InkWell(
                                       onTap: () {
                                         homeController.addToCart(
+                                          startTime: selectedValue != null
+                                            ? "${selectedValue.weekday} ${selectedValue.startTime}-${selectedValue.endTime}"
+                                            : "",
+                                            slotId: selectedValue != null
+                                            ?selectedValue.id.toString():"" ,
                                             amount:
                                                 widget.servicedata.saleAmount,
                                             serviceid: widget.servicedata.id

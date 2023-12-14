@@ -6,7 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AddToCartApiServices extends BaseApiService {
   Future addToCartApiServices(
-      {required String serviceid, required String amount}) async {
+      {required String serviceid, required String amount,required String slotId,
+      required String startTime}) async {
     dynamic responseJson;
     try {
       var dio = Dio();
@@ -23,7 +24,8 @@ class AddToCartApiServices extends BaseApiService {
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {"service_id": serviceid, "amount": amount});
+          data: {"service_id": serviceid, "amount": amount, "book_date_time": startTime ,
+            "slot_id": slotId});
       print(
           "::::::::<Add To Cart Api Services Api>::::::::status code::::::::::");
       print(response.statusCode);

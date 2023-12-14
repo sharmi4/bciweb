@@ -21,6 +21,7 @@ import 'package:bciweb/services/networks/vendor_list_api_services/get_vendor_ser
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_category_list_api_service.dart';
 import 'package:bciweb/services/networks/vendor_list_api_services/vendor_list_api_service.dart';
 import 'package:bciweb/views/business-------------------------------------/sucssesful.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -203,9 +204,10 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
   //add cart
   AddToCartApiServices addToCartApiServices = AddToCartApiServices();
 
-  addToCart({required String serviceid, required String amount}) async {
+  addToCart({required String serviceid, required String amount,required String slotId,
+      required String startTime}) async {
     dio.Response<dynamic> response = await addToCartApiServices
-        .addToCartApiServices(serviceid: serviceid, amount: amount);
+        .addToCartApiServices(serviceid: serviceid, amount: amount,slotId: slotId,startTime: startTime);
     if (response.statusCode == 201) {
       Get.to(const MobilecartDivertion());
       Get.rawSnackbar(
@@ -618,4 +620,72 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
       }
       update();
   }
+
+
+
+
+  getServicesDetailsForUpdate({required int servicesId}) async {
+    dio.Response<dynamic> response = await getServicesDetailsServices
+        .getServiceDetails(serviceId: servicesId);
+
+    if (response.statusCode == 200) {
+      ServiceDetailsModel vendorListModel =
+          ServiceDetailsModel.fromJson(response.data);
+    
+      assignTimeSlots(vendorListModel.slotDetail);
+    }
+    update();
+  }
+
+
+   assignTimeSlots(List<SlotDetail> slotDetailList) async{
+   sunTimeSlot = [];
+   monTimeSlot = [];
+   tueTimeSlot = [];
+   wedTimeSlot = [];
+   thuTimeSlot = [];
+   friTimeSlot = [];
+   satTimeSlot = [];
+
+  for(var timeSlot in slotDetailList){
+    int tempFromHours = int.parse(timeSlot.startTime.split(":")[0]);
+    int temptoHours = int.parse(timeSlot.endTime.split(":")[0]);
+    int tempFromMinutes = int.parse(timeSlot.startTime.split(":")[1]);
+    int tempToMinutes = int.parse(timeSlot.endTime.split(":")[1]);
+     DateTime tempdateFromTime = DateTime(2023,2,1,tempFromHours,tempFromMinutes);
+     DateTime tempdateToTime = DateTime(2023,2,1,temptoHours,tempToMinutes);
+     TimeSlotModels timeSlotModels = TimeSlotModels(
+      fromTime: formatDate(tempdateFromTime, [hh,":",nn," ",am]),
+      tempFromTime: timeSlot.startTime,
+      tempToTime: timeSlot.endTime,
+      toTime: formatDate(tempdateToTime, [hh,":",nn," ",am]),
+     );
+
+
+
+     print("------------------------------------->> Week day that we are using");
+     print(timeSlot.weekday);
+
+     if(timeSlot.weekday == "Sunday"){
+      sunTimeSlot.add(timeSlotModels);
+     }else if(timeSlot.weekday == "Monday"){
+      monTimeSlot.add(timeSlotModels);
+     }else if(timeSlot.weekday == "Tuesday"){
+      tueTimeSlot.add(timeSlotModels);
+     }else if(timeSlot.weekday == "Wednesday"){
+      wedTimeSlot.add(timeSlotModels);
+     }else if(timeSlot.weekday == "Thursday"){
+      thuTimeSlot.add(timeSlotModels);
+     }else if(timeSlot.weekday == "Friday"){
+      friTimeSlot.add(timeSlotModels);
+     }else if(timeSlot.weekday == "Saturday"){
+      satTimeSlot.add(timeSlotModels);
+     }
+  }
+  update();
+  }
+
+
+
+
 }

@@ -83,14 +83,14 @@ class UpdateServicesApiServices extends BaseApiService {
         });
       }
       if (servicesController.thuTimeSlot.isNotEmpty) {
-        tempWeekList.add("Tursday");
+        tempWeekList.add("Thursday");
         servicesController.tueTimeSlot.forEach((element) {
           thuesdayFrom.add(element.tempFromTime);
           thuesdayTo.add(element.tempToTime);
           TimeSlotAddModels timeSlotAddModels = TimeSlotAddModels(
               tempFromTime: element.tempFromTime,
               tempToTime: element.tempToTime,
-              weedDay: "Tursday");
+              weedDay: "Thursday");
           tempTimeSlotsList.add(timeSlotAddModels);
         });
       }
@@ -130,7 +130,7 @@ class UpdateServicesApiServices extends BaseApiService {
               filename: 'image'),
         "title": createServiceModel.title,
         if (createServiceModel.category != "null")
-          "category": createServiceModel.category.toString(),
+        "category": createServiceModel.category.toString(),
         "sale_amount": createServiceModel.saleAmount,
         "actual_amount": createServiceModel.actualAmount,
         // "share": createServiceModel.share,
@@ -149,6 +149,9 @@ class UpdateServicesApiServices extends BaseApiService {
         "id": id,
         "cgst": createServiceModel.cgst,
         "sgst": createServiceModel.sgst,
+        "quantity":  createServiceModel.quantity,
+          "is_recomended": createServiceModel.available,
+        "unit": createServiceModel.unit,
          for (int i = 0; i < tempTimeSlotsList.length; i++)
           "weekdays[$i]": tempTimeSlotsList[i].weedDay,
         for (int i = 0; i < tempTimeSlotsList.length; i++)
@@ -170,7 +173,7 @@ class UpdateServicesApiServices extends BaseApiService {
                 return status! <= 500;
               }),
           data: formData);
-      print("::::::::<update services URL>::::::::status code::::::::::");
+      print("::::::::<update services URL>::::::::status code:::::::::${createServiceModel.quantity}:");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

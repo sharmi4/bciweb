@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:bciweb/controller/auth_controller/auth_controller.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:bciweb/models/category_model.dart';
 import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
 import 'package:bciweb/views/business/services_screens/addservice_timeslot_screen.dart';
@@ -34,6 +35,7 @@ class UpdateServicesView extends StatefulWidget {
 class _AddServicesViewState extends State<UpdateServicesView> {
   final authController = Get.find<AuthController>();
   final serviceController = Get.find<BusinessServiceController>();
+  final homeServiceController = Get.find<HomeServiceController>();
   List<String>? initialTags = [];
 
   var merchantCategory;
@@ -58,6 +60,7 @@ class _AddServicesViewState extends State<UpdateServicesView> {
     _controller = TextfieldTagsController();
     checkIfCategory();
     // authController.getSubCategoryList();
+    homeServiceController.getServicesDetailsForUpdate(servicesId: widget.serviceData.id);
     setDefault();
   }
 
@@ -137,6 +140,8 @@ class _AddServicesViewState extends State<UpdateServicesView> {
     quantityController.text = widget.serviceData.quantity ?? "";
     cGstController.text = widget.serviceData.cgst ?? "";
     sGstController.text = widget.serviceData.sgst ?? "";
+       cgstPercentage= widget.serviceData.cgst ?? "";
+   sgstPercentage = widget.serviceData.sgst ?? "";
     // productCategoryHint =  widget.serviceData.categoryId;
     //  _controller!. = "updated";
     // setState(() {
@@ -1475,6 +1480,7 @@ class _AddServicesViewState extends State<UpdateServicesView> {
                                         offerAmountController.text.isEmpty
                                             ? null
                                             : offerAmountController.text,
+                                            quantity: quantityController.text,
                                     cgst: cgstPercentage,
                                     sgst: sgstPercentage);
 
