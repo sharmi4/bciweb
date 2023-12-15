@@ -12,19 +12,23 @@ String serviceDetailsModelToJson(ServiceDetailsModel data) =>
 
 class ServiceDetailsModel {
   List<SlotDetail> slotDetail;
+   dynamic slotDate;
 
   ServiceDetailsModel({
     required this.slotDetail,
+    required this.slotDate,
   });
 
   factory ServiceDetailsModel.fromJson(Map<String, dynamic> json) =>
       ServiceDetailsModel(
         slotDetail: List<SlotDetail>.from(
             json["slot_detail"].map((x) => SlotDetail.fromJson(x))),
+            slotDate: json["slot_date"],
       );
 
   Map<String, dynamic> toJson() => {
         "slot_detail": List<dynamic>.from(slotDetail.map((x) => x.toJson())),
+         "slot_date": slotDate,
       };
 }
 

@@ -37,9 +37,28 @@ class _ListCartState extends State<ListCart> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    homeController.getServicesDetails(servicesId: widget.servicedata.id);
+    homeController.getServicesDetails(
+      servicesId: widget.servicedata.id, 
+      slotdate: selectedDate.toIso8601String());
   }
+     DateTime selectedDate = DateTime.now();
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+      homeController.getServicesDetails(
+      servicesId: widget.servicedata.id, 
+      slotdate: selectedDate.toIso8601String());
+
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -272,12 +291,60 @@ class _ListCartState extends State<ListCart> {
                                 ),
                               ],
                             ),
-                            ksizedbox40,
+                            ksizedbox20,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text('Select Date : ',
+                                       style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold,
+                                              color: kblue),),
+                                              ksizedbox10,
+                                              Container(
+                                                height: 45,
+                                                width: 240,
+                                                decoration: BoxDecoration(
+                                                color: kwhite,
+                                                borderRadius: BorderRadius.circular(10),
+                                               
+                                                border: Border.all(
+                                                  color: kgrey,
+                                                  width: 1
+                                                )
+                                                ),
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(left: 10,right: 10),
+                                                  child: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    children: [
+                                                      
+                                                      Center(
+                                                        child: Text(
+                                                          formatDate(selectedDate, [yyyy,'-',mm,'-',dd])
+                                                        ),
+                                                      ),
+                                                        GestureDetector(
+                                                          onTap: (){
+                                                           _selectDate(context);
+                                                          },
+                                                          child: Icon(Icons.date_range)),
+                                                    ],
+                                                  ),
+                                                ),
+                                              )
+                              ],
+                            ),
+
+
+                                          
+                            ksizedbox10,
                             GetBuilder<HomeServiceController>(builder: (_) {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: [                               
                                   if (homeController.slotDetailList.isNotEmpty)
+                                  
                                     Text(
                                       'Time Slot',
                                       style: TextStyle(
@@ -516,7 +583,8 @@ class _ListCartState extends State<ListCart> {
                                             amount:
                                                 widget.servicedata.saleAmount,
                                             serviceid: widget.servicedata.id
-                                                .toString());
+                                                .toString(), 
+                                                slotdate: selectedDate.toString());
                                       },
                                       child: Container(
                                         height: 65,

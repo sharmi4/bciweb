@@ -6,7 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AddToCartApiServices extends BaseApiService {
   Future addToCartApiServices(
-      {required String serviceid, required String amount,required String slotId,
+      {required String serviceid, 
+      required String slotdate,
+      required String amount,
+      required String slotId,
       required String startTime}) async {
     dynamic responseJson;
     try {
@@ -24,10 +27,15 @@ class AddToCartApiServices extends BaseApiService {
               validateStatus: (status) {
                 return status! <= 500;
               }),
-          data: {"service_id": serviceid, "amount": amount, "book_date_time": startTime ,
-            "slot_id": slotId});
+          data: {
+          "service_id": serviceid, 
+          "amount": amount, 
+          "book_date_time": startTime ,
+          "slot_id": slotId,
+          "date":slotdate
+            });
       print(
-          "::::::::<Add To Cart Api Services Api>::::::::status code::::::::::");
+          "::::::::<Add To Cart Api Services Api>::::::::status code::::::${slotdate}::::");
       print(response.statusCode);
       print(response.data);
       responseJson = response;

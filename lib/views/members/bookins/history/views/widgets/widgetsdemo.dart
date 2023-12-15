@@ -1,4 +1,5 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/controller/service_controller/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -924,6 +925,7 @@ class _index4State extends State<index4> {
   }
 
   final subscriptionapiController = Get.find<SubscriptionApiController>();
+    final homeController = Get.find<HomeServiceController>();
   Future<void> dialogBuilder(
       BuildContext context,
       String service,
@@ -933,7 +935,7 @@ class _index4State extends State<index4> {
       String tit,
       String date,
       String amt,
-      String qty) {
+      String qty,) {
     return showDialog<void>(
       context: context,
       builder: (

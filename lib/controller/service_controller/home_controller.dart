@@ -204,10 +204,16 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
   //add cart
   AddToCartApiServices addToCartApiServices = AddToCartApiServices();
 
-  addToCart({required String serviceid, required String amount,required String slotId,
-      required String startTime}) async {
+  addToCart({required String serviceid, required String amount,
+  required String slotId,
+      required String startTime,required String slotdate}) async {
     dio.Response<dynamic> response = await addToCartApiServices
-        .addToCartApiServices(serviceid: serviceid, amount: amount,slotId: slotId,startTime: startTime);
+        .addToCartApiServices(
+          serviceid: serviceid, 
+          amount: amount,
+          slotId: slotId,
+          startTime: startTime, 
+          slotdate: slotdate);
     if (response.statusCode == 201) {
       Get.to(const MobilecartDivertion());
       Get.rawSnackbar(
@@ -442,9 +448,9 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
 
   List<SlotDetail> slotDetailList = [];
 
-  getServicesDetails({required int servicesId}) async {
+  getServicesDetails({required int servicesId,required String slotdate}) async {
     dio.Response<dynamic> response = await getServicesDetailsServices
-        .getServiceDetails(serviceId: servicesId);
+        .getServiceDetails(serviceId: servicesId, slotdate: slotdate);
 
     if (response.statusCode == 200) {
       ServiceDetailsModel vendorListModel =
@@ -624,9 +630,9 @@ AddCouponsApiServices addCouponsApiServices = AddCouponsApiServices();
 
 
 
-  getServicesDetailsForUpdate({required int servicesId}) async {
+  getServicesDetailsForUpdate({required int servicesId,required String slotdate}) async {
     dio.Response<dynamic> response = await getServicesDetailsServices
-        .getServiceDetails(serviceId: servicesId);
+        .getServiceDetails(serviceId: servicesId, slotdate: slotdate);
 
     if (response.statusCode == 200) {
       ServiceDetailsModel vendorListModel =

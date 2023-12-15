@@ -60,7 +60,9 @@ class _AddServicesViewState extends State<UpdateServicesView> {
     _controller = TextfieldTagsController();
     checkIfCategory();
     // authController.getSubCategoryList();
-    homeServiceController.getServicesDetailsForUpdate(servicesId: widget.serviceData.id);
+    homeServiceController.getServicesDetailsForUpdate(
+      servicesId: widget.serviceData.id, 
+      slotdate: selectedDate.toString());
     setDefault();
   }
 
@@ -176,7 +178,21 @@ class _AddServicesViewState extends State<UpdateServicesView> {
   var gstPercentage;
 
   var productNetworkImage;
+ DateTime selectedDate = DateTime.now();
 
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(2015, 8),
+        lastDate: DateTime(2101));
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
