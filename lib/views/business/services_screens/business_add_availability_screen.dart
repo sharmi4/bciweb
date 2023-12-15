@@ -499,17 +499,19 @@ dynamic startTime, endTime;
                                           return Stack(
                                             children: [
                                                Image.memory(
-                                                 images![index],
+                                                images![index],
                                                 height: 100,
                                                 width: 100,
-                                                fit: BoxFit.cover,
-                                              ),
+                                               fit: BoxFit.cover,
+                                               ),
+                                               
                                             ],
                                           );
                                         }),
                                   ),
+                                 
                                   Positioned(
-                                      left: 70,
+                                      top: 100,
                                       child: InkWell(
                                           onTap: () {
                                             setState(() {
@@ -520,7 +522,7 @@ dynamic startTime, endTime;
                                             height: 30,
                                             width: 30,
                                             decoration: BoxDecoration(
-                                              color: kwhite,
+                                              color:Colors.red,
                                               borderRadius:
                                                   const BorderRadius.only(
                                                       topRight:
@@ -529,10 +531,11 @@ dynamic startTime, endTime;
                                                           Radius.circular(8)),
                                             ),
                                             child: const Icon(
-                                              CupertinoIcons.delete,
-                                              color: Colors.grey,
+                                              Icons.delete,
+                                              color: Colors.red,
                                             ),
-                                          ))),
+                                          ))
+                                          ),
                                 ],
                               ),
                             );

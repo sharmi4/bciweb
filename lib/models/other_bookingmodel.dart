@@ -37,6 +37,8 @@ class Datum {
     String service;
     String image;
     String description;
+    String bookingdate;
+    String time;
 
     Datum({
         required this.id,
@@ -47,6 +49,8 @@ class Datum {
         required this.service,
         required this.image,
         required this.description,
+        required this.bookingdate,
+        required this.time
     });
 
     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -58,6 +62,8 @@ class Datum {
         service: json["service"]?? "" ,
         image: json["image"] ?? "",
         description: json["description"]?? "",
+        bookingdate: json[ "booked_date"]??'',
+        time: json['book_date_time']??''
     );
 
     Map<String, dynamic> toJson() => {
@@ -69,5 +75,7 @@ class Datum {
         "service": service,
         "image": image,
         "description": description,
+        "booked_date":bookingdate,
+        "book_date_time":time
     };
 }

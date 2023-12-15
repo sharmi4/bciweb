@@ -1,5 +1,6 @@
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
 import 'package:bciweb/controller/service_controller/home_controller.dart';
+import 'package:bciweb/models/business_model/get_vendor_service_list_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -911,7 +912,8 @@ class _HolidayHistoryState extends State<HolidayHistory> {
 }
 
 class index4 extends StatefulWidget {
-  const index4({super.key});
+
+   index4({super.key});
 
   @override
   State<index4> createState() => _index4State();
@@ -922,6 +924,7 @@ class _index4State extends State<index4> {
   void initState() {
     super.initState();
     subscriptionapiController.getothersBookingList();
+   
   }
 
   final subscriptionapiController = Get.find<SubscriptionApiController>();
@@ -935,308 +938,365 @@ class _index4State extends State<index4> {
       String tit,
       String date,
       String amt,
-      String qty,) {
+      String qty,
+      String slotdate,
+      String time,) {
     return showDialog<void>(
       context: context,
       builder: (
         BuildContext context,
       ) {
         return Padding(
-          padding: const EdgeInsets.only(top: 30),
+          padding: const EdgeInsets.only(top: 30,left: 10,right: 10),
           child: AlertDialog(
             title: Container(
-              height: 400,
-              width: 300,
-              color: Colors.white,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.arrow_back_ios,
-                        color: kblue,
-                        size: 15,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        'Details',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 60,
-                        child: Image.network(
-                          img,
-                          height: 50,
-                          width: 60,
-                          fit: BoxFit.cover,
+              height: 450,
+              width: 400,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.only(left: 10,right: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back_ios,
+                          color: kblue,
+                          size: 15,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            service,
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          'Details',
+                          style: TextStyle(
+                              fontSize: 17,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          height: 80,
+                          width: 105,
+                          child: Image.network(
+                            img,
+                            height: 80,
+                            width: 105,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              service,
+                              style: TextStyle(
+                                  fontSize: 17,
+                                  color: kblue,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            // Text(
+                            //   'Date : ${formatDate(DateTime.now(), [
+                            //         dd,
+                            //         "/",
+                            //         mm,
+                            //         "/",
+                            //         yyyy
+                            //       ])}',
+                            //   style: TextStyle(
+                            //       fontSize: 12,
+                            //       color: kblue,
+                            //       fontWeight: FontWeight.w500),
+                            // ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Divider(
+                      thickness: 1,
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       'Date',
+                    //       style: TextStyle(
+                    //           fontSize: 16,
+                    //           color: kblue,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Text(
+                    //       formatDate(bookingData.,
+                    //                    [dd ,'-',mm,'-',yyyy]),
+                    //       style: TextStyle(
+                    //           fontSize: 15,
+                    //           color: kblue,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const Divider(
+                    //   thickness: 1,
+                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Description',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Container(
+                          width: 130,
+                          child: Text(
+                            tit,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: TextStyle(
-                                fontSize: 16,
-                                color: kblue,
-                                fontWeight: FontWeight.bold),
+                                fontSize: 15,
+                                color: kgrey,
+                                fontWeight: FontWeight.w500),
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          // Text(
-                          //   'Date : ${formatDate(DateTime.now(), [
-                          //         dd,
-                          //         "/",
-                          //         mm,
-                          //         "/",
-                          //         yyyy
-                          //       ])}',
-                          //   style: TextStyle(
-                          //       fontSize: 12,
-                          //       color: kblue,
-                          //       fontWeight: FontWeight.w500),
-                          // ),
-                        ],
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text(
-                  //       'Date',
-                  //       style: TextStyle(
-                  //           fontSize: 16,
-                  //           color: kblue,
-                  //           fontWeight: FontWeight.bold),
-                  //     ),
-                  //     Text(
-                  //       formatDate(bookingData.,
-                  //                    [dd ,'-',mm,'-',yyyy]),
-                  //       style: TextStyle(
-                  //           fontSize: 15,
-                  //           color: kblue,
-                  //           fontWeight: FontWeight.w500),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const Divider(
-                  //   thickness: 1,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Description',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Container(
-                        width: 100,
-                        child: Text(
-                          tit,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
+                    ),
+                    const Divider(
+                      thickness: 1,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'quantity',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          qty,
                           style: TextStyle(
                               fontSize: 15,
                               color: kgrey,
                               fontWeight: FontWeight.w500),
                         ),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'quantity',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        qty,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kgrey,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  // Row(
-                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  //   children: [
-                  //     Text(
-                  //       'Adult',
-                  //       style: TextStyle(
-                  //           fontSize: 16,
-                  //           color: kblue,
-                  //           fontWeight: FontWeight.bold),
-                  //     ),
-                  //     Text(
-                  //       '10',
-                  //       style: TextStyle(
-                  //           fontSize: 15,
-                  //           color: kgrey,
-                  //           fontWeight: FontWeight.w500),
-                  //     ),
-                  //   ],
-                  // ),
-                  // const Divider(
-                  //   thickness: 1,
-                  // ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Status',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: kblue,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        status,
-                        style: TextStyle(
-                            fontSize: 15,
-                            color: kgrey,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text(
-                        'Price',
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.green,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        "₹ ${amt}",
-                        style: const TextStyle(
-                            fontSize: 15,
-                            color: Colors.green,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  const Divider(
-                    thickness: 1,
-                  ),
-                  if (status == "completed")
+                      ],
+                    ),
+                    const Divider(
+                      thickness: 1,
+                    ),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    //   children: [
+                    //     Text(
+                    //       'Adult',
+                    //       style: TextStyle(
+                    //           fontSize: 16,
+                    //           color: kblue,
+                    //           fontWeight: FontWeight.bold),
+                    //     ),
+                    //     Text(
+                    //       '10',
+                    //       style: TextStyle(
+                    //           fontSize: 15,
+                    //           color: kgrey,
+                    //           fontWeight: FontWeight.w500),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const Divider(
+                    //   thickness: 1,
+                    // ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        InkWell(
-                          onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return AlertDialog(
-                                    backgroundColor: Colors.white,
-                                    title: Text("Cancel Booking",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w800,
-                                            color: Colors.black)),
-                                    content: Text(
-                                      "Are you sure you want to Cancel?",
-                                      style: TextStyle(color: Colors.black),
-                                    ),
-                                    actions: [
-                                      TextButton(
-                                        child: Text(
-                                          "Yes",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w500,
-                                              color: kblue),
-                                        ),
-                                        onPressed: () {
-                                          Get.back();
-                                          print(id);
-                                          Get.find<AuthProfileController>()
-                                              .cancelRefundApi(
-                                            userId: Get.find<
-                                                    AuthProfileController>()
-                                                .profileData
-                                                .first
-                                                .id
-                                                .toString(),
-                                            amount: amt,
-                                            type: "booking",
-                                            bookingId: id.toString(),
-                                          );
-                                        },
-                                      ),
-                                      TextButton(
-                                        child: Text("No",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                color: kblue)),
-                                        onPressed: () {
-                                          Get.back();
-                                        },
-                                      ),
-                                    ],
-                                  );
-                                });
-                          },
-                          child: const Text(
-                            'Cancel',
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.red,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                        const Text(
-                          "",
+                        Text(
+                          'Status',
                           style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          status,
+                          style: TextStyle(
+                              fontSize: 15,
+                              color: kgrey,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    const Divider(
+                      thickness: 1,
+                    ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                         Text(
+                          'Booked Date',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                         formatDate(DateTime.parse(slotdate), [dd,'-',mm,"-",yyyy]),
+                          style:  TextStyle(
+                              fontSize: 15,
+                              color: kgrey,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    
+                    const Divider(
+                      thickness: 1,
+                    ),
+                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                         Text(
+                          'Slot Time',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: kblue,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          time,
+                          style:  TextStyle(
+                              fontSize: 15,
+                              color: kgrey,
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ],
+                    ),
+                    
+                    const Divider(
+                      thickness: 1,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Price',
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.green,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          "₹ ${amt}",
+                          style: const TextStyle(
                               fontSize: 15,
                               color: Colors.green,
                               fontWeight: FontWeight.w500),
                         ),
                       ],
                     ),
-                ],
+                
+                    const Divider(
+                      thickness: 1,
+                    ),
+                     
+                     
+                    if (status == "completed")
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      backgroundColor: Colors.white,
+                                      title: Text("Cancel Booking",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w800,
+                                              color: Colors.black)),
+                                      content: Text(
+                                        "Are you sure you want to Cancel?",
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      actions: [
+                                        TextButton(
+                                          child: Text(
+                                            "Yes",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: kblue),
+                                          ),
+                                          onPressed: () {
+                                            Get.back();
+                                            print(id);
+                                            Get.find<AuthProfileController>()
+                                                .cancelRefundApi(
+                                              userId: Get.find<
+                                                      AuthProfileController>()
+                                                  .profileData
+                                                  .first
+                                                  .id
+                                                  .toString(),
+                                              amount: amt,
+                                              type: "booking",
+                                              bookingId: id.toString(),
+                                            );
+                                          },
+                                        ),
+                                        TextButton(
+                                          child: Text("No",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: kblue)),
+                                          onPressed: () {
+                                            Get.back();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  });
+                            },
+                            child: const Text(
+                              'Cancel',
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                          const Text(
+                            "",
+                            style: TextStyle(
+                                fontSize: 15,
+                                color: Colors.green,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ],
+                      ),
+                  ],
+                ),
               ),
             ),
 
@@ -1515,7 +1575,14 @@ class _index4State extends State<index4> {
                               subscriptionapiController
                                   .othersbookinglist[index].purchasePrice,
                               subscriptionapiController
-                                  .othersbookinglist[index].quantity);
+                                  .othersbookinglist[index].quantity,
+                                  subscriptionapiController.othersbookinglist[index].
+                                  bookingdate,
+                                  subscriptionapiController.othersbookinglist[index].
+                                  time,
+                                 
+                                  
+                                  );
                         },
                         child: Container(
                           height: 40,
@@ -1530,62 +1597,65 @@ class _index4State extends State<index4> {
                                   color: kgrey)
                             ],
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Column(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(5),
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Column(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 25,bottom: 25),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: Container(
+                                          height: 168,
+                                          width: 200,
+                                          child: Image.network(
+                                            subscriptionapiController
+                                                .othersbookinglist[index].image,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                ksizedbox20,
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 20, left: 40),
+                                      child: Text(
+                                        subscriptionapiController
+                                            .othersbookinglist[index].service,
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold,
+                                            color: kblue),
+                                      ),
+                                    ),
+                                    ksizedbox20,
+                                    Padding(
+                                      padding: const EdgeInsets.only(left: 40),
                                       child: Container(
-                                        height: 168,
-                                        width: 168,
-                                        child: Image.network(
+                                        width: 200,
+                                        child: Text(
                                           subscriptionapiController
-                                              .othersbookinglist[index].image,
-                                          fit: BoxFit.cover,
+                                              .othersbookinglist[index]
+                                              .description,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 4,
+                                          style: TextStyle(fontSize: 18),
                                         ),
                                       ),
                                     ),
-                                  )
-                                ],
-                              ),
-                              ksizedbox20,
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 15, left: 40),
-                                    child: Text(
-                                      subscriptionapiController
-                                          .othersbookinglist[index].service,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold,
-                                          color: kblue),
-                                    ),
-                                  ),
-                                  ksizedbox20,
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 40),
-                                    child: Container(
-                                      width: 200,
-                                      child: Text(
-                                        subscriptionapiController
-                                            .othersbookinglist[index]
-                                            .description,
-                                        overflow: TextOverflow.ellipsis,
-                                        maxLines: 4,
-                                        style: TextStyle(fontSize: 18),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
