@@ -52,12 +52,13 @@ class _ListCartState extends State<ListCart> {
     if (picked != null && picked != selectedDate) {
       setState(() {
         selectedDate = picked;
+        selectedValue=null;
       });
       homeController.getServicesDetails(
       servicesId: widget.servicedata.id, 
       slotdate: selectedDate.toIso8601String());
-
     }
+    
   }
   @override
   Widget build(BuildContext context) {
@@ -344,7 +345,6 @@ class _ListCartState extends State<ListCart> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [                               
                                   if (homeController.slotDetailList.isNotEmpty)
-                                  
                                     Text(
                                       'Time Slot',
                                       style: TextStyle(
@@ -356,6 +356,7 @@ class _ListCartState extends State<ListCart> {
                                   if (homeController.slotDetailList.isNotEmpty)
                                     DropdownButtonFormField2<SlotDetail>(
                                       isExpanded: true,
+                                      
                                       decoration: InputDecoration(
                                         // Add Horizontal padding using menuItemStyleData.padding so it matches
                                         // the menu padding when button's width is not specified.
@@ -402,6 +403,7 @@ class _ListCartState extends State<ListCart> {
                                         }
                                         return null;
                                       },
+                                  
                                       onChanged: (value) {
                                         //Do something when selected item is changed.
                                         setState(() {
@@ -413,6 +415,7 @@ class _ListCartState extends State<ListCart> {
                                           selectedValue = value;
                                         });
                                       },
+                                          value: selectedValue,
                                       buttonStyleData: const ButtonStyleData(
                                         padding: EdgeInsets.only(right: 8),
                                       ),
@@ -574,7 +577,9 @@ class _ListCartState extends State<ListCart> {
                                     padding: const EdgeInsets.all(8),
                                     child: InkWell(
                                       onTap: () {
-                                        homeController.addToCart(
+                                        if (homeController.serviceDataList.isNotEmpty) {
+                                          if (selectedValue!=null) {
+                                               homeController.addToCart(
                                           startTime: selectedValue != null
                                             ? "${selectedValue.weekday} ${selectedValue.startTime}-${selectedValue.endTime}"
                                             : "",
@@ -585,6 +590,28 @@ class _ListCartState extends State<ListCart> {
                                             serviceid: widget.servicedata.id
                                                 .toString(), 
                                                 slotdate: selectedDate.toString());
+                                          }
+                                         else{
+   Get.rawSnackbar(
+        message:
+            "Select a time slot",
+        backgroundColor: Colors.red);
+}
+                                        }
+                                        else{
+                                          homeController.addToCart(
+                                          startTime: selectedValue != null
+                                            ? "${selectedValue.weekday} ${selectedValue.startTime}-${selectedValue.endTime}"
+                                            : "",
+                                            slotId: selectedValue != null
+                                            ?selectedValue.id.toString():"" ,
+                                            amount:
+                                                widget.servicedata.saleAmount,
+                                            serviceid: widget.servicedata.id
+                                                .toString(), 
+                                                slotdate: selectedDate.toString());
+                                        }
+                                     
                                       },
                                       child: Container(
                                         height: 65,

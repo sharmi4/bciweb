@@ -500,9 +500,9 @@ dynamic startTime, endTime;
                                             children: [
                                                Image.memory(
                                                 images![index],
-                                                height: 100,
-                                                width: 100,
-                                               fit: BoxFit.cover,
+                                                 height: 235,
+                                                 width: 250,
+                                               fit: BoxFit.fill,
                                                ),
                                                
                                             ],
@@ -511,11 +511,14 @@ dynamic startTime, endTime;
                                   ),
                                  
                                   Positioned(
-                                      top: 100,
+                                      top: 50,
+                                      bottom: 50,
+                                      left: 50,
+                                      right: 50,
                                       child: InkWell(
                                           onTap: () {
                                             setState(() {
-                                              images?.removeAt(index);
+                                              images!.removeAt(index);
                                             });
                                           },
                                           child: Container(

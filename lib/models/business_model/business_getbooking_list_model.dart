@@ -86,6 +86,7 @@ class User {
     dynamic profile;
     dynamic mobile;
     dynamic bookingDate;
+    dynamic slotdate;
 
     User({
         required this.id,
@@ -94,6 +95,7 @@ class User {
         required this.profile,
         required this.mobile,
         required this.bookingDate,
+        this.slotdate,
     });
 
     factory User.fromJson(Map<String, dynamic> json) => User(
@@ -103,6 +105,7 @@ class User {
         profile: json["profile"]?? "",
         mobile: json["mobile"]?? "",
         bookingDate: json["book_date_time"]?? "",
+        slotdate:json['booked_date']??""
     );
 
     Map<String, dynamic> toJson() => {
@@ -111,17 +114,10 @@ class User {
         "email": email,
         "profile": profile,
         "mobile": mobile,
+        "book_date_time":bookingDate,
+        "booked_date":slotdate,
+
     };
 }
 
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
 
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-        reverseMap = map.map((k, v) => MapEntry(v, k));
-        return reverseMap;
-    }
-}

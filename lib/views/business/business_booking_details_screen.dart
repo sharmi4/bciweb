@@ -1,6 +1,7 @@
 
 
 import 'package:bciweb/registerhomescreen/business_common_reg_bottom.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -19,6 +20,7 @@ class BusinessBookingDetailsScreen extends StatefulWidget {
       String mobile; 
       String email;
       String timeSlot;
+      String slotdate;
    BusinessBookingDetailsScreen({super.key,
    required this.amt,
    required this.cusName,
@@ -28,6 +30,7 @@ class BusinessBookingDetailsScreen extends StatefulWidget {
    required this.mobile,
    required this.qty,
    required this.timeSlot,
+   required this.slotdate,
    required this.tit});
 
   @override
@@ -169,7 +172,46 @@ class _BusinessBookingDetailsScreenState extends State<BusinessBookingDetailsScr
                                     //     )
                                     //   ),
                                     // )
-                                  ),ksizedbox40,
+                                    
+                                  ),
+                                  ksizedbox40,
+                                  Text('Booked Date',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold
+                                  ),),
+                                  ksizedbox20,
+                                   Container(
+                                    height: 54,
+                                    width: MediaQuery.of(context).size.width*0.25,
+                                    decoration: BoxDecoration(
+                                    border: Border.all(
+                                      width: 1,
+                                      color: kgrey
+                                    )
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(top: 10,
+                                      left: 5),
+                                      child: Text(formatDate(DateTime.parse(widget.slotdate), 
+                                      [dd,'-',mm,'-',yyyy]),
+                                      style:  TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w500
+                                      ),),
+                                    ),
+                                    // child: TextField(
+                                    //   decoration: InputDecoration(
+                                    //     hintText: widget.qty,
+                                    //     hintStyle: TextStyle(
+                                    //       fontSize: 17,
+                                    //       fontWeight: FontWeight.w500
+                                    //     ),
+                                    //     border: OutlineInputBorder()
+                                    //   ),
+                                    // )
+                                  ),
+                                  ksizedbox40,
                                   Text('Time Slot',
                                   style: TextStyle(
                                     fontSize: 20,

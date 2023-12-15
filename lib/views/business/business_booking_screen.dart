@@ -354,7 +354,9 @@ class _BusinessBookingScreenState extends State<BusinessBookingScreen> {
                                         qty: serviceController
                                             .bookingListData[index].quantity,
                                         tit: serviceController
-                                            .bookingListData[index].service));
+                                            .bookingListData[index].service, 
+                                            slotdate: serviceController.
+                                            bookingListData[index].user.slotdate,));
                                     // dialogBuilder(
                                     //     context,
                                     //     serviceController.bookingListData[index].image,
