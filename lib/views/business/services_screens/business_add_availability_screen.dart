@@ -498,19 +498,20 @@ dynamic startTime, endTime;
                                         builder: (context, snapshot) {
                                           return Stack(
                                             children: [
-                                               Image.memory(
-                                                images![index],
-                                                 height: 235,
-                                                 width: 250,
-                                               fit: BoxFit.fill,
+                                                InkWell(
+                                          onTap: () {
+                                            setState(() {
+                                              images!.removeAt(index);
+                                            });
+                                          },
+                                                 child: Image.memory(
+                                                  images![index],
+                                                   height: 235,
+                                                   width: 250,
+                                                 fit: BoxFit.fitHeight  ,
+                                                 ),
                                                ),
-                                               
-                                            ],
-                                          );
-                                        }),
-                                  ),
-                                 
-                                  Positioned(
+                                                Positioned(
                                       top: 50,
                                       bottom: 50,
                                       left: 50,
@@ -522,8 +523,8 @@ dynamic startTime, endTime;
                                             });
                                           },
                                           child: Container(
-                                            height: 30,
-                                            width: 30,
+                                            height: 50,
+                                            width: 50,
                                             decoration: BoxDecoration(
                                               color:Colors.red,
                                               borderRadius:
@@ -539,6 +540,12 @@ dynamic startTime, endTime;
                                             ),
                                           ))
                                           ),
+                                            ],
+                                          );
+                                        }),
+                                  ),
+                                 
+                                 
                                 ],
                               ),
                             );
@@ -610,7 +617,7 @@ dynamic startTime, endTime;
 
               ksizedbox30,
               Padding(
-                padding: const EdgeInsets.only(left: 100, right: 0),
+                padding: const EdgeInsets.only(left: 95, right: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -673,7 +680,7 @@ dynamic startTime, endTime;
               ),
               ksizedbox30,
               Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0),
+                padding: const EdgeInsets.only(left: 5, right: 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
