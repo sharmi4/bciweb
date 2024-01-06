@@ -126,153 +126,155 @@ Future<void> _showAlertDialogcancel() async {
 }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: PreferredSize(
-        preferredSize: const Size(double.infinity, 110),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              const CommonScreen(),
-              RegisterCommonContainer(),
-            ],
-          ),
-          ),
-          body: SingleChildScrollView(
+    return SelectionArea(
+      child: Scaffold(
+         appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 110),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Stack(
-                  children: [
-                    Image.asset('assets/images/walletdepositbackground.png')
-                  ],
-                ),ksizedbox10,
-                const Center(
-                  child: Text('Advance booking',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold
-                  ),),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30,right: 50),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                const CommonScreen(),
+                RegisterCommonContainer(),
+              ],
+            ),
+            ),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(right: 40),
-                        child: Image.asset('assets/icons/walletdepositicon.png',
-                        height: 200,fit: BoxFit.fitHeight,),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Pay some advance amount for\nyour membership',
-                            style: TextStyle(
-                              fontSize: 24,
-                              color: kblue,
-                              fontWeight: FontWeight.w700
-                            ),),
-                            ksizedbox40,
-                            Container(
-                              height: 42,
-                              width: 300,
-                              decoration: BoxDecoration(
-                              border: Border.all(
-                                color: kblue
-                              ),
-                                borderRadius: BorderRadius.circular(8)
-                              ),
-                              child: Center(
-                              child: TextField(
-                                controller: amountController,
-                                decoration: InputDecoration(
-                                  hintText: "Enter Booking Advance Amount",
-                                  border: OutlineInputBorder(
-                                    borderSide:BorderSide.none,
-                                     borderRadius: BorderRadius.circular(8)
-                                  )
+                      Image.asset('assets/images/walletdepositbackground.png')
+                    ],
+                  ),ksizedbox10,
+                  const Center(
+                    child: Text('Advance booking',
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold
+                    ),),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30,right: 50),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40),
+                          child: Image.asset('assets/icons/walletdepositicon.png',
+                          height: 200,fit: BoxFit.fitHeight,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Pay some advance amount for\nyour membership',
+                              style: TextStyle(
+                                fontSize: 24,
+                                color: kblue,
+                                fontWeight: FontWeight.w700
+                              ),),
+                              ksizedbox40,
+                              Container(
+                                height: 42,
+                                width: 300,
+                                decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: kblue
+                                ),
+                                  borderRadius: BorderRadius.circular(8)
+                                ),
+                                child: Center(
+                                child: TextField(
+                                  controller: amountController,
+                                  decoration: InputDecoration(
+                                    hintText: "Enter Booking Advance Amount",
+                                    border: OutlineInputBorder(
+                                      borderSide:BorderSide.none,
+                                       borderRadius: BorderRadius.circular(8)
+                                    )
+                                  ),
+                                )
                                 ),
                               )
-                              ),
-                            )
-                          ],
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),ksizedbox40,
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40,left: 0,right: 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            print('add transaction');
+                            profileController.initiatePartialPayment(
+                              amount: double.parse(amountController.text), 
+                              id: 0, 
+                              gstPercentage: "", 
+                              percentageAmount: "", 
+                              totalAmount: amountController.text
+                              );
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 800,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                kOrange,
+                                kyellow
+                              ]),
+                                borderRadius: BorderRadius.circular(7)
+                            ),
+                            child: Center(child: Text('Pay',
+                            style: TextStyle(
+                              color: kwhite,
+                              fontSize: 17
+                            ),)),
+                          ),
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                ),ksizedbox40,
-                Padding(
-                  padding: const EdgeInsets.only(top: 40,left: 0,right: 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          print('add transaction');
-                          profileController.initiatePartialPayment(
-                            amount: double.parse(amountController.text), 
-                            id: 0, 
-                            gstPercentage: "", 
-                            percentageAmount: "", 
-                            totalAmount: amountController.text
-                            );
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 800,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              kOrange,
-                              kyellow
-                            ]),
+                   Padding(
+                    padding: const EdgeInsets.only(top: 30,left: 0,right: 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                          _showAlertDialogcancel();
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 800,
+                            decoration: BoxDecoration(
+                              color: kblue,
                               borderRadius: BorderRadius.circular(7)
+                            ),
+                            child: Center(child: Text('Cancel',
+                            style: TextStyle(
+                              color: kwhite,
+                              fontSize: 17,
+                              
+                            ),)),
                           ),
-                          child: Center(child: Text('Pay',
-                          style: TextStyle(
-                            color: kwhite,
-                            fontSize: 17
-                          ),)),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                 Padding(
-                  padding: const EdgeInsets.only(top: 30,left: 0,right: 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                        _showAlertDialogcancel();
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 800,
-                          decoration: BoxDecoration(
-                            color: kblue,
-                            borderRadius: BorderRadius.circular(7)
-                          ),
-                          child: Center(child: Text('Cancel',
-                          style: TextStyle(
-                            color: kwhite,
-                            fontSize: 17,
-                            
-                          ),)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ksizedbox40,
-                const RegisterCommonBottom()
-              ],
-              
+                  ksizedbox40,
+                  const RegisterCommonBottom()
+                ],
+                
+              ),
             ),
-          ),
-
+    
+      ),
     );
   }
 }

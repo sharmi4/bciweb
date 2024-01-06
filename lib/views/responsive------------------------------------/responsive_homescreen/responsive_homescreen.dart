@@ -76,14 +76,16 @@ class _CommonScreenRedirectionState extends State<CommonScreenRedirection> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: roleIndex == 1
-          ? MobileHomeScreenbusiness()
-          : roleIndex == 2
-              ? MobileHomeScreenMembers()
-              : Center(
-                  child: MobileHomeScreenMembers(),
-                ),
+    return SelectionArea(
+      child: Scaffold(
+        body: roleIndex == 1
+            ? MobileHomeScreenbusiness()
+            : roleIndex == 2
+                ? MobileHomeScreenMembers()
+                : Center(
+                    child: MobileHomeScreenMembers(),
+                  ),
+      ),
     );
   }
 }

@@ -45,7 +45,16 @@ abstract class Routes {
   static const BusinessAddGallery = _Paths.BusinessAddGallery;
   static const BusinessGallery = _Paths.BusinessGallery;
   static const BusinessContactScreen =_Paths.BusinessContactScreen;
-  
+  static const BCIContents =_Paths.BCICONTENTS;
+  static const FLIGHTBOOKING =_Paths.FLIGHTBOOKING;
+  static const HOTELBOOKING =_Paths.HOTELBOOKING;
+  static const BUSBOOKING =_Paths.BUSBOOKING;
+  static const HOLIDAYBOOKING =_Paths.HOLIDAYBOOKING;
+  static const HISTORY =_Paths.HISTORY;
+  static const LANDINGSCREEN =_Paths.LANDINGSCREEN;
+  static const LOGIN =_Paths.LOGIN;
+  static const SIGNUP =_Paths.SIGNUP;
+  static const LOGINBUSINESS =_Paths.LOGINBUSINESS;
 }
 
 abstract class _Paths {
@@ -86,6 +95,16 @@ abstract class _Paths {
   static const BusinessAddGallery = '/business-addgallery';
   static const BusinessGallery = '/business-gallery';
   static const BusinessContactScreen ='/business-contactscreen';
+  static const BCICONTENTS ='/benze_club_international';
+  static const FLIGHTBOOKING ='/flight_booking';
+  static const HOTELBOOKING ='/hotel_booking';
+  static const BUSBOOKING ='/bus_booking';
+  static const HOLIDAYBOOKING ='/Holiday_booking';
+  static const HISTORY ='/history';
+  static const LANDINGSCREEN ='/Landing_screen';
+  static const LOGIN ='/login';
+  static const SIGNUP ='/sign_up';
+  static const LOGINBUSINESS ='/Login_business';
 }
  
   // static const SIGN_UP = '/home-screen';

@@ -1,4 +1,5 @@
 import 'package:bciweb/constant/constans.dart';
+import 'package:bciweb/routes/app_pages.dart';
 
 import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
 
@@ -125,7 +126,7 @@ class _BusBookingMainState extends State<BusBookingMain> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingFlight());
+                                  Get.toNamed(Routes.HISTORY);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -135,7 +136,7 @@ class _BusBookingMainState extends State<BusBookingMain> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingHotels());
+                                 Get.toNamed(Routes.HOTELBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -145,7 +146,7 @@ class _BusBookingMainState extends State<BusBookingMain> {
                               ),
                                  InkWell(
                                 onTap: () {
-                                  Get.to(BusBookingMain());
+                                   Get.toNamed(Routes.BUSBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -178,7 +179,7 @@ class _BusBookingMainState extends State<BusBookingMain> {
                               // ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(History());
+                                  Get.toNamed(Routes.HOLIDAYBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,

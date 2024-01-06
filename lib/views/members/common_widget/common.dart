@@ -36,9 +36,14 @@ class CommonScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 10),
-                              child: Text(
-                                '+91  9884 551 551 / +91  9884 660 660',
-                                style: TextStyle(color: kwhite, fontSize: 13),
+                              child: InkWell(
+                                onTap: () async{
+                                  await launchUrl(Uri.parse("tel:9884551551"));
+                                },
+                                child: Text(
+                                  '+91  9884 551 551 / +91  9884 660 660',
+                                  style: TextStyle(color: kwhite, fontSize: 13),
+                                ),
                               ),
                             ),
                             Padding(
@@ -51,9 +56,14 @@ class CommonScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                'customercare@bcipvtltd.com',
-                                style: TextStyle(color: kwhite, fontSize: 13),
+                              child: InkWell(
+                                onTap: ()async {
+                                   await launchUrl(Uri.parse("mailto:customercare@bcipvtltd.com"));
+                                },
+                                child: Text(
+                                  'customercare@bcipvtltd.com',
+                                  style: TextStyle(color: kwhite, fontSize: 13),
+                                ),
                               ),
                             ),
                             Padding(
@@ -66,9 +76,14 @@ class CommonScreen extends StatelessWidget {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(left: 5),
-                              child: Text(
-                                'Chennai, Tamilnadu - 600026',
-                                style: TextStyle(fontSize: 13, color: kwhite),
+                              child:InkWell(
+                                onTap: ()async {
+                                   await launchUrl(Uri.parse("https://www.google.com/search?client=ms-android-oneplus-rvo3&sca_esv=595946801&cs=0&output=search&q=Benze+Club+International+Pvt.Ltd&ludocid=10196856849577630497&ibp=gwp;0,7&lsig=AB86z5UBkz5L8tYpXLWTwqQvypY7&kgs=5d9694caf30ce3db&shndl=-1&shem=lscsce,lsp&source=sh/x/loc/hdr/m1/2"));
+                                },
+                                child: Text(
+                                  'Chennai, Tamilnadu - 600026',
+                                  style: TextStyle(fontSize: 13, color: kwhite),
+                                ),
                               ),
                             )
                           ],

@@ -131,30 +131,32 @@ class _PaymentProcessingViewState extends State<PaymentProcessingView> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
-      body: Container(
-        height: size.height,
-        width: size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text(
-              "Your Payment is Being Processed",
-              style: primaryFont.copyWith(
-                  fontSize: 18, fontWeight: FontWeight.w600),
-            ),
-            Container(
-              height: size.height * 0.5,
-              width: size.height * 0.4,
-              child: Lottie.asset('assets/images/loading_widget.json'),
-            ),
-            Text(
-              "Do not close or refresh this page.",
-              style: primaryFont.copyWith(
-                  fontSize: 15, fontWeight: FontWeight.w600),
-            )
-          ],
+    return SelectionArea(
+      child: Scaffold(
+        body: Container(
+          height: size.height,
+          width: size.width,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "Your Payment is Being Processed",
+                style: primaryFont.copyWith(
+                    fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              Container(
+                height: size.height * 0.5,
+                width: size.height * 0.4,
+                child: Lottie.asset('assets/images/loading_widget.json'),
+              ),
+              Text(
+                "Do not close or refresh this page.",
+                style: primaryFont.copyWith(
+                    fontSize: 15, fontWeight: FontWeight.w600),
+              )
+            ],
+          ),
         ),
       ),
     );

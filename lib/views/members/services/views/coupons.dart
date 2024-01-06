@@ -33,199 +33,201 @@ class _CouponesState extends State<Coupones> {
   @override
   Widget build(BuildContext context) {
     var size=MediaQuery.of(context).size;
-    return Scaffold(
-       appBar: PreferredSize(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 110)),
-      body: SingleChildScrollView(
-
-        child: GetBuilder<SubscriptionApiController>(builder: (_) {
-        return Container(
-          // height: size.height * 0.55,
-          child: subscripeController.couponsData.isEmpty
-              ? Center(
-                  child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/couponnotavailaimage.png',
-                          height: 180,
-                          fit: BoxFit.fitHeight,
-                        ),
-                        ksizedbox20,
-                        Text(
-                          'No Coupon Available',
-                          style: TextStyle(
-                              color: kblue,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
-                        )
-                      ]),
-                )
-              : GridView.builder(
-                  shrinkWrap: true,
-                  itemCount: subscripeController.couponsData.length,
-                  itemBuilder: (context, index) {
-                    return Padding(
-                        padding: const EdgeInsets.all(15),
-                        child: Container(
-                        
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: kwhite,
-                              borderRadius: BorderRadius.circular(10),
-                              boxShadow: [
-                                BoxShadow(
-                                  blurRadius: 3,
-                                  color: kgrey.withOpacity(0.6),
-                                ),
-                              ]),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              subscripeController.couponsData[index].image ==
-                                      "null"
-                                  ? ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image.asset(
-                                        "assets/icons/coupon.jpg",
-                                        height: 120,
-                                        width: size.width,
-                                        fit: BoxFit.fill,
-                                      ),
-                                    )
-                                  : ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: Image(
-                                        image: NetworkImage(subscripeController
-                                            .couponsData[index].image),
-                                        height: 120,
-                                        width: size.width,
-                                        fit: BoxFit.fill,
-                                      )),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
-                                  subscripeController.couponsData[index].name,
-                                  style: const TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ),
-                              const SizedBox(
-                                height: 7,
-                              ),
-                              Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: Text(
-                                  subscripeController
-                                      .couponsData[index].description,
-                                  style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w400,
-                                      color: kgrey),
-                                ),
-                              ),
-                              // Text(
-                              //   profileController.couponsData[index].,
-                              //   style: TextStyle(
-                              //       fontSize: 20,
-                              //       fontWeight: FontWeight.bold,
-                              //       color: kblue),
-                              // ),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Container(
-                                  height: 40,
-                                  width: double.infinity,
-                                  decoration: BoxDecoration(
-                                    color: kyellow,
-                                    borderRadius: BorderRadius.circular(1),
+    return SelectionArea(
+      child: Scaffold(
+         appBar: PreferredSize(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CommonScreen(),
+                RegisterCommonContainer(),
+              ],
+            ),
+            preferredSize: const Size(double.infinity, 110)),
+        body: SingleChildScrollView(
+    
+          child: GetBuilder<SubscriptionApiController>(builder: (_) {
+          return Container(
+            // height: size.height * 0.55,
+            child: subscripeController.couponsData.isEmpty
+                ? Center(
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            'assets/images/couponnotavailaimage.png',
+                            height: 180,
+                            fit: BoxFit.fitHeight,
+                          ),
+                          ksizedbox20,
+                          Text(
+                            'No Coupon Available',
+                            style: TextStyle(
+                                color: kblue,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          )
+                        ]),
+                  )
+                : GridView.builder(
+                    shrinkWrap: true,
+                    itemCount: subscripeController.couponsData.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                          padding: const EdgeInsets.all(15),
+                          child: Container(
+                          
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                                color: kwhite,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    blurRadius: 3,
+                                    color: kgrey.withOpacity(0.6),
                                   ),
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 15, right: 15),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Text(
-                                              "Coupon Code: ",
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: kblue),
-                                            ),
-                                            Text(
-                                              subscripeController
-                                                  .couponsData[index]
-                                                  .couponcode,
-                                              style: TextStyle(
-                                                  fontSize: 14,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: kwhite),
-                                            ),
-                                          ],
+                                ]),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                subscripeController.couponsData[index].image ==
+                                        "null"
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image.asset(
+                                          "assets/icons/coupon.jpg",
+                                          height: 120,
+                                          width: size.width,
+                                          fit: BoxFit.fill,
                                         ),
-                                        InkWell(
-                                          onTap: () {
-                                            FlutterClipboard.copy(
-                                                    subscripeController
-                                                        .couponsData[index]
-                                                        .couponcode)
-                                                .then(
-                                              (value) => Fluttertoast.showToast(
-                                                  msg: "Copy to clipboard",
-                                                  toastLength:
-                                                      Toast.LENGTH_SHORT,
-                                                  gravity: ToastGravity.CENTER,
-                                                  timeInSecForIosWeb: 1,
-                                                  backgroundColor: Colors.white,
-                                                  textColor: Colors.black,
-                                                  fontSize: 16.0),
-                                              //print("code copied")
-                                            );
-                                          },
-                                          child: Container(
-                                            height: 30,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                              color: kwhite,
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                            ),
-                                            child: const Center(
-                                              child: Text("Copy"),
+                                      )
+                                    : ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: Image(
+                                          image: NetworkImage(subscripeController
+                                              .couponsData[index].image),
+                                          height: 120,
+                                          width: size.width,
+                                          fit: BoxFit.fill,
+                                        )),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Text(
+                                    subscripeController.couponsData[index].name,
+                                    style: const TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  child: Text(
+                                    subscripeController
+                                        .couponsData[index].description,
+                                    style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                        color: kgrey),
+                                  ),
+                                ),
+                                // Text(
+                                //   profileController.couponsData[index].,
+                                //   style: TextStyle(
+                                //       fontSize: 20,
+                                //       fontWeight: FontWeight.bold,
+                                //       color: kblue),
+                                // ),
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Container(
+                                    height: 40,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: kyellow,
+                                      borderRadius: BorderRadius.circular(1),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(
+                                          left: 15, right: 15),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Text(
+                                                "Coupon Code: ",
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kblue),
+                                              ),
+                                              Text(
+                                                subscripeController
+                                                    .couponsData[index]
+                                                    .couponcode,
+                                                style: TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: kwhite),
+                                              ),
+                                            ],
+                                          ),
+                                          InkWell(
+                                            onTap: () {
+                                              FlutterClipboard.copy(
+                                                      subscripeController
+                                                          .couponsData[index]
+                                                          .couponcode)
+                                                  .then(
+                                                (value) => Fluttertoast.showToast(
+                                                    msg: "Copy to clipboard",
+                                                    toastLength:
+                                                        Toast.LENGTH_SHORT,
+                                                    gravity: ToastGravity.CENTER,
+                                                    timeInSecForIosWeb: 1,
+                                                    backgroundColor: Colors.white,
+                                                    textColor: Colors.black,
+                                                    fontSize: 16.0),
+                                                //print("code copied")
+                                              );
+                                            },
+                                            child: Container(
+                                              height: 30,
+                                              width: 100,
+                                              decoration: BoxDecoration(
+                                                color: kwhite,
+                                                borderRadius:
+                                                    BorderRadius.circular(25),
+                                              ),
+                                              child: const Center(
+                                                child: Text("Copy"),
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ));
-                  }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 1.4),
-                ),
-        );
-      }),
+                              ],
+                            ),
+                          ));
+                    }, gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 1.4),
+                  ),
+          );
+        }),
+        ),
       ),
     );
   }

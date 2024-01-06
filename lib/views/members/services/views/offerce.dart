@@ -25,118 +25,120 @@ class _OfferScreenState extends State<OfferScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: PreferredSize(
-          child: CommonScreen(),
-          preferredSize: Size(double.infinity, 40)),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            RegisterCommonContainer(),
-            Container(
-              child: Stack(
-                children: [
-                  Image.asset('assets/images/offer.png'),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    child: Center(
-                      child: Text(
-                        'OFFERS',
-                        style:displayfont
-                        // GoogleFonts.lato(
-                          //  fontSize: 80,
-                            //fontWeight: FontWeight.bold,
-                            //color: kwhite),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            ksizedbox20,
-            Text(
-              'All Offers Available',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Color(0xff003366),
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold),
-            ),
-           
-            ksizedbox30,
-            ksizedbox40,
-               GetBuilder<HomeServiceController>(
-              builder: (_){
-                return Padding(
-                  padding: const EdgeInsets.only(left: 50,right: 50),
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: seriveoffersController.todayofferslist.length,
-                    
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: 3,
-                      mainAxisSpacing: 60,
-                      crossAxisSpacing: 50,
-                    crossAxisCount: 2), 
-                    itemBuilder: (context,index){
-                      return offers_container(
-                        
-                        image: seriveoffersController.todayofferslist[index].image,
-                        title: seriveoffersController.todayofferslist[index].title,
-                        description: seriveoffersController.todayofferslist[index].description,);
-                    }),
-                );
-              // return Row(
-              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              //   children: [
-                 
-              //     offers_container(
-                    
-              //       image: seriveoffersController.todayofferslist.first.image,
-              //       description: seriveoffersController.todayofferslist.first.description,),
-              //     offers_container(image: seriveoffersController.todayofferslist.first.image,
-              //     description: seriveoffersController.todayofferslist.first.description,),
-              //   ],
-              // );
-              }
-            ),
-            
-          
-            ksizedbox40,
-            InkWell(
-              onTap: () {
-                Get.back();
-              },
-              child: Container(
-                child: Center(
-                    child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return SelectionArea(
+      child: Scaffold(
+        appBar: PreferredSize(
+            child: CommonScreen(),
+            preferredSize: Size(double.infinity, 40)),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              RegisterCommonContainer(),
+              Container(
+                child: Stack(
                   children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: kwhite,
-                    ),
-                    Text(
-                      'BACK',
-                      style: TextStyle(
-                          color: kwhite,
-                          fontSize: 19,
-                          fontWeight: FontWeight.w600),
-                    ),
+                    Image.asset('assets/images/offer.png'),
+                    Positioned(
+                      top: 0,
+                      left: 0,
+                      bottom: 0,
+                      right: 0,
+                      child: Center(
+                        child: Text(
+                          'OFFERS',
+                          style:displayfont
+                          // GoogleFonts.lato(
+                            //  fontSize: 80,
+                              //fontWeight: FontWeight.bold,
+                              //color: kwhite),
+                        ),
+                      ),
+                    )
                   ],
-                )),
-                height: 45,
-                width: 150,
-                decoration: BoxDecoration(
-                    color: kOrange, borderRadius: BorderRadius.circular(15)),
+                ),
               ),
-            ),
-            ksizedbox40,
-            RegisterCommonBottom()
-          ],
+              ksizedbox20,
+              Text(
+                'All Offers Available',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(0xff003366),
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold),
+              ),
+             
+              ksizedbox30,
+              ksizedbox40,
+                 GetBuilder<HomeServiceController>(
+                builder: (_){
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 50,right: 50),
+                    child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: seriveoffersController.todayofferslist.length,
+                      
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: 3,
+                        mainAxisSpacing: 60,
+                        crossAxisSpacing: 50,
+                      crossAxisCount: 2), 
+                      itemBuilder: (context,index){
+                        return offers_container(
+                          
+                          image: seriveoffersController.todayofferslist[index].image,
+                          title: seriveoffersController.todayofferslist[index].title,
+                          description: seriveoffersController.todayofferslist[index].description,);
+                      }),
+                  );
+                // return Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                   
+                //     offers_container(
+                      
+                //       image: seriveoffersController.todayofferslist.first.image,
+                //       description: seriveoffersController.todayofferslist.first.description,),
+                //     offers_container(image: seriveoffersController.todayofferslist.first.image,
+                //     description: seriveoffersController.todayofferslist.first.description,),
+                //   ],
+                // );
+                }
+              ),
+              
+            
+              ksizedbox40,
+              InkWell(
+                onTap: () {
+                  Get.back();
+                },
+                child: Container(
+                  child: Center(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Icon(
+                        Icons.arrow_back,
+                        color: kwhite,
+                      ),
+                      Text(
+                        'BACK',
+                        style: TextStyle(
+                            color: kwhite,
+                            fontSize: 19,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                  )),
+                  height: 45,
+                  width: 150,
+                  decoration: BoxDecoration(
+                      color: kOrange, borderRadius: BorderRadius.circular(15)),
+                ),
+              ),
+              ksizedbox40,
+              RegisterCommonBottom()
+            ],
+          ),
         ),
       ),
     );

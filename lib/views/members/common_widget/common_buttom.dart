@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../constant/constans.dart';
 class CommonBottom extends StatefulWidget {
@@ -13,7 +14,7 @@ class _CommonBottomState extends State<CommonBottom> {
   Widget build(BuildContext context) {
     return  Container(
             color: kblue,
-            child: const Padding(
+            child:  Padding(
               padding:  EdgeInsets.only(top: 20),
               child:  Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -42,13 +43,19 @@ class _CommonBottomState extends State<CommonBottom> {
                                 Image(image: AssetImage("assets/icons/eyeicon.png")),
                               ],
                             ),
-                             SizedBox(height: 20,),
-                            Text("Copyright @ benzeclub 2023",
-                            textAlign: TextAlign.start,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13,
-                            ),),
+                               SizedBox(height: 20,),
+                               InkWell(
+                                onTap: () async{
+                                   launchUrl(Uri.parse("mailto:customercare@bcipvtltd.com"));
+
+                                },
+                              child: Text("Copyright @ benzeclub 2023",
+                              textAlign: TextAlign.start,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 13,
+                              ),),
+                            ),
                     ],
                   ),
                   Column(
@@ -176,31 +183,48 @@ class _CommonBottomState extends State<CommonBottom> {
                                     fit: BoxFit.cover,
                                     image: AssetImage("assets/images/phoneimage.png")),
                                     SizedBox(width: 10,),
-                                   Text("+91  9884 551 551  ",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17,
-                                    fontWeight: FontWeight.w400
-                              ),),
+                                   InkWell(
+                                onTap: () async{
+                                   launchUrl(Uri.parse("tel: 9884551551"));
+                                },
+                                     child: Text("+91  9884 551 551  ",
+                                                                 textAlign: TextAlign.start,
+                                                                 style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w400
+                                                                 ),),
+                                   ),
                                  ],
                                ),
                               SizedBox(height: 10,),
-                              Text("+91  9884 660 660",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400
-                              ),),
+                              InkWell(
+                                onTap: () async{
+                                   launchUrl(Uri.parse("tel:9884660660"));
+
+                                },
+                                child: Text("+91  9884 660 660",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w400
+                                ),),
+                              ),
                               SizedBox(height: 10,),
-                              Text("customercare@bcipvtltd.com",
-                              textAlign: TextAlign.start,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17,
-                                fontWeight: FontWeight.w400
-                              ),),
+                                InkWell(
+                                onTap: () async{
+                                   launchUrl(Uri.parse("mailto:customercare@bcipvtltd.com"));
+
+                                },
+                                child: Text("customercare@bcipvtltd.com",
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.w400
+                                ),),
+                              ),
                               
                       ],
                                      ),

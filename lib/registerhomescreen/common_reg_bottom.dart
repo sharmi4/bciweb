@@ -92,12 +92,17 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "customercare@bcipvtltd.com",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
+                InkWell(
+                  onTap: () async{
+                    await launchUrl(Uri.parse("mailto:customercare@bcipvtltd.com"));
+                  },
+                  child: Text(
+                    "customercare@bcipvtltd.com",
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                    ),
                   ),
                 ),
               ],
@@ -429,11 +434,11 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                 ),
               ],
             ),
-            const Column(
+             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ksizedbox20,
-                Text(
+                const Text(
                   "Contact Us",
                   textAlign: TextAlign.start,
                   style: TextStyle(
@@ -441,41 +446,80 @@ class _RegisterCommonBottomState extends State<RegisterCommonBottom> {
                       fontSize: 20,
                       fontWeight: FontWeight.w600),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
-                Text(
-                  "+91 9884551551  ",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
+                Row(
+                  children: [
+                     const  Icon(Icons.call,color: Colors.white,),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    InkWell(
+                      onTap: () async{
+                        await launchUrl(Uri.parse("tel:9884551551"));
+                      },
+                      child: const Text(
+                        "+91 9884551551  ",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ],
                 ),
+               const SizedBox(
+                  height: 10,
+                ),
+               Row(
+                 children: [
+                   const  Icon(Icons.call,color: Colors.white,),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                   InkWell(
+                      onTap: () async{
+                        await launchUrl(Uri.parse("tel:9884660660"));
+                      },
+                      child: const Text(
+                        "+91 9884660660",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                 ],
+               ),
                 SizedBox(
                   height: 10,
                 ),
-                Text(
-                  "+91 9884660660",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "customercare@bcipvtltd.com",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 17,
-                      fontWeight: FontWeight.w400),
+                Row(
+                  children: [
+                   const  Icon(Icons.mail,color: Colors.white,),
+                    const SizedBox(
+                      width: 7,
+                    ),
+                    InkWell(
+                      onTap: () async{
+                        await launchUrl(Uri.parse("mailto:customercare@bcipvtltd.com"));
+                      },
+                      child: const Text(
+                        "customercare@bcipvtltd.com",
+                        textAlign: TextAlign.start,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),

@@ -1,7 +1,11 @@
+import 'package:bciweb/registerhomescreen/hidden_content_view.dart';
 import 'package:bciweb/views/business/business_contact_screen.dart';
 import 'package:bciweb/views/business/business_gallery_screen.dart';
 import 'package:bciweb/views/business/business_profile/business_gallery.dart';
+import 'package:bciweb/views/members/bookins/bus/Bus_booking_main.dart';
 import 'package:bciweb/views/members/bookins/flight/booking_flight.dart';
+import 'package:bciweb/views/members/bookins/hotels/booking_hotels.dart';
+import 'package:bciweb/views/members/bookins/trip/trip_booking.dart';
 import 'package:bciweb/views/responsive------------------------------------/authentications/generate_otp/generate_otp.dart';
 import 'package:bciweb/views/responsive------------------------------------/responsive_homescreen/responsive_homescreen.dart';
 import 'package:bciweb/routes/app_pages.dart';
@@ -55,8 +59,45 @@ class RouteGenerator {
         return _GeneratePageRoute(
             widget: MemberHomeScreen(), routeName: settings.name);
 
-      case Routes.BusinessHome:
+       case Routes.BCIContents:
         return _GeneratePageRoute(
+            widget: HiddenContentView(), routeName: settings.name);
+      
+      case Routes.LANDINGSCREEN:
+        return _GeneratePageRoute(
+            widget: LandingScreen(), routeName: settings.name);
+
+       case Routes.FLIGHTBOOKING:
+        return _GeneratePageRoute(
+            widget: BookingFlight(), routeName: settings.name);
+      
+       case Routes.HOTELBOOKING:
+        return _GeneratePageRoute(
+            widget: BookingHotels(), routeName: settings.name);
+
+       case Routes.BUSBOOKING:
+        return _GeneratePageRoute(
+            widget: BusBookingMain(), routeName: settings.name);
+
+      case Routes.HOLIDAYBOOKING:
+        return _GeneratePageRoute(
+            widget: BookingTrip(), routeName: settings.name);
+      
+      case Routes.HISTORY:
+        return _GeneratePageRoute(
+            widget: History(), routeName: settings.name);
+
+      case Routes.LOGIN:
+        return _GeneratePageRoute(
+            widget: MobileVerification(), routeName: settings.name);
+
+       case Routes.LOGINBUSINESS:
+        return _GeneratePageRoute(
+            widget: BusinessMobileVerification(), routeName: settings.name);
+      
+
+       case Routes.BusinessHome:
+         return _GeneratePageRoute(
             widget:BusinessHomeScreen (), routeName: settings.name);
 
             case Routes.BusinessMobileVerification:

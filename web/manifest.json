@@ -1,11 +1,11 @@
 {
-    "name": "bciweb",
-    "short_name": "bciweb",
+    "name": "Benze Club International",
+    "short_name": "BCI",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Benze Club International is one of the most popular clubs in Chennai. It's known as a Cosmopolitan Club and is one of the oldest in Chennai.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

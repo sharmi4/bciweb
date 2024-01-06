@@ -132,7 +132,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             if (isLoggedIn == true) {
                               Get.toNamed(Routes.Service);
                             } else {
-                              Get.to(LandingScreen());
+                              Get.toNamed(Routes.LANDINGSCREEN);
                             }
                           },
                           child: Text(
@@ -201,8 +201,8 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                               reghomeController.reindex(7);
                               reghomeController.update();
                               Get.toNamed(Routes.BOOKINGS);
-                            } else {
-                              Get.to(LandingScreen());
+                            } else {  Get.toNamed(Routes.LANDINGSCREEN);
+                              
                             }
                           },
                           child: Text(
@@ -327,7 +327,7 @@ class _RegisterCommonContainerState extends State<RegisterCommonContainer> {
                             padding: const EdgeInsets.only(left: 7),
                             child: InkWell(
                               onTap: () {
-                                Get.to(LandingScreen());
+                                Get.toNamed(Routes.LANDINGSCREEN);
                                 authController.logoutWeb();
                                 //    Get.toNamed(Routes.MobileVerification);
                               },

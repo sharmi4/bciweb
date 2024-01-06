@@ -12,14 +12,14 @@ import 'common_reg_homescreen.dart';
 
 
 
-class Canslation extends StatefulWidget {
-  const Canslation({super.key});
+class HiddenContentView extends StatefulWidget {
+  const HiddenContentView({super.key});
 
   @override
-  State<Canslation> createState() => _CanslationState();
+  State<HiddenContentView> createState() => _CanslationState();
 }
 
-class _CanslationState extends State<Canslation> {
+class _CanslationState extends State<HiddenContentView> {
   @override
   Widget build(BuildContext context) {
     return SelectionArea(
@@ -41,7 +41,7 @@ class _CanslationState extends State<Canslation> {
               child: Column(
                 children: [
                   Text(
-                    'REFUND AND CANCELLATION POLICY',
+                    'Benze club international',
                     style: TextStyle(
                         decoration: TextDecoration.underline,
                         fontSize: 27,
@@ -50,23 +50,39 @@ class _CanslationState extends State<Canslation> {
                   ksizedbox30,
                   ksizedbox20,
                   Text(
-                    '''1.	THERE SHALL BE NO CANCELLATION OF MEMBERSHIP AFTER 48 HOURS OF BECOMING A MEMBER AS WELL AS FOR TRAVEL, MEMBERS STAY.
-    2.	IF YOU HAVE CANCELLED MEMBERSHIP AMOUNT WILL BE REFUNDED WITHIN 24 HOURS THROUGH NET BANKING
-    3.	THERE SHALL BE 20% DEDUCTED FOR CANCELLING THE MEMBERSHIP WITHIN STIPULATED TIME WHATEVER THE FEES PAID FOR MEMBERSHIP, TRAVEL, STAY, SPA, FOOD, LIQUOR, ETC.
-    4.	THERE SHALL BE 50% OF THE ADVANCE AMOUNT BE PAID BY THE MEMBER FOR TRAVEL, STAY, LIQUOR, FOOD, ETC BEFORE 30 DAYS OF CHECK-IN DATE AND 100% OF THE AMOUNT SHALL BE PAID LESS THAN 15 DAYS OF CHECK-IN DATE FOR THE SAME.
-    5.	ADVANCE BOOKING OF MEMBERS FOR TRAVEL, STAY, SPA, LIQUOR FOOD, ETC SHALL NOT BE MORE THAN 90 DAYS.
-    6.	LIFETIME SHALL MEAN THE LIFETIME OF A MEMBER ONCE BECAME A MEMBER OF BCI
-    
-    7.	IN CASE YOU FEEL THAT THE SERVICE AVAIL IS NOT AS LISTED ON THE SITE OR AS PER YOUR EXPECTATIONS, YOU MUST BRING IT TO THE NOTICE OF OUR CUSTOMER CARE WITHIN 48 HOURS OF REGISTERING THE ONLINE MEMBERSHIP. THE CUSTOMER CARE TEAM AFTER LOOKING INTO YOUR COMPLAINT WILL TAKE AN APPROPRIATE DECISION.
-    
-    8.	NO REFUND IS ENTERTAINED FOR THE PRODUCTS/SERVICES YOU AVAILED FROM OUR BCI APP. IF YOU ARE, FOR ANY REASON, NOT ENTIRELY HAPPY WITH OUR SERVICE, WE WILL CHEERFULLY ISSUE THE REFUND BASED ON THE SERVICE UTILIZED. 
-    
-    9.	WE MAINTAIN AND SERVE OUR BCI PRESTIGIOUS MEMBERS THAT HUNDREDS OF SATISFIED CUSTOMERS WIDE COUNTRY, AND OUR SUPPORT ARE SECOND TO NONE.
-    
-    10.	TO REQUEST A REFUND, SIMPLY CONTACT US WITH YOUR MEMBERSHIP DETAILS WITHIN 24 HOURS OF SERVICE UTILIZE. PLEASE MENTION THE MEMBERSHIP DETAILS AND OPTIONALLY TELL US WHY YOU’RE REQUESTING A REFUND – WE TAKE CUSTOMER OPINIONS VERY SERIOUSLY AND USE IT TO CONSTANTLY IMPROVE OUR QUALITY OF SERVICE.
-    
-    11.	REFUNDS ARE NOT BEING PROVIDED FOR SERVICES DELIVERED IN FULL SUCH AS ROOM STAY, CONSUMPTION OF ALCOHOL, PARTIES, EVENTS AND ON SPECIAL OCCASIONS. REFUNDS ARE BEING PROCESSED WITHIN 3 WEEKS PERIOD.
-    ''',
+                    '''Benze club international one of the popular club in chennai, Its known like a Cosmopolitan Club one of the oldest club in chennai now our BCI club is improved like The Presidency Club,
+SVS Club, BCI T Nagar Social Club server all over tamil nadu and we have special offer for Doctors Club member and family Madras Club has horse ridding the same service had been requested 
+by Benze Club International members as family entertinment club so we benze club palned for Stars Metropolitan Club associated at variousfamily night club in chennai
+clubs for families near me clubs, Top Family benze Clubs international in Chennai has Best Premium Membership Clubs in ECR,Chennai The League Club are enjoying facilities from 
+Benze Club International Private Limited no mater we serve all night order to Odour Plus Club & The Presidency Club give all party order to benze club international to host the 
+party with live band with the collage of Gandhi Nagar Club, Madras Gymkhana Club wants vacation for thier memers so we have arranged for international trip for the guest & members with 
+night party The Malayalee Club is the only club theyt give inyernational spa with BCI benze club international. 
+
+Hotels in Chennai, India - Up to 50% Discount on Hotels
+
+Hotels Up to 60% Discount on ROOM BOOKING WITH SPA
+  
+Malayasia Holiday Booking Up to 80% Discount on Hotels with spa service 
+
+Best Holiday Package Up to 80% Discount on Hotels with spa service 
+
+Easily Compare Flight Options
+
+All in One Place
+
+Book Now BCI APP
+
+Quick, Simple, Easy to Use
+BCI APP No Reservation Costs. Great rates
+BCI Flight Booking-Save 1200 On Domestic Flt-Corporate Travel Save 20%-Flight Tickets-Code:WELCOMEMMT Flat 10% Off-Cheap Flights On MakeMyTrip-Flights Tickets Book Cheap-Save Big on Hotels
+Flights/Booking 
+BCI APP Domestic flight booking Now Book and Find cheap flights ticket at best airfare 
+Flight Tickets, Flights Booking at Lowest Airfare, Book Air ...
+Search, compare and book air tickets at best price instantly. Book flight tickets at lowest price guaranteed. For best flights booking offers, lowest airfare and discounts
+book flights from a wide range of airlines and destinations with flexible options and discountsIN BCI APP. You can also reschedule, cancel or change your flight @ BCI APP
+BENZE CLUB INTERNATIONAL APP Best Prices Guaranteed with Deals on Discounts, Special BCI Member Prices, Instant Coupons! Read Reviews from Verified BCI MEMBERS  Guests to Get the Real PRICE Before You Book Your Room.
+BCI PEPAID APP GIVES Great savings on hotels in Chennai, India online BOOKINGS . PREFECT availability and great rates. ReaL hotel reviews and choose  best hotel deal for your HOLIDAY stay.
+BCI APP Easy to customize and extremely flexible, these Indian tour packages offered by OUR BCI PARTNERS are the best-selling deals and are a favourite among tourists, both TRAVELS''',
                     style: TextStyle(
                         height: 1.5, fontWeight: FontWeight.w400, fontSize: 15),
                     textAlign: TextAlign.left,

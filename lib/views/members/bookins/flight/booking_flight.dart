@@ -2,6 +2,7 @@ import 'package:bciweb/controller/api_flightcontroller/api_flight_Controller.dar
 import 'package:bciweb/controller/flaight_show_controller.dart';
 import 'package:bciweb/controller/flaightdate_controller.dart';
 import 'package:bciweb/models/seach_flight_model.dart';
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -186,7 +187,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                 children: [
                                   InkWell(
                                     onTap: () {
-                                      Get.to(BookingFlight());
+                                      Get.toNamed(Routes.FLIGHTBOOKING);
                                     },
                                     child: bookingbutton(
                                       size: size,
@@ -196,7 +197,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Get.to(BookingHotels());
+                                      Get.toNamed(Routes.HOTELBOOKING);
                                     },
                                     child: bookingbutton(
                                       size: size,
@@ -206,7 +207,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                   ),
  InkWell(
                                     onTap: () {
-                                      Get.to(BusBookingMain());
+                                      Get.toNamed(Routes.BUSBOOKING);
                                     },
                                     child: bookingbutton(
                                       size: size,
@@ -217,7 +218,7 @@ class _BookingFlightState extends State<BookingFlight> {
 
                                   InkWell(
                                     onTap: () {
-                                      Get.to(BookingTrip());
+                                      Get.toNamed(Routes.HOLIDAYBOOKING);
                                     },
                                     child: bookingbutton(
                                       size: size,
@@ -237,7 +238,7 @@ class _BookingFlightState extends State<BookingFlight> {
                                   // ),
                                   InkWell(
                                     onTap: () {
-                                      Get.to(History());
+                                      Get.toNamed(Routes.HISTORY);
                                     },
                                     child: bookingbutton(
                                       size: size,

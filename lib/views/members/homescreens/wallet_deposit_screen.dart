@@ -123,255 +123,257 @@ Future<void> _showAlertDialogcancel() async {
 }
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: PreferredSize(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 110)),
-          body: SingleChildScrollView(
+    return SelectionArea(
+      child: Scaffold(
+         appBar: PreferredSize(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Stack(
-                  children: [
-                    Image.asset('assets/images/walletdepositbackground.png')
-                  ],
-                ),ksizedbox10,
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text('Deposit Cash',
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold
-                    ),),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5),
-                      child: Text('All Select Membership Cards Choose Anything',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: kblue
-                      ),),
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 30,right: 50),
-                  child: Row(
+                CommonScreen(),
+                RegisterCommonContainer(),
+              ],
+            ),
+            preferredSize: const Size(double.infinity, 110)),
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Stack(
+                    children: [
+                      Image.asset('assets/images/walletdepositbackground.png')
+                    ],
+                  ),ksizedbox10,
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Text('Deposit Cash',
+                      style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold
+                      ),),
                       Padding(
-                        padding: const EdgeInsets.only(right: 40),
-                        child: Image.asset('assets/icons/walletdepositicon.png',
-                        height: 200,fit: BoxFit.fitHeight,),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 40),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Add To Wallet Amounts or Default \nAmount Choose Payment Methods...',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.w700
-                            ),),
-                            ksizedbox40,
-                            Container(
-                              height: 42,
-                              width: 180,
-                              decoration: BoxDecoration(
-                              border: Border.all(
-                                color: kblue
-                              ),
-                                borderRadius: BorderRadius.circular(8)
-                              ),
-                              child: Center(
-                              child: TextField(
-                                controller: amountController,
-                                decoration: InputDecoration(
-                                  hintText: "Enter Amount",
-                                  border: OutlineInputBorder(
-                                    borderSide:BorderSide.none,
-                                     borderRadius: BorderRadius.circular(8)
-                                  )
-                                ),
-                              )
-                              ),
-                            )
-                          ],
-                        ),
+                        padding: const EdgeInsets.only(top: 5),
+                        child: Text('All Select Membership Cards Choose Anything',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: kblue
+                        ),),
                       )
                     ],
                   ),
-                ),ksizedbox40,
-                Column(
-                  children: [
-                    Text('Others Amounts',
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),),
-                    ksizedbox30,
-                    Row(
+                  Padding(
+                    padding: const EdgeInsets.only(top: 30,right: 50),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        InkWell(
+                        Padding(
+                          padding: const EdgeInsets.only(right: 40),
+                          child: Image.asset('assets/icons/walletdepositicon.png',
+                          height: 200,fit: BoxFit.fitHeight,),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Add To Wallet Amounts or Default \nAmount Choose Payment Methods...',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w700
+                              ),),
+                              ksizedbox40,
+                              Container(
+                                height: 42,
+                                width: 180,
+                                decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: kblue
+                                ),
+                                  borderRadius: BorderRadius.circular(8)
+                                ),
+                                child: Center(
+                                child: TextField(
+                                  controller: amountController,
+                                  decoration: InputDecoration(
+                                    hintText: "Enter Amount",
+                                    border: OutlineInputBorder(
+                                      borderSide:BorderSide.none,
+                                       borderRadius: BorderRadius.circular(8)
+                                    )
+                                  ),
+                                )
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),ksizedbox40,
+                  Column(
+                    children: [
+                      Text('Others Amounts',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold
+                      ),),
+                      ksizedbox30,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: (){
+                              amountController.text ="2000";
+                            },
+                            child: Container(
+                              height: 35,
+                              width: 130,
+                              decoration: BoxDecoration(
+                                color: kwhite,
+                                border: Border.all(
+                                  color: kblue
+                                ),
+                                  borderRadius: BorderRadius.circular(7)
+                              ),
+                              child: Center(child: Text('+2000')),
+                            ),
+                          ),
+                          
+                         
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: InkWell(
+                              onTap: (){
+                                amountController.text = '4000';
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 130,
+                                decoration: BoxDecoration(
+                                  color: kwhite,
+                                  border: Border.all(
+                                    color: kblue
+                                  ),
+                                    borderRadius: BorderRadius.circular(7)
+                                ),
+                                child: Center(child: Text('+4000')),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: InkWell(
+                              onTap: (){
+                                amountController.text="8000";
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 130,
+                                decoration: BoxDecoration(
+                                  color: kwhite,
+                                  border: Border.all(
+                                    color: kblue
+                                  ),
+                                    borderRadius: BorderRadius.circular(7)
+                                ),
+                                child: Center(
+                                  child: Text('+8000'),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20),
+                            child: InkWell(
+                              onTap: (){
+                                amountController.text="10000";
+                              },
+                              child: Container(
+                                height: 35,
+                                width: 130,
+                                decoration: BoxDecoration(
+                                  color: kwhite,
+                                  border: Border.all(
+                                    color: kblue
+                                  ),
+                                   borderRadius: BorderRadius.circular(7)
+                                ),
+                                child: Center(child: Text('+10000')),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 40,left: 0,right: 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
                           onTap: (){
-                            amountController.text ="2000";
+                            print('add transaction');
+                            
+                            // authprofileController.payforWallet(
+                            //   amount: double.parse(amountController.text));
+                          
                           },
                           child: Container(
-                            height: 35,
-                            width: 130,
+                            height: 40,
+                            width: 1000,
                             decoration: BoxDecoration(
-                              color: kwhite,
-                              border: Border.all(
-                                color: kblue
-                              ),
+                              gradient: LinearGradient(colors: [
+                                kOrange,
+                                kyellow
+                              ]),
                                 borderRadius: BorderRadius.circular(7)
                             ),
-                            child: Center(child: Text('+2000')),
-                          ),
-                        ),
-                        
-                       
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: InkWell(
-                            onTap: (){
-                              amountController.text = '4000';
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                color: kwhite,
-                                border: Border.all(
-                                  color: kblue
-                                ),
-                                  borderRadius: BorderRadius.circular(7)
-                              ),
-                              child: Center(child: Text('+4000')),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: InkWell(
-                            onTap: (){
-                              amountController.text="8000";
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                color: kwhite,
-                                border: Border.all(
-                                  color: kblue
-                                ),
-                                  borderRadius: BorderRadius.circular(7)
-                              ),
-                              child: Center(
-                                child: Text('+8000'),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20),
-                          child: InkWell(
-                            onTap: (){
-                              amountController.text="10000";
-                            },
-                            child: Container(
-                              height: 35,
-                              width: 130,
-                              decoration: BoxDecoration(
-                                color: kwhite,
-                                border: Border.all(
-                                  color: kblue
-                                ),
-                                 borderRadius: BorderRadius.circular(7)
-                              ),
-                              child: Center(child: Text('+10000')),
-                            ),
+                            child: Center(child: Text('Payments',
+                            style: TextStyle(
+                              color: kwhite,
+                              fontSize: 17
+                            ),)),
                           ),
                         ),
                       ],
-                    )
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 40,left: 0,right: 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                          print('add transaction');
-                          
-                          // authprofileController.payforWallet(
-                          //   amount: double.parse(amountController.text));
-                        
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 1000,
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                              kOrange,
-                              kyellow
-                            ]),
+                    ),
+                  ),
+                   Padding(
+                    padding: const EdgeInsets.only(top: 30,left: 0,right: 0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                          _showAlertDialogcancel();
+                          },
+                          child: Container(
+                            height: 40,
+                            width: 1000,
+                            decoration: BoxDecoration(
+                              color: kblue,
                               borderRadius: BorderRadius.circular(7)
+                            ),
+                            child: Center(child: Text('Cancel',
+                            style: TextStyle(
+                              color: kwhite,
+                              fontSize: 17,
+                              
+                            ),)),
                           ),
-                          child: Center(child: Text('Payments',
-                          style: TextStyle(
-                            color: kwhite,
-                            fontSize: 17
-                          ),)),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                 Padding(
-                  padding: const EdgeInsets.only(top: 30,left: 0,right: 0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      GestureDetector(
-                        onTap: (){
-                        _showAlertDialogcancel();
-                        },
-                        child: Container(
-                          height: 40,
-                          width: 1000,
-                          decoration: BoxDecoration(
-                            color: kblue,
-                            borderRadius: BorderRadius.circular(7)
-                          ),
-                          child: Center(child: Text('Cancel',
-                          style: TextStyle(
-                            color: kwhite,
-                            fontSize: 17,
-                            
-                          ),)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                ksizedbox40,
-                 RegisterCommonBottom()
-              ],
-              
+                  ksizedbox40,
+                   RegisterCommonBottom()
+                ],
+                
+              ),
             ),
-          ),
-
+    
+      ),
     );
   }
 }

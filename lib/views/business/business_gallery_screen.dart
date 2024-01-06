@@ -96,118 +96,120 @@ class _BusinessGalleryState extends State<BusinessGallery> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-              appBar: PreferredSize(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              BusinessCommonScreen(),
-              BusinessCommonhomeContainer(),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 110)),
-      body: SingleChildScrollView(
-        child: Focus(
-          focusNode: _focusNode,
-          onKey: _handleKeyEvent,
-          child: Column(
-            children: [
-              //RegisterCommonContainer(),
-              ksizedbox40,
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: GridView.builder(
-                    shrinkWrap: true,
-                    itemCount: galleryImage.length,
-                    physics: NeverScrollableScrollPhysics(),
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      crossAxisSpacing: 10.0,
-                      mainAxisSpacing: 2.0,
-                    ),
-                    itemBuilder: ((context, index) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            authController.imageIndex(index);
-                          });
-                          showDialog(
-                           context: context,
-                           builder: (BuildContext context) {
-                           return AlertDialog(
-                            title: Row(
-                              children: [
-                                InkWell(
-                                  onTap: (){
-                                    Get.back();
-                                  },
-                                  child:const Icon(Icons.close_sharp)),
+    return SelectionArea(
+      child: Scaffold(
+                appBar: PreferredSize(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                BusinessCommonScreen(),
+                BusinessCommonhomeContainer(),
+              ],
+            ),
+            preferredSize: const Size(double.infinity, 110)),
+        body: SingleChildScrollView(
+          child: Focus(
+            focusNode: _focusNode,
+            onKey: _handleKeyEvent,
+            child: Column(
+              children: [
+                //RegisterCommonContainer(),
+                ksizedbox40,
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: GridView.builder(
+                      shrinkWrap: true,
+                      itemCount: galleryImage.length,
+                      physics: NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        crossAxisSpacing: 10.0,
+                        mainAxisSpacing: 2.0,
+                      ),
+                      itemBuilder: ((context, index) {
+                        return InkWell(
+                          onTap: () {
+                            setState(() {
+                              authController.imageIndex(index);
+                            });
+                            showDialog(
+                             context: context,
+                             builder: (BuildContext context) {
+                             return AlertDialog(
+                              title: Row(
+                                children: [
+                                  InkWell(
+                                    onTap: (){
+                                      Get.back();
+                                    },
+                                    child:const Icon(Icons.close_sharp)),
+                                ],
+                              ),
+                              content: Obx( () =>
+                                Container(
+                                  height: 700,
+                                  width: 700,
+                                  color: Colors.white,
+                                  child: Center(
+                                    child: PhotoView(
+                                          imageProvider: AssetImage(galleryImage[authController.imageIndex.value]),
+                                          backgroundDecoration:const BoxDecoration(color: Colors.white),
+                                  ),
+                                ),
+                                ),
+                              ),
+                              actions: [
+                                Obx( () =>
+                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                     authController.imageIndex.value != 0 ? InkWell(
+                                        onTap: (){
+                                          setState(() {
+                                            if(authController.imageIndex.value != 0){
+                                              authController.imageIndex.value --;
+                                            }
+                                          });
+                                        },
+                                        child:const Icon(Icons.arrow_back_ios)) : const Icon(Icons.arrow_back_ios,color: Colors.grey,),
+                                        kwidth10,
+                                        kwidth10,
+                                      galleryImage.length != authController.imageIndex.value +1 ?
+                                      InkWell(
+                                        onTap: (){
+                                           setState(() {
+                                            {if(galleryImage.length != authController.imageIndex.value +1)
+                                               authController.imageIndex.value ++;
+                                            }
+                                           
+                                          });
+                                        },
+                                        child:const Icon(Icons.arrow_forward_ios)) : const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
+                                    ],
+                                  ),
+                                ),
                               ],
-                            ),
-                            content: Obx( () =>
-                              Container(
-                                height: 700,
-                                width: 700,
-                                color: Colors.white,
-                                child: Center(
-                                  child: PhotoView(
-                                        imageProvider: AssetImage(galleryImage[authController.imageIndex.value]),
-                                        backgroundDecoration:const BoxDecoration(color: Colors.white),
-                                ),
-                              ),
-                              ),
-                            ),
-                            actions: [
-                              Obx( () =>
-                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                   authController.imageIndex.value != 0 ? InkWell(
-                                      onTap: (){
-                                        setState(() {
-                                          if(authController.imageIndex.value != 0){
-                                            authController.imageIndex.value --;
-                                          }
-                                        });
-                                      },
-                                      child:const Icon(Icons.arrow_back_ios)) : const Icon(Icons.arrow_back_ios,color: Colors.grey,),
-                                      kwidth10,
-                                      kwidth10,
-                                    galleryImage.length != authController.imageIndex.value +1 ?
-                                    InkWell(
-                                      onTap: (){
-                                         setState(() {
-                                          {if(galleryImage.length != authController.imageIndex.value +1)
-                                             authController.imageIndex.value ++;
-                                          }
-                                         
-                                        });
-                                      },
-                                      child:const Icon(Icons.arrow_forward_ios)) : const Icon(Icons.arrow_forward_ios,color: Colors.grey,),
-                                  ],
-                                ),
-                              ),
-                            ],
-                             );
-                            
-                                },
-                            );
-                          // Get.to(PhotoImageView(
-                          //   image: galleryImage[index],
-                          // ));
-                        },
-                        child: Container(
-                            height: 100,
-                            width: 200,
-                            child: Image.asset(
-                              galleryImage[index],
-                              fit: BoxFit.fitHeight,
-                            )),
-                      );
-                    })),
-              ),
-              businessRegisterCommonBottom()
-            ],
+                               );
+                              
+                                  },
+                              );
+                            // Get.to(PhotoImageView(
+                            //   image: galleryImage[index],
+                            // ));
+                          },
+                          child: Container(
+                              height: 100,
+                              width: 200,
+                              child: Image.asset(
+                                galleryImage[index],
+                                fit: BoxFit.fitHeight,
+                              )),
+                        );
+                      })),
+                ),
+                businessRegisterCommonBottom()
+              ],
+            ),
           ),
         ),
       ),

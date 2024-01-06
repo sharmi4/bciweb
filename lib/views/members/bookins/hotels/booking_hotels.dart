@@ -1,3 +1,4 @@
+import 'package:bciweb/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -95,7 +96,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                             children: [
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingFlight());
+                                Get.toNamed(Routes.FLIGHTBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -105,7 +106,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingHotels());
+                                  Get.toNamed(Routes.HOTELBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -116,7 +117,7 @@ class _BookingHotelsState extends State<BookingHotels> {
 
  InkWell(
     onTap: () {
-                                  Get.to(BusBookingMain());
+                                 Get.toNamed(Routes.BUSBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -128,7 +129,7 @@ class _BookingHotelsState extends State<BookingHotels> {
 
                               InkWell(
                                 onTap: () {
-                                  Get.to(BookingTrip());
+                                   Get.toNamed(Routes.HOLIDAYBOOKING);
                                 },
                                 child: bookingbutton(
                                   size: size,
@@ -148,7 +149,7 @@ class _BookingHotelsState extends State<BookingHotels> {
                               // ),
                               InkWell(
                                 onTap: () {
-                                  Get.to(History());
+                                   Get.toNamed(Routes.HISTORY);
                                 },
                                 child: bookingbutton(
                                   size: size,

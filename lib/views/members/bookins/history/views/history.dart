@@ -1,5 +1,6 @@
 import 'package:bciweb/constant/constans.dart';
 import 'package:bciweb/controller/auth_controller/auth_profile_controller.dart';
+import 'package:bciweb/routes/app_pages.dart';
 
 import 'package:bciweb/views/members/bookins/history/views/widgets/hotel_history.dart';
 
@@ -36,273 +37,275 @@ class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: PreferredSize(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              CommonScreen(),
-              RegisterCommonContainer(),
-            ],
-          ),
-          preferredSize: const Size(double.infinity, 110)),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            //RegisterCommonContainer(),
-            Stack(
+    return SelectionArea(
+      child: Scaffold(
+        appBar: PreferredSize(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
-                    width: size.width,
-                    child: Image.asset('assets/images/Group 39754.png')),
-                Positioned(
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                  child: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Spacer(),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BookingFlight());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'FLIGHT',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BookingHotels());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'HOTELS',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BusBookingMain());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'BUS',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Get.to(BookingTrip());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'HOLIDAYS',
-                                  colorr: kblue,
-                                ),
-                              ),
-                              // InkWell(
-                              //   onTap: () {
-                              //     Get.to(BookingLiquer());
-                              //   },
-                              //   child: bookingbutton(
-                              //     size: size,
-                              //     text: 'LIQUOR',
-                              //     colorr: kblue,
-                              //   ),
-                              // ),
-
-                              InkWell(
-                                onTap: () {
-                                  Get.to(History());
-                                },
-                                child: bookingbutton(
-                                  size: size,
-                                  text: 'HISTORY',
-                                  colorr: korange,
-                                ),
-                              ),
-                            ],
-                          ),
-                          height: 60,
-                          width: size.width * 0.7,
-                          decoration: BoxDecoration(
-                              color: kblue,
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                        Container(
-                          height: 140,
-                          width: size.width * 0.9,
-                          decoration: BoxDecoration(
-                              color: kwhite,
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.zero,
-                                  bottomLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                  bottomRight: Radius.circular(15))),
-                          child: Obx(
-                            () => Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                CommonScreen(),
+                RegisterCommonContainer(),
+              ],
+            ),
+            preferredSize: const Size(double.infinity, 110)),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              //RegisterCommonContainer(),
+              Stack(
+                children: [
+                  Container(
+                      width: size.width,
+                      child: Image.asset('assets/images/Group 39754.png')),
+                  Positioned(
+                    top: 0,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Spacer(),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 InkWell(
                                   onTap: () {
-                                    historyController.hisindex(0);
-                                    historyController.update();
+  Get.toNamed(Routes.FLIGHTBOOKING);
                                   },
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                      'Flights',
-                                      style: TextStyle(
-                                          color: kwhite
-                                          //  historyController.reindex == 0
-                                          //     ? kOrange
-                                          //     : kblue,
-                                          ,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w700),
-                                    )),
-                                    decoration: BoxDecoration(
-                                        color: historyController.hisindex == 0
-                                            ? kyellow
-                                            : kgrey,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    height: 100,
-                                    width: 200,
+                                  child: bookingbutton(
+                                    size: size,
+                                    text: 'FLIGHT',
+                                    colorr: kblue,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    historyController.hisindex(1);
-                                    historyController.update();
+                                    Get.toNamed(Routes.HOTELBOOKING);
                                   },
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                      'Hotels',
-                                      style: TextStyle(
-                                          color: kwhite,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w700),
-                                    )),
-                                    decoration: BoxDecoration(
-                                        color: historyController.hisindex == 1
-                                            ? kyellow
-                                            : kgrey,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    height: 100,
-                                    width: 200,
+                                  child: bookingbutton(
+                                    size: size,
+                                    text: 'HOTELS',
+                                    colorr: kblue,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    historyController.hisindex(2);
-                                    historyController.update();
+                                      Get.toNamed(Routes.BUSBOOKING);
                                   },
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                      'Holiday\nPackages',
-                                      style: TextStyle(
-                                          color: kwhite,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w700),
-                                    )),
-                                    decoration: BoxDecoration(
-                                        color: historyController.hisindex == 2
-                                            ? kyellow
-                                            : kgrey,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    height: 100,
-                                    width: 200,
+                                  child: bookingbutton(
+                                    size: size,
+                                    text: 'BUS',
+                                    colorr: kblue,
                                   ),
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    historyController.hisindex(3);
-                                    historyController.update();
+                                    Get.toNamed(Routes.HOLIDAYBOOKING);
                                   },
-                                  child: Container(
-                                    child: Center(
-                                      child: Text(
-                                        'Bus',
-                                        style: TextStyle(
-                                            color: kwhite,
-                                            fontSize: 19,
-                                            fontWeight: FontWeight.w700),
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                        color: historyController.hisindex == 3
-                                            ? kyellow
-                                            : kgrey,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    height: 100,
-                                    width: 200,
+                                  child: bookingbutton(
+                                    size: size,
+                                    text: 'HOLIDAYS',
+                                    colorr: kblue,
                                   ),
                                 ),
+                                // InkWell(
+                                //   onTap: () {
+                                //     Get.to(BookingLiquer());
+                                //   },
+                                //   child: bookingbutton(
+                                //     size: size,
+                                //     text: 'LIQUOR',
+                                //     colorr: kblue,
+                                //   ),
+                                // ),
+    
                                 InkWell(
                                   onTap: () {
-                                    historyController.hisindex(4);
-                                    historyController.update();
+                                    Get.toNamed(Routes.HISTORY);
                                   },
-                                  child: Container(
-                                    child: Center(
-                                        child: Text(
-                                      'Others',
-                                      style: TextStyle(
-                                          color: kwhite,
-                                          fontSize: 19,
-                                          fontWeight: FontWeight.w700),
-                                    )),
-                                    decoration: BoxDecoration(
-                                        color: historyController.hisindex == 4
-                                            ? kyellow
-                                            : kgrey,
-                                        borderRadius:
-                                            BorderRadius.circular(15)),
-                                    height: 100,
-                                    width: 200,
+                                  child: bookingbutton(
+                                    size: size,
+                                    text: 'HISTORY',
+                                    colorr: korange,
                                   ),
                                 ),
                               ],
                             ),
+                            height: 60,
+                            width: size.width * 0.7,
+                            decoration: BoxDecoration(
+                                color: kblue,
+                                borderRadius: BorderRadius.circular(10)),
                           ),
-                        ),
-                        Spacer()
-                      ],
+                          Container(
+                            height: 140,
+                            width: size.width * 0.9,
+                            decoration: BoxDecoration(
+                                color: kwhite,
+                                borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.zero,
+                                    bottomLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15),
+                                    bottomRight: Radius.circular(15))),
+                            child: Obx(
+                              () => Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      historyController.hisindex(0);
+                                      historyController.update();
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        'Flights',
+                                        style: TextStyle(
+                                            color: kwhite
+                                            //  historyController.reindex == 0
+                                            //     ? kOrange
+                                            //     : kblue,
+                                            ,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w700),
+                                      )),
+                                      decoration: BoxDecoration(
+                                          color: historyController.hisindex == 0
+                                              ? kyellow
+                                              : kgrey,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      height: 100,
+                                      width: 200,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      historyController.hisindex(1);
+                                      historyController.update();
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        'Hotels',
+                                        style: TextStyle(
+                                            color: kwhite,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w700),
+                                      )),
+                                      decoration: BoxDecoration(
+                                          color: historyController.hisindex == 1
+                                              ? kyellow
+                                              : kgrey,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      height: 100,
+                                      width: 200,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      historyController.hisindex(2);
+                                      historyController.update();
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        'Holiday\nPackages',
+                                        style: TextStyle(
+                                            color: kwhite,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w700),
+                                      )),
+                                      decoration: BoxDecoration(
+                                          color: historyController.hisindex == 2
+                                              ? kyellow
+                                              : kgrey,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      height: 100,
+                                      width: 200,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      historyController.hisindex(3);
+                                      historyController.update();
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                        child: Text(
+                                          'Bus',
+                                          style: TextStyle(
+                                              color: kwhite,
+                                              fontSize: 19,
+                                              fontWeight: FontWeight.w700),
+                                        ),
+                                      ),
+                                      decoration: BoxDecoration(
+                                          color: historyController.hisindex == 3
+                                              ? kyellow
+                                              : kgrey,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      height: 100,
+                                      width: 200,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      historyController.hisindex(4);
+                                      historyController.update();
+                                    },
+                                    child: Container(
+                                      child: Center(
+                                          child: Text(
+                                        'Others',
+                                        style: TextStyle(
+                                            color: kwhite,
+                                            fontSize: 19,
+                                            fontWeight: FontWeight.w700),
+                                      )),
+                                      decoration: BoxDecoration(
+                                          color: historyController.hisindex == 4
+                                              ? kyellow
+                                              : kgrey,
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      height: 100,
+                                      width: 200,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Spacer()
+                        ],
+                      ),
                     ),
-                  ),
-                )
-              ],
-            ),
-            ksizedbox30,
-            Obx(() => Column(
-                  children: [
-                    if (historyController.hisindex.value == 0)
-                      FlightBookingHistory(),
-                    if (historyController.hisindex.value == 1) HotelHistory(),
-                    if (historyController.hisindex.value == 2) HolidayHistory(),
-                    if (historyController.hisindex.value == 3) BussHistory(),
-                    if (historyController.hisindex.value == 4) index4(),
-                  ],
-                )),
-            ksizedbox30,
-            ksizedbox30,
-            RegisterCommonBottom()
-          ],
+                  )
+                ],
+              ),
+              ksizedbox30,
+              Obx(() => Column(
+                    children: [
+                      if (historyController.hisindex.value == 0)
+                        FlightBookingHistory(),
+                      if (historyController.hisindex.value == 1) HotelHistory(),
+                      if (historyController.hisindex.value == 2) HolidayHistory(),
+                      if (historyController.hisindex.value == 3) BussHistory(),
+                      if (historyController.hisindex.value == 4) index4(),
+                    ],
+                  )),
+              ksizedbox30,
+              ksizedbox30,
+              RegisterCommonBottom()
+            ],
+          ),
         ),
       ),
     );
